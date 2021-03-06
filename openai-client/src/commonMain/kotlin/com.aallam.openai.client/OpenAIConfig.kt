@@ -4,6 +4,9 @@ import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.SIMPLE
 
+/**
+ * OpenAI client configuration.
+ */
 public class OpenAIConfig(
   public val token: String,
   public val logLevel: LogLevel = LogLevel.HEADERS,

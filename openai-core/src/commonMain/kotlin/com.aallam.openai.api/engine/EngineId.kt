@@ -4,7 +4,7 @@ import com.aallam.openai.api.engine.internal.EngineIdSerializer
 import kotlinx.serialization.Serializable
 
 /**
- * OpenAI’s API engines.
+ * OpenAI’s API engine ID.
  */
 @Serializable(EngineIdSerializer::class)
 public sealed class EngineId(public val id: String) {

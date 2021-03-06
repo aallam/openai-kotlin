@@ -29,4 +29,13 @@ class TestOpenAI {
       assertNotEquals(0, response.data.size)
     }
   }
+
+  @Test
+  fun engine() {
+    runBlocking {
+      val engineId = EngineId.Davinci
+      val response = openAI.engine(engineId)
+      assertEquals(engineId, response.id)
+    }
+  }
 }

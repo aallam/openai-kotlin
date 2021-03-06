@@ -1,5 +1,6 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.engine.Engine
 import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.engine.EnginesResponse
 import com.aallam.openai.api.search.SearchRequest
@@ -16,7 +17,7 @@ public interface OpenAI {
    * Response includes the list of scored documents (in the same order that they were passed in).
    */
   public suspend fun search(
-    engine: EngineId,
+    engineId: EngineId,
     request: SearchRequest
   ): SearchResponse
 
@@ -25,6 +26,12 @@ public interface OpenAI {
    * the owner and availability.
    */
   public suspend fun engines(): EnginesResponse
+
+  /**
+   * Retrieves an engine instance, providing basic information about the engine such as the owner
+   * and availability.
+   */
+  public suspend fun engine(engineId: EngineId): Engine
 
   public companion object
 }

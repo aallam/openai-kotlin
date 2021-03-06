@@ -16,7 +16,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        implementation(project(":openai-api"))
+        implementation(project(":openai-core"))
         implementation("io.ktor:ktor-client:1.5.2")
         implementation("io.ktor:ktor-client-json:1.5.2")
         implementation("io.ktor:ktor-client-auth:1.5.2")

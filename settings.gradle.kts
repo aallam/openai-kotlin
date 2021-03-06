@@ -1,4 +1,4 @@
 rootProject.name = "OpenAI-Kotlin"
 
-include(":openai-api")
+include(":openai-core")
 include(":openai-client")

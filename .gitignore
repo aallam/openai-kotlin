@@ -1,0 +1,21 @@
+# Gradle
+.gradle
+gradlew.bat
+build
+local.properties
+reports
+
+# IntelliJ IDEA
+.idea
+*.iml
+*.ipl
+*.iws
+classes/
+idea-classes/
+coverage-error.log
+
+# Finder
+.DS_Store
+
+# Java
+*.hprof

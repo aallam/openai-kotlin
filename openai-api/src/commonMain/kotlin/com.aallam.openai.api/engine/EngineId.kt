@@ -1,9 +1,13 @@
-package com.aallam.openai.api
+package com.aallam.openai.api.engine
+
+import com.aallam.openai.api.engine.internal.EngineIdSerializer
+import kotlinx.serialization.Serializable
 
 /**
  * OpenAI’s API engines.
  */
-public sealed class Engine(public val id: String) {
+@Serializable(EngineIdSerializer::class)
+public sealed class EngineId(public val id: String) {
 
   /**
    * Ada is usually the fastest model and can perform tasks like parsing text, address correction
@@ -14,7 +18,7 @@ public sealed class Engine(public val id: String) {
    *
    * *Note: Any task performed by a faster model like Ada can be performed by a more powerful model like Curie or Davinci.*
    */
-  public object Ada : Engine("ada")
+  public object Ada : EngineId("ada")
 
   /**
    * Babbage can perform straightforward tasks like simple classification. It’s also quite capable
@@ -22,7 +26,7 @@ public sealed class Engine(public val id: String) {
    *
    * Good at: **Moderate classification, semantic search classification**
    */
-  public object Babbage : Engine("babbage")
+  public object Babbage : EngineId("babbage")
 
   /**
    * Curie is extremely powerful, yet very fast. While Davinci is stronger when it comes to
@@ -32,7 +36,7 @@ public sealed class Engine(public val id: String) {
    *
    * Good at: **Language translation, complex classification, text sentiment, summarization**
    */
-  public object Curie : Engine("curie")
+  public object Curie : EngineId("curie")
 
   /**
    * Davinci is the most capable engine and can perform any task the other models can perform and
@@ -48,12 +52,12 @@ public sealed class Engine(public val id: String) {
    *
    * Good at: **Complex intent, cause and effect, summarization for audience**
    */
-  public object Davinci : Engine("davinci")
+  public object Davinci : EngineId("davinci")
 
   /**
    * Can be used to provide an engine id manually.
    */
-  public class Custom(id: String) : Engine(id)
+  public class Custom(id: String) : EngineId(id)
 
   override fun toString(): String {
     return id

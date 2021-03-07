@@ -8,6 +8,7 @@ import com.aallam.openai.api.engine.EnginesResponse
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.api.search.SearchResponse
 import com.aallam.openai.client.internal.OpenAIApi
+import kotlinx.coroutines.CoroutineScope
 
 
 /**

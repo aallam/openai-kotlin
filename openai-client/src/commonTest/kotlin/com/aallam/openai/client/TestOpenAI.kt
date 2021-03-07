@@ -3,7 +3,7 @@ package com.aallam.openai.client
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.search.SearchRequest
-import kotlinx.coroutines.runBlocking
+import com.aallam.openai.client.internal.runBlockingTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -15,7 +15,7 @@ class TestOpenAI {
 
     @Test
     fun search() {
-        runBlocking {
+        runBlockingTest {
             val documents = listOf("White House", "hospital", "school")
             val query = "the president"
             val request = SearchRequest(documents, query)
@@ -26,7 +26,7 @@ class TestOpenAI {
 
     @Test
     fun engines() {
-        runBlocking {
+        runBlockingTest {
             val response = openAI.engines()
             assertNotEquals(0, response.data.size)
         }
@@ -34,7 +34,7 @@ class TestOpenAI {
 
     @Test
     fun engine() {
-        runBlocking {
+        runBlockingTest {
             val engineId = EngineId.Davinci
             val response = openAI.engine(engineId)
             assertEquals(engineId, response.id)
@@ -43,7 +43,7 @@ class TestOpenAI {
 
     @Test
     fun completion() {
-        runBlocking {
+        runBlockingTest {
             val request = CompletionRequest(
                 prompt = "Once upon a time",
                 maxTokens = 5,

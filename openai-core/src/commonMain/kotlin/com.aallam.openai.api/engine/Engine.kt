@@ -8,18 +8,18 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 public class Engine(
-  /**
-   * An identifier for this engine, used to specify an engine for completions or searching.
-   */
-  @SerialName("id") public val id: EngineId,
+    /**
+     * An identifier for this engine, used to specify an engine for completions or searching.
+     */
+    @SerialName("id") public val id: EngineId,
 
-  /**
-   * The owner of the GPT-3 engine, typically "openai".
-   */
-  @SerialName("owner") public val owner: String,
+    /**
+     * The owner of the GPT-3 engine, typically "openai".
+     */
+    @SerialName("owner") public val owner: String,
 
-  /**
-   * Whether the engine is ready to process requests or not.
-   */
-  @SerialName("ready") public val ready: Boolean
+    /**
+     * Whether the engine is ready to process requests or not.
+     */
+    @SerialName("ready") public val ready: Boolean
 )

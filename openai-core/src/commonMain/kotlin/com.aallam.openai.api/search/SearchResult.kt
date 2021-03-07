@@ -9,18 +9,15 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 public class SearchResult(
-  /**
-   * The position of this document in the request list.
-   */
-  @SerialName("document") public val document: Int,
-  /**
-   * The type of object returned, should be "search_result".
-   */
-  @SerialName("object") public val type: String,
-  /**
-   * The similarity score is a positive score that usually ranges from 0 to 300 (but can sometimes
-   * go higher), where a score above 200 usually means the document is semantically similar to
-   * the query.
-   */
-  @SerialName("score") public val score: Double,
+    /**
+     * The position of this document in the request list.
+     */
+    @SerialName("document") public val document: Int,
+
+    /**
+     * The similarity score is a positive score that usually ranges from 0 to 300 (but can sometimes
+     * go higher), where a score above 200 usually means the document is semantically similar to
+     * the query.
+     */
+    @SerialName("score") public val score: Double,
 )

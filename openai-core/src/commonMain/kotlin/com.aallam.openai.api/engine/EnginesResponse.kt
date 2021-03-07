@@ -8,8 +8,8 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 public class EnginesResponse(
-  /**
-   * List containing the actual results.
-   */
-  @SerialName("data") public val data: List<Engine>,
+    /**
+     * List containing the actual results.
+     */
+    @SerialName("data") public val data: List<Engine>,
 )

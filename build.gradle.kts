@@ -9,8 +9,8 @@ buildscript {
 }
 
 subprojects {
-  group = "com.aallam.kotlin-data"
-  version = "0.1.0-SNAPSHOT"
+  group = OpenAI.group
+  version = OpenAI.version
 
   repositories {
     mavenCentral()

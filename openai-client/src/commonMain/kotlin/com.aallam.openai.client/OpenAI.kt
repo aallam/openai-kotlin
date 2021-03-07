@@ -1,5 +1,7 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.completion.CompletionRequest
+import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.Engine
 import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.engine.EnginesResponse
@@ -7,33 +9,40 @@ import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.api.search.SearchResponse
 import com.aallam.openai.client.internal.OpenAIApi
 
+
 /**
  * OpenAI API.
  */
 public interface OpenAI {
 
-  /**
-   * Performs a semantic search over a list of documents.
-   * Response includes the list of scored documents (in the same order that they were passed in).
-   */
-  public suspend fun search(
-    engineId: EngineId,
-    request: SearchRequest
-  ): SearchResponse
+    /**
+     * Performs a semantic search over a list of documents.
+     * Response includes the list of scored documents (in the same order that they were passed in).
+     */
+    public suspend fun search(
+        engineId: EngineId,
+        request: SearchRequest
+    ): SearchResponse
 
-  /**
-   * Lists the currently available engines, and provides basic information about each one such as
-   * the owner and availability.
-   */
-  public suspend fun engines(): EnginesResponse
+    /**
+     * Lists the currently available engines, and provides basic information about each one such as
+     * the owner and availability.
+     */
+    public suspend fun engines(): EnginesResponse
 
-  /**
-   * Retrieves an engine instance, providing basic information about the engine such as the owner
-   * and availability.
-   */
-  public suspend fun engine(engineId: EngineId): Engine
+    /**
+     * Retrieves an engine instance, providing basic information about the engine such as the owner
+     * and availability.
+     */
+    public suspend fun engine(engineId: EngineId): Engine
 
-  public companion object
+    /**
+     * This is the main endpoint of the API. Returns the predicted completion for the given prompt,
+     * and can also return the probabilities of alternative tokens at each position if requested.
+     */
+    public suspend fun createCompletion(engineId: EngineId, request: CompletionRequest? = null): TextCompletion
+
+    public companion object
 }
 
 /**
@@ -42,8 +51,8 @@ public interface OpenAI {
  * @param token secret API key
  */
 public fun OpenAI(token: String): OpenAI {
-  val config = OpenAIConfig(token = token)
-  return OpenAI(config)
+    val config = OpenAIConfig(token = token)
+    return OpenAI(config)
 }
 
 /**
@@ -52,5 +61,5 @@ public fun OpenAI(token: String): OpenAI {
  * @param config client config
  */
 public fun OpenAI(config: OpenAIConfig): OpenAI {
-  return OpenAIApi(config)
+    return OpenAIApi(config)
 }

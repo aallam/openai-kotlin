@@ -63,7 +63,7 @@ public class CompletionRequest(
      *
      * Defaults to 1.
      */
-    @SerialName("")
+    @SerialName("n")
     public val n: Int? = null,
 
     /**

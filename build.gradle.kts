@@ -20,8 +20,8 @@ subprojects {
     version = OpenAI.version
 
     repositories {
+        mavenLocal()
         mavenCentral()
     }
-
     val javadoc by tasks.creating(Javadoc::class)
 }

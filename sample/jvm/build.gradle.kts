@@ -3,14 +3,11 @@ plugins {
     application
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     // Use the Kotlin JDK 8 standard library.
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation(project(":openai-client"))
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.aallam.openai:openai-client:0.1.0")
     implementation(Ktor("client-apache"))
 }
 

@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
+    id("com.vanniktech.maven.publish")
 }
 
 kotlin {
@@ -13,7 +14,7 @@ kotlin {
             useJUnit()
         }
     }
-    js(LEGACY) {
+    js(BOTH) {
         nodejs()
     }
     val hostOs = System.getProperty("os.name")

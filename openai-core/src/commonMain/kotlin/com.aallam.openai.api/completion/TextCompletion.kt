@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
 @Serializable
-public class TextCompletion(
+public data class TextCompletion(
     /**
      * A unique id assigned to this completion
      */

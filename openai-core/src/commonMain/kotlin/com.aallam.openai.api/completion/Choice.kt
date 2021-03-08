@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
 @Serializable
-public class Choice(
+public data class Choice(
 
     /**
      * The generated text. Will include the prompt if [CompletionRequest.echo] is true

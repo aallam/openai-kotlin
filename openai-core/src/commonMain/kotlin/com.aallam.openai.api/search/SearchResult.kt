@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
  * [documentation](https://beta.openai.com/docs/api-reference/search)
  */
 @Serializable
-public class SearchResult(
+public data class SearchResult(
     /**
      * The position of this document in the request list.
      */

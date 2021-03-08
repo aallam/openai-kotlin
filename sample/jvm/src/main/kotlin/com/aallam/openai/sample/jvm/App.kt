@@ -9,33 +9,29 @@ import kotlinx.coroutines.runBlocking
 
 fun main() {
     runBlocking {
-
-        val token = System.getenv("OPENAI_API_KEY")
+        val token =
+            requireNotNull(System.getenv("OPENAI_API_KEY")) { "OPENAI_API_KEY environment variable must be set." }
         val openAI = OpenAI(token)
 
-        println("\nGetting available engines...")
-        openAI.engines().forEach { it.id }
+        println("> Getting available engines...")
+        openAI.engines().forEach(::println)
 
-        println("\nGetting ada engine...")
+        println("\n> Getting ada engine...")
         val ada: Engine = openAI.engine(EngineId.Ada)
         println(ada)
 
-        println("\nCreating completion...")
+        println("\n>️ Creating completion...")
         val completionRequest = CompletionRequest(
             prompt = "Somebody once told me the world is gonna roll me",
             echo = true
         )
-        openAI.createCompletion(EngineId.Ada, completionRequest).choices.forEach {
-            println("${it.index}: ${it.text}")
-        }
+        openAI.createCompletion(EngineId.Ada, completionRequest).choices.forEach(::println)
 
-        println("\nSearching documents...")
+        println("\n> Searching documents...")
         val searchRequest = SearchRequest(
             documents = listOf("Water", "Earth", "Electricity", "Fire"),
             query = "Pikachu"
         )
-        openAI.search(EngineId.Ada, searchRequest).forEach {
-            println("${it.document} #${it.score}")
-        }
+        openAI.search(EngineId.Ada, searchRequest).forEach(::println)
     }
 }

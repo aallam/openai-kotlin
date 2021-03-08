@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Basic information about an engine such as the owner and availability.
  */
 @Serializable
-public class Engine(
+public data class Engine(
     /**
      * An identifier for this engine, used to specify an engine for completions or searching.
      */

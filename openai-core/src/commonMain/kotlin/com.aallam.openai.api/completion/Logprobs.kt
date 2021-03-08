@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
 @Serializable
-public class Logprobs(
+public data class Logprobs(
     /**
      * The tokens chosen by the completion api
      */

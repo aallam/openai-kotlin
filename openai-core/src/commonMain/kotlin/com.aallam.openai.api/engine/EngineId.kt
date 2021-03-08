@@ -62,4 +62,15 @@ public sealed class EngineId(public val id: String) {
     override fun toString(): String {
         return id
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is EngineId) return false
+        if (id != other.id) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id.hashCode()
+    }
 }

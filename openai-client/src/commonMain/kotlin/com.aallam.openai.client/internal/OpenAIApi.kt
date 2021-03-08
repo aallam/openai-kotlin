@@ -7,6 +7,7 @@ import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.engine.EnginesResponse
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.api.search.SearchResponse
+import com.aallam.openai.api.search.SearchResult
 import com.aallam.openai.client.OpenAI
 import com.aallam.openai.client.OpenAIConfig
 import io.ktor.client.*
@@ -20,15 +21,15 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
     override suspend fun search(
         engineId: EngineId,
         request: SearchRequest
-    ): SearchResponse {
-        return httpClient.post(
+    ): List<SearchResult> {
+        return httpClient.post<SearchResponse>(
             path = "/v1/engines/$engineId/search",
             body = request
-        )
+        ).data
     }
 
-    override suspend fun engines(): EnginesResponse {
-        return httpClient.get(path = "/v1/engines")
+    override suspend fun engines(): List<Engine> {
+        return httpClient.get<EnginesResponse>(path = "/v1/engines").data
     }
 
     override suspend fun engine(engineId: EngineId): Engine {

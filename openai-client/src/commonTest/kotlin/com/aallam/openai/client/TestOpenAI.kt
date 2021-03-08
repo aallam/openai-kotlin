@@ -20,7 +20,7 @@ class TestOpenAI {
             val query = "the president"
             val request = SearchRequest(documents, query)
             val response = openAI.search(EngineId.Davinci, request)
-            assertEquals(documents.size, response.data.size)
+            assertEquals(documents.size, response.size)
         }
     }
 
@@ -28,7 +28,7 @@ class TestOpenAI {
     fun engines() {
         runBlockingTest {
             val response = openAI.engines()
-            assertNotEquals(0, response.data.size)
+            assertNotEquals(0, response.size)
         }
     }
 

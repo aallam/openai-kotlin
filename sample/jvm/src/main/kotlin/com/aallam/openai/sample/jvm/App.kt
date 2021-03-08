@@ -14,7 +14,7 @@ fun main() {
         val openAI = OpenAI(token)
 
         println("\nGetting available engines...")
-        openAI.engines().data.forEach(::println)
+        openAI.engines().forEach { it.id }
 
         println("\nGetting ada engine...")
         val ada: Engine = openAI.engine(EngineId.Ada)
@@ -25,13 +25,17 @@ fun main() {
             prompt = "Somebody once told me the world is gonna roll me",
             echo = true
         )
-        openAI.createCompletion(EngineId.Ada, completionRequest).choices.forEach(System.out::println)
+        openAI.createCompletion(EngineId.Ada, completionRequest).choices.forEach {
+            println("${it.index}: ${it.text}")
+        }
 
         println("\nSearching documents...")
         val searchRequest = SearchRequest(
             documents = listOf("Water", "Earth", "Electricity", "Fire"),
             query = "Pikachu"
         )
-        openAI.search(EngineId.Ada, searchRequest).data.forEach(System.out::println)
+        openAI.search(EngineId.Ada, searchRequest).forEach {
+            println("${it.document} #${it.score}")
+        }
     }
 }

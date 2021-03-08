@@ -4,11 +4,9 @@ import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.Engine
 import com.aallam.openai.api.engine.EngineId
-import com.aallam.openai.api.engine.EnginesResponse
 import com.aallam.openai.api.search.SearchRequest
-import com.aallam.openai.api.search.SearchResponse
+import com.aallam.openai.api.search.SearchResult
 import com.aallam.openai.client.internal.OpenAIApi
-import kotlinx.coroutines.CoroutineScope
 
 
 /**
@@ -23,13 +21,13 @@ public interface OpenAI {
     public suspend fun search(
         engineId: EngineId,
         request: SearchRequest
-    ): SearchResponse
+    ): List<SearchResult>
 
     /**
      * Lists the currently available engines, and provides basic information about each one such as
      * the owner and availability.
      */
-    public suspend fun engines(): EnginesResponse
+    public suspend fun engines(): List<Engine>
 
     /**
      * Retrieves an engine instance, providing basic information about the engine such as the owner

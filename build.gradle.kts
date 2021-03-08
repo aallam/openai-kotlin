@@ -23,7 +23,5 @@ subprojects {
         mavenCentral()
     }
 
-    val javadoc by tasks.creating(Javadoc::class) {
-        // empty.
-    }
+    val javadoc by tasks.creating(Javadoc::class)
 }

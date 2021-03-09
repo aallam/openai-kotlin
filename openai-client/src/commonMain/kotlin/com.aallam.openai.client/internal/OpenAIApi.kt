@@ -42,14 +42,16 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
     }
 
     override suspend fun completion(engineId: EngineId, request: CompletionRequest?): TextCompletion {
-        return httpClient.post(path = "/v1/engines/$engineId/completions", body = request ?: EmptyContent)
+        val body = if (request?.stream == true) request.copy(stream = false) else request
+        return httpClient.post(path = "/v1/engines/$engineId/completions", body = body ?: EmptyContent)
     }
 
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
+        val body = if (request?.stream != true) request?.copy(stream = true) else request
         return flow {
             httpClient.post<HttpStatement>(
                 path = "/v1/engines/$engineId/completions",
-                body = request ?: EmptyContent
+                body = body ?: EmptyContent
             ).execute {
                 val channel = it.receive<ByteReadChannel>()
                 while (!channel.isClosedForRead) {

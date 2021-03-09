@@ -23,18 +23,11 @@ fun main() = runBlocking {
     println(ada)
 
     println("\n>️ Creating completion...")
-    val completionRequest = CompletionRequest(
-        prompt = "Somebody once told me the world is gonna roll me",
-        echo = true
-    )
+    val completionRequest = CompletionRequest(prompt = "Somebody once told me the world is gonna roll me")
     openAI.completion(EngineId.Ada, completionRequest).choices.forEach(::println)
 
     println("\n>️ Creating completion stream...")
-    val completionRequestStream = CompletionRequest(
-        prompt = "Somebody once told me the world is gonna roll me",
-        stream = true,
-    )
-    openAI.completions(EngineId.Ada, completionRequestStream)
+    openAI.completions(EngineId.Ada, completionRequest)
         .onEach { print(it.choices[0].text) }
         .onCompletion { println() }
         .launchIn(this)

@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
 @Serializable
-public class CompletionRequest(
+public data class CompletionRequest(
     /**
      * The prompt(s) to generate completions for, encoded as a string, a list of strings, or a list of token lists.
      *

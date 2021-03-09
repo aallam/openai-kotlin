@@ -8,6 +8,9 @@ import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.client.OpenAI
 import kotlinx.cinterop.toKString
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import platform.posix.getenv
 
@@ -29,7 +32,18 @@ fun main(): Unit = runBlocking {
         prompt = "Somebody once told me the world is gonna roll me",
         echo = true
     )
-    openAI.createCompletion(EngineId.Ada, completionRequest).choices.forEach(::println)
+    openAI.completion(EngineId.Ada, completionRequest).choices.forEach(::println)
+
+    println("\n>️ Creating completion stream...")
+    val completionRequestStream = CompletionRequest(
+        prompt = "Somebody once told me the world is gonna roll me",
+        stream = true,
+    )
+    openAI.completions(EngineId.Ada, completionRequestStream)
+        .onEach { print(it.choices[0].text) }
+        .onCompletion { println() }
+        .launchIn(this)
+        .join()
 
     println("\n> Searching documents...")
     val searchRequest = SearchRequest(

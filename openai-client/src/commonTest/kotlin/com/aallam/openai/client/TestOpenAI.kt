@@ -55,7 +55,7 @@ class TestOpenAI {
                 stop = listOf("\n")
             )
 
-            val response = openAI.createCompletion(EngineId.Davinci, request)
+            val response = openAI.completion(EngineId.Davinci, request)
             assertNotNull(response.choices[0].text)
         }
     }

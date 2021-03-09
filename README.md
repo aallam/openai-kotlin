@@ -44,7 +44,7 @@ val completionRequest = CompletionRequest(
     prompt = "Somebody once told me the world is gonna roll me",
     echo = true
 )
-val completion = openAI.createCompletion(EngineId.Ada, completionRequest)
+val completion = openAI.completion(EngineId.Ada, completionRequest)
 
 // Search documents
 val searchRequest = SearchRequest(

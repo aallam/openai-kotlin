@@ -7,6 +7,7 @@ import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.api.search.SearchResult
 import com.aallam.openai.client.internal.OpenAIApi
+import kotlinx.coroutines.flow.Flow
 
 
 /**
@@ -39,7 +40,12 @@ public interface OpenAI {
      * This is the main endpoint of the API. Returns the predicted completion for the given prompt,
      * and can also return the probabilities of alternative tokens at each position if requested.
      */
-    public suspend fun createCompletion(engineId: EngineId, request: CompletionRequest? = null): TextCompletion
+    public suspend fun completion(engineId: EngineId, request: CompletionRequest? = null): TextCompletion
+
+    /**
+     * Stream variant of [completion].
+     */
+    public fun completions(engineId: EngineId, request: CompletionRequest? = null): Flow<TextCompletion>
 
     public companion object
 }

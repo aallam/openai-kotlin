@@ -27,11 +27,11 @@ public data class Choice(
      * The log probabilities of the chosen tokens and the top [CompletionRequest.logprobs] tokens.
      */
     @SerialName("logprobs")
-    public val logprobs: Logprobs? = null,
+    public val logprobs: Logprobs?,
 
     /**
      * The reason why GPT-3 stopped generating, for example "length".
      */
     @SerialName("finish_reason")
-    public val finishReason: String,
+    public val finishReason: String?,
 )

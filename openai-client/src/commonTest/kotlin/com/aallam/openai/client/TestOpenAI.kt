@@ -1,9 +1,12 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.completion.CompletionRequest
+import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.client.internal.runBlockingTest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -57,6 +60,30 @@ class TestOpenAI {
 
             val response = openAI.completion(EngineId.Davinci, request)
             assertNotNull(response.choices[0].text)
+        }
+    }
+
+    @Test
+    fun completions() {
+        runBlockingTest {
+            val request = CompletionRequest(
+                prompt = "Once upon a time",
+                maxTokens = 5,
+                temperature = 1.0,
+                topP = 1.0,
+                n = 1,
+                stream = true,
+                logprobs = null,
+                stop = listOf("\n"),
+            )
+
+            val results = mutableListOf<TextCompletion>()
+            openAI.completions(EngineId.Davinci, request)
+                .onEach { results += it }
+                .launchIn(this)
+                .join()
+
+            assertNotEquals(0, results.size)
         }
     }
 }

@@ -34,7 +34,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":openai-core"))
-                api(Ktor("client-core"))
+                implementation(Ktor("client-core"))
                 implementation(Ktor("client-json"))
                 implementation(Ktor("client-logging"))
                 implementation(Ktor("client-serialization"))

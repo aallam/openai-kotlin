@@ -41,6 +41,10 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
         return httpClient.get(path = "/v1/engines/$engineId")
     }
 
+    override suspend fun createCompletion(engineId: EngineId, request: CompletionRequest?): TextCompletion {
+        return completion(engineId, request)
+    }
+
     override suspend fun completion(engineId: EngineId, request: CompletionRequest?): TextCompletion {
         val body = if (request?.stream == true) request.copy(stream = false) else request
         return httpClient.post(path = "/v1/engines/$engineId/completions", body = body ?: EmptyContent)

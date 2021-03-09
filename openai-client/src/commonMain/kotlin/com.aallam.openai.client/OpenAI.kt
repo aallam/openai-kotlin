@@ -40,6 +40,13 @@ public interface OpenAI {
      * This is the main endpoint of the API. Returns the predicted completion for the given prompt,
      * and can also return the probabilities of alternative tokens at each position if requested.
      */
+    @Deprecated(message = "renamed to `completion`", replaceWith = ReplaceWith("completion(engineId, request)"))
+    public suspend fun createCompletion(engineId: EngineId, request: CompletionRequest? = null): TextCompletion
+
+    /**
+     * This is the main endpoint of the API. Returns the predicted completion for the given prompt,
+     * and can also return the probabilities of alternative tokens at each position if requested.
+     */
     public suspend fun completion(engineId: EngineId, request: CompletionRequest? = null): TextCompletion
 
     /**

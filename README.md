@@ -34,24 +34,27 @@ val openAI = OpenAI(apiKey)
 Use your `OpenAI` instance to make API requests:
 ```kotlin
 // Get available OpenAI engines
-val engines = openAI.engines()
+val engines: List<Engine> = openAI.engines()
 
 // Get an engine details
-val ada = openAI.engine(EngineId.Ada)
+val ada: Engine = openAI.engine(EngineId.Ada)
 
 // Create a completion
 val completionRequest = CompletionRequest(
     prompt = "Somebody once told me the world is gonna roll me",
     echo = true
 )
-val completion = openAI.completion(EngineId.Ada, completionRequest)
+val completion: TextCompletion = openAI.completion(EngineId.Ada, completionRequest)
+
+// Create a completion as a stream
+val completions: Flow<TextCompletion> = openAI.completions(EngineId.Ada, completionRequest)
 
 // Search documents
 val searchRequest = SearchRequest(
     documents = listOf("Water", "Earth", "Electricity", "Fire"),
     query = "Pikachu"
 )
-val search = openAI.search(EngineId.Ada, searchRequest)
+val search: List<SearchResult> = openAI.search(EngineId.Ada, searchRequest)
 ```
 
 ## ℹ️ Sample apps

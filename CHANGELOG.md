@@ -1,3 +1,9 @@
+# 0.3.0
+> Published 13 Mar 2021
+
+### Changed
+- Remove Ktor's logging classes from public API 
+
 # 0.2.0
 > Published 11 Mar 2021
 

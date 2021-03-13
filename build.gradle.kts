@@ -1,7 +1,6 @@
 buildscript {
     repositories {
         mavenCentral()
-        jcenter()
     }
     dependencies {
         classpath(kotlin("gradle-plugin", version = "1.4.31"))
@@ -16,9 +15,6 @@ project.extensions.extraProperties.apply {
 }
 
 subprojects {
-    group = OpenAI.group
-    version = OpenAI.version
-
     repositories {
         mavenCentral()
     }

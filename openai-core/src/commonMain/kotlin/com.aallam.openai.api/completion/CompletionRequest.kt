@@ -79,8 +79,8 @@ public data class CompletionRequest(
     /**
      * Include the log probabilities on the [logprobs] most likely tokens, as well the chosen tokens.
      * For example, if [logprobs] is 10, the API will return a list of the 10 most likely tokens.
-     * The API will always return the [logprob] of the sampled token,
-     * so there may be up to [logprobs]+1 elements in the response.
+     * The API will always return the logprob of the sampled token, so there may be up to [logprobs]+1 elements
+     * in the response.
      *
      * Defaults to `null`.
      */

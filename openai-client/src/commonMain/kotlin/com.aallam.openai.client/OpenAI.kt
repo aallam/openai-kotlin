@@ -41,7 +41,9 @@ public interface OpenAI {
      * and can also return the probabilities of alternative tokens at each position if requested.
      */
     @Deprecated(message = "renamed to `completion`", replaceWith = ReplaceWith("completion(engineId, request)"))
-    public suspend fun createCompletion(engineId: EngineId, request: CompletionRequest? = null): TextCompletion
+    public suspend fun createCompletion(engineId: EngineId, request: CompletionRequest? = null): TextCompletion {
+        return completion(engineId, request)
+    }
 
     /**
      * This is the main endpoint of the API. Returns the predicted completion for the given prompt,

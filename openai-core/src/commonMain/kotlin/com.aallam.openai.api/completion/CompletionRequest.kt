@@ -2,6 +2,7 @@ package com.aallam.openai.api.completion
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 
 /**
  * A request for OpenAI to generate a predicted completion for a prompt.
@@ -10,7 +11,7 @@ import kotlinx.serialization.Serializable
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
 @Serializable
-public data class CompletionRequest(
+public class CompletionRequest(
     /**
      * The prompt(s) to generate completions for, encoded as a string, a list of strings, or a list of token lists.
      *
@@ -73,7 +74,8 @@ public data class CompletionRequest(
      *
      * Defaults to `false`.
      */
-    @SerialName("stream")
+    @Transient
+    @Deprecated("Don't use this parameter, it is set automatically when needed.")
     public val stream: Boolean? = null,
 
     /**

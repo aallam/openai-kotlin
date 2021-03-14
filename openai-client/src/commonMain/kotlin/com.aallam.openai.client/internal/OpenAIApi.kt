@@ -10,6 +10,7 @@ import com.aallam.openai.api.search.SearchResponse
 import com.aallam.openai.api.search.SearchResult
 import com.aallam.openai.client.OpenAI
 import com.aallam.openai.client.OpenAIConfig
+import com.aallam.openai.client.internal.extension.toStreamRequest
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -43,12 +44,11 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
     }
 
     override suspend fun completion(engineId: EngineId, request: CompletionRequest?): TextCompletion {
-        val body = if (request?.stream == true) request.copy(stream = false) else request
-        return httpClient.post(path = "/v1/engines/$engineId/completions", body = body ?: EmptyContent)
+        return httpClient.post(path = "/v1/engines/$engineId/completions", body = request ?: EmptyContent)
     }
 
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
-        val body = if (request?.stream != true) request?.copy(stream = true) else request
+        val body = request.toStreamRequest()
         return flow {
             httpClient.post<HttpStatement>(
                 path = "/v1/engines/$engineId/completions",

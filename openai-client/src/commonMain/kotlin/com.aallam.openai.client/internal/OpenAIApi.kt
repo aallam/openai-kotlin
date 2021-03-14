@@ -18,6 +18,7 @@ import io.ktor.client.utils.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.serialization.decodeFromString
 
 internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
 
@@ -52,14 +53,15 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
             httpClient.post<HttpStatement>(
                 path = "/v1/engines/$engineId/completions",
                 body = body ?: EmptyContent
-            ).execute {
-                val channel = it.receive<ByteReadChannel>()
-                while (!channel.isClosedForRead) {
-                    val line = channel.readUTF8Line() ?: continue
-                    if (!line.startsWith(STREAM_PREFIX)) continue
-                    if (line.startsWith(STREAM_END_TOKEN)) break
-                    val raw = line.removePrefix(STREAM_PREFIX)
-                    val value = JsonLenient.decodeFromString(TextCompletion.serializer(), raw)
+            ).execute { response ->
+                val readChannel = response.receive<ByteReadChannel>()
+                while (!readChannel.isClosedForRead) {
+                    val line = readChannel.readUTF8Line() ?: ""
+                    val value: TextCompletion = when {
+                        line.startsWith(STREAM_END_TOKEN) -> break
+                        line.startsWith(STREAM_PREFIX) -> JsonLenient.decodeFromString(line.removePrefix(STREAM_PREFIX))
+                        else -> continue
+                    }
                     emit(value)
                 }
             }

@@ -1,10 +1,10 @@
-# Unreleased
+# 0.4.0
+> Published 20 Mar 2021
 
 ### Changed
 - Deprecate `stream` parameter in `CompletionRequest`.
 
 # 0.3.0
-
 > Published 13 Mar 2021
 
 ### Changed
@@ -12,7 +12,6 @@
 - Remove Ktor's logging classes from public API
 
 # 0.2.0
-
 > Published 11 Mar 2021
 
 ### Added
@@ -28,7 +27,6 @@
 * `OpenAI.createCompletion` renamed to `OpenAI.completion`
 
 # 0.1.1
-
 > Published 10 Mar 2021
 
 ### Changed
@@ -36,7 +34,6 @@
 * Ktor as an implementation dependency of `openai-client`
 
 # 0.1.0
-
 > Published 09 Mar 2021
 
 ### Added

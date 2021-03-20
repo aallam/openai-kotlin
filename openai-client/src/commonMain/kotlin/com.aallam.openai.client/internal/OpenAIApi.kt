@@ -48,11 +48,10 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
     }
 
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
-        val body = request.toStreamRequest()
         return flow {
             httpClient.post<HttpStatement>(
                 path = "/v1/engines/$engineId/completions",
-                body = body ?: EmptyContent
+                body = request.toStreamRequest()
             ).execute { response ->
                 val readChannel = response.receive<ByteReadChannel>()
                 while (!readChannel.isClosedForRead) {

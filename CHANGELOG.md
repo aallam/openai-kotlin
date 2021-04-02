@@ -1,3 +1,8 @@
+# Unreleased
+
+### Added
+* [Classifications](https://beta.openai.com/docs/api-reference/classifications)
+
 # 0.4.0
 > Published 20 Mar 2021
 

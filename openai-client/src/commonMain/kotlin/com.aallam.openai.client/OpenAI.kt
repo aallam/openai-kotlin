@@ -1,5 +1,7 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.classification.Classification
+import com.aallam.openai.api.classification.ClassificationRequest
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.Engine
@@ -55,6 +57,13 @@ public interface OpenAI {
      * Stream variant of [completion].
      */
     public fun completions(engineId: EngineId, request: CompletionRequest? = null): Flow<TextCompletion>
+
+    /**
+     * The endpoint first searches over the labeled examples to select the ones most relevant for the particular query.
+     * Then, the relevant examples are combined with the query to construct a prompt to produce the final label via
+     * the completions endpoint.
+     */
+    public suspend fun classifications(request: ClassificationRequest): Classification
 
     public companion object
 }

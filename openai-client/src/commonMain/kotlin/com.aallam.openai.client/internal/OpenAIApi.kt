@@ -1,5 +1,7 @@
 package com.aallam.openai.client.internal
 
+import com.aallam.openai.api.classification.Classification
+import com.aallam.openai.api.classification.ClassificationRequest
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.Engine
@@ -65,6 +67,10 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
                 }
             }
         }
+    }
+
+    override suspend fun classifications(request: ClassificationRequest): Classification {
+        return httpClient.post(path = "/v1/classifications", body = request)
     }
 
     companion object {

@@ -1,3 +1,5 @@
+import com.aallam.openai.api.classification.ClassificationRequest
+import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.engine.Engine
 import com.aallam.openai.api.engine.EngineId
@@ -40,4 +42,19 @@ suspend fun main() {
         query = "Pikachu"
     )
     openAI.search(EngineId.Ada, searchRequest).forEach(::println)
+
+    println("\n> Classifying...")
+    val classificationRequest = ClassificationRequest(
+        model = EngineId.Curie,
+        query = "It is a raining day :(",
+        searchModel = EngineId.Ada,
+        labels = listOf("Positive", "Negative", "Neutral"),
+        examples = listOf(
+            LabeledExample("A happy moment", "Positive"),
+            LabeledExample("I am sad.", "Negative"),
+            LabeledExample("I am feeling awesome", "Positive"),
+        )
+    )
+    val classification = openAI.classifications(classificationRequest)
+    println(classification.label)
 }

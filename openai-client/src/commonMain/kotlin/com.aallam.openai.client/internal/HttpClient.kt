@@ -29,7 +29,7 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
                 protocol = URLProtocol.HTTPS
                 host = "api.openai.com"
                 header(HttpHeaders.Authorization, "Bearer ${config.token}")
-                contentType(ContentType.Application.Json)
+                accept(ContentType.Application.Json)
             }
         }
     }

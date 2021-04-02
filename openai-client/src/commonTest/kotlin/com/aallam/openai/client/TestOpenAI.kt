@@ -7,14 +7,13 @@ import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.EngineId
+import com.aallam.openai.api.file.FileRequest
+import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.client.internal.runBlockingTest
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
-import kotlin.test.assertNotNull
+import kotlin.test.*
 
 class TestOpenAI {
 
@@ -130,5 +129,42 @@ class TestOpenAI {
             assertEquals("puppy A.", response.answers[0])
         }
     }
-}
 
+    @Test
+    fun setFile() {
+        runBlockingTest {
+            val filename = "pupps.jsonl"
+            val jsonl = """
+                { "text": "AJ" }
+                { "text": "Abby" }
+                { "text": "Abe" }
+                { "text": "Ace" }
+            """.trimIndent()
+            val request = FileRequest(
+                filename = filename,
+                content = jsonl,
+                purpose = Purpose.Answers
+            )
+            val response = openAI.file(request)
+            assertEquals(filename, response.filename)
+        }
+    }
+
+    @Test
+    fun files() {
+        runBlockingTest {
+            val response = openAI.files()
+            assertNotNull(response)
+        }
+    }
+
+    @Test
+    fun getFile() {
+        runBlockingTest {
+            val response = openAI.file("idontexist")
+            val response2 = openAI.file("file-JauSttv32SJI92lVoTlqCVzZ")
+            println(response2)
+            assertNull(response)
+        }
+    }
+}

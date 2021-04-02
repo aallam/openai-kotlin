@@ -8,6 +8,8 @@ import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.Engine
 import com.aallam.openai.api.engine.EngineId
+import com.aallam.openai.api.file.File
+import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.api.search.SearchResult
 import com.aallam.openai.client.internal.OpenAIApi
@@ -74,6 +76,22 @@ public interface OpenAI {
      * The relevant context is combined with the provided examples and question to create the prompt for [completion].
      */
     public suspend fun answers(request: AnswerRequest): Answer
+
+    /**
+     * Upload a file that contains document(s) to be used across various endpoints/features.
+     * Currently, the size of all the files uploaded by one organization can be up to 1 GB.
+     */
+    public suspend fun file(request: FileRequest): File
+
+    /**
+     * Returns a list of files that belong to the user's organization.
+     */
+    public suspend fun files(): List<File>
+
+    /**
+     * Returns information about a specific file.
+     */
+    public suspend fun file(id: String): File?
 
     public companion object
 }

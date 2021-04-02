@@ -31,6 +31,9 @@ kotlin {
     }
 
     sourceSets {
+        all {
+            languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
+        }
         val commonMain by getting {
             dependencies {
                 api(project(":openai-core"))

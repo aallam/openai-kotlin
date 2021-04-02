@@ -1,5 +1,7 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.answer.AnswerRequest
+import com.aallam.openai.api.answer.QuestionAnswer
 import com.aallam.openai.api.classification.ClassificationRequest
 import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.completion.CompletionRequest
@@ -103,6 +105,29 @@ class TestOpenAI {
             )
             val response = openAI.classifications(request)
             assertEquals("Negative", response.label)
+        }
+    }
+
+    @Test
+    fun answers() {
+        runBlockingTest {
+            val request = AnswerRequest(
+                model = EngineId.Curie,
+                question = "which puppy is happy?",
+                searchModel = EngineId.Ada,
+                examples = listOf(
+                    QuestionAnswer(
+                        question = "What is human life expectancy in the United States?",
+                        answer = "78 years."
+                    )
+                ),
+                examplesContext = "In 2017, U.S. life expectancy was 78.6 years.",
+                maxTokens = 5,
+                stop = listOf("\n", "<|endoftext|>"),
+                documents = listOf("Puppy A is happy.", "Puppy B is sad.")
+            )
+            val response = openAI.answers(request)
+            assertEquals("puppy A.", response.answers[0])
         }
     }
 }

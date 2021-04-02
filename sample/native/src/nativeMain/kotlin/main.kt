@@ -2,6 +2,8 @@
 //  println("Hello, Kotlin/Native!")
 //}
 
+import com.aallam.openai.api.answer.AnswerRequest
+import com.aallam.openai.api.answer.QuestionAnswer
 import com.aallam.openai.api.classification.ClassificationRequest
 import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.completion.CompletionRequest
@@ -61,4 +63,23 @@ fun main(): Unit = runBlocking {
     )
     val classification = openAI.classifications(classificationRequest)
     println(classification.label)
+
+    println("\n> Answers...")
+    val answersRequest = AnswerRequest(
+        model = EngineId.Curie,
+        question = "which puppy is happy?",
+        searchModel = EngineId.Ada,
+        examples = listOf(
+            QuestionAnswer(
+                question = "What is human life expectancy in the United States?",
+                answer = "78 years."
+            )
+        ),
+        examplesContext = "In 2017, U.S. life expectancy was 78.6 years.",
+        maxTokens = 5,
+        stop = listOf("\n", "<|endoftext|>"),
+        documents = listOf("Puppy A is happy.", "Puppy B is sad.")
+    )
+    val answer = openAI.answers(answersRequest)
+    println(answer.answers)
 }

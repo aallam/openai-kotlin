@@ -1,5 +1,7 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.answer.Answer
+import com.aallam.openai.api.answer.AnswerRequest
 import com.aallam.openai.api.classification.Classification
 import com.aallam.openai.api.classification.ClassificationRequest
 import com.aallam.openai.api.completion.CompletionRequest
@@ -64,6 +66,14 @@ public interface OpenAI {
      * the completions endpoint.
      */
     public suspend fun classifications(request: ClassificationRequest): Classification
+
+    /**
+     * Answers the specified question using the provided documents and examples.
+     *
+     * The endpoint first searches over provided documents or files to find relevant context.
+     * The relevant context is combined with the provided examples and question to create the prompt for [completion].
+     */
+    public suspend fun answers(request: AnswerRequest): Answer
 
     public companion object
 }

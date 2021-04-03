@@ -14,7 +14,7 @@ kotlin {
             useJUnit()
         }
     }
-    js(BOTH) {
+    js(LEGACY) {
         nodejs()
     }
 
@@ -41,6 +41,7 @@ kotlin {
                 implementation(Ktor("client-json"))
                 implementation(Ktor("client-logging"))
                 implementation(Ktor("client-serialization"))
+                implementation(Okio("multiplatform"))
             }
         }
         val commonTest by getting {

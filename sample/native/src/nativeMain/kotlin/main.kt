@@ -1,7 +1,3 @@
-//fun main() {
-//  println("Hello, Kotlin/Native!")
-//}
-
 import com.aallam.openai.api.answer.AnswerRequest
 import com.aallam.openai.api.answer.QuestionAnswer
 import com.aallam.openai.api.classification.ClassificationRequest
@@ -82,4 +78,8 @@ fun main(): Unit = runBlocking {
     )
     val answer = openAI.answers(answersRequest)
     println(answer.answers)
+
+    println("\n> Read files...")
+    val files = openAI.files()
+    println(files)
 }

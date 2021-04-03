@@ -37,12 +37,12 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
     private val httpClient: HttpClient = createHttpClient(config)
 
     override suspend fun search(
-        engineId: EngineId,
-        request: SearchRequest
+            engineId: EngineId,
+            request: SearchRequest
     ): List<SearchResult> {
         return httpClient.post<SearchResponse>(
-            path = "/v1/engines/$engineId/search",
-            body = request
+                path = "/v1/engines/$engineId/search",
+                body = request
         ) {
             contentType(ContentType.Application.Json)
         }.data
@@ -65,8 +65,8 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
         return flow {
             httpClient.post<HttpStatement>(
-                path = "/v1/engines/$engineId/completions",
-                body = request.toStreamRequest()
+                    path = "/v1/engines/$engineId/completions",
+                    body = request.toStreamRequest()
             ) {
                 contentType(ContentType.Application.Json)
             }.execute { response ->
@@ -99,9 +99,7 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
 
     override suspend fun file(request: FileRequest): File {
         val data: List<PartData> = formData {
-            append("file", request.filename, ContentType.Application.OctetStream) {
-                append(request.content)
-            }
+            appendFile("file", request.file)
             append("purpose", request.purpose.raw)
         }
         return httpClient.submitFormWithBinaryData(url = "/v1/files", formData = data)
@@ -118,6 +116,10 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
             if (exception.response.status == HttpStatusCode.NotFound) return null
             throw exception
         }
+    }
+
+    override suspend fun deleteFile(fileId: String) {
+        return httpClient.delete(path = "/v1/files/$fileId")
     }
 
     companion object {

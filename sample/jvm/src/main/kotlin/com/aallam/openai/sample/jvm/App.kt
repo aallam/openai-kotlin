@@ -77,4 +77,8 @@ fun main() = runBlocking {
     )
     val answer = openAI.answers(answersRequest)
     println(answer.answers)
+
+    println("\n> Read files...")
+    val files = openAI.files()
+    println(files)
 }

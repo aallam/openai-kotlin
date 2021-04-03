@@ -93,6 +93,11 @@ public interface OpenAI {
      */
     public suspend fun file(id: String): File?
 
+    /**
+     * Delete a file. Only owners of organizations can delete files currently.
+     */
+    public suspend fun deleteFile(fileId: String)
+
     public companion object
 }
 

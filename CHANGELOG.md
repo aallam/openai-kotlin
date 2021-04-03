@@ -1,9 +1,11 @@
 # Unreleased
 
 ### Added
+* [Files](https://beta.openai.com/docs/api-reference/files)
+
+### Experimental  
 * [Classifications](https://beta.openai.com/docs/api-reference/classifications)
 * [Answers](https://beta.openai.com/docs/api-reference/answers)
-* [Files](https://beta.openai.com/docs/api-reference/files)
 
 # 0.4.0
 > Published 20 Mar 2021

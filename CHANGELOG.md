@@ -1,4 +1,4 @@
-# Unreleased
+# 0.5.0
 
 ### Added
 * [Files](https://beta.openai.com/docs/api-reference/files)

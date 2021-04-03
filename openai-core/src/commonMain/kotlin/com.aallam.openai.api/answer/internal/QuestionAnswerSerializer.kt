@@ -1,5 +1,6 @@
 package com.aallam.openai.api.answer.internal
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.answer.QuestionAnswer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
@@ -11,6 +12,7 @@ import kotlinx.serialization.encoding.Encoder
 /**
  * [QuestionAnswer] serializer/deserializer.
  */
+@ExperimentalOpenAI
 internal class QuestionAnswerSerializer : KSerializer<QuestionAnswer> {
 
     private val serializer = ListSerializer(String.serializer())

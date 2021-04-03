@@ -1,3 +1,4 @@
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.answer.AnswerRequest
 import com.aallam.openai.api.answer.QuestionAnswer
 import com.aallam.openai.api.classification.ClassificationRequest
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import platform.posix.getenv
 
+@ExperimentalOpenAI
 fun main(): Unit = runBlocking {
 
     val apiKey = getenv("OPENAI_API_KEY")?.toKString()

@@ -9,7 +9,7 @@ public data class File(
     /**
      * A unique id assigned to this file.
      */
-    @SerialName("id") val id: String,
+    @SerialName("id") val id: FileId,
 
     /**
      * File size.

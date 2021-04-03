@@ -1,5 +1,6 @@
 package com.aallam.openai.sample.jvm
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.answer.AnswerRequest
 import com.aallam.openai.api.answer.QuestionAnswer
 import com.aallam.openai.api.classification.ClassificationRequest
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 
+@ExperimentalOpenAI
 fun main() = runBlocking {
     val apiKey = System.getenv("OPENAI_API_KEY")
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }

@@ -1,5 +1,6 @@
 package com.aallam.openai.client.internal
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.answer.Answer
 import com.aallam.openai.api.answer.AnswerRequest
 import com.aallam.openai.api.classification.Classification
@@ -10,6 +11,7 @@ import com.aallam.openai.api.engine.Engine
 import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.engine.EnginesResponse
 import com.aallam.openai.api.file.File
+import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.file.FileResponse
 import com.aallam.openai.api.search.SearchRequest
@@ -84,12 +86,14 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
         }
     }
 
+    @ExperimentalOpenAI
     override suspend fun classifications(request: ClassificationRequest): Classification {
         return httpClient.post(path = "/v1/classifications", body = request) {
             contentType(ContentType.Application.Json)
         }
     }
 
+    @ExperimentalOpenAI
     override suspend fun answers(request: AnswerRequest): Answer {
         return httpClient.post(path = "/v1/answers", body = request) {
             contentType(ContentType.Application.Json)
@@ -109,16 +113,16 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
         return httpClient.get<FileResponse>(path = "/v1/files").data
     }
 
-    override suspend fun file(id: String): File? {
+    override suspend fun file(fileId: FileId): File? {
         return try {
-            httpClient.get(path = "/v1/files/$id")
+            httpClient.get(path = "/v1/files/$fileId")
         } catch (exception: ClientRequestException) {
             if (exception.response.status == HttpStatusCode.NotFound) return null
             throw exception
         }
     }
 
-    override suspend fun deleteFile(fileId: String) {
+    override suspend fun delete(fileId: FileId) {
         return httpClient.delete(path = "/v1/files/$fileId")
     }
 

@@ -1,5 +1,6 @@
 package com.aallam.openai.api.classification.internal
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.file.Purpose
 import kotlinx.serialization.KSerializer
@@ -12,6 +13,7 @@ import kotlinx.serialization.encoding.Encoder
 /**
  * [LabeledExample] serializer/deserializer.
  */
+@ExperimentalOpenAI
 internal class LabeledExampleSerializer : KSerializer<LabeledExample> {
 
     private val serializer = ListSerializer(String.serializer())

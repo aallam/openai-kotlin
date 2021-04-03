@@ -1,5 +1,6 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.answer.AnswerRequest
 import com.aallam.openai.api.answer.QuestionAnswer
 import com.aallam.openai.api.classification.ClassificationRequest
@@ -45,7 +46,7 @@ class TestOpenAI {
         runBlockingTest {
             FileSystem.SYSTEM.delete(filePath)
             openAI.files().forEach {
-                openAI.deleteFile(it.id)
+                openAI.delete(it.id)
             }
         }
     }
@@ -119,6 +120,7 @@ class TestOpenAI {
         }
     }
 
+    @ExperimentalOpenAI
     @Test
     fun classifications() {
         runBlockingTest {
@@ -138,6 +140,7 @@ class TestOpenAI {
         }
     }
 
+    @ExperimentalOpenAI
     @Test
     fun answers() {
         runBlockingTest {
@@ -180,7 +183,7 @@ class TestOpenAI {
             assertEquals(filename, fileGet?.filename)
 
             // Delete file
-            openAI.deleteFile(fileCreate.id)
+            openAI.delete(fileCreate.id)
 
             // Check deleted file
             val fileGetAfterDelete = openAI.file(fileCreate.id)

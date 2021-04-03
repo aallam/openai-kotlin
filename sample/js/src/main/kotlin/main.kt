@@ -1,3 +1,4 @@
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.answer.AnswerRequest
 import com.aallam.openai.api.answer.QuestionAnswer
 import com.aallam.openai.api.classification.ClassificationRequest
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlin.coroutines.coroutineContext
 
+@ExperimentalOpenAI
 suspend fun main() {
     val apiKey = js("process.env.OPENAI_API_KEY").unsafeCast<String?>()
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }

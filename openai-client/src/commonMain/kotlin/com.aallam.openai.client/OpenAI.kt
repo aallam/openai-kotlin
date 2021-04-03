@@ -10,6 +10,7 @@ import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.Engine
 import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.file.File
+import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.api.search.SearchResult
@@ -94,12 +95,12 @@ public interface OpenAI {
     /**
      * Returns information about a specific file.
      */
-    public suspend fun file(id: String): File?
+    public suspend fun file(fileId: FileId): File?
 
     /**
      * Delete a file. Only owners of organizations can delete files currently.
      */
-    public suspend fun deleteFile(fileId: String)
+    public suspend fun delete(fileId: FileId)
 
     public companion object
 }

@@ -1,4 +1,5 @@
 # 0.5.0
+> Published 03 Apr 2021
 
 ### Added
 * [Files](https://beta.openai.com/docs/api-reference/files)

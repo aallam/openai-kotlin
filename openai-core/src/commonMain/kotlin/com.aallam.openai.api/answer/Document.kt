@@ -1,8 +1,10 @@
 package com.aallam.openai.api.answer
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@ExperimentalOpenAI
 @Serializable
 public data class Document(
 

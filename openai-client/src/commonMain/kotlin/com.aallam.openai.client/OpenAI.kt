@@ -1,5 +1,6 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.answer.Answer
 import com.aallam.openai.api.answer.AnswerRequest
 import com.aallam.openai.api.classification.Classification
@@ -67,6 +68,7 @@ public interface OpenAI {
      * Then, the relevant examples are combined with the query to construct a prompt to produce the final label via
      * the completions endpoint.
      */
+    @ExperimentalOpenAI
     public suspend fun classifications(request: ClassificationRequest): Classification
 
     /**
@@ -75,6 +77,7 @@ public interface OpenAI {
      * The endpoint first searches over provided documents or files to find relevant context.
      * The relevant context is combined with the provided examples and question to create the prompt for [completion].
      */
+    @ExperimentalOpenAI
     public suspend fun answers(request: AnswerRequest): Answer
 
     /**

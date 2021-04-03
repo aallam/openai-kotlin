@@ -1,10 +1,12 @@
 package com.aallam.openai.api.classification
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.completion.Logprobs
 import com.aallam.openai.api.engine.EngineId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@ExperimentalOpenAI
 @Serializable
 public data class ClassificationRequest(
 

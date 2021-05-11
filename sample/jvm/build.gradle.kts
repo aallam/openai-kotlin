@@ -7,9 +7,9 @@ dependencies {
     // Use the Kotlin JDK 8 standard library.
     implementation(project(":openai-client"))
     //implementation("com.aallam.openai:openai-client:0.1.0")
-    implementation(Ktor("client-apache"))
+    implementation(libs.ktor.client.apache)
 }
 
 application {
-    mainClassName = "com.aallam.openai.sample.jvm.AppKt"
+    mainClass.set("com.aallam.openai.sample.jvm.AppKt")
 }

@@ -6,13 +6,8 @@ buildscript {
         val kotlinVersion = "1.5.0"
         classpath(kotlin("gradle-plugin", version = kotlinVersion))
         classpath(kotlin("serialization", version = kotlinVersion))
-        classpath(MavenPublish())
+        classpath("com.vanniktech:gradle-maven-publish-plugin:0.14.2")
     }
-}
-
-project.extensions.extraProperties.apply {
-    set("GROUP", OpenAI.group)
-    set("VERSION_NAME", OpenAI.version)
 }
 
 subprojects {

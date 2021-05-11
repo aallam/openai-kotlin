@@ -37,11 +37,11 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":openai-core"))
-                api(Coroutines("core"))
-                implementation(Ktor("client-json"))
-                implementation(Ktor("client-logging"))
-                implementation(Ktor("client-serialization"))
-                implementation(Okio("multiplatform"))
+                api(libs.coroutines.core)
+                implementation(libs.ktor.client.json)
+                implementation(libs.ktor.client.logging)
+                implementation(libs.ktor.client.serialization)
+                implementation(libs.okio.multiplatform)
             }
         }
         val commonTest by getting {
@@ -54,8 +54,8 @@ kotlin {
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation(Ktor("client-okhttp"))
-                implementation(Logback("classic"))
+                implementation(libs.ktor.client.okhttp)
+                implementation(libs.logback.classic)
             }
         }
 
@@ -68,7 +68,7 @@ kotlin {
         val nativeMain by getting
         val nativeTest by getting {
             dependencies {
-                implementation(Ktor("client-curl"))
+                implementation(libs.ktor.client.curl)
             }
         }
     }

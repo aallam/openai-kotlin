@@ -39,12 +39,12 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
     private val httpClient: HttpClient = createHttpClient(config)
 
     override suspend fun search(
-            engineId: EngineId,
-            request: SearchRequest
+        engineId: EngineId,
+        request: SearchRequest
     ): List<SearchResult> {
         return httpClient.post<SearchResponse>(
-                path = "/v1/engines/$engineId/search",
-                body = request
+            path = "/v1/engines/$engineId/search",
+            body = request
         ) {
             contentType(ContentType.Application.Json)
         }.data
@@ -67,8 +67,8 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
         return flow {
             httpClient.post<HttpStatement>(
-                    path = "/v1/engines/$engineId/completions",
-                    body = request.toStreamRequest()
+                path = "/v1/engines/$engineId/completions",
+                body = request.toStreamRequest()
             ) {
                 contentType(ContentType.Application.Json)
             }.execute { response ->

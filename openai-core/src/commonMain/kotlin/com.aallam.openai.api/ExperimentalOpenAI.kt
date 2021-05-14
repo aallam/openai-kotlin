@@ -10,17 +10,17 @@ import kotlin.annotation.AnnotationTarget.*
  * argument `-Xopt-in=com.aallam.openai.api.ExperimentalOpenAI`.
  */
 @Target(
-        CLASS,
-        ANNOTATION_CLASS,
-        PROPERTY,
-        FIELD,
-        LOCAL_VARIABLE,
-        VALUE_PARAMETER,
-        CONSTRUCTOR,
-        FUNCTION,
-        PROPERTY_GETTER,
-        PROPERTY_SETTER,
-        TYPEALIAS
+    CLASS,
+    ANNOTATION_CLASS,
+    PROPERTY,
+    FIELD,
+    LOCAL_VARIABLE,
+    VALUE_PARAMETER,
+    CONSTRUCTOR,
+    FUNCTION,
+    PROPERTY_GETTER,
+    PROPERTY_SETTER,
+    TYPEALIAS
 )
 @Retention(AnnotationRetention.BINARY)
 @RequiresOptIn(message = "This OpenAI API is experimental, It can be incompatibly changed in the future.")

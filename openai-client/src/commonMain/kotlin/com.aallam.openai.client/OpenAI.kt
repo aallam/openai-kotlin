@@ -18,7 +18,6 @@ import com.aallam.openai.client.internal.ClientFileSystem
 import com.aallam.openai.client.internal.OpenAIApi
 import kotlinx.coroutines.flow.Flow
 
-
 /**
  * OpenAI API.
  */

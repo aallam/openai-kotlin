@@ -35,6 +35,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
 import okio.FileSystem
 
+/**
+ * Implementation of [OpenAI].
+ *
+ * @param config client configuration
+ * @param fileSystem access to read and write files
+ */
 internal class OpenAIApi(
     config: OpenAIConfig,
     private val fileSystem: FileSystem

@@ -7,6 +7,9 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
+/**
+ * [FileStatus] serializer/deserializer.
+ */
 internal class FileStatusSerializer : KSerializer<FileStatus> {
 
     override val descriptor: SerialDescriptor = String.serializer().descriptor

@@ -1,11 +1,10 @@
 package com.aallam.openai.api.file
 
-import com.aallam.openai.api.file.internal.FileIdSerializer
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmInline
 
-@Serializable(FileIdSerializer::class)
-public data class FileId(val raw: String) {
-    override fun toString(): String {
-        return raw
-    }
+@Serializable
+@JvmInline
+public value class FileId(public val raw: String) {
+    override fun toString(): String = raw
 }

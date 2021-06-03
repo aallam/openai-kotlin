@@ -5,6 +5,8 @@ import com.aallam.openai.client.internal.extension.toKLogLevel
 import com.aallam.openai.client.internal.extension.toKLogger
 import io.ktor.client.*
 import io.ktor.client.features.*
+import io.ktor.client.features.auth.*
+import io.ktor.client.features.auth.providers.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
@@ -24,11 +26,17 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             logger = config.logger.toKLogger()
             level = config.logLevel.toKLogLevel()
         }
+        install(Auth) {
+            bearer {
+                loadTokens {
+                    BearerTokens(accessToken = config.token, refreshToken = "")
+                }
+            }
+        }
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
                 host = "api.openai.com"
-                header(HttpHeaders.Authorization, "Bearer ${config.token}")
                 accept(ContentType.Application.Json)
             }
         }
@@ -39,5 +47,7 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
  * Internal Json Serializer.
  */
 internal val JsonLenient = Json {
+    isLenient = true
     ignoreUnknownKeys = true
+    useAlternativeNames = false // TODO: remove after https://github.com/Kotlin/kotlinx.serialization/issues/1450
 }

@@ -32,7 +32,10 @@ kotlin {
 
     sourceSets {
         all {
-            languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
+            languageSettings.apply {
+                useExperimentalAnnotation("kotlin.RequiresOptIn")
+                useExperimentalAnnotation("okio.ExperimentalFileSystem")
+            }
         }
         val commonMain by getting {
             dependencies {
@@ -41,6 +44,7 @@ kotlin {
                 implementation(libs.ktor.client.json)
                 implementation(libs.ktor.client.logging)
                 implementation(libs.ktor.client.serialization)
+                implementation(libs.ktor.client.auth)
                 implementation(libs.okio.multiplatform)
             }
         }
@@ -48,6 +52,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation(libs.okio.fakefilesystem)
             }
         }
         val jvmMain by getting
@@ -59,7 +64,11 @@ kotlin {
             }
         }
 
-        val jsMain by getting
+        val jsMain by getting {
+            dependencies {
+                implementation(libs.okio.nodefilesystem)
+            }
+        }
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))

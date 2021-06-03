@@ -14,6 +14,7 @@ import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.api.search.SearchResult
+import com.aallam.openai.client.internal.ClientFileSystem
 import com.aallam.openai.client.internal.OpenAIApi
 import kotlinx.coroutines.flow.Flow
 
@@ -121,5 +122,5 @@ public fun OpenAI(token: String): OpenAI {
  * @param config client config
  */
 public fun OpenAI(config: OpenAIConfig): OpenAI {
-    return OpenAIApi(config)
+    return OpenAIApi(config, ClientFileSystem)
 }

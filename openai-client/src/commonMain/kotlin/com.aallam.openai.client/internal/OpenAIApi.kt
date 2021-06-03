@@ -33,8 +33,12 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
+import okio.FileSystem
 
-internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
+internal class OpenAIApi(
+    config: OpenAIConfig,
+    private val fileSystem: FileSystem
+) : OpenAI {
 
     private val httpClient: HttpClient = createHttpClient(config)
 
@@ -103,7 +107,7 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
 
     override suspend fun file(request: FileRequest): File {
         val data: List<PartData> = formData {
-            appendFile("file", request.file)
+            appendFile(fileSystem, "file", request.file)
             append("purpose", request.purpose.raw)
         }
         return httpClient.submitFormWithBinaryData(url = "/v1/files", formData = data)

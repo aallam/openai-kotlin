@@ -1,10 +1,9 @@
 [versions]
-coroutines = "1.4.2-native-mt"
-serialization = "1.0.1"
-ktor = "1.5.2"
-okio = "3.0.0-alpha.2"
+coroutines = "1.5.0-native-mt"
+serialization = "1.2.1"
+ktor = "1.6.0"
+okio = "3.0.0-alpha.6"
 logback = "1.2.3"
-maven-publish = "0.14.2"
 
 [libraries]
 # Coroutines
@@ -18,9 +17,10 @@ ktor-client-serialization = { group = "io.ktor", name = "ktor-client-serializati
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-curl = { group = "io.ktor", name = "ktor-client-curl", version.ref = "ktor" }
 ktor-client-apache = { group = "io.ktor", name = "ktor-client-apache", version.ref = "ktor" }
+ktor-client-auth = { group = "io.ktor", name = "ktor-client-auth", version.ref = "ktor" }
 # Okio
 okio-multiplatform = { group = "com.squareup.okio", name = "okio-multiplatform", version.ref = "okio" }
+okio-nodefilesystem = { group = "com.squareup.okio", name = "okio-nodefilesystem-multiplatform", version.ref = "okio" }
+okio-fakefilesystem = { group = "com.squareup.okio", name = "okio-fakefilesystem-multiplatform", version.ref = "okio" }
 # Logback
 logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
-# Maven publish
-maven-publish = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "maven-publish"}

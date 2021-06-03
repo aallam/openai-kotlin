@@ -33,18 +33,28 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
+import okio.FileSystem
 
-internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
+/**
+ * Implementation of [OpenAI].
+ *
+ * @param config client configuration
+ * @param fileSystem access to read and write files
+ */
+internal class OpenAIApi(
+    config: OpenAIConfig,
+    private val fileSystem: FileSystem
+) : OpenAI {
 
     private val httpClient: HttpClient = createHttpClient(config)
 
     override suspend fun search(
-            engineId: EngineId,
-            request: SearchRequest
+        engineId: EngineId,
+        request: SearchRequest
     ): List<SearchResult> {
         return httpClient.post<SearchResponse>(
-                path = "/v1/engines/$engineId/search",
-                body = request
+            path = "/v1/engines/$engineId/search",
+            body = request
         ) {
             contentType(ContentType.Application.Json)
         }.data
@@ -67,8 +77,8 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
         return flow {
             httpClient.post<HttpStatement>(
-                    path = "/v1/engines/$engineId/completions",
-                    body = request.toStreamRequest()
+                path = "/v1/engines/$engineId/completions",
+                body = request.toStreamRequest()
             ) {
                 contentType(ContentType.Application.Json)
             }.execute { response ->
@@ -103,7 +113,7 @@ internal class OpenAIApi(config: OpenAIConfig) : OpenAI {
 
     override suspend fun file(request: FileRequest): File {
         val data: List<PartData> = formData {
-            appendFile("file", request.file)
+            appendFile(fileSystem, "file", request.file)
             append("purpose", request.purpose.raw)
         }
         return httpClient.submitFormWithBinaryData(url = "/v1/files", formData = data)

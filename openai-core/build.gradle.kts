@@ -35,7 +35,7 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
-                implementation(Serialization("core"))
+                implementation(libs.serialization.core)
             }
         }
         val commonTest by getting {

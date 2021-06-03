@@ -2,7 +2,6 @@ package com.aallam.openai.api.classification.internal
 
 import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.classification.LabeledExample
-import com.aallam.openai.api.file.Purpose
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer

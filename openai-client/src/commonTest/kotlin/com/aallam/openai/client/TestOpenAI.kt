@@ -8,48 +8,52 @@ import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.EngineId
+import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
+import com.aallam.openai.api.file.FileStatus
 import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.search.SearchRequest
+import com.aallam.openai.client.internal.OpenAIApi
 import com.aallam.openai.client.internal.runBlockingTest
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import okio.ExperimentalFileSystem
-import okio.FileSystem
+import kotlinx.coroutines.withContext
 import okio.Path
 import okio.Path.Companion.toPath
+import okio.fakefilesystem.FakeFileSystem
 import kotlin.test.*
 
-@ExperimentalFileSystem
 class TestOpenAI {
 
-    private val openAI = OpenAI(config)
+    private val fileSystem = FakeFileSystem()
+    private val openAI = OpenAIApi(config, fileSystem)
     private lateinit var filePath: Path
 
     @BeforeTest
     fun init() {
-        val filename = "pupps.jsonl"
         val jsonl = """
             { "text": "AJ" }
             { "text": "Abby" }
             { "text": "Abe" }
             { "text": "Ace" }
         """.trimIndent()
-        filePath = FileSystem.SYSTEM_TEMPORARY_DIRECTORY / filename.toPath()
-        FileSystem.SYSTEM.write(filePath) {
+        filePath = "pupps.jsonl".toPath()
+        fileSystem.write(filePath) {
             writeUtf8(jsonl)
         }
     }
 
-    @AfterTest
-    fun finish() {
-        runBlockingTest {
-            FileSystem.SYSTEM.delete(filePath)
-            openAI.files().forEach {
-                openAI.delete(it.id)
-            }
-        }
-    }
+    //@AfterTest
+    //fun finish() {
+    //    runBlockingTest {
+    //        fileSystem.delete(filePath)
+    //        openAI.files().forEach {
+    //            openAI.delete(it.id)
+    //        }
+    //    }
+    //}
 
     @Test
     fun search() {
@@ -83,13 +87,13 @@ class TestOpenAI {
     fun completion() {
         runBlockingTest {
             val request = CompletionRequest(
-                    prompt = "Once upon a time",
-                    maxTokens = 5,
-                    temperature = 1.0,
-                    topP = 1.0,
-                    n = 1,
-                    logprobs = null,
-                    stop = listOf("\n")
+                prompt = "Once upon a time",
+                maxTokens = 5,
+                temperature = 1.0,
+                topP = 1.0,
+                n = 1,
+                logprobs = null,
+                stop = listOf("\n")
             )
 
             val response = openAI.completion(EngineId.Davinci, request)
@@ -101,20 +105,20 @@ class TestOpenAI {
     fun completions() {
         runBlockingTest {
             val request = CompletionRequest(
-                    prompt = "Once upon a time",
-                    maxTokens = 5,
-                    temperature = 1.0,
-                    topP = 1.0,
-                    n = 1,
-                    logprobs = null,
-                    stop = listOf("\n"),
+                prompt = "Once upon a time",
+                maxTokens = 5,
+                temperature = 1.0,
+                topP = 1.0,
+                n = 1,
+                logprobs = null,
+                stop = listOf("\n"),
             )
 
             val results = mutableListOf<TextCompletion>()
             openAI.completions(EngineId.Davinci, request)
-                    .onEach { results += it }
-                    .launchIn(this)
-                    .join()
+                .onEach { results += it }
+                .launchIn(this)
+                .join()
 
             assertNotEquals(0, results.size)
         }
@@ -125,15 +129,15 @@ class TestOpenAI {
     fun classifications() {
         runBlockingTest {
             val request = ClassificationRequest(
-                    model = EngineId.Curie,
-                    query = "It is a raining day :(",
-                    searchModel = EngineId.Ada,
-                    labels = listOf("Positive", "Negative", "Neutral"),
-                    examples = listOf(
-                            LabeledExample("A happy moment", "Positive"),
-                            LabeledExample("I am sad.", "Negative"),
-                            LabeledExample("I am feeling awesome", "Positive"),
-                    )
+                model = EngineId.Curie,
+                query = "It is a raining day :(",
+                searchModel = EngineId.Ada,
+                labels = listOf("Positive", "Negative", "Neutral"),
+                examples = listOf(
+                    LabeledExample("A happy moment", "Positive"),
+                    LabeledExample("I am sad.", "Negative"),
+                    LabeledExample("I am feeling awesome", "Positive"),
+                )
             )
             val response = openAI.classifications(request)
             assertEquals("Negative", response.label)
@@ -145,32 +149,31 @@ class TestOpenAI {
     fun answers() {
         runBlockingTest {
             val request = AnswerRequest(
-                    model = EngineId.Curie,
-                    question = "which puppy is happy?",
-                    searchModel = EngineId.Ada,
-                    examples = listOf(
-                            QuestionAnswer(
-                                    question = "What is human life expectancy in the United States?",
-                                    answer = "78 years."
-                            )
-                    ),
-                    examplesContext = "In 2017, U.S. life expectancy was 78.6 years.",
-                    maxTokens = 5,
-                    stop = listOf("\n", "<|endoftext|>"),
-                    documents = listOf("Puppy A is happy.", "Puppy B is sad.")
+                model = EngineId.Curie,
+                question = "which puppy is happy?",
+                searchModel = EngineId.Ada,
+                examples = listOf(
+                    QuestionAnswer(
+                        question = "What is human life expectancy in the United States?",
+                        answer = "78 years."
+                    )
+                ),
+                examplesContext = "In 2017, U.S. life expectancy was 78.6 years.",
+                maxTokens = 5,
+                stop = listOf("\n", "<|endoftext|>"),
+                documents = listOf("Puppy A is happy.", "Puppy B is sad.")
             )
             val response = openAI.answers(request)
             assertEquals("puppy A.", response.answers[0])
         }
     }
 
-    @ExperimentalFileSystem
     @Test
     fun file() {
         runBlockingTest {
             val request = FileRequest(
-                    file = filePath.toString(),
-                    purpose = Purpose.Answers
+                file = filePath.toString(),
+                purpose = Purpose.Answers
             )
             val filename = filePath.name
 
@@ -179,8 +182,9 @@ class TestOpenAI {
             assertEquals(filename, fileCreate.filename)
 
             // Get created file
-            val fileGet = openAI.file(fileCreate.id)
-            assertEquals(filename, fileGet?.filename)
+            withContext(Dispatchers.Default) {
+                waitFileProcess(fileCreate.id)
+            }
 
             // Delete file
             openAI.delete(fileCreate.id)
@@ -196,6 +200,14 @@ class TestOpenAI {
         runBlockingTest {
             val response = openAI.files()
             assertNotNull(response)
+        }
+    }
+
+    private suspend fun waitFileProcess(fileId: FileId) {
+        while (true) {
+            val file = openAI.file(fileId)
+            if (file?.status == FileStatus.Processed) break
+            delay(1000L)
         }
     }
 }

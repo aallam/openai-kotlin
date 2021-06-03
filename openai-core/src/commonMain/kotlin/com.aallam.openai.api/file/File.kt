@@ -32,6 +32,11 @@ public data class File(
     @SerialName("purpose") val purpose: Purpose,
 
     /**
+     * File status.
+     */
+    @SerialName("status") val status: FileStatus,
+
+    /**
      * File format.
      */
     @SerialName("format") val format: String? = null,

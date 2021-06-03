@@ -26,7 +26,7 @@ kotlin {
             dependencies {
                 implementation(project(":openai-client"))
                 //implementation("com.aallam.openai:openai-client:0.1.0")
-                implementation(Ktor("client-curl"))
+                implementation(libs.ktor.client.curl)
             }
         }
     }

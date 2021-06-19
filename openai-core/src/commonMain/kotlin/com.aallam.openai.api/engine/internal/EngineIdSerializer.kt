@@ -1,6 +1,6 @@
 package com.aallam.openai.api.engine.internal
 
-import com.aallam.openai.api.engine.EngineId
+import com.aallam.openai.api.engine.*
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -16,11 +16,11 @@ internal class EngineIdSerializer : KSerializer<EngineId> {
 
     override fun deserialize(decoder: Decoder): EngineId {
         return when (val value = decoder.decodeString()) {
-            EngineId.Ada.id -> EngineId.Ada
-            EngineId.Babbage.id -> EngineId.Babbage
-            EngineId.Curie.id -> EngineId.Curie
-            EngineId.Davinci.id -> EngineId.Davinci
-            else -> EngineId.Custom(value)
+            Ada.id -> Ada
+            Babbage.id -> Babbage
+            Curie.id -> Curie
+            Davinci.id -> Davinci
+            else -> EngineId(value)
         }
     }
 

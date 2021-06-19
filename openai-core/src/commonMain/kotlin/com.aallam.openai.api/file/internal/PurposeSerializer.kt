@@ -1,6 +1,9 @@
 package com.aallam.openai.api.file.internal
 
+import com.aallam.openai.api.file.Answers
+import com.aallam.openai.api.file.Classifications
 import com.aallam.openai.api.file.Purpose
+import com.aallam.openai.api.file.Search
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -16,10 +19,10 @@ internal class PurposeSerializer : KSerializer<Purpose> {
 
     override fun deserialize(decoder: Decoder): Purpose {
         return when (val value = decoder.decodeString()) {
-            Purpose.Search.raw -> Purpose.Search
-            Purpose.Answers.raw -> Purpose.Answers
-            Purpose.Classifications.raw -> Purpose.Classifications
-            else -> Purpose.Custom(value)
+            Search.raw -> Search
+            Answers.raw -> Answers
+            Classifications.raw -> Classifications
+            else -> Purpose(value)
         }
     }
 

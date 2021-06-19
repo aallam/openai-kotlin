@@ -6,8 +6,9 @@ import com.aallam.openai.api.answer.QuestionAnswer
 import com.aallam.openai.api.classification.ClassificationRequest
 import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.completion.CompletionRequest
+import com.aallam.openai.api.engine.Ada
+import com.aallam.openai.api.engine.Curie
 import com.aallam.openai.api.engine.Engine
-import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.flow.launchIn
@@ -25,15 +26,15 @@ fun main() = runBlocking {
     openAI.engines().forEach(::println)
 
     println("\n> Getting ada engine...")
-    val ada: Engine = openAI.engine(EngineId.Ada)
+    val ada: Engine = openAI.engine(Ada)
     println(ada)
 
     println("\n>️ Creating completion...")
     val completionRequest = CompletionRequest(prompt = "Somebody once told me the world is gonna roll me")
-    openAI.completion(EngineId.Ada, completionRequest).choices.forEach(::println)
+    openAI.completion(Ada, completionRequest).choices.forEach(::println)
 
     println("\n>️ Creating completion stream...")
-    openAI.completions(EngineId.Ada, completionRequest)
+    openAI.completions(Ada, completionRequest)
         .onEach { print(it.choices[0].text) }
         .onCompletion { println() }
         .launchIn(this)
@@ -44,13 +45,13 @@ fun main() = runBlocking {
         documents = listOf("Water", "Earth", "Electricity", "Fire"),
         query = "Pikachu"
     )
-    openAI.search(EngineId.Ada, searchRequest).forEach(::println)
+    openAI.search(Ada, searchRequest).forEach(::println)
 
     println("\n> Classifying...")
     val classificationRequest = ClassificationRequest(
-        model = EngineId.Curie,
+        model = Curie,
         query = "It is a raining day :(",
-        searchModel = EngineId.Ada,
+        searchModel = Ada,
         labels = listOf("Positive", "Negative", "Neutral"),
         examples = listOf(
             LabeledExample("A happy moment", "Positive"),
@@ -63,9 +64,9 @@ fun main() = runBlocking {
 
     println("\n> Answers...")
     val answersRequest = AnswerRequest(
-        model = EngineId.Curie,
+        model = Curie,
         question = "which puppy is happy?",
-        searchModel = EngineId.Ada,
+        searchModel = Ada,
         examples = listOf(
             QuestionAnswer(
                 question = "What is human life expectancy in the United States?",

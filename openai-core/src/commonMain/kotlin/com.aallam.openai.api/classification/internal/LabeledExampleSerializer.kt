@@ -20,8 +20,8 @@ internal class LabeledExampleSerializer : KSerializer<LabeledExample> {
     override val descriptor: SerialDescriptor = serializer.descriptor
 
     override fun deserialize(decoder: Decoder): LabeledExample {
-        val strings = serializer.deserialize(decoder)
-        return LabeledExample(example = strings[0], label = strings[1])
+        val (example, label) = serializer.deserialize(decoder)
+        return LabeledExample(example = example, label = label)
     }
 
     override fun serialize(encoder: Encoder, value: LabeledExample) {

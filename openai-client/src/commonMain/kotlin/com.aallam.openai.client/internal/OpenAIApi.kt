@@ -53,7 +53,7 @@ internal class OpenAIApi(
         request: SearchRequest
     ): List<SearchResult> {
         return httpClient.post<SearchResponse>(
-            path = "/v1/engines/$engineId/search",
+            path = "$EnginesPath/$engineId/search",
             body = request
         ) {
             contentType(ContentType.Application.Json)
@@ -61,15 +61,15 @@ internal class OpenAIApi(
     }
 
     override suspend fun engines(): List<Engine> {
-        return httpClient.get<EnginesResponse>(path = "/v1/engines").data
+        return httpClient.get<EnginesResponse>(path = EnginesPath).data
     }
 
     override suspend fun engine(engineId: EngineId): Engine {
-        return httpClient.get(path = "/v1/engines/$engineId")
+        return httpClient.get(path = "$EnginesPath/$engineId")
     }
 
     override suspend fun completion(engineId: EngineId, request: CompletionRequest?): TextCompletion {
-        return httpClient.post(path = "/v1/engines/$engineId/completions", body = request ?: EmptyContent) {
+        return httpClient.post(path = "$EnginesPath/$engineId/completions", body = request ?: EmptyContent) {
             contentType(ContentType.Application.Json)
         }
     }
@@ -77,7 +77,7 @@ internal class OpenAIApi(
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
         return flow {
             httpClient.post<HttpStatement>(
-                path = "/v1/engines/$engineId/completions",
+                path = "$EnginesPath/$engineId/completions",
                 body = request.toStreamRequest()
             ) {
                 contentType(ContentType.Application.Json)
@@ -86,8 +86,8 @@ internal class OpenAIApi(
                 while (!readChannel.isClosedForRead) {
                     val line = readChannel.readUTF8Line() ?: ""
                     val value: TextCompletion = when {
-                        line.startsWith(STREAM_END_TOKEN) -> break
-                        line.startsWith(STREAM_PREFIX) -> JsonLenient.decodeFromString(line.removePrefix(STREAM_PREFIX))
+                        line.startsWith(StreamEndToken) -> break
+                        line.startsWith(StreamPrefix) -> JsonLenient.decodeFromString(line.removePrefix(StreamPrefix))
                         else -> continue
                     }
                     emit(value)
@@ -98,14 +98,14 @@ internal class OpenAIApi(
 
     @ExperimentalOpenAI
     override suspend fun classifications(request: ClassificationRequest): Classification {
-        return httpClient.post(path = "/v1/classifications", body = request) {
+        return httpClient.post(path = ClassificationsPath, body = request) {
             contentType(ContentType.Application.Json)
         }
     }
 
     @ExperimentalOpenAI
     override suspend fun answers(request: AnswerRequest): Answer {
-        return httpClient.post(path = "/v1/answers", body = request) {
+        return httpClient.post(path = AnswersPath, body = request) {
             contentType(ContentType.Application.Json)
         }
     }
@@ -116,16 +116,16 @@ internal class OpenAIApi(
             appendFile(fileSystem, "file", request.file)
             append("purpose", request.purpose.raw)
         }
-        return httpClient.submitFormWithBinaryData(url = "/v1/files", formData = data)
+        return httpClient.submitFormWithBinaryData(url = FilesPath, formData = data)
     }
 
     override suspend fun files(): List<File> {
-        return httpClient.get<FileResponse>(path = "/v1/files").data
+        return httpClient.get<FileResponse>(path = FilesPath).data
     }
 
     override suspend fun file(fileId: FileId): File? {
         return try {
-            httpClient.get(path = "/v1/files/$fileId")
+            httpClient.get(path = "$FilesPath/$fileId")
         } catch (exception: ClientRequestException) {
             if (exception.response.status == HttpStatusCode.NotFound) return null
             throw exception
@@ -133,11 +133,18 @@ internal class OpenAIApi(
     }
 
     override suspend fun delete(fileId: FileId) {
-        return httpClient.delete(path = "/v1/files/$fileId")
+        return httpClient.delete(path = "$FilesPath/$fileId")
     }
 
     companion object {
-        private const val STREAM_PREFIX = "data:"
-        private const val STREAM_END_TOKEN = "$STREAM_PREFIX [DONE]"
+        // API Paths
+        private const val EnginesPath = "/v1/engines"
+        private const val ClassificationsPath = "/v1/classifications"
+        private const val AnswersPath = "/v1/answers"
+        private const val FilesPath = "/v1/files"
+
+        // Stream Tokens
+        private const val StreamPrefix = "data:"
+        private const val StreamEndToken = "$StreamPrefix [DONE]"
     }
 }

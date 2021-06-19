@@ -1,6 +1,8 @@
 package com.aallam.openai.api.file.internal
 
 import com.aallam.openai.api.file.FileStatus
+import com.aallam.openai.api.file.Processed
+import com.aallam.openai.api.file.Uploaded
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -16,9 +18,9 @@ internal class FileStatusSerializer : KSerializer<FileStatus> {
 
     override fun deserialize(decoder: Decoder): FileStatus {
         return when (val value = decoder.decodeString()) {
-            FileStatus.Uploaded.raw -> FileStatus.Uploaded
-            FileStatus.Processed.raw -> FileStatus.Processed
-            else -> FileStatus.Custom(value)
+            Uploaded.raw -> Uploaded
+            Processed.raw -> Processed
+            else -> FileStatus(value)
         }
     }
 

@@ -3,6 +3,7 @@
 
 ### Changed
 * Kotlin 1.5.10
+* Value classes: `EngineID`, `FileStatus`, `FileId` and `Purpose`  
 
 # 0.5.0
 > Published 03 Apr 2021

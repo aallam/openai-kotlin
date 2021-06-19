@@ -1,3 +1,9 @@
+# 1.0.0
+> Published 19 Jun 2021
+
+### Changed
+* Kotlin 1.5.10
+
 # 0.5.0
 > Published 03 Apr 2021
 

@@ -30,32 +30,73 @@ Create an instance of `OpenAI` client:
 ```kotlin
 val openAI = OpenAI(apiKey)
 ```
-
 Use your `OpenAI` instance to make API requests:
+* [List engines](https://beta.openai.com/docs/api-reference/engines/list)
 ```kotlin
-// Get available OpenAI engines
 val engines: List<Engine> = openAI.engines()
-
-// Get an engine details
-val ada: Engine = openAI.engine(EngineId.Ada)
-
-// Create a completion
+```
+* [Retrieve an engine](https://beta.openai.com/docs/api-reference/engines/retrieve)
+```kotlin
+val ada: Engine = openAI.engine(Ada)
+```
+* [Create completion](https://beta.openai.com/docs/api-reference/completions/create)
+```kotlin
 val completionRequest = CompletionRequest(
     prompt = "Somebody once told me the world is gonna roll me",
     echo = true
 )
-val completion: TextCompletion = openAI.completion(EngineId.Ada, completionRequest)
-
-// Create a completion as a stream
-val completions: Flow<TextCompletion> = openAI.completions(EngineId.Ada, completionRequest)
-
-// Search documents
+val completion: TextCompletion = openAI.completion(Ada, completionRequest)
+```
+* [Create completion stream](https://beta.openai.com/docs/api-reference/completions/create-via-get)
+```kotlin
+val completions: Flow<TextCompletion> = openAI.completions(Ada, completionRequest)
+```
+* [Create search](https://beta.openai.com/docs/api-reference/searches/create)
+```kotlin
 val searchRequest = SearchRequest(
     documents = listOf("Water", "Earth", "Electricity", "Fire"),
     query = "Pikachu"
 )
-val search: List<SearchResult> = openAI.search(EngineId.Ada, searchRequest)
+val search: List<SearchResult> = openAI.search(Ada, searchRequest)
 ```
+* [Create classification](https://beta.openai.com/docs/api-reference/classifications/create)
+```kotlin
+val classificationRequest = ClassificationRequest(
+    model = Curie,
+    query = "It is a raining day :(",
+    searchModel = Ada,
+    labels = listOf("Positive", "Negative", "Neutral"),
+    examples = listOf(
+        LabeledExample("A happy moment", "Positive"),
+        LabeledExample("I am sad.", "Negative"),
+        LabeledExample("I am feeling awesome", "Positive"),
+    )
+)
+val classification = openAI.classifications(classificationRequest)
+```
+* [Create answer](https://beta.openai.com/docs/api-reference/answers/create)
+```kotlin
+val answersRequest = AnswerRequest(
+    model = Curie,
+    question = "which puppy is happy?",
+    searchModel = Ada,
+    examples = listOf(
+        QuestionAnswer(
+            question = "What is human life expectancy in the United States?",
+            answer = "78 years."
+        )
+    ),
+    examplesContext = "In 2017, U.S. life expectancy was 78.6 years.",
+    maxTokens = 5,
+    stop = listOf("\n", "<|endoftext|>"),
+    documents = listOf("Puppy A is happy.", "Puppy B is sad.")
+)
+val answer = openAI.answers(answersRequest)
+```
+* [List files](https://beta.openai.com/docs/api-reference/files/list)
+````kotlin
+val files = openAI.files()
+````
 
 ## ℹ️ Sample apps
 

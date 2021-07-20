@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
     id("com.vanniktech.maven.publish")
+    id("binary-compatibility-validator")
 }
 
 kotlin {

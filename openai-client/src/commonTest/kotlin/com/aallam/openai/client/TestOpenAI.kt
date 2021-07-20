@@ -7,11 +7,13 @@ import com.aallam.openai.api.classification.ClassificationRequest
 import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
-import com.aallam.openai.api.engine.EngineId
+import com.aallam.openai.api.engine.Ada
+import com.aallam.openai.api.engine.Curie
+import com.aallam.openai.api.engine.Davinci
+import com.aallam.openai.api.file.Answers
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
-import com.aallam.openai.api.file.FileStatus
-import com.aallam.openai.api.file.Purpose
+import com.aallam.openai.api.file.Processed
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.client.internal.OpenAIApi
 import com.aallam.openai.client.internal.runBlockingTest
@@ -28,7 +30,7 @@ import kotlin.test.*
 class TestOpenAI {
 
     private val fileSystem = FakeFileSystem()
-    private val openAI = OpenAIApi(config, fileSystem)
+    private val openAI = OpenAIApi(httpClient, fileSystem)
     private lateinit var filePath: Path
 
     @BeforeTest
@@ -45,23 +47,13 @@ class TestOpenAI {
         }
     }
 
-    //@AfterTest
-    //fun finish() {
-    //    runBlockingTest {
-    //        fileSystem.delete(filePath)
-    //        openAI.files().forEach {
-    //            openAI.delete(it.id)
-    //        }
-    //    }
-    //}
-
     @Test
     fun search() {
         runBlockingTest {
             val documents = listOf("White House", "hospital", "school")
             val query = "the president"
             val request = SearchRequest(documents, query)
-            val response = openAI.search(EngineId.Davinci, request)
+            val response = openAI.search(Davinci, request)
             assertEquals(documents.size, response.size)
         }
     }
@@ -77,7 +69,7 @@ class TestOpenAI {
     @Test
     fun engine() {
         runBlockingTest {
-            val engineId = EngineId.Davinci
+            val engineId = Davinci
             val response = openAI.engine(engineId)
             assertEquals(engineId, response.id)
         }
@@ -96,7 +88,7 @@ class TestOpenAI {
                 stop = listOf("\n")
             )
 
-            val response = openAI.completion(EngineId.Davinci, request)
+            val response = openAI.completion(Davinci, request)
             assertNotNull(response.choices[0].text)
         }
     }
@@ -115,7 +107,7 @@ class TestOpenAI {
             )
 
             val results = mutableListOf<TextCompletion>()
-            openAI.completions(EngineId.Davinci, request)
+            openAI.completions(Davinci, request)
                 .onEach { results += it }
                 .launchIn(this)
                 .join()
@@ -129,9 +121,9 @@ class TestOpenAI {
     fun classifications() {
         runBlockingTest {
             val request = ClassificationRequest(
-                model = EngineId.Curie,
+                model = Curie,
                 query = "It is a raining day :(",
-                searchModel = EngineId.Ada,
+                searchModel = Ada,
                 labels = listOf("Positive", "Negative", "Neutral"),
                 examples = listOf(
                     LabeledExample("A happy moment", "Positive"),
@@ -149,9 +141,9 @@ class TestOpenAI {
     fun answers() {
         runBlockingTest {
             val request = AnswerRequest(
-                model = EngineId.Curie,
+                model = Curie,
                 question = "which puppy is happy?",
-                searchModel = EngineId.Ada,
+                searchModel = Ada,
                 examples = listOf(
                     QuestionAnswer(
                         question = "What is human life expectancy in the United States?",
@@ -173,7 +165,7 @@ class TestOpenAI {
         runBlockingTest {
             val request = FileRequest(
                 file = filePath.toString(),
-                purpose = Purpose.Answers
+                purpose = Answers
             )
             val filename = filePath.name
 
@@ -206,7 +198,7 @@ class TestOpenAI {
     private suspend fun waitFileProcess(fileId: FileId) {
         while (true) {
             val file = openAI.file(fileId)
-            if (file?.status == FileStatus.Processed) break
+            if (file?.status == Processed) break
             delay(1000L)
         }
     }

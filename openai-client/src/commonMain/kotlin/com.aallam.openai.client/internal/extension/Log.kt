@@ -9,7 +9,7 @@ import io.ktor.client.features.logging.Logger as KLogger
 /**
  * Convert Logger to a Ktor's Logger.
  */
-internal fun Logger.toKLogger() = when (this) {
+internal fun Logger.toKtorLogger() = when (this) {
     Logger.Default -> KLogger.DEFAULT
     Logger.Simple -> KLogger.SIMPLE
     Logger.Empty -> KLogger.EMPTY
@@ -18,7 +18,7 @@ internal fun Logger.toKLogger() = when (this) {
 /**
  * Convert LogLevel to a Ktor's LogLevel.
  */
-internal fun LogLevel.toKLogLevel() = when (this) {
+internal fun LogLevel.toKtorLogLevel() = when (this) {
     LogLevel.All -> KLogLevel.ALL
     LogLevel.Headers -> KLogLevel.HEADERS
     LogLevel.Body -> KLogLevel.BODY

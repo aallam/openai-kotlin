@@ -1,27 +1,34 @@
-public abstract interface class com/aallam/openai/client/OpenAI {
-	public static final field Companion Lcom/aallam/openai/client/OpenAI$Companion;
+public abstract interface class com/aallam/openai/client/Answers {
 	public abstract fun answers (Lcom/aallam/openai/api/answer/AnswerRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/Classifications {
 	public abstract fun classifications (Lcom/aallam/openai/api/classification/ClassificationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/Completions {
 	public abstract fun completion-oLuQndg (Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun completions-hf_GjgE (Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;)Lkotlinx/coroutines/flow/Flow;
-	public abstract fun createCompletion-oLuQndg (Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun delete-3IZx-Vg (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aallam/openai/client/Completions$DefaultImpls {
+	public static synthetic fun completion-oLuQndg$default (Lcom/aallam/openai/client/Completions;Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun completions-hf_GjgE$default (Lcom/aallam/openai/client/Completions;Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+}
+
+public abstract interface class com/aallam/openai/client/Engines {
 	public abstract fun engine-hf_GjgE (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun engines (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/Files {
+	public abstract fun delete-3IZx-Vg (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun file (Lcom/aallam/openai/api/file/FileRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun file-3IZx-Vg (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun files (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun search-oLuQndg (Ljava/lang/String;Lcom/aallam/openai/api/search/SearchRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class com/aallam/openai/client/OpenAI$Companion {
-}
-
-public final class com/aallam/openai/client/OpenAI$DefaultImpls {
-	public static synthetic fun completion-oLuQndg$default (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static synthetic fun completions-hf_GjgE$default (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
-	public static fun createCompletion-oLuQndg (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun createCompletion-oLuQndg$default (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Answers, com/aallam/openai/client/Classifications, com/aallam/openai/client/Completions, com/aallam/openai/client/Engines, com/aallam/openai/client/Files, com/aallam/openai/client/Searches {
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {
@@ -35,5 +42,9 @@ public final class com/aallam/openai/client/OpenAIConfig {
 public final class com/aallam/openai/client/OpenAIKt {
 	public static final fun OpenAI (Lcom/aallam/openai/client/OpenAIConfig;)Lcom/aallam/openai/client/OpenAI;
 	public static final fun OpenAI (Ljava/lang/String;)Lcom/aallam/openai/client/OpenAI;
+}
+
+public abstract interface class com/aallam/openai/client/Searches {
+	public abstract fun search-oLuQndg (Ljava/lang/String;Lcom/aallam/openai/api/search/SearchRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 

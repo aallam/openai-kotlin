@@ -1,8 +1,8 @@
 package com.aallam.openai.client.internal
 
 import com.aallam.openai.client.OpenAIConfig
-import com.aallam.openai.client.internal.extension.toKLogLevel
-import com.aallam.openai.client.internal.extension.toKLogger
+import com.aallam.openai.client.internal.extension.toKtorLogLevel
+import com.aallam.openai.client.internal.extension.toKtorLogger
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.features.auth.*
@@ -23,8 +23,8 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             serializer = KotlinxSerializer(JsonLenient)
         }
         install(Logging) {
-            logger = config.logger.toKLogger()
-            level = config.logLevel.toKLogLevel()
+            logger = config.logger.toKtorLogger()
+            level = config.logLevel.toKtorLogLevel()
         }
         install(Auth) {
             bearer {

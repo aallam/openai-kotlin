@@ -2,6 +2,7 @@ package com.aallam.openai.client
 
 import com.aallam.openai.client.internal.ClientFileSystem
 import com.aallam.openai.client.internal.OpenAIApi
+import com.aallam.openai.client.internal.createHttpClient
 
 /**
  * OpenAI API.
@@ -30,5 +31,6 @@ public fun OpenAI(token: String): OpenAI {
  * @param config client config
  */
 public fun OpenAI(config: OpenAIConfig): OpenAI {
-    return OpenAIApi(config, ClientFileSystem)
+    val httpClient = createHttpClient(config)
+    return OpenAIApi(httpClient, ClientFileSystem)
 }

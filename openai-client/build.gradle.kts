@@ -33,9 +33,9 @@ kotlin {
 
     sourceSets {
         all {
-            languageSettings.apply {
-                useExperimentalAnnotation("kotlin.RequiresOptIn")
-                useExperimentalAnnotation("okio.ExperimentalFileSystem")
+            languageSettings {
+                optIn("kotlin.RequiresOptIn")
+                optIn("okio.ExperimentalFileSystem")
             }
         }
         val commonMain by getting {

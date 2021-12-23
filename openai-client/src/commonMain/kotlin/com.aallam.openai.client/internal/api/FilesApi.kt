@@ -6,7 +6,8 @@ import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.file.FileResponse
 import com.aallam.openai.client.Files
 import io.ktor.client.*
-import io.ktor.client.features.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
@@ -27,16 +28,16 @@ internal class FilesApi(
             appendFile(fileSystem, "file", request.file)
             append("purpose", request.purpose.raw)
         }
-        return httpClient.submitFormWithBinaryData(url = FilesPath, formData = data)
+        return httpClient.submitFormWithBinaryData(url = FilesPath, formData = data).body()
     }
 
     override suspend fun files(): List<File> {
-        return httpClient.get<FileResponse>(path = FilesPath).data
+        return httpClient.get { url(path = FilesPath) }.body<FileResponse>().data
     }
 
     override suspend fun file(fileId: FileId): File? {
         return try {
-            httpClient.get(path = "$FilesPath/$fileId")
+            httpClient.get { url(path = "$FilesPath/$fileId") }.body()
         } catch (exception: ClientRequestException) {
             if (exception.response.status == HttpStatusCode.NotFound) return null
             throw exception
@@ -44,7 +45,7 @@ internal class FilesApi(
     }
 
     override suspend fun delete(fileId: FileId) {
-        return httpClient.delete(path = "$FilesPath/$fileId")
+        httpClient.delete { url(path = "$FilesPath/$fileId") }
     }
 
     /**

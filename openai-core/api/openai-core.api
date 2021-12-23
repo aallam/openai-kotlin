@@ -20,6 +20,7 @@ public final class com/aallam/openai/api/answer/Answer {
 	public final fun getSelectedDocuments ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/answer/Answer;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/answer/Answer$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -82,6 +83,7 @@ public final class com/aallam/openai/api/answer/AnswerRequest {
 	public final fun getTemperature ()Ljava/lang/Double;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/answer/AnswerRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/answer/AnswerRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -113,6 +115,7 @@ public final class com/aallam/openai/api/answer/Document {
 	public final fun getText ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/answer/Document;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/answer/Document$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -168,6 +171,7 @@ public final class com/aallam/openai/api/classification/Classification {
 	public final fun getSelectedExamples ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/classification/Classification;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/classification/Classification$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -222,6 +226,7 @@ public final class com/aallam/openai/api/classification/ClassificationRequest {
 	public final fun getTemperature ()Ljava/lang/Double;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/classification/ClassificationRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/classification/ClassificationRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -255,6 +260,7 @@ public final class com/aallam/openai/api/classification/Example {
 	public final fun getText ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/classification/Example;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/classification/Example$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -308,6 +314,7 @@ public final class com/aallam/openai/api/completion/Choice {
 	public final fun getText ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/completion/Choice;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/completion/Choice$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -345,6 +352,7 @@ public final class com/aallam/openai/api/completion/CompletionRequest {
 	public final fun getStream ()Ljava/lang/Boolean;
 	public final fun getTemperature ()Ljava/lang/Double;
 	public final fun getTopP ()Ljava/lang/Double;
+	public static final fun write$Self (Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/completion/CompletionRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -380,6 +388,7 @@ public final class com/aallam/openai/api/completion/Logprobs {
 	public final fun getTopLogprobs ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/completion/Logprobs;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/completion/Logprobs$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -415,6 +424,7 @@ public final class com/aallam/openai/api/completion/TextCompletion {
 	public final fun getModel ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/completion/TextCompletion;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/completion/TextCompletion$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -448,6 +458,7 @@ public final class com/aallam/openai/api/engine/Engine {
 	public final fun getReady ()Z
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/engine/Engine;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/engine/Engine$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -497,6 +508,7 @@ public final class com/aallam/openai/api/engine/EnginesResponse {
 	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public fun <init> (Ljava/util/List;)V
 	public final fun getData ()Ljava/util/List;
+	public static final fun write$Self (Lcom/aallam/openai/api/engine/EnginesResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/engine/EnginesResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -539,6 +551,7 @@ public final class com/aallam/openai/api/file/File {
 	public final fun getStatus-uAY0Nxo ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/file/File;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/file/File$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -612,6 +625,7 @@ public final class com/aallam/openai/api/file/FileResponse {
 	public final fun getData ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/file/FileResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/file/FileResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -703,6 +717,7 @@ public final class com/aallam/openai/api/search/SearchRequest {
 	public fun <init> (Ljava/util/List;Ljava/lang/String;)V
 	public final fun getDocuments ()Ljava/util/List;
 	public final fun getQuery ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/search/SearchRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/search/SearchRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -727,6 +742,7 @@ public final class com/aallam/openai/api/search/SearchResponse {
 	public fun <init> (Ljava/util/List;Ljava/lang/String;)V
 	public final fun getData ()Ljava/util/List;
 	public final fun getModel ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/search/SearchResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/search/SearchResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
@@ -758,6 +774,7 @@ public final class com/aallam/openai/api/search/SearchResult {
 	public final fun getScore ()D
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/search/SearchResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class com/aallam/openai/api/search/SearchResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {

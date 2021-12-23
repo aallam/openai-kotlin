@@ -16,11 +16,11 @@ import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.file.Processed
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.client.internal.OpenAIApi
-import com.aallam.openai.client.internal.runBlockingTest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import okio.Path
 import okio.Path.Companion.toPath
@@ -49,7 +49,7 @@ class TestOpenAI {
 
     @Test
     fun search() {
-        runBlockingTest {
+        runTest {
             val documents = listOf("White House", "hospital", "school")
             val query = "the president"
             val request = SearchRequest(documents, query)
@@ -60,7 +60,7 @@ class TestOpenAI {
 
     @Test
     fun engines() {
-        runBlockingTest {
+        runTest {
             val response = openAI.engines()
             assertNotEquals(0, response.size)
         }
@@ -68,7 +68,7 @@ class TestOpenAI {
 
     @Test
     fun engine() {
-        runBlockingTest {
+        runTest {
             val engineId = Davinci
             val response = openAI.engine(engineId)
             assertEquals(engineId, response.id)
@@ -77,7 +77,7 @@ class TestOpenAI {
 
     @Test
     fun completion() {
-        runBlockingTest {
+        runTest {
             val request = CompletionRequest(
                 prompt = "Once upon a time",
                 maxTokens = 5,
@@ -95,7 +95,7 @@ class TestOpenAI {
 
     @Test
     fun completions() {
-        runBlockingTest {
+        runTest {
             val request = CompletionRequest(
                 prompt = "Once upon a time",
                 maxTokens = 5,
@@ -119,7 +119,7 @@ class TestOpenAI {
     @ExperimentalOpenAI
     @Test
     fun classifications() {
-        runBlockingTest {
+        runTest {
             val request = ClassificationRequest(
                 model = Curie,
                 query = "It is a raining day :(",
@@ -139,7 +139,7 @@ class TestOpenAI {
     @ExperimentalOpenAI
     @Test
     fun answers() {
-        runBlockingTest {
+        runTest {
             val request = AnswerRequest(
                 model = Curie,
                 question = "which puppy is happy?",
@@ -162,7 +162,7 @@ class TestOpenAI {
 
     @Test
     fun file() {
-        runBlockingTest {
+        runTest {
             val request = FileRequest(
                 file = filePath.toString(),
                 purpose = Answers
@@ -189,7 +189,7 @@ class TestOpenAI {
 
     @Test
     fun files() {
-        runBlockingTest {
+        runTest {
             val response = openAI.files()
             assertNotNull(response)
         }

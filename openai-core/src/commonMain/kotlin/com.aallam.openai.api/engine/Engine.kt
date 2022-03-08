@@ -21,5 +21,5 @@ public data class Engine(
     /**
      * Whether the engine is ready to process requests or not.
      */
-    @SerialName("ready") public val ready: Boolean
+    @SerialName("ready") public val ready: Boolean?
 )

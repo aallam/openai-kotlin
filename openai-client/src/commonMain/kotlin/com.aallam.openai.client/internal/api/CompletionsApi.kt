@@ -12,6 +12,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.client.utils.*
+import io.ktor.client.utils.EmptyContent.contentType
 import io.ktor.http.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.flow.Flow
@@ -24,29 +25,29 @@ import kotlinx.serialization.decodeFromString
 internal class CompletionsApi(private val httpClient: HttpClient) : Completions {
 
     override suspend fun completion(engineId: EngineId, request: CompletionRequest?): TextCompletion {
-        return httpClient.post(path = "$EnginesPath/$engineId/completions", body = request ?: EmptyContent) {
+        return httpClient.post {
+            url(path = "$EnginesPath/$engineId/completions")
+            setBody(request ?: EmptyContent)
             contentType(ContentType.Application.Json)
-        }
+        }.body()
     }
 
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
         return flow {
-            httpClient.post<HttpStatement>(
-                path = "$EnginesPath/$engineId/completions",
-                body = request.toStreamRequest()
-            ) {
+            val response = httpClient.post {
+                url(path = "$EnginesPath/$engineId/completions")
+                setBody(request.toStreamRequest())
                 contentType(ContentType.Application.Json)
-            }.execute { response ->
-                val readChannel = response.receive<ByteReadChannel>()
-                while (!readChannel.isClosedForRead) {
-                    val line = readChannel.readUTF8Line() ?: ""
-                    val value: TextCompletion = when {
-                        line.startsWith(StreamEndToken) -> break
-                        line.startsWith(StreamPrefix) -> JsonLenient.decodeFromString(line.removePrefix(StreamPrefix))
-                        else -> continue
-                    }
-                    emit(value)
+            }
+            val readChannel = response.body<ByteReadChannel>()
+            while (!readChannel.isClosedForRead) {
+                val line = readChannel.readUTF8Line() ?: ""
+                val value: TextCompletion = when {
+                    line.startsWith(StreamEndToken) -> break
+                    line.startsWith(StreamPrefix) -> JsonLenient.decodeFromString(line.removePrefix(StreamPrefix))
+                    else -> continue
                 }
+                emit(value)
             }
         }
     }

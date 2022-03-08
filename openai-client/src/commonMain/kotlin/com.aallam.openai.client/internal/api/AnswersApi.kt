@@ -5,6 +5,7 @@ import com.aallam.openai.api.answer.Answer
 import com.aallam.openai.api.answer.AnswerRequest
 import com.aallam.openai.client.Answers
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
@@ -15,9 +16,11 @@ internal class AnswersApi(private val httpClient: HttpClient) : Answers {
 
     @ExperimentalOpenAI
     override suspend fun answers(request: AnswerRequest): Answer {
-        return httpClient.post(path = AnswersPath, body = request) {
+        return httpClient.post {
+            url(path = AnswersPath)
+            setBody(request)
             contentType(ContentType.Application.Json)
-        }
+        }.body()
     }
 
     companion object {

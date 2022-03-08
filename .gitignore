@@ -19,3 +19,6 @@ coverage-error.log
 
 # Java
 *.hprof
+
+# kmp
+kotlin-js-store

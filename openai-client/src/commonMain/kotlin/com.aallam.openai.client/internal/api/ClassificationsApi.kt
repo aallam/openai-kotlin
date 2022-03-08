@@ -5,6 +5,7 @@ import com.aallam.openai.api.classification.Classification
 import com.aallam.openai.api.classification.ClassificationRequest
 import com.aallam.openai.client.Classifications
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
@@ -15,9 +16,11 @@ internal class ClassificationsApi(private val httpClient: HttpClient) : Classifi
 
     @ExperimentalOpenAI
     override suspend fun classifications(request: ClassificationRequest): Classification {
-        return httpClient.post(path = ClassificationsPath, body = request) {
+        return httpClient.post {
+            url(path = ClassificationsPath)
+            setBody(request)
             contentType(ContentType.Application.Json)
-        }
+        }.body()
     }
 
     companion object {

@@ -4,14 +4,13 @@ import com.aallam.openai.client.OpenAIConfig
 import com.aallam.openai.client.internal.extension.toKtorLogLevel
 import com.aallam.openai.client.internal.extension.toKtorLogger
 import io.ktor.client.*
-import io.ktor.client.features.*
-import io.ktor.client.features.auth.*
-import io.ktor.client.features.auth.providers.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.auth.*
+import io.ktor.client.plugins.auth.providers.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.*
 import kotlinx.serialization.json.Json
 
 /**
@@ -19,8 +18,8 @@ import kotlinx.serialization.json.Json
  */
 internal fun createHttpClient(config: OpenAIConfig): HttpClient {
     return HttpClient {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer(JsonLenient)
+        install(ContentNegotiation) {
+            register(ContentType.Application.Json, KotlinxSerializationConverter(JsonLenient))
         }
         install(Logging) {
             logger = config.logger.toKtorLogger()
@@ -49,5 +48,4 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
 internal val JsonLenient = Json {
     isLenient = true
     ignoreUnknownKeys = true
-    useAlternativeNames = false // TODO: remove after https://github.com/Kotlin/kotlinx.serialization/issues/1450
 }

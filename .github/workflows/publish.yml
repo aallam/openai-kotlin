@@ -9,12 +9,10 @@ env:
 jobs:
   all-platforms:
     runs-on: ${{ matrix.os }}
-
     strategy:
       fail-fast: false
       matrix:
         os: [ macos-11, ubuntu-latest, windows-latest ]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -32,6 +30,8 @@ jobs:
 
       - name: Build
         run: ./gradlew build
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
   publish:
     name: Publish Unix to Sonatype

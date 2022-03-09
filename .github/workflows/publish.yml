@@ -7,36 +7,9 @@ env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
 
 jobs:
-  all-platforms:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ macos-11, ubuntu-latest, windows-latest ]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Configure JDK
-        uses: actions/setup-java@v2
-        with:
-          distribution: temurin
-          java-version: 11
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: wrapper
-
-      - name: Build
-        run: ./gradlew build
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
   publish:
     name: Publish Unix to Sonatype
     runs-on: macos-11
-    needs: all-platforms
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -64,7 +37,6 @@ jobs:
   publish-mingw:
     name: Publish MinGW to Sonatype
     runs-on: windows-latest
-    needs: all-platforms
     steps:
       - name: Checkout
         uses: actions/checkout@v2

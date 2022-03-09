@@ -2,7 +2,9 @@ package com.aallam.openai.client.internal.extension
 
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.logging.Logger
-import io.ktor.client.plugins.logging.*
+import io.ktor.client.plugins.logging.DEFAULT
+import io.ktor.client.plugins.logging.EMPTY
+import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.plugins.logging.LogLevel as KLogLevel
 import io.ktor.client.plugins.logging.Logger as KLogger
 

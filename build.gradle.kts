@@ -1,3 +1,4 @@
+import com.diffplug.gradle.spotless.SpotlessExtension
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -12,6 +13,7 @@ buildscript {
         classpath(kotlin("serialization", version = kotlinVersion))
         classpath("com.vanniktech:gradle-maven-publish-plugin:0.18.0")
         classpath("org.jetbrains.kotlinx:binary-compatibility-validator:0.8.0")
+        classpath("com.diffplug.spotless:spotless-plugin-gradle:6.3.0")
     }
 }
 
@@ -31,6 +33,18 @@ allprojects {
             events(STARTED, PASSED, SKIPPED, FAILED)
             exceptionFormat = TestExceptionFormat.FULL
             showStandardStreams = false
+        }
+    }
+
+    afterEvaluate {
+        if (plugins.hasPlugin("com.diffplug.spotless")) {
+            configure<SpotlessExtension> {
+                kotlin {
+                    target("**/*.kt")
+                    trimTrailingWhitespace()
+                    endWithNewline()
+                }
+            }
         }
     }
 }

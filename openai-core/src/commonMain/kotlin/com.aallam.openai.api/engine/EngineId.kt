@@ -3,6 +3,7 @@ package com.aallam.openai.api.engine
 import com.aallam.openai.api.engine.internal.EngineIdSerializer
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline
+import kotlin.native.concurrent.SharedImmutable
 
 /**
  * OpenAI’s API engine ID.
@@ -22,6 +23,7 @@ public value class EngineId(public val id: String) {
  *
  * *Note: Any task performed by a faster model like Ada can be performed by a more powerful model like Curie or Davinci.*
  */
+@SharedImmutable
 public val Ada: EngineId = EngineId("ada")
 
 /**
@@ -30,6 +32,7 @@ public val Ada: EngineId = EngineId("ada")
  *
  * Good at: **Moderate classification, semantic search classification**
  */
+@SharedImmutable
 public val Babbage: EngineId = EngineId("babbage")
 
 /**
@@ -40,6 +43,7 @@ public val Babbage: EngineId = EngineId("babbage")
  *
  * Good at: **Language translation, complex classification, text sentiment, summarization**
  */
+@SharedImmutable
 public val Curie: EngineId = EngineId("curie")
 
 /**
@@ -56,4 +60,5 @@ public val Curie: EngineId = EngineId("curie")
  *
  * Good at: **Complex intent, cause and effect, summarization for audience**
  */
+@SharedImmutable
 public val Davinci: EngineId = EngineId("davinci")

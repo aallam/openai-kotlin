@@ -1,6 +1,8 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.engine.*
+import com.aallam.openai.api.engine.Engine
+import com.aallam.openai.api.engine.EngineId
+
 
 /**
  * OpenAI’s API provides access to several different engines - [Ada], [Babbage], [Curie] and [Davinci].

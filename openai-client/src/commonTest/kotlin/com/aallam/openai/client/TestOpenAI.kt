@@ -192,6 +192,7 @@ class TestOpenAI {
         runTest {
             val response = openAI.files()
             assertNotNull(response)
+            assertTrue(response.isNotEmpty())
         }
     }
 

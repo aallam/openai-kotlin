@@ -60,13 +60,8 @@ jobs:
         with:
           gradle-version: wrapper
 
-      - name: Install libcurl
-        run: |
-          wget https://curl.se/download/curl-7.82.0.tar.gz
-          tar -xzvf curl-7.82.0.tar.gz
-          cd curl-7.82.0 && ./configure --prefix=/usr/local/curl --with-openssl
-          make
-          sudo make install
+      - name: Install curl
+        run: brew install openssl curl
 
       - name: Build
         run: ./gradlew build

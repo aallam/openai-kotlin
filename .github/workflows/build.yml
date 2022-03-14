@@ -60,10 +60,7 @@ jobs:
         with:
           gradle-version: wrapper
 
-      - name: Install curl
-        run: brew install openssl curl
-
       - name: Build
-        run: ./gradlew build
+        run: ./gradlew :openai-client:{jvmTest,jsTest,macosX64Test}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

@@ -7,15 +7,13 @@ import com.aallam.openai.client.Completions
 import com.aallam.openai.client.internal.JsonLenient
 import com.aallam.openai.client.internal.api.EnginesApi.Companion.EnginesPath
 import com.aallam.openai.client.internal.extension.toStreamRequest
-import io.ktor.client.HttpClient
+import com.aallam.openai.client.internal.http.HttpTransport
 import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.utils.EmptyContent
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.readUTF8Line
 import kotlinx.coroutines.flow.Flow
@@ -25,22 +23,24 @@ import kotlinx.serialization.decodeFromString
 /**
  * Implementation of [Completions].
  */
-internal class CompletionsApi(private val httpClient: HttpClient) : Completions {
+internal class CompletionsApi(private val httpRequester: HttpTransport) : Completions {
 
     override suspend fun completion(engineId: EngineId, request: CompletionRequest?): TextCompletion {
-        return httpClient.post {
-            url(path = "$EnginesPath/$engineId/completions")
-            setBody(request ?: EmptyContent)
-            contentType(ContentType.Application.Json)
-        }.body()
+        return httpRequester.perform {
+            it.post {
+                url(path = "$EnginesPath/$engineId/completions")
+                setBody(request ?: EmptyContent)
+            }.body()
+        }
     }
 
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
         return flow {
-            val response = httpClient.post {
-                url(path = "$EnginesPath/$engineId/completions")
-                setBody(request.toStreamRequest())
-                contentType(ContentType.Application.Json)
+            val response = httpRequester.perform<HttpResponse> {
+                it.post {
+                    url(path = "$EnginesPath/$engineId/completions")
+                    setBody(request.toStreamRequest())
+                }
             }
             val readChannel = response.body<ByteReadChannel>()
             while (!readChannel.isClosedForRead) {

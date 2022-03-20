@@ -4,22 +4,21 @@ import com.aallam.openai.api.engine.Engine
 import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.engine.EnginesResponse
 import com.aallam.openai.client.Engines
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
+import com.aallam.openai.client.internal.http.HttpTransport
 import io.ktor.client.request.get
 import io.ktor.client.request.url
 
 /**
  * Implementation of [Engines].
  */
-internal class EnginesApi(private val httpClient: HttpClient) : Engines {
+internal class EnginesApi(private val httpRequester: HttpTransport) : Engines {
 
     override suspend fun engines(): List<Engine> {
-        return httpClient.get { url(path = EnginesPath) }.body<EnginesResponse>().data
+        return httpRequester.perform<EnginesResponse> { it.get { url(path = EnginesPath) } }.data
     }
 
     override suspend fun engine(engineId: EngineId): Engine {
-        return httpClient.get { url(path = "$EnginesPath/$engineId") }.body()
+        return httpRequester.perform { it.get { url(path = "$EnginesPath/$engineId") } }
     }
 
     companion object {

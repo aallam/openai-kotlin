@@ -14,7 +14,8 @@ public interface OpenAI :
     Searches,
     Classifications,
     Answers,
-    Files
+    Files,
+    FineTunes
 
 /**
  * Creates an instance of [OpenAI].

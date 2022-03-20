@@ -22,3 +22,8 @@ public val Answers: Purpose = Purpose("answers")
  * File for classifications.
  */
 public val Classifications: Purpose = Purpose("classifications")
+
+/**
+ * File for fine-tune.
+ */
+public val FineTune: Purpose = Purpose("fine-tune")

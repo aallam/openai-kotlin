@@ -1,5 +1,6 @@
 package com.aallam.openai.api.file
 
+import com.aallam.openai.api.core.Status
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -34,7 +35,7 @@ public data class File(
     /**
      * File status.
      */
-    @SerialName("status") val status: FileStatus,
+    @SerialName("status") val status: Status,
 
     /**
      * File format.

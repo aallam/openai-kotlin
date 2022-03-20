@@ -13,7 +13,6 @@ import com.aallam.openai.api.engine.Davinci
 import com.aallam.openai.api.file.Answers
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
-import com.aallam.openai.api.file.Processed
 import com.aallam.openai.api.search.SearchRequest
 import com.aallam.openai.client.internal.OpenAIApi
 import kotlinx.coroutines.Dispatchers
@@ -199,7 +198,7 @@ class TestOpenAI {
     private suspend fun waitFileProcess(fileId: FileId) {
         while (true) {
             val file = openAI.file(fileId)
-            if (file?.status == Processed) break
+            if (file?.status?.raw == "processed") break
             delay(1000L)
         }
     }

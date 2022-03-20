@@ -30,7 +30,7 @@ import kotlin.test.*
 class TestOpenAI {
 
     private val fileSystem = FakeFileSystem()
-    private val openAI = OpenAIApi(httpClient, fileSystem)
+    private val openAI = OpenAIApi(transport, fileSystem)
     private lateinit var filePath: Path
 
     @BeforeTest

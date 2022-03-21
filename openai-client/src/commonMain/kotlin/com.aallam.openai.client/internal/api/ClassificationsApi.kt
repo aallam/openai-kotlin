@@ -13,11 +13,11 @@ import io.ktor.client.request.url
 /**
  * Implementation of [Classifications].
  */
-internal class ClassificationsApi(private val httpRequester: HttpTransport) : Classifications {
+internal class ClassificationsApi(private val httpTransport: HttpTransport) : Classifications {
 
     @ExperimentalOpenAI
     override suspend fun classifications(request: ClassificationRequest): Classification {
-        return httpRequester.perform {
+        return httpTransport.perform {
             it.post {
                 url(path = ClassificationsPath)
                 setBody(request)

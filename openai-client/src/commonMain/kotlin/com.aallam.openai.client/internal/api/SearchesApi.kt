@@ -16,13 +16,13 @@ import io.ktor.http.contentType
 /**
  * Implementation of [Searches].
  */
-internal class SearchesApi(private val httpRequester: HttpTransport) : Searches {
+internal class SearchesApi(private val httpTransport: HttpTransport) : Searches {
 
     override suspend fun search(
         engineId: EngineId,
         request: SearchRequest
     ): List<SearchResult> {
-        return httpRequester.perform<SearchResponse> {
+        return httpTransport.perform<SearchResponse> {
             it.post {
                 url(path = "${EnginesPath}/$engineId/search")
                 contentType(ContentType.Application.Json)

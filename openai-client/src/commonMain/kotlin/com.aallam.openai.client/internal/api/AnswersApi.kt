@@ -13,11 +13,11 @@ import io.ktor.client.request.url
 /**
  * Implementation of [Answers].
  */
-internal class AnswersApi(private val httpRequester: HttpTransport) : Answers {
+internal class AnswersApi(private val httpTransport: HttpTransport) : Answers {
 
     @ExperimentalOpenAI
     override suspend fun answers(request: AnswerRequest): Answer {
-        return httpRequester.perform {
+        return httpTransport.perform {
             it.post {
                 url(path = AnswersPath)
                 setBody(request)

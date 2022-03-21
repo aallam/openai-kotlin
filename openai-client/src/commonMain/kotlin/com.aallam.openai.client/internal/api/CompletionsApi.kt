@@ -18,10 +18,10 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Implementation of [Completions].
  */
-internal class CompletionsApi(private val httpRequester: HttpTransport) : Completions {
+internal class CompletionsApi(private val httpTransport: HttpTransport) : Completions {
 
     override suspend fun completion(engineId: EngineId, request: CompletionRequest?): TextCompletion {
-        return httpRequester.perform {
+        return httpTransport.perform {
             it.post {
                 url(path = "$EnginesPath/$engineId/completions")
                 setBody(request ?: EmptyContent)
@@ -31,7 +31,7 @@ internal class CompletionsApi(private val httpRequester: HttpTransport) : Comple
 
     override fun completions(engineId: EngineId, request: CompletionRequest?): Flow<TextCompletion> {
         return streamSSE {
-            httpRequester.perform {
+            httpTransport.perform {
                 it.post {
                     url(path = "$EnginesPath/$engineId/completions")
                     setBody(request.toStreamRequest())

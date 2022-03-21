@@ -11,14 +11,14 @@ import io.ktor.client.request.url
 /**
  * Implementation of [Engines].
  */
-internal class EnginesApi(private val httpRequester: HttpTransport) : Engines {
+internal class EnginesApi(private val httpTransport: HttpTransport) : Engines {
 
     override suspend fun engines(): List<Engine> {
-        return httpRequester.perform<ListResponse<Engine>> { it.get { url(path = EnginesPath) } }.data
+        return httpTransport.perform<ListResponse<Engine>> { it.get { url(path = EnginesPath) } }.data
     }
 
     override suspend fun engine(engineId: EngineId): Engine {
-        return httpRequester.perform { it.get { url(path = "$EnginesPath/$engineId") } }
+        return httpTransport.perform { it.get { url(path = "$EnginesPath/$engineId") } }
     }
 
     companion object {

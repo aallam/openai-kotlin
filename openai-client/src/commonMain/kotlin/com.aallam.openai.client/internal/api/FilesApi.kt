@@ -1,9 +1,9 @@
 package com.aallam.openai.client.internal.api
 
+import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
-import com.aallam.openai.api.file.FileResponse
 import com.aallam.openai.client.Files
 import com.aallam.openai.client.internal.http.HttpTransport
 import io.ktor.client.call.body
@@ -27,7 +27,7 @@ import okio.Path.Companion.toPath
  * Implementation of [Files].
  */
 internal class FilesApi(
-    private val httpRequester: HttpTransport,
+    private val httpTransport: HttpTransport,
     private val fileSystem: FileSystem
 ) : Files {
 
@@ -37,7 +37,7 @@ internal class FilesApi(
             appendFile(fileSystem, "file", request.file)
             append("purpose", request.purpose.raw)
         }
-        return httpRequester.perform {
+        return httpTransport.perform {
             it.submitFormWithBinaryData(url = FilesPath, formData = data) {
                 contentType(ContentType.MultiPart.FormData)
             }
@@ -45,18 +45,18 @@ internal class FilesApi(
     }
 
     override suspend fun files(): List<File> {
-        return httpRequester.perform<FileResponse> { it.get { url(path = FilesPath) } }.data
+        return httpTransport.perform<ListResponse<File>> { it.get { url(path = FilesPath) } }.data
     }
 
     override suspend fun file(fileId: FileId): File? {
-        val response = httpRequester.perform<HttpResponse> {
+        val response = httpTransport.perform<HttpResponse> {
             it.get { url(path = "$FilesPath/$fileId") }
         }
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
     override suspend fun delete(fileId: FileId) {
-        httpRequester.perform<HttpResponse> { it.delete { url(path = "$FilesPath/$fileId") } }
+        httpTransport.perform<HttpResponse> { it.delete { url(path = "$FilesPath/$fileId") } }
     }
 
     /**

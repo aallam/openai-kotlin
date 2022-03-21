@@ -19,35 +19,35 @@ public interface FineTunes {
      * complete.
      */
     @ExperimentalOpenAI
-    public fun fineTune(request: FineTuneRequest): FineTune
+    public suspend fun fineTune(request: FineTuneRequest): FineTune
 
     /**
      * List your organization's fine-tuning jobs.
      */
     @ExperimentalOpenAI
-    public fun fineTunes(): List<FineTune>
+    public suspend fun fineTunes(): List<FineTune>
 
     /**
      * Gets info about to fine-tune job.
      */
     @ExperimentalOpenAI
-    public fun fineTune(id: FineTuneId): FineTune?
+    public suspend fun fineTune(fineTuneId: FineTuneId): FineTune?
 
     /**
      * Immediately cancel a fine-tune job.
      */
     @ExperimentalOpenAI
-    public fun cancelFineTune(id: FineTuneId): FineTune?
+    public suspend fun cancelFineTune(fineTuneId: FineTuneId): FineTune?
 
     /**
      * Get fine-grained status updates for fine-tune job.
      */
     @ExperimentalOpenAI
-    public fun fineTuneEvents(id: FineTuneId): Flow<FineTuneEvent>
+    public fun fineTuneEvents(fineTuneId: FineTuneId): Flow<FineTuneEvent>
 
     /**
      * Delete a fine-tuned model. You must have the Owner role in your organization.
      */
     @ExperimentalOpenAI
-    public fun deleteFineTune(id: FineTuneId): Boolean
+    public suspend fun deleteFineTune(fineTuneId: FineTuneId)
 }

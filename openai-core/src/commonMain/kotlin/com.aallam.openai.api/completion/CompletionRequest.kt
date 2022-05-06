@@ -154,4 +154,10 @@ public class CompletionRequest(
      */
     @SerialName("logit_bias")
     public val logitBias: Map<String, Int>? = null,
+
+    /**
+     * A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse.
+     */
+    @SerialName("user")
+    public val user: String? = null,
 )

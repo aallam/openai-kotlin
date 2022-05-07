@@ -1,4 +1,5 @@
 [versions]
+kotlin = "1.6.21"
 coroutines = "1.6.0-native-mt"
 serialization = "1.3.2"
 ktor = "2.0.1"
@@ -27,3 +28,10 @@ okio-nodefilesystem = { group = "com.squareup.okio", name = "okio-nodefilesystem
 okio-fakefilesystem = { group = "com.squareup.okio", name = "okio-fakefilesystem", version.ref = "okio" }
 # Logback
 logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+
+[plugins]
+kotlin-multiplaform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-binary-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.9.0" }
+maven-publish = { id = "com.vanniktech.maven.publish", version = "0.18.0" }
+spotless = { id = "com.diffplug.gradle.spotless", version = "6.4.1" }

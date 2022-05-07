@@ -4,8 +4,10 @@ import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.file.File
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /** Fine-tune of a specified model from a given dataset */
+@Serializable
 public data class FineTune(
 
     /** A unique id assigned to this fine-tune. */
@@ -21,7 +23,7 @@ public data class FineTune(
     @SerialName("events") val events: List<FineTuneEvent>,
 
     /** Fine-tuned model. */
-    @SerialName("fine_tuned_model") val fineTunedModel: String?,
+    @SerialName("fine_tuned_model") val fineTunedModel: FineTuneModel?,
 
     /** Hyper parameters. */
     @SerialName("hyperparams") val hyperParams: HyperParams?,

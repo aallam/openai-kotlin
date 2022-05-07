@@ -41,7 +41,7 @@ internal class FineTunesApi(private val httpTransport: HttpTransport) : FineTune
     @ExperimentalOpenAI
     override suspend fun fineTune(fineTuneId: FineTuneId): FineTune? {
         val response = httpTransport.perform<HttpResponse> {
-            it.get { url(path = "$FineTunesPath/$fineTuneId") }
+            it.get { url(path = "$FineTunesPath/${fineTuneId}") }
         }
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }

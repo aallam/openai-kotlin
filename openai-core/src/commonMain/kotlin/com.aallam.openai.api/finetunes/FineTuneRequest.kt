@@ -3,8 +3,10 @@ package com.aallam.openai.api.finetunes
 import com.aallam.openai.api.engine.*
 import com.aallam.openai.api.file.FileId
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /** Fine-Tune request. */
+@Serializable
 public data class FineTuneRequest(
 
     /**

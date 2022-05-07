@@ -5,6 +5,4 @@ import kotlin.jvm.JvmInline
 
 @Serializable
 @JvmInline
-public value class FineTuneId(public val raw: String) {
-    override fun toString(): String = raw
-}
+public value class FineTuneModel(public val raw: String)

@@ -1,9 +1,9 @@
 package com.aallam.openai.api.file.internal
 
-import com.aallam.openai.api.file.Answers
-import com.aallam.openai.api.file.Classifications
 import com.aallam.openai.api.file.Purpose
-import com.aallam.openai.api.file.Search
+import com.aallam.openai.api.file.Purpose.Companion.Answers
+import com.aallam.openai.api.file.Purpose.Companion.Classifications
+import com.aallam.openai.api.file.Purpose.Companion.Search
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.SerialDescriptor

@@ -1,7 +1,9 @@
 package com.aallam.openai.api.finetunes
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 public data class FineTuneEvent(
 
     /**

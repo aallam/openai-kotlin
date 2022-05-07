@@ -1,5 +1,6 @@
 package com.aallam.openai.api.completion
 
+import com.aallam.openai.api.finetunes.FineTuneModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -160,4 +161,10 @@ public class CompletionRequest(
      */
     @SerialName("user")
     public val user: String? = null,
+
+    /**
+     * Model for fine-tuned model completions.
+     */
+    @SerialName("model")
+    public val model: FineTuneModel? = null
 )

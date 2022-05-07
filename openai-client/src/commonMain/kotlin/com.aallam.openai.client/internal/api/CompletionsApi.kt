@@ -1,5 +1,6 @@
 package com.aallam.openai.client.internal.api
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.engine.EngineId
@@ -25,6 +26,17 @@ internal class CompletionsApi(private val httpTransport: HttpTransport) : Comple
             it.post {
                 url(path = "$EnginesPath/$engineId/completions")
                 setBody(request ?: EmptyContent)
+            }.body()
+        }
+    }
+
+    @ExperimentalOpenAI
+    override suspend fun completion(request: CompletionRequest): TextCompletion {
+        require(request.model != null) { "a model must be set" }
+        return httpTransport.perform {
+            it.post {
+                url(path = "/v1/completions")
+                setBody(request)
             }.body()
         }
     }

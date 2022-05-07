@@ -1,21 +1,23 @@
 package com.aallam.openai.api.finetunes
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /** Fine-Tune hyper parameters. */
+@Serializable
 public data class HyperParams(
 
     /**
      * The batch size to use for training. The batch size is the number of training examples used to train a single
      * forward and backward pass.
      */
-    @SerialName("batch_size") val batchSize: Int,
+    @SerialName("batch_size") val batchSize: Int?,
 
     /**
      * The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate
      * used for pretraining multiplied by this value.
      */
-    @SerialName("learning_rate_multiplier") val learningRateMultiplier: Double,
+    @SerialName("learning_rate_multiplier") val learningRateMultiplier: Double?,
 
     /** The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. */
     @SerialName("n_epochs") val nEpochs: Long,

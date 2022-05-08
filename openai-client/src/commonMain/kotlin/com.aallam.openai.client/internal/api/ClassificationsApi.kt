@@ -9,6 +9,8 @@ import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.request.url
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 
 /**
  * Implementation of [Classifications].
@@ -21,6 +23,7 @@ internal class ClassificationsApi(private val httpRequester: HttpTransport) : Cl
             it.post {
                 url(path = ClassificationsPath)
                 setBody(request)
+                contentType(ContentType.Application.Json)
             }.body()
         }
     }

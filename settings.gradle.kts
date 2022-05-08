@@ -9,3 +9,18 @@ include(":sample:js")
 include(":sample:native")
 
 enableFeaturePreview("VERSION_CATALOGS")
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}

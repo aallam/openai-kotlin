@@ -11,7 +11,9 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.accept
+import io.ktor.client.request.header
 import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
@@ -40,8 +42,6 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             url {
                 protocol = URLProtocol.HTTPS
                 host = "api.openai.com"
-                accept(ContentType.Application.Json)
-                contentType(ContentType.Application.Json)
             }
         }
     }

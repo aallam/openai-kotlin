@@ -26,11 +26,11 @@ kotlin {
                 api(project(":openai-core"))
                 api(libs.coroutines.core)
                 implementation(libs.serialization.json)
-                implementation(libs.ktor.client.json)
+                implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.logging)
                 implementation(libs.ktor.client.auth)
                 implementation(libs.ktor.client.content.negotiation)
-                implementation(libs.ktor.client.serialization.kotlinx)
+                implementation(libs.ktor.client.serialization.json)
                 implementation(libs.okio)
             }
         }

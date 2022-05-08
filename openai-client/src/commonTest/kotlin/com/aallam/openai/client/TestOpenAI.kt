@@ -31,21 +31,6 @@ class TestOpenAI {
 
     private val fileSystem = FakeFileSystem()
     private val openAI = OpenAIApi(transport, fileSystem)
-    private lateinit var filePath: Path
-
-    @BeforeTest
-    fun init() {
-        val jsonl = """
-            { "text": "AJ" }
-            { "text": "Abby" }
-            { "text": "Abe" }
-            { "text": "Ace" }
-        """.trimIndent()
-        filePath = "pupps.jsonl".toPath()
-        fileSystem.write(filePath) {
-            writeUtf8(jsonl)
-        }
-    }
 
     @Test
     fun search() {
@@ -163,6 +148,15 @@ class TestOpenAI {
     @Test
     fun file() {
         runTest {
+            val filePath: Path = "pupps.jsonl".toPath()
+            val jsonl = """
+                    { "text": "AJ" }
+                    { "text": "Abby" }
+                    { "text": "Abe" }
+                    { "text": "Ace" }
+                """.trimIndent()
+            fileSystem.write(filePath) { writeUtf8(jsonl) }
+
             val request = FileRequest(
                 file = filePath.toString(),
                 purpose = Answers

@@ -14,6 +14,8 @@ import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.utils.EmptyContent
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.readUTF8Line
 import kotlinx.coroutines.flow.Flow
@@ -30,6 +32,7 @@ internal class CompletionsApi(private val httpRequester: HttpTransport) : Comple
             it.post {
                 url(path = "$EnginesPath/$engineId/completions")
                 setBody(request ?: EmptyContent)
+                contentType(ContentType.Application.Json)
             }.body()
         }
     }
@@ -40,6 +43,7 @@ internal class CompletionsApi(private val httpRequester: HttpTransport) : Comple
                 it.post {
                     url(path = "$EnginesPath/$engineId/completions")
                     setBody(request.toStreamRequest())
+                    contentType(ContentType.Application.Json)
                 }
             }
             val readChannel = response.body<ByteReadChannel>()

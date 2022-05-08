@@ -8,16 +8,18 @@ import com.aallam.openai.client.Files
 import com.aallam.openai.client.internal.http.HttpTransport
 import io.ktor.client.call.body
 import io.ktor.client.request.delete
-import io.ktor.client.request.forms.*
+import io.ktor.client.request.forms.FormBuilder
+import io.ktor.client.request.forms.append
+import io.ktor.client.request.forms.formData
+import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.PartData
-import io.ktor.http.contentType
-import io.ktor.util.InternalAPI
-import io.ktor.util.reflect.typeInfo
 import okio.FileSystem
 import okio.Path.Companion.toPath
 
@@ -29,16 +31,13 @@ internal class FilesApi(
     private val fileSystem: FileSystem
 ) : Files {
 
-    @OptIn(InternalAPI::class)
     override suspend fun file(request: FileRequest): File {
         val data: List<PartData> = formData {
             appendFile(fileSystem, "file", request.file)
-            append("purpose", request.purpose.raw)
+            append(key = "purpose", value = request.purpose.raw)
         }
         return httpRequester.perform {
-            it.submitFormWithBinaryData(url = FilesPath, formData = data) {
-                contentType(ContentType.MultiPart.FormData)
-            }
+            it.submitFormWithBinaryData(url = FilesPath, formData = data)
         }
     }
 

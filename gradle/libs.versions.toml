@@ -15,14 +15,13 @@ serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serializ
 serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 # Ktor
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
-ktor-client-json = { group = "io.ktor", name = "ktor-client-json", version.ref = "ktor" }
 ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-curl = { group = "io.ktor", name = "ktor-client-curl", version.ref = "ktor" }
 ktor-client-apache = { group = "io.ktor", name = "ktor-client-apache", version.ref = "ktor" }
 ktor-client-auth = { group = "io.ktor", name = "ktor-client-auth", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
-ktor-client-serialization-kotlinx = { group = "io.ktor", name = "ktor-serialization-kotlinx", version.ref = "ktor" }
+ktor-client-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 # Okio
 okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 okio-nodefilesystem = { group = "com.squareup.okio", name = "okio-nodefilesystem", version.ref = "okio" }

@@ -1,3 +1,15 @@
+# 1.1.0
+> Published 08 May 2022
+
+### Added
+* Field `user` to `CompletionRequest` (#9) (thanks @Stuie)
+* Native targets: `linuxX64`, `macosX64`, `macosArm64` and `mingwX64` (w/ new memory manager)
+
+### Changed
+* Kotlin `1.6.21`
+* Kotlin coroutines `1.6.1`
+* The client throws `OpenAIException` on errors
+
 # 1.0.0
 > Published 19 Jun 2021
 

@@ -336,9 +336,9 @@ public final class com/aallam/openai/api/completion/Choice$Companion {
 public final class com/aallam/openai/api/completion/CompletionRequest {
 	public static final field Companion Lcom/aallam/openai/api/completion/CompletionRequest$Companion;
 	public fun <init> ()V
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/Integer;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/util/Map;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/Integer;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/util/Map;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/util/Map;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/util/Map;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getBestOf ()Ljava/lang/Integer;
 	public final fun getEcho ()Ljava/lang/Boolean;
 	public final fun getFrequencyPenalty ()Ljava/lang/Double;
@@ -352,6 +352,7 @@ public final class com/aallam/openai/api/completion/CompletionRequest {
 	public final fun getStream ()Ljava/lang/Boolean;
 	public final fun getTemperature ()Ljava/lang/Double;
 	public final fun getTopP ()Ljava/lang/Double;
+	public final fun getUser ()Ljava/lang/String;
 	public static final fun write$Self (Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
@@ -445,17 +446,17 @@ public final class com/aallam/openai/api/completion/TextCompletion$Companion {
 
 public final class com/aallam/openai/api/engine/Engine {
 	public static final field Companion Lcom/aallam/openai/api/engine/Engine$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;ZLkotlinx/serialization/internal/SerializationConstructorMarker;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ZLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1-3tkZIRc ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Z
-	public final fun copy-oLuQndg (Ljava/lang/String;Ljava/lang/String;Z)Lcom/aallam/openai/api/engine/Engine;
-	public static synthetic fun copy-oLuQndg$default (Lcom/aallam/openai/api/engine/Engine;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Lcom/aallam/openai/api/engine/Engine;
+	public final fun component3 ()Ljava/lang/Boolean;
+	public final fun copy-oLuQndg (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)Lcom/aallam/openai/api/engine/Engine;
+	public static synthetic fun copy-oLuQndg$default (Lcom/aallam/openai/api/engine/Engine;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/aallam/openai/api/engine/Engine;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getId-3tkZIRc ()Ljava/lang/String;
 	public final fun getOwner ()Ljava/lang/String;
-	public final fun getReady ()Z
+	public final fun getReady ()Ljava/lang/Boolean;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lcom/aallam/openai/api/engine/Engine;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -525,6 +526,21 @@ public final class com/aallam/openai/api/engine/EnginesResponse$$serializer : ko
 
 public final class com/aallam/openai/api/engine/EnginesResponse$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/exception/OpenAIAPIException : com/aallam/openai/api/exception/OpenAIException {
+	public fun <init> (ILjava/lang/String;)V
+}
+
+public abstract class com/aallam/openai/api/exception/OpenAIException : java/lang/RuntimeException {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class com/aallam/openai/api/exception/OpenAIHttpException : com/aallam/openai/api/exception/OpenAIException {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class com/aallam/openai/api/file/File {

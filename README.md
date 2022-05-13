@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)
 [![Kotlin](https://img.shields.io/badge/kotlin-1.6.21-blue.svg?logo=kotlin)](https://kotlinlang.org/docs/releases.html#release-details)
 
-A simple Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines capabilities. 
+Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines capabilities. 
 
 ## 🛠 Setup
 
@@ -100,7 +100,7 @@ val files = openAI.files()
 
 ## ℹ️ Sample apps
 
-Sample apps are available under `sample`, please check the [README](sample/readme.md) for running instructions.
+Sample apps are available under `sample`, please check the [README](sample/README.md) for running instructions.
 
 ## 📄 License
 

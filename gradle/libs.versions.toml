@@ -33,5 +33,5 @@ logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.
 kotlin-multiplaform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinx-binary-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.10.0" }
-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.18.0" }
+maven-publish = { id = "com.vanniktech.maven.publish", version = "0.19.0" }
 spotless = { id = "com.diffplug.gradle.spotless", version = "6.6.1" }

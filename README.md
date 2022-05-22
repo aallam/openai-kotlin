@@ -51,6 +51,14 @@ val completion: TextCompletion = openAI.completion(Ada, completionRequest)
 ```kotlin
 val completions: Flow<TextCompletion> = openAI.completions(Ada, completionRequest)
 ```
+* [Create edits](https://beta.openai.com/docs/api-reference/edits/create)
+```kotlin
+val request = EditsRequest(
+    input = "What day of the wek is it?",
+    instruction = "Fix the spelling mistakes"
+)
+val edit = openAI.edit(EngineId("text-davinci-edit-001"), request)
+```
 * [Create search](https://beta.openai.com/docs/api-reference/searches/create)
 ```kotlin
 val searchRequest = SearchRequest(

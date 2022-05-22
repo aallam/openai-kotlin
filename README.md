@@ -140,6 +140,17 @@ val answer = openAI.answers(answersRequest)
 ````kotlin
 val files = openAI.files()
 ````
+</details>
+
+<details>
+  <summary><strong>Create embeddings</strong></summary>
+
+````kotlin
+val embeddings = openAI.embeddings(
+    engineId = EngineId("text-similarity-babbage-001"),
+    request = EmbeddingRequest(input = listOf("The food was delicious and the waiter..."))
+)
+````
 </details>  
 
 ## ℹ️ Sample apps

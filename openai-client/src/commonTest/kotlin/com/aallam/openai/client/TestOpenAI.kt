@@ -8,6 +8,7 @@ import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.edits.EditsRequest
+import com.aallam.openai.api.embedding.EmbeddingRequest
 import com.aallam.openai.api.engine.Ada
 import com.aallam.openai.api.engine.Curie
 import com.aallam.openai.api.engine.Davinci
@@ -204,6 +205,18 @@ class TestOpenAI {
         val choice = response.choices.first()
         assertEquals(choice.index, 0)
         assertEquals(choice.text, "What day of the week is it?\n")
+    }
+
+    @Test
+    fun embeddings() = runTest {
+        val response = openAI.embeddings(
+            engineId = EngineId("text-similarity-babbage-001"),
+            request = EmbeddingRequest(input = listOf("The food was delicious and the waiter..."))
+        )
+        assertTrue { response.isNotEmpty() }
+        val embedding = response.first()
+        assertTrue { embedding.embedding.isNotEmpty() }
+        assertEquals(embedding.index, 0)
     }
 
     private suspend fun waitFileProcess(fileId: FileId) {

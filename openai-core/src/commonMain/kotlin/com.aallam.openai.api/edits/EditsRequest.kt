@@ -1,21 +1,16 @@
 package com.aallam.openai.api.edits
 
-import com.aallam.openai.api.engine.EngineId
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-public data class EditsRequest(
-
-    /**
-     * The ID of the engine to use for this request
-     */
-    @SerialName("engine_id")
-    val engineId: EngineId,
+@Serializable
+public class EditsRequest(
 
     /**
      * The instruction that tells the model how to edit the prompt.
      */
     @SerialName("instruction")
-    val instruction: String,
+    public val instruction: String,
 
     /**
      * The input text to use as a starting point for the edit.
@@ -23,7 +18,7 @@ public data class EditsRequest(
      * Defaults to ''.
      */
     @SerialName("input")
-    val input: String? = null,
+    public val input: String? = null,
 
     /**
      * What sampling temperature to use. Higher values means the model will take more risks.
@@ -34,7 +29,7 @@ public data class EditsRequest(
      * Defaults to 1.
      */
     @SerialName("temperature")
-    val temperature: Double? = null,
+    public val temperature: Double? = null,
 
     /**
      * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of

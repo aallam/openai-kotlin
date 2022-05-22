@@ -7,9 +7,11 @@ import com.aallam.openai.api.classification.ClassificationRequest
 import com.aallam.openai.api.classification.LabeledExample
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
+import com.aallam.openai.api.edits.EditsRequest
 import com.aallam.openai.api.engine.Ada
 import com.aallam.openai.api.engine.Curie
 import com.aallam.openai.api.engine.Davinci
+import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.api.file.Answers
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
@@ -188,6 +190,20 @@ class TestOpenAI {
             assertNotNull(response)
             assertTrue(response.isNotEmpty())
         }
+    }
+
+    @Test
+    fun edits() = runTest {
+        val request = EditsRequest(
+            input = "What day of the wek is it?",
+            instruction = "Fix the spelling mistakes"
+        )
+        val response = openAI.edit(EngineId("text-davinci-edit-001"), request)
+        assertTrue { response.created != 0L }
+        assertTrue { response.choices.isNotEmpty() }
+        val choice = response.choices.first()
+        assertEquals(choice.index, 0)
+        assertEquals(choice.text, "What day of the week is it?\n")
     }
 
     private suspend fun waitFileProcess(fileId: FileId) {

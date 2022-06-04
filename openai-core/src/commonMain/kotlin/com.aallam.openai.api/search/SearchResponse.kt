@@ -6,6 +6,8 @@ import kotlinx.serialization.Serializable
 /**
  * Response to a search query.
  */
+@Deprecated("Search APIs are deprecated")
+
 @Serializable
 public class SearchResponse(
     /**

@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
  * Request to the document search API.
  * [documentation](https://beta.openai.com/docs/api-reference/search)
  */
+@Deprecated("Search APIs are deprecated")
 @Serializable
 public class SearchRequest(
     /**

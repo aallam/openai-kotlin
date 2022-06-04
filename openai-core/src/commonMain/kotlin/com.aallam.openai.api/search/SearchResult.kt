@@ -7,6 +7,8 @@ import kotlinx.serialization.Serializable
  * A search result for a single scored documents.
  * [documentation](https://beta.openai.com/docs/api-reference/search)
  */
+@Deprecated("Search APIs are deprecated")
+
 @Serializable
 public data class SearchResult(
     /**

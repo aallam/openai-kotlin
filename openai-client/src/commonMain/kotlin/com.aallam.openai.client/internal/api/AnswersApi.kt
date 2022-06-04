@@ -15,8 +15,10 @@ import io.ktor.http.contentType
 /**
  * Implementation of [Answers].
  */
+@Deprecated("Answers APIs are deprecated")
 internal class AnswersApi(private val httpRequester: HttpTransport) : Answers {
 
+    @Deprecated("Answers APIs are deprecated")
     @ExperimentalOpenAI
     override suspend fun answers(request: AnswerRequest): Answer {
         return httpRequester.perform {

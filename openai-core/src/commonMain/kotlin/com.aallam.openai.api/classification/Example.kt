@@ -4,6 +4,7 @@ import com.aallam.openai.api.ExperimentalOpenAI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Deprecated("Classification APIs are deprecated")
 @ExperimentalOpenAI
 @Serializable
 public data class Example(

@@ -15,6 +15,7 @@ import io.ktor.http.contentType
 /**
  * Implementation of [Classifications].
  */
+@Deprecated("Classification APIs are deprecated")
 internal class ClassificationsApi(private val httpRequester: HttpTransport) : Classifications {
 
     @ExperimentalOpenAI

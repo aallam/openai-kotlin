@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.engine.EngineId
@@ -16,11 +18,13 @@ import io.ktor.http.contentType
 /**
  * Implementation of [Searches].
  */
+@Deprecated("Search APIs are deprecated")
 internal class SearchesApi(private val httpRequester: HttpTransport) : Searches {
 
+    @Deprecated("Search APIs are deprecated")
+
     override suspend fun search(
-        engineId: EngineId,
-        request: SearchRequest
+        engineId: EngineId, request: SearchRequest
     ): List<SearchResult> {
         return httpRequester.perform<SearchResponse> {
             it.post {

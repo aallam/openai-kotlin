@@ -12,6 +12,7 @@ import kotlinx.serialization.encoding.Encoder
 /**
  * [QuestionAnswer] serializer/deserializer.
  */
+@Deprecated("Answers APIs are deprecated")
 @ExperimentalOpenAI
 internal class QuestionAnswerSerializer : KSerializer<QuestionAnswer> {
 

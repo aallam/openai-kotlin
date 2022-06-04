@@ -9,6 +9,7 @@ import com.aallam.openai.api.answer.AnswerRequest
  * the information in the set of documents. This is useful for question-answering applications on sources of truth,
  * like company documentation or a knowledge base.
  */
+@Deprecated("Answers APIs are deprecated")
 public interface Answers {
 
     /**
@@ -17,6 +18,7 @@ public interface Answers {
      * The endpoint first searches over provided documents or files to find relevant context.
      * The relevant context is combined with the provided examples and question to create the prompt for [completion].
      */
+    @Deprecated("Answers APIs are deprecated")
     @ExperimentalOpenAI
     public suspend fun answers(request: AnswerRequest): Answer
 }

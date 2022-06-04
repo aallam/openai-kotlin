@@ -12,6 +12,7 @@ import kotlinx.serialization.encoding.Encoder
 /**
  * [LabeledExample] serializer/deserializer.
  */
+@Deprecated("Classification APIs are deprecated")
 @ExperimentalOpenAI
 internal class LabeledExampleSerializer : KSerializer<LabeledExample> {
 

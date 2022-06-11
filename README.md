@@ -21,6 +21,8 @@ dependencies {
 ```
 Choose and add to your dependencies one of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
 
+> You can also use [openai-client-bom](openai-client-bom/README.md)
+
 ### Multiplaform
 In multiplatform projects, add openai client dependency to `common`, and choose an [engine](https://ktor.io/docs/http-client-engines.html) for each target.
 

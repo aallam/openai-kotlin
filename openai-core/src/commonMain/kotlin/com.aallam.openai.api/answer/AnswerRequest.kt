@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.aallam.openai.api.answer
 
 import com.aallam.openai.api.ExperimentalOpenAI

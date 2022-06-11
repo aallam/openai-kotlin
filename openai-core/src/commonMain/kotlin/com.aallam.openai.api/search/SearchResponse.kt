@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.aallam.openai.api.search
 
 import kotlinx.serialization.SerialName

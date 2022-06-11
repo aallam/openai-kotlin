@@ -1,3 +1,16 @@
+# 1.2.0
+> Published 11 Jun 2022
+
+### Added
+* `openai-client-bom` artifact for jvm projects
+
+### Changed
+* Update Kotlin to `1.7.0` (#31)
+* Update Coroutines to `1.6.2` (#26)
+
+### Deprecated
+* Answers, Classification and Search Endpoints (#29)
+
 # 1.1.0
 > Published 08 May 2022
 

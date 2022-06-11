@@ -8,7 +8,7 @@ Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) wit
 
 ## 🛠 Setup
 
-Install OpenAI API Kotlin client by adding the following dependency to your `gradle.build` file:
+1. Install OpenAI API Kotlin client by adding the following dependency to your `gradle.build` file:
 
 ```groovy
 repositories {
@@ -19,12 +19,12 @@ dependencies {
     implementation "com.aallam.openai:openai-client:$kotlin_client_version"
 }
 ```
-Choose and add to your dependencies one of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
+2. Choose and add to your dependencies one of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
 
-> You can also use [openai-client-bom](openai-client-bom/README.md)
+> Alternatively, you can use [openai-client-bom](openai-client-bom/)
 
 ### Multiplaform
-In multiplatform projects, add openai client dependency to `common`, and choose an [engine](https://ktor.io/docs/http-client-engines.html) for each target.
+In multiplatform projects, add openai client dependency to `commonMain`, and choose an [engine](https://ktor.io/docs/http-client-engines.html) for each target.
 
 ## 💡 Getting Started
 

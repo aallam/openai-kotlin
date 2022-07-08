@@ -4,7 +4,6 @@
 | New feature?      | yes/no    <!-- please update the /CHANGELOG.md file -->
 | BC breaks?        | no
 | Related Issue     | Fix #...  <!-- will close issue automatically, if any -->
-| Need Doc update   | yes/no
 
 ## Describe your change
 

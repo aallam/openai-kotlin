@@ -220,6 +220,15 @@ class TestOpenAI {
         assertEquals(embedding.index, 0)
     }
 
+    @Test
+    fun models() = runTest {
+        val resModels = openAI.models()
+        assertTrue { resModels.isNotEmpty() }
+        val resModel = resModels.first()
+        val model = openAI.model(resModel.id)
+        assertEquals(resModel, model)
+    }
+
     private suspend fun waitFileProcess(fileId: FileId) {
         while (true) {
             val file = openAI.file(fileId)

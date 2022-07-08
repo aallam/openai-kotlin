@@ -28,6 +28,7 @@ import kotlinx.coroutines.withContext
 import okio.Path
 import okio.Path.Companion.toPath
 import okio.fakefilesystem.FakeFileSystem
+import ulid.ULID
 import kotlin.test.*
 
 class TestOpenAI {
@@ -151,7 +152,8 @@ class TestOpenAI {
     @Test
     fun file() {
         runTest {
-            val filePath: Path = "pupps.jsonl".toPath()
+            val id = ULID.randomULID()
+            val filePath: Path = "$id.jsonl".toPath()
             val jsonl = """
                     { "text": "AJ" }
                     { "text": "Abby" }

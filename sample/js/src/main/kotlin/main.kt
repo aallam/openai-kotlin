@@ -14,7 +14,7 @@ suspend fun main() {
     println("> Getting available models...")
     openAI.models().forEach(::println)
 
-    println("\n> Getting ada engine...")
+    println("\n> Getting ada model...")
     val ada = openAI.model("text-ada-001")
     println(ada)
 

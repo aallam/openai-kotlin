@@ -8,6 +8,4 @@ import kotlin.jvm.JvmInline
  */
 @Serializable
 @JvmInline
-public value class ModelId(public val id: String) {
-    override fun toString(): String = id
-}
+public value class ModelId(public val id: String)

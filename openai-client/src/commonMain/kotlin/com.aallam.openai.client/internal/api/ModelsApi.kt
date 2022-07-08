@@ -24,7 +24,7 @@ internal class ModelsApi(private val httpTransport: HttpTransport) : Models {
     override suspend fun model(modelId: ModelId): Model {
         return httpTransport.perform {
             it.get {
-                url(path = "$ModelsPathV1/$modelId")
+                url(path = "$ModelsPathV1/${modelId.id}")
                 contentType(ContentType.Application.Json)
             }
         }

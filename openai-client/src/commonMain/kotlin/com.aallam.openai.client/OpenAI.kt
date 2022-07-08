@@ -18,7 +18,8 @@ public interface OpenAI :
     Answers,
     Files,
     Edits,
-    Embeddings
+    Embeddings,
+    Models
 
 /**
  * Creates an instance of [OpenAI].

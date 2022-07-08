@@ -24,4 +24,5 @@ internal class OpenAIApi(
     Answers by AnswersApi(httpTransport),
     Files by FilesApi(httpTransport, fileSystem),
     Edits by EditsApi(httpTransport),
-    Embeddings by EmbeddingsApi(httpTransport)
+    Embeddings by EmbeddingsApi(httpTransport),
+    Models by ModelsApi(httpTransport)

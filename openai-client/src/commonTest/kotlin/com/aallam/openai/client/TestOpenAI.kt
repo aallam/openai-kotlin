@@ -100,12 +100,13 @@ class TestOpenAI {
 
     @Test
     fun edits() = runTest {
-        val request = EditsRequest(
-            model = "text-davinci-edit-001",
-            input = "What day of the wek is it?",
-            instruction = "Fix the spelling mistakes"
+        val response = openAI.edit(
+            request = EditsRequest(
+                model = "text-davinci-edit-001",
+                input = "What day of the wek is it?",
+                instruction = "Fix the spelling mistakes"
+            )
         )
-        val response = openAI.edit(request)
         assertTrue { response.created != 0L }
         assertTrue { response.choices.isNotEmpty() }
     }

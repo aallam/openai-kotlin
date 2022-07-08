@@ -35,18 +35,18 @@ val openAI = OpenAI(apiKey)
 Use your `OpenAI` instance to make API requests:
 
 <details>
-  <summary><strong>List engines</strong></summary>
+  <summary><strong>List models</strong></summary>
 
 ```kotlin
-val engines: List<Engine> = openAI.engines()
+val models: List<Model> = openAI.models()
 ```
 </details>
 
 <details>
-  <summary><strong>Retrieve an engine</strong></summary>
+  <summary><strong>Retrieve an model</strong></summary>
 
 ```kotlin
-val engines: List<Engine> = openAI.engines()
+val model: Model = openAI.model("text-ada-001")
 ```
 </details>    
     
@@ -55,6 +55,7 @@ val engines: List<Engine> = openAI.engines()
 
 ```kotlin
 val completionRequest = CompletionRequest(
+    model = "text-ada-001",
     prompt = "Somebody once told me the world is gonna roll me",
     echo = true
 )
@@ -74,11 +75,13 @@ val completions: Flow<TextCompletion> = openAI.completions(Ada, completionReques
   <summary><strong>Create edits</strong></summary>
 
 ```kotlin
-val request = EditsRequest(
-    input = "What day of the wek is it?",
-    instruction = "Fix the spelling mistakes"
+val edit = openAI.edit(
+    request = EditsRequest(
+        model = "text-davinci-edit-001",
+        input = "What day of the wek is it?",
+        instruction = "Fix the spelling mistakes"
+    )
 )
-val edit = openAI.edit(EngineId("text-davinci-edit-001"), request)
 ```
 </details>
 
@@ -86,7 +89,7 @@ val edit = openAI.edit(EngineId("text-davinci-edit-001"), request)
   <summary><strong>List files</strong></summary>
 
 ````kotlin
-val files = openAI.files()
+val files: List<File> = openAI.files()
 ````
 </details>
 
@@ -94,9 +97,11 @@ val files = openAI.files()
   <summary><strong>Create embeddings</strong></summary>
 
 ````kotlin
-val embeddings = openAI.embeddings(
-    engineId = EngineId("text-similarity-babbage-001"),
-    request = EmbeddingRequest(input = listOf("The food was delicious and the waiter..."))
+val embeddings: List<Embedding> = openAI.embeddings(
+    request = EmbeddingRequest(
+        model = "text-similarity-babbage-001",
+        input = listOf("The food was delicious and the waiter...")
+    )
 )
 ````
 </details>  

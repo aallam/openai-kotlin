@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.aallam.openai.client.internal
 
 import com.aallam.openai.client.*
@@ -17,11 +15,7 @@ internal class OpenAIApi(
     private val httpTransport: HttpTransport,
     private val fileSystem: FileSystem
 ) : OpenAI,
-    Engines by EnginesApi(httpTransport),
     Completions by CompletionsApi(httpTransport),
-    Searches by SearchesApi(httpTransport),
-    Classifications by ClassificationsApi(httpTransport),
-    Answers by AnswersApi(httpTransport),
     Files by FilesApi(httpTransport, fileSystem),
     Edits by EditsApi(httpTransport),
     Embeddings by EmbeddingsApi(httpTransport),

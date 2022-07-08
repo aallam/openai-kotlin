@@ -12,14 +12,9 @@ import kotlinx.serialization.json.jsonObject
  * Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format)
  * as they become available, with the stream terminated by a data: `[DONE]` message.
  */
-internal fun CompletionRequest?.toStreamRequest(): JsonElement {
+internal fun CompletionRequest.toStreamRequest(): JsonElement {
     val enableStream = "stream" to JsonPrimitive(true)
-    return when (this) {
-        null -> JsonObject(mapOf(enableStream))
-        else -> {
-            val jsonElement = JsonLenient.encodeToJsonElement(CompletionRequest.serializer(), this)
-            val map = jsonElement.jsonObject.toMutableMap().also { it += enableStream }
-            JsonObject(map)
-        }
-    }
+    val jsonElement = JsonLenient.encodeToJsonElement(CompletionRequest.serializer(), this)
+    val map = jsonElement.jsonObject.toMutableMap().also { it += enableStream }
+    return JsonObject(map)
 }

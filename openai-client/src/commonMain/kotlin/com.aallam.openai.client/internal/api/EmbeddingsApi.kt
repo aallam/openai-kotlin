@@ -1,11 +1,9 @@
 package com.aallam.openai.client.internal.api
 
+import com.aallam.openai.api.embedding.Embedding
 import com.aallam.openai.api.embedding.EmbeddingRequest
 import com.aallam.openai.api.embedding.EmbeddingResponse
-import com.aallam.openai.api.embedding.Embedding
-import com.aallam.openai.api.engine.EngineId
 import com.aallam.openai.client.Embeddings
-import com.aallam.openai.client.internal.api.EnginesApi.Companion.EnginesPath
 import com.aallam.openai.client.internal.http.HttpTransport
 import io.ktor.client.call.body
 import io.ktor.client.request.post
@@ -19,13 +17,17 @@ import io.ktor.http.contentType
  */
 internal class EmbeddingsApi(private val httpRequester: HttpTransport) : Embeddings {
 
-    override suspend fun embeddings(engineId: EngineId, request: EmbeddingRequest): List<Embedding> {
+    override suspend fun embeddings(request: EmbeddingRequest): List<Embedding> {
         return httpRequester.perform<EmbeddingResponse> {
             it.post {
-                url(path = "$EnginesPath/$engineId/embeddings")
+                url(path = EmbeddingsPathV1)
                 setBody(request)
                 contentType(ContentType.Application.Json)
             }.body()
         }.data
+    }
+
+    companion object {
+        private const val EmbeddingsPathV1 = "v1/embeddings"
     }
 }

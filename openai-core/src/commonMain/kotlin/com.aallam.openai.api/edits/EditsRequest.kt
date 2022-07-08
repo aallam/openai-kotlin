@@ -7,6 +7,12 @@ import kotlinx.serialization.Serializable
 public class EditsRequest(
 
     /**
+     * ID of the model to use.
+     */
+    @SerialName("model")
+    public val model: String,
+
+    /**
      * The instruction that tells the model how to edit the prompt.
      */
     @SerialName("instruction")

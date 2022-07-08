@@ -1,7 +1,6 @@
 package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.model.Model
-import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.model.ModelsResponse
 import com.aallam.openai.client.Models
 import com.aallam.openai.client.internal.http.HttpTransport
@@ -17,20 +16,20 @@ internal class ModelsApi(private val httpTransport: HttpTransport) : Models {
 
     override suspend fun models(): List<Model> {
         return httpTransport.perform<ModelsResponse> {
-            it.get { url(path = ModelsPath) }
+            it.get { url(path = ModelsPathV1) }
         }.data
     }
 
-    override suspend fun model(modelId: ModelId): Model {
+    override suspend fun model(id: String): Model {
         return httpTransport.perform {
             it.get {
-                url(path = "$ModelsPath/$modelId")
+                url(path = "$ModelsPathV1/$id")
                 contentType(ContentType.Application.Json)
             }
         }
     }
 
     companion object {
-        const val ModelsPath = "v1/models"
+        private const val ModelsPathV1 = "v1/models"
     }
 }

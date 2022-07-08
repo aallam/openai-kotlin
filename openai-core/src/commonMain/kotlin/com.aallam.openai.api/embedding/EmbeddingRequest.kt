@@ -11,6 +11,12 @@ import kotlinx.serialization.Serializable
 public class EmbeddingRequest(
 
     /**
+     * ID of the model to use.
+     */
+    @SerialName("model")
+    public val model: String,
+
+    /**
      * Input text to get embeddings for, encoded as an array of token. Each input must not exceed 2048 tokens in length.
      *
      * Unless you are embedding code, we suggest replacing newlines (`\n`) in your input with a single space, as we have

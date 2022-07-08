@@ -1,6 +1,5 @@
 package com.aallam.openai.api.edits
 
-import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -11,7 +10,7 @@ public class EditsRequest(
      * ID of the model to use.
      */
     @SerialName("model")
-    public val modelId: ModelId,
+    public val model: String,
 
     /**
      * The instruction that tells the model how to edit the prompt.

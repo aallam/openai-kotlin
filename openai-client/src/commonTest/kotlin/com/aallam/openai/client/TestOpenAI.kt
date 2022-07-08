@@ -10,7 +10,6 @@ import com.aallam.openai.api.file.Answers
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.file.Processed
-import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.OpenAIApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -33,7 +32,7 @@ class TestOpenAI {
     fun completions() {
         runTest {
             val request = CompletionRequest(
-                modelId = ModelId("text-davinci-002"),
+                model = "text-davinci-002",
                 prompt = "Once upon a time",
                 maxTokens = 5,
                 temperature = 1.0,
@@ -102,7 +101,7 @@ class TestOpenAI {
     @Test
     fun edits() = runTest {
         val request = EditsRequest(
-            modelId = ModelId("text-davinci-edit-001"),
+            model = "text-davinci-edit-001",
             input = "What day of the wek is it?",
             instruction = "Fix the spelling mistakes"
         )
@@ -115,7 +114,7 @@ class TestOpenAI {
     fun embeddings() = runTest {
         val response = openAI.embeddings(
             request = EmbeddingRequest(
-                modelId = ModelId("text-similarity-babbage-001"),
+                model = "text-similarity-babbage-001",
                 input = listOf("The food was delicious and the waiter...")
             )
         )

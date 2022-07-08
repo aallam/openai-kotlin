@@ -41,6 +41,7 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
                 implementation(libs.coroutines.test)
                 implementation(libs.okio.fakefilesystem)
+                implementation(libs.ulid)
             }
         }
         val jvmMain by getting

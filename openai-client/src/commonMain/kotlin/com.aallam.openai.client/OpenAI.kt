@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.aallam.openai.client
 
 import com.aallam.openai.client.internal.ClientFileSystem
@@ -11,11 +9,7 @@ import com.aallam.openai.client.internal.http.HttpTransport
  * OpenAI API.
  */
 public interface OpenAI :
-    Engines,
     Completions,
-    Searches,
-    Classifications,
-    Answers,
     Files,
     Edits,
     Embeddings,

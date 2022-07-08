@@ -1,8 +1,8 @@
 package com.aallam.openai.api.completion
 
+import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 /**
  * A request for OpenAI to generate a predicted completion for a prompt.
@@ -12,6 +12,13 @@ import kotlinx.serialization.Transient
  */
 @Serializable
 public class CompletionRequest(
+
+    /**
+     * ID of the model to use.
+     */
+    @SerialName("model")
+    public val modelId: ModelId,
+
     /**
      * The prompt(s) to generate completions for, encoded as a string, a list of strings, or a list of token lists.
      *
@@ -66,17 +73,6 @@ public class CompletionRequest(
      */
     @SerialName("n")
     public val n: Int? = null,
-
-    /**
-     * Whether to stream back partial progress.
-     * If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format)
-     * as they become available, with the stream terminated by a data: DONE message.
-     *
-     * Defaults to `false`.
-     */
-    @Transient
-    @Deprecated("Don't use this parameter, it is set automatically when needed.")
-    public val stream: Boolean? = null,
 
     /**
      * Include the log probabilities on the [logprobs] most likely tokens, as well the chosen tokens.

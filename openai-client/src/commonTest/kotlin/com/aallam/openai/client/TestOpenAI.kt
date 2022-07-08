@@ -202,9 +202,6 @@ class TestOpenAI {
         val response = openAI.edit(EngineId("text-davinci-edit-001"), request)
         assertTrue { response.created != 0L }
         assertTrue { response.choices.isNotEmpty() }
-        val choice = response.choices.first()
-        assertEquals(choice.index, 0)
-        assertEquals(choice.text, "What day of the week is it?\n")
     }
 
     @Test

@@ -34,7 +34,7 @@ okio-fakefilesystem = { group = "com.squareup.okio", name = "okio-fakefilesystem
 # Logback
 logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 # ulid
-ulid = { group = "com.aallam.ulid", name = "ulid", version = "1.0.0"}
+ulid = { group = "com.aallam.ulid", name = "ulid", version = "1.0.0" }
 
 [plugins]
 kotlin-multiplaform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -42,3 +42,4 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 kotlinx-binary-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.10.1" }
 maven-publish = { id = "com.vanniktech.maven.publish", version = "0.20.0" }
 spotless = { id = "com.diffplug.gradle.spotless", version = "6.8.0" }
+dokka = { id = "org.jetbrains.dokka", version = "1.7.0" }

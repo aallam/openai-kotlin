@@ -1,0 +1,14 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:openai-client
+com.aallam.openai.client
+module:openai-core
+com.aallam.openai.api
+com.aallam.openai.api.completion
+com.aallam.openai.api.edits
+com.aallam.openai.api.embedding
+com.aallam.openai.api.exception
+com.aallam.openai.api.file
+com.aallam.openai.api.logging
+com.aallam.openai.api.model

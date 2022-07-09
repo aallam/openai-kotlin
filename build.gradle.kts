@@ -1,6 +1,7 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent.*
+import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -9,6 +10,7 @@ plugins {
     alias(libs.plugins.kotlinx.binary.validator) apply false
     alias(libs.plugins.maven.publish) apply false
     alias(libs.plugins.spotless) apply false
+    alias(libs.plugins.dokka)
 }
 
 subprojects {
@@ -28,4 +30,8 @@ subprojects {
             showStandardStreams = false
         }
     }
+}
+
+tasks.withType<DokkaMultiModuleTask>() {
+    outputDirectory.set(projectDir.resolve("docs"))
 }

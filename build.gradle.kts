@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.kotlinx.binary.validator) apply false
     alias(libs.plugins.maven.publish) apply false
     alias(libs.plugins.spotless) apply false
+    alias(libs.plugins.dokka) apply false
 }
 
 subprojects {

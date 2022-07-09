@@ -32,6 +32,6 @@ subprojects {
     }
 }
 
-tasks.named<DokkaMultiModuleTask>("dokkaHtmlMultiModule") {
+tasks.withType<DokkaMultiModuleTask>() {
     outputDirectory.set(projectDir.resolve("docs"))
 }

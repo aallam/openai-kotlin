@@ -6,10 +6,7 @@ import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.api.edits.EditsRequest
 import com.aallam.openai.api.embedding.EmbeddingRequest
-import com.aallam.openai.api.file.Answers
-import com.aallam.openai.api.file.FileId
-import com.aallam.openai.api.file.FileRequest
-import com.aallam.openai.api.file.Processed
+import com.aallam.openai.api.file.*
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.client.internal.OpenAIApi
@@ -68,7 +65,7 @@ class TestOpenAI {
 
             val request = FileRequest(
                 file = filePath.toString(),
-                purpose = Answers
+                purpose = Purpose("answers")
             )
             val filename = filePath.name
 
@@ -150,7 +147,7 @@ class TestOpenAI {
     private suspend fun waitFileProcess(fileId: FileId) {
         while (true) {
             val file = openAI.file(fileId)
-            if (file?.status == Processed) break
+            if (file?.status == FileStatus("processed")) break
             delay(1000L)
         }
     }

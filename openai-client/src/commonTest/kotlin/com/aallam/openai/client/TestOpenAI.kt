@@ -40,7 +40,6 @@ class TestOpenAI {
                 temperature = 1.0,
                 topP = 1.0,
                 n = 1,
-                logprobs = null,
                 stop = listOf("\n"),
             )
 

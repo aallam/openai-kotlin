@@ -1,6 +1,7 @@
 package com.aallam.openai.sample.jvm
 
 import com.aallam.openai.api.completion.CompletionRequest
+import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.flow.launchIn
@@ -17,7 +18,8 @@ fun main() = runBlocking {
     openAI.models().forEach(::println)
 
     println("\n> Getting ada engine...")
-    val ada = openAI.model("text-ada-001")
+
+    val ada = openAI.model(modelId = ModelId("text-ada-001"))
     println(ada)
 
     println("\n>️ Creating completion...")

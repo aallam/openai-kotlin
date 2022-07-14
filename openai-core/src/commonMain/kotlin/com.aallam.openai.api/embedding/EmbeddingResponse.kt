@@ -1,5 +1,6 @@
 package com.aallam.openai.api.embedding
 
+import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -16,5 +17,5 @@ public class EmbeddingResponse(
     /**
      * The model that executed the request.
      */
-    @SerialName("model") public val model: String,
+    @SerialName("model") public val model: ModelId,
 )

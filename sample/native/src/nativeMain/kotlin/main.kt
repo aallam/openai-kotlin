@@ -1,4 +1,5 @@
 import com.aallam.openai.api.completion.CompletionRequest
+import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.client.OpenAI
 import kotlinx.cinterop.toKString
@@ -18,7 +19,7 @@ fun main(): Unit = runBlocking {
     openAI.models().forEach(::println)
 
     println("\n> Getting ada model...")
-    val ada = openAI.model("text-ada-001")
+    val ada = openAI.model(modelId = ModelId("text-ada-001"))
     println(ada)
 
     println("\n>️ Creating completion...")

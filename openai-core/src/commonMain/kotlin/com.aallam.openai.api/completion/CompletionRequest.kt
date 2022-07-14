@@ -1,5 +1,6 @@
 package com.aallam.openai.api.completion
 
+import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -16,7 +17,7 @@ public class CompletionRequest(
      * ID of the model to use.
      */
     @SerialName("model")
-    public val model: String,
+    public val model: ModelId,
 
     /**
      * The prompt(s) to generate completions for, encoded as a string, a list of strings, or a list of token lists.

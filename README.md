@@ -47,7 +47,8 @@ val models: List<Model> = openAI.models()
   <summary><strong>Retrieve an model</strong></summary>
 
 ```kotlin
-val model: Model = openAI.model("text-ada-001")
+val id = ModelId("text-ada-001")
+val model: Model = openAI.model(id)
 ```
 </details>    
     
@@ -56,7 +57,7 @@ val model: Model = openAI.model("text-ada-001")
 
 ```kotlin
 val completionRequest = CompletionRequest(
-    model = "text-ada-001",
+    model = ModelId("text-ada-001"),
     prompt = "Somebody once told me the world is gonna roll me",
     echo = true
 )
@@ -68,7 +69,16 @@ val completion: TextCompletion = openAI.completion(Ada, completionRequest)
   <summary><strong>Create completion stream</strong></summary>
 
 ```kotlin
-val completions: Flow<TextCompletion> = openAI.completions(Ada, completionRequest)
+val request = CompletionRequest(
+    model = ModelId("text-davinci-002"),
+    prompt = "Once upon a time",
+    maxTokens = 5,
+    temperature = 1.0,
+    topP = 1.0,
+    n = 1,
+    stop = listOf("\n"),
+)
+val completions: Flow<TextCompletion> = openAI.completions(request)
 ```
 </details>     
 
@@ -78,7 +88,7 @@ val completions: Flow<TextCompletion> = openAI.completions(Ada, completionReques
 ```kotlin
 val edit = openAI.edit(
     request = EditsRequest(
-        model = "text-davinci-edit-001",
+        model = ModelId("text-davinci-edit-001"),
         input = "What day of the wek is it?",
         instruction = "Fix the spelling mistakes"
     )
@@ -100,7 +110,7 @@ val files: List<File> = openAI.files()
 ````kotlin
 val embeddings: List<Embedding> = openAI.embeddings(
     request = EmbeddingRequest(
-        model = "text-similarity-babbage-001",
+        model = ModelId("text-similarity-babbage-001"),
         input = listOf("The food was delicious and the waiter...")
     )
 )

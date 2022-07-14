@@ -1,6 +1,7 @@
 package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.model.Model
+import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.model.ModelsResponse
 import com.aallam.openai.client.Models
 import com.aallam.openai.client.internal.http.HttpTransport
@@ -20,10 +21,10 @@ internal class ModelsApi(private val httpTransport: HttpTransport) : Models {
         }.data
     }
 
-    override suspend fun model(id: String): Model {
+    override suspend fun model(modelId: ModelId): Model {
         return httpTransport.perform {
             it.get {
-                url(path = "$ModelsPathV1/$id")
+                url(path = "$ModelsPathV1/${modelId.id}")
                 contentType(ContentType.Application.Json)
             }
         }

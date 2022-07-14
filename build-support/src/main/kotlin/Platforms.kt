@@ -29,6 +29,12 @@ fun KotlinMultiplatformExtension.jsNode() {
                 metaInfo = true
             }
         }
-        nodejs()
+        nodejs {
+            testTask {
+                useMocha {
+                    timeout = "10s"
+                }
+            }
+        }
     }
 }

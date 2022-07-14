@@ -10,6 +10,7 @@ import com.aallam.openai.api.file.Answers
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.file.Processed
+import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.client.internal.OpenAIApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -132,6 +133,18 @@ class TestOpenAI {
         val resModel = resModels.first()
         val model = openAI.model(resModel.id)
         assertEquals(resModel, model)
+    }
+
+    @Test
+    fun moderations() = runTest {
+        val response = openAI.moderations(
+            request = ModerationRequest(
+                input = "I want to kill them."
+            )
+        )
+
+        val result = response.results.first()
+        assertTrue(result.flagged)
     }
 
     private suspend fun waitFileProcess(fileId: FileId) {

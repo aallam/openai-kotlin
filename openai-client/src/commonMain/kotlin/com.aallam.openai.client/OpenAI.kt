@@ -13,7 +13,8 @@ public interface OpenAI :
     Files,
     Edits,
     Embeddings,
-    Models
+    Models,
+    Moderations
 
 /**
  * Creates an instance of [OpenAI].

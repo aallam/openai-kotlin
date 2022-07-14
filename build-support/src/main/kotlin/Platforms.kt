@@ -19,3 +19,7 @@ fun KotlinMultiplatformExtension.native() {
         }
     }
 }
+
+fun KotlinMultiplatformExtension.nodejs() {
+    js(IR) { nodejs() }
+}

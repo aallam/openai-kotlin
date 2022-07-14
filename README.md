@@ -111,7 +111,7 @@ val embeddings: List<Embedding> = openAI.embeddings(
   <summary><strong>Create moderation</strong></summary>
 
 ````kotlin
-val modertion = openAI.moderations(
+val moderation = openAI.moderations(
     request = ModerationRequest(
         input = "I want to kill them."
     )

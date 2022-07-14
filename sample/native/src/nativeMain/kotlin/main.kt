@@ -1,4 +1,5 @@
 import com.aallam.openai.api.completion.CompletionRequest
+import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.client.OpenAI
 import kotlinx.cinterop.toKString
 import kotlinx.coroutines.flow.launchIn
@@ -37,4 +38,12 @@ fun main(): Unit = runBlocking {
     println("\n> Read files...")
     val files = openAI.files()
     println(files)
+
+    println("\n> Create moderations...")
+    val moderation = openAI.moderations(
+        request = ModerationRequest(
+            input = "I want to kill them."
+        )
+    )
+    println(moderation)
 }

@@ -3,6 +3,9 @@ package com.aallam.openai.api.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Model permission details.
+ */
 @Serializable
 public data class ModelPermission(
     @SerialName("id") public val id: String,

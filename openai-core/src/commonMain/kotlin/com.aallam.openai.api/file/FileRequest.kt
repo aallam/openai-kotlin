@@ -1,6 +1,8 @@
 package com.aallam.openai.api.file
 
-
+/**
+ * File API request.
+ */
 public data class FileRequest(
 
     /**

@@ -8,4 +8,4 @@ import kotlin.jvm.JvmInline
  */
 @Serializable
 @JvmInline
-public value class FileId(public val raw: String)
+public value class FileId(public val id: String)

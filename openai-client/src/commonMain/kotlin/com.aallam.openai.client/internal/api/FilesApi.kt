@@ -13,11 +13,9 @@ import io.ktor.client.request.forms.append
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.client.request.get
-import io.ktor.client.request.header
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.PartData
 import okio.FileSystem
@@ -47,13 +45,13 @@ internal class FilesApi(
 
     override suspend fun file(fileId: FileId): File? {
         val response = httpRequester.perform<HttpResponse> {
-            it.get { url(path = "$FilesPath/$fileId") }
+            it.get { url(path = "$FilesPath/${fileId.id}") }
         }
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
     override suspend fun delete(fileId: FileId) {
-        httpRequester.perform<HttpResponse> { it.delete { url(path = "$FilesPath/$fileId") } }
+        httpRequester.perform<HttpResponse> { it.delete { url(path = "$FilesPath/${fileId.id}") } }
     }
 
     /**

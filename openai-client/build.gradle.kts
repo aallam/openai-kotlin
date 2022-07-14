@@ -11,7 +11,7 @@ plugins {
 kotlin {
     explicitApi()
     jvm()
-    nodejs()
+    jsNode()
     native()
 
     sourceSets {

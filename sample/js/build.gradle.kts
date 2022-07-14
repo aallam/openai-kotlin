@@ -3,12 +3,12 @@ plugins {
 }
 
 dependencies {
+    //implementation("com.aallam.openai:openai-client:<version>")
     implementation(project(":openai-client"))
-    //implementation("com.aallam.openai:openai-client:0.1.0")
 }
 
 kotlin {
-    js(LEGACY) {
+    js {
         nodejs {
             binaries.executable()
         }

@@ -19,4 +19,5 @@ internal class OpenAIApi(
     Files by FilesApi(httpTransport, fileSystem),
     Edits by EditsApi(httpTransport),
     Embeddings by EmbeddingsApi(httpTransport),
-    Models by ModelsApi(httpTransport)
+    Models by ModelsApi(httpTransport),
+    Moderations by ModerationsApi(httpTransport)

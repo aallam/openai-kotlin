@@ -34,7 +34,7 @@ okio-fakefilesystem = { group = "com.squareup.okio", name = "okio-fakefilesystem
 # Logback
 logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 # ulid
-ulid = { group = "com.aallam.ulid", name = "ulid", version = "1.0.0" }
+ulid = { group = "com.aallam.ulid", name = "ulid-kotlin", version = "1.1.0" }
 
 [plugins]
 kotlin-multiplaform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

@@ -4,9 +4,8 @@ plugins {
 }
 
 dependencies {
-    // Use the Kotlin JDK 8 standard library.
+    //implementation("com.aallam.openai:openai-client:<version>")
     implementation(project(":openai-client"))
-    //implementation("com.aallam.openai:openai-client:0.1.0")
     implementation(libs.ktor.client.apache)
 }
 

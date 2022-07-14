@@ -1,6 +1,7 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.model.Model
+import com.aallam.openai.api.model.ModelId
 
 /**
  * List and describe the various models available in the API.
@@ -18,5 +19,5 @@ public interface Models {
     /**
      * Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
      */
-    public suspend fun model(id: String): Model
+    public suspend fun model(modelId: ModelId): Model
 }

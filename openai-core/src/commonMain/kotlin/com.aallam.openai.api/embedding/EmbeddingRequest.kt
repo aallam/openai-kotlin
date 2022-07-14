@@ -1,5 +1,6 @@
 package com.aallam.openai.api.embedding
 
+import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,7 +15,7 @@ public class EmbeddingRequest(
      * ID of the model to use.
      */
     @SerialName("model")
-    public val model: String,
+    public val model: ModelId,
 
     /**
      * Input text to get embeddings for, encoded as an array of token. Each input must not exceed 2048 tokens in length.

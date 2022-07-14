@@ -1,5 +1,6 @@
 package com.aallam.openai.api.completion
 
+import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -23,7 +24,7 @@ public data class TextCompletion(
     /**
      * The GPT-3 model used
      */
-    @SerialName("model") public val model: String,
+    @SerialName("model") public val model: ModelId,
 
     /**
      * A list of generated completions

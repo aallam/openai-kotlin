@@ -20,6 +20,15 @@ fun KotlinMultiplatformExtension.native() {
     }
 }
 
-fun KotlinMultiplatformExtension.nodejs() {
-    js(IR) { nodejs() }
+fun KotlinMultiplatformExtension.jsNode() {
+    js {
+        compilations.all {
+            kotlinOptions {
+                moduleKind = "umd"
+                sourceMap = true
+                metaInfo = true
+            }
+        }
+        nodejs()
+    }
 }

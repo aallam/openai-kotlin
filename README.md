@@ -107,6 +107,18 @@ val embeddings: List<Embedding> = openAI.embeddings(
 ````
 </details>  
 
+<details>
+  <summary><strong>Create moderation</strong></summary>
+
+````kotlin
+val modertion = openAI.moderations(
+    request = ModerationRequest(
+        input = "I want to kill them."
+    )
+)
+````
+</details>  
+
 ## ℹ️ Sample apps
 
 Sample apps are available under `sample`, please check the [README](sample/README.md) for running instructions.

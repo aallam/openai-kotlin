@@ -5,7 +5,8 @@ import com.aallam.openai.api.completion.TextCompletion
 import com.aallam.openai.client.Completions
 import com.aallam.openai.client.internal.JsonLenient
 import com.aallam.openai.client.internal.extension.toStreamRequest
-import com.aallam.openai.client.internal.http.HttpTransport
+import com.aallam.openai.client.internal.http.HttpRequester
+import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
@@ -22,10 +23,10 @@ import kotlinx.serialization.decodeFromString
 /**
  * Implementation of [Completions].
  */
-internal class CompletionsApi(private val httpRequester: HttpTransport) : Completions {
+internal class CompletionsApi(private val requester: HttpRequester) : Completions {
 
     override suspend fun completion(request: CompletionRequest): TextCompletion {
-        return httpRequester.perform {
+        return requester.perform {
             it.post {
                 url(path = CompletionsPathV1)
                 setBody(request)
@@ -36,7 +37,7 @@ internal class CompletionsApi(private val httpRequester: HttpTransport) : Comple
 
     override fun completions(request: CompletionRequest): Flow<TextCompletion> {
         return flow {
-            val response = httpRequester.perform<HttpResponse> {
+            val response = requester.perform<HttpResponse> {
                 it.post {
                     url(path = CompletionsPathV1)
                     setBody(request.toStreamRequest())

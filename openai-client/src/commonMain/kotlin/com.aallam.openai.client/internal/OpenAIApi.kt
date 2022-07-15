@@ -2,22 +2,22 @@ package com.aallam.openai.client.internal
 
 import com.aallam.openai.client.*
 import com.aallam.openai.client.internal.api.*
-import com.aallam.openai.client.internal.http.HttpTransport
+import com.aallam.openai.client.internal.http.HttpRequester
 import okio.FileSystem
 
 /**
  * Implementation of [OpenAI].
  *
- * @param httpTransport http transport layer
+ * @param requester http transport layer
  * @param fileSystem access to read and write files
  */
 internal class OpenAIApi(
-    private val httpTransport: HttpTransport,
+    private val requester: HttpRequester,
     private val fileSystem: FileSystem
 ) : OpenAI,
-    Completions by CompletionsApi(httpTransport),
-    Files by FilesApi(httpTransport, fileSystem),
-    Edits by EditsApi(httpTransport),
-    Embeddings by EmbeddingsApi(httpTransport),
-    Models by ModelsApi(httpTransport),
-    Moderations by ModerationsApi(httpTransport)
+    Completions by CompletionsApi(requester),
+    Files by FilesApi(requester, fileSystem),
+    Edits by EditsApi(requester),
+    Embeddings by EmbeddingsApi(requester),
+    Models by ModelsApi(requester),
+    Moderations by ModerationsApi(requester)

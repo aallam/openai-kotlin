@@ -3,7 +3,8 @@ package com.aallam.openai.client.internal.api
 import com.aallam.openai.api.edits.EditsRequest
 import com.aallam.openai.api.edits.EditsResponse
 import com.aallam.openai.client.Edits
-import com.aallam.openai.client.internal.http.HttpTransport
+import com.aallam.openai.client.internal.http.HttpRequester
+import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
@@ -14,10 +15,10 @@ import io.ktor.http.contentType
 /**
  * Implementation of [Edits]
  */
-internal class EditsApi(private val httpRequester: HttpTransport) : Edits {
+internal class EditsApi(private val requester: HttpRequester) : Edits {
 
     override suspend fun edit(request: EditsRequest): EditsResponse {
-        return httpRequester.perform {
+        return requester.perform {
             it.post {
                 url(path = EditsPathV1)
                 setBody(request)

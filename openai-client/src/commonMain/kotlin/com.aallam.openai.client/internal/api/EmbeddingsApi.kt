@@ -4,7 +4,8 @@ import com.aallam.openai.api.embedding.Embedding
 import com.aallam.openai.api.embedding.EmbeddingRequest
 import com.aallam.openai.api.embedding.EmbeddingResponse
 import com.aallam.openai.client.Embeddings
-import com.aallam.openai.client.internal.http.HttpTransport
+import com.aallam.openai.client.internal.http.HttpRequester
+import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
@@ -15,10 +16,10 @@ import io.ktor.http.contentType
 /**
  * Implementation of [Embeddings].
  */
-internal class EmbeddingsApi(private val httpRequester: HttpTransport) : Embeddings {
+internal class EmbeddingsApi(private val requester: HttpRequester) : Embeddings {
 
     override suspend fun embeddings(request: EmbeddingRequest): List<Embedding> {
-        return httpRequester.perform<EmbeddingResponse> {
+        return requester.perform<EmbeddingResponse> {
             it.post {
                 url(path = EmbeddingsPathV1)
                 setBody(request)

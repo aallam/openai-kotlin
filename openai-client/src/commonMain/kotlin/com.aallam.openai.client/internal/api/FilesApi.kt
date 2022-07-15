@@ -1,11 +1,13 @@
 package com.aallam.openai.client.internal.api
 
+import com.aallam.openai.api.core.DeleteResponse
+import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
-import com.aallam.openai.api.file.FileResponse
 import com.aallam.openai.client.Files
-import com.aallam.openai.client.internal.http.HttpTransport
+import com.aallam.openai.client.internal.http.HttpRequester
+import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.body
 import io.ktor.client.request.delete
 import io.ktor.client.request.forms.FormBuilder
@@ -25,8 +27,7 @@ import okio.Path.Companion.toPath
  * Implementation of [Files].
  */
 internal class FilesApi(
-    private val httpRequester: HttpTransport,
-    private val fileSystem: FileSystem
+    private val requester: HttpRequester, private val fileSystem: FileSystem
 ) : Files {
 
     override suspend fun file(request: FileRequest): File {
@@ -34,24 +35,33 @@ internal class FilesApi(
             appendFile(fileSystem, "file", request.file)
             append(key = "purpose", value = request.purpose.raw)
         }
-        return httpRequester.perform {
+        return requester.perform {
             it.submitFormWithBinaryData(url = FilesPath, formData = data)
         }
     }
 
     override suspend fun files(): List<File> {
-        return httpRequester.perform<FileResponse> { it.get { url(path = FilesPath) } }.data
+        return requester.perform<ListResponse<File>> { it.get { url(path = FilesPath) } }.data
     }
 
     override suspend fun file(fileId: FileId): File? {
-        val response = httpRequester.perform<HttpResponse> {
+        val response = requester.perform<HttpResponse> {
             it.get { url(path = "$FilesPath/${fileId.id}") }
         }
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
-    override suspend fun delete(fileId: FileId) {
-        httpRequester.perform<HttpResponse> { it.delete { url(path = "$FilesPath/${fileId.id}") } }
+    override suspend fun delete(fileId: FileId): Boolean {
+        val response = requester.perform<HttpResponse> {
+            it.delete {
+                url(path = "$FilesPath/${fileId.id}")
+            }
+        }
+
+        return when (response.status) {
+            HttpStatusCode.NotFound -> false
+            else -> response.body<DeleteResponse>().deleted
+        }
     }
 
     /**

@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
  * Moderation response.
  */
 @Serializable
-public class ModerationResponse(
+public class TextModeration(
 
     /**
      * Moderation response id.

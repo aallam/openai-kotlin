@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
  * Response to the edit creation request.
  */
 @Serializable
-public class EditsResponse(
+public class Edit(
     /**
      * The creation time in epoch milliseconds.
      */
@@ -17,5 +17,10 @@ public class EditsResponse(
     /**
      * A list of generated completions.
      */
-    @SerialName("choices") public val choices: List<Choice>
+    @SerialName("choices") public val choices: List<Choice>,
+
+    /**
+     * Edit usage.
+     */
+    @SerialName("usage") public val usage: Usage,
 )

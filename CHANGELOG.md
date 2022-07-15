@@ -1,15 +1,17 @@
-# 2.0.0-beta01
-> Published 08 Jul 2022
+# 2.0.0-beta02
+> Published 15 Jul 2022
 
 ### Added
 * [Models](https://beta.openai.com/docs/api-reference/models) implementation
+* [Moderations](https://beta.openai.com/docs/api-reference/moderations) implementation
+* [Fine-Tunes](https://beta.openai.com/docs/api-reference/fine-tunes) implementation
 
 ### Changed
 * Update Kotlin to `1.7.10`
-* Update Completions, Edits and Embeddings to use Models
+* Update `Completions`, `Edits` and `Embeddings` to use `Models`
 
 ### Removed
-* Engines, Answers, Search and Classification
+* `Engines`, `Answers`, `Search` and `Classification`
 
 # 1.2.0
 > Published 11 Jun 2022

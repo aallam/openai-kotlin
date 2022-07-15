@@ -1,4 +1,4 @@
-# OpenAI Kotlin API Client
+# OpenAI API client for Kotlin
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.aallam.openai/openai-client?color=blue&label=Download)](https://search.maven.org/artifact/com.aallam.openai/openai-client)
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)

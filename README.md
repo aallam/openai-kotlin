@@ -129,6 +129,19 @@ val moderation = openAI.moderations(
 ````
 </details>  
 
+<details>
+  <summary><strong>Create fine-tunes</strong></summary>
+
+````kotlin
+val fineTune = openAI.fineTune(
+    request = FineTuneRequest(
+        trainingFile = trainingFile,
+        model = ModelId("ada")
+    )
+)
+````
+</details>  
+
 ## ℹ️ Sample apps
 
 Sample apps are available under `sample`, please check the [README](sample/README.md) for running instructions.

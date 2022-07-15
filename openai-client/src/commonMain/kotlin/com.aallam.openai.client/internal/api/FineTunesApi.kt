@@ -1,17 +1,22 @@
 package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.ExperimentalOpenAI
+import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.finetune.FineTune
 import com.aallam.openai.api.finetune.FineTuneEvent
 import com.aallam.openai.api.finetune.FineTuneId
 import com.aallam.openai.api.finetune.FineTuneRequest
 import com.aallam.openai.client.FineTunes
 import com.aallam.openai.client.internal.api.ModelsApi.Companion.ModelsPathV1
+import com.aallam.openai.client.internal.extension.streamOf
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
-import io.ktor.client.request.delete
-import io.ktor.client.request.url
+import io.ktor.client.call.body
+import io.ktor.client.request.*
 import io.ktor.client.statement.HttpResponse
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.contentType
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -21,27 +26,55 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
 
     @ExperimentalOpenAI
     override suspend fun fineTune(request: FineTuneRequest): FineTune {
-        TODO("Not yet implemented")
+        return requester.perform {
+            it.post {
+                url(path = FineTunesPathV1)
+                setBody(request)
+            }
+        }
     }
 
     @ExperimentalOpenAI
     override suspend fun fineTune(fineTuneId: FineTuneId): FineTune? {
-        TODO("Not yet implemented")
+        val response = requester.perform<HttpResponse> {
+            it.get { url(path = "$FineTunesPathV1/${fineTuneId}") }
+        }
+        return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
     @ExperimentalOpenAI
     override suspend fun fineTunes(): List<FineTune> {
-        TODO("Not yet implemented")
+        return requester.perform<ListResponse<FineTune>> {
+            it.get { url(path = FineTunesPathV1) }
+        }.data
     }
 
     @ExperimentalOpenAI
     override suspend fun cancelFineTune(fineTuneId: FineTuneId): FineTune? {
-        TODO("Not yet implemented")
+        val response = requester.perform<HttpResponse> {
+            it.post { url(path = "$FineTunesPathV1/$fineTuneId/cancel") }
+        }
+        return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
     @ExperimentalOpenAI
-    override fun fineTuneEvents(fineTuneId: FineTuneId): Flow<FineTuneEvent> {
-        TODO("Not yet implemented")
+    override suspend fun fineTuneEvents(fineTuneId: FineTuneId): List<FineTuneEvent> {
+        return requester.perform<ListResponse<FineTuneEvent>> {
+            it.get { url(path = "$FineTunesPathV1/$fineTuneId/events") }
+        }.data
+    }
+
+    @ExperimentalOpenAI
+    override fun fineTuneEventsFlow(fineTuneId: FineTuneId): Flow<FineTuneEvent> {
+        return streamOf {
+            requester.perform {
+                it.post {
+                    url(path = "$FineTunesPathV1/$fineTuneId/events")
+                    setBody(mapOf("stream" to true))
+                    contentType(ContentType.Application.Json)
+                }
+            }
+        }
     }
 
     @ExperimentalOpenAI

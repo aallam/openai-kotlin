@@ -43,7 +43,13 @@ public interface FineTunes {
      * Get fine-grained status updates for fine-tune job.
      */
     @ExperimentalOpenAI
-    public fun fineTuneEvents(fineTuneId: FineTuneId): Flow<FineTuneEvent>
+    public suspend fun fineTuneEvents(fineTuneId: FineTuneId): List<FineTuneEvent>
+
+    /**
+     * Get fine-grained status updates for fine-tune job.
+     */
+    @ExperimentalOpenAI
+    public fun fineTuneEventsFlow(fineTuneId: FineTuneId): Flow<FineTuneEvent>
 
     /**
      * Delete a fine-tuned model. You must have the Owner role in your organization.

@@ -1,7 +1,6 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.ExperimentalOpenAI
-import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.finetune.FineTuneEvent
@@ -14,20 +13,20 @@ import kotlinx.coroutines.test.runTest
 import okio.Path
 import okio.Path.Companion.toPath
 import ulid.ULID
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 @OptIn(ExperimentalOpenAI::class)
 class TestFineTunes : TestOpenAI() {
 
-    var fileId: FileId? = null
-    var filename: String? = null
-    var fineTuneModel: ModelId? = null
+    @Test
+    fun fineTunes() = runTest {
 
-    @BeforeTest
-    fun setup() = runTest {
         val id = ULID.randomULID()
         val filePath: Path = "$id.jsonl".toPath()
-        filename = filePath.name
+        val filename = filePath.name
         val jsonl = """
            { "prompt":"Did the U.S. join the League of Nations?", "completion":"No"}
            { "prompt":"Where was the League of Nations created?", "completion":"Paris"}
@@ -37,21 +36,17 @@ class TestFineTunes : TestOpenAI() {
             file = filePath.toString(),
             purpose = Purpose("fine-tune")
         )
-        fileId = openAI.file(request).id
-        fileId?.let { openAI.waitFileProcess(it) }
-    }
+        val trainingFile = openAI.file(request).id
+        openAI.waitFileProcess(trainingFile)
 
-    @Test
-    fun fineTunes() = runTest {
         // Fine-tune created using training file
-        val trainingFile = requireNotNull(fileId) { "Fine-tune file should be created first" }
         val fineTune = openAI.fineTune(
             request = FineTuneRequest(
                 trainingFile = trainingFile,
                 model = ModelId("ada")
             )
         )
-        fineTuneModel = fineTune.fineTunedModel
+        val fineTuneModel = fineTune.fineTunedModel
         assertEquals(fineTune.trainingFiles.first().filename, filename)
 
         // At least one fine-tune exists
@@ -76,11 +71,9 @@ class TestFineTunes : TestOpenAI() {
             .onEach { events += it }
             .launchIn(this)
             .join()
-    }
 
-    @AfterTest
-    fun tearDown() = runTest {
-        fileId?.let { openAI.delete(it) }
+        // cleanup
+        openAI.delete(trainingFile)
         fineTuneModel?.let { openAI.delete(it) }
     }
 }

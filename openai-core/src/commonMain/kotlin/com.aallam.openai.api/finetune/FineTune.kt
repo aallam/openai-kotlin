@@ -20,10 +20,10 @@ public data class FineTune(
     @SerialName("created_at") val createdAt: Long,
 
     /** List of [FineTuneEvent]s. */
-    @SerialName("events") val events: List<FineTuneEvent>,
+    @SerialName("events") val events: List<FineTuneEvent>? = null,
 
     /** Fine-tuned model. */
-    @SerialName("fine_tuned_model") val fineTunedModel: FineTuneModel? = null,
+    @SerialName("fine_tuned_model") val fineTunedModel: ModelId? = null,
 
     /** Hyper parameters. */
     @SerialName("hyperparams") val hyperParams: HyperParams? = null,

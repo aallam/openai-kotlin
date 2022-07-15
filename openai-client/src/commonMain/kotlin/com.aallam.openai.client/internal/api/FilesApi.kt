@@ -1,5 +1,6 @@
 package com.aallam.openai.client.internal.api
 
+import com.aallam.openai.api.core.DeleteResponse
 import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
@@ -26,8 +27,7 @@ import okio.Path.Companion.toPath
  * Implementation of [Files].
  */
 internal class FilesApi(
-    private val requester: HttpRequester,
-    private val fileSystem: FileSystem
+    private val requester: HttpRequester, private val fileSystem: FileSystem
 ) : Files {
 
     override suspend fun file(request: FileRequest): File {
@@ -51,8 +51,17 @@ internal class FilesApi(
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
-    override suspend fun delete(fileId: FileId) {
-        requester.perform<HttpResponse> { it.delete { url(path = "$FilesPath/${fileId.id}") } }
+    override suspend fun delete(fileId: FileId): Boolean {
+        val response = requester.perform<HttpResponse> {
+            it.delete {
+                url(path = "$FilesPath/${fileId.id}")
+            }
+        }
+
+        return when (response.status) {
+            HttpStatusCode.NotFound -> false
+            else -> response.body<DeleteResponse>().deleted
+        }
     }
 
     /**

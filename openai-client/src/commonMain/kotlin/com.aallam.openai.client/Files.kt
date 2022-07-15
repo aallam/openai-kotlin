@@ -28,5 +28,5 @@ public interface Files {
     /**
      * Delete a file. Only owners of organizations can delete files currently.
      */
-    public suspend fun delete(fileId: FileId)
+    public suspend fun delete(fileId: FileId): Boolean
 }

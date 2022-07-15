@@ -1,13 +1,9 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.core.Status
-import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.file.Purpose
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import com.aallam.openai.client.internal.waitFileProcess
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.withContext
 import okio.Path
 import okio.Path.Companion.toPath
 import ulid.ULID
@@ -39,9 +35,7 @@ class TestFiles : TestOpenAI() {
             assertEquals(filename, fileCreate.filename)
 
             // Get created file
-            withContext(Dispatchers.Default) {
-                waitFileProcess(fileCreate.id)
-            }
+            openAI.waitFileProcess(fileCreate.id)
 
             // Delete file
             openAI.delete(fileCreate.id)
@@ -58,14 +52,6 @@ class TestFiles : TestOpenAI() {
             val response = openAI.files()
             assertNotNull(response)
             assertTrue(response.isNotEmpty())
-        }
-    }
-
-    private suspend fun waitFileProcess(fileId: FileId) {
-        while (true) {
-            val file = openAI.file(fileId)
-            if (file?.status == Status("processed")) break
-            delay(1000L)
         }
     }
 }

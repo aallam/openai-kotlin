@@ -1,10 +1,10 @@
 package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.core.DeleteResponse
+import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
-import com.aallam.openai.api.file.FileResponse
 import com.aallam.openai.client.Files
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
@@ -41,7 +41,7 @@ internal class FilesApi(
     }
 
     override suspend fun files(): List<File> {
-        return requester.perform<FileResponse> { it.get { url(path = FilesPath) } }.data
+        return requester.perform<ListResponse<File>> { it.get { url(path = FilesPath) } }.data
     }
 
     override suspend fun file(fileId: FileId): File? {

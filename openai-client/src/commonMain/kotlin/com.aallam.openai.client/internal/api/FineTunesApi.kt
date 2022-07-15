@@ -8,7 +8,7 @@ import com.aallam.openai.api.finetune.FineTuneId
 import com.aallam.openai.api.finetune.FineTuneRequest
 import com.aallam.openai.client.FineTunes
 import com.aallam.openai.client.internal.api.ModelsApi.Companion.ModelsPathV1
-import com.aallam.openai.client.internal.extension.streamOf
+import com.aallam.openai.client.internal.extension.streamEventsOf
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.body
@@ -66,7 +66,7 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
 
     @ExperimentalOpenAI
     override fun fineTuneEventsFlow(fineTuneId: FineTuneId): Flow<FineTuneEvent> {
-        return streamOf {
+        return streamEventsOf {
             requester.perform {
                 it.post {
                     url(path = "$FineTunesPathV1/$fineTuneId/events")

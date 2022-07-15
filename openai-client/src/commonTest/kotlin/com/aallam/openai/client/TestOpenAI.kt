@@ -4,6 +4,7 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.completion.TextCompletion
+import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.edits.EditsRequest
 import com.aallam.openai.api.embedding.EmbeddingRequest
 import com.aallam.openai.api.file.*
@@ -147,7 +148,7 @@ class TestOpenAI {
     private suspend fun waitFileProcess(fileId: FileId) {
         while (true) {
             val file = openAI.file(fileId)
-            if (file?.status == FileStatus("processed")) break
+            if (file?.status == Status("processed")) break
             delay(1000L)
         }
     }

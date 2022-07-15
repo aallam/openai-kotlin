@@ -15,7 +15,7 @@ private const val StreamEndToken = "$StreamPrefix [DONE]"
 /**
  * Request data as [Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format).
  */
-internal inline fun <reified T> streamOf(crossinline block: suspend () -> HttpResponse): Flow<T> {
+internal inline fun <reified T> streamEventsOf(crossinline block: suspend () -> HttpResponse): Flow<T> {
     return flow {
         val response = block()
         val readChannel = response.body<ByteReadChannel>()

@@ -1,5 +1,5 @@
-# 2.0.0-beta02
-> Published 15 Jul 2022
+# 2.0.0
+> Published 20 Aug 2022
 
 ### Added
 * [Models](https://beta.openai.com/docs/api-reference/models) implementation
@@ -8,6 +8,7 @@
 
 ### Changed
 * Update Kotlin to `1.7.10`
+* Update Kotlin serialization to `1.4.0`
 * Update `Completions`, `Edits` and `Embeddings` to use `Models`
 
 ### Removed

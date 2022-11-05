@@ -4,6 +4,7 @@ import com.aallam.openai.client.OpenAIConfig
 import com.aallam.openai.client.internal.extension.toKtorLogLevel
 import com.aallam.openai.client.internal.extension.toKtorLogger
 import io.ktor.client.HttpClient
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.auth.providers.BearerTokens
 import io.ktor.client.plugins.auth.providers.bearer
@@ -38,6 +39,11 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
                 }
             }
         }
+
+        install(HttpTimeout) {
+            socketTimeoutMillis = 30000 // 30s
+        }
+
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS

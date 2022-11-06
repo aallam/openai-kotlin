@@ -1,24 +1,13 @@
 package com.aallam.openai.api.image
 
 /**
- * Image edit request.
+ * Image variant request.
  */
-public interface ImageEdit {
+public interface ImageVariation {
     /**
      * The image to edit. Must be a valid PNG file, less than 4MB, and square.
      */
     public val image: String
-
-    /**
-     * An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where [image] should be
-     * edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as [image].
-     */
-    public val mask: String
-
-    /**
-     * A text description of the desired image(s). The maximum length is 1000 characters.
-     */
-    public val prompt: String
 
     /**
      * The number of images to generate. Must be between 1 and 10.
@@ -37,27 +26,23 @@ public interface ImageEdit {
 }
 
 /**
- * Image edit request.
+ * Image variant request.
  * Results are expected as URLs.
  */
-public data class ImageEditURL(
+public data class ImageVariationURL(
     override val image: String,
-    override val mask: String,
-    override val prompt: String,
     override val n: Int? = null,
     override val size: ImageSize? = null,
     override val user: String? = null,
-) : ImageEdit
+) : ImageVariation
 
 /**
- * Image edit request.
+ * Image variant request.
  * Results are expected as base 64 JSONs.
  */
-public data class ImageEditJSON(
+public data class ImageVariationJSON(
     override val image: String,
-    override val mask: String,
-    override val prompt: String,
     override val n: Int? = null,
     override val size: ImageSize? = null,
     override val user: String? = null,
-) : ImageEdit
+) : ImageVariation

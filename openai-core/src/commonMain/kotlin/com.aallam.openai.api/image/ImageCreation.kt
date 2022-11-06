@@ -4,8 +4,12 @@ import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Image generation request.
+ * Results are expected as URLs.
+ */
 @Serializable
-public data class ImageRequestURL(
+public data class ImageCreationURL(
     /**
      * A text description of the desired image(s). The maximum length is 1000 characters.
      */
@@ -35,8 +39,13 @@ public data class ImageRequestURL(
     public val responseFormat: ResponseFormat = ResponseFormat.url
 }
 
+
+/**
+ * Image generation request.
+ * Results are expected as base 64 JSONs.
+ */
 @Serializable
-public data class ImageRequestJSON(
+public data class ImageCreationJSON(
     /**
      * A text description of the desired image(s). The maximum length is 1000 characters.
      */

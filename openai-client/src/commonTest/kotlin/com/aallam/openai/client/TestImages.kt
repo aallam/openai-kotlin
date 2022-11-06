@@ -14,33 +14,33 @@ import kotlin.test.assertTrue
 @OptIn(ExperimentalOpenAI::class)
 class TestImages : TestOpenAI() {
 
+    private val httpClient = HttpClient()
 
     @Test
-    fun imagesURL() = runTest {
-        val request = ImageRequestURL(
+    fun imageCreationURL() = runTest {
+        val request = ImageCreationURL(
             prompt = "A cute baby sea otter",
             n = 2,
             size = ImageSize.is1024x1024
         )
-        val response = openAI.images(request)
+        val response = openAI.image(request)
         assertTrue { response.isNotEmpty() }
     }
 
     @Test
-    fun imagesJSON() = runTest {
-        val request = ImageRequestJSON(
+    fun imageCreationJSON() = runTest {
+        val request = ImageCreationJSON(
             prompt = "A cute baby sea otter",
             n = 2,
             size = ImageSize.is1024x1024,
         )
-        val response = openAI.images(request)
+        val response = openAI.image(request)
         assertTrue { response.isNotEmpty() }
         println(response)
     }
 
     @Test
-    fun imagesEditURL() = runTest {
-        val httpClient = HttpClient()
+    fun imageEditURL() = runTest {
         val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/mXFcDNB.png").body())
         val maskPath = writeImage(bytes = httpClient.get("https://i.imgur.com/D4MURbj.png").body())
 
@@ -56,8 +56,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imagesEditJSON() = runTest {
-        val httpClient = HttpClient()
+    fun imageEditJSON() = runTest {
         val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/mXFcDNB.png").body())
         val maskPath = writeImage(bytes = httpClient.get("https://i.imgur.com/D4MURbj.png").body())
 
@@ -65,6 +64,32 @@ class TestImages : TestOpenAI() {
             image = imagePath,
             mask = maskPath,
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
+            n = 1,
+            size = ImageSize.is1024x1024
+        )
+        val response = openAI.image(request)
+        assertTrue { response.isNotEmpty() }
+    }
+
+    @Test
+    fun imageVariationURL() = runTest {
+        val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/iN0VFnF.png").body())
+
+        val request = ImageVariationURL(
+            image = imagePath,
+            n = 1,
+            size = ImageSize.is1024x1024
+        )
+        val response = openAI.image(request)
+        assertTrue { response.isNotEmpty() }
+    }
+
+    @Test
+    fun imageVariationJSON() = runTest {
+        val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/iN0VFnF.png").body())
+
+        val request = ImageVariationJSON(
+            image = imagePath,
             n = 1,
             size = ImageSize.is1024x1024
         )

@@ -22,22 +22,22 @@ internal class ImagesApi(
 ) : Images {
 
     @ExperimentalOpenAI
-    override suspend fun images(request: ImageRequestURL): List<ImageURL> {
+    override suspend fun image(creation: ImageCreationURL): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.post {
                 url(path = ImagesGenerationV1)
-                setBody(request)
+                setBody(creation)
                 contentType(ContentType.Application.Json)
             }
         }.data
     }
 
     @ExperimentalOpenAI
-    override suspend fun images(request: ImageRequestJSON): List<ImageJSON> {
+    override suspend fun image(creation: ImageCreationJSON): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.post {
                 url(path = ImagesGenerationV1)
-                setBody(request)
+                setBody(creation)
                 contentType(ContentType.Application.Json)
             }
         }.data
@@ -73,8 +73,40 @@ internal class ImagesApi(
         edit.user?.let { user -> append(key = "user", value = user) }
     }
 
+    @ExperimentalOpenAI
+    override suspend fun image(variation: ImageVariationURL): List<ImageURL> {
+        return requester.perform<ListResponse<ImageURL>> {
+            it.submitFormWithBinaryData(
+                url = ImagesVariantsV1,
+                formData = imageVariantRequest(variation, ResponseFormat.url)
+            )
+        }.data
+    }
+
+    @ExperimentalOpenAI
+    override suspend fun image(variation: ImageVariationJSON): List<ImageJSON> {
+        return requester.perform<ListResponse<ImageJSON>> {
+            it.submitFormWithBinaryData(
+                url = ImagesVariantsV1,
+                formData = imageVariantRequest(variation, ResponseFormat.base64Json)
+            )
+        }.data
+    }
+
+    /**
+     * Build image variant request.
+     */
+    private fun imageVariantRequest(edit: ImageVariation, responseFormat: ResponseFormat) = formData {
+        appendBinaryFile(fileSystem, "image", edit.image)
+        append(key = "response_format", value = responseFormat.format)
+        edit.n?.let { n -> append(key = "n", value = n) }
+        edit.size?.let { dim -> append(key = "size", value = dim.size) }
+        edit.user?.let { user -> append(key = "user", value = user) }
+    }
+
     companion object {
         private const val ImagesGenerationV1 = "v1/images/generations"
         private const val ImagesEditsV1 = "v1/images/edits"
+        private const val ImagesVariantsV1 = "v1/images/variations"
     }
 }

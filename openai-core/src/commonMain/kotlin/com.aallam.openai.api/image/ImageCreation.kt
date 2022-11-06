@@ -1,5 +1,6 @@
 package com.aallam.openai.api.image
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -8,34 +9,18 @@ import kotlinx.serialization.Serializable
  * Image generation request.
  * Results are expected as URLs.
  */
+@ExperimentalOpenAI
 @Serializable
 public data class ImageCreationURL(
-    /**
-     * A text description of the desired image(s). The maximum length is 1000 characters.
-     */
-    @SerialName("prompt") public val prompt: String,
+    @SerialName("prompt") public override val prompt: String,
+    @SerialName("n") public override val n: Int? = null,
+    @SerialName("size") public override val size: ImageSize? = null,
+    @SerialName("user") public override val user: String? = null
+) : ImageRequestPrompt {
 
-    /**
-     * The number of images to generate. Must be between 1 and 10.
-     */
-    @SerialName("n") public val n: Int? = null,
-
-    /**
-     * The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.
-     */
-    @SerialName("size") public val size: ImageSize? = null,
-
-    /**
-     * A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse.
-     */
-    @SerialName("user") public val user: String? = null
-) {
-
-    /**
-     * The format in which the generated images are returned. Must be one of url or b64_json.
-     */
-    @EncodeDefault
+    /** The format in which the generated images are returned. */
     @SerialName("response_format")
+    @EncodeDefault
     public val responseFormat: ResponseFormat = ResponseFormat.url
 }
 
@@ -44,33 +29,17 @@ public data class ImageCreationURL(
  * Image generation request.
  * Results are expected as base 64 JSONs.
  */
+@ExperimentalOpenAI
 @Serializable
 public data class ImageCreationJSON(
-    /**
-     * A text description of the desired image(s). The maximum length is 1000 characters.
-     */
-    @SerialName("prompt") public val prompt: String,
+    @SerialName("prompt") public override val prompt: String,
+    @SerialName("n") public override val n: Int? = null,
+    @SerialName("size") public override val size: ImageSize? = null,
+    @SerialName("user") public override val user: String? = null
+) : ImageRequestPrompt {
 
-    /**
-     * The number of images to generate. Must be between 1 and 10.
-     */
-    @SerialName("n") public val n: Int? = null,
-
-    /**
-     * The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.
-     */
-    @SerialName("size") public val size: ImageSize? = null,
-
-    /**
-     * A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse.
-     */
-    @SerialName("user") public val user: String? = null
-) {
-
-    /**
-     * The format in which the generated images are returned. Must be one of url or b64_json.
-     */
-    @EncodeDefault
+    /** The format in which the generated images are returned. */
     @SerialName("response_format")
-    public val responseFormat: ResponseFormat = ResponseFormat.base64Json
+    @EncodeDefault
+    public val responseFormat: ResponseFormat  = ResponseFormat.base64Json
 }

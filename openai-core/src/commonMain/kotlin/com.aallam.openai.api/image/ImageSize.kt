@@ -1,11 +1,13 @@
 package com.aallam.openai.api.image
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline
 
 /**
  * The size of the generated images.
  */
+@ExperimentalOpenAI
 @JvmInline
 @Serializable
 public value class ImageSize(public val size: String) {

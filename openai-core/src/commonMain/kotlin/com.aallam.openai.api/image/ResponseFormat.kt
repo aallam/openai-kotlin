@@ -1,11 +1,13 @@
 package com.aallam.openai.api.image
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline
 
 /**
  * The format in which the generated images are returned.
  */
+@ExperimentalOpenAI
 @JvmInline
 @Serializable
 public value class ResponseFormat(public val format: String) {

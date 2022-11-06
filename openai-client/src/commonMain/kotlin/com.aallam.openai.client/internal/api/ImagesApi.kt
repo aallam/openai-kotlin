@@ -7,6 +7,7 @@ import com.aallam.openai.client.Images
 import com.aallam.openai.client.internal.extension.appendBinaryFile
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
+import io.ktor.client.request.forms.FormBuilder
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.client.request.post
@@ -63,14 +64,12 @@ internal class ImagesApi(
     /**
      * Build image edit request.
      */
+    @ExperimentalOpenAI
     private fun imageEditRequest(edit: ImageEdit, responseFormat: ResponseFormat) = formData {
         appendBinaryFile(fileSystem, "image", edit.image)
         appendBinaryFile(fileSystem, "mask", edit.mask)
         append(key = "prompt", value = edit.prompt)
-        append(key = "response_format", value = responseFormat.format)
-        edit.n?.let { n -> append(key = "n", value = n) }
-        edit.size?.let { dim -> append(key = "size", value = dim.size) }
-        edit.user?.let { user -> append(key = "user", value = user) }
+        imageRequest(responseFormat, edit)
     }
 
     @ExperimentalOpenAI
@@ -96,8 +95,17 @@ internal class ImagesApi(
     /**
      * Build image variant request.
      */
+    @ExperimentalOpenAI
     private fun imageVariantRequest(edit: ImageVariation, responseFormat: ResponseFormat) = formData {
         appendBinaryFile(fileSystem, "image", edit.image)
+        imageRequest(responseFormat, edit)
+    }
+
+    /**
+     * Append image request fields.
+     */
+    @ExperimentalOpenAI
+    private fun FormBuilder.imageRequest(responseFormat: ResponseFormat, edit: ImageRequest) {
         append(key = "response_format", value = responseFormat.format)
         edit.n?.let { n -> append(key = "n", value = n) }
         edit.size?.let { dim -> append(key = "size", value = dim.size) }

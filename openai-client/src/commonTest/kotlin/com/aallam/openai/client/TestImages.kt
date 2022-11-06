@@ -1,6 +1,7 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.ExperimentalOpenAI
+import com.aallam.openai.api.common.FilePath
 import com.aallam.openai.api.image.*
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -45,8 +46,8 @@ class TestImages : TestOpenAI() {
         val maskPath = writeImage(bytes = httpClient.get("https://i.imgur.com/D4MURbj.png").body())
 
         val request = ImageEditURL(
-            image = imagePath,
-            mask = maskPath,
+            image = FilePath(imagePath),
+            mask = FilePath(maskPath),
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
             n = 1,
             size = ImageSize.is1024x1024
@@ -61,8 +62,8 @@ class TestImages : TestOpenAI() {
         val maskPath = writeImage(bytes = httpClient.get("https://i.imgur.com/D4MURbj.png").body())
 
         val request = ImageEditJSON(
-            image = imagePath,
-            mask = maskPath,
+            image = FilePath(imagePath),
+            mask = FilePath(maskPath),
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
             n = 1,
             size = ImageSize.is1024x1024
@@ -76,7 +77,7 @@ class TestImages : TestOpenAI() {
         val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/iN0VFnF.png").body())
 
         val request = ImageVariationURL(
-            image = imagePath,
+            image = FilePath(imagePath),
             n = 1,
             size = ImageSize.is1024x1024
         )
@@ -89,7 +90,7 @@ class TestImages : TestOpenAI() {
         val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/iN0VFnF.png").body())
 
         val request = ImageVariationJSON(
-            image = imagePath,
+            image = FilePath(imagePath),
             n = 1,
             size = ImageSize.is1024x1024
         )

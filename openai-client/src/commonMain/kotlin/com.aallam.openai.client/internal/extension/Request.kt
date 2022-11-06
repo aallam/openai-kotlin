@@ -1,5 +1,7 @@
 package com.aallam.openai.client.internal.extension
 
+import com.aallam.openai.api.ExperimentalOpenAI
+import com.aallam.openai.api.common.FilePath
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.client.internal.JsonLenient
 import io.ktor.client.request.forms.FormBuilder
@@ -50,4 +52,9 @@ internal fun FormBuilder.appendBinaryFile(fileSystem: FileSystem, key: String, f
             append(HttpHeaders.ContentDisposition, "filename=\"${path.name}\"")
         })
     }
+}
+
+@ExperimentalOpenAI
+internal fun FormBuilder.appendBinaryFile(fileSystem: FileSystem, key: String, filePath: FilePath) {
+    appendBinaryFile(fileSystem, key, filePath.path)
 }

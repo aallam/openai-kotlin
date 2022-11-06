@@ -1,4 +1,4 @@
-package com.aallam.openai.api.common
+package com.aallam.openai.api.file
 
 import com.aallam.openai.api.ExperimentalOpenAI
 import kotlin.jvm.JvmInline

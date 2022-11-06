@@ -1,7 +1,7 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.ExperimentalOpenAI
-import com.aallam.openai.api.common.FilePath
+import com.aallam.openai.api.file.FilePath
 import com.aallam.openai.api.image.*
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

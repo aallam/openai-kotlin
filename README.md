@@ -2,7 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.aallam.openai/openai-client?color=blue&label=Download)](https://search.maven.org/artifact/com.aallam.openai/openai-client)
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)
-[![Kotlin](https://img.shields.io/badge/kotlin-1.7.10-a97bff.svg?logo=kotlin)](https://kotlinlang.org/docs/releases.html#release-details)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.7.20-a97bff.svg?logo=kotlin)](https://kotlinlang.org/docs/releases.html#release-details)
 [![Documentation](https://img.shields.io/badge/docs-openai--kotlin-lightgrey)](https://mouaad.aallam.com/openai-kotlin/)
 
 Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines capabilities. 

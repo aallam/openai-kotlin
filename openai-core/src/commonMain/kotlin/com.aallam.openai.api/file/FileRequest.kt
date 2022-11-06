@@ -1,9 +1,12 @@
 package com.aallam.openai.api.file
 
+import com.aallam.openai.api.ExperimentalOpenAI
+
 /**
  * File API request.
  */
-public data class FileRequest(
+@OptIn(ExperimentalOpenAI::class)
+public data class FileRequest @ExperimentalOpenAI constructor(
 
     /**
      * JSON Lines file to be uploaded.
@@ -15,7 +18,7 @@ public data class FileRequest(
      * If the [purpose] is set to [Classifications], each line is a JSON record with a single training example with "text"
      * and "label" fields along with an optional "metadata" field.
      */
-    public val file: String,
+    public val filePath: FilePath,
 
     /**
      * The intended purpose of the uploaded documents.
@@ -24,4 +27,11 @@ public data class FileRequest(
      * This allows us to validate the format of the uploaded file.
      */
     public val purpose: Purpose,
-)
+) {
+
+
+    public constructor(file: String, purpose: Purpose) : this(FilePath(file), purpose)
+
+    public val file: String
+        get() = filePath.path
+}

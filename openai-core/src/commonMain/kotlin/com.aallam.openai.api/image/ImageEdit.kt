@@ -1,7 +1,7 @@
 package com.aallam.openai.api.image
 
 import com.aallam.openai.api.ExperimentalOpenAI
-import com.aallam.openai.api.common.FilePath
+import com.aallam.openai.api.file.FilePath
 
 /**
  * Image edit request.

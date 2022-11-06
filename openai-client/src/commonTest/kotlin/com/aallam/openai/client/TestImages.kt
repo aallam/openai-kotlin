@@ -105,4 +105,3 @@ class TestImages : TestOpenAI() {
         return filename
     }
 }
-

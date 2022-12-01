@@ -4,7 +4,7 @@ coroutines = "1.6.4"
 serialization = "1.4.0"
 ktor = "2.1.0"
 okio = "3.2.0"
-logback = "1.4.0"
+logback = "1.4.5"
 
 [libraries]
 # Coroutines

@@ -21,4 +21,5 @@ internal class OpenAIApi(
     Embeddings by EmbeddingsApi(requester),
     Models by ModelsApi(requester),
     Moderations by ModerationsApi(requester),
-    FineTunes by FineTunesApi(requester)
+    FineTunes by FineTunesApi(requester),
+    Images by ImagesApi(requester, fileSystem)

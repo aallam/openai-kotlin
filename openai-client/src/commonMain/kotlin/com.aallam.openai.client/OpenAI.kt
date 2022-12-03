@@ -15,7 +15,8 @@ public interface OpenAI :
     Embeddings,
     Models,
     Moderations,
-    FineTunes
+    FineTunes,
+    Images
 
 /**
  * Creates an instance of [OpenAI].

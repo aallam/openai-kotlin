@@ -11,14 +11,11 @@ import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.request.accept
-import io.ktor.client.request.header
 import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
-import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
 import kotlinx.serialization.json.Json
+import kotlin.time.DurationUnit
 
 /**
  * Default Http Client.
@@ -41,7 +38,15 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         }
 
         install(HttpTimeout) {
-            socketTimeoutMillis = 30000 // 30s
+            config.timeout.socket?.let { socketTimeout ->
+                socketTimeoutMillis = socketTimeout.toLong(DurationUnit.MILLISECONDS)
+            }
+            config.timeout.connect?.let { connectTimeout ->
+                connectTimeoutMillis = connectTimeout.toLong(DurationUnit.MILLISECONDS)
+            }
+            config.timeout.request?.let { requestTimeout ->
+                requestTimeoutMillis = requestTimeout.toLong(DurationUnit.MILLISECONDS)
+            }
         }
 
         defaultRequest {

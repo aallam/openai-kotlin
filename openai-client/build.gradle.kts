@@ -20,6 +20,7 @@ kotlin {
                 optIn("kotlin.RequiresOptIn")
                 optIn("okio.ExperimentalFileSystem")
                 optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+                optIn("com.aallam.openai.api.ExperimentalOpenAI")
             }
         }
         val commonMain by getting {

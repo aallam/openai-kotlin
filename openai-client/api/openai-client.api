@@ -1,24 +1,14 @@
-public abstract interface class com/aallam/openai/client/Answers {
-	public abstract fun answers (Lcom/aallam/openai/api/answer/AnswerRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public abstract interface class com/aallam/openai/client/Classifications {
-	public abstract fun classifications (Lcom/aallam/openai/api/classification/ClassificationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
 public abstract interface class com/aallam/openai/client/Completions {
-	public abstract fun completion-oLuQndg (Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun completions-hf_GjgE (Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun completion (Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun completions (Lcom/aallam/openai/api/completion/CompletionRequest;)Lkotlinx/coroutines/flow/Flow;
 }
 
-public final class com/aallam/openai/client/Completions$DefaultImpls {
-	public static synthetic fun completion-oLuQndg$default (Lcom/aallam/openai/client/Completions;Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static synthetic fun completions-hf_GjgE$default (Lcom/aallam/openai/client/Completions;Ljava/lang/String;Lcom/aallam/openai/api/completion/CompletionRequest;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+public abstract interface class com/aallam/openai/client/Edits {
+	public abstract fun edit (Lcom/aallam/openai/api/edits/EditsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/Engines {
-	public abstract fun engine-hf_GjgE (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun engines (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+public abstract interface class com/aallam/openai/client/Embeddings {
+	public abstract fun embeddings (Lcom/aallam/openai/api/embedding/EmbeddingRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aallam/openai/client/Files {
@@ -28,23 +18,48 @@ public abstract interface class com/aallam/openai/client/Files {
 	public abstract fun files (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Answers, com/aallam/openai/client/Classifications, com/aallam/openai/client/Completions, com/aallam/openai/client/Engines, com/aallam/openai/client/Files, com/aallam/openai/client/Searches {
+public abstract interface class com/aallam/openai/client/FineTunes {
+	public abstract fun cancel-zS1XsbI (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun delete-Q3EJpKE (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun fineTune (Lcom/aallam/openai/api/finetune/FineTuneRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun fineTune-zS1XsbI (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun fineTuneEvents-zS1XsbI (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun fineTuneEventsFlow-zSIMr1o (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun fineTunes (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/Images {
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageCreationJSON;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageCreationURL;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageEditJSON;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageEditURL;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageVariationJSON;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageVariationURL;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/Models {
+	public abstract fun model-Q3EJpKE (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun models (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/Moderations {
+	public abstract fun moderations (Lcom/aallam/openai/api/moderation/ModerationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/Images, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations {
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {
-	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;)V
-	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getLogLevel ()Lcom/aallam/openai/api/logging/LogLevel;
 	public final fun getLogger ()Lcom/aallam/openai/api/logging/Logger;
+	public final fun getTimeout ()Lcom/aallam/openai/api/http/Timeout;
 	public final fun getToken ()Ljava/lang/String;
 }
 
 public final class com/aallam/openai/client/OpenAIKt {
 	public static final fun OpenAI (Lcom/aallam/openai/client/OpenAIConfig;)Lcom/aallam/openai/client/OpenAI;
 	public static final fun OpenAI (Ljava/lang/String;)Lcom/aallam/openai/client/OpenAI;
-}
-
-public abstract interface class com/aallam/openai/client/Searches {
-	public abstract fun search-oLuQndg (Ljava/lang/String;Lcom/aallam/openai/api/search/SearchRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 

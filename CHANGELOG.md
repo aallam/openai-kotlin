@@ -1,3 +1,15 @@
+# 2.1.0
+> Published 14 Dec 2022
+
+### Added
+* [Images](https://beta.openai.com/docs/api-reference/images) implementation (#68)
+* Http timeout configuration (#71)
+
+### Changed
+* Update Kotlin to `1.7.20`
+* Update Kotlin serialization to `1.4.1`
+* Update Ktor `2.1.3`
+
 # 2.0.0
 > Published 20 Aug 2022
 

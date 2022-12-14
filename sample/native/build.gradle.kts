@@ -2,9 +2,6 @@ plugins {
     kotlin("multiplatform")
 }
 
-group = "com.aallam.kotlin-data"
-version = "1.0-SNAPSHOT"
-
 kotlin {
     val hostOs = System.getProperty("os.name")
     val isMingwX64 = hostOs.startsWith("Windows")

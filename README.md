@@ -140,7 +140,51 @@ val fineTune = openAI.fineTune(
     )
 )
 ````
-</details>  
+</details>
+
+<details>
+  <summary><strong>Create images</strong></summary>
+
+````kotlin
+val images = openAI.image(
+    creation = ImageCreationURL(
+        prompt = "A cute baby sea otter",
+        n = 2,
+        size = ImageSize.is1024x1024
+    )
+)
+````
+</details>
+
+<details>
+  <summary><strong>Edit images</strong></summary>
+
+````kotlin
+val images = openAI.image(
+    edit = ImageEditURL( // or 'ImageEditJSON'
+        image = FilePath(imagePath),
+        mask = FilePath(maskPath),
+        prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
+        n = 1,
+        size = ImageSize.is1024x1024
+    )
+)
+````
+</details>
+
+<details>
+  <summary><strong>Create image variants</strong></summary>
+
+````kotlin
+val images = openAI.image(
+    variation = ImageVariationURL( // or, 'ImageVariationJSON'
+        image = FilePath(imagePath),
+        n = 1,
+        size = ImageSize.is1024x1024
+    )
+)
+````
+</details>
 
 ## ℹ️ Sample apps
 
@@ -150,3 +194,7 @@ Sample apps are available under `sample`, please check the [README](sample/READM
 
 OpenAI Kotlin API Client is an open-sourced software licensed under the [MIT license](LICENSE.md).
 **This project is not affiliated with nor endorsed by OpenAI**. Contributions are welcome.
+
+## ⭐️ Support
+
+<a href="https://www.buymeacoffee.com/aallam" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>

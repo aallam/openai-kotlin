@@ -1,6 +1,9 @@
 package com.aallam.openai.sample.jvm
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.completion.CompletionRequest
+import com.aallam.openai.api.image.ImageCreationURL
+import com.aallam.openai.api.image.ImageSize
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.client.OpenAI
@@ -9,6 +12,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 
+@OptIn(ExperimentalOpenAI::class)
 fun main() = runBlocking {
     val apiKey = System.getenv("OPENAI_API_KEY")
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
@@ -47,4 +51,14 @@ fun main() = runBlocking {
         )
     )
     println(moderation)
+
+    println("\n> Create images...")
+    val images = openAI.image(
+        creation = ImageCreationURL(
+            prompt = "A cute baby sea otter",
+            n = 2,
+            size = ImageSize.is1024x1024
+        )
+    )
+    println(images)
 }

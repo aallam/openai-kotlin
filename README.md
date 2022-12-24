@@ -193,7 +193,7 @@ Sample apps are available under `sample`, please check the [README](sample/READM
 ## 📄 License
 
 OpenAI Kotlin API Client is an open-sourced software licensed under the [MIT license](LICENSE.md).
-**This project is not affiliated with nor endorsed by OpenAI**. Contributions are welcome.
+**This is an unofficial library, it is not affiliated with nor endorsed by OpenAI**. Contributions are welcome.
 
 ## ⭐️ Support
 

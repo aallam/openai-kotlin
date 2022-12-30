@@ -47,7 +47,7 @@ fun KotlinMultiplatformExtension.jsNode() {
         nodejs {
             testTask {
                 useMocha {
-                    timeout = "20s"
+                    timeout = "300s"
                 }
             }
         }

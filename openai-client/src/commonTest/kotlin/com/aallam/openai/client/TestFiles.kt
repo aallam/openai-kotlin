@@ -1,9 +1,11 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.file.FileCreate
 import com.aallam.openai.api.file.FileRequest
 import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.client.internal.waitFileProcess
 import kotlinx.coroutines.test.runTest
+import okio.Buffer
 import okio.Path
 import okio.Path.Companion.toPath
 import ulid.ULID
@@ -29,6 +31,40 @@ class TestFiles : TestOpenAI() {
                 purpose = Purpose("answers")
             )
             val filename = filePath.name
+
+            // Create file
+            val fileCreate = openAI.file(request)
+            assertEquals(filename, fileCreate.filename)
+
+            // Get created file
+            openAI.waitFileProcess(fileCreate.id)
+
+            // Delete file
+            openAI.delete(fileCreate.id)
+
+            // Check deleted file
+            val fileGetAfterDelete = openAI.file(fileCreate.id)
+            assertNull(fileGetAfterDelete)
+        }
+    }
+
+    @Test
+    fun fileFromSource() {
+        runTest {
+            val jsonl = """
+                    { "text": "AJ" }
+                    { "text": "Abby" }
+                    { "text": "Abe" }
+                    { "text": "Ace" }
+                """.trimIndent()
+            val buffer = Buffer()
+            buffer.writeUtf8(jsonl)
+            val filename = ULID.randomULID()
+            val request = FileCreate(
+                filename = filename,
+                source = buffer,
+                purpose = Purpose("answers")
+            )
 
             // Create file
             val fileCreate = openAI.file(request)

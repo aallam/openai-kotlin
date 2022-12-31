@@ -3,6 +3,7 @@ package com.aallam.openai.client.internal.api
 import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.core.DeleteResponse
 import com.aallam.openai.api.core.ListResponse
+import com.aallam.openai.api.file.FileCreate
 import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
@@ -30,8 +31,17 @@ internal class FilesApi(
     override suspend fun file(request: FileRequest): File {
         return requester.perform {
             it.submitFormWithBinaryData(url = FilesPath, formData = formData {
-                @OptIn(ExperimentalOpenAI::class)
-                appendTextFile(fileSystem, "file", request.filePath)
+                @OptIn(ExperimentalOpenAI::class) appendTextFile(fileSystem, "file", request.filePath)
+                append(key = "purpose", value = request.purpose.raw)
+            })
+        }
+    }
+
+    @ExperimentalOpenAI
+    override suspend fun file(request: FileCreate): File {
+        return requester.perform {
+            it.submitFormWithBinaryData(url = FilesPath, formData = formData {
+                appendTextFile("file", request.filename, request.source)
                 append(key = "purpose", value = request.purpose.raw)
             })
         }

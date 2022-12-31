@@ -13,7 +13,7 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonObject
-import okio.FileSystem
+import okio.*
 import okio.Path.Companion.toPath
 
 /**
@@ -36,10 +36,14 @@ internal fun CompletionRequest.toStreamRequest(): JsonElement {
 @OptIn(ExperimentalOpenAI::class)
 internal fun FormBuilder.appendTextFile(fileSystem: FileSystem, key: String, filePath: FilePath) {
     val path = filePath.path.toPath()
-    append(key, path.name, ContentType.Application.OctetStream) {
-        fileSystem.read(path) {
+    fileSystem.read(path) { appendTextFile(key, path.name, this) }
+}
+
+internal fun FormBuilder.appendTextFile(key: String, filename: String, source: Source) {
+    append(key, filename, ContentType.Application.OctetStream) {
+        source.buffer().use {
             while (true) {
-                val line = readUtf8Line() ?: break
+                val line = it.readUtf8Line() ?: break
                 appendLine(line)
             }
         }

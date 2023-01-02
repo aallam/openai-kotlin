@@ -25,7 +25,7 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
-                api(project(":openai-core"))
+                api(projects.openaiCore)
                 api(libs.coroutines.core)
                 implementation(libs.serialization.json)
                 implementation(libs.ktor.client.core)
@@ -38,7 +38,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(project(":openai-core"))
+                implementation(projects.openaiCore)
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(libs.coroutines.test)

@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
     //implementation("com.aallam.openai:openai-client:<version>")
-    implementation(project(":openai-client"))
+    implementation(projects.openaiClient)
 }
 
 kotlin {

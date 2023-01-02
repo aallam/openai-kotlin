@@ -14,9 +14,3 @@ dependencies {
         api(libs.ktor.client.okhttp)
     }
 }
-
-publishing {
-    publications.create<MavenPublication>("maven") {
-        from(project.components["javaPlatform"])
-    }
-}

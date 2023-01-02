@@ -13,40 +13,40 @@ public interface Images {
      * Get images as URLs.
      */
     @ExperimentalOpenAI
-    public suspend fun image(creation: ImageCreationURL): List<ImageURL>
+    public suspend fun imageURL(creation: ImageCreation): List<ImageURL>
 
     /**
      * Creates an image given a prompt.
      * Get images as base 64 JSON.
      */
     @ExperimentalOpenAI
-    public suspend fun image(creation: ImageCreationJSON): List<ImageJSON>
+    public suspend fun imageJSON(creation: ImageCreation): List<ImageJSON>
 
     /**
      * Creates an edited or extended image given an original image and a prompt.
      * Get images as URLs.
      */
     @ExperimentalOpenAI
-    public suspend fun image(edit: ImageEditURL): List<ImageURL>
+    public suspend fun imageURL(edit: ImageEdit): List<ImageURL>
 
     /**
      * Creates an edited or extended image given an original image and a prompt.
      * Get images as base 64 JSON.
      */
     @ExperimentalOpenAI
-    public suspend fun image(edit: ImageEditJSON): List<ImageJSON>
+    public suspend fun imageJSON(edit: ImageEdit): List<ImageJSON>
 
     /**
      * Creates a variation of a given image.
      * Get images as URLs.
      */
     @ExperimentalOpenAI
-    public suspend fun image(variation: ImageVariationURL): List<ImageURL>
+    public suspend fun imageURL(variation: ImageVariation): List<ImageURL>
 
     /**
      * Creates a variation of a given image.
      * Get images as base 64 JSON.
      */
     @ExperimentalOpenAI
-    public suspend fun image(variation: ImageVariationJSON): List<ImageJSON>
+    public suspend fun imageJSON(variation: ImageVariation): List<ImageJSON>
 }

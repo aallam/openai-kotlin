@@ -2,9 +2,9 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.file.File
+import com.aallam.openai.api.file.FileCreate
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileRequest
-import com.aallam.openai.api.file.FileCreate
 
 /**
  * Files are used to upload documents that can be used across features like [Answers], [Searches], and [Classifications]
@@ -15,6 +15,7 @@ public interface Files {
      * Upload a file that contains document(s) to be used across various endpoints/features.
      * Currently, the size of all the files uploaded by one organization can be up to 1 GB.
      */
+    @Deprecated("use 'file(FileCreate) instead")
     public suspend fun file(request: FileRequest): File
 
     /**

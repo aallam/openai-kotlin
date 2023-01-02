@@ -1,6 +1,5 @@
 package com.aallam.openai.client.internal.extension
 
-import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FilePath
 import com.aallam.openai.client.internal.JsonLenient
@@ -31,9 +30,6 @@ internal fun CompletionRequest.toStreamRequest(): JsonElement {
 /**
  * Appends file content to the given FormBuilder.
  */
-
-
-@OptIn(ExperimentalOpenAI::class)
 internal fun FormBuilder.appendTextFile(fileSystem: FileSystem, key: String, filePath: FilePath) {
     val path = filePath.path.toPath()
     fileSystem.read(path) { appendTextFile(key, path.name, this) }
@@ -50,14 +46,12 @@ internal fun FormBuilder.appendTextFile(key: String, filename: String, source: S
     }
 }
 
-@ExperimentalOpenAI
-internal fun FormBuilder.appendBinaryFile(fileSystem: FileSystem, key: String, filePath: FilePath) {
-    val path = filePath.path.toPath()
-    fileSystem.read(path) {
-        val bytes = readByteArray()
+internal fun FormBuilder.appendBinaryFile(key: String, filename: String, source: Source) {
+    source.buffer().use {
+        val bytes = it.readByteArray()
         append(key, bytes, Headers.build {
             append(HttpHeaders.ContentType, ContentType.Application.OctetStream.toString())
-            append(HttpHeaders.ContentDisposition, "filename=\"${path.name}\"")
+            append(HttpHeaders.ContentDisposition, "filename=\"$filename\"")
         })
     }
 }

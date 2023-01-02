@@ -65,9 +65,14 @@ kotlin {
                 implementation(kotlin("test-js"))
             }
         }
-        val nativeTest by getting {
+        val desktopTest by getting {
             dependencies {
                 implementation(libs.ktor.client.curl)
+            }
+        }
+        val darwinTest by getting {
+            dependencies {
+                implementation(libs.ktor.client.darwin)
             }
         }
     }

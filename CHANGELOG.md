@@ -1,3 +1,12 @@
+# 2.1.1
+> Published 02 Jan 2023
+
+### Added
+* Targets `ios`, `watchos` and `tvos` _(x64/arm64)_
+
+### Changed
+* Update Kotlin to `1.8.0`
+
 # 2.1.0
 > Published 14 Dec 2022
 

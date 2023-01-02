@@ -1,6 +1,5 @@
 package com.aallam.openai.client.internal.api
 
-import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.image.*
 import com.aallam.openai.client.Images
@@ -20,7 +19,6 @@ import io.ktor.http.contentType
 
 internal class ImagesApi(private val requester: HttpRequester) : Images {
 
-    @ExperimentalOpenAI
     override suspend fun imageURL(creation: ImageCreation): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.post {
@@ -31,7 +29,6 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         }.data
     }
 
-    @ExperimentalOpenAI
     override suspend fun imageJSON(creation: ImageCreation): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.post {
@@ -42,14 +39,12 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         }.data
     }
 
-    @ExperimentalOpenAI
     override suspend fun imageURL(edit: ImageEdit): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.submitFormWithBinaryData(url = ImagesEditsV1, formData = imageEditRequest(edit, ImageResponseFormat.url))
         }.data
     }
 
-    @ExperimentalOpenAI
     override suspend fun imageJSON(edit: ImageEdit): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.submitFormWithBinaryData(
@@ -61,10 +56,9 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
     /**
      * Build image edit request.
      */
-    @ExperimentalOpenAI
     private fun imageEditRequest(edit: ImageEdit, responseFormat: ImageResponseFormat) = formData {
-        appendBinaryFile("image", edit.imageFilename, edit.imageSource)
-        appendBinaryFile("mask", edit.maskFilename, edit.maskSource)
+        appendBinaryFile("image", edit.image)
+        appendBinaryFile("mask", edit.mask)
         append(key = "prompt", value = edit.prompt)
         append(key = "response_format", value = responseFormat.format)
         edit.n?.let { n -> append(key = "n", value = n) }
@@ -72,7 +66,6 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         edit.user?.let { user -> append(key = "user", value = user) }
     }
 
-    @ExperimentalOpenAI
     override suspend fun imageURL(variation: ImageVariation): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.submitFormWithBinaryData(
@@ -81,7 +74,6 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         }.data
     }
 
-    @ExperimentalOpenAI
     override suspend fun imageJSON(variation: ImageVariation): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.submitFormWithBinaryData(
@@ -93,9 +85,8 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
     /**
      * Build image variant request.
      */
-    @ExperimentalOpenAI
     private fun imageVariantRequest(edit: ImageVariation, responseFormat: ImageResponseFormat) = formData {
-        appendBinaryFile("image", edit.filename, edit.source)
+        appendBinaryFile("image", edit.image)
         append(key = "response_format", value = responseFormat.format)
         edit.n?.let { n -> append(key = "n", value = n) }
         edit.size?.let { dim -> append(key = "size", value = dim.size) }

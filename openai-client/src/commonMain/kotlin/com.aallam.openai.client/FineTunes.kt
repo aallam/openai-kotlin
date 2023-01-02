@@ -1,7 +1,10 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.ExperimentalOpenAI
-import com.aallam.openai.api.finetune.*
+import com.aallam.openai.api.finetune.FineTune
+import com.aallam.openai.api.finetune.FineTuneEvent
+import com.aallam.openai.api.finetune.FineTuneId
+import com.aallam.openai.api.finetune.FineTuneRequest
 import com.aallam.openai.api.model.ModelId
 import kotlinx.coroutines.flow.Flow
 

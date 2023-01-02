@@ -1,14 +1,11 @@
 package com.aallam.openai.api.image
 
-import com.aallam.openai.api.ExperimentalOpenAI
-import com.aallam.openai.api.FileSource
-import okio.Source
+import com.aallam.openai.api.file.FileSource
 
 /**
  * Image edit request.
  */
-@ExperimentalOpenAI
-public data class ImageEdit
+public data class ImageEdit(
     public val image: FileSource,
     public val mask: FileSource,
     public val prompt: String,

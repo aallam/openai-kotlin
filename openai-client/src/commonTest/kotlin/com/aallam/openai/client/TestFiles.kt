@@ -1,13 +1,11 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.file.FileCreate
-import com.aallam.openai.api.file.FileRequest
+import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.file.Purpose
+import com.aallam.openai.client.internal.asSource
 import com.aallam.openai.client.internal.waitFileProcess
 import kotlinx.coroutines.test.runTest
-import okio.Buffer
-import okio.Path
-import okio.Path.Companion.toPath
 import ulid.ULID
 import kotlin.test.*
 
@@ -17,24 +15,22 @@ class TestFiles : TestOpenAI() {
     fun file() {
         runTest {
             val id = ULID.randomULID()
-            val filePath: Path = "$id.jsonl".toPath()
             val jsonl = """
                     { "text": "AJ" }
                     { "text": "Abby" }
                     { "text": "Abe" }
                     { "text": "Ace" }
                 """.trimIndent()
-            fileSystem.write(filePath) { writeUtf8(jsonl) }
 
-            val request = FileRequest(
-                file = filePath.toString(),
+            val file = FileSource(name = "$id.jsonl", source = jsonl.asSource())
+            val request = FileCreate(
+                file = file,
                 purpose = Purpose("answers")
             )
-            val filename = filePath.name
 
             // Create file
             val fileCreate = openAI.file(request)
-            assertEquals(filename, fileCreate.filename)
+            assertEquals(file.name, fileCreate.filename)
 
             // Get created file
             openAI.waitFileProcess(fileCreate.id)
@@ -57,18 +53,16 @@ class TestFiles : TestOpenAI() {
                     { "text": "Abe" }
                     { "text": "Ace" }
                 """.trimIndent()
-            val buffer = Buffer()
-            buffer.writeUtf8(jsonl)
-            val filename = ULID.randomULID()
+            val id = ULID.randomULID()
+            val file = FileSource(name = "$id.jsonl", source = jsonl.asSource())
             val request = FileCreate(
-                filename = filename,
-                source = buffer,
+                file = file,
                 purpose = Purpose("answers")
             )
 
             // Create file
             val fileCreate = openAI.file(request)
-            assertEquals(filename, fileCreate.filename)
+            assertEquals(file.name, fileCreate.filename)
 
             // Get created file
             openAI.waitFileProcess(fileCreate.id)

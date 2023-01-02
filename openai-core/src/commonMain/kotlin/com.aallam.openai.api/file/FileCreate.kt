@@ -1,15 +1,6 @@
 package com.aallam.openai.api.file
 
-import com.aallam.openai.api.ExperimentalOpenAI
-import okio.Source
-
-@ExperimentalOpenAI
 public class FileCreate(
-
-    /**
-     * JSON lines file name.
-     */
-    public val filename: String,
 
     /**
      * JSON Lines file source.
@@ -21,7 +12,7 @@ public class FileCreate(
      * If the [purpose] is set to Classifications, each line is a JSON record with a single training example with "text"
      * and "label" fields along with an optional "metadata" field.
      */
-    public val source: Source,
+    public val file: FileSource,
 
     /**
      * The intended purpose of the uploaded documents.

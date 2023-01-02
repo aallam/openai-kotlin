@@ -1,7 +1,7 @@
 package com.aallam.openai.client.internal.api
 
-import com.aallam.openai.api.edits.EditsRequest
 import com.aallam.openai.api.edits.Edit
+import com.aallam.openai.api.edits.EditsRequest
 import com.aallam.openai.client.Edits
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform

@@ -1,7 +1,7 @@
 package com.aallam.openai.client.internal.extension
 
 import com.aallam.openai.api.completion.CompletionRequest
-import com.aallam.openai.api.file.FilePath
+import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.client.internal.JsonLenient
 import io.ktor.client.request.forms.FormBuilder
 import io.ktor.client.request.forms.append
@@ -13,7 +13,6 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonObject
 import okio.*
-import okio.Path.Companion.toPath
 
 /**
  * Adds `stream` parameter to the request.
@@ -27,17 +26,10 @@ internal fun CompletionRequest.toStreamRequest(): JsonElement {
     return JsonObject(map)
 }
 
-/**
- * Appends file content to the given FormBuilder.
- */
-internal fun FormBuilder.appendTextFile(fileSystem: FileSystem, key: String, filePath: FilePath) {
-    val path = filePath.path.toPath()
-    fileSystem.read(path) { appendTextFile(key, path.name, this) }
-}
 
-internal fun FormBuilder.appendTextFile(key: String, filename: String, source: Source) {
-    append(key, filename, ContentType.Application.OctetStream) {
-        source.buffer().use {
+internal fun FormBuilder.appendTextFile(key: String, fileSource: FileSource) {
+    append(key, fileSource.name, ContentType.Application.OctetStream) {
+        fileSource.source.buffer().use {
             while (true) {
                 val line = it.readUtf8Line() ?: break
                 appendLine(line)
@@ -46,12 +38,12 @@ internal fun FormBuilder.appendTextFile(key: String, filename: String, source: S
     }
 }
 
-internal fun FormBuilder.appendBinaryFile(key: String, filename: String, source: Source) {
-    source.buffer().use {
+internal fun FormBuilder.appendBinaryFile(key: String, fileSource: FileSource) {
+    fileSource.source.buffer().use {
         val bytes = it.readByteArray()
         append(key, bytes, Headers.build {
             append(HttpHeaders.ContentType, ContentType.Application.OctetStream.toString())
-            append(HttpHeaders.ContentDisposition, "filename=\"$filename\"")
+            append(HttpHeaders.ContentDisposition, "filename=\"${fileSource.name}\"")
         })
     }
 }

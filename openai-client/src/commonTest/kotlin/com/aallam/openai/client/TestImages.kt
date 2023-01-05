@@ -20,7 +20,7 @@ class TestImages : TestOpenAI() {
     @Test
     fun imageCreationURL() = runTest {
         val request = ImageCreation(
-            prompt = "A cute baby sea otter", n = 2, size = ImageSize.is1024x1024,
+            prompt = "A cute baby sea otter", n = 2, size = ImageSize.is256x256,
         )
         val response = openAI.imageURL(request)
         assertTrue { response.isNotEmpty() }

@@ -3,11 +3,8 @@ package com.aallam.openai.client.internal.extension
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.client.internal.JsonLenient
-import io.ktor.client.request.forms.FormBuilder
-import io.ktor.client.request.forms.append
+import io.ktor.client.request.forms.*
 import io.ktor.http.ContentType
-import io.ktor.http.Headers
-import io.ktor.http.HttpHeaders
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
@@ -39,11 +36,7 @@ internal fun FormBuilder.appendTextFile(key: String, fileSource: FileSource) {
 }
 
 internal fun FormBuilder.appendBinaryFile(key: String, fileSource: FileSource) {
-    fileSource.source.buffer().use {
-        val bytes = it.readByteArray()
-        append(key, bytes, Headers.build {
-            append(HttpHeaders.ContentType, ContentType.Application.OctetStream.toString())
-            append(HttpHeaders.ContentDisposition, "filename=\"${fileSource.name}\"")
-        })
+    append(key, fileSource.name, ContentType.Application.OctetStream) {
+        fileSource.source.buffer().use { source -> writeAll(source) }
     }
 }

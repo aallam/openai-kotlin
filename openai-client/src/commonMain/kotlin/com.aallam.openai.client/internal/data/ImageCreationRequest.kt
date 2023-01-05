@@ -1,4 +1,4 @@
-package com.aallam.openai.client.internal.model
+package com.aallam.openai.client.internal.data
 
 import com.aallam.openai.api.image.ImageCreation
 import com.aallam.openai.api.image.ImageSize

@@ -1,4 +1,4 @@
-package com.aallam.openai.client.internal.model
+package com.aallam.openai.client.internal.data
 
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline

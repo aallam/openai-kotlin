@@ -6,9 +6,9 @@ import com.aallam.openai.client.Images
 import com.aallam.openai.client.internal.extension.appendBinaryFile
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
-import com.aallam.openai.client.internal.model.ImageResponseFormat
-import com.aallam.openai.client.internal.model.toJSONRequest
-import com.aallam.openai.client.internal.model.toURLRequest
+import com.aallam.openai.client.internal.data.ImageResponseFormat
+import com.aallam.openai.client.internal.data.toJSONRequest
+import com.aallam.openai.client.internal.data.toURLRequest
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.client.request.post

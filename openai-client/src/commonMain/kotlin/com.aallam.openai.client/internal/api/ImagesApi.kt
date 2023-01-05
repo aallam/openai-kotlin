@@ -3,12 +3,12 @@ package com.aallam.openai.client.internal.api
 import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.image.*
 import com.aallam.openai.client.Images
-import com.aallam.openai.client.internal.extension.appendBinaryFile
-import com.aallam.openai.client.internal.http.HttpRequester
-import com.aallam.openai.client.internal.http.perform
 import com.aallam.openai.client.internal.data.ImageResponseFormat
 import com.aallam.openai.client.internal.data.toJSONRequest
 import com.aallam.openai.client.internal.data.toURLRequest
+import com.aallam.openai.client.internal.extension.appendFileSource
+import com.aallam.openai.client.internal.http.HttpRequester
+import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.client.request.post
@@ -57,8 +57,8 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
      * Build image edit request.
      */
     private fun imageEditRequest(edit: ImageEdit, responseFormat: ImageResponseFormat) = formData {
-        appendBinaryFile("image", edit.image)
-        appendBinaryFile("mask", edit.mask)
+        appendFileSource("image", edit.image)
+        appendFileSource("mask", edit.mask)
         append(key = "prompt", value = edit.prompt)
         append(key = "response_format", value = responseFormat.format)
         edit.n?.let { n -> append(key = "n", value = n) }
@@ -86,7 +86,7 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
      * Build image variant request.
      */
     private fun imageVariantRequest(edit: ImageVariation, responseFormat: ImageResponseFormat) = formData {
-        appendBinaryFile("image", edit.image)
+        appendFileSource("image", edit.image)
         append(key = "response_format", value = responseFormat.format)
         edit.n?.let { n -> append(key = "n", value = n) }
         edit.size?.let { dim -> append(key = "size", value = dim.size) }

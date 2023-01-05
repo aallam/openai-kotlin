@@ -6,7 +6,7 @@ import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileCreate
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.client.Files
-import com.aallam.openai.client.internal.extension.appendTextFile
+import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.body
@@ -26,7 +26,7 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
     override suspend fun file(request: FileCreate): File {
         return requester.perform {
             it.submitFormWithBinaryData(url = FilesPath, formData = formData {
-                appendTextFile("file", request.file)
+                appendFileSource("file", request.file)
                 append(key = "purpose", value = request.purpose.raw)
             })
         }
@@ -56,7 +56,13 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
         }
     }
 
+    override suspend fun download(fileId: FileId): ByteArray {
+        return requester.perform {
+            it.get { url(path = "$FilesPath/${fileId.id}/content") }
+        }
+    }
+
     companion object {
-        private const val FilesPath = "/v1/files"
+        private const val FilesPath = "v1/files"
     }
 }

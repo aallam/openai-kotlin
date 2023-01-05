@@ -29,4 +29,9 @@ public interface Files {
      * Delete a file. Only owners of organizations can delete files currently.
      */
     public suspend fun delete(fileId: FileId): Boolean
+
+    /**
+     * Returns the contents of the specified [fileId].
+     */
+    public suspend fun download(fileId: FileId): ByteArray
 }

@@ -14,18 +14,16 @@ class TestFiles : TestOpenAI() {
     @Test
     fun file() {
         runTest {
-            val id = ULID.randomULID()
             val jsonl = """
-                    { "text": "AJ" }
-                    { "text": "Abby" }
-                    { "text": "Abe" }
-                    { "text": "Ace" }
-                """.trimIndent()
+                {"prompt": "<prompt text>", "completion": "<ideal generated text>"}
+                {"prompt": "<prompt text>", "completion": "<ideal generated text>"}
+                {"prompt": "<prompt text>", "completion": "<ideal generated text>"}
+            """.trimIndent()
+            val id = ULID.randomULID()
 
             val file = FileSource(name = "$id.jsonl", source = jsonl.asSource())
             val request = FileCreate(
-                file = file,
-                purpose = Purpose("answers")
+                file = file, purpose = Purpose("fine-tune")
             )
 
             // Create file
@@ -35,37 +33,9 @@ class TestFiles : TestOpenAI() {
             // Get created file
             openAI.waitFileProcess(fileCreate.id)
 
-            // Delete file
-            openAI.delete(fileCreate.id)
-
-            // Check deleted file
-            val fileGetAfterDelete = openAI.file(fileCreate.id)
-            assertNull(fileGetAfterDelete)
-        }
-    }
-
-    @Test
-    fun fileFromSource() {
-        runTest {
-            val jsonl = """
-                    { "text": "AJ" }
-                    { "text": "Abby" }
-                    { "text": "Abe" }
-                    { "text": "Ace" }
-                """.trimIndent()
-            val id = ULID.randomULID()
-            val file = FileSource(name = "$id.jsonl", source = jsonl.asSource())
-            val request = FileCreate(
-                file = file,
-                purpose = Purpose("answers")
-            )
-
-            // Create file
-            val fileCreate = openAI.file(request)
-            assertEquals(file.name, fileCreate.filename)
-
-            // Get created file
-            openAI.waitFileProcess(fileCreate.id)
+            val bytes = openAI.download(fileCreate.id)
+            val decoded = bytes.decodeToString()
+            assertEquals(jsonl, decoded)
 
             // Delete file
             openAI.delete(fileCreate.id)
@@ -82,6 +52,7 @@ class TestFiles : TestOpenAI() {
             val response = openAI.files()
             assertNotNull(response)
             assertTrue(response.isNotEmpty())
+
         }
     }
 }

@@ -71,10 +71,10 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
     override fun fineTuneEventsFlow(fineTuneId: FineTuneId): Flow<FineTuneEvent> {
         return streamEventsOf {
             requester.perform {
-                it.post {
-                    url(path = "$FineTunesPathV1/${fineTuneId.id}/events")
-                    setBody(mapOf("stream" to true))
-                    contentType(ContentType.Application.Json)
+                it.get {
+                    url(path = "$FineTunesPathV1/${fineTuneId.id}/events") {
+                        parameters.append("stream", "true")
+                    }
                 }
             }
         }

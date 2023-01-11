@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.aallam.openai:openai-client:$kotlin_client_version"
+    implementation "com.aallam.openai:openai-client:<version>"
 }
 ```
 2. Choose and add to your dependencies one of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).

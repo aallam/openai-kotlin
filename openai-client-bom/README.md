@@ -5,7 +5,7 @@ Client [BOM][1] module, can be used to control the dependency versions of direct
 ```groovy
 dependencies {
     // import Kotlin API client BOM
-    implementation platform('com.aallam.openai:openai-client-bom:1.2.0')
+    implementation platform('com.aallam.openai:openai-client-bom:<version>')
 
     // define dependencies without versions
     implementation 'com.aallam.openai:openai-client'

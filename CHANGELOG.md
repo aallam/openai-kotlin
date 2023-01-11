@@ -1,3 +1,10 @@
+# 2.1.2
+> Published 11 Jan 2023
+
+### Fixed
+
+- FineTunes: events streaming using `GET` (#76) (thanks @PatrickLaflamme)
+
 # 2.1.1
 > Published 02 Jan 2023
 

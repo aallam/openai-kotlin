@@ -1,8 +1,8 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.file.FileCreate
-import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.file.Purpose
+import com.aallam.openai.api.file.fileSource
+import com.aallam.openai.api.file.fileUpload
 import com.aallam.openai.client.internal.asSource
 import com.aallam.openai.client.internal.waitFileProcess
 import kotlinx.coroutines.test.runTest
@@ -21,14 +21,18 @@ class TestFiles : TestOpenAI() {
             """.trimIndent()
             val id = ULID.randomULID()
 
-            val file = FileSource(name = "$id.jsonl", source = jsonl.asSource())
-            val request = FileCreate(
-                file = file, purpose = Purpose("fine-tune")
-            )
+            val source = fileSource {
+                name = "$id.jsonl"
+                source = jsonl.asSource()
+            }
+            val request = fileUpload {
+                file = source
+                purpose = Purpose("fine-tune")
+            }
 
             // Create file
             val fileCreate = openAI.file(request)
-            assertEquals(file.name, fileCreate.filename)
+            assertEquals(source.name, fileCreate.filename)
 
             // Get created file
             openAI.waitFileProcess(fileCreate.id)

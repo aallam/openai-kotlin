@@ -1,9 +1,9 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.ExperimentalOpenAI
-import com.aallam.openai.api.file.FileCreate
-import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.file.Purpose
+import com.aallam.openai.api.file.fileSource
+import com.aallam.openai.api.file.fileUpload
 import com.aallam.openai.api.finetune.FineTuneEvent
 import com.aallam.openai.api.finetune.FineTuneRequest
 import com.aallam.openai.api.model.ModelId
@@ -30,11 +30,14 @@ class TestFineTunes : TestOpenAI() {
            { "prompt":"Where was the League of Nations created?", "completion":"Paris"}
         """.trimIndent()
 
-        val file = FileSource(name = "$id.jsonl", source = jsonl.asSource())
-        val request = FileCreate(
-            file = file,
+        val source = fileSource {
+            name = "$id.jsonl"
+            source = jsonl.asSource()
+        }
+        val request = fileUpload {
+            file = source
             purpose = Purpose("fine-tune")
-        )
+        }
         val trainingFile = openAI.file(request).id
         openAI.waitFileProcess(trainingFile)
 
@@ -46,7 +49,7 @@ class TestFineTunes : TestOpenAI() {
             )
         )
         val fineTuneModel = fineTune.fineTunedModel
-        assertEquals(fineTune.trainingFiles.first().filename, file.name)
+        assertEquals(fineTune.trainingFiles.first().filename, source.name)
 
         // At least one fine-tune exists
         val fineTunes = openAI.fineTunes()

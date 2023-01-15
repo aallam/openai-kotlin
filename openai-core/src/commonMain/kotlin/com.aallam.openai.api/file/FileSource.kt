@@ -23,7 +23,7 @@ public class FileSource(
 public fun fileSource(block: FileSourceDSL.() -> Unit): FileSource = FileSourceDSL().apply(block).build()
 
 /**
- * DSL
+ * DSL to build a [FileSource] instance.
  */
 public class FileSourceDSL {
 

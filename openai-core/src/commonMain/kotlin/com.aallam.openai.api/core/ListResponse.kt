@@ -1,4 +1,4 @@
-package com.aallam.openai.api.core;
+package com.aallam.openai.api.core
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

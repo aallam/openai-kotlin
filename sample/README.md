@@ -5,7 +5,7 @@ JVM, JS and Native sample apps.
 ### Running the apps
 
 | Target | command                                               |
-| ------ | ----------------------------------------------------- |
+|--------|-------------------------------------------------------|
 | jvm    | `./gradlew :sample:jvm:run`                           |
 | js     | `./gradlew :sample:js:run`                            |
 | native | `./gradlew :sample:native:runReleaseExecutableNative` |

@@ -6,7 +6,6 @@ import com.aallam.openai.client.internal.OpenAIApi
 import com.aallam.openai.client.internal.createHttpClient
 import com.aallam.openai.client.internal.env
 import com.aallam.openai.client.internal.http.HttpTransport
-import okio.fakefilesystem.FakeFileSystem
 import kotlin.time.Duration.Companion.minutes
 
 internal val token: String
@@ -23,7 +22,5 @@ internal val transport = HttpTransport(
 )
 
 abstract class TestOpenAI {
-
-    internal val fileSystem = FakeFileSystem()
-    internal val openAI = OpenAIApi(transport, fileSystem)
+    internal val openAI = OpenAIApi(transport)
 }

@@ -1,20 +1,16 @@
 package com.aallam.openai.client.internal.extension
 
-import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.completion.CompletionRequest
-import com.aallam.openai.api.file.FilePath
+import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.client.internal.JsonLenient
-import io.ktor.client.request.forms.FormBuilder
-import io.ktor.client.request.forms.append
+import io.ktor.client.request.forms.*
 import io.ktor.http.ContentType
-import io.ktor.http.Headers
-import io.ktor.http.HttpHeaders
+import io.ktor.utils.io.core.writeFully
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonObject
-import okio.FileSystem
-import okio.Path.Companion.toPath
+import okio.*
 
 /**
  * Adds `stream` parameter to the request.
@@ -28,32 +24,16 @@ internal fun CompletionRequest.toStreamRequest(): JsonElement {
     return JsonObject(map)
 }
 
-/**
- * Appends file content to the given FormBuilder.
- */
 
-
-@OptIn(ExperimentalOpenAI::class)
-internal fun FormBuilder.appendTextFile(fileSystem: FileSystem, key: String, filePath: FilePath) {
-    val path = filePath.path.toPath()
-    append(key, path.name, ContentType.Application.OctetStream) {
-        fileSystem.read(path) {
-            while (true) {
-                val line = readUtf8Line() ?: break
-                appendLine(line)
+internal fun FormBuilder.appendFileSource(key: String, fileSource: FileSource) {
+    append(key, fileSource.name, ContentType.Application.OctetStream) {
+        fileSource.source.buffer().use { source ->
+            val buffer = ByteArray(8192) // 8 KiB
+            var bytesRead: Int
+            while (source.read(buffer).also { bytesRead = it } != -1) {
+                writeFully(src = buffer, offset = 0, length = bytesRead)
             }
-        }
-    }
-}
 
-@ExperimentalOpenAI
-internal fun FormBuilder.appendBinaryFile(fileSystem: FileSystem, key: String, filePath: FilePath) {
-    val path = filePath.path.toPath()
-    fileSystem.read(path) {
-        val bytes = readByteArray()
-        append(key, bytes, Headers.build {
-            append(HttpHeaders.ContentType, ContentType.Application.OctetStream.toString())
-            append(HttpHeaders.ContentDisposition, "filename=\"${path.name}\"")
-        })
+        }
     }
 }

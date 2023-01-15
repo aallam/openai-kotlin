@@ -1,17 +1,17 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.ExperimentalOpenAI
-import com.aallam.openai.api.file.FileRequest
+import com.aallam.openai.api.file.FileCreate
+import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.finetune.FineTuneEvent
 import com.aallam.openai.api.finetune.FineTuneRequest
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.internal.asSource
 import com.aallam.openai.client.internal.waitFileProcess
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.test.runTest
-import okio.Path
-import okio.Path.Companion.toPath
 import ulid.ULID
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -25,15 +25,14 @@ class TestFineTunes : TestOpenAI() {
     fun fineTunes() = runTest {
 
         val id = ULID.randomULID()
-        val filePath: Path = "$id.jsonl".toPath()
-        val filename = filePath.name
         val jsonl = """
            { "prompt":"Did the U.S. join the League of Nations?", "completion":"No"}
            { "prompt":"Where was the League of Nations created?", "completion":"Paris"}
         """.trimIndent()
-        fileSystem.write(filePath) { writeUtf8(jsonl) }
-        val request = FileRequest(
-            file = filePath.toString(),
+
+        val file = FileSource(name = "$id.jsonl", source = jsonl.asSource())
+        val request = FileCreate(
+            file = file,
             purpose = Purpose("fine-tune")
         )
         val trainingFile = openAI.file(request).id
@@ -47,7 +46,7 @@ class TestFineTunes : TestOpenAI() {
             )
         )
         val fineTuneModel = fineTune.fineTunedModel
-        assertEquals(fineTune.trainingFiles.first().filename, filename)
+        assertEquals(fineTune.trainingFiles.first().filename, file.name)
 
         // At least one fine-tune exists
         val fineTunes = openAI.fineTunes()

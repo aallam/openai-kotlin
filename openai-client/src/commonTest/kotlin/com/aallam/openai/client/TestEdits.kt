@@ -1,6 +1,6 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.edits.EditsRequest
+import com.aallam.openai.api.edits.editsRequest
 import com.aallam.openai.api.model.ModelId
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
@@ -11,11 +11,11 @@ class TestEdits : TestOpenAI() {
     @Test
     fun edits() = runTest {
         val response = openAI.edit(
-            request = EditsRequest(
-                model = ModelId("text-davinci-edit-001"),
-                input = "What day of the wek is it?",
+            request = editsRequest {
+                model = ModelId("text-davinci-edit-001")
+                input = "What day of the wek is it?"
                 instruction = "Fix the spelling mistakes"
-            )
+            }
         )
         assertTrue { response.created != 0L }
         assertTrue { response.choices.isNotEmpty() }

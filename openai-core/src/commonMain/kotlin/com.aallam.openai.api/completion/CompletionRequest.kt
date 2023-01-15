@@ -16,8 +16,7 @@ public class CompletionRequest(
     /**
      * ID of the model to use.
      */
-    @SerialName("model")
-    public val model: ModelId,
+    @SerialName("model") public val model: ModelId,
 
     /**
      * The prompt(s) to generate completions for, encoded as a string, a list of strings, or a list of token lists.
@@ -27,8 +26,7 @@ public class CompletionRequest(
      *
      * Defaults to `<|endoftext|>`.
      */
-    @SerialName("prompt")
-    public val prompt: String? = null,
+    @SerialName("prompt") public val prompt: String? = null,
 
     /**
      * The maximum number of tokens to generate.
@@ -37,8 +35,7 @@ public class CompletionRequest(
      *
      * Defaults to 16.
      */
-    @SerialName("max_tokens")
-    public val maxTokens: Int? = null,
+    @SerialName("max_tokens") public val maxTokens: Int? = null,
 
     /**
      * What sampling temperature to use. Higher values means the model will take more risks.
@@ -48,8 +45,7 @@ public class CompletionRequest(
      *
      * Defaults to 1.
      */
-    @SerialName("temperature")
-    public val temperature: Double? = null,
+    @SerialName("temperature") public val temperature: Double? = null,
 
     /**
      * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of
@@ -60,8 +56,7 @@ public class CompletionRequest(
      *
      * Defaults to 1.
      */
-    @SerialName("top_p")
-    public val topP: Double? = null,
+    @SerialName("top_p") public val topP: Double? = null,
 
     /**
      * How many completions to generate for each prompt.
@@ -71,8 +66,7 @@ public class CompletionRequest(
      *
      * Defaults to 1.
      */
-    @SerialName("n")
-    public val n: Int? = null,
+    @SerialName("n") public val n: Int? = null,
 
     /**
      * Include the log probabilities on the [logprobs] most likely tokens, as well the chosen tokens.
@@ -82,16 +76,14 @@ public class CompletionRequest(
      *
      * Defaults to `null`.
      */
-    @SerialName("logprobs")
-    public val logprobs: Int? = null,
+    @SerialName("logprobs") public val logprobs: Int? = null,
 
     /**
      * Echo back the prompt in addition to the completion.
      *
      * Defaults to `false`.
      */
-    @SerialName("echo")
-    public val echo: Boolean? = null,
+    @SerialName("echo") public val echo: Boolean? = null,
 
     /**
      * Up to 4 sequences where the API will stop generating further tokens.
@@ -99,8 +91,7 @@ public class CompletionRequest(
      *
      * Defaults to `null`.
      */
-    @SerialName("stop")
-    public val stop: List<String>? = null,
+    @SerialName("stop") public val stop: List<String>? = null,
 
     /**
      * Number between 0 and 1 (default 0) that penalizes new tokens based on whether they appear in the text so far.
@@ -108,8 +99,7 @@ public class CompletionRequest(
      *
      * Defaults to 0.
      */
-    @SerialName("presence_penalty")
-    public val presencePenalty: Double? = null,
+    @SerialName("presence_penalty") public val presencePenalty: Double? = null,
 
     /**
      * Number between 0 and 1 (default 0) that penalizes new tokens based on their existing frequency in the text so far.
@@ -117,8 +107,7 @@ public class CompletionRequest(
      *
      * Defaults to 0.
      */
-    @SerialName("frequency_penalty")
-    public val frequencyPenalty: Double? = null,
+    @SerialName("frequency_penalty") public val frequencyPenalty: Double? = null,
 
     /**
      * Generates [bestOf] completions server-side and returns the "best"
@@ -132,8 +121,7 @@ public class CompletionRequest(
      *
      * Defaults to 1
      */
-    @SerialName("best_of")
-    public val bestOf: Int? = null,
+    @SerialName("best_of") public val bestOf: Int? = null,
 
     /**
      * Modify the likelihood of specified tokens appearing in the completion.
@@ -148,12 +136,55 @@ public class CompletionRequest(
      *
      * Defaults to `null`.
      */
-    @SerialName("logit_bias")
-    public val logitBias: Map<String, Int>? = null,
+    @SerialName("logit_bias") public val logitBias: Map<String, Int>? = null,
 
     /**
      * A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse.
      */
-    @SerialName("user")
-    public val user: String? = null,
+    @SerialName("user") public val user: String? = null,
 )
+
+/**
+ * A request for OpenAI to generate a predicted completion for a prompt.
+ * All fields are Optional.
+ *
+ * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
+ */
+public fun completionRequest(block: CompletionRequestDSL.() -> Unit): CompletionRequest =
+    CompletionRequestDSL().apply(block).build()
+
+/**
+ * DSL to build a [CompletionRequest] instance.
+ */
+public class CompletionRequestDSL {
+    public var model: ModelId? = null
+    public var prompt: String? = null
+    public var maxTokens: Int? = null
+    public var temperature: Double? = null
+    public var topP: Double? = null
+    public var n: Int? = null
+    public var logprobs: Int? = null
+    public var echo: Boolean? = null
+    public var stop: List<String>? = null
+    public var presencePenalty: Double? = null
+    public var frequencyPenalty: Double? = null
+    public var bestOf: Int? = null
+    public var logitBias: Map<String, Int>? = null
+    public var user: String? = null
+    public fun build(): CompletionRequest = CompletionRequest(
+        model = requireNotNull(model) { "Model ID is required" },
+        prompt = prompt,
+        maxTokens = maxTokens,
+        temperature = temperature,
+        topP = topP,
+        n = n,
+        logprobs = logprobs,
+        echo = echo,
+        stop = stop,
+        presencePenalty = presencePenalty,
+        frequencyPenalty = frequencyPenalty,
+        bestOf = bestOf,
+        logitBias = logitBias,
+        user = user
+    )
+}

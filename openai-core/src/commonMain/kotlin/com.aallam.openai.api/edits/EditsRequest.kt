@@ -59,7 +59,7 @@ public class EditsRequest(
 public fun editsRequest(block: EditsRequestDSL.() -> Unit): EditsRequest = EditsRequestDSL().apply(block).build()
 
 /**
- * DSL to build a [EditsRequestDSL] instance.
+ * DSL to build a [EditsRequest] instance.
  */
 public class EditsRequestDSL {
 

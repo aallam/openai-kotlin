@@ -1,10 +1,7 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.file.FileSource
-import com.aallam.openai.api.image.ImageEdit
-import com.aallam.openai.api.image.ImageSize
-import com.aallam.openai.api.image.ImageVariation
-import com.aallam.openai.api.image.imageCreation
+import com.aallam.openai.api.image.*
 import com.aallam.openai.client.internal.asSource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -42,30 +39,30 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageEditURL() = runTest {
-        val image: ByteArray = httpClient.get("https://i.imgur.com/mXFcDNB.png").body()
-        val mask: ByteArray = httpClient.get("https://i.imgur.com/D4MURbj.png").body()
-        val request = ImageEdit(
-            image = FileSource(name = "mXFcDNB.png", source = image.asSource()),
-            mask = FileSource(name = "D4MURbj.png", source = mask.asSource()),
-            prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
-            n = 1,
+        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/mXFcDNB.png").body()
+        val maskBytes: ByteArray = httpClient.get("https://i.imgur.com/D4MURbj.png").body()
+        val request = imageEdit {
+            image = FileSource(name = "mXFcDNB.png", source = imageBytes.asSource())
+            mask = FileSource(name = "D4MURbj.png", source = maskBytes.asSource())
+            prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
+            n = 1
             size = ImageSize.is1024x1024
-        )
+        }
         val response = openAI.imageURL(request)
         assertTrue { response.isNotEmpty() }
     }
 
     @Test
     fun imageEditJSON() = runTest {
-        val image: ByteArray = httpClient.get("https://i.imgur.com/mXFcDNB.png").body()
-        val mask: ByteArray = httpClient.get("https://i.imgur.com/D4MURbj.png").body()
-        val request = ImageEdit(
-            image = FileSource("mXFcDNB.png", image.asSource()),
-            mask = FileSource("D4MURbj.png", mask.asSource()),
-            prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
-            n = 1,
+        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/mXFcDNB.png").body()
+        val maskBytes: ByteArray = httpClient.get("https://i.imgur.com/D4MURbj.png").body()
+        val request = imageEdit {
+            image = FileSource(name = "mXFcDNB.png", source = imageBytes.asSource())
+            mask = FileSource(name = "D4MURbj.png", source = maskBytes.asSource())
+            prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
+            n = 1
             size = ImageSize.is1024x1024
-        )
+        }
         val response = openAI.imageJSON(request)
         assertTrue { response.isNotEmpty() }
     }

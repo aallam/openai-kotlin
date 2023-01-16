@@ -1,7 +1,10 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.file.FileSource
-import com.aallam.openai.api.image.*
+import com.aallam.openai.api.image.ImageSize
+import com.aallam.openai.api.image.imageCreation
+import com.aallam.openai.api.image.imageEdit
+import com.aallam.openai.api.image.imageVariation
 import com.aallam.openai.client.internal.asSource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -69,24 +72,24 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageVariationURL() = runTest {
-        val image: ByteArray = httpClient.get("https://i.imgur.com/iN0VFnF.png").body()
-        val request = ImageVariation(
-            image = FileSource("iN0VFnF.png", image.asSource()),
-            n = 1,
-            size = ImageSize.is1024x1024,
-        )
+        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/iN0VFnF.png").body()
+        val request = imageVariation {
+            image = FileSource("iN0VFnF.png", imageBytes.asSource())
+            n = 1
+            size = ImageSize.is1024x1024
+        }
         val response = openAI.imageURL(request)
         assertTrue { response.isNotEmpty() }
     }
 
     @Test
     fun imageVariationJSON() = runTest {
-        val image: ByteArray = httpClient.get("https://i.imgur.com/iN0VFnF.png").body()
-        val request = ImageVariation(
-            image = FileSource("iN0VFnF.png", image.asSource()),
-            n = 1,
-            size = ImageSize.is1024x1024,
-        )
+        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/iN0VFnF.png").body()
+        val request = imageVariation {
+            image = FileSource("iN0VFnF.png", imageBytes.asSource())
+            n = 1
+            size = ImageSize.is1024x1024
+        }
         val response = openAI.imageJSON(request)
         assertTrue { response.isNotEmpty() }
     }

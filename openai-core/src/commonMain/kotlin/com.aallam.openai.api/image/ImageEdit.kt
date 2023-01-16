@@ -5,7 +5,7 @@ import com.aallam.openai.api.file.FileSource
 /**
  * Image edit request.
  */
-public data class ImageEdit(
+public class ImageEdit(
     /**
      * The image to edit. Must be a valid PNG file, less than 4MB, and square.
      * If mask is not provided, image must have transparency, which will be used as the mask.
@@ -45,7 +45,7 @@ public data class ImageEdit(
 public fun imageEdit(block: ImageEditDSL.() -> Unit): ImageEdit = ImageEditDSL().apply(block).build()
 
 /**
- * Image edit request.
+ * DSL to build a [ImageEdit] instance.
  */
 public class ImageEditDSL {
     /**

@@ -20,12 +20,12 @@ public class FileSource(
 /**
  * Represents a file resource.
  */
-public fun fileSource(block: FileSourceDSL.() -> Unit): FileSource = FileSourceDSL().apply(block).build()
+public fun fileSource(block: FileSourceBuilder.() -> Unit): FileSource = FileSourceBuilder().apply(block).build()
 
 /**
- * DSL to build a [FileSource] instance.
+ * Builder of [FileSource] instances.
  */
-public class FileSourceDSL {
+public class FileSourceBuilder {
 
     /**
      * File name.

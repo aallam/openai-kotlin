@@ -132,13 +132,13 @@ public data class FineTuneRequest(
 /**
  * Create a Fine-Tune request.
  */
-public fun fineTuneRequest(block: FineTuneRequestDSL.() -> Unit): FineTuneRequest =
-    FineTuneRequestDSL().apply(block).build()
+public fun fineTuneRequest(block: FineTuneRequestBuilder.() -> Unit): FineTuneRequest =
+    FineTuneRequestBuilder().apply(block).build()
 
 /**
- * DSL to build a [FineTuneRequest] instance.
+ * Builder of [FineTuneRequest] instances.
  */
-public class FineTuneRequestDSL {
+public class FineTuneRequestBuilder {
     /**
      * The ID of an uploaded file that contains training data.
      *

@@ -42,12 +42,12 @@ public class ImageEdit(
 /**
  * Image edit request.
  */
-public fun imageEdit(block: ImageEditDSL.() -> Unit): ImageEdit = ImageEditDSL().apply(block).build()
+public fun imageEdit(block: ImageEditBuilder.() -> Unit): ImageEdit = ImageEditBuilder().apply(block).build()
 
 /**
- * DSL to build a [ImageEdit] instance.
+ * Builder of [ImageEdit] instances.
  */
-public class ImageEditDSL {
+public class ImageEditBuilder {
     /**
      * The image to edit. Must be a valid PNG file, less than 4MB, and square.
      * If mask is not provided, image must have transparency, which will be used as the mask.

@@ -150,13 +150,13 @@ public class CompletionRequest(
  *
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
-public fun completionRequest(block: CompletionRequestDSL.() -> Unit): CompletionRequest =
-    CompletionRequestDSL().apply(block).build()
+public fun completionRequest(block: CompletionRequestBuilder.() -> Unit): CompletionRequest =
+    CompletionRequestBuilder().apply(block).build()
 
 /**
- * DSL to build a [CompletionRequest] instance.
+ * Builder of [CompletionRequest] instances.
  */
-public class CompletionRequestDSL {
+public class CompletionRequestBuilder {
 
     /**
      * ID of the model to use.

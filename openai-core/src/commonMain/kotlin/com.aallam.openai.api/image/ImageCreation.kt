@@ -26,12 +26,12 @@ public class ImageCreation(
 /**
  * Image generation request.
  */
-public fun imageCreation(block: ImageCreationDSL.() -> Unit): ImageCreation = ImageCreationDSL().apply(block).build()
+public fun imageCreation(block: ImageCreationBuilder.() -> Unit): ImageCreation = ImageCreationBuilder().apply(block).build()
 
 /**
- * DSL to build a [ImageCreation] instance.
+ * Builder of [ImageCreation] instances.
  */
-public class ImageCreationDSL {
+public class ImageCreationBuilder {
 
     /**
      * A text description of the desired image(s). The maximum length is 1000 characters.

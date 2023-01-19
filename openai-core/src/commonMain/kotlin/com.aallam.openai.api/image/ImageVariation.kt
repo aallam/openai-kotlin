@@ -30,13 +30,13 @@ public class ImageVariation(
 /**
  * Image variant request.
  */
-public fun imageVariation(block: ImageVariationDSL.() -> Unit): ImageVariation =
-    ImageVariationDSL().apply(block).build()
+public fun imageVariation(block: ImageVariationBuilder.() -> Unit): ImageVariation =
+    ImageVariationBuilder().apply(block).build()
 
 /**
- * DSL to build a [ImageVariation] instance.
+ * Builder of [ImageVariation] instances.
  */
-public class ImageVariationDSL {
+public class ImageVariationBuilder {
     /**
      * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
      */

@@ -29,12 +29,12 @@ public class FileUpload(
  *
  * [documentation](https://beta.openai.com/docs/api-reference/files/upload)
  */
-public fun fileUpload(block: FileUploadDSL.() -> Unit): FileUpload = FileUploadDSL().apply(block).build()
+public fun fileUpload(block: FileUploadBuilder.() -> Unit): FileUpload = FileUploadBuilder().apply(block).build()
 
 /**
- * DSL to build a [FileUpload] instance.
+ * Builders of [FileUpload] instances.
  */
-public class FileUploadDSL {
+public class FileUploadBuilder {
 
     /**
      * The [JSON Lines](https://jsonlines.readthedocs.io/en/latest/) file to be uploaded.

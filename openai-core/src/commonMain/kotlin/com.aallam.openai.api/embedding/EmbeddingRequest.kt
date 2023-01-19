@@ -36,13 +36,13 @@ public class EmbeddingRequest(
  *
  * [documentation](https://beta.openai.com/docs/api-reference/embeddings)
  */
-public fun embeddingRequest(block: EmbeddingRequestDSL.() -> Unit): EmbeddingRequest =
-    EmbeddingRequestDSL().apply(block).build()
+public fun embeddingRequest(block: EmbeddingRequestBuilder.() -> Unit): EmbeddingRequest =
+    EmbeddingRequestBuilder().apply(block).build()
 
 /**
- * DSL to build a [EmbeddingRequest] instance.
+ * Builder of [EmbeddingRequest] instances.
  */
-public class EmbeddingRequestDSL {
+public class EmbeddingRequestBuilder {
 
     /**
      * ID of the model to use.

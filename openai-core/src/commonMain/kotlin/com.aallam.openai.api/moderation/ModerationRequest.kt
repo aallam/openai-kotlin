@@ -23,13 +23,13 @@ public class ModerationRequest(
 /**
  * Request to classify if text violates OpenAI's Content Policy.
  */
-public fun moderationRequest(block: ModerationRequestDSL.() -> Unit): ModerationRequest =
-    ModerationRequestDSL().apply(block).build()
+public fun moderationRequest(block: ModerationRequestBuilder.() -> Unit): ModerationRequest =
+    ModerationRequestBuilder().apply(block).build()
 
 /**
  * Data class representing a ModerationRequest
  */
-public class ModerationRequestDSL {
+public class ModerationRequestBuilder {
     /**
      * The input text to classify.
      */

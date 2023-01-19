@@ -56,12 +56,12 @@ public class EditsRequest(
  *
  * [documentation](https://beta.openai.com/docs/api-reference/edits/create)
  */
-public fun editsRequest(block: EditsRequestDSL.() -> Unit): EditsRequest = EditsRequestDSL().apply(block).build()
+public fun editsRequest(block: EditsRequestBuilder.() -> Unit): EditsRequest = EditsRequestBuilder().apply(block).build()
 
 /**
- * DSL to build a [EditsRequest] instance.
+ * Builder of [EditsRequest] instances.
  */
-public class EditsRequestDSL {
+public class EditsRequestBuilder {
 
     /**
      * ID of the model to use.

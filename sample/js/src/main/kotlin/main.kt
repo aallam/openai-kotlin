@@ -44,7 +44,7 @@ suspend fun main() {
     println("\n> Create moderations...")
     val moderation = openAI.moderations(
         request = ModerationRequest(
-            input = "I want to kill them."
+            input = listOf("I want to kill them.")
         )
     )
     println(moderation)

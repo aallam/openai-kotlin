@@ -18,10 +18,34 @@ public class ModerationRequest(
      * Defaults to [ModerationModel.Latest].
      */
     @SerialName("model") public val model: ModerationModel? = null,
-) {
+)
+
+/**
+ * Request to classify if text violates OpenAI's Content Policy.
+ */
+public fun moderationRequest(block: ModerationRequestBuilder.() -> Unit): ModerationRequest =
+    ModerationRequestBuilder().apply(block).build()
+
+/**
+ * Data class representing a ModerationRequest
+ */
+public class ModerationRequestBuilder {
+    /**
+     * The input text to classify.
+     */
+    public var input: List<String>? = null
 
     /**
-     * Convenience constructor with [input] as [String].
+     * Moderation model.
+     * Defaults to [ModerationModel.Latest].
      */
-    public constructor(input: String, model: ModerationModel? = null) : this(listOf(input), model)
+    public var model: ModerationModel? = null
+
+    /**
+     * Creates the [ModerationRequest] instance
+     */
+    public fun build(): ModerationRequest = ModerationRequest(
+        input = requireNotNull(input) { "input must not be null" },
+        model = model,
+    )
 }

@@ -35,5 +35,5 @@ public data class TextCompletion(
     /**
      * Text completion usage data.
      */
-    @SerialName("usage") public val usage: Usage,
+    @SerialName("usage") public val usage: Usage? = null,
 )

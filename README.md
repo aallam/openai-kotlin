@@ -168,7 +168,7 @@ val images = openAI.imageURL( // or openAI.imageJSON
   <summary><strong>Create embeddings</strong></summary>
 
 ````kotlin
-val embeddings: List<Embedding> = openAI.embeddings(
+val embeddings = openAI.embeddings(
     request = EmbeddingRequest(
         model = ModelId("text-similarity-babbage-001"),
         input = listOf("The food was delicious and the waiter...")
@@ -184,7 +184,7 @@ val embeddings: List<Embedding> = openAI.embeddings(
   <summary><strong>List files</strong></summary>
 
 ````kotlin
-val files: List<File> = openAI.files()
+val files = openAI.files()
 ````
 
 </details>

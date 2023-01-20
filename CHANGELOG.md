@@ -1,3 +1,15 @@
+# 3.0.0-alpha01
+> Published 20 Jan 2023
+
+### Added
+* DSL builder functions to create requests
+* `Completions` and `Edit`: add `usage` to the responses
+* `Files`: add `download` and `delete` functions
+
+### Changed
+* `FileSource` and [okio](https://square.github.io/okio/) for I/O operations (e.g. files, images).
+* `Embeddings`: response changed to `EmbeddingResponse` to include `usage`.
+
 # 2.1.2
 > Published 11 Jan 2023
 

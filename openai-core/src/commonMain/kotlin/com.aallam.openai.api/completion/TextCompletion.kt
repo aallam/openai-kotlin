@@ -1,5 +1,6 @@
 package com.aallam.openai.api.completion
 
+import com.aallam.openai.api.core.Usage
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -30,4 +31,9 @@ public data class TextCompletion(
      * A list of generated completions
      */
     @SerialName("choices") public val choices: List<Choice>,
+
+    /**
+     * Text completion usage data.
+     */
+    @SerialName("usage") public val usage: Usage? = null,
 )

@@ -17,8 +17,8 @@ class TestEmbeddings : TestOpenAI() {
                 input = listOf("The food was delicious and the waiter...")
             }
         )
-        assertTrue { response.isNotEmpty() }
-        val embedding = response.first()
+        assertTrue { response.embeddings.isNotEmpty() }
+        val embedding = response.embeddings.first()
         assertTrue { embedding.embedding.isNotEmpty() }
         assertEquals(embedding.index, 0)
     }

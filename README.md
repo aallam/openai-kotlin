@@ -33,6 +33,9 @@ Create an instance of `OpenAI` client:
 ```kotlin
 val openAI = OpenAI(apiKey)
 ```
+
+> ℹ️ OpenAI encourages using environment variables for the API key. [Read more](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
+
 Use your `OpenAI` instance to make API requests:
 
 <details>

@@ -22,12 +22,17 @@ fun KotlinMultiplatformExtension.native() {
         listOf(
             iosX64(),
             iosArm64(),
+            iosSimulatorArm64(),
             macosX64(),
             macosArm64(),
             tvosX64(),
             tvosArm64(),
+            tvosSimulatorArm64(),
+            watchosArm32(),
             watchosArm64(),
+            watchosX86(),
             watchosX64(),
+            watchosSimulatorArm64(),
         ).forEach { target ->
             getByName("${target.name}Main").dependsOn(darwinMain)
             getByName("${target.name}Test").dependsOn(darwinTest)

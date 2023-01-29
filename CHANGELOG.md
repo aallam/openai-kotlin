@@ -1,3 +1,9 @@
+# 2.1.3
+> Published 29 Jan 2023
+
+### Fixed
+- Add darwin simulators and x86 targets (#85) 
+
 # 2.1.2
 > Published 11 Jan 2023
 

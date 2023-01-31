@@ -5,6 +5,7 @@ plugins {
 dependencies {
     //implementation("com.aallam.openai:openai-client:<version>")
     implementation(projects.openaiClient)
+    implementation(libs.okio.nodefilesystem)
 }
 
 kotlin {

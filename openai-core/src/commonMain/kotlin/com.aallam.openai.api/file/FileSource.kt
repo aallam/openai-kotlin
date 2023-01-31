@@ -1,5 +1,7 @@
 package com.aallam.openai.api.file
 
+import okio.FileSystem
+import okio.Path
 import okio.Source
 
 /**
@@ -15,7 +17,16 @@ public class FileSource(
      * File source.
      */
     public val source: Source,
-)
+) {
+
+    /**
+     * Create [FileSource] instance.
+     *
+     * @param path file path to upload
+     * @param fileSystem file system to be used
+     */
+    public constructor(path: Path, fileSystem: FileSystem) : this(path.name, fileSystem.source(path))
+}
 
 /**
  * Represents a file resource.

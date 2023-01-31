@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
-import okio.source
-import java.io.InputStream
+import okio.FileSystem
+import okio.Path.Companion.toPath
 
 fun main() = runBlocking {
     val apiKey = System.getenv("OPENAI_API_KEY")
@@ -64,12 +64,9 @@ fun main() = runBlocking {
     )
     println(images)
 
-    val imageResource = resourceAsStream("image.png")
-    val maskResource = resourceAsStream("mask.png")
-
     val imageEdit = ImageEdit(
-        image = FileSource(name = "mXFcDNB.png", source = imageResource.source()),
-        mask = FileSource(name = "D4MURbj.png", source = maskResource.source()),
+        image = FileSource(path = "image.png".toPath(), fileSystem = FileSystem.RESOURCES),
+        mask = FileSource(path = "image.png".toPath(), fileSystem = FileSystem.RESOURCES),
         prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
         n = 1,
         size = ImageSize.is1024x1024,
@@ -77,7 +74,3 @@ fun main() = runBlocking {
     val imageEdits = openAI.imageURL(imageEdit)
     println(imageEdits)
 }
-
-/** Get a resource file by name as [InputStream] */
-private fun Any.resourceAsStream(resource: String): InputStream =
-    javaClass.classLoader.getResourceAsStream(resource) ?: error("$resource not found.")

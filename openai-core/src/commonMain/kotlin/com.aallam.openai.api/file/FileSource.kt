@@ -20,6 +20,8 @@ public class FileSource(
 ) {
 
     /**
+     * Create [FileSource] instance.
+     *
      * @param path file path to upload
      * @param fileSystem file system to be used
      */

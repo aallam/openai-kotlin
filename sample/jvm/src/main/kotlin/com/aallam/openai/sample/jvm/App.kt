@@ -64,6 +64,7 @@ fun main() = runBlocking {
     )
     println(images)
 
+    println("\n> Edit images...")
     val imageEdit = ImageEdit(
         image = FileSource(path = "image.png".toPath(), fileSystem = FileSystem.RESOURCES),
         mask = FileSource(path = "image.png".toPath(), fileSystem = FileSystem.RESOURCES),

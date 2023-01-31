@@ -1,7 +1,9 @@
 package com.aallam.openai.sample.jvm
 
 import com.aallam.openai.api.completion.CompletionRequest
+import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
+import com.aallam.openai.api.image.ImageEdit
 import com.aallam.openai.api.image.ImageSize
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
@@ -10,6 +12,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
+import okio.source
+import java.io.InputStream
 
 fun main() = runBlocking {
     val apiKey = System.getenv("OPENAI_API_KEY")
@@ -59,4 +63,21 @@ fun main() = runBlocking {
         )
     )
     println(images)
+
+    val imageResource = resourceAsStream("image.png")
+    val maskResource = resourceAsStream("mask.png")
+
+    val imageEdit = ImageEdit(
+        image = FileSource(name = "mXFcDNB.png", source = imageResource.source()),
+        mask = FileSource(name = "D4MURbj.png", source = maskResource.source()),
+        prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
+        n = 1,
+        size = ImageSize.is1024x1024,
+    )
+    val imageEdits = openAI.imageURL(imageEdit)
+    println(imageEdits)
 }
+
+/** Get a resource file by name as [InputStream] */
+private fun Any.resourceAsStream(resource: String): InputStream =
+    javaClass.classLoader.getResourceAsStream(resource) ?: error("$resource not found.")

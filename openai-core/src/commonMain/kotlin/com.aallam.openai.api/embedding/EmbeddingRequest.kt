@@ -1,5 +1,6 @@
 package com.aallam.openai.api.embedding
 
+import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -42,6 +43,7 @@ public fun embeddingRequest(block: EmbeddingRequestBuilder.() -> Unit): Embeddin
 /**
  * Builder of [EmbeddingRequest] instances.
  */
+@OpenAIDsl
 public class EmbeddingRequestBuilder {
 
     /**

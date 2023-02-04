@@ -1,5 +1,6 @@
 package com.aallam.openai.api.file
 
+import com.aallam.openai.api.OpenAIDsl
 import okio.FileSystem
 import okio.Path
 import okio.Source
@@ -36,6 +37,7 @@ public fun fileSource(block: FileSourceBuilder.() -> Unit): FileSource = FileSou
 /**
  * Builder of [FileSource] instances.
  */
+@OpenAIDsl
 public class FileSourceBuilder {
 
     /**

@@ -1,5 +1,6 @@
 package com.aallam.openai.api.finetune
 
+import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
@@ -138,6 +139,7 @@ public fun fineTuneRequest(block: FineTuneRequestBuilder.() -> Unit): FineTuneRe
 /**
  * Builder of [FineTuneRequest] instances.
  */
+@OpenAIDsl
 public class FineTuneRequestBuilder {
     /**
      * The ID of an uploaded file that contains training data.
@@ -260,7 +262,7 @@ public class FineTuneRequestBuilder {
      * Create a new instance of [FineTuneRequest].
      */
     public fun build(): FineTuneRequest = FineTuneRequest(
-        trainingFile = requireNotNull(trainingFile) { "trainingFile must not be null" },
+        trainingFile = requireNotNull(trainingFile) { "trainingFile is required" },
         validationFile = validationFile,
         model = model,
         nEpochs = nEpochs,

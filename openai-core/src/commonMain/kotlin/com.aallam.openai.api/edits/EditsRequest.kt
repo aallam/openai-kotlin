@@ -1,5 +1,6 @@
 package com.aallam.openai.api.edits
 
+import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -56,11 +57,13 @@ public class EditsRequest(
  *
  * [documentation](https://beta.openai.com/docs/api-reference/edits/create)
  */
-public fun editsRequest(block: EditsRequestBuilder.() -> Unit): EditsRequest = EditsRequestBuilder().apply(block).build()
+public fun editsRequest(block: EditsRequestBuilder.() -> Unit): EditsRequest =
+    EditsRequestBuilder().apply(block).build()
 
 /**
  * Builder of [EditsRequest] instances.
  */
+@OpenAIDsl
 public class EditsRequestBuilder {
 
     /**
@@ -105,8 +108,8 @@ public class EditsRequestBuilder {
      * Create [EditsRequest] instance.
      */
     public fun build(): EditsRequest = EditsRequest(
-        model = requireNotNull(model) { "model must not be null" },
-        instruction = requireNotNull(instruction) { "instruction must not be null" },
+        model = requireNotNull(model) { "model is required" },
+        instruction = requireNotNull(instruction) { "instruction is required" },
         input = input,
         temperature = temperature,
         topP = topP

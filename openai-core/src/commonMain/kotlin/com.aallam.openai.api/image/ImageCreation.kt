@@ -1,5 +1,7 @@
 package com.aallam.openai.api.image
 
+import com.aallam.openai.api.OpenAIDsl
+
 /**
  * Image generation request.
  */
@@ -31,6 +33,7 @@ public fun imageCreation(block: ImageCreationBuilder.() -> Unit): ImageCreation 
 /**
  * Builder of [ImageCreation] instances.
  */
+@OpenAIDsl
 public class ImageCreationBuilder {
 
     /**

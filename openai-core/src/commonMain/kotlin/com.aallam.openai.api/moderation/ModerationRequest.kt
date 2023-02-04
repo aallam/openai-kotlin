@@ -1,5 +1,6 @@
 package com.aallam.openai.api.moderation
 
+import com.aallam.openai.api.OpenAIDsl
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -29,6 +30,7 @@ public fun moderationRequest(block: ModerationRequestBuilder.() -> Unit): Modera
 /**
  * Data class representing a ModerationRequest
  */
+@OpenAIDsl
 public class ModerationRequestBuilder {
     /**
      * The input text to classify.
@@ -45,7 +47,7 @@ public class ModerationRequestBuilder {
      * Creates the [ModerationRequest] instance
      */
     public fun build(): ModerationRequest = ModerationRequest(
-        input = requireNotNull(input) { "input must not be null" },
+        input = requireNotNull(input) { "input is required" },
         model = model,
     )
 }

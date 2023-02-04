@@ -1,5 +1,6 @@
 package com.aallam.openai.api.image
 
+import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileSource
 
 /**
@@ -36,6 +37,7 @@ public fun imageVariation(block: ImageVariationBuilder.() -> Unit): ImageVariati
 /**
  * Builder of [ImageVariation] instances.
  */
+@OpenAIDsl
 public class ImageVariationBuilder {
     /**
      * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
@@ -61,7 +63,7 @@ public class ImageVariationBuilder {
      * Creates the [ImageVariation] instance
      */
     public fun build(): ImageVariation = ImageVariation(
-        image = requireNotNull(image) { "image must not be null" },
+        image = requireNotNull(image) { "image is required" },
         n = n,
         size = size,
         user = user

@@ -1,5 +1,7 @@
 package com.aallam.openai.api.file
 
+import com.aallam.openai.api.OpenAIDsl
+
 /**
  * Request to upload a file.
  *
@@ -34,6 +36,7 @@ public fun fileUpload(block: FileUploadBuilder.() -> Unit): FileUpload = FileUpl
 /**
  * Builders of [FileUpload] instances.
  */
+@OpenAIDsl
 public class FileUploadBuilder {
 
     /**
@@ -56,7 +59,7 @@ public class FileUploadBuilder {
      * Create a new instance of [FileUpload].
      */
     public fun build(): FileUpload = FileUpload(
-        file = requireNotNull(file) { "file must not be null" },
-        purpose = requireNotNull(purpose) { "purpose must not be null" },
+        file = requireNotNull(file) { "file is required" },
+        purpose = requireNotNull(purpose) { "purpose is required" },
     )
 }

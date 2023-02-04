@@ -1,5 +1,6 @@
 package com.aallam.openai.api.image
 
+import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileSource
 
 /**
@@ -47,6 +48,7 @@ public fun imageEdit(block: ImageEditBuilder.() -> Unit): ImageEdit = ImageEditB
 /**
  * Builder of [ImageEdit] instances.
  */
+@OpenAIDsl
 public class ImageEditBuilder {
     /**
      * The image to edit. Must be a valid PNG file, less than 4MB, and square.

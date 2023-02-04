@@ -1,5 +1,6 @@
 package com.aallam.openai.api.completion
 
+import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -156,6 +157,7 @@ public fun completionRequest(block: CompletionRequestBuilder.() -> Unit): Comple
 /**
  * Builder of [CompletionRequest] instances.
  */
+@OpenAIDsl
 public class CompletionRequestBuilder {
 
     /**
@@ -292,7 +294,7 @@ public class CompletionRequestBuilder {
      * Create [CompletionRequest] instance.
      */
     public fun build(): CompletionRequest = CompletionRequest(
-        model = requireNotNull(model) { "model must not be null" },
+        model = requireNotNull(model) { "model is required" },
         prompt = prompt,
         maxTokens = maxTokens,
         temperature = temperature,

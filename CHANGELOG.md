@@ -1,8 +1,31 @@
+# 3.0.0-beta01
+> Published 06 Feb 2023
+
+This release contains changes from [3.0.0-alpha01](#300-alpha01), plus the following:
+
+### Added
+- Embeddings: similarity and distance (#88) (Experimental)
+
+### Changed
+- Update Kotlin to `1.8.10`
+
 # 2.1.3
 > Published 29 Jan 2023
 
 ### Fixed
-- Add darwin simulators and x86 targets (#85) 
+- Add darwin simulators and x86 targets (#85)
+
+# 3.0.0-alpha01
+> Published 20 Jan 2023
+
+### Added
+* DSL builder functions to create requests
+* `Completions` and `Edit`: add `usage` to the responses
+* `Files`: add `download` and `delete` functions
+
+### Changed
+* `FileSource` and [okio](https://square.github.io/okio/) for I/O operations (e.g. files, images).
+* `Embeddings`: response changed to `EmbeddingResponse` to include `usage`.
 
 # 2.1.2
 > Published 11 Jan 2023

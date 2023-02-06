@@ -1,5 +1,6 @@
 package com.aallam.openai.api.moderation
 
+import com.aallam.openai.api.OpenAIDsl
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -18,10 +19,35 @@ public class ModerationRequest(
      * Defaults to [ModerationModel.Latest].
      */
     @SerialName("model") public val model: ModerationModel? = null,
-) {
+)
+
+/**
+ * Request to classify if text violates OpenAI's Content Policy.
+ */
+public fun moderationRequest(block: ModerationRequestBuilder.() -> Unit): ModerationRequest =
+    ModerationRequestBuilder().apply(block).build()
+
+/**
+ * Data class representing a ModerationRequest
+ */
+@OpenAIDsl
+public class ModerationRequestBuilder {
+    /**
+     * The input text to classify.
+     */
+    public var input: List<String>? = null
 
     /**
-     * Convenience constructor with [input] as [String].
+     * Moderation model.
+     * Defaults to [ModerationModel.Latest].
      */
-    public constructor(input: String, model: ModerationModel? = null) : this(listOf(input), model)
+    public var model: ModerationModel? = null
+
+    /**
+     * Creates the [ModerationRequest] instance
+     */
+    public fun build(): ModerationRequest = ModerationRequest(
+        input = requireNotNull(input) { "input is required" },
+        model = model,
+    )
 }

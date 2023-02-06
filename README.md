@@ -5,7 +5,8 @@
 [![Kotlin](https://img.shields.io/badge/kotlin-1.8.0-a97bff.svg?logo=kotlin)](https://kotlinlang.org/docs/releases.html#release-details)
 [![Documentation](https://img.shields.io/badge/docs-openai--kotlin-lightgrey)](https://mouaad.aallam.com/openai-kotlin/)
 
-Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines capabilities. 
+Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines
+capabilities.
 
 ## 🛠 Setup
 
@@ -20,16 +21,20 @@ dependencies {
     implementation "com.aallam.openai:openai-client:<version>"
 }
 ```
+
 2. Choose and add to your dependencies one of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
 
 > Alternatively, you can use [openai-client-bom](openai-client-bom/)
 
 ### Multiplaform
-In multiplatform projects, add openai client dependency to `commonMain`, and choose an [engine](https://ktor.io/docs/http-client-engines.html) for each target.
+
+In multiplatform projects, add openai client dependency to `commonMain`, and choose
+an [engine](https://ktor.io/docs/http-client-engines.html) for each target.
 
 ## 💡 Getting Started
 
 Create an instance of `OpenAI` client:
+
 ```kotlin
 val openAI = OpenAI(apiKey)
 ```
@@ -38,23 +43,29 @@ val openAI = OpenAI(apiKey)
 
 Use your `OpenAI` instance to make API requests:
 
+#### Models
+
 <details>
   <summary><strong>List models</strong></summary>
 
 ```kotlin
 val models: List<Model> = openAI.models()
 ```
+
 </details>
 
 <details>
-  <summary><strong>Retrieve an model</strong></summary>
+  <summary><strong>Retrieve a model</strong></summary>
 
 ```kotlin
 val id = ModelId("text-ada-001")
 val model: Model = openAI.model(id)
 ```
+
 </details>    
-    
+
+#### Completions
+
 <details>
   <summary><strong>Create completion</strong></summary>
 
@@ -66,8 +77,9 @@ val completionRequest = CompletionRequest(
 )
 val completion: TextCompletion = openAI.completion(Ada, completionRequest)
 ```
+
 </details>    
-    
+
 <details>
   <summary><strong>Create completion stream</strong></summary>
 
@@ -83,7 +95,10 @@ val request = CompletionRequest(
 )
 val completions: Flow<TextCompletion> = openAI.completions(request)
 ```
+
 </details>     
+
+#### Edits
 
 <details>
   <summary><strong>Create edits</strong></summary>
@@ -97,40 +112,127 @@ val edit = openAI.edit(
     )
 )
 ```
+
+</details>
+
+#### Images
+
+<details>
+  <summary><strong>Create images</strong></summary>
+
+````kotlin
+val images = openAI.imageURL( // or openAI.imageJSON
+    creation = ImageCreation(
+        prompt = "A cute baby sea otter",
+        n = 2,
+        size = ImageSize.is1024x1024
+    )
+)
+````
+
 </details>
 
 <details>
-  <summary><strong>List files</strong></summary>
+  <summary><strong>Edit images*</strong></summary>
 
 ````kotlin
-val files: List<File> = openAI.files()
+val images = openAI.imageURL( // or openAI.imageJSON
+    edit = ImageEdit(
+        image = FileSource(name = "<filename>", source = imageSource),
+        mask = FileSource(name = "<filename>", source = maskSource),
+        prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
+        n = 1,
+        size = ImageSize.is1024x1024
+    )
+)
 ````
+
 </details>
+
+<details>
+  <summary><strong>Create image variants*</strong></summary>
+
+````kotlin
+val images = openAI.imageURL( // or openAI.imageJSON
+    variation = ImageVariation(
+        image = FileSource(name = "<filename>", source = imageSource),
+        n = 1,
+        size = ImageSize.is1024x1024
+    )
+)
+````
+
+</details>
+
+### Embeddings
 
 <details>
   <summary><strong>Create embeddings</strong></summary>
 
 ````kotlin
-val embeddings: List<Embedding> = openAI.embeddings(
+val embeddings = openAI.embeddings(
     request = EmbeddingRequest(
         model = ModelId("text-similarity-babbage-001"),
         input = listOf("The food was delicious and the waiter...")
     )
 )
 ````
-</details>  
+
+</details>
+
+### Files
 
 <details>
-  <summary><strong>Create moderation</strong></summary>
+  <summary><strong>List files</strong></summary>
 
 ````kotlin
-val moderation = openAI.moderations(
-    request = ModerationRequest(
-        input = "I want to kill them."
+val files = openAI.files()
+````
+
+</details>
+
+<details>
+  <summary><strong>Upload file*</strong></summary>
+
+````kotlin
+val file = openAI.file(
+    request = FileUpload(
+        file = source,
+        purpose = Purpose("fine-tune")
     )
 )
 ````
-</details>  
+
+</details>
+
+<details>
+  <summary><strong>Delete file</strong></summary>
+
+````kotlin
+openAI.delete(fileId)
+````
+
+</details>
+
+<details>
+  <summary><strong>Retrieve file</strong></summary>
+
+````kotlin
+val file = openAI.file(fileId)
+````
+
+</details>
+
+<details>
+  <summary><strong>Retrieve file content</strong></summary>
+
+````kotlin
+val bytes = openAI.download(fileId)
+````
+
+</details>
+
+### Fine-tunes
 
 <details>
   <summary><strong>Create fine-tunes</strong></summary>
@@ -143,51 +245,25 @@ val fineTune = openAI.fineTune(
     )
 )
 ````
+
 </details>
 
+### Moderations
+
 <details>
-  <summary><strong>Create images</strong></summary>
+  <summary><strong>Create moderation</strong></summary>
 
 ````kotlin
-val images = openAI.image(
-    creation = ImageCreationURL(
-        prompt = "A cute baby sea otter",
-        n = 2,
-        size = ImageSize.is1024x1024
+val moderation = openAI.moderations(
+    request = ModerationRequest(
+        input = "I want to kill them."
     )
 )
 ````
+
 </details>
 
-<details>
-  <summary><strong>Edit images</strong></summary>
-
-````kotlin
-val images = openAI.image(
-    edit = ImageEditURL( // or 'ImageEditJSON'
-        image = FilePath(imagePath),
-        mask = FilePath(maskPath),
-        prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
-        n = 1,
-        size = ImageSize.is1024x1024
-    )
-)
-````
-</details>
-
-<details>
-  <summary><strong>Create image variants</strong></summary>
-
-````kotlin
-val images = openAI.image(
-    variation = ImageVariationURL( // or, 'ImageVariationJSON'
-        image = FilePath(imagePath),
-        n = 1,
-        size = ImageSize.is1024x1024
-    )
-)
-````
-</details>
+_* requires [okio](https://square.github.io/okio/)_
 
 ## ℹ️ Sample apps
 

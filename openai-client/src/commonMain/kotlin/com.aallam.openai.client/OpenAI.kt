@@ -1,6 +1,5 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.client.internal.ClientFileSystem
 import com.aallam.openai.client.internal.OpenAIApi
 import com.aallam.openai.client.internal.createHttpClient
 import com.aallam.openai.client.internal.http.HttpTransport
@@ -8,15 +7,7 @@ import com.aallam.openai.client.internal.http.HttpTransport
 /**
  * OpenAI API.
  */
-public interface OpenAI :
-    Completions,
-    Files,
-    Edits,
-    Embeddings,
-    Models,
-    Moderations,
-    FineTunes,
-    Images
+public interface OpenAI : Completions, Files, Edits, Embeddings, Models, Moderations, FineTunes, Images
 
 /**
  * Creates an instance of [OpenAI].
@@ -36,5 +27,5 @@ public fun OpenAI(token: String): OpenAI {
 public fun OpenAI(config: OpenAIConfig): OpenAI {
     val httpClient = createHttpClient(config)
     val transport = HttpTransport(httpClient)
-    return OpenAIApi(transport, ClientFileSystem)
+    return OpenAIApi(transport)
 }

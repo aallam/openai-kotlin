@@ -1,45 +1,68 @@
 package com.aallam.openai.api.image
 
-import com.aallam.openai.api.ExperimentalOpenAI
-import kotlinx.serialization.EncodeDefault
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.aallam.openai.api.OpenAIDsl
 
 /**
  * Image generation request.
- * Results are expected as URLs.
  */
-@ExperimentalOpenAI
-@Serializable
-public data class ImageCreationURL(
-    @SerialName("prompt") public override val prompt: String,
-    @SerialName("n") public override val n: Int? = null,
-    @SerialName("size") public override val size: ImageSize? = null,
-    @SerialName("user") public override val user: String? = null
-) : ImageRequestPrompt {
+public class ImageCreation(
+    /**
+     * A text description of the desired image(s). The maximum length is 1000 characters.
+     */
+    public val prompt: String,
+    /**
+     * The number of images to generate. Must be between 1 and 10.
+     */
+    public val n: Int? = null,
+    /**
+     * The size of the generated images.
+     */
+    public val size: ImageSize? = null,
 
-    /** The format in which the generated images are returned. */
-    @SerialName("response_format")
-    @EncodeDefault
-    public val responseFormat: ResponseFormat = ResponseFormat.url
-}
-
+    /**
+     * The format in which the generated images are returned. Must be one of url or b64_json.
+     */
+    public val user: String? = null
+)
 
 /**
  * Image generation request.
- * Results are expected as base 64 JSONs.
  */
-@ExperimentalOpenAI
-@Serializable
-public data class ImageCreationJSON(
-    @SerialName("prompt") public override val prompt: String,
-    @SerialName("n") public override val n: Int? = null,
-    @SerialName("size") public override val size: ImageSize? = null,
-    @SerialName("user") public override val user: String? = null
-) : ImageRequestPrompt {
+public fun imageCreation(block: ImageCreationBuilder.() -> Unit): ImageCreation = ImageCreationBuilder().apply(block).build()
 
-    /** The format in which the generated images are returned. */
-    @SerialName("response_format")
-    @EncodeDefault
-    public val responseFormat: ResponseFormat  = ResponseFormat.base64Json
+/**
+ * Builder of [ImageCreation] instances.
+ */
+@OpenAIDsl
+public class ImageCreationBuilder {
+
+    /**
+     * A text description of the desired image(s). The maximum length is 1000 characters.
+     */
+    public var prompt: String? = null
+
+    /**
+     * The number of images to generate. Must be between 1 and 10.
+     */
+    public var n: Int? = null
+
+    /**
+     * The size of the generated images.
+     */
+    public var size: ImageSize? = null
+
+    /**
+     * The format in which the generated images are returned. Must be one of url or b64_json.
+     */
+    public var user: String? = null
+
+    /**
+     * Creates the [ImageCreation] instance
+     */
+    public fun build(): ImageCreation = ImageCreation(
+        prompt = requireNotNull(prompt),
+        n = n,
+        size = size,
+        user = user
+    )
 }

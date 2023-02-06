@@ -13,7 +13,8 @@ public abstract interface class com/aallam/openai/client/Embeddings {
 
 public abstract interface class com/aallam/openai/client/Files {
 	public abstract fun delete-3IZx-Vg (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun file (Lcom/aallam/openai/api/file/FileRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun download-3IZx-Vg (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun file (Lcom/aallam/openai/api/file/FileUpload;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun file-3IZx-Vg (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun files (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -29,12 +30,12 @@ public abstract interface class com/aallam/openai/client/FineTunes {
 }
 
 public abstract interface class com/aallam/openai/client/Images {
-	public abstract fun image (Lcom/aallam/openai/api/image/ImageCreationJSON;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun image (Lcom/aallam/openai/api/image/ImageCreationURL;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun image (Lcom/aallam/openai/api/image/ImageEditJSON;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun image (Lcom/aallam/openai/api/image/ImageEditURL;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun image (Lcom/aallam/openai/api/image/ImageVariationJSON;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun image (Lcom/aallam/openai/api/image/ImageVariationURL;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun imageJSON (Lcom/aallam/openai/api/image/ImageCreation;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun imageJSON (Lcom/aallam/openai/api/image/ImageEdit;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun imageJSON (Lcom/aallam/openai/api/image/ImageVariation;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun imageURL (Lcom/aallam/openai/api/image/ImageCreation;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun imageURL (Lcom/aallam/openai/api/image/ImageEdit;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun imageURL (Lcom/aallam/openai/api/image/ImageVariation;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aallam/openai/client/Models {
@@ -61,5 +62,10 @@ public final class com/aallam/openai/client/OpenAIConfig {
 public final class com/aallam/openai/client/OpenAIKt {
 	public static final fun OpenAI (Lcom/aallam/openai/client/OpenAIConfig;)Lcom/aallam/openai/client/OpenAI;
 	public static final fun OpenAI (Ljava/lang/String;)Lcom/aallam/openai/client/OpenAI;
+}
+
+public final class com/aallam/openai/client/extension/EmbeddingKt {
+	public static final fun distance (Lcom/aallam/openai/api/embedding/Embedding;Lcom/aallam/openai/api/embedding/Embedding;)D
+	public static final fun similarity (Lcom/aallam/openai/api/embedding/Embedding;Lcom/aallam/openai/api/embedding/Embedding;)D
 }
 

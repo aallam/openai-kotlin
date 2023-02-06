@@ -1,13 +1,14 @@
 package com.aallam.openai.client.internal.api
 
-import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.image.*
 import com.aallam.openai.client.Images
-import com.aallam.openai.client.internal.extension.appendBinaryFile
+import com.aallam.openai.client.internal.data.ImageResponseFormat
+import com.aallam.openai.client.internal.data.toJSONRequest
+import com.aallam.openai.client.internal.data.toURLRequest
+import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
-import io.ktor.client.request.forms.FormBuilder
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.client.request.post
@@ -15,48 +16,39 @@ import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
-import okio.FileSystem
 
-internal class ImagesApi(
-    private val requester: HttpRequester,
-    private val fileSystem: FileSystem,
-) : Images {
+internal class ImagesApi(private val requester: HttpRequester) : Images {
 
-    @ExperimentalOpenAI
-    override suspend fun image(creation: ImageCreationURL): List<ImageURL> {
+    override suspend fun imageURL(creation: ImageCreation): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.post {
                 url(path = ImagesGenerationV1)
-                setBody(creation)
+                setBody(creation.toURLRequest())
                 contentType(ContentType.Application.Json)
             }
         }.data
     }
 
-    @ExperimentalOpenAI
-    override suspend fun image(creation: ImageCreationJSON): List<ImageJSON> {
+    override suspend fun imageJSON(creation: ImageCreation): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.post {
                 url(path = ImagesGenerationV1)
-                setBody(creation)
+                setBody(creation.toJSONRequest())
                 contentType(ContentType.Application.Json)
             }
         }.data
     }
 
-    @ExperimentalOpenAI
-    override suspend fun image(edit: ImageEditURL): List<ImageURL> {
+    override suspend fun imageURL(edit: ImageEdit): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
-            it.submitFormWithBinaryData(url = ImagesEditsV1, formData = imageEditRequest(edit, ResponseFormat.url))
+            it.submitFormWithBinaryData(url = ImagesEditsV1, formData = imageEditRequest(edit, ImageResponseFormat.url))
         }.data
     }
 
-    @ExperimentalOpenAI
-    override suspend fun image(edit: ImageEditJSON): List<ImageJSON> {
+    override suspend fun imageJSON(edit: ImageEdit): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.submitFormWithBinaryData(
-                url = ImagesEditsV1,
-                formData = imageEditRequest(edit, ResponseFormat.base64Json)
+                url = ImagesEditsV1, formData = imageEditRequest(edit, ImageResponseFormat.base64Json)
             )
         }.data
     }
@@ -64,30 +56,28 @@ internal class ImagesApi(
     /**
      * Build image edit request.
      */
-    @ExperimentalOpenAI
-    private fun imageEditRequest(edit: ImageEdit, responseFormat: ResponseFormat) = formData {
-        appendBinaryFile(fileSystem, "image", edit.image)
-        appendBinaryFile(fileSystem, "mask", edit.mask)
+    private fun imageEditRequest(edit: ImageEdit, responseFormat: ImageResponseFormat) = formData {
+        appendFileSource("image", edit.image)
+        appendFileSource("mask", edit.mask)
         append(key = "prompt", value = edit.prompt)
-        imageRequest(responseFormat, edit)
+        append(key = "response_format", value = responseFormat.format)
+        edit.n?.let { n -> append(key = "n", value = n) }
+        edit.size?.let { dim -> append(key = "size", value = dim.size) }
+        edit.user?.let { user -> append(key = "user", value = user) }
     }
 
-    @ExperimentalOpenAI
-    override suspend fun image(variation: ImageVariationURL): List<ImageURL> {
+    override suspend fun imageURL(variation: ImageVariation): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.submitFormWithBinaryData(
-                url = ImagesVariantsV1,
-                formData = imageVariantRequest(variation, ResponseFormat.url)
+                url = ImagesVariantsV1, formData = imageVariantRequest(variation, ImageResponseFormat.url)
             )
         }.data
     }
 
-    @ExperimentalOpenAI
-    override suspend fun image(variation: ImageVariationJSON): List<ImageJSON> {
+    override suspend fun imageJSON(variation: ImageVariation): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.submitFormWithBinaryData(
-                url = ImagesVariantsV1,
-                formData = imageVariantRequest(variation, ResponseFormat.base64Json)
+                url = ImagesVariantsV1, formData = imageVariantRequest(variation, ImageResponseFormat.base64Json)
             )
         }.data
     }
@@ -95,21 +85,13 @@ internal class ImagesApi(
     /**
      * Build image variant request.
      */
-    @ExperimentalOpenAI
-    private fun imageVariantRequest(edit: ImageVariation, responseFormat: ResponseFormat) = formData {
-        appendBinaryFile(fileSystem, "image", edit.image)
-        imageRequest(responseFormat, edit)
-    }
-
-    /**
-     * Append image request fields.
-     */
-    @ExperimentalOpenAI
-    private fun FormBuilder.imageRequest(responseFormat: ResponseFormat, edit: ImageRequest) {
+    private fun imageVariantRequest(edit: ImageVariation, responseFormat: ImageResponseFormat) = formData {
+        appendFileSource("image", edit.image)
         append(key = "response_format", value = responseFormat.format)
         edit.n?.let { n -> append(key = "n", value = n) }
         edit.size?.let { dim -> append(key = "size", value = dim.size) }
         edit.user?.let { user -> append(key = "user", value = user) }
+
     }
 
     companion object {

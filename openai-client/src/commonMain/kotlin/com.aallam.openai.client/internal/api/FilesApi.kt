@@ -1,13 +1,12 @@
 package com.aallam.openai.client.internal.api
 
-import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.core.DeleteResponse
 import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileId
-import com.aallam.openai.api.file.FileRequest
+import com.aallam.openai.api.file.FileUpload
 import com.aallam.openai.client.Files
-import com.aallam.openai.client.internal.extension.appendTextFile
+import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.body
@@ -18,20 +17,16 @@ import io.ktor.client.request.get
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
-import okio.FileSystem
 
 /**
  * Implementation of [Files].
  */
-internal class FilesApi(
-    private val requester: HttpRequester, private val fileSystem: FileSystem
-) : Files {
+internal class FilesApi(private val requester: HttpRequester) : Files {
 
-    override suspend fun file(request: FileRequest): File {
+    override suspend fun file(request: FileUpload): File {
         return requester.perform {
             it.submitFormWithBinaryData(url = FilesPath, formData = formData {
-                @OptIn(ExperimentalOpenAI::class)
-                appendTextFile(fileSystem, "file", request.filePath)
+                appendFileSource("file", request.file)
                 append(key = "purpose", value = request.purpose.raw)
             })
         }
@@ -61,7 +56,13 @@ internal class FilesApi(
         }
     }
 
+    override suspend fun download(fileId: FileId): ByteArray {
+        return requester.perform {
+            it.get { url(path = "$FilesPath/${fileId.id}/content") }
+        }
+    }
+
     companion object {
-        private const val FilesPath = "/v1/files"
+        private const val FilesPath = "v1/files"
     }
 }

@@ -1,39 +1,71 @@
 package com.aallam.openai.api.image
 
-import com.aallam.openai.api.ExperimentalOpenAI
-import com.aallam.openai.api.file.FilePath
+import com.aallam.openai.api.OpenAIDsl
+import com.aallam.openai.api.file.FileSource
 
 /**
  * Image variant request.
  */
-@ExperimentalOpenAI
-public interface ImageVariation : ImageRequest {
+public class ImageVariation(
     /**
-     * The image to edit. Must be a valid PNG file, less than 4MB, and square.
+     * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
      */
-    public val image: FilePath
+    public val image: FileSource,
+
+    /**
+     * The number of images to generate. Must be between 1 and 10.
+     */
+    public val n: Int? = null,
+
+    /**
+     * The size of the generated images.
+     */
+    public val size: ImageSize? = null,
+
+    /**
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
+     */
+    public val user: String? = null,
+)
+
+/**
+ * Image variant request.
+ */
+public fun imageVariation(block: ImageVariationBuilder.() -> Unit): ImageVariation =
+    ImageVariationBuilder().apply(block).build()
+
+/**
+ * Builder of [ImageVariation] instances.
+ */
+@OpenAIDsl
+public class ImageVariationBuilder {
+    /**
+     * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
+     */
+    public var image: FileSource? = null
+
+    /**
+     * The number of images to generate. Must be between 1 and 10.
+     */
+    public var n: Int? = null
+
+    /**
+     * The size of the generated images.
+     */
+    public var size: ImageSize? = null
+
+    /**
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
+     */
+    public var user: String? = null
+
+    /**
+     * Creates the [ImageVariation] instance
+     */
+    public fun build(): ImageVariation = ImageVariation(
+        image = requireNotNull(image) { "image is required" },
+        n = n,
+        size = size,
+        user = user
+    )
 }
-
-/**
- * Image variant request.
- * Results are expected as URLs.
- */
-@ExperimentalOpenAI
-public data class ImageVariationURL(
-    override val image: FilePath,
-    override val n: Int? = null,
-    override val size: ImageSize? = null,
-    override val user: String? = null,
-) : ImageVariation
-
-/**
- * Image variant request.
- * Results are expected as base 64 JSONs.
- */
-@ExperimentalOpenAI
-public data class ImageVariationJSON(
-    override val image: FilePath,
-    override val n: Int? = null,
-    override val size: ImageSize? = null,
-    override val user: String? = null,
-) : ImageVariation

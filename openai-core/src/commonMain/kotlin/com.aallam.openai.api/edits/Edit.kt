@@ -1,6 +1,7 @@
 package com.aallam.openai.api.edits
 
 import com.aallam.openai.api.completion.Choice
+import com.aallam.openai.api.core.Usage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -20,7 +21,7 @@ public class Edit(
     @SerialName("choices") public val choices: List<Choice>,
 
     /**
-     * Edit usage.
+     * Edit usage data.
      */
     @SerialName("usage") public val usage: Usage,
 )

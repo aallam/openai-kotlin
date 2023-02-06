@@ -1,107 +1,96 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.ExperimentalOpenAI
-import com.aallam.openai.api.file.FilePath
-import com.aallam.openai.api.image.*
+import com.aallam.openai.api.file.FileSource
+import com.aallam.openai.api.image.ImageSize
+import com.aallam.openai.api.image.imageCreation
+import com.aallam.openai.api.image.imageEdit
+import com.aallam.openai.api.image.imageVariation
+import com.aallam.openai.client.internal.asSource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.coroutines.test.runTest
-import okio.Path.Companion.toPath
-import ulid.ULID
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalOpenAI::class)
 class TestImages : TestOpenAI() {
 
     private val httpClient = HttpClient()
 
     @Test
     fun imageCreationURL() = runTest {
-        val request = ImageCreationURL(
-            prompt = "A cute baby sea otter",
-            n = 2,
-            size = ImageSize.is1024x1024
-        )
-        val response = openAI.image(request)
+        val request = imageCreation {
+            prompt = "A cute baby sea otter"
+            n = 2
+            size = ImageSize.is256x256
+        }
+        val response = openAI.imageURL(request)
         assertTrue { response.isNotEmpty() }
     }
 
     @Test
     fun imageCreationJSON() = runTest {
-        val request = ImageCreationJSON(
-            prompt = "A cute baby sea otter",
-            n = 2,
-            size = ImageSize.is1024x1024,
-        )
-        val response = openAI.image(request)
+        val request = imageCreation {
+            prompt = "A cute baby sea otter"
+            n = 2
+            size = ImageSize.is1024x1024
+        }
+        val response = openAI.imageJSON(request)
         assertTrue { response.isNotEmpty() }
         println(response)
     }
 
     @Test
     fun imageEditURL() = runTest {
-        val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/mXFcDNB.png").body())
-        val maskPath = writeImage(bytes = httpClient.get("https://i.imgur.com/D4MURbj.png").body())
-
-        val request = ImageEditURL(
-            image = FilePath(imagePath),
-            mask = FilePath(maskPath),
-            prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
-            n = 1,
+        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/mXFcDNB.png").body()
+        val maskBytes: ByteArray = httpClient.get("https://i.imgur.com/D4MURbj.png").body()
+        val request = imageEdit {
+            image = FileSource(name = "mXFcDNB.png", source = imageBytes.asSource())
+            mask = FileSource(name = "D4MURbj.png", source = maskBytes.asSource())
+            prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
+            n = 1
             size = ImageSize.is1024x1024
-        )
-        val response = openAI.image(request)
+        }
+        val response = openAI.imageURL(request)
         assertTrue { response.isNotEmpty() }
     }
 
     @Test
     fun imageEditJSON() = runTest {
-        val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/mXFcDNB.png").body())
-        val maskPath = writeImage(bytes = httpClient.get("https://i.imgur.com/D4MURbj.png").body())
-
-        val request = ImageEditJSON(
-            image = FilePath(imagePath),
-            mask = FilePath(maskPath),
-            prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
-            n = 1,
+        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/mXFcDNB.png").body()
+        val maskBytes: ByteArray = httpClient.get("https://i.imgur.com/D4MURbj.png").body()
+        val request = imageEdit {
+            image = FileSource(name = "mXFcDNB.png", source = imageBytes.asSource())
+            mask = FileSource(name = "D4MURbj.png", source = maskBytes.asSource())
+            prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
+            n = 1
             size = ImageSize.is1024x1024
-        )
-        val response = openAI.image(request)
+        }
+        val response = openAI.imageJSON(request)
         assertTrue { response.isNotEmpty() }
     }
 
     @Test
     fun imageVariationURL() = runTest {
-        val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/iN0VFnF.png").body())
-
-        val request = ImageVariationURL(
-            image = FilePath(imagePath),
-            n = 1,
+        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/iN0VFnF.png").body()
+        val request = imageVariation {
+            image = FileSource("iN0VFnF.png", imageBytes.asSource())
+            n = 1
             size = ImageSize.is1024x1024
-        )
-        val response = openAI.image(request)
+        }
+        val response = openAI.imageURL(request)
         assertTrue { response.isNotEmpty() }
     }
 
     @Test
     fun imageVariationJSON() = runTest {
-        val imagePath = writeImage(bytes = httpClient.get("https://i.imgur.com/iN0VFnF.png").body())
-
-        val request = ImageVariationJSON(
-            image = FilePath(imagePath),
-            n = 1,
+        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/iN0VFnF.png").body()
+        val request = imageVariation {
+            image = FileSource("iN0VFnF.png", imageBytes.asSource())
+            n = 1
             size = ImageSize.is1024x1024
-        )
-        val response = openAI.image(request)
+        }
+        val response = openAI.imageJSON(request)
         assertTrue { response.isNotEmpty() }
-    }
-
-    private fun writeImage(bytes: ByteArray): String {
-        val filename = "${ULID.randomULID()}.png"
-        val filePath = filename.toPath()
-        fileSystem.write(filePath) { write(bytes) }
-        return filename
     }
 }

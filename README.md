@@ -8,7 +8,7 @@
 Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines
 capabilities.
 
-## 🛠 Setup
+## 📦 Setup
 
 1. Install OpenAI API Kotlin client by adding the following dependency to your `gradle.build` file:
 
@@ -24,14 +24,30 @@ dependencies {
 
 2. Choose and add to your dependencies one of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
 
-> Alternatively, you can use [openai-client-bom](openai-client-bom/)
+<details>
+    <summary>ℹ️ Alternatively, you can use <strong>openai-client-bom</strong></summary>
+
+
+```groovy
+dependencies {
+    // import Kotlin API client BOM
+    implementation platform('com.aallam.openai:openai-client-bom:<version>')
+
+    // define dependencies without versions
+    implementation 'com.aallam.openai:openai-client'
+    implementation 'io.ktor:ktor-client-okhttp'
+}
+```
+
+</details>
+
 
 ### Multiplaform
 
 In multiplatform projects, add openai client dependency to `commonMain`, and choose
 an [engine](https://ktor.io/docs/http-client-engines.html) for each target.
 
-## 💡 Getting Started
+## ⚡️ Getting Started
 
 Create an instance of `OpenAI` client:
 
@@ -43,7 +59,8 @@ val openAI = OpenAI(apiKey)
 
 Use your `OpenAI` instance to make API requests:
 
-#### Models
+
+### 🧠 Models
 
 <details>
   <summary><strong>List models</strong></summary>
@@ -64,7 +81,8 @@ val model: Model = openAI.model(id)
 
 </details>    
 
-#### Completions
+    
+### 📝 Completions
 
 <details>
   <summary><strong>Create completion</strong></summary>
@@ -98,7 +116,7 @@ val completions: Flow<TextCompletion> = openAI.completions(request)
 
 </details>     
 
-#### Edits
+### ✏️ Edits
 
 <details>
   <summary><strong>Create edits</strong></summary>
@@ -115,7 +133,8 @@ val edit = openAI.edit(
 
 </details>
 
-#### Images
+    
+### 🎨 Images
 
 <details>
   <summary><strong>Create images</strong></summary>
@@ -133,7 +152,7 @@ val images = openAI.imageURL( // or openAI.imageJSON
 </details>
 
 <details>
-  <summary><strong>Edit images*</strong></summary>
+  <summary><strong>Edit images</strong></summary>
 
 ````kotlin
 val images = openAI.imageURL( // or openAI.imageJSON
@@ -150,7 +169,7 @@ val images = openAI.imageURL( // or openAI.imageJSON
 </details>
 
 <details>
-  <summary><strong>Create image variants*</strong></summary>
+  <summary><strong>Create image variants</strong></summary>
 
 ````kotlin
 val images = openAI.imageURL( // or openAI.imageJSON
@@ -164,7 +183,7 @@ val images = openAI.imageURL( // or openAI.imageJSON
 
 </details>
 
-### Embeddings
+### ↗️ Embeddings
 
 <details>
   <summary><strong>Create embeddings</strong></summary>
@@ -180,7 +199,8 @@ val embeddings = openAI.embeddings(
 
 </details>
 
-### Files
+    
+### 📄 Files
 
 <details>
   <summary><strong>List files</strong></summary>
@@ -192,7 +212,7 @@ val files = openAI.files()
 </details>
 
 <details>
-  <summary><strong>Upload file*</strong></summary>
+  <summary><strong>Upload file</strong></summary>
 
 ````kotlin
 val file = openAI.file(
@@ -232,7 +252,7 @@ val bytes = openAI.download(fileId)
 
 </details>
 
-### Fine-tunes
+### 🔧 Fine-tunes
 
 <details>
   <summary><strong>Create fine-tunes</strong></summary>
@@ -247,8 +267,9 @@ val fineTune = openAI.fineTune(
 ````
 
 </details>
+ 
 
-### Moderations
+### 🛡 Moderations
 
 <details>
   <summary><strong>Create moderation</strong></summary>
@@ -263,7 +284,6 @@ val moderation = openAI.moderations(
 
 </details>
 
-_* requires [okio](https://square.github.io/okio/)_
 
 ## ℹ️ Sample apps
 

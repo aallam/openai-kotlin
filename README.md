@@ -2,11 +2,23 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.aallam.openai/openai-client?color=blue&label=Download)](https://search.maven.org/artifact/com.aallam.openai/openai-client)
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)
-[![Kotlin](https://img.shields.io/badge/kotlin-1.8.0-a97bff.svg?logo=kotlin)](https://kotlinlang.org/docs/releases.html#release-details)
-[![Documentation](https://img.shields.io/badge/docs-openai--kotlin-lightgrey)](https://mouaad.aallam.com/openai-kotlin/)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.8.10-a97bff.svg?logo=kotlin)](https://kotlinlang.org/docs/releases.html#release-details)
+[![Documentation](https://img.shields.io/badge/docs-openai--kotlin-blueviolet)](https://mouaad.aallam.com/openai-kotlin/)
 
 Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines
 capabilities.
+
+- [Setup](#setup)
+  - [Multiplatform](#multiplatform)
+- [Getting Started](#-getting-started)
+  - [Models](#-models)
+  - [Completions](#-completions)
+  - [Edits](#-edits)
+  - [Images](#-images)
+  - [Embeddings](#-embeddings)
+  - [Files](#-files)
+  - [Fine-tunes](#-fine-tunes)
+  - [Moderations](#-moderations)
 
 ## 📦 Setup
 
@@ -24,9 +36,9 @@ dependencies {
 
 2. Choose and add to your dependencies one of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
 
-<details>
-    <summary>ℹ️ Alternatively, you can use <strong>openai-client-bom</strong></summary>
+#### BOM
 
+Alternatively, you can use [openai-client-bom](/openai-client-bom)  by adding the following dependency to your `gradle.build` file
 
 ```groovy
 dependencies {
@@ -38,9 +50,6 @@ dependencies {
     implementation 'io.ktor:ktor-client-okhttp'
 }
 ```
-
-</details>
-
 
 ### Multiplaform
 

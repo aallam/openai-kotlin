@@ -1,6 +1,5 @@
 package com.aallam.openai.client.internal.api
 
-import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.core.DeleteResponse
 import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.finetune.FineTune
@@ -26,7 +25,6 @@ import kotlinx.coroutines.flow.Flow
  */
 internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
 
-    @ExperimentalOpenAI
     override suspend fun fineTune(request: FineTuneRequest): FineTune {
         return requester.perform {
             it.post {
@@ -37,7 +35,6 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
         }
     }
 
-    @ExperimentalOpenAI
     override suspend fun fineTune(fineTuneId: FineTuneId): FineTune? {
         val response = requester.perform<HttpResponse> {
             it.get { url(path = "$FineTunesPathV1/${fineTuneId.id}") }
@@ -45,14 +42,12 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
-    @ExperimentalOpenAI
     override suspend fun fineTunes(): List<FineTune> {
         return requester.perform<ListResponse<FineTune>> {
             it.get { url(path = FineTunesPathV1) }
         }.data
     }
 
-    @ExperimentalOpenAI
     override suspend fun cancel(fineTuneId: FineTuneId): FineTune? {
         val response = requester.perform<HttpResponse> {
             it.post { url(path = "$FineTunesPathV1/${fineTuneId.id}/cancel") }
@@ -60,14 +55,12 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
-    @ExperimentalOpenAI
     override suspend fun fineTuneEvents(fineTuneId: FineTuneId): List<FineTuneEvent> {
         return requester.perform<ListResponse<FineTuneEvent>> {
             it.get { url(path = "$FineTunesPathV1/${fineTuneId.id}/events") }
         }.data
     }
 
-    @ExperimentalOpenAI
     override fun fineTuneEventsFlow(fineTuneId: FineTuneId): Flow<FineTuneEvent> {
         return streamEventsOf {
             requester.perform {
@@ -80,7 +73,6 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
         }
     }
 
-    @ExperimentalOpenAI
     override suspend fun delete(fineTuneModel: ModelId): Boolean {
         val response = requester.perform<HttpResponse> {
             it.delete {

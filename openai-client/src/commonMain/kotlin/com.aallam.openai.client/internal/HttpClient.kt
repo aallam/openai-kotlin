@@ -14,6 +14,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.KotlinxSerializationConverter
+import io.ktor.util.appendIfNameAbsent
 import kotlinx.serialization.json.Json
 import kotlin.time.DurationUnit
 
@@ -52,8 +53,9 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
-                host = "api.openai.com"
+                host = config.host
             }
+            config.headers.onEach { (key, value) -> headers.appendIfNameAbsent(key, value) }
         }
     }
 }

@@ -10,16 +10,15 @@ import com.aallam.openai.api.finetune.FineTuneRequest
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.FineTunes
 import com.aallam.openai.client.internal.api.ModelsApi.Companion.ModelsPathV1
-import com.aallam.openai.client.internal.extension.streamEventsOf
+import com.aallam.openai.client.internal.extension.streamEventsFrom
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.body
 import io.ktor.client.request.*
 import io.ktor.client.statement.HttpResponse
-import io.ktor.http.ContentType
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.contentType
+import io.ktor.http.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 /**
  * Implementation of [FineTunes].
@@ -69,14 +68,19 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
 
     @ExperimentalOpenAI
     override fun fineTuneEventsFlow(fineTuneId: FineTuneId): Flow<FineTuneEvent> {
-        return streamEventsOf {
-            requester.perform {
-                it.get {
-                    url(path = "$FineTunesPathV1/${fineTuneId.id}/events") {
-                        parameters.append("stream", "true")
-                    }
-                }
+        val request = HttpRequestBuilder().apply {
+            method = HttpMethod.Get
+            url(path = "$FineTunesPathV1/${fineTuneId.id}/events") {
+                parameters.append("stream", "true")
             }
+            accept(ContentType.Text.EventStream)
+            headers {
+                append(HttpHeaders.CacheControl, "no-cache")
+                append(HttpHeaders.Connection, "keep-alive")
+            }
+        }
+        return flow {
+            requester.perform(request) { response -> streamEventsFrom(response) }
         }
     }
 

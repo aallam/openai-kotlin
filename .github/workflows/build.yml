@@ -118,3 +118,38 @@ jobs:
         run: ./gradlew :openai-client:macosX64Test
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+  publish-docs:
+    runs-on: ubuntu-latest
+    needs: [ test-jvm, test-js, test-native ]
+    if: github.repository == 'aallam/openai-kotlin' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Configure JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: wrapper
+
+      - name: Build docs
+        run: ./gradlew dokkaHtmlMultiModule
+
+      - name: Deploy docs
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          github_token: ${{ secrets.GH_DOCS_TOKEN }}
+          branch: gh-pages
+          folder: docs
+          single-commit: true

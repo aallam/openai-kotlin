@@ -53,8 +53,9 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         defaultRequest {
             url {
                 protocol = URLProtocol.HTTPS
-                host = config.host
+                host = "api.openai.com"
             }
+            config.organization?.let { organization -> headers.append("OpenAI-Organization", organization) }
             config.headers.onEach { (key, value) -> headers.appendIfNameAbsent(key, value) }
         }
     }

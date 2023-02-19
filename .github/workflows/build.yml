@@ -149,7 +149,6 @@ jobs:
       - name: Deploy docs
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          github_token: ${{ secrets.GH_DOCS_TOKEN }}
           branch: gh-pages
           folder: docs
           single-commit: true

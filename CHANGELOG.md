@@ -1,3 +1,16 @@
+# 3.0.0-beta02
+> Published 19 Feb 2023
+
+### Added
+- `OpenAIConfig`: `headers` and `organization` (#96)
+
+### Changed
+- `FineTunes`: remove experimental (#90)
+- `Images`: mark as experimental (#91)
+
+### Fixed
+- Non-blocking SSE `Flow` events (#95)
+
 # 3.0.0-beta01
 > Published 06 Feb 2023
 

@@ -1,3 +1,7 @@
+import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.chat.ChatCompletionRequest
+import com.aallam.openai.api.chat.ChatMessage
+import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
@@ -14,10 +18,12 @@ import okio.NodeJsFileSystem
 import okio.Path.Companion.toPath
 import kotlin.coroutines.coroutineContext
 
+@OptIn(BetaOpenAI::class)
 suspend fun main() {
     val apiKey = js("process.env.OPENAI_API_KEY").unsafeCast<String?>()
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
     val openAI = OpenAI(token = token)
+    val scope = CoroutineScope(coroutineContext)
 
     println("> Getting available models...")
     openAI.models().forEach(::println)
@@ -34,7 +40,6 @@ suspend fun main() {
     openAI.completion(completionRequest).choices.forEach(::println)
 
     println("\n>️ Creating completion stream...")
-    val scope = CoroutineScope(coroutineContext)
     openAI.completions(completionRequest)
         .onEach { print(it.choices[0].text) }
         .onCompletion { println() }
@@ -73,4 +78,27 @@ suspend fun main() {
     )
     val imageEdits = openAI.imageURL(imageEdit)
     println(imageEdits)
+
+    println("\n> Create chat completions...")
+    val chatCompletionRequest = ChatCompletionRequest(
+        model = ModelId("gpt-3.5-turbo"),
+        messages = listOf(
+            ChatMessage(
+                role = ChatRole.System,
+                content = "You are a helpful assistant that translates English to French."
+            ),
+            ChatMessage(
+                role = ChatRole.User,
+                content = "Translate the following English text to French: “OpenAI is awesome!”"
+            )
+        )
+    )
+    openAI.chatCompletion(chatCompletionRequest).choices.forEach(::println)
+
+    println("\n>️ Creating chat completions stream...")
+    openAI.chatCompletions(chatCompletionRequest)
+        .onEach { print(it.choices.first().delta?.content.orEmpty()) }
+        .onCompletion { println() }
+        .launchIn(scope)
+        .join()
 }

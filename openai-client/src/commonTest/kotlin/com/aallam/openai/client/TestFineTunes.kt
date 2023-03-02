@@ -1,6 +1,5 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.file.fileSource
 import com.aallam.openai.api.file.fileUpload
@@ -18,7 +17,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalOpenAI::class)
 class TestFineTunes : TestOpenAI() {
 
     @Test

@@ -23,5 +23,5 @@ import kotlin.annotation.AnnotationTarget.*
     TYPEALIAS
 )
 @Retention(AnnotationRetention.BINARY)
-@RequiresOptIn(message = "This OpenAI API is experimental, It can be incompatibly changed in the future.")
+@RequiresOptIn(message = "This library API is experimental, It can be incompatibly changed in the future.")
 public annotation class ExperimentalOpenAI

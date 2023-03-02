@@ -67,6 +67,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Files](guides/GettingStarted.md#files)
 - [Fine-tunes](guides/GettingStarted.md#fine-tunes)
 - [Moderations](guides/GettingStarted.md#moderations)
+- [Audio](guides/GettingStarted.md#audio)
 
 ## ℹ️ Sample apps
 

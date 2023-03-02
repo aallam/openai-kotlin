@@ -1,6 +1,6 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.audio.TranscriptionRequest
+import com.aallam.openai.api.audio.transcriptionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.asSource
@@ -19,10 +19,10 @@ class TestAudio : TestOpenAI() {
     fun transcription() = runTest {
         val speedTalkingUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/micro-machines.wav"
         val audioBytes: ByteArray = httpClient.get(speedTalkingUrl).body()
-        val request = TranscriptionRequest(
-            audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource()),
-            model = ModelId("whisper-1"),
-        )
+        val request = transcriptionRequest {
+            audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
+            model = ModelId("whisper-1")
+        }
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
         assertTrue {
@@ -37,10 +37,10 @@ class TestAudio : TestOpenAI() {
     fun translation() = runTest {
         val multilingualUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/multilingual.wav"
         val audioBytes: ByteArray = httpClient.get(multilingualUrl).body()
-        val request = TranscriptionRequest(
-            audio = FileSource(name = "multilingual.wav", source = audioBytes.asSource()),
-            model = ModelId("whisper-1"),
-        )
+        val request = transcriptionRequest {
+            audio = FileSource(name = "multilingual.wav", source = audioBytes.asSource())
+            model = ModelId("whisper-1")
+        }
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
         assertTrue {

@@ -14,7 +14,9 @@ Use your `OpenAI` instance to make API requests.
   - [List models](#list-models)
   - [Retrieve a model](#retrieve-a-model)
 - [Completions](#completions)
-  - [Create Completion](#create-completion)
+  - [Create completion](#create-completion)
+- [Chat](#chat)
+  - [Create chat completion](#create-chat-completion)
 - [Edits](#edits)
   - [Create edits](#create-edits)
 - [Images](#images)
@@ -78,6 +80,29 @@ val completionRequest = CompletionRequest(
 val completion: TextCompletion = openAI.completion(completionRequest)
 // or, as flow
 val completions: Flow<TextCompletion> = openAI.completions(completionRequest)
+```
+
+## Chat
+
+Given a chat conversation, the model will return a chat completion response.
+
+### Create chat completion `beta`
+
+Creates a completion for the chat message.
+
+```kotlin
+val chatCompletionRequest = ChatCompletionRequest(
+  model = ModelId("gpt-3.5-turbo"),
+  messages = listOf(
+    ChatMessage(
+      role = ChatRole.User,
+      content = "Hello!"
+    )
+  )
+)
+val completion: ChatCompletion = openAI.chatCompletion(chatCompletionRequest)
+// or, as flow
+val completions: Flow<ChatCompletionChunk> = openAI.chatCompletions(chatCompletionRequest)
 ```
 
 ## Edits 

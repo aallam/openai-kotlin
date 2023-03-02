@@ -60,6 +60,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 
 - [Models](guides/GettingStarted.md#models)
 - [Completions](guides/GettingStarted.md#completions)
+- [Chat](guides/GettingStarted.md#chat)
 - [Edits](guides/GettingStarted.md#edits)
 - [Images](guides/GettingStarted.md#images)
 - [Embeddings](guides/GettingStarted.md#embeddings)

@@ -95,7 +95,7 @@ suspend fun main() {
     )
     openAI.chatCompletion(chatCompletionRequest).choices.forEach(::println)
 
-    println("\n>️ Creating completion stream...")
+    println("\n>️ Creating chat completions stream...")
     openAI.chatCompletions(chatCompletionRequest)
         .onEach { print(it.choices.first().delta?.content.orEmpty()) }
         .onCompletion { println() }

@@ -1,9 +1,7 @@
 package com.aallam.openai.sample.jvm
 
 import com.aallam.openai.api.BetaOpenAI
-import com.aallam.openai.api.chat.ChatCompletionRequest
-import com.aallam.openai.api.chat.ChatMessage
-import com.aallam.openai.api.chat.ChatRole
+import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
@@ -99,7 +97,7 @@ fun main() = runBlocking {
     )
     openAI.chatCompletion(chatCompletionRequest).choices.forEach(::println)
 
-    println("\n>️ Creating completion stream...")
+    println("\n>️ Creating chat completions stream...")
     openAI.chatCompletions(chatCompletionRequest)
         .onEach { print(it.choices.first().delta?.content.orEmpty()) }
         .onCompletion { println() }

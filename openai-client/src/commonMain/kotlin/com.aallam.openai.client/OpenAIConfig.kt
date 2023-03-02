@@ -14,6 +14,7 @@ import kotlin.time.Duration.Companion.seconds
  * @param timeout http client timeout
  * @param headers extra http headers
  * @param organization OpenAI organization ID
+ * @param host OpenAI host configuration.
  */
 public class OpenAIConfig(
     public val token: String,
@@ -22,4 +23,19 @@ public class OpenAIConfig(
     public val timeout: Timeout = Timeout(socket = 30.seconds),
     public val organization: String? = null,
     public val headers: Map<String, String> = emptyMap(),
+    public val host: OpenAIHost = OpenAIHost.OpenAI,
 )
+
+/**
+ * OpenAI host configuration.
+ */
+public class OpenAIHost(
+    /** Base URL configuration.*/
+    public val baseUrl: String,
+    /** Additional query parameters */
+    public val queryParams: Map<String, String> = emptyMap()
+) {
+    public companion object {
+        public val OpenAI: OpenAIHost = OpenAIHost("https://api.openai.com")
+    }
+}

@@ -1,3 +1,8 @@
+public abstract interface class com/aallam/openai/client/Chat {
+	public abstract fun chatCompletion (Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun chatCompletions (Lcom/aallam/openai/api/chat/ChatCompletionRequest;)Lkotlinx/coroutines/flow/Flow;
+}
+
 public abstract interface class com/aallam/openai/client/Completions {
 	public abstract fun completion (Lcom/aallam/openai/api/completion/CompletionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun completions (Lcom/aallam/openai/api/completion/CompletionRequest;)Lkotlinx/coroutines/flow/Flow;
@@ -47,16 +52,31 @@ public abstract interface class com/aallam/openai/client/Moderations {
 	public abstract fun moderations (Lcom/aallam/openai/api/moderation/ModerationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/Images, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations {
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/Images, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations {
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {
-	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;)V
-	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getHeaders ()Ljava/util/Map;
+	public final fun getHost ()Lcom/aallam/openai/client/OpenAIHost;
 	public final fun getLogLevel ()Lcom/aallam/openai/api/logging/LogLevel;
 	public final fun getLogger ()Lcom/aallam/openai/api/logging/Logger;
+	public final fun getOrganization ()Ljava/lang/String;
 	public final fun getTimeout ()Lcom/aallam/openai/api/http/Timeout;
 	public final fun getToken ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/client/OpenAIHost {
+	public static final field Companion Lcom/aallam/openai/client/OpenAIHost$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getBaseUrl ()Ljava/lang/String;
+	public final fun getQueryParams ()Ljava/util/Map;
+}
+
+public final class com/aallam/openai/client/OpenAIHost$Companion {
+	public final fun getOpenAI ()Lcom/aallam/openai/client/OpenAIHost;
 }
 
 public final class com/aallam/openai/client/OpenAIKt {

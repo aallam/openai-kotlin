@@ -1,3 +1,29 @@
+# 3.0.0
+> Published 02 Mar 2023
+
+**Important changes since 2.1.3**
+
+### Added
+- **Requests**: DSL builder functions to create requests (#80)
+- **Completions** and `Edit`: add `usage` to the responses (#82)
+- **Files**: add `download` and `delete` functions (#86)
+- **OpenAIConfig**: `headers` and `organization` (#96)
+- **Embeddings**: `similarity` and `distance` (#88) *(experimental)*
+- **Chat** implementation (#99) *(beta)*
+- **OpenAIConfig**: custom host config (#102)
+
+### Changed
+- **FileSource** and [okio](https://square.github.io/okio/) for I/O operations (e.g. files, images) (#75)
+- **FineTunes**: remove experimental (#90)
+- **Images**: mark as experimental (#91)
+- **Embeddings**: response changed to `EmbeddingResponse` to include `usage`. (#82)
+
+### Fixed
+- Non-blocking SSE `Flow` events (#95)
+
+### Dependencies
+- Update Kotlin to `1.8.10`
+
 # 3.0.0-beta02
 > Published 19 Feb 2023
 

@@ -1,6 +1,7 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.ChatCompletion
+import com.aallam.openai.api.chat.ChatCompletionChunk
 import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.chat.chatCompletionRequest
 import com.aallam.openai.api.model.ModelId
@@ -41,7 +42,7 @@ class TestChatCompletions : TestOpenAI() {
             val completion = openAI.chatCompletion(request)
             assertTrue { completion.choices.isNotEmpty() }
 
-            val results = mutableListOf<ChatCompletion>()
+            val results = mutableListOf<ChatCompletionChunk>()
             openAI.chatCompletions(request).onEach { results += it }.launchIn(this).join()
 
             assertNotEquals(0, results.size)

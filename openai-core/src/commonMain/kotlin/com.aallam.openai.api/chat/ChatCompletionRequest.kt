@@ -160,6 +160,13 @@ public class ChatCompletionRequestBuilder {
     public var logitBias: Map<String, Int>? = null
 
     /**
+     * The messages to generate chat completions for.
+     */
+    public fun messages(block: ChatMessagesBuilder.() -> Unit) {
+        messages = ChatMessagesBuilder().apply(block).messages
+    }
+
+    /**
      * Builder of [ChatCompletionRequest] instances.
      */
     public fun build(): ChatCompletionRequest = ChatCompletionRequest(
@@ -174,4 +181,18 @@ public class ChatCompletionRequestBuilder {
         frequencyPenalty = frequencyPenalty,
         logitBias = logitBias,
     )
+}
+
+/**
+ * Creates a list of [ChatMessage].
+ */
+public class ChatMessagesBuilder {
+    internal val messages = mutableListOf<ChatMessage>()
+
+    /**
+     * Creates a [ChatMessage] instance.
+     */
+    public fun message(block: ChatMessageBuilder.() -> Unit) {
+        messages += ChatMessageBuilder().apply(block).build()
+    }
 }

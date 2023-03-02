@@ -1,5 +1,7 @@
 package com.aallam.openai.api.chat
 
+import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,6 +9,7 @@ import kotlinx.serialization.Serializable
 /**
  * Creates a completion for the chat message.
  */
+@BetaOpenAI
 @Serializable
 public class ChatCompletionRequest(
     /**
@@ -82,13 +85,15 @@ public class ChatCompletionRequest(
 /**
  * The messages to generate chat completions for.
  */
+@BetaOpenAI
 public fun chatCompletionRequest(block: ChatCompletionRequestBuilder.() -> Unit): ChatCompletionRequest =
     ChatCompletionRequestBuilder().apply(block).build()
 
 /**
  * Creates a completion for the chat message.
  */
-@Serializable
+@BetaOpenAI
+@OpenAIDsl
 public class ChatCompletionRequestBuilder {
     /**
      * ID of the model to use. Currently, only `gpt-3.5-turbo` and `gpt-3.5-turbo-0301` are supported.
@@ -186,6 +191,7 @@ public class ChatCompletionRequestBuilder {
 /**
  * Creates a list of [ChatMessage].
  */
+@BetaOpenAI
 public class ChatMessagesBuilder {
     internal val messages = mutableListOf<ChatMessage>()
 

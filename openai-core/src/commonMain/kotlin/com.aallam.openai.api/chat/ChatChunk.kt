@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  */
 @BetaOpenAI
 @Serializable
-public data class ChatChoice internal constructor(
+public data class ChatChunk internal constructor(
     /**
      * Chat choice index.
      */
@@ -19,7 +19,7 @@ public data class ChatChoice internal constructor(
     /**
      * The generated chat message.
      */
-    @SerialName("message") public val message: ChatMessage? = null,
+    @SerialName("delta") public val delta: ChatDelta? = null,
 
     /**
      * The reason why OpenAI stopped generating.

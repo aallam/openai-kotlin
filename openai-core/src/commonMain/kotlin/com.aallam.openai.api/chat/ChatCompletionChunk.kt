@@ -7,34 +7,40 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * An object containing a response from the chat completion api.
+ * An object containing a response from the chat stream completion api.
  *
  * [documentation](https://platform.openai.com/docs/api-reference/chat/create)
  */
 @BetaOpenAI
 @Serializable
-public data class ChatCompletion internal constructor(
+public data class ChatCompletionChunk internal constructor(
     /**
      * A unique id assigned to this completion
      */
-    @SerialName("id") public val id: String,
+    @SerialName("id")
+    public val id: String,
+
     /**
      * The creation time in epoch milliseconds.
      */
-    @SerialName("created") public val created: Int,
+    @SerialName("created")
+    public val created: Int,
 
     /**
      * The model used.
      */
-    @SerialName("model") public val model: ModelId,
+    @SerialName("model")
+    public val model: ModelId,
 
     /**
      * A list of generated completions
      */
-    @SerialName("choices") public val choices: List<ChatChoice>,
+    @SerialName("choices")
+    public val choices: List<ChatChunk>,
 
     /**
      * Text completion usage data.
      */
-    @SerialName("usage") public val usage: Usage? = null,
+    @SerialName("usage")
+    public val usage: Usage? = null,
 )

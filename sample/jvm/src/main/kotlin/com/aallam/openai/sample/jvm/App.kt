@@ -1,13 +1,19 @@
 package com.aallam.openai.sample.jvm
 
+import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.chat.ChatCompletionRequest
+import com.aallam.openai.api.chat.ChatMessage
+import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
 import com.aallam.openai.api.image.ImageEdit
 import com.aallam.openai.api.image.ImageSize
+import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.client.OpenAI
+import com.aallam.openai.client.OpenAIConfig
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
@@ -15,10 +21,11 @@ import kotlinx.coroutines.runBlocking
 import okio.FileSystem
 import okio.Path.Companion.toPath
 
+@OptIn(BetaOpenAI::class)
 fun main() = runBlocking {
     val apiKey = System.getenv("OPENAI_API_KEY")
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
-    val openAI = OpenAI(token)
+    val openAI = OpenAI(OpenAIConfig(token, LogLevel.All))
 
     println("> Getting available engines...")
     openAI.models().forEach(::println)
@@ -72,6 +79,30 @@ fun main() = runBlocking {
         n = 1,
         size = ImageSize.is1024x1024,
     )
+
     val imageEdits = openAI.imageURL(imageEdit)
     println(imageEdits)
+
+    println("\n> Create chat completions...")
+    val chatCompletionRequest = ChatCompletionRequest(
+        model = ModelId("gpt-3.5-turbo"),
+        messages = listOf(
+            ChatMessage(
+                role = ChatRole.System,
+                content = "You are a helpful assistant that translates English to French."
+            ),
+            ChatMessage(
+                role = ChatRole.User,
+                content = "Translate the following English text to French: “OpenAI is awesome!”"
+            )
+        )
+    )
+    openAI.chatCompletion(chatCompletionRequest).choices.forEach(::println)
+
+    println("\n>️ Creating completion stream...")
+    openAI.chatCompletions(chatCompletionRequest)
+        .onEach { print(it.choices.first().delta?.content.orEmpty()) }
+        .onCompletion { println() }
+        .launchIn(this)
+        .join()
 }

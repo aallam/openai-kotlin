@@ -1,6 +1,7 @@
 package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.chat.ChatCompletion
+import com.aallam.openai.api.chat.ChatCompletionChunk
 import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.client.Chat
 import com.aallam.openai.client.internal.extension.streamEventsFrom
@@ -24,7 +25,7 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
         }
     }
 
-    override fun chatCompletions(request: ChatCompletionRequest): Flow<ChatCompletion> {
+    override fun chatCompletions(request: ChatCompletionRequest): Flow<ChatCompletionChunk> {
         val builder = HttpRequestBuilder().apply {
             method = HttpMethod.Post
             url(path = ChatCompletionsPathV1)

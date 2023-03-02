@@ -1,11 +1,13 @@
 package com.aallam.openai.api.image
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileSource
 
 /**
  * Image variant request.
  */
+@BetaOpenAI
 public class ImageVariation(
     /**
      * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
@@ -31,12 +33,14 @@ public class ImageVariation(
 /**
  * Image variant request.
  */
+@BetaOpenAI
 public fun imageVariation(block: ImageVariationBuilder.() -> Unit): ImageVariation =
     ImageVariationBuilder().apply(block).build()
 
 /**
  * Builder of [ImageVariation] instances.
  */
+@BetaOpenAI
 @OpenAIDsl
 public class ImageVariationBuilder {
     /**

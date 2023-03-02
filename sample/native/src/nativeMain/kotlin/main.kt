@@ -1,3 +1,7 @@
+import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.chat.ChatCompletionRequest
+import com.aallam.openai.api.chat.ChatMessage
+import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
@@ -15,6 +19,7 @@ import okio.FileSystem
 import okio.Path.Companion.toPath
 import platform.posix.getenv
 
+@OptIn(BetaOpenAI::class)
 fun main(): Unit = runBlocking {
 
     val apiKey = getenv("OPENAI_API_KEY")?.toKString()
@@ -75,4 +80,27 @@ fun main(): Unit = runBlocking {
     )
     val imageEdits = openAI.imageURL(imageEdit)
     println(imageEdits)
+
+    println("\n> Create chat completions...")
+    val chatCompletionRequest = ChatCompletionRequest(
+        model = ModelId("gpt-3.5-turbo"),
+        messages = listOf(
+            ChatMessage(
+                role = ChatRole.System,
+                content = "You are a helpful assistant that translates English to French."
+            ),
+            ChatMessage(
+                role = ChatRole.User,
+                content = "Translate the following English text to French: “OpenAI is awesome!”"
+            )
+        )
+    )
+    openAI.chatCompletion(chatCompletionRequest).choices.forEach(::println)
+
+    println("\n>️ Creating completion stream...")
+    openAI.chatCompletions(chatCompletionRequest)
+        .onEach { print(it.choices.first().delta?.content.orEmpty()) }
+        .onCompletion { println() }
+        .launchIn(this)
+        .join()
 }

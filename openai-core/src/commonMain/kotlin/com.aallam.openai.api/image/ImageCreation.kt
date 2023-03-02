@@ -1,10 +1,12 @@
 package com.aallam.openai.api.image
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 
 /**
  * Image generation request.
  */
+@BetaOpenAI
 public class ImageCreation(
     /**
      * A text description of the desired image(s). The maximum length is 1000 characters.
@@ -28,11 +30,13 @@ public class ImageCreation(
 /**
  * Image generation request.
  */
+@BetaOpenAI
 public fun imageCreation(block: ImageCreationBuilder.() -> Unit): ImageCreation = ImageCreationBuilder().apply(block).build()
 
 /**
  * Builder of [ImageCreation] instances.
  */
+@BetaOpenAI
 @OpenAIDsl
 public class ImageCreationBuilder {
 

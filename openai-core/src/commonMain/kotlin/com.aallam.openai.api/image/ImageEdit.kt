@@ -1,11 +1,13 @@
 package com.aallam.openai.api.image
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileSource
 
 /**
  * Image edit request.
  */
+@BetaOpenAI
 public class ImageEdit(
     /**
      * The image to edit. Must be a valid PNG file, less than 4MB, and square.
@@ -43,11 +45,13 @@ public class ImageEdit(
 /**
  * Image edit request.
  */
+@BetaOpenAI
 public fun imageEdit(block: ImageEditBuilder.() -> Unit): ImageEdit = ImageEditBuilder().apply(block).build()
 
 /**
  * Builder of [ImageEdit] instances.
  */
+@BetaOpenAI
 @OpenAIDsl
 public class ImageEditBuilder {
     /**

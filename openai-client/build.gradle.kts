@@ -21,6 +21,7 @@ kotlin {
                 optIn("okio.ExperimentalFileSystem")
                 optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
                 optIn("com.aallam.openai.api.ExperimentalOpenAI")
+                optIn("com.aallam.openai.api.BetaOpenAI")
             }
         }
         val commonMain by getting {

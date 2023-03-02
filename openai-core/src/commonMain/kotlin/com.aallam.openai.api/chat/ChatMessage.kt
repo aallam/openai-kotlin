@@ -1,11 +1,14 @@
 package com.aallam.openai.api.chat
 
+import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.OpenAIDsl
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
  * The messages to generate chat completions for.
  */
+@BetaOpenAI
 @Serializable
 public class ChatMessage(
     /**
@@ -27,12 +30,15 @@ public class ChatMessage(
 /**
  * The messages to generate chat completions for.
  */
+@BetaOpenAI
 public fun chatMessage(block: ChatMessageBuilder.() -> Unit): ChatMessage =
     ChatMessageBuilder().apply(block).build()
 
 /**
  * Builder of [ChatMessageBuilder] instances.
  */
+@BetaOpenAI
+@OpenAIDsl
 public class ChatMessageBuilder {
 
     /**

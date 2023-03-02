@@ -1,6 +1,8 @@
 package com.aallam.openai.sample.jvm
 
 import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.audio.TranscriptionRequest
+import com.aallam.openai.api.audio.TranslationRequest
 import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
@@ -103,4 +105,20 @@ fun main() = runBlocking {
         .onCompletion { println() }
         .launchIn(this)
         .join()
+
+    println("\n>️ Create transcription...")
+    val transcriptionRequest = TranscriptionRequest(
+        audio = FileSource(path = "micro-machines.wav".toPath(), fileSystem = FileSystem.RESOURCES),
+        model = ModelId("whisper-1"),
+    )
+    val transcription = openAI.transcription(transcriptionRequest)
+    println(transcription)
+
+    println("\n>️ Create translation...")
+    val translationRequest = TranslationRequest(
+        audio = FileSource(path = "multilingual.wav".toPath(), fileSystem = FileSystem.RESOURCES),
+        model = ModelId("whisper-1"),
+    )
+    val translation = openAI.translation(translationRequest)
+    println(translation)
 }

@@ -1,8 +1,13 @@
 package com.aallam.openai.api.audio
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
 
+/**
+ * Request to transcribe audio into the input [language].
+ */
+@BetaOpenAI
 public class TranscriptionRequest(
     /**
      * The audio file to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.

@@ -18,7 +18,7 @@ import kotlin.time.Duration.Companion.seconds
  * @param host OpenAI host configuration
  * @param proxy HTTP proxy url
  * @param host OpenAI host configuration.
- * @param retry http retry strategy
+ * @param retry rate limit retry configuration
  */
 public class OpenAIConfig(
     public val token: String,
@@ -29,7 +29,7 @@ public class OpenAIConfig(
     public val headers: Map<String, String> = emptyMap(),
     public val host: OpenAIHost = OpenAIHost.OpenAI,
     public val proxy: ProxyConfig? = null,
-    public val retry: RetryStrategy = RetryStrategy.Exponential(),
+    public val retry: RetryStrategy = RetryStrategy(),
 )
 
 /**
@@ -59,38 +59,13 @@ public sealed interface ProxyConfig {
 
 /**
  * Specifies the retry strategy
+ *
+ * @param maxRetries the maximum amount of retries to perform for a request
+ * @param base retry base value
+ * @param maxDelay max retry delay
  */
-public sealed interface RetryStrategy {
-
-    /** The maximum amount of retries to perform for a request. */
-    public val maxRetries: Int
-
-    /**
-     * Specifies an exponential delay between retries
-     *
-     * @param maxRetries the maximum amount of retries to perform for a request
-     * @param base exponential base value
-     * @param maxDelay max retry delay
-     */
-    public class Exponential(
-        public override val maxRetries: Int = 3,
-        public val base: Double = 2.0,
-        public val maxDelay: Duration = 60.seconds,
-    ) : RetryStrategy
-
-    /**
-     * Specifies a constant delay between retries
-     *
-     * @param maxRetries the maximum amount of retries to perform for a request
-     * @param delay retry delay duration
-     */
-    public class Constant(
-        public override val maxRetries: Int = 3,
-        public val delay: Duration = 1.seconds,
-    ) : RetryStrategy
-
-    /** Disables retry. */
-    public object NoRetry : RetryStrategy {
-        override val maxRetries: Int = 0
-    }
-}
+public class RetryStrategy(
+    public val maxRetries: Int = 3,
+    public val base: Double = 2.0,
+    public val maxDelay: Duration = 60.seconds,
+)

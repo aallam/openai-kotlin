@@ -2,6 +2,7 @@ package com.aallam.openai.client.internal
 
 import com.aallam.openai.client.OpenAIConfig
 import com.aallam.openai.client.ProxyConfig
+import com.aallam.openai.client.RetryStrategy.*
 import com.aallam.openai.client.internal.extension.toKtorLogLevel
 import com.aallam.openai.client.internal.extension.toKtorLogger
 import io.ktor.client.*
@@ -57,6 +58,15 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             }
             config.timeout.request?.let { requestTimeout ->
                 requestTimeoutMillis = requestTimeout.toLong(DurationUnit.MILLISECONDS)
+            }
+        }
+
+        install(HttpRequestRetry) {
+            maxRetries = config.retry.maxRetries
+            when (val strategy = config.retry) {
+                is Exponential -> exponentialDelay(strategy.base, strategy.maxDelay.inWholeMilliseconds)
+                is Constant -> constantDelay(strategy.delay.inWholeMilliseconds)
+                is NoRetry -> noRetry()
             }
         }
 

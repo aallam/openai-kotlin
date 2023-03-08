@@ -14,7 +14,8 @@ import kotlin.time.Duration.Companion.seconds
  * @param timeout http client timeout
  * @param headers extra http headers
  * @param organization OpenAI organization ID
- * @param host OpenAI host configuration.
+ * @param host OpenAI host configuration
+ * @param proxy HTTP proxy url
  */
 public class OpenAIConfig(
     public val token: String,
@@ -24,6 +25,7 @@ public class OpenAIConfig(
     public val organization: String? = null,
     public val headers: Map<String, String> = emptyMap(),
     public val host: OpenAIHost = OpenAIHost.OpenAI,
+    public val proxy: ProxyConfig? = null,
 )
 
 /**
@@ -38,4 +40,14 @@ public class OpenAIHost(
     public companion object {
         public val OpenAI: OpenAIHost = OpenAIHost("https://api.openai.com")
     }
+}
+
+/** Proxy configuration. */
+public sealed interface ProxyConfig {
+
+    /** Creates an HTTP proxy from [url]. */
+    public class Http(public val url: String) : ProxyConfig
+
+    /** Create socks proxy from [host] and [port]. */
+    public class Socks(public val host: String, public val port: Int) : ProxyConfig
 }

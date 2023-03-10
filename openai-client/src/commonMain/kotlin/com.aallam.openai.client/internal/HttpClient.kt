@@ -60,6 +60,13 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             }
         }
 
+        install(HttpRequestRetry) {
+            maxRetries = config.retry.maxRetries
+            // retry on rate limit error.
+            retryIf { _, response -> response.status.value.let { it == 429 } }
+            exponentialDelay(config.retry.base, config.retry.maxDelay.inWholeMilliseconds)
+        }
+
         defaultRequest {
             url(config.host.baseUrl)
             config.host.queryParams.onEach { (key, value) -> url.parameters.appendIfNameAbsent(key, value) }

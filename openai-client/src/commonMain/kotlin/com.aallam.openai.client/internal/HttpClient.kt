@@ -1,9 +1,11 @@
 package com.aallam.openai.client.internal
 
 import com.aallam.openai.client.OpenAIConfig
+import com.aallam.openai.client.ProxyConfig
 import com.aallam.openai.client.internal.extension.toKtorLogLevel
 import com.aallam.openai.client.internal.extension.toKtorLogger
 import io.ktor.client.*
+import io.ktor.client.engine.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
@@ -20,13 +22,24 @@ import kotlin.time.DurationUnit
  */
 internal fun createHttpClient(config: OpenAIConfig): HttpClient {
     return HttpClient {
+        engine {
+            config.proxy?.let { proxyConfig ->
+                proxy = when (proxyConfig) {
+                    is ProxyConfig.Http -> ProxyBuilder.http(proxyConfig.url)
+                    is ProxyConfig.Socks -> ProxyBuilder.socks(proxyConfig.host, proxyConfig.port)
+                }
+            }
+        }
+
         install(ContentNegotiation) {
             register(ContentType.Application.Json, KotlinxSerializationConverter(JsonLenient))
         }
+
         install(Logging) {
             logger = config.logger.toKtorLogger()
             level = config.logLevel.toKtorLogLevel()
         }
+
         install(Auth) {
             bearer {
                 loadTokens {

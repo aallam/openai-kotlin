@@ -1,4 +1,6 @@
 import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.audio.TranscriptionRequest
+import com.aallam.openai.api.audio.TranslationRequest
 import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
@@ -14,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
+import okio.FileSystem
 import okio.NodeJsFileSystem
 import okio.Path.Companion.toPath
 import kotlin.coroutines.coroutineContext
@@ -101,4 +104,20 @@ suspend fun main() {
         .onCompletion { println() }
         .launchIn(scope)
         .join()
+
+    println("\n>️ Create transcription...")
+    val transcriptionRequest = TranscriptionRequest(
+        audio = FileSource(path = "kotlin/micro-machines.wav".toPath(), fileSystem = NodeJsFileSystem),
+        model = ModelId("whisper-1"),
+    )
+    val transcription = openAI.transcription(transcriptionRequest)
+    println(transcription)
+
+    println("\n>️ Create translation...")
+    val translationRequest = TranslationRequest(
+        audio = FileSource(path = "kotlin/multilingual.wav".toPath(), fileSystem = NodeJsFileSystem),
+        model = ModelId("whisper-1"),
+    )
+    val translation = openAI.translation(translationRequest)
+    println(translation)
 }

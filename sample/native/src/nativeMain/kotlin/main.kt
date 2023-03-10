@@ -1,4 +1,6 @@
 import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.audio.TranscriptionRequest
+import com.aallam.openai.api.audio.TranslationRequest
 import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
@@ -25,6 +27,8 @@ fun main(): Unit = runBlocking {
     val apiKey = getenv("OPENAI_API_KEY")?.toKString()
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
     val openAI = OpenAI(token = token)
+
+    val resourcesPrefix = "src/nativeMain/resources"
 
     println("> Getting available models...")
     openAI.models().forEach(::println)
@@ -70,10 +74,9 @@ fun main(): Unit = runBlocking {
     println(images)
 
     println("\n> Edit images...")
-    val resources = "src/nativeMain/resources"
     val imageEdit = ImageEdit(
-        image = FileSource(path = "$resources/image.png".toPath(), fileSystem = FileSystem.SYSTEM),
-        mask = FileSource(path = "$resources/mask.png".toPath(), fileSystem = FileSystem.SYSTEM),
+        image = FileSource(path = "$resourcesPrefix/image.png".toPath(), fileSystem = FileSystem.SYSTEM),
+        mask = FileSource(path = "$resourcesPrefix/mask.png".toPath(), fileSystem = FileSystem.SYSTEM),
         prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
         n = 1,
         size = ImageSize.is1024x1024,
@@ -103,4 +106,20 @@ fun main(): Unit = runBlocking {
         .onCompletion { println() }
         .launchIn(this)
         .join()
+
+    println("\n>️ Create transcription...")
+    val transcriptionRequest = TranscriptionRequest(
+        audio = FileSource(path = "$resourcesPrefix/micro-machines.wav".toPath(), fileSystem = FileSystem.SYSTEM),
+        model = ModelId("whisper-1"),
+    )
+    val transcription = openAI.transcription(transcriptionRequest)
+    println(transcription)
+
+    println("\n>️ Create translation...")
+    val translationRequest = TranslationRequest(
+        audio = FileSource(path = "$resourcesPrefix/multilingual.wav".toPath(), fileSystem = FileSystem.SYSTEM),
+        model = ModelId("whisper-1"),
+    )
+    val translation = openAI.translation(translationRequest)
+    println(translation)
 }

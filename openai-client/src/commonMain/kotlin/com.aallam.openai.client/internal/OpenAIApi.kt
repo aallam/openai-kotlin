@@ -20,4 +20,5 @@ internal class OpenAIApi(
     Moderations by ModerationsApi(requester),
     FineTunes by FineTunesApi(requester),
     Images by ImagesApi(requester),
-    Chat by ChatApi(requester)
+    Chat by ChatApi(requester),
+    Audio by AudioApi(requester)

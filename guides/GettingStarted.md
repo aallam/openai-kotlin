@@ -25,6 +25,9 @@ Use your `OpenAI` instance to make API requests.
   - [Create image variation](#create-image-variation-beta)
 - [Embeddings](#embeddings)
   - [Create embeddings](#create-embeddings)
+- [Audio](#audio)
+  - [Create transcription](#create-transcription-beta)
+  - [Create translation](#create-translation-beta)
 - [Files](#files)
   - [List files](#list-files)
   - [Upload file](#upload-file)
@@ -188,6 +191,34 @@ val embeddings = openAI.embeddings(
     )
 )
 ````
+
+## Audio
+
+Learn how to turn audio into text.
+
+### Create transcription `Beta`
+
+Transcribes audio into the input language.
+
+```kotlin
+val request = TranscriptionRequest(
+  audio = FileSource(name = "<filename>", source = audioSource),
+  model = ModelId("whisper-1"),
+)
+val transcription = openAI.transcription(request)
+```
+
+### Create translation `Beta`
+
+Translates audio into English.
+
+```kotlin
+val request = TranslationRequest(
+  audio = FileSource(name = "<filename>", source = audioSource),
+  model = ModelId("whisper-1"),
+)
+val translation = openAI.translation(request)
+```
 
 ## Files
 

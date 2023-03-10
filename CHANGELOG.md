@@ -1,3 +1,11 @@
+# 3.1.0
+> Published 10 Mar 2023
+
+### Added
+- **Audio**: api implementation (#105)
+- **Config**: proxy config (#111)
+- **Config**: retry strategy config (#112)
+
 # 3.0.0
 > Published 02 Mar 2023
 

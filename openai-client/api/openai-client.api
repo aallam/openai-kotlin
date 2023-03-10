@@ -1,3 +1,8 @@
+public abstract interface class com/aallam/openai/client/Audio {
+	public abstract fun transcription (Lcom/aallam/openai/api/audio/TranscriptionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun translation (Lcom/aallam/openai/api/audio/TranslationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public abstract interface class com/aallam/openai/client/Chat {
 	public abstract fun chatCompletion (Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun chatCompletions (Lcom/aallam/openai/api/chat/ChatCompletionRequest;)Lkotlinx/coroutines/flow/Flow;
@@ -52,17 +57,19 @@ public abstract interface class com/aallam/openai/client/Moderations {
 	public abstract fun moderations (Lcom/aallam/openai/api/moderation/ModerationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/Images, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations {
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Audio, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/Images, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations {
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {
-	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;)V
-	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getHeaders ()Ljava/util/Map;
 	public final fun getHost ()Lcom/aallam/openai/client/OpenAIHost;
 	public final fun getLogLevel ()Lcom/aallam/openai/api/logging/LogLevel;
 	public final fun getLogger ()Lcom/aallam/openai/api/logging/Logger;
 	public final fun getOrganization ()Ljava/lang/String;
+	public final fun getProxy ()Lcom/aallam/openai/client/ProxyConfig;
+	public final fun getRetry ()Lcom/aallam/openai/client/RetryStrategy;
 	public final fun getTimeout ()Lcom/aallam/openai/api/http/Timeout;
 	public final fun getToken ()Ljava/lang/String;
 }
@@ -82,6 +89,28 @@ public final class com/aallam/openai/client/OpenAIHost$Companion {
 public final class com/aallam/openai/client/OpenAIKt {
 	public static final fun OpenAI (Lcom/aallam/openai/client/OpenAIConfig;)Lcom/aallam/openai/client/OpenAI;
 	public static final fun OpenAI (Ljava/lang/String;)Lcom/aallam/openai/client/OpenAI;
+}
+
+public abstract interface class com/aallam/openai/client/ProxyConfig {
+}
+
+public final class com/aallam/openai/client/ProxyConfig$Http : com/aallam/openai/client/ProxyConfig {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getUrl ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/client/ProxyConfig$Socks : com/aallam/openai/client/ProxyConfig {
+	public fun <init> (Ljava/lang/String;I)V
+	public final fun getHost ()Ljava/lang/String;
+	public final fun getPort ()I
+}
+
+public final class com/aallam/openai/client/RetryStrategy {
+	public synthetic fun <init> (IDJILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (IDJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getBase ()D
+	public final fun getMaxDelay-UwyO8pc ()J
+	public final fun getMaxRetries ()I
 }
 
 public final class com/aallam/openai/client/extension/EmbeddingKt {

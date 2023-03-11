@@ -52,7 +52,7 @@ Create an instance of `OpenAI` client:
 val openAI = OpenAI(apiKey)
 ```
 
-> ℹ️ OpenAI encourages using environment variables for the API key. [Read more](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
+> **Note**: OpenAI encourages using environment variables for the API key. [Read more](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
 
 Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStarted.md).
 

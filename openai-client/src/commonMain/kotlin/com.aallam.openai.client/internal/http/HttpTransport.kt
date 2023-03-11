@@ -1,5 +1,6 @@
 package com.aallam.openai.client.internal.http
 
+import com.aallam.openai.api.exception.OpenAIAPIError
 import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.exception.OpenAIHttpException
 import io.ktor.client.HttpClient
@@ -9,8 +10,7 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.HttpStatement
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.isSuccess
-import io.ktor.util.reflect.TypeInfo
-import io.ktor.util.reflect.instanceOf
+import io.ktor.util.reflect.*
 
 /** HTTP transport layer */
 internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester {
@@ -31,7 +31,7 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
     private suspend fun <T> HttpResponse.bodyOrThrow(info: TypeInfo): T {
         return when {
             status.isSuccess() -> body(info)
-            else -> throw OpenAIAPIException(status.value, bodyAsText())
+            else -> throw OpenAIAPIException(status.value, bodyAsText(), body(typeInfo<OpenAIAPIError>()))
         }
     }
 
@@ -43,7 +43,7 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
             HttpStatement(builder = builder, client = httpClient).execute {
                 when {
                     it.status.isSuccess() -> block(it)
-                    else -> throw OpenAIAPIException(it.status.value, it.bodyAsText())
+                    else -> throw OpenAIAPIException(it.status.value, it.bodyAsText(), it.body(typeInfo<OpenAIAPIError>()))
                 }
             }
         } catch (e: Exception) {

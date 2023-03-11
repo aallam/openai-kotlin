@@ -14,6 +14,7 @@ public class OpenAIHttpException(
 
 /** Runtime API exception */
 public class OpenAIAPIException(
-    statusCode: Int,
-    body: String,
+    public val statusCode: Int,
+    public val body: String,
+    public val openAIAPIError: OpenAIAPIError,
 ) : OpenAIException(message = "(statusCode=$statusCode, body='$body')")

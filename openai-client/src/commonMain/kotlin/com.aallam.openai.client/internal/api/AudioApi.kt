@@ -18,7 +18,7 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
     @BetaOpenAI
     override suspend fun transcription(request: TranscriptionRequest): Transcription {
         return requester.perform {
-            it.submitFormWithBinaryData(url = TranslationPathV1, formData = formDataOf(request))
+            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request))
         }
     }
 
@@ -37,7 +37,7 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
     @BetaOpenAI
     override suspend fun translation(request: TranslationRequest): Translation {
         return requester.perform {
-            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request))
+            it.submitFormWithBinaryData(url = TranslationPathV1, formData = formDataOf(request))
         }
     }
 

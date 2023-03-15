@@ -1,6 +1,7 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.audio.transcriptionRequest
+import com.aallam.openai.api.audio.translationRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.asSource
@@ -37,14 +38,14 @@ class TestAudio : TestOpenAI() {
     fun translation() = runTest {
         val multilingualUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/multilingual.wav"
         val audioBytes: ByteArray = httpClient.get(multilingualUrl).body()
-        val request = transcriptionRequest {
+        val request = translationRequest {
             audio = FileSource(name = "multilingual.wav", source = audioBytes.asSource())
             model = ModelId("whisper-1")
         }
-        val transcription = openAI.transcription(request)
-        assertTrue { transcription.text.isNotEmpty() }
+        val translation = openAI.translation(request)
+        assertTrue { translation.text.isNotEmpty() }
         assertTrue {
-            transcription.text.startsWith(
+            translation.text.startsWith(
                 "Whisper is an automatic recognition system of speech",
                 ignoreCase = true,
             )

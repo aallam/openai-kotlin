@@ -12,9 +12,12 @@ public class OpenAIHttpException(
     throwable: Throwable? = null
 ) : OpenAIException(message, throwable)
 
-/** Runtime API exception */
+/**
+ * An exception thrown when an error occurs while interacting with the OpenAI API.
+ */
 public class OpenAIAPIException(
+    /** Http status code **/
     public val statusCode: Int,
-    public val body: String,
-    public val openAIAPIError: OpenAIAPIError,
-) : OpenAIException(message = "(statusCode=$statusCode, body='$body')")
+    /** Contains information about the error that occurred.*/
+    public val error: OpenAIError,
+) : OpenAIException(message = error.detail?.message)

@@ -898,7 +898,73 @@ public final class com/aallam/openai/api/embedding/EmbeddingResponse$Companion {
 }
 
 public final class com/aallam/openai/api/exception/OpenAIAPIException : com/aallam/openai/api/exception/OpenAIException {
-	public fun <init> (ILjava/lang/String;)V
+	public fun <init> (ILcom/aallam/openai/api/exception/OpenAIError;)V
+	public final fun getError ()Lcom/aallam/openai/api/exception/OpenAIError;
+	public final fun getStatusCode ()I
+}
+
+public final class com/aallam/openai/api/exception/OpenAIError {
+	public static final field Companion Lcom/aallam/openai/api/exception/OpenAIError$Companion;
+	public synthetic fun <init> (ILcom/aallam/openai/api/exception/OpenAIErrorDetails;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lcom/aallam/openai/api/exception/OpenAIErrorDetails;)V
+	public final fun component1 ()Lcom/aallam/openai/api/exception/OpenAIErrorDetails;
+	public final fun copy (Lcom/aallam/openai/api/exception/OpenAIErrorDetails;)Lcom/aallam/openai/api/exception/OpenAIError;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/exception/OpenAIError;Lcom/aallam/openai/api/exception/OpenAIErrorDetails;ILjava/lang/Object;)Lcom/aallam/openai/api/exception/OpenAIError;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDetail ()Lcom/aallam/openai/api/exception/OpenAIErrorDetails;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/exception/OpenAIError;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class com/aallam/openai/api/exception/OpenAIError$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/exception/OpenAIError$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/exception/OpenAIError;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/exception/OpenAIError;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/exception/OpenAIError$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/exception/OpenAIErrorDetails {
+	public static final field Companion Lcom/aallam/openai/api/exception/OpenAIErrorDetails$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/exception/OpenAIErrorDetails;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/exception/OpenAIErrorDetails;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/exception/OpenAIErrorDetails;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCode ()Ljava/lang/String;
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getParam ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lcom/aallam/openai/api/exception/OpenAIErrorDetails;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class com/aallam/openai/api/exception/OpenAIErrorDetails$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/exception/OpenAIErrorDetails$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/exception/OpenAIErrorDetails;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/exception/OpenAIErrorDetails;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/exception/OpenAIErrorDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public abstract class com/aallam/openai/api/exception/OpenAIException : java/lang/RuntimeException {

@@ -1,3 +1,12 @@
+# 3.1.1
+> Published 17 Mar 2023
+
+### Changed
+- Add error details to `OpenAIAPIException` (#120) (thanks @rosuH)
+
+### Fixed
+- **Audio**: switch mixed-up translation and transcription paths (#119) (thanks @matusekma)
+
 # 3.1.0
 > Published 10 Mar 2023
 

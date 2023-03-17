@@ -10,8 +10,8 @@ import kotlin.time.Duration.Companion.seconds
  * OpenAI client configuration.
  *
  * @param token OpenAI Token
- * @param logger http client logging level
- * @param logLevel http client logger
+ * @param logger http client logger
+ * @param logLevel http client logging level
  * @param timeout http client timeout
  * @param headers extra http headers
  * @param organization OpenAI organization ID

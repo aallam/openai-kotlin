@@ -73,6 +73,8 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             config.organization?.let { organization -> headers.append("OpenAI-Organization", organization) }
             config.headers.onEach { (key, value) -> headers.appendIfNameAbsent(key, value) }
         }
+
+        expectSuccess = true
     }
 }
 

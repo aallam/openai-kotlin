@@ -8,9 +8,8 @@ public sealed class OpenAIException(
 
 /** Runtime Http Client exception */
 public class OpenAIHttpException(
-    message: String? = null,
-    throwable: Throwable? = null
-) : OpenAIException(message, throwable)
+    throwable: Throwable? = null,
+) : OpenAIException(throwable?.message, throwable)
 
 /**
  * An exception thrown when an error occurs while interacting with the OpenAI API.
@@ -21,3 +20,13 @@ public class OpenAIAPIException(
     /** Contains information about the error that occurred.*/
     public val error: OpenAIError,
 ) : OpenAIException(message = error.detail?.message)
+
+/** An exception thrown in case a request times out. */
+public class OpenAITimeoutException(
+    throwable: Throwable
+) : OpenAIException(message = throwable.message, throwable = throwable)
+
+/** An exception thrown in case of a server error */
+public class OpenAIServerException(
+    throwable: Throwable? = null,
+): OpenAIException(message = throwable?.message, throwable = throwable)

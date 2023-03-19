@@ -19,7 +19,8 @@ public class OpenAIAPIException(
     public val statusCode: Int,
     /** Contains information about the error that occurred.*/
     public val error: OpenAIError,
-) : OpenAIException(message = error.detail?.message)
+    throwable: Throwable? = null,
+) : OpenAIException(message = error.detail?.message, throwable = throwable)
 
 /** An exception thrown in case a request times out. */
 public class OpenAITimeoutException(
@@ -29,4 +30,4 @@ public class OpenAITimeoutException(
 /** An exception thrown in case of a server error */
 public class OpenAIServerException(
     throwable: Throwable? = null,
-): OpenAIException(message = throwable?.message, throwable = throwable)
+) : OpenAIException(message = throwable?.message, throwable = throwable)

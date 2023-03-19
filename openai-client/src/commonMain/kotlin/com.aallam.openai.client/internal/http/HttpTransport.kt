@@ -40,7 +40,7 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
     /** Handle different error cases. */
     private suspend fun handleException(e: Exception) = when (e) {
         is CancellationException -> e // propagate coroutine cancellation
-        is ClientRequestException -> OpenAIAPIException(e.response.status.value, e.response.body())
+        is ClientRequestException -> OpenAIAPIException(e.response.status.value, e.response.body(), e)
         is ServerResponseException -> OpenAIServerException(e)
         is HttpRequestTimeoutException, is SocketTimeoutException, is ConnectTimeoutException -> OpenAITimeoutException(e)
         else -> OpenAIHttpException(e)

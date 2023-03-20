@@ -2,33 +2,27 @@ package com.aallam.openai.client.internal.http
 
 import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.exception.OpenAIHttpException
+import com.aallam.openai.api.exception.OpenAIServerException
+import com.aallam.openai.api.exception.OpenAITimeoutException
 import io.ktor.client.*
 import io.ktor.client.call.*
+import io.ktor.client.network.sockets.*
+import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import io.ktor.http.*
 import io.ktor.util.reflect.*
+import kotlinx.coroutines.CancellationException
 
 /** HTTP transport layer */
 internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester {
 
     /** Perform an HTTP request and get a result */
     override suspend fun <T : Any> perform(info: TypeInfo, block: suspend (HttpClient) -> HttpResponse): T {
-        return try {
+        try {
             val response = block(httpClient)
-            @Suppress("UNCHECKED_CAST")
-            if (response.instanceOf(info.type)) return response as T
-            response.bodyOrThrow(info)
+            return response.body(info)
         } catch (e: Exception) {
-            throw OpenAIHttpException(throwable = e)
-        }
-    }
-
-    /** Get [body] when the response is success (2XX), otherwise throw an exception */
-    private suspend fun <T> HttpResponse.bodyOrThrow(info: TypeInfo): T {
-        return when {
-            status.isSuccess() -> body(info)
-            else -> throw OpenAIAPIException(status.value, body())
+            throw handleException(e)
         }
     }
 
@@ -37,14 +31,18 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
         block: suspend (response: HttpResponse) -> T
     ) {
         try {
-            HttpStatement(builder = builder, client = httpClient).execute {
-                when {
-                    it.status.isSuccess() -> block(it)
-                    else -> throw OpenAIAPIException(it.status.value, it.body())
-                }
-            }
+            HttpStatement(builder = builder, client = httpClient).execute(block)
         } catch (e: Exception) {
-            throw OpenAIHttpException(throwable = e)
+            throw handleException(e)
         }
+    }
+
+    /** Handle different error cases. */
+    private suspend fun handleException(e: Exception) = when (e) {
+        is CancellationException -> e // propagate coroutine cancellation
+        is ClientRequestException -> OpenAIAPIException(e.response.status.value, e.response.body(), e)
+        is ServerResponseException -> OpenAIServerException(e)
+        is HttpRequestTimeoutException, is SocketTimeoutException, is ConnectTimeoutException -> OpenAITimeoutException(e)
+        else -> OpenAIHttpException(e)
     }
 }

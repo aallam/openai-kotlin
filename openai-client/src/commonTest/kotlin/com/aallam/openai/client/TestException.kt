@@ -16,7 +16,7 @@ class TestException {
             openAI.model(ModelId("davinci"))
         }
         assertTrue(model.isFailure)
-        val exception = model.exceptionOrNull()?.cause as OpenAIAPIException
+        val exception = model.exceptionOrNull() as OpenAIAPIException
         assertEquals(401, exception.statusCode)
         assertEquals(
             "invalid_request_error",

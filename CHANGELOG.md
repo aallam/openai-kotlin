@@ -1,3 +1,8 @@
+# Unreleased
+
+### Changed
+- Simplify and add more exceptions (#123)
+
 # 3.1.1
 > Published 17 Mar 2023
 

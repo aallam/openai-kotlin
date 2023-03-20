@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  */
 @BetaOpenAI
 @Serializable
-public class ChatMessage(
+public data class ChatMessage(
     /**
      * The role of the author of this message.
      */

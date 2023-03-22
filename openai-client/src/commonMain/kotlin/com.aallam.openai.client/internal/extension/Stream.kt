@@ -20,10 +20,7 @@ internal suspend inline fun <reified T> FlowCollector<T>.streamEventsFrom(respon
         val line = channel.readUTF8Line() ?: continue
         val value: T = when {
             line.startsWith(STREAM_END_TOKEN) -> break
-            line.startsWith(STREAM_PREFIX) -> JsonLenient.decodeFromString(
-                line.removePrefix(STREAM_PREFIX)
-            )
-
+            line.startsWith(STREAM_PREFIX) -> JsonLenient.decodeFromString(line.removePrefix(STREAM_PREFIX))
             else -> continue
         }
         emit(value)

@@ -8,45 +8,16 @@ import kotlin.jvm.JvmInline
 /**
  * Create transcription response.
  *
- * Note: This does not currently support the non-default response format types.
+ * [text] format depends on [TranscriptionRequest]'s `responseFormat`.
+ * Remaining field are provided only in case of response format `verbose_json`.
  */
 @BetaOpenAI
 @Serializable
-@Deprecated("Use specific transcription type instead")
 public data class Transcription(
     /**
-     * Transcription text.
+     * Transcription [text].
+     * The format depends on [TranscriptionRequest]'s `responseFormat`.
      */
-    @SerialName("text") val text: String
-)
-
-/**
- * Create transcription response.
- */
-@JvmInline
-@BetaOpenAI
-public value class TranscriptionText(public val text: String)
-
-/**
- * Create transcription response.
- */
-@JvmInline
-@BetaOpenAI
-public value class TranscriptionVTT(public val vtt: String)
-
-/**
- * Create transcription response.
- */
-@JvmInline
-@BetaOpenAI
-public value class TranscriptionSRT(public val srt: String)
-
-/**
- * Create transcription response.
- */
-@BetaOpenAI
-@Serializable
-public data class TranscriptionJson(
     @SerialName("text") val text: String,
     @SerialName("language") val language: String? = null,
     @SerialName("duration") val duration: Double? = null,

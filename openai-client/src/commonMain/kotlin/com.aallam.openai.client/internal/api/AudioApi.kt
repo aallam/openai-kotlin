@@ -2,6 +2,8 @@ package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.audio.*
+import com.aallam.openai.api.exception.OpenAIClientException
+import com.aallam.openai.api.exception.OpenAIException
 import com.aallam.openai.client.Audio
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.http.HttpRequester
@@ -9,6 +11,7 @@ import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
+import io.ktor.util.reflect.*
 
 /**
  * Implementation of [Audio].
@@ -16,53 +19,24 @@ import io.ktor.http.*
 internal class AudioApi(val requester: HttpRequester) : Audio {
     @BetaOpenAI
     override suspend fun transcription(request: TranscriptionRequest): Transcription {
+        return when (request.responseFormat) {
+            "json", "verbose_json", null -> transcriptionAsJson(request)
+            "text", "srt", "vtt" -> transcriptionAsString(request)
+            else -> throw OpenAIClientException("Unsupport format ${request.responseFormat}")
+        }
+    }
+
+    private suspend fun transcriptionAsString(request: TranscriptionRequest): Transcription {
+        val text = requester.perform<String> {
+            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request))
+        }
+        return Transcription(text)
+    }
+
+    private suspend fun transcriptionAsJson(request: TranscriptionRequest): Transcription {
         return requester.perform {
             it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request))
         }
-    }
-
-    @BetaOpenAI
-    override suspend fun transcriptionText(request: TranscriptionRequest): TranscriptionText {
-        val text = requester.perform<String> {
-            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request, "text")) {
-                accept(ContentType.Text.Plain)
-            }
-        }
-        return TranscriptionText(text)
-    }
-
-    @BetaOpenAI
-    override suspend fun transcriptionJson(request: TranscriptionRequest): TranscriptionJson {
-        return requester.perform {
-            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request, "json"))
-        }
-    }
-
-    @BetaOpenAI
-    override suspend fun transcriptionJsonVerbose(request: TranscriptionRequest): TranscriptionJson {
-        return requester.perform {
-            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request, "verbose_json"))
-        }
-    }
-
-    @BetaOpenAI
-    override suspend fun transcriptionVTT(request: TranscriptionRequest): TranscriptionVTT {
-        val vtt = requester.perform<String> {
-            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request, "vtt")) {
-                accept(ContentTypeVTT)
-            }
-        }
-        return TranscriptionVTT(vtt)
-    }
-
-    @BetaOpenAI
-    override suspend fun transcriptionSRT(request: TranscriptionRequest): TranscriptionSRT {
-        val srt = requester.perform<String> {
-            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request, "srt")) {
-                accept(ContentType.Text.Plain)
-            }
-        }
-        return TranscriptionSRT(srt)
     }
 
     /**

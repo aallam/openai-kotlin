@@ -15,36 +15,6 @@ public interface Audio {
     public suspend fun transcription(request: TranscriptionRequest): Transcription
 
     /**
-     * Transcribes audio into the input language.
-     */
-    @BetaOpenAI
-    public suspend fun transcriptionText(request: TranscriptionRequest): TranscriptionText
-
-    /**
-     * Transcribes audio into the input language.
-     */
-    @BetaOpenAI
-    public suspend fun transcriptionJson(request: TranscriptionRequest): TranscriptionJson
-
-    /**
-     * Transcribes audio into the input language.
-     */
-    @BetaOpenAI
-    public suspend fun transcriptionJsonVerbose(request: TranscriptionRequest): TranscriptionJson
-
-    /**
-     * Transcribes audio into the input language.
-     */
-    @BetaOpenAI
-    public suspend fun transcriptionVTT(request: TranscriptionRequest): TranscriptionVTT
-
-    /**
-     * Transcribes audio into the input language.
-     */
-    @BetaOpenAI
-    public suspend fun transcriptionSRT(request: TranscriptionRequest): TranscriptionSRT
-
-    /**
      * Translates audio into English.
      */
     @BetaOpenAI

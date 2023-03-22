@@ -26,6 +26,7 @@ class TestAudio : TestOpenAI() {
             audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
             model = ModelId("whisper-1")
         }
+
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
         assertTrue {
@@ -43,8 +44,9 @@ class TestAudio : TestOpenAI() {
         val request = transcriptionRequest {
             audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
             model = ModelId("whisper-1")
+            responseFormat = "text"
         }
-        val transcription = openAI.transcriptionText(request)
+        val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
     }
 
@@ -55,8 +57,9 @@ class TestAudio : TestOpenAI() {
         val request = transcriptionRequest {
             audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
             model = ModelId("whisper-1")
+            responseFormat = "json"
         }
-        val transcription = openAI.transcriptionJson(request)
+        val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
         assertNull(transcription.language)
         assertNull(transcription.duration)
@@ -70,8 +73,9 @@ class TestAudio : TestOpenAI() {
         val request = transcriptionRequest {
             audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
             model = ModelId("whisper-1")
+            responseFormat = "verbose_json"
         }
-        val transcription = openAI.transcriptionJsonVerbose(request)
+        val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
         assertEquals(transcription.language, "english")
         assertEquals(transcription.duration, 29.88)
@@ -85,9 +89,10 @@ class TestAudio : TestOpenAI() {
         val request = transcriptionRequest {
             audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
             model = ModelId("whisper-1")
+            responseFormat = "vtt"
         }
-        val transcription = openAI.transcriptionVTT(request)
-        assertTrue { transcription.vtt.startsWith("WEBVTT") }
+        val transcription = openAI.transcription(request)
+        assertTrue { transcription.text.startsWith("WEBVTT") }
     }
 
     @Test
@@ -97,9 +102,10 @@ class TestAudio : TestOpenAI() {
         val request = transcriptionRequest {
             audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
             model = ModelId("whisper-1")
+            responseFormat = "srt"
         }
-        val transcription = openAI.transcriptionSRT(request)
-        assertTrue { transcription.srt.startsWith("1") }
+        val transcription = openAI.transcription(request)
+        assertTrue { transcription.text.startsWith("1") }
     }
 
    @Test

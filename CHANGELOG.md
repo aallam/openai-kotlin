@@ -1,4 +1,9 @@
-# Unreleased
+# 3.2.0
+> Published 23 Mar 2023
+
+### Added
+- **Audio**: add other formats support (#127)
+- **Chat**: add user param to chat request (#128)
 
 ### Changed
 - Simplify and add more exceptions (#123)

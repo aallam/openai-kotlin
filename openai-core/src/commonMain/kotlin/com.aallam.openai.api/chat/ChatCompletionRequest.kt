@@ -80,6 +80,11 @@ public class ChatCompletionRequest(
      * selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.
      */
     @SerialName("logit_bias") public val logitBias: Map<String, Int>? = null,
+
+    /**
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
+     */
+    @SerialName("user") public val user: String? = null,
 )
 
 /**
@@ -165,6 +170,11 @@ public class ChatCompletionRequestBuilder {
     public var logitBias: Map<String, Int>? = null
 
     /**
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
+     */
+    public var user: String? = null
+
+    /**
      * The messages to generate chat completions for.
      */
     public fun messages(block: ChatMessagesBuilder.() -> Unit) {
@@ -185,6 +195,7 @@ public class ChatCompletionRequestBuilder {
         presencePenalty = presencePenalty,
         frequencyPenalty = frequencyPenalty,
         logitBias = logitBias,
+        user = user,
     )
 }
 

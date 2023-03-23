@@ -29,7 +29,6 @@ public class TranscriptionRequest(
     /**
      * The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.
      */
-    @Deprecated("Use specific transcription function instead")
     public val responseFormat: String? = null,
 
     /**

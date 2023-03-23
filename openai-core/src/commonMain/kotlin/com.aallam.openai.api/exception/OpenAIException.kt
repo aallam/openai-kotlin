@@ -31,9 +31,3 @@ public class OpenAITimeoutException(
 public class OpenAIServerException(
     throwable: Throwable? = null,
 ) : OpenAIException(message = throwable?.message, throwable = throwable)
-
-/** An exception thrown at the client level */
-public class OpenAIClientException(
-    message: String? = null,
-    throwable: Throwable? = null,
-) : OpenAIException(message ?: throwable?.message, throwable)

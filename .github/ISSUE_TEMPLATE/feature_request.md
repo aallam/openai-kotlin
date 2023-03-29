@@ -23,4 +23,4 @@ assignees: ''
 
 *Add any other context, examples, or references that might help illustrate the feature or its benefits.*
 
-**Note**: Please add the `feature request` label to this issue.
+**Note**: Please add the `enhancement` label to this issue.

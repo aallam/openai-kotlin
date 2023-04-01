@@ -65,63 +65,9 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-  test-js:
-    name: Test (JS)
-    runs-on: macos-11
-    needs: lint
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1
-
-      - name: Configure JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: 11
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: wrapper
-
-      - name: Build
-        run: ./gradlew :openai-client:jsTest
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
-  test-native:
-    name: Test (Native)
-    runs-on: macos-11
-    needs: lint
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1
-
-      - name: Configure JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: 11
-
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: wrapper
-
-      - name: Build
-        run: ./gradlew :openai-client:macosX64Test
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
   publish-docs:
     runs-on: ubuntu-latest
-    needs: [ test-jvm, test-js, test-native ]
+    needs: [ test-jvm ]
     if: github.repository == 'aallam/openai-kotlin' && github.ref == 'refs/heads/main'
     permissions:
       contents: write

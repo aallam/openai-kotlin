@@ -2,7 +2,7 @@
 kotlin = "1.8.10"
 coroutines = "1.6.4"
 serialization = "1.4.1"
-ktor = "2.2.1"
+ktor = "2.2.4"
 okio = "3.3.0"
 logback = "1.4.4"
 

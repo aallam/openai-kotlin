@@ -52,6 +52,18 @@ Create an instance of `OpenAI` client:
 val openAI = OpenAI(apiKey)
 ```
 
+In addition to creating an instance of `OpenAI` using just the API key, you can also use `OpenAIConfig` to configure the OpenAI client in a more detailed way.
+
+```kotlin
+val config = OpenAIConfig(
+    token = apiKey,
+    timeout = Timeout(socket = 60.seconds),
+    // additional configurations...
+)
+
+val openAI = OpenAI(config)
+```
+
 > **Note**: OpenAI encourages using environment variables for the API key. [Read more](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
 
 Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStarted.md).

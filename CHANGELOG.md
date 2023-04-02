@@ -1,3 +1,10 @@
+# Unreleased
+
+### Dependencies
+- Kotlin to `1.8.20`
+- Kotlin serialization to `1.5.0`
+- Ktor to `2.2.4`
+
 # 3.2.0
 > Published 23 Mar 2023
 

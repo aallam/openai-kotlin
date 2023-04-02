@@ -2,8 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.aallam.openai/openai-client?color=blue&label=Download)](https://central.sonatype.com/namespace/com.aallam.openai)
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)
-[![Kotlin](https://img.shields.io/badge/kotlin-1.8.10-a97bff.svg?logo=kotlin)](https://kotlinlang.org/docs/releases.html#release-details)
-[![Documentation](https://img.shields.io/badge/docs-openai--kotlin-blueviolet)](https://mouaad.aallam.com/openai-kotlin/)
+[![Documentation](https://img.shields.io/badge/docs-api-a97bff.svg?logo=kotlin)](https://mouaad.aallam.com/openai-kotlin/)
 
 Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines
 capabilities.
@@ -88,6 +87,24 @@ Sample apps are available under `sample`, please check the [README](sample/READM
 ## 🔒 ProGuard / R8
 
 If you are using R8 or ProGuard add the options from this [file](openai-core/src/jvmMain/resources/META-INF/proguard/openai.pro).
+
+## 📸 Snapshots
+
+![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://oss.sonatype.org/service/local/repositories/snapshots/content/com/aallam/openai/openai-client/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)
+
+<details>
+ <summary>Learn how to import snapshot version</summary>
+
+To import snapshot versions into your project, add the following code snippet to your gradle file:
+
+```groovy
+repositories {
+   //...
+   maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+```
+
+</details>
 
 ## 📄 License
 

@@ -1,0 +1,54 @@
+name: Publish Snapshot
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      is_snapshot: ${{ steps.check_snapshot.outputs.is_snapshot }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Check for SNAPSHOT suffix
+        id: check_snapshot
+        run: |
+          VERSION_NAME=$(grep "^VERSION_NAME=" gradle.properties | cut -d '=' -f 2)
+          if [[ $VERSION_NAME == *-SNAPSHOT ]]; then
+            echo "::set-output name=is_snapshot::true"
+          else
+            echo "::set-output name=is_snapshot::false"
+          fi
+
+  publish:
+    name: Publish to Snapshot
+    runs-on: macos-11
+    needs: check-version
+    if: ${{ needs.check-version.outputs.is_snapshot == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: wrapper
+
+      - name: Compile
+        run: ./gradlew assemble
+
+      - name: Upload Artifacts
+        run: ./gradlew publish
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}

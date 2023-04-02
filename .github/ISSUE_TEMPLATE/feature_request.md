@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project
 title: "[Feature Request: Brief Description]"
-labels: ''
+labels: enhancement
 assignees: ''
 
 ---
@@ -22,5 +22,3 @@ assignees: ''
 ### Additional Context
 
 *Add any other context, examples, or references that might help illustrate the feature or its benefits.*
-
-**Note**: Please add the `enhancement` label to this issue.

@@ -26,5 +26,3 @@ assignees: ''
 ### Additional Info
 
 *Add any other relevant context here.*
-
-**Note**: Please add appropriate labels like `bug`, or `question`.

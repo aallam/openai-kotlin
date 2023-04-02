@@ -17,9 +17,9 @@ kotlin {
     sourceSets {
         all {
             languageSettings {
-                optIn("kotlin.RequiresOptIn")
-                optIn("okio.ExperimentalFileSystem")
+                optIn("kotlin.ExperimentalStdlibApi")
                 optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+                optIn("okio.ExperimentalFileSystem")
                 optIn("com.aallam.openai.api.ExperimentalOpenAI")
                 optIn("com.aallam.openai.api.BetaOpenAI")
                 optIn("com.aallam.openai.api.InternalOpenAI")

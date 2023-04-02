@@ -37,6 +37,10 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
         }
     }
 
+    override fun close() {
+        httpClient.close()
+    }
+
     /** Handle different error cases. */
     private suspend fun handleException(e: Exception) = when (e) {
         is CancellationException -> e // propagate coroutine cancellation

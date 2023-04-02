@@ -1,16 +1,10 @@
--keepattributes *Annotation*, InnerClasses
--dontnote kotlinx.serialization.AnnotationsKt
--keepclassmembers class kotlinx.serialization.json.** {
-    *** Companion;
+-keepattributes InnerClasses
+
+-if @kotlinx.serialization.Serializable class
+com.aallam.openai.api.**
+{
+    static **$* *;
 }
--keepclasseswithmembers class kotlinx.serialization.json.** {
-    kotlinx.serialization.KSerializer serializer(...);
-}
-# Serializable models
--keep,includedescriptorclasses com.aallam.openai.api.**$$serializer { *; }
--keepclassmembers class com.aallam.openai.api.** {
-    *** Companion;
-}
--keepclasseswithmembers com.aallam.openai.api.** {
-    kotlinx.serialization.KSerializer serializer(...);
+-keepnames class <1>$$serializer {
+    static <1>$$serializer INSTANCE;
 }

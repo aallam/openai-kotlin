@@ -1,9 +1,13 @@
 # Unreleased
 
+### Added
+- Proguard / R8 rules for jvm (#149)
+- `OpenAI` implements `AutoCloseable` (#151)
+
 ### Dependencies
-- Kotlin to `1.8.20`
-- Kotlin serialization to `1.5.0`
-- Ktor to `2.2.4`
+- Kotlin to `1.8.20` (#146)
+- Kotlin serialization to `1.5.0` (#146)
+- Ktor to `2.2.4` (#146)
 
 # 3.2.0
 > Published 23 Mar 2023

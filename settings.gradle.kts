@@ -1,4 +1,4 @@
-rootProject.name = "OpenAI-Kotlin"
+rootProject.name = "openai-kotlin"
 includeBuild("build-support")
 
 include(":openai-core")

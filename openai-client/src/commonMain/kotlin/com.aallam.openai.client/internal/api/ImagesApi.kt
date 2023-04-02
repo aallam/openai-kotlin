@@ -2,20 +2,15 @@ package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.image.*
+import com.aallam.openai.api.image.internal.ImageCreationRequest
+import com.aallam.openai.api.image.internal.ImageResponseFormat
 import com.aallam.openai.client.Images
-import com.aallam.openai.client.internal.data.ImageResponseFormat
-import com.aallam.openai.client.internal.data.toJSONRequest
-import com.aallam.openai.client.internal.data.toURLRequest
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
-import io.ktor.client.request.forms.formData
-import io.ktor.client.request.forms.submitFormWithBinaryData
-import io.ktor.client.request.post
-import io.ktor.client.request.setBody
-import io.ktor.client.request.url
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
+import io.ktor.client.request.*
+import io.ktor.client.request.forms.*
+import io.ktor.http.*
 
 internal class ImagesApi(private val requester: HttpRequester) : Images {
 
@@ -93,6 +88,17 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         edit.user?.let { user -> append(key = "user", value = user) }
 
     }
+
+    /** Convert [ImageCreation] instance to base64 JSON request */
+    private fun ImageCreation.toJSONRequest() = ImageCreationRequest(
+        prompt = prompt, n = n, size = size, user = user, responseFormat = ImageResponseFormat.base64Json,
+    )
+
+    /** Convert [ImageCreation] instance to URL request */
+    private fun ImageCreation.toURLRequest() = ImageCreationRequest(
+        prompt = prompt, n = n, size = size, user = user, responseFormat = ImageResponseFormat.url,
+    )
+
 
     companion object {
         private const val ImagesGenerationV1 = "v1/images/generations"

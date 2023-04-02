@@ -22,6 +22,7 @@ kotlin {
                 optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
                 optIn("com.aallam.openai.api.ExperimentalOpenAI")
                 optIn("com.aallam.openai.api.BetaOpenAI")
+                optIn("com.aallam.openai.api.InternalOpenAI")
             }
         }
         val commonMain by getting {

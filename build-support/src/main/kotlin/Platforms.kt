@@ -30,7 +30,6 @@ fun KotlinMultiplatformExtension.native() {
             tvosSimulatorArm64(),
             watchosArm32(),
             watchosArm64(),
-            watchosX86(),
             watchosX64(),
             watchosSimulatorArm64(),
         ).forEach { target ->

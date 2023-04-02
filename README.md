@@ -85,6 +85,10 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 
 Sample apps are available under `sample`, please check the [README](sample/README.md) for running instructions.
 
+## 🔒 ProGuard / R8
+
+If you are using R8 or ProGuard add the options from this [file](openai-core/src/jvmMain/resources/META-INF/proguard/openai.pro).
+
 ## 📄 License
 
 OpenAI Kotlin API Client is an open-sourced software licensed under the [MIT license](LICENSE.md).

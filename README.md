@@ -9,7 +9,7 @@ capabilities.
 
 ## 📦 Setup
 
-1. Install OpenAI API Kotlin client by adding the following dependency to your `gradle.build` file:
+1. Install OpenAI API Kotlin client by adding the following dependency to your `build.gradle` file:
 
 ```groovy
 repositories {
@@ -25,7 +25,7 @@ dependencies {
 
 #### BOM
 
-Alternatively, you can use [openai-client-bom](/openai-client-bom)  by adding the following dependency to your `gradle.build` file
+Alternatively, you can use [openai-client-bom](/openai-client-bom)  by adding the following dependency to your `build.gradle` file
 
 ```groovy
 dependencies {

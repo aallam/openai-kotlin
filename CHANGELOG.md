@@ -1,4 +1,5 @@
-# Unreleased
+# 3.2.1
+> Published 9 Apr 2023
 
 ### Added
 - Proguard / R8 rules for jvm (#149)

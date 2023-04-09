@@ -86,7 +86,7 @@ Sample apps are available under `sample`, please check the [README](sample/READM
 
 ## 🔒 ProGuard / R8
 
-If you are using R8 or ProGuard add the options from this [file](openai-core/src/jvmMain/resources/META-INF/proguard/openai.pro).
+The specific rules are [already bundled](openai-core/src/jvmMain/resources/META-INF/proguard/openai.pro) into the Jar which can be interpreted by R8 automatically.
 
 ## 📸 Snapshots
 

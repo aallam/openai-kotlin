@@ -1,10 +1,12 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.exception.AuthenticationException
 import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.model.ModelId
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertIs
 import kotlin.test.assertTrue
 
 class TestException {
@@ -17,6 +19,7 @@ class TestException {
         }
         assertTrue(model.isFailure)
         val exception = model.exceptionOrNull() as OpenAIAPIException
+        assertIs<AuthenticationException>(exception)
         assertEquals(401, exception.statusCode)
         assertEquals(
             "invalid_request_error",

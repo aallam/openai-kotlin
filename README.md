@@ -34,7 +34,7 @@ dependencies {
 
     // define dependencies without versions
     implementation 'com.aallam.openai:openai-client'
-    implementation 'io.ktor:ktor-client-okhttp'
+    runtimeOnly 'io.ktor:ktor-client-okhttp'
 }
 ```
 

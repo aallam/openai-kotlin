@@ -7,7 +7,7 @@ import com.aallam.openai.client.internal.http.HttpTransport
 /**
  * OpenAI API.
  */
-public interface OpenAI : Completions, Files, Edits, Embeddings, Models, Moderations, FineTunes, Images, Chat, Audio, AutoCloseable
+public interface OpenAI : Completions, Files, Edits, Embeddings, Models, Moderations, FineTunes, Images, Chat, Audio, Closeable
 
 /**
  * Creates an instance of [OpenAI].

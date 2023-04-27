@@ -22,4 +22,4 @@ internal class OpenAIApi(
     Images by ImagesApi(requester),
     Chat by ChatApi(requester),
     Audio by AudioApi(requester),
-    AutoCloseable by requester
+    Closeable by requester

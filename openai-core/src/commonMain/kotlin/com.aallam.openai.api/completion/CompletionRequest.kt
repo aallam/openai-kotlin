@@ -143,6 +143,11 @@ public class CompletionRequest(
      * A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse.
      */
     @SerialName("user") public val user: String? = null,
+
+    /**
+     * The suffix that comes after a completion of inserted text.
+     */
+    @SerialName("suffix") public val suffix: String? = null,
 )
 
 /**
@@ -291,6 +296,11 @@ public class CompletionRequestBuilder {
     public var user: String? = null
 
     /**
+     * The suffix that comes after a completion of inserted text.
+     */
+    public var suffix: String? = null
+
+    /**
      * Create [CompletionRequest] instance.
      */
     public fun build(): CompletionRequest = CompletionRequest(
@@ -307,6 +317,7 @@ public class CompletionRequestBuilder {
         frequencyPenalty = frequencyPenalty,
         bestOf = bestOf,
         logitBias = logitBias,
-        user = user
+        user = user,
+        suffix = suffix,
     )
 }

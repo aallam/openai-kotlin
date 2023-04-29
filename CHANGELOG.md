@@ -1,3 +1,13 @@
+# 3.2.2
+> Published 29 Apr 2023
+
+### Feat
+- **Completion**: add suffix request param (#174)
+- **Exceptions**: Add more detailed api errors (#163)
+
+### Change
+- Replace `Autocloseable` until stable (#173)
+
 # 3.2.1
 > Published 9 Apr 2023
 

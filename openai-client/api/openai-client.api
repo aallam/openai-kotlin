@@ -57,7 +57,7 @@ public abstract interface class com/aallam/openai/client/Moderations {
 	public abstract fun moderations (Lcom/aallam/openai/api/moderation/ModerationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Audio, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/Images, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations {
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Audio, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/Images, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, java/lang/AutoCloseable {
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {

@@ -8,6 +8,7 @@ import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.util.reflect.*
+import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.CancellationException
 
 /** HTTP transport layer */
@@ -47,6 +48,7 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
         is ClientRequestException -> openAIAPIException(e)
         is ServerResponseException -> OpenAIServerException(e)
         is HttpRequestTimeoutException, is SocketTimeoutException, is ConnectTimeoutException -> OpenAITimeoutException(e)
+        is IOException -> GenericIOException(e)
         else -> OpenAIHttpException(e)
     }
 

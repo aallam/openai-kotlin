@@ -11,7 +11,6 @@ plugins {
     alias(libs.plugins.maven.publish) apply false
     alias(libs.plugins.spotless) apply false
     alias(libs.plugins.dokka)
-    id("com.dorongold.task-tree") version "2.1.1"
 }
 
 subprojects {

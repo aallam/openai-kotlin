@@ -982,6 +982,12 @@ public final class com/aallam/openai/api/exception/AuthenticationException : com
 	public synthetic fun <init> (ILcom/aallam/openai/api/exception/OpenAIError;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
+public final class com/aallam/openai/api/exception/GenericIOException : com/aallam/openai/api/exception/OpenAIIOException {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
 public final class com/aallam/openai/api/exception/InvalidRequestException : com/aallam/openai/api/exception/OpenAIAPIException {
 	public fun <init> (ILcom/aallam/openai/api/exception/OpenAIError;Ljava/lang/Throwable;)V
 	public synthetic fun <init> (ILcom/aallam/openai/api/exception/OpenAIError;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -1069,13 +1075,18 @@ public final class com/aallam/openai/api/exception/OpenAIHttpException : com/aal
 	public synthetic fun <init> (Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
+public abstract class com/aallam/openai/api/exception/OpenAIIOException : com/aallam/openai/api/exception/OpenAIException {
+	public synthetic fun <init> (Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/Throwable;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
 public final class com/aallam/openai/api/exception/OpenAIServerException : com/aallam/openai/api/exception/OpenAIException {
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/Throwable;)V
 	public synthetic fun <init> (Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
-public final class com/aallam/openai/api/exception/OpenAITimeoutException : com/aallam/openai/api/exception/OpenAIException {
+public final class com/aallam/openai/api/exception/OpenAITimeoutException : com/aallam/openai/api/exception/OpenAIIOException {
 	public fun <init> (Ljava/lang/Throwable;)V
 }
 

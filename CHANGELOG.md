@@ -1,3 +1,8 @@
+# 3.2.3
+
+### Added
+- `OpenAIIOException` and `GenericIOException` (#178)
+
 # 3.2.2
 > Published 29 Apr 2023
 

@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public class ChatCompletionRequest(
     /**
-     * ID of the model to use. Currently, only `gpt-3.5-turbo` and `gpt-3.5-turbo-0301` are supported.
+     * ID of the model to use.
      */
     @SerialName("model") public val model: ModelId,
 

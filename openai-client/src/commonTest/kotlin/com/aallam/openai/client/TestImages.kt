@@ -42,11 +42,11 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageEditURL() = runTest {
-        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/mXFcDNB.png").body()
-        val maskBytes: ByteArray = httpClient.get("https://i.imgur.com/D4MURbj.png").body()
+        val imageBytes: ByteArray = httpClient.get(PoolImage).body()
+        val maskBytes: ByteArray = httpClient.get(PoolMaskImage).body()
         val request = imageEdit {
-            image = FileSource(name = "mXFcDNB.png", source = imageBytes.asSource())
-            mask = FileSource(name = "D4MURbj.png", source = maskBytes.asSource())
+            image = FileSource(name = "pool.png", source = imageBytes.asSource())
+            mask = FileSource(name = "poolmask.png", source = maskBytes.asSource())
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
             n = 1
             size = ImageSize.is1024x1024
@@ -57,11 +57,11 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageEditJSON() = runTest {
-        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/mXFcDNB.png").body()
-        val maskBytes: ByteArray = httpClient.get("https://i.imgur.com/D4MURbj.png").body()
+        val imageBytes: ByteArray = httpClient.get(PoolImage).body()
+        val maskBytes: ByteArray = httpClient.get(PoolMaskImage).body()
         val request = imageEdit {
-            image = FileSource(name = "mXFcDNB.png", source = imageBytes.asSource())
-            mask = FileSource(name = "D4MURbj.png", source = maskBytes.asSource())
+            image = FileSource(name = "pool.png", source = imageBytes.asSource())
+            mask = FileSource(name = "poolmask.png", source = maskBytes.asSource())
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
             n = 1
             size = ImageSize.is1024x1024
@@ -72,9 +72,9 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageVariationURL() = runTest {
-        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/iN0VFnF.png").body()
+        val imageBytes: ByteArray = httpClient.get(PetsImage).body()
         val request = imageVariation {
-            image = FileSource("iN0VFnF.png", imageBytes.asSource())
+            image = FileSource("pets.png", imageBytes.asSource())
             n = 1
             size = ImageSize.is1024x1024
         }
@@ -84,13 +84,21 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageVariationJSON() = runTest {
-        val imageBytes: ByteArray = httpClient.get("https://i.imgur.com/iN0VFnF.png").body()
+        val imageBytes: ByteArray = httpClient.get(PetsImage).body()
         val request = imageVariation {
-            image = FileSource("iN0VFnF.png", imageBytes.asSource())
+            image = FileSource("pets.png", imageBytes.asSource())
             n = 1
             size = ImageSize.is1024x1024
         }
         val response = openAI.imageJSON(request)
         assertTrue { response.isNotEmpty() }
+    }
+
+
+    companion object {
+        private val Path = "https://raw.githubusercontent.com/aallam/sample-data/main/openai/image"
+        private val PoolImage = "$Path/pool.png"
+        private val PoolMaskImage = "$Path/poolmask.png"
+        private val PetsImage = "$Path/pets.png"
     }
 }

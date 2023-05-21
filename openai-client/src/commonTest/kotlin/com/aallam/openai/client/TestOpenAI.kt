@@ -6,6 +6,8 @@ import com.aallam.openai.client.internal.OpenAIApi
 import com.aallam.openai.client.internal.createHttpClient
 import com.aallam.openai.client.internal.env
 import com.aallam.openai.client.internal.http.HttpTransport
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.runTest
 import kotlin.time.Duration.Companion.minutes
 
 internal val token: String
@@ -23,4 +25,6 @@ internal val transport = HttpTransport(
 
 abstract class TestOpenAI {
     internal val openAI = OpenAIApi(transport)
+
+    fun test(testBody: suspend TestScope.() -> Unit) = runTest(timeout = 1.minutes, testBody = testBody)
 }

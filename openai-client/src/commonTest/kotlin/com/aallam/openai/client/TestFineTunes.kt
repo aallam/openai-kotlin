@@ -10,7 +10,6 @@ import com.aallam.openai.client.internal.asSource
 import com.aallam.openai.client.internal.waitFileProcess
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.test.runTest
 import ulid.ULID
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -20,7 +19,7 @@ import kotlin.test.assertTrue
 class TestFineTunes : TestOpenAI() {
 
     @Test
-    fun fineTunes() = runTest {
+    fun fineTunes() = test {
 
         val id = ULID.randomULID()
         val jsonl = """

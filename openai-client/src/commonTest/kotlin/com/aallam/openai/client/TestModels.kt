@@ -1,6 +1,5 @@
 package com.aallam.openai.client
 
-import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -8,7 +7,7 @@ import kotlin.test.assertTrue
 class TestModels : TestOpenAI() {
 
     @Test
-    fun models() = runTest {
+    fun models() = test {
         val resModels = openAI.models()
         assertTrue { resModels.isNotEmpty() }
         val resModel = resModels.first()

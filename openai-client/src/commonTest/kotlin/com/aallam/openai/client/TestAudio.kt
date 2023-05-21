@@ -8,7 +8,6 @@ import com.aallam.openai.client.internal.asSource
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -18,7 +17,7 @@ class TestAudio : TestOpenAI() {
     private val httpClient = HttpClient()
 
     @Test
-    fun transcription() = runTest {
+    fun transcription() = test {
         val speedTalkingUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/micro-machines.wav"
         val audioBytes: ByteArray = httpClient.get(speedTalkingUrl).body()
         val request = transcriptionRequest {
@@ -37,7 +36,7 @@ class TestAudio : TestOpenAI() {
     }
 
     @Test
-    fun transcriptionText() = runTest {
+    fun transcriptionText() = test {
         val speedTalkingUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/micro-machines.wav"
         val audioBytes: ByteArray = httpClient.get(speedTalkingUrl).body()
         val request = transcriptionRequest {
@@ -50,7 +49,7 @@ class TestAudio : TestOpenAI() {
     }
 
     @Test
-    fun transcriptionJsonVerbose() = runTest {
+    fun transcriptionJsonVerbose() = test {
         val speedTalkingUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/micro-machines.wav"
         val audioBytes: ByteArray = httpClient.get(speedTalkingUrl).body()
         val request = transcriptionRequest {
@@ -66,7 +65,7 @@ class TestAudio : TestOpenAI() {
     }
 
     @Test
-    fun translation() = runTest {
+    fun translation() = test {
         val multilingualUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/multilingual.wav"
         val audioBytes: ByteArray = httpClient.get(multilingualUrl).body()
         val request = translationRequest {
@@ -84,7 +83,7 @@ class TestAudio : TestOpenAI() {
     }
 
     @Test
-    fun translationText() = runTest {
+    fun translationText() = test {
         val multilingualUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/multilingual.wav"
         val audioBytes: ByteArray = httpClient.get(multilingualUrl).body()
         val request = translationRequest {
@@ -97,7 +96,7 @@ class TestAudio : TestOpenAI() {
     }
 
     @Test
-    fun translationJsonVerbose() = runTest {
+    fun translationJsonVerbose() = test {
         val multilingualUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/multilingual.wav"
         val audioBytes: ByteArray = httpClient.get(multilingualUrl).body()
         val request = translationRequest {

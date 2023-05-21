@@ -6,10 +6,9 @@ import com.aallam.openai.api.image.imageCreation
 import com.aallam.openai.api.image.imageEdit
 import com.aallam.openai.api.image.imageVariation
 import com.aallam.openai.client.internal.asSource
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.request.get
-import kotlinx.coroutines.test.runTest
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.request.*
 import kotlin.test.Test
 import kotlin.test.assertTrue
 import kotlin.time.Duration.Companion.minutes
@@ -19,7 +18,7 @@ class TestImages : TestOpenAI() {
     private val httpClient = HttpClient()
 
     @Test
-    fun imageCreationURL() = runTest(timeout = 1.minutes) {
+    fun imageCreationURL() = test {
         val request = imageCreation {
             prompt = "A cute baby sea otter"
             n = 2
@@ -30,7 +29,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageCreationJSON() = runTest(timeout = 1.minutes) {
+    fun imageCreationJSON() = test {
         val request = imageCreation {
             prompt = "A cute baby sea otter"
             n = 2
@@ -42,7 +41,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageEditURL() = runTest(timeout = 1.minutes) {
+    fun imageEditURL() = test {
         val imageBytes: ByteArray = httpClient.get(PoolImage).body()
         val maskBytes: ByteArray = httpClient.get(PoolMaskImage).body()
         val request = imageEdit {
@@ -57,7 +56,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageEditJSON() = runTest(timeout = 1.minutes) {
+    fun imageEditJSON() = test {
         val imageBytes: ByteArray = httpClient.get(PoolImage).body()
         val maskBytes: ByteArray = httpClient.get(PoolMaskImage).body()
         val request = imageEdit {
@@ -72,7 +71,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageVariationURL() = runTest(timeout = 1.minutes) {
+    fun imageVariationURL() = test {
         val imageBytes: ByteArray = httpClient.get(PetsImage).body()
         val request = imageVariation {
             image = FileSource("pets.png", imageBytes.asSource())
@@ -84,7 +83,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageVariationJSON() = runTest(timeout = 1.minutes) {
+    fun imageVariationJSON() = test {
         val imageBytes: ByteArray = httpClient.get(PetsImage).body()
         val request = imageVariation {
             image = FileSource("pets.png", imageBytes.asSource())

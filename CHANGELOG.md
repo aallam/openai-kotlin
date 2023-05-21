@@ -1,4 +1,17 @@
+# 3.2.4
+> Published 21 May 2023
+
+### Added
+- Logging configuration using `LoggingConfig`
+- `sanitize` flag to sanitize authorization header in the logs
+- Enhance `OpenAI()` factory function parameters
+
+### Changed
+- Updated `OpenAIConfig` to replace logging fields with `LoggingConfig`
+- Authorization token is now hidden by default in the logs
+
 # 3.2.3
+> Published 01 May 2023
 
 ### Added
 - `OpenAIIOException` and `GenericIOException` (#178)

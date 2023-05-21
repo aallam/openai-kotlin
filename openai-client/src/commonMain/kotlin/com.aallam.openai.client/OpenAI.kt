@@ -1,23 +1,51 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.http.Timeout
 import com.aallam.openai.client.internal.OpenAIApi
 import com.aallam.openai.client.internal.createHttpClient
 import com.aallam.openai.client.internal.http.HttpTransport
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * OpenAI API.
  */
-public interface OpenAI : Completions, Files, Edits, Embeddings, Models, Moderations, FineTunes, Images, Chat, Audio, Closeable
+public interface OpenAI : Completions, Files, Edits, Embeddings, Models, Moderations, FineTunes, Images, Chat, Audio,
+    Closeable
 
 /**
  * Creates an instance of [OpenAI].
  *
  * @param token secret API key
+ * @param logging client logging configuration
+ * @param timeout http client timeout
+ * @param headers extra http headers
+ * @param organization OpenAI organization ID
+ * @param host OpenAI host configuration
+ * @param proxy HTTP proxy url
+ * @param host OpenAI host configuration.
+ * @param retry rate limit retry configuration
  */
-public fun OpenAI(token: String): OpenAI {
-    val config = OpenAIConfig(token = token)
-    return OpenAI(config)
-}
+public fun OpenAI(
+    token: String,
+    logging: LoggingConfig = LoggingConfig(),
+    timeout: Timeout = Timeout(socket = 30.seconds),
+    organization: String? = null,
+    headers: Map<String, String> = emptyMap(),
+    host: OpenAIHost = OpenAIHost.OpenAI,
+    proxy: ProxyConfig? = null,
+    retry: RetryStrategy = RetryStrategy(),
+): OpenAI = OpenAI(
+    config = OpenAIConfig(
+        token = token,
+        logging = logging,
+        timeout = timeout,
+        organization = organization,
+        headers = headers,
+        host = host,
+        proxy = proxy,
+        retry = retry,
+    )
+)
 
 /**
  * Creates an instance of [OpenAI].

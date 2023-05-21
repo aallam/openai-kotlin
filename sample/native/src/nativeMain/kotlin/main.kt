@@ -9,8 +9,10 @@ import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
 import com.aallam.openai.api.image.ImageEdit
 import com.aallam.openai.api.image.ImageSize
+import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
+import com.aallam.openai.client.LoggingConfig
 import com.aallam.openai.client.OpenAI
 import kotlinx.cinterop.toKString
 import kotlinx.coroutines.flow.launchIn
@@ -26,7 +28,7 @@ fun main(): Unit = runBlocking {
 
     val apiKey = getenv("OPENAI_API_KEY")?.toKString()
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
-    val openAI = OpenAI(token = token)
+    val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.All))
 
     val resourcesPrefix = "src/nativeMain/resources"
 

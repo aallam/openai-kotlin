@@ -36,8 +36,12 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         }
 
         install(Logging) {
-            logger = config.logger.toKtorLogger()
-            level = config.logLevel.toKtorLogLevel()
+            val logging = config.logging
+            logger = logging.logger.toKtorLogger()
+            level = logging.logLevel.toKtorLogLevel()
+            if (logging.sanitize) {
+                sanitizeHeader { header -> header == HttpHeaders.Authorization }
+            }
         }
 
         install(Auth) {

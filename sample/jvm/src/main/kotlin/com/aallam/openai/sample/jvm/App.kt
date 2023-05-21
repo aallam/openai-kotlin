@@ -3,7 +3,9 @@ package com.aallam.openai.sample.jvm
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.audio.TranscriptionRequest
 import com.aallam.openai.api.audio.TranslationRequest
-import com.aallam.openai.api.chat.*
+import com.aallam.openai.api.chat.ChatCompletionRequest
+import com.aallam.openai.api.chat.ChatMessage
+import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
@@ -12,8 +14,8 @@ import com.aallam.openai.api.image.ImageSize
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
+import com.aallam.openai.client.LoggingConfig
 import com.aallam.openai.client.OpenAI
-import com.aallam.openai.client.OpenAIConfig
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
@@ -25,7 +27,7 @@ import okio.Path.Companion.toPath
 fun main() = runBlocking {
     val apiKey = System.getenv("OPENAI_API_KEY")
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
-    val openAI = OpenAI(OpenAIConfig(token, LogLevel.All))
+    val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.All))
 
     println("> Getting available engines...")
     openAI.models().forEach(::println)

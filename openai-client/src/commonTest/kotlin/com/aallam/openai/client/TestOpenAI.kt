@@ -15,7 +15,7 @@ internal val transport = HttpTransport(
     createHttpClient(
         OpenAIConfig(
             token = token,
-            logLevel = LogLevel.All,
+            logging = LoggingConfig(logLevel = LogLevel.All),
             timeout = Timeout(socket = 1.minutes),
         )
     )

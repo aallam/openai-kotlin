@@ -9,14 +9,15 @@ import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
 import com.aallam.openai.api.image.ImageEdit
 import com.aallam.openai.api.image.ImageSize
+import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
+import com.aallam.openai.client.LoggingConfig
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
-import okio.FileSystem
 import okio.NodeJsFileSystem
 import okio.Path.Companion.toPath
 import kotlin.coroutines.coroutineContext
@@ -25,7 +26,7 @@ import kotlin.coroutines.coroutineContext
 suspend fun main() {
     val apiKey = js("process.env.OPENAI_API_KEY").unsafeCast<String?>()
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
-    val openAI = OpenAI(token = token)
+    val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.All))
     val scope = CoroutineScope(coroutineContext)
 
     println("> Getting available models...")

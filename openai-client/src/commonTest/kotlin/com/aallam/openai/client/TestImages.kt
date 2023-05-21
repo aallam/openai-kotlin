@@ -12,13 +12,14 @@ import io.ktor.client.request.get
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
+import kotlin.time.Duration.Companion.minutes
 
 class TestImages : TestOpenAI() {
 
     private val httpClient = HttpClient()
 
     @Test
-    fun imageCreationURL() = runTest {
+    fun imageCreationURL() = runTest(timeout = 1.minutes) {
         val request = imageCreation {
             prompt = "A cute baby sea otter"
             n = 2
@@ -29,7 +30,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageCreationJSON() = runTest {
+    fun imageCreationJSON() = runTest(timeout = 1.minutes) {
         val request = imageCreation {
             prompt = "A cute baby sea otter"
             n = 2
@@ -41,7 +42,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageEditURL() = runTest {
+    fun imageEditURL() = runTest(timeout = 1.minutes) {
         val imageBytes: ByteArray = httpClient.get(PoolImage).body()
         val maskBytes: ByteArray = httpClient.get(PoolMaskImage).body()
         val request = imageEdit {
@@ -56,7 +57,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageEditJSON() = runTest {
+    fun imageEditJSON() = runTest(timeout = 1.minutes) {
         val imageBytes: ByteArray = httpClient.get(PoolImage).body()
         val maskBytes: ByteArray = httpClient.get(PoolMaskImage).body()
         val request = imageEdit {
@@ -71,7 +72,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageVariationURL() = runTest {
+    fun imageVariationURL() = runTest(timeout = 1.minutes) {
         val imageBytes: ByteArray = httpClient.get(PetsImage).body()
         val request = imageVariation {
             image = FileSource("pets.png", imageBytes.asSource())
@@ -83,7 +84,7 @@ class TestImages : TestOpenAI() {
     }
 
     @Test
-    fun imageVariationJSON() = runTest {
+    fun imageVariationJSON() = runTest(timeout = 1.minutes) {
         val imageBytes: ByteArray = httpClient.get(PetsImage).body()
         val request = imageVariation {
             image = FileSource("pets.png", imageBytes.asSource())

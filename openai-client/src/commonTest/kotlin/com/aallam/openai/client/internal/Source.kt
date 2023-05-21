@@ -8,10 +8,3 @@ internal fun String.asSource(): Source {
     buffer.writeUtf8(this)
     return buffer
 }
-
-
-internal fun ByteArray.asSource(): Source {
-    val buffer = Buffer()
-    buffer.write(this)
-    return buffer
-}

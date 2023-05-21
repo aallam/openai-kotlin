@@ -4,24 +4,18 @@ import com.aallam.openai.api.audio.transcriptionRequest
 import com.aallam.openai.api.audio.translationRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
-import com.aallam.openai.client.internal.asSource
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.request.*
+import com.aallam.openai.client.internal.TestFileSystem
+import com.aallam.openai.client.internal.testFilePath
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class TestAudio : TestOpenAI() {
 
-    private val httpClient = HttpClient()
-
     @Test
     fun transcription() = test {
-        val speedTalkingUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/micro-machines.wav"
-        val audioBytes: ByteArray = httpClient.get(speedTalkingUrl).body()
         val request = transcriptionRequest {
-            audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
+            audio = FileSource(path = testFilePath("audio/micro-machines.wav"), fileSystem = TestFileSystem)
             model = ModelId("whisper-1")
         }
 
@@ -37,10 +31,8 @@ class TestAudio : TestOpenAI() {
 
     @Test
     fun transcriptionText() = test {
-        val speedTalkingUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/micro-machines.wav"
-        val audioBytes: ByteArray = httpClient.get(speedTalkingUrl).body()
         val request = transcriptionRequest {
-            audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
+            audio = FileSource(path = testFilePath("audio/micro-machines.wav"), fileSystem = TestFileSystem)
             model = ModelId("whisper-1")
             responseFormat = "text"
         }
@@ -50,10 +42,8 @@ class TestAudio : TestOpenAI() {
 
     @Test
     fun transcriptionJsonVerbose() = test {
-        val speedTalkingUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/micro-machines.wav"
-        val audioBytes: ByteArray = httpClient.get(speedTalkingUrl).body()
         val request = transcriptionRequest {
-            audio = FileSource(name = "micro-machines.wav", source = audioBytes.asSource())
+            audio = FileSource(path = testFilePath("audio/micro-machines.wav"), fileSystem = TestFileSystem)
             model = ModelId("whisper-1")
             responseFormat = "verbose_json"
         }
@@ -66,10 +56,8 @@ class TestAudio : TestOpenAI() {
 
     @Test
     fun translation() = test {
-        val multilingualUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/multilingual.wav"
-        val audioBytes: ByteArray = httpClient.get(multilingualUrl).body()
         val request = translationRequest {
-            audio = FileSource(name = "multilingual.wav", source = audioBytes.asSource())
+            audio = FileSource(path = testFilePath("audio/multilingual.wav"), fileSystem = TestFileSystem)
             model = ModelId("whisper-1")
         }
         val translation = openAI.translation(request)
@@ -84,10 +72,8 @@ class TestAudio : TestOpenAI() {
 
     @Test
     fun translationText() = test {
-        val multilingualUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/multilingual.wav"
-        val audioBytes: ByteArray = httpClient.get(multilingualUrl).body()
         val request = translationRequest {
-            audio = FileSource(name = "multilingual.wav", source = audioBytes.asSource())
+            audio = FileSource(path = testFilePath("audio/multilingual.wav"), fileSystem = TestFileSystem)
             model = ModelId("whisper-1")
             responseFormat = "text"
         }
@@ -97,10 +83,8 @@ class TestAudio : TestOpenAI() {
 
     @Test
     fun translationJsonVerbose() = test {
-        val multilingualUrl = "https://github.com/aallam/sample-data/raw/main/openai/audio/multilingual.wav"
-        val audioBytes: ByteArray = httpClient.get(multilingualUrl).body()
         val request = translationRequest {
-            audio = FileSource(name = "multilingual.wav", source = audioBytes.asSource())
+            audio = FileSource(path = testFilePath("audio/multilingual.wav"), fileSystem = TestFileSystem)
             model = ModelId("whisper-1")
             responseFormat = "verbose_json"
         }

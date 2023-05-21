@@ -5,17 +5,12 @@ import com.aallam.openai.api.image.ImageSize
 import com.aallam.openai.api.image.imageCreation
 import com.aallam.openai.api.image.imageEdit
 import com.aallam.openai.api.image.imageVariation
-import com.aallam.openai.client.internal.asSource
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.request.*
+import com.aallam.openai.client.internal.TestFileSystem
+import com.aallam.openai.client.internal.testFilePath
 import kotlin.test.Test
 import kotlin.test.assertTrue
-import kotlin.time.Duration.Companion.minutes
 
 class TestImages : TestOpenAI() {
-
-    private val httpClient = HttpClient()
 
     @Test
     fun imageCreationURL() = test {
@@ -42,11 +37,9 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageEditURL() = test {
-        val imageBytes: ByteArray = httpClient.get(PoolImage).body()
-        val maskBytes: ByteArray = httpClient.get(PoolMaskImage).body()
         val request = imageEdit {
-            image = FileSource(name = "pool.png", source = imageBytes.asSource())
-            mask = FileSource(name = "poolmask.png", source = maskBytes.asSource())
+            image = FileSource(path = testFilePath("image/pool.png"), fileSystem = TestFileSystem)
+            mask = FileSource(path = testFilePath("image/poolmask.png"), fileSystem = TestFileSystem)
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
             n = 1
             size = ImageSize.is1024x1024
@@ -57,11 +50,9 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageEditJSON() = test {
-        val imageBytes: ByteArray = httpClient.get(PoolImage).body()
-        val maskBytes: ByteArray = httpClient.get(PoolMaskImage).body()
         val request = imageEdit {
-            image = FileSource(name = "pool.png", source = imageBytes.asSource())
-            mask = FileSource(name = "poolmask.png", source = maskBytes.asSource())
+            image = FileSource(path = testFilePath("image/pool.png"), fileSystem = TestFileSystem)
+            mask = FileSource(path = testFilePath("image/poolmask.png"), fileSystem = TestFileSystem)
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
             n = 1
             size = ImageSize.is1024x1024
@@ -72,9 +63,8 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageVariationURL() = test {
-        val imageBytes: ByteArray = httpClient.get(PetsImage).body()
         val request = imageVariation {
-            image = FileSource("pets.png", imageBytes.asSource())
+            image = FileSource(path = testFilePath("image/pets.png"), fileSystem = TestFileSystem)
             n = 1
             size = ImageSize.is1024x1024
         }
@@ -84,21 +74,12 @@ class TestImages : TestOpenAI() {
 
     @Test
     fun imageVariationJSON() = test {
-        val imageBytes: ByteArray = httpClient.get(PetsImage).body()
         val request = imageVariation {
-            image = FileSource("pets.png", imageBytes.asSource())
+            image = FileSource(path = testFilePath("image/pets.png"), fileSystem = TestFileSystem)
             n = 1
             size = ImageSize.is1024x1024
         }
         val response = openAI.imageJSON(request)
         assertTrue { response.isNotEmpty() }
-    }
-
-
-    companion object {
-        private val Path = "https://raw.githubusercontent.com/aallam/sample-data/main/openai/image"
-        private val PoolImage = "$Path/pool.png"
-        private val PoolMaskImage = "$Path/poolmask.png"
-        private val PetsImage = "$Path/pets.png"
     }
 }

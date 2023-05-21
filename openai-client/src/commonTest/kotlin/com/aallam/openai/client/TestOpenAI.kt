@@ -8,6 +8,8 @@ import com.aallam.openai.client.internal.env
 import com.aallam.openai.client.internal.http.HttpTransport
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
+import okio.Path.Companion.toPath
+import okio.Source
 import kotlin.time.Duration.Companion.minutes
 
 internal val token: String

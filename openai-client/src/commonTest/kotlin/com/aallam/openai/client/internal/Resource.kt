@@ -19,5 +19,3 @@ fun testFilePath(fileName: String): Path = libRoot / "openai-client/src/commonTe
  */
 private val libRoot
     get() = env("LIB_ROOT")?.toPath() ?: error("Can't find `LIB_ROOT` environment variable")
-
-

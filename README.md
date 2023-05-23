@@ -45,13 +45,19 @@ an [engine](https://ktor.io/docs/http-client-engines.html) for each target.
 
 ## ⚡️ Getting Started
 
+> **Note**: OpenAI encourages using environment variables for the API key. [Read more](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
+
 Create an instance of `OpenAI` client:
 
 ```kotlin
-val openAI = OpenAI(apiKey)
+val openai = OpenAI(
+    token = "your-api-key",
+    timeout = Timeout(socket = 60.seconds),
+    // additional configurations...
+)
 ```
 
-In addition to creating an instance of `OpenAI` using just the API key, you can also use `OpenAIConfig` to configure the OpenAI client in a more detailed way.
+Or you can create an instance of `OpenAI` using a pre-configured `OpenAIConfig`:
 
 ```kotlin
 val config = OpenAIConfig(
@@ -62,8 +68,6 @@ val config = OpenAIConfig(
 
 val openAI = OpenAI(config)
 ```
-
-> **Note**: OpenAI encourages using environment variables for the API key. [Read more](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
 
 Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStarted.md).
 

@@ -20,14 +20,10 @@ internal class EmbeddingsApi(private val requester: HttpRequester) : Embeddings 
     override suspend fun embeddings(request: EmbeddingRequest): EmbeddingResponse {
         return requester.perform {
             it.post {
-                url(path = EmbeddingsPathV1)
+                url(path = ApiPath.Embeddings)
                 setBody(request)
                 contentType(ContentType.Application.Json)
             }.body()
         }
-    }
-
-    companion object {
-        private const val EmbeddingsPathV1 = "v1/embeddings"
     }
 }

@@ -11,7 +11,6 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.util.*
-import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -23,7 +22,7 @@ internal class CompletionsApi(private val requester: HttpRequester) : Completion
     override suspend fun completion(request: CompletionRequest): TextCompletion {
         return requester.perform {
             it.post {
-                url(path = CompletionsPathV1)
+                url(path = ApiPath.Completions)
                 setBody(request)
                 contentType(ContentType.Application.Json)
             }.body()
@@ -34,7 +33,7 @@ internal class CompletionsApi(private val requester: HttpRequester) : Completion
     override fun completions(request: CompletionRequest): Flow<TextCompletion> {
         val builder = HttpRequestBuilder().apply {
             method = HttpMethod.Post
-            url(path = CompletionsPathV1)
+            url(path = ApiPath.Completions)
             setBody(request.toStreamRequest())
             contentType(ContentType.Application.Json)
             accept(ContentType.Text.EventStream)
@@ -46,11 +45,5 @@ internal class CompletionsApi(private val requester: HttpRequester) : Completion
         return flow {
             requester.perform(builder) { response -> streamEventsFrom(response) }
         }
-    }
-
-    companion object {
-        private const val CompletionsPathV1 = "v1/completions"
-        private const val StreamPrefix = "data:"
-        private const val StreamEndToken = "$StreamPrefix [DONE]"
     }
 }

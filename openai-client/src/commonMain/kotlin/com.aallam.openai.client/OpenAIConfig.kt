@@ -63,18 +63,48 @@ public class OpenAIConfig(
 }
 
 /**
- * OpenAI host configuration.
+ * A class to configure the OpenAI host.
+ * It provides a mechanism to customize the base URL and additional query parameters used in OpenAI API requests.
  */
 public class OpenAIHost(
-    /** Base URL configuration.*/
+
+    /**
+     * Base URL configuration.
+     * This is the root URL that will be used for all API requests to OpenAI.
+     * The URL can include a base path, but in that case, the base path should always end with a `/`.
+     * For example, a valid base URL would be "https://api.openai.com/v1/"
+     */
     public val baseUrl: String,
-    /** Additional query parameters */
+
+    /**
+     * Additional query parameters to be appended to all API requests to OpenAI.
+     * These can be used to provide additional configuration or context for the API requests.
+     */
     public val queryParams: Map<String, String> = emptyMap()
 ) {
+
     public companion object {
-        public val OpenAI: OpenAIHost = OpenAIHost("https://api.openai.com")
+        /**
+         * A pre-configured instance of [OpenAIHost] with the base URL set as `https://api.openai.com/v1/`.
+         */
+        public val OpenAI: OpenAIHost = OpenAIHost(baseUrl = "https://api.openai.com/v1/")
+
+        /**
+         * Creates an instance of [OpenAIHost] configured for Azure hosting with the given resource name, deployment ID,
+         * and API version.
+         *
+         * @param resourceName The name of your Azure OpenAI Resource.
+         * @param deploymentId The name of your model deployment.
+         * @param apiVersion The API version to use for this operation. This parameter should follow the YYYY-MM-DD format.
+         */
+        public fun azure(resourceName: String, deploymentId: String, apiVersion: String): OpenAIHost =
+            OpenAIHost(
+                baseUrl = "https://$resourceName.openai.azure.com/openai/deployments/$deploymentId/",
+                queryParams = mapOf("api-version" to apiVersion),
+            )
     }
 }
+
 
 /** Proxy configuration. */
 public sealed interface ProxyConfig {

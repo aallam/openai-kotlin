@@ -8,7 +8,6 @@ import com.aallam.openai.api.finetune.FineTuneId
 import com.aallam.openai.api.finetune.FineTuneRequest
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.FineTunes
-import com.aallam.openai.client.internal.api.ModelsApi.Companion.ModelsPathV1
 import com.aallam.openai.client.internal.extension.streamEventsFrom
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
@@ -27,7 +26,7 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
     override suspend fun fineTune(request: FineTuneRequest): FineTune {
         return requester.perform {
             it.post {
-                url(path = FineTunesPathV1)
+                url(path = ApiPath.FineTunes)
                 setBody(request)
                 contentType(ContentType.Application.Json)
             }
@@ -36,34 +35,34 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
 
     override suspend fun fineTune(fineTuneId: FineTuneId): FineTune? {
         val response = requester.perform<HttpResponse> {
-            it.get { url(path = "$FineTunesPathV1/${fineTuneId.id}") }
+            it.get { url(path = "${ApiPath.FineTunes}/${fineTuneId.id}") }
         }
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
     override suspend fun fineTunes(): List<FineTune> {
         return requester.perform<ListResponse<FineTune>> {
-            it.get { url(path = FineTunesPathV1) }
+            it.get { url(path = ApiPath.FineTunes) }
         }.data
     }
 
     override suspend fun cancel(fineTuneId: FineTuneId): FineTune? {
         val response = requester.perform<HttpResponse> {
-            it.post { url(path = "$FineTunesPathV1/${fineTuneId.id}/cancel") }
+            it.post { url(path = "${ApiPath.FineTunes}/${fineTuneId.id}/cancel") }
         }
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
     override suspend fun fineTuneEvents(fineTuneId: FineTuneId): List<FineTuneEvent> {
         return requester.perform<ListResponse<FineTuneEvent>> {
-            it.get { url(path = "$FineTunesPathV1/${fineTuneId.id}/events") }
+            it.get { url(path = "${ApiPath.FineTunes}/${fineTuneId.id}/events") }
         }.data
     }
 
     override fun fineTuneEventsFlow(fineTuneId: FineTuneId): Flow<FineTuneEvent> {
         val request = HttpRequestBuilder().apply {
             method = HttpMethod.Get
-            url(path = "$FineTunesPathV1/${fineTuneId.id}/events") {
+            url(path = "${ApiPath.FineTunes}/${fineTuneId.id}/events") {
                 parameters.append("stream", "true")
             }
             accept(ContentType.Text.EventStream)
@@ -80,16 +79,12 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
     override suspend fun delete(fineTuneModel: ModelId): Boolean {
         val response = requester.perform<HttpResponse> {
             it.delete {
-                url(path = "$ModelsPathV1/${fineTuneModel.id}")
+                url(path = "${ApiPath.Models}/${fineTuneModel.id}")
             }
         }
         return when (response.status) {
             HttpStatusCode.NotFound -> false
             else -> response.body<DeleteResponse>().deleted
         }
-    }
-
-    companion object {
-        private const val FineTunesPathV1 = "v1/fine-tunes"
     }
 }

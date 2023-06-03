@@ -23,7 +23,7 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
 
     override suspend fun file(request: FileUpload): File {
         return requester.perform {
-            it.submitFormWithBinaryData(url = FilesPath, formData = formData {
+            it.submitFormWithBinaryData(url = ApiPath.Files, formData = formData {
                 appendFileSource("file", request.file)
                 append(key = "purpose", value = request.purpose.raw)
             })
@@ -31,13 +31,13 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
     }
 
     override suspend fun files(): List<File> {
-        return requester.perform<ListResponse<File>> { it.get { url(path = FilesPath) } }.data
+        return requester.perform<ListResponse<File>> { it.get { url(path = ApiPath.Files) } }.data
     }
 
     override suspend fun file(fileId: FileId): File? {
         try {
             return requester.perform<HttpResponse> {
-                it.get { url(path = "$FilesPath/${fileId.id}") }
+                it.get { url(path = "${ApiPath.Files}/${fileId.id}") }
             }.body()
         } catch (e: OpenAIAPIException) {
             if (e.statusCode == HttpStatusCode.NotFound.value) return null
@@ -48,7 +48,7 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
     override suspend fun delete(fileId: FileId): Boolean {
         val response = requester.perform<HttpResponse> {
             it.delete {
-                url(path = "$FilesPath/${fileId.id}")
+                url(path = "${ApiPath.Files}/${fileId.id}")
             }
         }
 
@@ -60,11 +60,8 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
 
     override suspend fun download(fileId: FileId): ByteArray {
         return requester.perform {
-            it.get { url(path = "$FilesPath/${fileId.id}/content") }
+            it.get { url(path = "${ApiPath.Files}/${fileId.id}/content") }
         }
     }
 
-    companion object {
-        private const val FilesPath = "v1/files"
-    }
 }

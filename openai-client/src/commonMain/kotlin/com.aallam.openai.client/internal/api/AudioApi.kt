@@ -25,13 +25,13 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
 
     private suspend fun transcriptionAsJson(request: TranscriptionRequest): Transcription {
         return requester.perform {
-            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request))
+            it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
         }
     }
 
     private suspend fun transcriptionAsString(request: TranscriptionRequest): Transcription {
         val text = requester.perform<String> {
-            it.submitFormWithBinaryData(url = TranscriptionPathV1, formData = formDataOf(request))
+            it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
         }
         return Transcription(text)
     }
@@ -59,13 +59,13 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
 
     private suspend fun translationAsJson(request: TranslationRequest): Translation {
         return requester.perform {
-            it.submitFormWithBinaryData(url = TranslationPathV1, formData = formDataOf(request))
+            it.submitFormWithBinaryData(url = ApiPath.Translation, formData = formDataOf(request))
         }
     }
 
     private suspend fun translationAsString(request: TranslationRequest): Translation {
         val text = requester.perform<String> {
-            it.submitFormWithBinaryData(url = TranslationPathV1, formData = formDataOf(request))
+            it.submitFormWithBinaryData(url = ApiPath.Translation, formData = formDataOf(request))
         }
         return Translation(text)
     }
@@ -79,10 +79,5 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
         request.prompt?.let { prompt -> append(key = "prompt", value = prompt) }
         request.responseFormat?.let { append(key = "response_format", value = it) }
         request.temperature?.let { append(key = "temperature", value = it) }
-    }
-
-    companion object {
-        private const val TranslationPathV1 = "v1/audio/translations"
-        private const val TranscriptionPathV1 = "v1/audio/transcriptions"
     }
 }

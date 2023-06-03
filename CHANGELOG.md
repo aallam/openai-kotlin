@@ -1,3 +1,10 @@
+# 3.2.5
+> Published 03 Jun 2023
+
+### Added
+- Add `OpenAIHost` builder for Azure (#196)
+- Support of `OpenAIHost` with a base path (#196)
+
 # 3.2.4
 > Published 21 May 2023
 

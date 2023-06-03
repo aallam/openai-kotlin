@@ -48,6 +48,15 @@ public abstract interface class com/aallam/openai/client/Images {
 	public abstract fun imageURL (Lcom/aallam/openai/api/image/ImageVariation;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class com/aallam/openai/client/LoggingConfig {
+	public fun <init> ()V
+	public fun <init> (Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Z)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getLogLevel ()Lcom/aallam/openai/api/logging/LogLevel;
+	public final fun getLogger ()Lcom/aallam/openai/api/logging/Logger;
+	public final fun getSanitize ()Z
+}
+
 public abstract interface class com/aallam/openai/client/Models {
 	public abstract fun model-Q3EJpKE (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun models (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -63,10 +72,11 @@ public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/ope
 public final class com/aallam/openai/client/OpenAIConfig {
 	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;)V
 	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/client/LoggingConfig;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/client/LoggingConfig;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getHeaders ()Ljava/util/Map;
 	public final fun getHost ()Lcom/aallam/openai/client/OpenAIHost;
-	public final fun getLogLevel ()Lcom/aallam/openai/api/logging/LogLevel;
-	public final fun getLogger ()Lcom/aallam/openai/api/logging/Logger;
+	public final fun getLogging ()Lcom/aallam/openai/client/LoggingConfig;
 	public final fun getOrganization ()Ljava/lang/String;
 	public final fun getProxy ()Lcom/aallam/openai/client/ProxyConfig;
 	public final fun getRetry ()Lcom/aallam/openai/client/RetryStrategy;
@@ -83,12 +93,14 @@ public final class com/aallam/openai/client/OpenAIHost {
 }
 
 public final class com/aallam/openai/client/OpenAIHost$Companion {
+	public final fun azure (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/client/OpenAIHost;
 	public final fun getOpenAI ()Lcom/aallam/openai/client/OpenAIHost;
 }
 
 public final class com/aallam/openai/client/OpenAIKt {
 	public static final fun OpenAI (Lcom/aallam/openai/client/OpenAIConfig;)Lcom/aallam/openai/client/OpenAI;
-	public static final fun OpenAI (Ljava/lang/String;)Lcom/aallam/openai/client/OpenAI;
+	public static final fun OpenAI (Ljava/lang/String;Lcom/aallam/openai/client/LoggingConfig;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;)Lcom/aallam/openai/client/OpenAI;
+	public static synthetic fun OpenAI$default (Ljava/lang/String;Lcom/aallam/openai/client/LoggingConfig;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;ILjava/lang/Object;)Lcom/aallam/openai/client/OpenAI;
 }
 
 public abstract interface class com/aallam/openai/client/ProxyConfig {

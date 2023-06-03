@@ -18,7 +18,7 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
     override suspend fun chatCompletion(request: ChatCompletionRequest): ChatCompletion {
         return requester.perform {
             it.post {
-                url(path = ChatCompletionsPathV1)
+                url(path = ApiPath.ChatCompletions)
                 setBody(request)
                 contentType(ContentType.Application.Json)
             }.body()
@@ -28,7 +28,7 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
     override fun chatCompletions(request: ChatCompletionRequest): Flow<ChatCompletionChunk> {
         val builder = HttpRequestBuilder().apply {
             method = HttpMethod.Post
-            url(path = ChatCompletionsPathV1)
+            url(path = ApiPath.ChatCompletions)
             setBody(streamRequestOf(request))
             contentType(ContentType.Application.Json)
             accept(ContentType.Text.EventStream)
@@ -40,9 +40,5 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
         return flow {
             requester.perform(builder) { response -> streamEventsFrom(response) }
         }
-    }
-
-    companion object {
-        private const val ChatCompletionsPathV1 = "v1/chat/completions"
     }
 }

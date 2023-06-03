@@ -17,7 +17,7 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
     override suspend fun imageURL(creation: ImageCreation): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.post {
-                url(path = ImagesGenerationV1)
+                url(path = ApiPath.ImagesGeneration)
                 setBody(creation.toURLRequest())
                 contentType(ContentType.Application.Json)
             }
@@ -27,7 +27,7 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
     override suspend fun imageJSON(creation: ImageCreation): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.post {
-                url(path = ImagesGenerationV1)
+                url(path = ApiPath.ImagesGeneration)
                 setBody(creation.toJSONRequest())
                 contentType(ContentType.Application.Json)
             }
@@ -36,14 +36,17 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
 
     override suspend fun imageURL(edit: ImageEdit): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
-            it.submitFormWithBinaryData(url = ImagesEditsV1, formData = imageEditRequest(edit, ImageResponseFormat.url))
+            it.submitFormWithBinaryData(
+                url = ApiPath.ImagesEdits,
+                formData = imageEditRequest(edit, ImageResponseFormat.url)
+            )
         }.data
     }
 
     override suspend fun imageJSON(edit: ImageEdit): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.submitFormWithBinaryData(
-                url = ImagesEditsV1, formData = imageEditRequest(edit, ImageResponseFormat.base64Json)
+                url = ApiPath.ImagesEdits, formData = imageEditRequest(edit, ImageResponseFormat.base64Json)
             )
         }.data
     }
@@ -64,7 +67,7 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
     override suspend fun imageURL(variation: ImageVariation): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.submitFormWithBinaryData(
-                url = ImagesVariantsV1, formData = imageVariantRequest(variation, ImageResponseFormat.url)
+                url = ApiPath.ImagesVariants, formData = imageVariantRequest(variation, ImageResponseFormat.url)
             )
         }.data
     }
@@ -72,7 +75,7 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
     override suspend fun imageJSON(variation: ImageVariation): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.submitFormWithBinaryData(
-                url = ImagesVariantsV1, formData = imageVariantRequest(variation, ImageResponseFormat.base64Json)
+                url = ApiPath.ImagesVariants, formData = imageVariantRequest(variation, ImageResponseFormat.base64Json)
             )
         }.data
     }
@@ -98,11 +101,4 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
     private fun ImageCreation.toURLRequest() = ImageCreationRequest(
         prompt = prompt, n = n, size = size, user = user, responseFormat = ImageResponseFormat.url,
     )
-
-
-    companion object {
-        private const val ImagesGenerationV1 = "v1/images/generations"
-        private const val ImagesEditsV1 = "v1/images/edits"
-        private const val ImagesVariantsV1 = "v1/images/variations"
-    }
 }

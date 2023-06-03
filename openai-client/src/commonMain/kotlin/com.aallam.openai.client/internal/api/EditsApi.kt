@@ -20,14 +20,10 @@ internal class EditsApi(private val requester: HttpRequester) : Edits {
     override suspend fun edit(request: EditsRequest): Edit {
         return requester.perform {
             it.post {
-                url(path = EditsPathV1)
+                url(path = ApiPath.Edits)
                 setBody(request)
                 contentType(ContentType.Application.Json)
             }.body()
         }
-    }
-
-    companion object {
-        private const val EditsPathV1 = "v1/edits"
     }
 }

@@ -24,6 +24,7 @@ kotlin {
             dependencies {
                 api(libs.okio)
                 implementation(libs.serialization.core)
+                implementation(libs.serialization.json)
             }
         }
         val commonTest by getting {

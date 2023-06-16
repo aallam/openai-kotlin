@@ -148,7 +148,7 @@ fun main() = runBlocking {
                 content = "None",
                 functionCall = JsonData.builder {
                     put("name", "translate")
-                    put("arguments", "{\"text\": \"OpenAI is awesome!\"}")
+                    put("arguments", """{"text": "OpenAI is awesome!"}""")
                 }
 
             ),

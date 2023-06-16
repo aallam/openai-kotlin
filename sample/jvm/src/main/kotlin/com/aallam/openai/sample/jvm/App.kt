@@ -124,7 +124,16 @@ fun main() = runBlocking {
                 name = "translate",
                 description = "Translate English to French",
                 parameters = JsonData.fromString(
-                    "{\"type\": \"object\", \"properties\": {\"text\": {\"type\": \"string\"}}}"
+                   """
+                    {
+                        "type": "object",
+                        "properties": {
+                            "text": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                    """
                 ),
             )
         )

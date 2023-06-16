@@ -6,6 +6,9 @@ import com.aallam.openai.api.audio.TranslationRequest
 import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
+import com.aallam.openai.api.chat.FunctionCall
+import com.aallam.openai.api.chat.ChatCompletionFunction
+import com.aallam.openai.api.chat.JsonData
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
@@ -22,6 +25,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import okio.FileSystem
 import okio.Path.Companion.toPath
+import kotlinx.serialization.json.put
 
 @OptIn(BetaOpenAI::class)
 fun main() = runBlocking {
@@ -100,6 +104,71 @@ fun main() = runBlocking {
         )
     )
     openAI.chatCompletion(chatCompletionRequest).choices.forEach(::println)
+
+    println("> Create Chat Completion function call...")
+    val chatCompletionCreateFunctionCall = ChatCompletionRequest(
+        model = ModelId("gpt-3.5-turbo-0613"),
+        messages = listOf(
+            ChatMessage(
+                role = ChatRole.System,
+                content = "You are a helpful assistant that translates English to French."
+            ),
+            ChatMessage(
+                role = ChatRole.User,
+                content = "Translate the following English text to French: “OpenAI is awesome!”"
+            )
+        ),
+        functionCall = FunctionCall.forceCall("translate"),
+        functions = listOf(
+            ChatCompletionFunction(
+                name = "translate",
+                description = "Translate English to French",
+                parameters = JsonData.fromString(
+                   """
+                    {
+                        "type": "object",
+                        "properties": {
+                            "text": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                    """
+                ),
+            )
+        )
+    )
+    openAI.chatCompletion(chatCompletionCreateFunctionCall).choices.forEach(::println)
+    println("> Process Chat Completion function call...")
+    val chatFunctionReturn = ChatCompletionRequest(
+        model = ModelId("gpt-3.5-turbo-0613"),
+        messages = listOf(
+            ChatMessage(
+                role = ChatRole.System,
+                content = "You are a helpful assistant that uses a function to translates English to French.\n" +
+                        "Use only the result of the function call as the response."
+            ),
+            ChatMessage(
+                role = ChatRole.User,
+                content = "Translate the following English text to French: “OpenAI is awesome!”"
+            ),
+            ChatMessage(
+                role = ChatRole.Assistant,
+                content = "None",
+                functionCall = JsonData.builder {
+                    put("name", "translate")
+                    put("arguments", """{"text": "OpenAI is awesome!"}""")
+                }
+
+            ),
+            ChatMessage(
+                role = ChatRole.Function,
+                content = "openai est super !",
+                name = "translate",
+            )
+        ),
+    )
+    openAI.chatCompletion(chatFunctionReturn).choices.forEach(::println)
 
     println("\n>️ Creating chat completions stream...")
     openAI.chatCompletions(chatCompletionRequest)

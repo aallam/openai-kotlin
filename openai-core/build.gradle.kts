@@ -23,6 +23,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(libs.okio)
+                api(libs.serialization.json)
                 implementation(libs.serialization.core)
             }
         }

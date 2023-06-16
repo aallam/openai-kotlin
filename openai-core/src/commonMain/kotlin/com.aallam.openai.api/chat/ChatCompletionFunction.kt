@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class FunctionDescription(
+public data class ChatCompletionFunction(
     /**
      * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum
      * length of 64.

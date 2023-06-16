@@ -7,7 +7,7 @@ import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.chat.FunctionCall
-import com.aallam.openai.api.chat.FunctionDescription
+import com.aallam.openai.api.chat.ChatCompletionFunction
 import com.aallam.openai.api.chat.JsonData
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
@@ -25,10 +25,10 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import okio.FileSystem
 import okio.Path.Companion.toPath
-
+import kotlinx.serialization.json.put
 
 @OptIn(BetaOpenAI::class)
-fun main() = runBlocking {
+fun mainOld() = runBlocking {
     val apiKey = System.getenv("OPENAI_API_KEY")
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
     val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.All))
@@ -118,12 +118,14 @@ fun main() = runBlocking {
                 content = "Translate the following English text to French: “OpenAI is awesome!”"
             )
         ),
-        functionCall = FunctionCall.Auto,
+        functionCall = FunctionCall.forceCall("translate"),
         functions = listOf(
-            FunctionDescription(
+            ChatCompletionFunction(
                 name = "translate",
                 description = "Translate English to French",
-                parameters = JsonData("{\"type\": \"object\", \"properties\": {\"text\": {\"type\": \"string\"}}}"),
+                parameters = JsonData.fromString(
+                    "{\"type\": \"object\", \"properties\": {\"text\": {\"type\": \"string\"}}}"
+                ),
             )
         )
     )
@@ -144,10 +146,11 @@ fun main() = runBlocking {
             ChatMessage(
                 role = ChatRole.Assistant,
                 content = "None",
-                functionCall = JsonData("{\n" +
-                        "          \"name\": \"translate\",\n" +
-                        "          \"arguments\": \"{\\n  \\\"text\\\": \\\"OpenAI is awesome!\\\"\\n}\"\n" +
-                        "        }")
+                functionCall = JsonData.builder {
+                    put("name", "translate")
+                    put("arguments", "{\"text\": \"OpenAI is awesome!\"}")
+                }
+
             ),
             ChatMessage(
                 role = ChatRole.Function,

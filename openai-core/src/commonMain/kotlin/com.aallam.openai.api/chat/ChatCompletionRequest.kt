@@ -89,7 +89,7 @@ public class ChatCompletionRequest(
     /**
      * A list of functions the model may generate JSON inputs for.
      */
-    @SerialName("functions") public val functions: List<FunctionDescription>? = null,
+    @SerialName("functions") public val functions: List<ChatCompletionFunction>? = null,
 
     /**
      * Controls how the model responds to function calls. "none" means the model does not call a function, and responds
@@ -99,7 +99,7 @@ public class ChatCompletionRequest(
      */
     @SerialName("function_call") public val functionCall: FunctionCall? = null,
 
-)
+    )
 
 /**
  * The messages to generate chat completions for.

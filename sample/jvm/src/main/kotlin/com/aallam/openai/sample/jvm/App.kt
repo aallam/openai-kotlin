@@ -28,7 +28,7 @@ import okio.Path.Companion.toPath
 import kotlinx.serialization.json.put
 
 @OptIn(BetaOpenAI::class)
-fun mainOld() = runBlocking {
+fun main() = runBlocking {
     val apiKey = System.getenv("OPENAI_API_KEY")
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
     val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.All))

@@ -92,14 +92,15 @@ public class ChatCompletionRequest(
     @SerialName("functions") public val functions: List<ChatCompletionFunction>? = null,
 
     /**
-     * Controls how the model responds to function calls. "none" means the model does not call a function, and responds
-     * to the end-user. "auto" means the model can pick between an end-user or calling a function. Specifying a
-     * particular function via {"name":\ "my_function"} forces the model to call that function. "none" is the default
-     * when no functions are present. "auto" is the default if functions are present.
+     * Controls how the model responds to function calls. [FunctionCall.None] means the model does not call a function,
+     * and responds to the end-user.
+     * [FunctionCall.Auto] means the model can pick between an end-user or calling a function.
+     * Specifying a particular function via [FunctionCall.Force] forces the model to call that function.
+     * [FunctionCall.None] is the default when no functions are present.
+     * [FunctionCall.Auto] is the default if functions are present.
      */
     @SerialName("function_call") public val functionCall: FunctionCall? = null,
-
-    )
+)
 
 /**
  * The messages to generate chat completions for.
@@ -189,10 +190,32 @@ public class ChatCompletionRequestBuilder {
     public var user: String? = null
 
     /**
+     * A list of functions the model may generate JSON inputs for.
+     */
+    public var functions: List<ChatCompletionFunction>? = null
+
+    /**
+     * Controls how the model responds to function calls. [FunctionCall.None] means the model does not call a function,
+     * and responds to the end-user.
+     * [FunctionCall.Auto] means the model can pick between an end-user or calling a function.
+     * Specifying a particular function via [FunctionCall.Force] forces the model to call that function.
+     * [FunctionCall.None] is the default when no functions are present.
+     * [FunctionCall.Auto] is the default if functions are present.
+     */
+    public var functionCall: FunctionCall? = null
+
+    /**
      * The messages to generate chat completions for.
      */
     public fun messages(block: ChatMessagesBuilder.() -> Unit) {
         messages = ChatMessagesBuilder().apply(block).messages
+    }
+
+    /**
+     * A list of functions the model may generate JSON inputs for.
+     */
+    public fun functions(block: FunctionsBuilder.() -> Unit) {
+        functions = FunctionsBuilder().apply(block).functions
     }
 
     /**
@@ -210,6 +233,8 @@ public class ChatCompletionRequestBuilder {
         frequencyPenalty = frequencyPenalty,
         logitBias = logitBias,
         user = user,
+        functions = functions,
+        functionCall = functionCall,
     )
 }
 
@@ -225,5 +250,20 @@ public class ChatMessagesBuilder {
      */
     public fun message(block: ChatMessageBuilder.() -> Unit) {
         messages += ChatMessageBuilder().apply(block).build()
+    }
+}
+
+/**
+ * Creates a list of [ChatCompletionFunction].
+ */
+@BetaOpenAI
+public class FunctionsBuilder {
+    internal val functions = mutableListOf<ChatCompletionFunction>()
+
+    /**
+     * Creates a [ChatMessage] instance.
+     */
+    public fun function(block: ChatCompletionFunctionBuilder.() -> Unit) {
+        functions += ChatCompletionFunctionBuilder().apply(block).build()
     }
 }

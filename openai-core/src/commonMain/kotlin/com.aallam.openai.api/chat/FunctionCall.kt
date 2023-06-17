@@ -1,6 +1,9 @@
 package com.aallam.openai.api.chat
 
 import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.chat.FunctionCall.Companion.Auto
+import com.aallam.openai.api.chat.FunctionCall.Companion.None
+import com.aallam.openai.api.chat.FunctionCall.Force
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -13,50 +16,71 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlin.jvm.JvmInline
 
+/**
+ * This interface controls how the model responds to function calls.
+ *
+ * There are several modes:
+ * - [None]: In this mode, the model does not call a function and responds to the end-user directly. This is the default mode when no functions are present.
+ * - [Auto]: In this mode, the model can decide whether to call a function or respond to the end-user directly. This is the default mode if any functions are present.
+ * - [Force]: In this mode, the model will call a specific function, which is indicated by the `name` attribute.
+ */
 @BetaOpenAI
 @Serializable(with = FunctionCallSerializer::class)
 public sealed interface FunctionCall {
-    public val name: String
 
+    /**
+     * Represents a flexible function call mode.
+     * The name can be any string value representing a function call mode.
+     */
+    @JvmInline
+    public value class Flexible(public val value: String) : FunctionCall
+
+    /**
+     * Represents a named function call mode.
+     * The name indicates a specific function that the model will call.
+     *
+     * @property name the name of the function to call.
+     */
+    @Serializable
+    public class Force(public val name: String) : FunctionCall
+
+    /** Contains default function call modes. */
     public companion object {
-        public val Auto: FunctionCall = FunctionCallString("auto")
-        public val None: FunctionCall = FunctionCallString("none")
-        public fun forceCall(name: String): FunctionCall = FunctionCallObject(name)
+        /** Represents the 'auto' mode. */
+        public val Auto: FunctionCall = Flexible("auto")
+
+        /** Represents the 'none' mode. */
+        public val None: FunctionCall = Flexible("none")
     }
 }
-@OptIn(BetaOpenAI::class)
-internal object FunctionCallSerializer: KSerializer<FunctionCall>{
-    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("FunctionCall") {}
-    private val objectSerializer = FunctionCallObject.serializer()
+
+/**
+ * A custom serializer for the `FunctionCall` interface.
+ */
+@BetaOpenAI
+internal object FunctionCallSerializer : KSerializer<FunctionCall> {
+    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("FunctionCall")
+
+    /**
+     * Deserializes a `FunctionCall` from JSON format.
+     */
     override fun deserialize(decoder: Decoder): FunctionCall {
-        if(decoder is JsonDecoder){
-            return when(val json = decoder.decodeJsonElement()){
-                is JsonPrimitive -> FunctionCallString(json.content)
-                is JsonObject -> objectSerializer.deserialize(decoder)
-                else -> throw UnsupportedOperationException("Cannot deserialize Parameters")
-            }
+        require(decoder is JsonDecoder) { "This decoder is not a JsonDecoder. Cannot deserialize `FunctionCall`" }
+        return when (val json = decoder.decodeJsonElement()) {
+            is JsonPrimitive -> FunctionCall.Flexible(json.content)
+            is JsonObject -> Force.serializer().deserialize(decoder)
+            else -> throw UnsupportedOperationException("Cannot deserialize Parameters. Unsupported JSON element.")
         }
-        throw UnsupportedOperationException("Cannot deserialize Parameters")
     }
 
+    /**
+     * Serializes a `FunctionCall` to JSON format.
+     */
     override fun serialize(encoder: Encoder, value: FunctionCall) {
-        if(encoder is JsonEncoder){
-            when(value){
-                is FunctionCallString -> encoder.encodeString(value.name)
-                is FunctionCallObject -> objectSerializer.serialize(encoder, value)
-            }
-            return
+        require(encoder is JsonEncoder) { "This encoder is not a JsonEncoder. Cannot serialize `FunctionCall`" }
+        when (value) {
+            is FunctionCall.Flexible -> encoder.encodeString(value.value)
+            is Force -> Force.serializer().serialize(encoder, value)
         }
-        throw UnsupportedOperationException("Cannot deserialize Parameters")
     }
 }
-
-@OptIn(BetaOpenAI::class)
-@JvmInline
-@Serializable
-internal value class FunctionCallString(override val name: String): FunctionCall
-
-@OptIn(BetaOpenAI::class)
-@Serializable
-internal data class FunctionCallObject(override val name: String): FunctionCall
-

@@ -8,7 +8,7 @@ import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.chat.FunctionCall
 import com.aallam.openai.api.chat.ChatCompletionFunction
-import com.aallam.openai.api.chat.JsonData
+import com.aallam.openai.api.chat.FunctionParameters
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
@@ -118,12 +118,12 @@ fun main() = runBlocking {
                 content = "Translate the following English text to French: “OpenAI is awesome!”"
             )
         ),
-        functionCall = FunctionCall.forceCall("translate"),
+        functionCall = FunctionCall.Force("translate"),
         functions = listOf(
             ChatCompletionFunction(
                 name = "translate",
                 description = "Translate English to French",
-                parameters = JsonData.fromString(
+                parameters = FunctionParameters.fromJsonString(
                    """
                     {
                         "type": "object",
@@ -139,6 +139,7 @@ fun main() = runBlocking {
         )
     )
     openAI.chatCompletion(chatCompletionCreateFunctionCall).choices.forEach(::println)
+
     println("> Process Chat Completion function call...")
     val chatFunctionReturn = ChatCompletionRequest(
         model = ModelId("gpt-3.5-turbo-0613"),
@@ -155,7 +156,7 @@ fun main() = runBlocking {
             ChatMessage(
                 role = ChatRole.Assistant,
                 content = "None",
-                functionCall = JsonData.builder {
+                functionCall = FunctionParameters.builder {
                     put("name", "translate")
                     put("arguments", """{"text": "OpenAI is awesome!"}""")
                 }

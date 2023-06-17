@@ -1,8 +1,11 @@
 package com.aallam.openai.api.chat
 
+import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.OpenAIDsl
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@BetaOpenAI
 @Serializable
 public data class ChatCompletionFunction(
     /**
@@ -18,5 +21,44 @@ public data class ChatCompletionFunction(
      * The parameters the functions accepts, described as a JSON Schema object. See the guide for examples and the
      * JSON Schema reference for documentation about the format.
      */
-    @SerialName("parameters") val parameters: JsonData? = null,
+    @SerialName("parameters") val parameters: FunctionParameters? = null,
 )
+
+/**
+ * Builder of [ChatCompletionFunction] instances.
+ */
+@BetaOpenAI
+@OpenAIDsl
+public class ChatCompletionFunctionBuilder {
+
+    /**
+     * The name of the function to be called.
+     */
+    public var name: String? = null
+
+    /**
+     * The description of what the function does.
+     */
+    public var description: String? = null
+
+    /**
+     * The parameters the function accepts.
+     */
+    public var parameters: FunctionParameters? = null
+
+    /**
+     * Create [ChatCompletionFunction] instance.
+     */
+    public fun build(): ChatCompletionFunction = ChatCompletionFunction(
+        name = requireNotNull(name) { "name is required" },
+        description = description,
+        parameters = parameters
+    )
+}
+
+/**
+ * The function to generate chat completion function instances.
+ */
+@BetaOpenAI
+public fun chatCompletionFunction(block: ChatCompletionFunctionBuilder.() -> Unit): ChatCompletionFunction =
+    ChatCompletionFunctionBuilder().apply(block).build()

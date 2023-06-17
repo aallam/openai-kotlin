@@ -92,14 +92,14 @@ public class ChatCompletionRequest(
     @SerialName("functions") public val functions: List<ChatCompletionFunction>? = null,
 
     /**
-     * Controls how the model responds to function calls. [FunctionCall.None] means the model does not call a function,
+     * Controls how the model responds to function calls. [Function.None] means the model does not call a function,
      * and responds to the end-user.
-     * [FunctionCall.Auto] means the model can pick between an end-user or calling a function.
-     * Specifying a particular function via [FunctionCall.Force] forces the model to call that function.
-     * [FunctionCall.None] is the default when no functions are present.
-     * [FunctionCall.Auto] is the default if functions are present.
+     * [Function.Auto] means the model can pick between an end-user or calling a function.
+     * Specifying a particular function via [Function.Call] forces the model to call that function.
+     * [Function.None] is the default when no functions are present.
+     * [Function.Auto] is the default if functions are present.
      */
-    @SerialName("function_call") public val functionCall: FunctionCall? = null,
+    @SerialName("function_call") public val functionCall: Function? = null,
 )
 
 /**
@@ -195,14 +195,14 @@ public class ChatCompletionRequestBuilder {
     public var functions: List<ChatCompletionFunction>? = null
 
     /**
-     * Controls how the model responds to function calls. [FunctionCall.None] means the model does not call a function,
+     * Controls how the model responds to function calls. [Function.None] means the model does not call a function,
      * and responds to the end-user.
-     * [FunctionCall.Auto] means the model can pick between an end-user or calling a function.
-     * Specifying a particular function via [FunctionCall.Force] forces the model to call that function.
-     * [FunctionCall.None] is the default when no functions are present.
-     * [FunctionCall.Auto] is the default if functions are present.
+     * [Function.Auto] means the model can pick between an end-user or calling a function.
+     * Specifying a particular function via [Function.Call] forces the model to call that function.
+     * [Function.None] is the default when no functions are present.
+     * [Function.Auto] is the default if functions are present.
      */
-    public var functionCall: FunctionCall? = null
+    public var functionCall: Function? = null
 
     /**
      * The messages to generate chat completions for.

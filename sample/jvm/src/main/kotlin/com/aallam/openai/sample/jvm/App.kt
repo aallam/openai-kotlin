@@ -6,7 +6,7 @@ import com.aallam.openai.api.audio.TranslationRequest
 import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
-import com.aallam.openai.api.chat.FunctionCall
+import com.aallam.openai.api.chat.Function
 import com.aallam.openai.api.chat.ChatCompletionFunction
 import com.aallam.openai.api.chat.FunctionParameters
 import com.aallam.openai.api.completion.CompletionRequest
@@ -118,7 +118,7 @@ fun main() = runBlocking {
                 content = "Translate the following English text to French: “OpenAI is awesome!”"
             )
         ),
-        functionCall = FunctionCall.Force("translate"),
+        functionCall = Function.Call("translate"),
         functions = listOf(
             ChatCompletionFunction(
                 name = "translate",

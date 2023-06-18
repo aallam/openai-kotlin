@@ -1,8 +1,8 @@
 [versions]
-kotlin = "1.8.10"
-coroutines = "1.7.1"
+kotlin = "1.8.20"
+coroutines = "1.7.0"
 serialization = "1.5.1"
-ktor = "2.3.0"
+ktor = "2.3.1"
 okio = "3.3.0"
 logback = "1.4.8"
 

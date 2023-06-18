@@ -55,7 +55,7 @@ public value class FunctionParameters(public val schema: JsonElement) {
          *
          * @param block The [JsonObjectBuilder] to use.
          */
-        public fun builder(block: JsonObjectBuilder.() -> Unit): FunctionParameters {
+        public fun buildJson(block: JsonObjectBuilder.() -> Unit): FunctionParameters {
             val json = buildJsonObject(block)
             return FunctionParameters(json)
         }

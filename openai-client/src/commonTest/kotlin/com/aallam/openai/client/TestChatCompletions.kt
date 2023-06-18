@@ -49,14 +49,17 @@ class TestChatCompletions : TestOpenAI() {
 
     @Test
     fun chatCompletionsFunction() = test {
+        val modelId = ModelId("gpt-3.5-turbo-0613")
+        val chatMessages = mutableListOf(
+            ChatMessage(
+                role = ChatRole.User,
+                content = "What's the weather like in Boston?"
+            )
+        )
+
         val request = chatCompletionRequest {
-            model = ModelId("gpt-3.5-turbo-0613")
-            messages {
-                message {
-                    role = ChatRole.User
-                    content = "What's the weather like in Boston?"
-                }
-            }
+            model = modelId
+            messages = chatMessages
             functions {
                 function {
                     name = "currentWeather"
@@ -86,27 +89,43 @@ class TestChatCompletions : TestOpenAI() {
                     )
                 }
             }
-            functionCall = Function.Auto
+            functionCall = FunctionMode.Auto
         }
 
         val response = openAI.chatCompletion(request)
-        val message = response.choices.first().message!!
+        val message = response.choices.first().message ?: error("No chat response found!")
 
         message.functionCall?.let { functionCall ->
-            if (functionCall.name == "currentWeather") {
-                val args = functionCall.argumentsAsJson() ?: error("arguments field is missing")
-                val location = args.getValue("location").jsonPrimitive.content
-                val unit = args.getValue("unit").jsonPrimitive.content
-                val weather = currentWeather(location = location, unit = unit)
-                print(weather)
-            }
+            val availableFunctions = mapOf("currentWeather" to ::currentWeather)
+
+            val functionToCall = availableFunctions[functionCall.name] ?: return@let
+            val functionArgs = functionCall.argumentsAsJson() ?: error("arguments field is missing")
+
+            val functionResponse = functionToCall(
+                functionArgs.getValue("location").jsonPrimitive.content,
+                functionArgs["unit"]?.jsonPrimitive?.content ?: "fahrenheit"
+            )
+
+            chatMessages.add(message.copy(content = "")) // OpenAI throws an error in this case if the content is null, although it's optional!
+            chatMessages.add(
+                ChatMessage(role = ChatRole.Function, name = functionCall.name, content = functionResponse)
+            )
+
+            val secondResponse = openAI.chatCompletion(
+                request = ChatCompletionRequest(
+                    model = modelId,
+                    messages = chatMessages,
+                )
+            )
+
+            print(secondResponse)
         }
     }
 
     @Serializable
     data class WeatherInfo(val location: String, val temperature: String, val unit: String, val forecast: List<String>)
 
-    fun currentWeather(location: String, unit: String = "fahrenheit"): String {
+    fun currentWeather(location: String, unit: String): String {
         val weatherInfo = WeatherInfo(location, "72", unit, listOf("sunny", "windy"))
         return Json.encodeToString(weatherInfo)
     }

@@ -75,4 +75,3 @@ internal object FunctionModeSerializer : KSerializer<FunctionMode> {
         }
     }
 }
-

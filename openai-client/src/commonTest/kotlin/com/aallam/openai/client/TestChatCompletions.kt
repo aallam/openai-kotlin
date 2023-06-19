@@ -130,4 +130,3 @@ class TestChatCompletions : TestOpenAI() {
         return Json.encodeToString(weatherInfo)
     }
 }
-

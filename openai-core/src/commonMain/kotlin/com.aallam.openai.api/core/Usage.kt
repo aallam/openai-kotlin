@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public class Usage(
+public data class Usage(
     /**
      * Count of prompts tokens.
      */

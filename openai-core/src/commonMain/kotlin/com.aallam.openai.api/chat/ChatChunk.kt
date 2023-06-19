@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  */
 @BetaOpenAI
 @Serializable
-public data class ChatChunk internal constructor(
+public data class ChatChunk(
     /**
      * Chat choice index.
      */

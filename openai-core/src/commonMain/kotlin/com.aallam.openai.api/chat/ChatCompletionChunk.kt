@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
  */
 @BetaOpenAI
 @Serializable
-public data class ChatCompletionChunk internal constructor(
+public data class ChatCompletionChunk(
     /**
      * A unique id assigned to this completion
      */

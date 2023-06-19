@@ -27,7 +27,7 @@ suspend fun CoroutineScope.chatFunctionCall(openAI: OpenAI) {
         )
     )
 
-    val params = FunctionParameters.buildJson {
+    val params = Parameters.buildJsonObject {
         put("type", "object")
         putJsonObject("properties") {
             putJsonObject("location") {

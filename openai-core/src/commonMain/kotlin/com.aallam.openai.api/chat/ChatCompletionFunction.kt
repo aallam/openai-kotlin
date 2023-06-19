@@ -21,7 +21,7 @@ public data class ChatCompletionFunction(
      * The parameters the functions accepts, described as a JSON Schema object. See the guide for examples and the
      * JSON Schema reference for documentation about the format.
      */
-    @SerialName("parameters") val parameters: FunctionParameters? = null,
+    @SerialName("parameters") val parameters: Parameters? = null,
 )
 
 /**
@@ -44,7 +44,7 @@ public class ChatCompletionFunctionBuilder {
     /**
      * The parameters the function accepts.
      */
-    public var parameters: FunctionParameters? = null
+    public var parameters: Parameters? = null
 
     /**
      * Create [ChatCompletionFunction] instance.

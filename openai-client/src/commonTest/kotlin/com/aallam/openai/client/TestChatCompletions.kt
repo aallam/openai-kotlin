@@ -9,6 +9,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonPrimitive
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
@@ -64,7 +65,7 @@ class TestChatCompletions : TestOpenAI() {
                 function {
                     name = "currentWeather"
                     description = "Get the current weather in a given location"
-                    parameters = FunctionParameters.fromJsonString(
+                    parameters = Parameters.fromJsonString(
                         """
                         {
                           "type": "object",
@@ -89,44 +90,11 @@ class TestChatCompletions : TestOpenAI() {
                     )
                 }
             }
-            functionCall = FunctionMode.Auto
+            functionCall = FunctionMode.Named("currentWeather")
         }
 
         val response = openAI.chatCompletion(request)
         val message = response.choices.first().message ?: error("No chat response found!")
-
-        message.functionCall?.let { functionCall ->
-            val availableFunctions = mapOf("currentWeather" to ::currentWeather)
-
-            val functionToCall = availableFunctions[functionCall.name] ?: return@let
-            val functionArgs = functionCall.argumentsAsJson() ?: error("arguments field is missing")
-
-            val functionResponse = functionToCall(
-                functionArgs.getValue("location").jsonPrimitive.content,
-                functionArgs["unit"]?.jsonPrimitive?.content ?: "fahrenheit"
-            )
-
-            chatMessages.add(message.copy(content = "")) // OpenAI throws an error in this case if the content is null, although it's optional!
-            chatMessages.add(
-                ChatMessage(role = ChatRole.Function, name = functionCall.name, content = functionResponse)
-            )
-
-            val secondResponse = openAI.chatCompletion(
-                request = ChatCompletionRequest(
-                    model = modelId,
-                    messages = chatMessages,
-                )
-            )
-
-            print(secondResponse)
-        }
-    }
-
-    @Serializable
-    data class WeatherInfo(val location: String, val temperature: String, val unit: String, val forecast: List<String>)
-
-    fun currentWeather(location: String, unit: String): String {
-        val weatherInfo = WeatherInfo(location, "72", unit, listOf("sunny", "windy"))
-        return Json.encodeToString(weatherInfo)
+        assertEquals("currentWeather",  message.functionCall?.name)
     }
 }

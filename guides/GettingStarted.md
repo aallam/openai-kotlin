@@ -16,7 +16,7 @@ Use your `OpenAI` instance to make API requests.
 - [Completions](#completions)
   - [Create completion](#create-completion)
 - [Chat](#chat)
-  - [Create chat completion](#create-chat-completion)
+  - [Create chat completion](#create-chat-completion-beta)
 - [Edits](#edits)
   - [Create edits](#create-edits)
 - [Images](#images)
@@ -98,9 +98,13 @@ val chatCompletionRequest = ChatCompletionRequest(
   model = ModelId("gpt-3.5-turbo"),
   messages = listOf(
     ChatMessage(
+      role = ChatRole.System,
+      content = "You are a helpful assistant!"
+    ),
+    ChatMessage(
       role = ChatRole.User,
       content = "Hello!"
-    )
+    )  
   )
 )
 val completion: ChatCompletion = openAI.chatCompletion(chatCompletionRequest)
@@ -108,7 +112,7 @@ val completion: ChatCompletion = openAI.chatCompletion(chatCompletionRequest)
 val completions: Flow<ChatCompletionChunk> = openAI.chatCompletions(chatCompletionRequest)
 ```
 
-## Edits 
+## Edits
 
 Given a prompt and an instruction, the model will return an edited version of the prompt.
 

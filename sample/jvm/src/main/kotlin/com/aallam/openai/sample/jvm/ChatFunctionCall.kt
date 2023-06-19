@@ -1,4 +1,4 @@
-@file:OptIn(BetaOpenAI::class, BetaOpenAI::class)
+@file:OptIn(BetaOpenAI::class)
 
 package com.aallam.openai.sample.jvm
 

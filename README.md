@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.aallam.openai:openai-client:3.2.5"
+    implementation "com.aallam.openai:openai-client:3.3.0"
 }
 ```
 
@@ -30,7 +30,7 @@ Alternatively, you can use [openai-client-bom](/openai-client-bom)  by adding th
 ```groovy
 dependencies {
     // import Kotlin API client BOM
-    implementation platform('com.aallam.openai:openai-client-bom:3.2.5')
+    implementation platform('com.aallam.openai:openai-client-bom:3.3.0')
 
     // define dependencies without versions
     implementation 'com.aallam.openai:openai-client'

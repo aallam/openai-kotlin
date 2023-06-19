@@ -1,3 +1,9 @@
+# 3.3.0
+> Published 19 Jun 2023
+
+### Added
+- **Chat**: Function Call (#200 #202) (thanks @JochenGuckSnk)
+
 # 3.2.5
 > Published 03 Jun 2023
 

@@ -110,6 +110,13 @@ repositories {
 
 </details>
 
+## ⚠️ Throubleshooting
+
+<details>
+  <summary>I'm seeing "The model: `gpt-4` does not exist"</summary>
+
+The access to GPT-4 API is restricted at the moment. You can join the waitlist using [this form](https://openai.com/waitlist/gpt-4-api).
+</details>
 ## 📄 License
 
 OpenAI Kotlin API Client is an open-sourced software licensed under the [MIT license](LICENSE.md).

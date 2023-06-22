@@ -15,6 +15,7 @@ import kotlinx.serialization.json.JsonDecoder
 import kotlinx.serialization.json.JsonEncoder
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.jsonPrimitive
 import kotlin.jvm.JvmInline
 
 /**
@@ -62,7 +63,7 @@ internal object FunctionModeSerializer : KSerializer<FunctionMode> {
         require(decoder is JsonDecoder) { "This decoder is not a JsonDecoder. Cannot deserialize `FunctionCall`" }
         return when (val json = decoder.decodeJsonElement()) {
             is JsonPrimitive -> Default(json.content)
-            is JsonObject -> Named.serializer().deserialize(decoder)
+            is JsonObject -> json["name"]?.jsonPrimitive?.content?.let(FunctionMode::Named) ?: error("Missing 'name'")
             else -> throw UnsupportedOperationException("Cannot deserialize FunctionMode. Unsupported JSON element.")
         }
     }

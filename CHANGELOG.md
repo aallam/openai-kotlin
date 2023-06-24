@@ -1,3 +1,9 @@
+# 3.3.1
+> Published 24 Jun 2023
+
+### Fix
+- **Chat**: function mode serializer (#203) (thanks @emeasure-github-private)
+
 # 3.3.0
 > Published 19 Jun 2023
 

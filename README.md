@@ -84,6 +84,14 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Moderations](guides/GettingStarted.md#moderations)
 - [Audio](guides/GettingStarted.md#audio)
 
+## 📚 Guides
+
+Get started and understand more about how to use OpenAI API client for Kotlin with these guides:
+
+- [Getting Started](guides/GettingStarted.md)
+- [Chat with Function Call](guides/ChatFunctionCall.md)
+- [FileSource Guide](guides/FileSource.md)
+
 ## ℹ️ Sample apps
 
 Sample apps are available under `sample`, please check the [README](sample/README.md) for running instructions.
@@ -110,7 +118,7 @@ repositories {
 
 </details>
 
-## ⚠️ Throubleshooting
+## ⚠️️ Throubleshooting
 
 <details>
   <summary>I'm seeing "The model: gpt-4 does not exist"</summary>

@@ -53,7 +53,7 @@ fun currentWeather(location: String, unit: String): String {
 Define the parameters for the function the model might call.
 
 ```kotlin
-val params = FunctionParameters.buildJson {
+val params = Parameters.buildJsonObject {
     put("type", "object")
     putJsonObject("properties") {
         putJsonObject("location") {
@@ -175,7 +175,7 @@ suspend fun main() {
         )
     )
 
-    val params = FunctionParameters.buildJson {
+    val params = Parameters.buildJsonObject {
         put("type", "object")
         putJsonObject("properties") {
             putJsonObject("location") {

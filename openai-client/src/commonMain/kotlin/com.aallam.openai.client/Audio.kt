@@ -23,4 +23,7 @@ public interface Audio {
      */
     @BetaOpenAI
     public suspend fun translation(request: TranslationRequest): Translation
+
+    @BetaOpenAI
+    public suspend fun translationHeaders(request: TranslationRequest): Pair<Translation, Headers>
 }

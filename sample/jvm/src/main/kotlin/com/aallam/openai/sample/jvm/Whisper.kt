@@ -31,11 +31,19 @@ suspend fun whisper(openAI: OpenAI) {
 
 @OptIn(BetaOpenAI::class)
 suspend fun whisperWithHeaders(openAI: OpenAI) {
-    println("\n>️ Create transcription...")
+    println("\n>️ Create transcription with headers...")
     val transcriptionRequest = TranscriptionRequest(
         audio = FileSource(path = "micro-machines.wav".toPath(), fileSystem = FileSystem.RESOURCES),
         model = ModelId("whisper-1"),
     )
     val transcription = openAI.transcriptionHeaders(transcriptionRequest)
-    println("result: ${transcription.first.text}. headers: ${transcription.second.toMap()}")
+    println("Transcription result: ${transcription.first.text}. headers: ${transcription.second.toMap()}")
+
+    println("\n>️ Create translation with headers...")
+    val translationRequest = TranslationRequest(
+        audio = FileSource(path = "multilingual.wav".toPath(), fileSystem = FileSystem.RESOURCES),
+        model = ModelId("whisper-1"),
+    )
+    val translation = openAI.translationHeaders(translationRequest)
+    println(translation)
 }

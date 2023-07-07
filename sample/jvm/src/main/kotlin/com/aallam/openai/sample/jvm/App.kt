@@ -14,6 +14,7 @@ fun main() = runBlocking {
         println("Select an option:")
         println("1 - Engines")
         println("2 - Completion")
+        println("22 - Completion With Headers")
         println("3 - Files")
         println("4 - Moderations")
         println("5 - Images")
@@ -27,6 +28,7 @@ fun main() = runBlocking {
         when (readlnOrNull()?.toIntOrNull()) {
             1 -> engines(openAI)
             2 -> completion(openAI)
+            22 -> completionHeaders(openAI)
             3 -> files(openAI)
             4 -> moderations(openAI)
             5 -> images(openAI)

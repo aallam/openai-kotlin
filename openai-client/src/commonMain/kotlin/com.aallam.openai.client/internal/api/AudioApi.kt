@@ -80,6 +80,14 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
         }
     }
 
+    @BetaOpenAI
+    override suspend fun translationHeaders(request: TranslationRequest): Pair<Translation, Headers> {
+        return when (request.responseFormat) {
+            "json", "verbose_json", null -> translationAsJsonHeaders(request)
+            else -> translationAsStringHeaders(request)
+        }
+    }
+
     private suspend fun translationAsJson(request: TranslationRequest): Translation {
         return requester.perform {
             it.submitFormWithBinaryData(url = ApiPath.Translation, formData = formDataOf(request))
@@ -91,6 +99,19 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
             it.submitFormWithBinaryData(url = ApiPath.Translation, formData = formDataOf(request))
         }
         return Translation(text)
+    }
+
+    private suspend fun translationAsJsonHeaders(request: TranslationRequest): Pair<Translation, Headers> {
+        return requester.performHeaders {
+            it.submitFormWithBinaryData(url = ApiPath.Translation, formData = formDataOf(request))
+        }
+    }
+
+    private suspend fun translationAsStringHeaders(request: TranslationRequest): Pair<Translation, Headers> {
+        val text = requester.performHeaders<String> {
+            it.submitFormWithBinaryData(url = ApiPath.Translation, formData = formDataOf(request))
+        }
+        return Translation(text.first) to text.second
     }
 
     /**

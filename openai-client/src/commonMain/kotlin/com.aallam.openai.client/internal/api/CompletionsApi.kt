@@ -7,6 +7,7 @@ import com.aallam.openai.client.internal.extension.streamEventsFrom
 import com.aallam.openai.client.internal.extension.toStreamRequest
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
+import com.aallam.openai.client.internal.http.performHeaders
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -21,6 +22,16 @@ internal class CompletionsApi(private val requester: HttpRequester) : Completion
 
     override suspend fun completion(request: CompletionRequest): TextCompletion {
         return requester.perform {
+            it.post {
+                url(path = ApiPath.Completions)
+                setBody(request)
+                contentType(ContentType.Application.Json)
+            }.body()
+        }
+    }
+
+    override suspend fun completionHeaders(request: CompletionRequest): Pair<TextCompletion, Headers> {
+        return requester.performHeaders {
             it.post {
                 url(path = ApiPath.Completions)
                 setBody(request)

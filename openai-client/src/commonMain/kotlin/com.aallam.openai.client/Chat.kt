@@ -4,6 +4,7 @@ import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.chat.ChatCompletion
 import com.aallam.openai.api.chat.ChatCompletionChunk
 import com.aallam.openai.api.chat.ChatCompletionRequest
+import io.ktor.http.*
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -16,6 +17,9 @@ public interface Chat {
      */
     @BetaOpenAI
     public suspend fun chatCompletion(request: ChatCompletionRequest): ChatCompletion
+
+    @BetaOpenAI
+    public suspend fun chatCompletionWithHeaders(request: ChatCompletionRequest): Pair<ChatCompletion, Headers>
 
     /**
      * Stream variant of [chatCompletion].

@@ -6,6 +6,7 @@ import com.aallam.openai.api.audio.TranslationRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.OpenAI
+import io.ktor.util.*
 import okio.FileSystem
 import okio.Path.Companion.toPath
 
@@ -26,4 +27,15 @@ suspend fun whisper(openAI: OpenAI) {
     )
     val translation = openAI.translation(translationRequest)
     println(translation)
+}
+
+@OptIn(BetaOpenAI::class)
+suspend fun whisperWithHeaders(openAI: OpenAI) {
+    println("\n>️ Create transcription...")
+    val transcriptionRequest = TranscriptionRequest(
+        audio = FileSource(path = "micro-machines.wav".toPath(), fileSystem = FileSystem.RESOURCES),
+        model = ModelId("whisper-1"),
+    )
+    val transcription = openAI.transcriptionWithHeaders(transcriptionRequest)
+    println("result: ${transcription.first.text}. headers: ${transcription.second.toMap()}")
 }

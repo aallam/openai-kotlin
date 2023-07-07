@@ -18,8 +18,10 @@ fun main() = runBlocking {
         println("4 - Moderations")
         println("5 - Images")
         println("6 - Chat")
+        println("61 - Chat with Headers")
         println("7 - Chat (w/ Function)")
         println("8 - Whisper")
+        println("81 - Whisper with Headers")
         println("0 - Quit")
 
         when (readlnOrNull()?.toIntOrNull()) {
@@ -29,8 +31,10 @@ fun main() = runBlocking {
             4 -> moderations(openAI)
             5 -> images(openAI)
             6 -> chat(openAI)
+            61 -> chatWithHeaders(openAI)
             7 -> chatFunctionCall(openAI)
             8 -> whisper(openAI)
+            81 -> whisperWithHeaders(openAI)
             0 -> {
                 println("Exiting...")
                 return@runBlocking

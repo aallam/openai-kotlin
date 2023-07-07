@@ -9,7 +9,10 @@ import com.aallam.openai.client.Audio
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
+import io.ktor.client.call.*
 import io.ktor.client.request.forms.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 
 /**
  * Implementation of [Audio].
@@ -22,6 +25,24 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
             else -> transcriptionAsString(request)
         }
     }
+
+    @BetaOpenAI
+    override suspend fun transcriptionWithHeaders(request: TranscriptionRequest): Pair<Transcription, Headers> {
+        val httpResponse: HttpResponse = when (request.responseFormat) {
+            "json", "verbose_json", null -> requester.perform<HttpResponse> {
+                it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
+            }
+            else -> requester.perform<HttpResponse> {
+                it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
+            }
+        }
+        return when (request.responseFormat) {
+            "json", "verbose_json", null -> httpResponse.body<Transcription>() to httpResponse.headers
+            else -> Transcription(httpResponse.body<String>()) to httpResponse.headers
+        }
+    }
+
+
 
     private suspend fun transcriptionAsJson(request: TranscriptionRequest): Transcription {
         return requester.perform {

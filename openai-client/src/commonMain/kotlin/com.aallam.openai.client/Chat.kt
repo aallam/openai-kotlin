@@ -19,7 +19,7 @@ public interface Chat {
     public suspend fun chatCompletion(request: ChatCompletionRequest): ChatCompletion
 
     @BetaOpenAI
-    public suspend fun chatCompletionWithHeaders(request: ChatCompletionRequest): Pair<ChatCompletion, Headers>
+    public suspend fun chatCompletionHeaders(request: ChatCompletionRequest): Pair<ChatCompletion, Headers>
 
     /**
      * Stream variant of [chatCompletion].

@@ -16,7 +16,7 @@ public interface Audio {
     public suspend fun transcription(request: TranscriptionRequest): Transcription
 
     @BetaOpenAI
-    public suspend fun transcriptionWithHeaders(request: TranscriptionRequest): Pair<Transcription, Headers>
+    public suspend fun transcriptionHeaders(request: TranscriptionRequest): Pair<Transcription, Headers>
 
     /**
      * Translates audio into English.

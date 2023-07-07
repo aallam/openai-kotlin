@@ -9,9 +9,8 @@ import com.aallam.openai.client.Audio
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
-import io.ktor.client.call.*
+import com.aallam.openai.client.internal.http.performHeaders
 import io.ktor.client.request.forms.*
-import io.ktor.client.statement.*
 import io.ktor.http.*
 
 /**
@@ -27,25 +26,21 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
     }
 
     @BetaOpenAI
-    override suspend fun transcriptionWithHeaders(request: TranscriptionRequest): Pair<Transcription, Headers> {
-        val httpResponse: HttpResponse = when (request.responseFormat) {
-            "json", "verbose_json", null -> requester.perform<HttpResponse> {
-                it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
-            }
-            else -> requester.perform<HttpResponse> {
-                it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
-            }
-        }
+    override suspend fun transcriptionHeaders(request: TranscriptionRequest): Pair<Transcription, Headers> {
         return when (request.responseFormat) {
-            "json", "verbose_json", null -> httpResponse.body<Transcription>() to httpResponse.headers
-            else -> Transcription(httpResponse.body<String>()) to httpResponse.headers
+            "json", "verbose_json", null -> transcriptionAsJsonHeaders(request)
+            else -> transcriptionAsStringHeaders(request)
         }
     }
 
-
-
     private suspend fun transcriptionAsJson(request: TranscriptionRequest): Transcription {
         return requester.perform {
+            it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
+        }
+    }
+
+    private suspend fun transcriptionAsJsonHeaders(request: TranscriptionRequest): Pair<Transcription, Headers> {
+        return requester.performHeaders {
             it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
         }
     }
@@ -55,6 +50,13 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
             it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
         }
         return Transcription(text)
+    }
+
+    private suspend fun transcriptionAsStringHeaders(request: TranscriptionRequest): Pair<Transcription, Headers> {
+        val text: Pair<String, Headers> = requester.performHeaders {
+            it.submitFormWithBinaryData(url = ApiPath.Transcription, formData = formDataOf(request))
+        }
+        return Transcription(text.first) to text.second
     }
 
     /**

@@ -36,6 +36,6 @@ suspend fun whisperWithHeaders(openAI: OpenAI) {
         audio = FileSource(path = "micro-machines.wav".toPath(), fileSystem = FileSystem.RESOURCES),
         model = ModelId("whisper-1"),
     )
-    val transcription = openAI.transcriptionWithHeaders(transcriptionRequest)
+    val transcription = openAI.transcriptionHeaders(transcriptionRequest)
     println("result: ${transcription.first.text}. headers: ${transcription.second.toMap()}")
 }

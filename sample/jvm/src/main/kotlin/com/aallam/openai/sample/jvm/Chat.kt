@@ -6,7 +6,6 @@ import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.OpenAI
-import io.ktor.util.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
@@ -54,10 +53,10 @@ suspend fun chatWithHeaders(openAI: OpenAI) {
             )
         )
     )
-    val response = openAI.chatCompletionWithHeaders(chatCompletionRequest)
+    val response = openAI.chatCompletionHeaders(chatCompletionRequest)
 
     val text = response.first.choices.firstOrNull()?.message?.content ?: ""
     val headers = response.second
 
-    println("text: $text. headers: ${headers.toMap()}")
+    println("text: $text. headers: $headers")
 }

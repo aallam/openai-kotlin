@@ -17,5 +17,5 @@ public data class Segment(
     @SerialName("avg_logprob") val avgLogprob: Double,
     @SerialName("compression_ratio") val compressionRatio: Double,
     @SerialName("no_speech_prob") val noSpeechProb: Double,
-    @SerialName("transient") val transient: Boolean,
+    @SerialName("transient") val transient: Boolean? = null,
 )

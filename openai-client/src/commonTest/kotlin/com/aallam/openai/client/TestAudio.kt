@@ -23,7 +23,7 @@ class TestAudio : TestOpenAI() {
         assertTrue { transcription.text.isNotEmpty() }
         assertTrue {
             transcription.text.startsWith(
-                "This is the Micro Machine Man presenting the most midget miniature motorcade of micro machines",
+                "This is the Micromachine Man presenting the most midget miniature motorcade of micromachines",
                 ignoreCase = true,
             )
         }

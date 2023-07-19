@@ -1,3 +1,11 @@
+# 3.3.2
+> Published 7 Jul 2023
+
+### Added
+- **Chat**: function for response with headers info
+- **Whisper**: function for response with headers info
+- Update sample module to test new features
+
 # 3.3.1
 > Published 24 Jun 2023
 

@@ -8,6 +8,7 @@ import com.aallam.openai.client.internal.extension.streamEventsFrom
 import com.aallam.openai.client.internal.extension.streamRequestOf
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
+import com.aallam.openai.client.internal.http.performHeaders
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -17,6 +18,16 @@ import kotlinx.coroutines.flow.flow
 internal class ChatApi(private val requester: HttpRequester) : Chat {
     override suspend fun chatCompletion(request: ChatCompletionRequest): ChatCompletion {
         return requester.perform {
+            it.post {
+                url(path = ApiPath.ChatCompletions)
+                setBody(request)
+                contentType(ContentType.Application.Json)
+            }.body()
+        }
+    }
+
+    override suspend fun chatCompletionHeaders(request: ChatCompletionRequest): Pair<ChatCompletion, Headers> {
+        return requester.performHeaders {
             it.post {
                 url(path = ApiPath.ChatCompletions)
                 setBody(request)

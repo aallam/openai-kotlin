@@ -23,3 +23,16 @@ suspend fun CoroutineScope.completion(openAI: OpenAI) {
         .launchIn(this)
         .join()
 }
+
+suspend fun completionHeaders(openAI: OpenAI) {
+    println("\n>️ Creating completion...")
+    val completionRequest = CompletionRequest(
+        model = ModelId("text-ada-001"),
+        prompt = "Somebody once told me the world is gonna roll me"
+    )
+
+    val result = openAI.completionHeaders(completionRequest)
+    val text = result.first.choices.joinToString("") { it.text }
+    val headers = result.second
+    println("Completion result: $text. Headers: $headers")
+}

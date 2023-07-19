@@ -7,6 +7,7 @@ import io.ktor.client.network.sockets.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.http.*
 import io.ktor.util.reflect.*
 import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.CancellationException
@@ -19,6 +20,20 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
         try {
             val response = block(httpClient)
             return response.body(info)
+        } catch (e: Exception) {
+            throw handleException(e)
+        }
+    }
+
+    override suspend fun <T : Any> performHeaders(
+        info: TypeInfo,
+        block: suspend (HttpClient) -> HttpResponse
+    ): Pair<T, Headers> {
+        try {
+            val response = block(httpClient)
+            val responseBody: T = response.body(info)
+            val responseHeaders = response.headers
+            return responseBody to responseHeaders
         } catch (e: Exception) {
             throw handleException(e)
         }

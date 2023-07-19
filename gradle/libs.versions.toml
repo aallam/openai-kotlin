@@ -1,9 +1,9 @@
 [versions]
-kotlin = "1.8.20"
-coroutines = "1.7.0"
+kotlin = "1.9.0"
+coroutines = "1.7.2"
 serialization = "1.5.1"
-ktor = "2.3.1"
-okio = "3.3.0"
+ktor = "2.3.2"
+okio = "3.4.0"
 logback = "1.4.8"
 
 [libraries]
@@ -41,6 +41,6 @@ ulid = { group = "com.aallam.ulid", name = "ulid-kotlin", version = "1.2.1" }
 kotlin-multiplaform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinx-binary-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.13.2" }
-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.25.2" }
-spotless = { id = "com.diffplug.gradle.spotless", version = "6.19.0" }
+maven-publish = { id = "com.vanniktech.maven.publish", version = "0.25.3" }
+spotless = { id = "com.diffplug.gradle.spotless", version = "6.20.0" }
 dokka = { id = "org.jetbrains.dokka", version = "1.8.20" }

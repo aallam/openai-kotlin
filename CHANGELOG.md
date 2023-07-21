@@ -1,3 +1,16 @@
+# 3.3.2
+> Published 21 Jul 2023
+
+### Fix
+- **Audio**: `Segment#transient` property nullable (thanks @charlee-dev)
+
+### Dependencies
+- Kotlin to `1.9.0`
+- Kotlin coroutines to `1.7.2`
+- Kotlin serialization to `1.5.1`
+- ktor to `2.3.2`
+- okio to `3.4.0`
+
 # 3.3.1
 > Published 24 Jun 2023
 

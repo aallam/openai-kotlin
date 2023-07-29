@@ -4,6 +4,7 @@ import com.aallam.openai.api.http.Timeout
 import com.aallam.openai.client.internal.OpenAIApi
 import com.aallam.openai.client.internal.createHttpClient
 import com.aallam.openai.client.internal.http.HttpTransport
+import io.ktor.client.*
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -34,6 +35,8 @@ public fun OpenAI(
     host: OpenAIHost = OpenAIHost.OpenAI,
     proxy: ProxyConfig? = null,
     retry: RetryStrategy = RetryStrategy(),
+    onConfigClient: (HttpClientConfig<*>.() -> Unit)? = null,
+    onClientCreated: ((client: HttpClient) -> Unit)? = null,
 ): OpenAI = OpenAI(
     config = OpenAIConfig(
         token = token,
@@ -44,6 +47,8 @@ public fun OpenAI(
         host = host,
         proxy = proxy,
         retry = retry,
+        onConfigClient = onConfigClient,
+        onClientCreated = onClientCreated
     )
 )
 
@@ -54,6 +59,7 @@ public fun OpenAI(
  */
 public fun OpenAI(config: OpenAIConfig): OpenAI {
     val httpClient = createHttpClient(config)
+    config.onClientCreated?.invoke(httpClient)
     val transport = HttpTransport(httpClient)
     return OpenAIApi(transport)
 }

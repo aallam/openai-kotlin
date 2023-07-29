@@ -71,6 +71,8 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             exponentialDelay(config.retry.base, config.retry.maxDelay.inWholeMilliseconds)
         }
 
+        config.onConfigClient?.invoke(this)
+
         defaultRequest {
             url(config.host.baseUrl)
             config.host.queryParams.onEach { (key, value) -> url.parameters.appendIfNameAbsent(key, value) }

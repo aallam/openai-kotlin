@@ -1,3 +1,10 @@
+# 3.3.3
+> Published 30 Jul 2023
+
+### Added
+1. **onClientCreated** parameter to set request interceptors for httpClient.
+2. **onConfigClient** parameter to configure HttpClient, such as adding a cookie manager.
+
 # 3.3.2
 > Published 21 Jul 2023
 

@@ -3,6 +3,7 @@ package com.aallam.openai.client
 import com.aallam.openai.api.http.Timeout
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.logging.Logger
+import io.ktor.client.*
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -28,6 +29,8 @@ public class OpenAIConfig(
     public val host: OpenAIHost = OpenAIHost.OpenAI,
     public val proxy: ProxyConfig? = null,
     public val retry: RetryStrategy = RetryStrategy(),
+    public val onConfigClient: (HttpClientConfig<*>.() -> Unit)? = null,
+    public val onClientCreated: ((client: HttpClient) -> Unit)? = null,
 ) {
 
     @Deprecated(

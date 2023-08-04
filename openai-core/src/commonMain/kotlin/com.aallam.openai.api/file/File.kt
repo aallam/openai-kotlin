@@ -43,7 +43,7 @@ public data class File(
     /**
      * File format.
      */
-    @Deprecated("field removed")
+    @Deprecated("Removed field")
     @SerialName("format") val format: String? = null,
 
     /**

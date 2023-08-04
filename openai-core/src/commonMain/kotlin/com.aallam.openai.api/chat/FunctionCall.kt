@@ -30,5 +30,5 @@ public data class FunctionCall(
      *
      * @param json The Json object to be used for decoding, defaults to a default Json instance
      */
-    public fun argumentsAsJson(json: Json = Json): JsonObject? = arguments.let { args -> json.decodeFromString(args) }
+    public fun argumentsAsJson(json: Json = Json): JsonObject = json.decodeFromString(arguments)
 }

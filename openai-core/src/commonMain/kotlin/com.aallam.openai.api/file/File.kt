@@ -43,5 +43,11 @@ public data class File(
     /**
      * File format.
      */
+    @Deprecated("field removed")
     @SerialName("format") val format: String? = null,
+
+    /**
+     * File status details
+     */
+    @SerialName("status_details") val statusDetails: String? = null,
 )

@@ -4,7 +4,6 @@ import com.aallam.openai.api.BetaOpenAI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@BetaOpenAI
 @Serializable
 public data class Segment(
     @SerialName("id") val id: Int,

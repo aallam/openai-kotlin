@@ -8,7 +8,6 @@ import com.aallam.openai.api.model.ModelId
 /**
  * Request to transcribe audio into the input [language].
  */
-@BetaOpenAI
 public class TranscriptionRequest(
     /**
      * The audio file to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
@@ -49,11 +48,9 @@ public class TranscriptionRequest(
 /**
  * Creates a transcription request.
  */
-@BetaOpenAI
 public fun transcriptionRequest(block: TranscriptionRequestBuilder.() -> Unit): TranscriptionRequest =
     TranscriptionRequestBuilder().apply(block).build()
 
-@BetaOpenAI
 @OpenAIDsl
 public class TranscriptionRequestBuilder {
 

@@ -11,7 +11,6 @@ import kotlinx.serialization.Serializable
  *
  * [documentation](https://platform.openai.com/docs/api-reference/chat/create)
  */
-@BetaOpenAI
 @Serializable
 public data class ChatCompletionChunk(
     /**

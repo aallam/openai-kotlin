@@ -25,7 +25,6 @@ import kotlin.jvm.JvmInline
  * - [Default]: In this mode, the model does not invoke any function [None] or decides itself [Auto] on calling a function or responding directly to the end-user. This mode becomes default if any functions are specified.
  * - [Named]: In this mode, the model will call a specific function, denoted by the `name` attribute.
  */
-@BetaOpenAI
 @Serializable(with = FunctionModeSerializer::class)
 public sealed interface FunctionMode {
 
@@ -55,7 +54,6 @@ public sealed interface FunctionMode {
     }
 }
 
-@BetaOpenAI
 internal object FunctionModeSerializer : KSerializer<FunctionMode> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("FunctionCall")
 

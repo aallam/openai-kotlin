@@ -5,7 +5,6 @@ import com.aallam.openai.api.OpenAIDsl
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@BetaOpenAI
 @Serializable
 public data class ChatCompletionFunction(
     /**
@@ -27,7 +26,6 @@ public data class ChatCompletionFunction(
 /**
  * Builder of [ChatCompletionFunction] instances.
  */
-@BetaOpenAI
 @OpenAIDsl
 public class ChatCompletionFunctionBuilder {
 
@@ -59,6 +57,5 @@ public class ChatCompletionFunctionBuilder {
 /**
  * The function to generate chat completion function instances.
  */
-@BetaOpenAI
 public fun chatCompletionFunction(block: ChatCompletionFunctionBuilder.() -> Unit): ChatCompletionFunction =
     ChatCompletionFunctionBuilder().apply(block).build()

@@ -1,6 +1,5 @@
 package com.aallam.openai.api.completion
 
-import com.aallam.openai.api.LegacyOpenAI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -10,7 +9,6 @@ import kotlinx.serialization.Serializable
  *
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
-@LegacyOpenAI
 @Serializable
 public data class Logprobs(
     /**

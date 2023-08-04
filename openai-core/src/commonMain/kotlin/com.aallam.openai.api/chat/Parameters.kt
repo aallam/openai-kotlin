@@ -56,5 +56,16 @@ public data class Parameters(public val schema: JsonElement) {
             val json = kotlinx.serialization.json.buildJsonObject(block)
             return Parameters(json)
         }
+
+        /**
+         * Represents a no params function. Equivalent to:
+         * ```json
+         * {"type": "object", "properties": {}}
+         * ```
+         */
+        public val Empty: Parameters = buildJsonObject {
+            put("type", "object")
+            putJsonObject("properties") {}
+        }
     }
 }

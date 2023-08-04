@@ -1,6 +1,5 @@
 package com.aallam.openai.api.completion
 
-import com.aallam.openai.api.LegacyOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
@@ -12,7 +11,6 @@ import kotlinx.serialization.Serializable
  *
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
-@LegacyOpenAI
 @Serializable
 public class CompletionRequest(
 
@@ -158,14 +156,12 @@ public class CompletionRequest(
  *
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
-@LegacyOpenAI
 public fun completionRequest(block: CompletionRequestBuilder.() -> Unit): CompletionRequest =
     CompletionRequestBuilder().apply(block).build()
 
 /**
  * Builder of [CompletionRequest] instances.
  */
-@LegacyOpenAI
 @OpenAIDsl
 public class CompletionRequestBuilder {
 

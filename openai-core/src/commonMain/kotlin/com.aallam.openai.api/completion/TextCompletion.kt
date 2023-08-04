@@ -1,6 +1,5 @@
 package com.aallam.openai.api.completion
 
-import com.aallam.openai.api.LegacyOpenAI
 import com.aallam.openai.api.core.Usage
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
@@ -11,7 +10,6 @@ import kotlinx.serialization.Serializable
  *
  * [documentation](https://beta.openai.com/docs/api-reference/create-completion)
  */
-@LegacyOpenAI
 @Serializable
 public data class TextCompletion(
     /**

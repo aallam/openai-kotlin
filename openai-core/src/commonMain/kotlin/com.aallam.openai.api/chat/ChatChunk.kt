@@ -15,14 +15,14 @@ public data class ChatChunk(
     /**
      * Chat choice index.
      */
-    @SerialName("index") public val index: Int? = null,
+    @SerialName("index") public val index: Int,
     /**
      * The generated chat message.
      */
-    @SerialName("delta") public val delta: ChatDelta? = null,
+    @SerialName("delta") public val delta: ChatDelta,
 
     /**
      * The reason why OpenAI stopped generating.
      */
-    @SerialName("finish_reason") public val finishReason: String? = null,
+    @SerialName("finish_reason") public val finishReason: String?,
 )

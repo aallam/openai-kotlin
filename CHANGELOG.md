@@ -5,9 +5,6 @@
 - Added `File.statusDetails` for retrieving file status details.
 - `HyperParams` new fields: `computeClassificationMetrics`, `classificationNClasses` and `classificationPositiveClass`.
 
-### Fixed
-- Updated `HyperParams.batchSize` type to `Long`.
-
 ### Removed
 - Removed beta status from the chat and audio features.
 
@@ -23,7 +20,6 @@
   - Set `index`, `message`, and `finishReason` fields in `ChatChoice` to be non-nullable.
   - Set `index`, `delta`, and `finishReason` fields in `ChatChunk` to be non-nullable.
   - Set `ChatCompletionFunction.parameters` to be non-nullable.
-  - Set `ChatMessage.content` to be non-nullable.
   - In `FunctionCall`, set `name`, `arguments`, and `argumentsAsJson()` to be non-nullable.
 
 # 3.3.2

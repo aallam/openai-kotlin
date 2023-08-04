@@ -18,7 +18,7 @@ public data class ChatMessage(
     /**
      * The contents of the message.
      */
-    @SerialName("content") public val content: String,
+    @SerialName("content") public val content: String? = null,
 
     /**
      * The name of the author of this message.

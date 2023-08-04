@@ -6,12 +6,11 @@ import com.aallam.openai.api.edits.EditsRequest
 /**
  * Given a prompt and an instruction, the model will return an edited version of the prompt.
  */
-@Deprecated("Edits is deprecated. Chat completions is the recommend replacement.")
 public interface Edits {
 
     /**
      * Creates a new edit for the provided input, instruction, and parameters.
      */
-    @Deprecated("Use chat completions instead.")
+    @Deprecated("Edits is deprecated. Chat completions is the recommend replacement.")
     public suspend fun edit(request: EditsRequest): Edit
 }

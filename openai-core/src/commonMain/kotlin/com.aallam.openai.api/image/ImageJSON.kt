@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
 /**
  * Generated image JSON (base 64).
  */
-@BetaOpenAI
 @Serializable
 public data class ImageJSON(
 

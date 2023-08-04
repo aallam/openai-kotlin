@@ -7,7 +7,6 @@ import kotlinx.serialization.Serializable
 /**
  * Generated image URL.
  */
-@BetaOpenAI
 @Serializable
 public data class ImageURL(
 

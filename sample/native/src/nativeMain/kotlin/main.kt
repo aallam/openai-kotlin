@@ -1,10 +1,8 @@
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.audio.TranscriptionRequest
 import com.aallam.openai.api.audio.TranslationRequest
 import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
-import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.image.ImageCreation
 import com.aallam.openai.api.image.ImageEdit
@@ -14,6 +12,7 @@ import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.client.LoggingConfig
 import com.aallam.openai.client.OpenAI
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.toKString
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
@@ -23,9 +22,9 @@ import okio.FileSystem
 import okio.Path.Companion.toPath
 import platform.posix.getenv
 
-@OptIn(BetaOpenAI::class)
 fun main(): Unit = runBlocking {
 
+    @OptIn(ExperimentalForeignApi::class)
     val apiKey = getenv("OPENAI_API_KEY")?.toKString()
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
     val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.All))
@@ -38,20 +37,6 @@ fun main(): Unit = runBlocking {
     println("\n> Getting ada model...")
     val ada = openAI.model(modelId = ModelId("text-ada-001"))
     println(ada)
-
-    println("\n>️ Creating completion...")
-    val completionRequest = CompletionRequest(
-        model = ada.id,
-        prompt = "Somebody once told me the world is gonna roll me"
-    )
-    openAI.completion(completionRequest).choices.forEach(::println)
-
-    println("\n>️ Creating completion stream...")
-    openAI.completions(completionRequest)
-        .onEach { print(it.choices[0].text) }
-        .onCompletion { println() }
-        .launchIn(this)
-        .join()
 
     println("\n> Read files...")
     val files = openAI.files()
@@ -104,7 +89,7 @@ fun main(): Unit = runBlocking {
 
     println("\n>️ Creating chat completions stream...")
     openAI.chatCompletions(chatCompletionRequest)
-        .onEach { print(it.choices.first().delta?.content.orEmpty()) }
+        .onEach { print(it.choices.first().delta.content.orEmpty()) }
         .onCompletion { println() }
         .launchIn(this)
         .join()

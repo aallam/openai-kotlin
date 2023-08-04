@@ -12,6 +12,7 @@ import com.aallam.openai.api.image.ImageSize
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
+import com.aallam.openai.api.LegacyOpenAI
 import com.aallam.openai.client.LoggingConfig
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.CoroutineScope
@@ -22,7 +23,7 @@ import okio.NodeJsFileSystem
 import okio.Path.Companion.toPath
 import kotlin.coroutines.coroutineContext
 
-@OptIn(BetaOpenAI::class)
+@OptIn(LegacyOpenAI::class)
 suspend fun main() {
     val apiKey = js("process.env.OPENAI_API_KEY").unsafeCast<String?>()
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }

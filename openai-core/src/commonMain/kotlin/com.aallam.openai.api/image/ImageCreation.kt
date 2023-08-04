@@ -6,7 +6,6 @@ import com.aallam.openai.api.OpenAIDsl
 /**
  * Image generation request.
  */
-@BetaOpenAI
 public class ImageCreation(
     /**
      * A text description of the desired image(s). The maximum length is 1000 characters.

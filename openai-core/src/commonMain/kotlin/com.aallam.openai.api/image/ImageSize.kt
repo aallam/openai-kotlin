@@ -7,7 +7,6 @@ import kotlin.jvm.JvmInline
 /**
  * The size of the generated images.
  */
-@BetaOpenAI
 @JvmInline
 @Serializable
 public value class ImageSize(public val size: String) {

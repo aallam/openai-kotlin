@@ -14,6 +14,7 @@ import io.ktor.http.*
  */
 internal class EditsApi(private val requester: HttpRequester) : Edits {
 
+    @Deprecated("Edits is deprecated. Chat completions is the recommend replacement.")
     override suspend fun edit(request: EditsRequest): Edit {
         return requester.perform {
             it.post {

@@ -24,13 +24,12 @@ fun main() = runBlocking {
 
         when (readlnOrNull()?.toIntOrNull()) {
             1 -> engines(openAI)
-            2 -> completion(openAI)
-            3 -> files(openAI)
-            4 -> moderations(openAI)
-            5 -> images(openAI)
-            6 -> chat(openAI)
-            7 -> chatFunctionCall(openAI)
-            8 -> whisper(openAI)
+            2 -> files(openAI)
+            3 -> moderations(openAI)
+            4 -> images(openAI)
+            5 -> chat(openAI)
+            6 -> chatFunctionCall(openAI)
+            7 -> whisper(openAI)
             0 -> {
                 println("Exiting...")
                 return@runBlocking

@@ -29,7 +29,7 @@ public class TranscriptionRequest(
     /**
      * The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.
      */
-    public val responseFormat: String? = null,
+    public val responseFormat: AudioResponseFormat? = null,
 
     /**
      * The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower
@@ -77,7 +77,7 @@ public class TranscriptionRequestBuilder {
     /**
      * The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.
      */
-    public var responseFormat: String? = null
+    public var responseFormat: AudioResponseFormat? = null
 
     /**
      * The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower

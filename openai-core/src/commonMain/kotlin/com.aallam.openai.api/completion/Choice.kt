@@ -1,5 +1,6 @@
 package com.aallam.openai.api.completion
 
+import com.aallam.openai.api.core.FinishReason
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -33,5 +34,5 @@ public data class Choice(
      * The reason why GPT-3 stopped generating, for example "length".
      */
     @SerialName("finish_reason")
-    public val finishReason: String? = null,
+    public val finishReason: FinishReason,
 )

@@ -28,6 +28,7 @@ public data class Choice(
      * The log probabilities of the chosen tokens and the top [CompletionRequest.logprobs] tokens.
      */
     @SerialName("logprobs")
+    @Deprecated("removed from the response")
     public val logprobs: Logprobs? = null,
 
     /**

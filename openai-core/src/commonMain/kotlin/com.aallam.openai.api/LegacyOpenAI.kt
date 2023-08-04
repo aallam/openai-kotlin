@@ -23,5 +23,5 @@ import kotlin.annotation.AnnotationTarget.*
     TYPEALIAS
 )
 @Retention(AnnotationRetention.BINARY)
-@RequiresOptIn(message = "This API is marked legacy by OpenAI, It can be removed in the future.")
+@RequiresOptIn(message = "This API is marked legacy by OpenAI.")
 public annotation class LegacyOpenAI

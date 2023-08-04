@@ -13,21 +13,17 @@ Use your `OpenAI` instance to make API requests.
 - [Models](#models)
   - [List models](#list-models)
   - [Retrieve a model](#retrieve-a-model)
-- [Completions](#completions)
-  - [Create completion](#create-completion)
 - [Chat](#chat)
-  - [Create chat completion](#create-chat-completion-beta)
-- [Edits](#edits)
-  - [Create edits](#create-edits)
+  - [Create chat completion](#create-chat-completion)
 - [Images](#images)
-  - [Create image](#create-image-beta)
-  - [Edit images](#edit-images-beta)
-  - [Create image variation](#create-image-variation-beta)
+  - [Create image](#create-image)
+  - [Edit images](#edit-images)
+  - [Create image variation](#create-image-variation)
 - [Embeddings](#embeddings)
   - [Create embeddings](#create-embeddings)
 - [Audio](#audio)
-  - [Create transcription](#create-transcription-beta)
-  - [Create translation](#create-translation-beta)
+  - [Create transcription](#create-transcription)
+  - [Create translation](#create-translation)
 - [Files](#files)
   - [List files](#list-files)
   - [Upload file](#upload-file)
@@ -43,6 +39,14 @@ Use your `OpenAI` instance to make API requests.
   - [Delete fine-tune model](#delete-fine-tune-model)
 - [Moderations](#moderations)
   - [Create moderation](#create-moderation)
+
+#### Legacy
+- [Completions](#completions)
+  - [Create completion](#create-completion-legacy)
+
+#### Deprecated
+- [Edits](#edits)
+  - [Create edits](#create-edits-deprecated)
 
 ## Models
 
@@ -66,30 +70,11 @@ val id = ModelId("text-ada-001")
 val model: Model = openAI.model(id)
 ```
 
-## Completions
-
-Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.
-
-### Create Completion
-
-Creates a completion for the provided prompt and parameters
-
-```kotlin
-val completionRequest = CompletionRequest(
-    model = ModelId("text-ada-001"),
-    prompt = "Somebody once told me the world is gonna roll me",
-    echo = true
-)
-val completion: TextCompletion = openAI.completion(completionRequest)
-// or, as flow
-val completions: Flow<TextCompletion> = openAI.completions(completionRequest)
-```
-
 ## Chat
 
 Given a chat conversation, the model will return a chat completion response.
 
-### Create chat completion `beta`
+### Create chat completion
 
 Creates a completion for the chat message.
 
@@ -112,30 +97,11 @@ val completion: ChatCompletion = openAI.chatCompletion(chatCompletionRequest)
 val completions: Flow<ChatCompletionChunk> = openAI.chatCompletions(chatCompletionRequest)
 ```
 
-## Edits
-
-Given a prompt and an instruction, the model will return an edited version of the prompt.
-
-### Create edits
-
-Creates a new edit for the provided input, instruction, and parameters.
-
-
-```kotlin
-val edit = openAI.edit(
-    request = EditsRequest(
-        model = ModelId("text-davinci-edit-001"),
-        input = "What day of the wek is it?",
-        instruction = "Fix the spelling mistakes"
-    )
-)
-```
-
 ## Images
 
 Given a prompt and/or an input image, the model will generate a new image.
 
-### Create image `beta`
+### Create image
 
 Creates an image given a prompt.
 
@@ -149,7 +115,7 @@ val images = openAI.imageURL( // or openAI.imageJSON
 )
 ````
 
-### Edit images `beta`
+### Edit images
 
 Creates an edited or extended image given an original image and a prompt.
 
@@ -165,7 +131,7 @@ val images = openAI.imageURL( // or openAI.imageJSON
 )
 ````
 
-### Create image variation `beta`
+### Create image variation
 
 Creates a variation of a given image.
 
@@ -200,7 +166,7 @@ val embeddings = openAI.embeddings(
 
 Learn how to turn audio into text.
 
-### Create transcription `Beta`
+### Create transcription
 
 Transcribes audio into the input language.
 
@@ -212,7 +178,7 @@ val request = TranscriptionRequest(
 val transcription = openAI.transcription(request)
 ```
 
-### Create translation `Beta`
+### Create translation
 
 Translates audio into English.
 
@@ -337,11 +303,11 @@ openAI.delete(fileId)
 
 ## Moderations
 
-Given a input text, outputs if the model classifies it as violating OpenAI's content policy.
+Given an input text, outputs if the model classifies it as violating OpenAI's content policy.
 
 ### Create moderation
 
-Given a input text, outputs if the model classifies it as violating OpenAI's content policy.
+Classifies if text violates OpenAI's Content Policy
 
 ````kotlin
 val moderation = openAI.moderations(
@@ -350,3 +316,44 @@ val moderation = openAI.moderations(
     )
 )
 ````
+
+---
+
+## Completions
+
+Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.
+
+### Create Completion `legacy`
+
+Creates a completion for the provided prompt and parameters
+
+```kotlin
+val completionRequest = CompletionRequest(
+    model = ModelId("text-ada-001"),
+    prompt = "Somebody once told me the world is gonna roll me",
+    echo = true
+)
+val completion: TextCompletion = openAI.completion(completionRequest)
+// or, as flow
+val completions: Flow<TextCompletion> = openAI.completions(completionRequest)
+```
+
+---
+
+## Edits
+
+Given a prompt and an instruction, the model will return an edited version of the prompt.
+
+### Create edits `Deprecated`
+
+Creates a new edit for the provided input, instruction, and parameters.
+
+```kotlin
+val edit = openAI.edit(
+    request = EditsRequest(
+        model = ModelId("text-davinci-edit-001"),
+        input = "What day of the wek is it?",
+        instruction = "Fix the spelling mistakes"
+    )
+)
+```

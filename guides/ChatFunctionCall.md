@@ -124,7 +124,7 @@ message.functionCall?.let { functionCall ->
     chatMessages.add(
         ChatMessage(
             role = message.role,
-            content = message.content ?: "", // required to not be empty in this case
+            content = message.content.orEmpty(), // required to not be empty in this case
             functionCall = message.functionCall
         )
     )
@@ -156,7 +156,6 @@ message.functionCall?.let { functionCall ->
 Below is a complete Kotlin example following the guide:
 
 ```kotlin
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.OpenAI
@@ -222,7 +221,7 @@ suspend fun main() {
         chatMessages.add(
             ChatMessage(
                 role = message.role,
-                content = message.content ?: "",
+                content = message.content.orEmpty(),
                 functionCall = message.functionCall
             )
         )

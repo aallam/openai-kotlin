@@ -17,6 +17,7 @@ public data class ChatMessage(
 
     /**
      * The contents of the message.
+     * **This is required for requests, and optional for responses**.
      */
     @SerialName("content") public val content: String? = null,
 
@@ -72,7 +73,7 @@ public class ChatMessageBuilder {
      */
     public fun build(): ChatMessage = ChatMessage(
         role = requireNotNull(role) { "role is required" },
-        content = requireNotNull(content) { "content is required" },
+        content = content,
         name = name,
         functionCall = functionCall,
     )

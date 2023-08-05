@@ -131,7 +131,7 @@ private fun updateChatMessages(
     chatMessages.add(
         ChatMessage(
             role = message.role,
-            content = message.content, // required to not be empty in this case
+            content = message.content.orEmpty(), // required to not be empty in this case
             functionCall = message.functionCall
         )
     )

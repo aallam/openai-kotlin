@@ -1,3 +1,27 @@
+# Unreleased
+
+### Added
+- Introduced `Parameters.Empty` for functions without parameters.
+- Added `File.statusDetails` for retrieving file status details.
+- `HyperParams` new fields: `computeClassificationMetrics`, `classificationNClasses` and `classificationPositiveClass`.
+
+### Removed
+- Removed beta status from the chat and audio features.
+
+### Deprecated
+- `completions` is deprecated.
+- `edits` as legacy.
+
+### Breaking Changes
+- **Audio**: Updated `TranscriptionRequest`'s `responseFormat` type to `AudioResponseFormat`.
+- **Fine Tune**: set `HyperParams.learningRateMultiplier` to be non-nullable.
+- **Chat**: Multiple changes have been implemented:
+  - Modified `ChatChoice.finishReason`, `ChatChunk.finishReason`, and `Choice.finishReason` types to `FinishReason`.
+  - Set `index`, `message`, and `finishReason` fields in `ChatChoice` to be non-nullable.
+  - Set `index`, `delta`, and `finishReason` fields in `ChatChunk` to be non-nullable.
+  - Set `ChatCompletionFunction.parameters` to be non-nullable.
+  - In `FunctionCall`, set `name`, `arguments`, and `argumentsAsJson()` to be non-nullable.
+
 # 3.3.2
 > Published 21 Jul 2023
 

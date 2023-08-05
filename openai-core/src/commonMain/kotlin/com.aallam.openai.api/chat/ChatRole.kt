@@ -9,7 +9,6 @@ import kotlin.jvm.JvmInline
  */
 @JvmInline
 @Serializable
-@BetaOpenAI
 public value class ChatRole(public val role: String) {
     public companion object {
         public val System: ChatRole = ChatRole("system")

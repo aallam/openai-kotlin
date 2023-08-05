@@ -1,6 +1,7 @@
 package com.aallam.openai.api.chat;
 
 import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.core.FinishReason
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,20 +10,19 @@ import kotlinx.serialization.Serializable
  *
  * [documentation](https://platform.openai.com/docs/api-reference/chat/create)
  */
-@BetaOpenAI
 @Serializable
 public data class ChatChunk(
     /**
      * Chat choice index.
      */
-    @SerialName("index") public val index: Int? = null,
+    @SerialName("index") public val index: Int,
     /**
      * The generated chat message.
      */
-    @SerialName("delta") public val delta: ChatDelta? = null,
+    @SerialName("delta") public val delta: ChatDelta,
 
     /**
      * The reason why OpenAI stopped generating.
      */
-    @SerialName("finish_reason") public val finishReason: String? = null,
+    @SerialName("finish_reason") public val finishReason: FinishReason?,
 )

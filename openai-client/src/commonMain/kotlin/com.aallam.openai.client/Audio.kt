@@ -11,12 +11,10 @@ public interface Audio {
     /**
      * Transcribes audio into the input language.
      */
-    @BetaOpenAI
     public suspend fun transcription(request: TranscriptionRequest): Transcription
 
     /**
      * Translates audio into English.
      */
-    @BetaOpenAI
     public suspend fun translation(request: TranslationRequest): Translation
 }

@@ -8,7 +8,6 @@ import kotlinx.serialization.Serializable
  * Generated chat message.
  */
 @Serializable
-@BetaOpenAI
 public data class ChatDelta(
     /**
      * The role of the author of this message.

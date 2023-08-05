@@ -11,5 +11,6 @@ public interface Edits {
     /**
      * Creates a new edit for the provided input, instruction, and parameters.
      */
+    @Deprecated("Edits is deprecated. Chat completions is the recommend replacement.")
     public suspend fun edit(request: EditsRequest): Edit
 }

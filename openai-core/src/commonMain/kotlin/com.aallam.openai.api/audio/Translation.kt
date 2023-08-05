@@ -10,7 +10,6 @@ import kotlinx.serialization.Serializable
  * [text] format depends on [TranslationRequest]'s `responseFormat`.
  * Remaining field are provided only in case of response format `verbose_json`.
  */
-@BetaOpenAI
 @Serializable
 public data class Translation(
     /**

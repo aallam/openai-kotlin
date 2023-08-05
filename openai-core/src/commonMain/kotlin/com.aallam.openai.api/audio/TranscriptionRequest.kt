@@ -8,7 +8,6 @@ import com.aallam.openai.api.model.ModelId
 /**
  * Request to transcribe audio into the input [language].
  */
-@BetaOpenAI
 public class TranscriptionRequest(
     /**
      * The audio file to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
@@ -29,7 +28,7 @@ public class TranscriptionRequest(
     /**
      * The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.
      */
-    public val responseFormat: String? = null,
+    public val responseFormat: AudioResponseFormat? = null,
 
     /**
      * The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower
@@ -49,11 +48,9 @@ public class TranscriptionRequest(
 /**
  * Creates a transcription request.
  */
-@BetaOpenAI
 public fun transcriptionRequest(block: TranscriptionRequestBuilder.() -> Unit): TranscriptionRequest =
     TranscriptionRequestBuilder().apply(block).build()
 
-@BetaOpenAI
 @OpenAIDsl
 public class TranscriptionRequestBuilder {
 
@@ -77,7 +74,7 @@ public class TranscriptionRequestBuilder {
     /**
      * The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.
      */
-    public var responseFormat: String? = null
+    public var responseFormat: AudioResponseFormat? = null
 
     /**
      * The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower

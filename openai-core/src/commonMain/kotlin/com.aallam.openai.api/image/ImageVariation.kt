@@ -7,7 +7,6 @@ import com.aallam.openai.api.file.FileSource
 /**
  * Image variant request.
  */
-@BetaOpenAI
 public class ImageVariation(
     /**
      * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.

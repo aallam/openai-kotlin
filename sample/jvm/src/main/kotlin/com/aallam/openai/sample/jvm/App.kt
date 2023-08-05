@@ -13,29 +13,28 @@ fun main() = runBlocking {
     while (true) {
         println("Select an option:")
         println("1 - Engines")
-        println("2 - Completion")
-        println("3 - Files")
-        println("4 - Moderations")
-        println("5 - Images")
-        println("6 - Chat")
-        println("7 - Chat (w/ Function)")
-        println("8 - Whisper")
+        println("2 - Files")
+        println("3 - Moderations")
+        println("4 - Images")
+        println("5 - Chat")
+        println("6 - Chat (w/ Function)")
+        println("7 - Whisper")
         println("0 - Quit")
 
-        when (readlnOrNull()?.toIntOrNull()) {
+        val option = readlnOrNull()?.toIntOrNull()
+        when (option) {
             1 -> engines(openAI)
-            2 -> completion(openAI)
-            3 -> files(openAI)
-            4 -> moderations(openAI)
-            5 -> images(openAI)
-            6 -> chat(openAI)
-            7 -> chatFunctionCall(openAI)
-            8 -> whisper(openAI)
+            2 -> files(openAI)
+            3 -> moderations(openAI)
+            4 -> images(openAI)
+            5 -> chat(openAI)
+            6 -> chatFunctionCall(openAI)
+            7 -> whisper(openAI)
             0 -> {
                 println("Exiting...")
                 return@runBlocking
             }
-            else -> println("Invalid option selected")
+            else -> println("Invalid option selected: $option")
         }
         println("\n----------\n") // for readability
     }

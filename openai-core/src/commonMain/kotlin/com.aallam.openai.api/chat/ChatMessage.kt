@@ -8,7 +8,6 @@ import kotlinx.serialization.Serializable
 /**
  * The messages to generate chat completions for.
  */
-@BetaOpenAI
 @Serializable
 public data class ChatMessage(
     /**
@@ -18,6 +17,7 @@ public data class ChatMessage(
 
     /**
      * The contents of the message.
+     * **This is required for requests, and optional for responses**.
      */
     @SerialName("content") public val content: String? = null,
 
@@ -37,14 +37,12 @@ public data class ChatMessage(
 /**
  * The messages to generate chat completions for.
  */
-@BetaOpenAI
 public fun chatMessage(block: ChatMessageBuilder.() -> Unit): ChatMessage =
     ChatMessageBuilder().apply(block).build()
 
 /**
  * Builder of [ChatMessageBuilder] instances.
  */
-@BetaOpenAI
 @OpenAIDsl
 public class ChatMessageBuilder {
 

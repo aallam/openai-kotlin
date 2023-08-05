@@ -8,7 +8,6 @@ import com.aallam.openai.api.model.ModelId
 /**
  * Request to translate an audio into english.
  */
-@BetaOpenAI
 public class TranslationRequest(
     /**
      * The audio file to translate, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.
@@ -47,11 +46,9 @@ public class TranslationRequest(
 /**
  * Creates a translation request.
  */
-@BetaOpenAI
 public fun translationRequest(block: TranslationRequestBuilder.() -> Unit): TranslationRequest =
     TranslationRequestBuilder().apply(block).build()
 
-@BetaOpenAI
 @OpenAIDsl
 public class TranslationRequestBuilder {
 

@@ -112,11 +112,11 @@ Send the chat request and handle the response. If there's a function call in the
 
 ```kotlin
 val response = openAI.chatCompletion(request)
-val message = response.choices.first().message ?: error("no response found!")
+val message = response.choices.first().message
 message.functionCall?.let { functionCall ->
     val availableFunctions = mapOf("currentWeather" to ::currentWeather)
     val functionToCall = availableFunctions[functionCall.name] ?: error("Function ${functionCall.name} not found")
-    val functionArgs = functionCall.argumentsAsJson() ?: error("arguments field is missing")
+    val functionArgs = functionCall.argumentsAsJson()
     val functionResponse = functionToCall(
         functionArgs.getValue("location").jsonPrimitive.content,
         functionArgs["unit"]?.jsonPrimitive?.content ?: "fahrenheit"
@@ -124,7 +124,7 @@ message.functionCall?.let { functionCall ->
     chatMessages.add(
         ChatMessage(
             role = message.role,
-            content = message.content ?: "", // required to not be empty in this case
+            content = message.content.orEmpty(), // required to not be empty in this case
             functionCall = message.functionCall
         )
     )
@@ -142,7 +142,7 @@ message.functionCall?.let { functionCall ->
     }
 
     val secondResponse = openAI.chatCompletion(secondRequest)
-    println(secondResponse.choices.first().message?.content)
+    println(secondResponse.choices.first().message.content)
 } ?: println(message.content)
 ```
 
@@ -156,7 +156,6 @@ message.functionCall?.let { functionCall ->
 Below is a complete Kotlin example following the guide:
 
 ```kotlin
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.OpenAI
@@ -209,11 +208,11 @@ suspend fun main() {
     }
 
     val response = openAI.chatCompletion(request)
-    val message = response.choices.first().message ?: error("no response found!")
+    val message = response.choices.first().message
     message.functionCall?.let { functionCall ->
         val availableFunctions = mapOf("currentWeather" to ::currentWeather)
         val functionToCall = availableFunctions[functionCall.name] ?: error("Function ${functionCall.name} not found")
-        val functionArgs = functionCall.argumentsAsJson() ?: error("arguments field is missing")
+        val functionArgs = functionCall.argumentsAsJson()
         val functionResponse = functionToCall(
             functionArgs.getValue("location").jsonPrimitive.content,
             functionArgs["unit"]?.jsonPrimitive?.content ?: "fahrenheit"
@@ -222,7 +221,7 @@ suspend fun main() {
         chatMessages.add(
             ChatMessage(
                 role = message.role,
-                content = message.content ?: "",
+                content = message.content.orEmpty(),
                 functionCall = message.functionCall
             )
         )
@@ -241,7 +240,7 @@ suspend fun main() {
         }
 
         val secondResponse = openAI.chatCompletion(secondRequest)
-        println(secondResponse.choices.first().message?.content)
+        println(secondResponse.choices.first().message.content)
     } ?: println(message.content)
 }
 

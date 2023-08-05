@@ -1,5 +1,6 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.audio.AudioResponseFormat
 import com.aallam.openai.api.audio.transcriptionRequest
 import com.aallam.openai.api.audio.translationRequest
 import com.aallam.openai.api.file.FileSource
@@ -34,7 +35,7 @@ class TestAudio : TestOpenAI() {
         val request = transcriptionRequest {
             audio = FileSource(path = testFilePath("audio/micro-machines.wav"), fileSystem = TestFileSystem)
             model = ModelId("whisper-1")
-            responseFormat = "text"
+            responseFormat = AudioResponseFormat.Text
         }
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
@@ -45,7 +46,7 @@ class TestAudio : TestOpenAI() {
         val request = transcriptionRequest {
             audio = FileSource(path = testFilePath("audio/micro-machines.wav"), fileSystem = TestFileSystem)
             model = ModelId("whisper-1")
-            responseFormat = "verbose_json"
+            responseFormat = AudioResponseFormat.VerboseJson
         }
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }

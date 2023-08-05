@@ -1,10 +1,7 @@
 package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.BetaOpenAI
-import com.aallam.openai.api.audio.Transcription
-import com.aallam.openai.api.audio.TranscriptionRequest
-import com.aallam.openai.api.audio.Translation
-import com.aallam.openai.api.audio.TranslationRequest
+import com.aallam.openai.api.audio.*
 import com.aallam.openai.client.Audio
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.http.HttpRequester
@@ -18,7 +15,7 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
     @BetaOpenAI
     override suspend fun transcription(request: TranscriptionRequest): Transcription {
         return when (request.responseFormat) {
-            "json", "verbose_json", null -> transcriptionAsJson(request)
+            AudioResponseFormat.Json, AudioResponseFormat.VerboseJson, null -> transcriptionAsJson(request)
             else -> transcriptionAsString(request)
         }
     }
@@ -39,12 +36,11 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
     /**
      * Build transcription request as form-data.
      */
-    private fun formDataOf(request: TranscriptionRequest, format: String? = null) = formData {
+    private fun formDataOf(request: TranscriptionRequest) = formData {
         appendFileSource("file", request.audio)
         append(key = "model", value = request.model.id)
         request.prompt?.let { prompt -> append(key = "prompt", value = prompt) }
-        val responseFormat = format ?: request.responseFormat
-        responseFormat?.let { append(key = "response_format", value = it) }
+        request.responseFormat?.let { append(key = "response_format", value = it.value) }
         request.temperature?.let { append(key = "temperature", value = it) }
         request.language?.let { append(key = "language", value = it) }
     }

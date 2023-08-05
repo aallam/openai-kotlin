@@ -74,15 +74,19 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 ### Supported features
 
 - [Models](guides/GettingStarted.md#models)
-- [Completions](guides/GettingStarted.md#completions)
 - [Chat](guides/GettingStarted.md#chat)
-- [Edits](guides/GettingStarted.md#edits)
 - [Images](guides/GettingStarted.md#images)
 - [Embeddings](guides/GettingStarted.md#embeddings)
 - [Files](guides/GettingStarted.md#files)
 - [Fine-tunes](guides/GettingStarted.md#fine-tunes)
 - [Moderations](guides/GettingStarted.md#moderations)
 - [Audio](guides/GettingStarted.md#audio)
+
+#### Legacy
+- [Completions](guides/GettingStarted.md#completions)
+
+#### Deprecated
+- [Edits](guides/GettingStarted.md#edits)
 
 ## 📚 Guides
 

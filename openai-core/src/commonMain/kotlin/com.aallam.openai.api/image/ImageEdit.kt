@@ -7,7 +7,6 @@ import com.aallam.openai.api.file.FileSource
 /**
  * Image edit request.
  */
-@BetaOpenAI
 public class ImageEdit(
     /**
      * The image to edit. Must be a valid PNG file, less than 4MB, and square.

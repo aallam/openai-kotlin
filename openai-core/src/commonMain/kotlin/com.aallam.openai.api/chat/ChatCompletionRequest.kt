@@ -9,7 +9,6 @@ import kotlinx.serialization.Serializable
 /**
  * Creates a completion for the chat message.
  */
-@BetaOpenAI
 @Serializable
 public class ChatCompletionRequest(
     /**
@@ -105,14 +104,12 @@ public class ChatCompletionRequest(
 /**
  * The messages to generate chat completions for.
  */
-@BetaOpenAI
 public fun chatCompletionRequest(block: ChatCompletionRequestBuilder.() -> Unit): ChatCompletionRequest =
     ChatCompletionRequestBuilder().apply(block).build()
 
 /**
  * Creates a completion for the chat message.
  */
-@BetaOpenAI
 @OpenAIDsl
 public class ChatCompletionRequestBuilder {
     /**
@@ -241,7 +238,6 @@ public class ChatCompletionRequestBuilder {
 /**
  * Creates a list of [ChatMessage].
  */
-@BetaOpenAI
 public class ChatMessagesBuilder {
     internal val messages = mutableListOf<ChatMessage>()
 
@@ -256,7 +252,6 @@ public class ChatMessagesBuilder {
 /**
  * Creates a list of [ChatCompletionFunction].
  */
-@BetaOpenAI
 public class FunctionsBuilder {
     internal val functions = mutableListOf<ChatCompletionFunction>()
 

@@ -1,5 +1,3 @@
-@file:OptIn(BetaOpenAI::class)
-
 package com.aallam.openai.sample.jvm
 
 import com.aallam.openai.api.BetaOpenAI
@@ -60,7 +58,7 @@ suspend fun CoroutineScope.chatFunctionCall(openAI: OpenAI) {
     }
 
     val response = openAI.chatCompletion(request)
-    val message = response.choices.first().message ?: error("No chat response found!")
+    val message = response.choices.first().message
     message.functionCall?.let { functionCall ->
         val functionResponse = callFunction(functionCall)
         updateChatMessages(chatMessages, message, functionCall, functionResponse)
@@ -95,7 +93,7 @@ suspend fun CoroutineScope.chatFunctionCall(openAI: OpenAI) {
             messages = chatMessages,
         )
     )
-        .onEach { print(it.choices.first().delta?.content.orEmpty()) }
+        .onEach { print(it.choices.first().delta.content.orEmpty()) }
         .onCompletion { println() }
         .launchIn(this)
         .join()
@@ -116,7 +114,7 @@ fun currentWeather(location: String, unit: String): String {
 private fun callFunction(functionCall: FunctionCall): String {
     val availableFunctions = mapOf("currentWeather" to ::currentWeather)
     val functionToCall = availableFunctions[functionCall.name] ?: error("Function ${functionCall.name} not found")
-    val functionArgs = functionCall.argumentsAsJson() ?: error("arguments field is missing")
+    val functionArgs = functionCall.argumentsAsJson()
 
     return functionToCall(
         functionArgs.getValue("location").jsonPrimitive.content,
@@ -133,7 +131,7 @@ private fun updateChatMessages(
     chatMessages.add(
         ChatMessage(
             role = message.role,
-            content = message.content ?: "", // required to not be empty in this case
+            content = message.content.orEmpty(), // required to not be empty in this case
             functionCall = message.functionCall
         )
     )
@@ -149,11 +147,11 @@ fun chatMessageOf(chunks: List<ChatChunk>): ChatMessage {
     val content = StringBuilder()
 
     chunks.forEach { chunk ->
-        role = chunk.delta?.role ?: role
-        chunk.delta?.content?.let { content.append(it) }
-        chunk.delta?.functionCall?.let { call ->
-            call.name?.let { funcName.append(it) }
-            call.arguments?.let { funcArgs.append(it) }
+        role = chunk.delta.role ?: role
+        chunk.delta.content?.let { content.append(it) }
+        chunk.delta.functionCall?.let { call ->
+            funcName.append(call.name)
+            funcArgs.append(call.arguments)
         }
     }
 

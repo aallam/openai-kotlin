@@ -14,12 +14,10 @@ public interface Chat {
     /**
      * Creates a completion for the chat message.
      */
-    @BetaOpenAI
     public suspend fun chatCompletion(request: ChatCompletionRequest): ChatCompletion
 
     /**
      * Stream variant of [chatCompletion].
      */
-    @BetaOpenAI
     public fun chatCompletions(request: ChatCompletionRequest): Flow<ChatCompletionChunk>
 }

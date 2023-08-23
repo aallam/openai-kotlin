@@ -83,6 +83,28 @@ public class Categories(
      * Violent content that depicts death, violence, or serious physical injury in extreme graphic detail.
      */
     @SerialName("violence/graphic") public val violenceGraphic: Boolean,
+
+    /**
+     * Content that expresses, incites, or promotes harassing language towards any target.
+     */
+    @SerialName("harassment") public val harassment: Boolean,
+
+    /**
+     * Harassment content that also includes violence or serious harm towards any target.
+     */
+    @SerialName("harassment/threatening") public val harassmentThreatening: Boolean,
+
+    /**
+     * Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as
+     * suicide, cutting, and eating disorders.
+     */
+    @SerialName("self-harm/intent") public val selfHarmIntent: Boolean,
+
+    /**
+     * Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that
+     * gives instructions or advice on how to commit such acts.
+     */
+    @SerialName("self-harm/instructions") public val selfHarmInstructions: Boolean,
 )
 
 @Serializable
@@ -123,4 +145,24 @@ public class CategoryScores(
      * Violent content that depicts death, violence, or serious physical injury in extreme graphic detail.
      */
     @SerialName("violence/graphic") public val violenceGraphic: Double,
+
+    /**
+     * The score for the category 'harassment'.
+     */
+    @SerialName("harassment") public val harassment: Double,
+
+    /**
+     * The score for the category 'harassment/threatening'.
+     */
+    @SerialName("harassment/threatening") public val harassmentThreatening: Double,
+
+    /**
+     * The score for the category 'self-harm/intent'.
+     */
+    @SerialName("self-harm/intent") public val selfHarmIntent: Double,
+
+    /**
+     * The score for the category 'self-harm/instructions'.
+     */
+    @SerialName("self-harm/instructions") public val selfHarmInstructions: Double,
 )

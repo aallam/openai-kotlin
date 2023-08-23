@@ -32,7 +32,9 @@ public data class Choice(
     public val logprobs: Logprobs? = null,
 
     /**
-     * The reason why GPT-3 stopped generating, for example "length".
+     * The reason the model stopped generating tokens. This will be [FinishReason.Stop] if the model hit a natural stop
+     * point or a provided stop sequence, or [FinishReason.Length] if the maximum number of tokens specified in the
+     * request was reached.
      */
     @SerialName("finish_reason")
     public val finishReason: FinishReason,

@@ -1,19 +1,16 @@
 package com.aallam.openai.sample.jvm
 
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.OpenAI
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
 
-@OptIn(BetaOpenAI::class)
-suspend fun CoroutineScope.chatFunctionCall(openAI: OpenAI) {
+suspend fun chatFunctionCall(openAI: OpenAI) {
     // *** Chat Completion with Function Call  *** //
 
     println("\n> Create Chat Completion function call...")
@@ -84,8 +81,7 @@ suspend fun CoroutineScope.chatFunctionCall(openAI: OpenAI) {
                 updateChatMessages(chatMessages, message, it, functionResponse)
             }
         }
-        .launchIn(this)
-        .join()
+        .collect()
 
     openAI.chatCompletions(
         ChatCompletionRequest(
@@ -95,8 +91,7 @@ suspend fun CoroutineScope.chatFunctionCall(openAI: OpenAI) {
     )
         .onEach { print(it.choices.first().delta.content.orEmpty()) }
         .onCompletion { println() }
-        .launchIn(this)
-        .join()
+        .collect()
 }
 
 @Serializable

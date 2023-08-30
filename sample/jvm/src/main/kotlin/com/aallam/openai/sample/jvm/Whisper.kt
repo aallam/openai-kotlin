@@ -1,6 +1,5 @@
 package com.aallam.openai.sample.jvm
 
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.audio.TranscriptionRequest
 import com.aallam.openai.api.audio.TranslationRequest
 import com.aallam.openai.api.file.FileSource
@@ -9,7 +8,6 @@ import com.aallam.openai.client.OpenAI
 import okio.FileSystem
 import okio.Path.Companion.toPath
 
-@OptIn(BetaOpenAI::class)
 suspend fun whisper(openAI: OpenAI) {
     println("\n>️ Create transcription...")
     val transcriptionRequest = TranscriptionRequest(

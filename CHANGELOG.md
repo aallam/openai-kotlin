@@ -1,4 +1,11 @@
+# 3.4.1
+> Published 31 Jul 2023
+
+### Fix
+- **Chat**: fix(chat): `FunctionCall` nullable name/arguments (#232)
+
 # 3.4.0
+> Published 23 Aug 2023
 
 ### Added
 - Introduced `Parameters.Empty` for functions without parameters.

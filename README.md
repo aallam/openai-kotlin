@@ -130,6 +130,14 @@ repositories {
 The access to GPT-4 API is restricted at the moment. You can join the waitlist using [this form](https://openai.com/waitlist/gpt-4-api).
 </details>
 
+## ⭐️ Support
+
+Appreciate the project? Here's how you can help:
+
+1. **Star**: Give it a star at the top right. It means a lot!
+2. **Contribute**: Found an issue or have a feature idea? Submit a PR.
+3. **Feedback**: Have suggestions? Open an issue or start a discussion.
+
 ## 📄 License
 
 OpenAI Kotlin API Client is an open-sourced software licensed under the [MIT license](LICENSE.md).

@@ -27,7 +27,7 @@ val openAI = OpenAI(token)
 Specify the model to use for the chat request.
 
 ```kotlin
-val modelId = ModelId("gpt-3.5-turbo-0613")
+val modelId = ModelId("gpt-3.5-turbo")
 ```
 
 ### Defining the Function
@@ -35,9 +35,6 @@ val modelId = ModelId("gpt-3.5-turbo-0613")
 Define a dummy function `currentWeather` which the model might call. This function will return hardcoded weather information.
 
 ```kotlin
-@Serializable
-data class WeatherInfo(val location: String, val temperature: String, val unit: String, val forecast: List<String>)
-
 /**
  * Example dummy function hard coded to return the same weather
  * In production, this could be your backend API or an external API
@@ -46,6 +43,9 @@ fun currentWeather(location: String, unit: String): String {
     val weatherInfo = WeatherInfo(location, "72", unit, listOf("sunny", "windy"))
     return Json.encodeToString(weatherInfo)
 }
+
+@Serializable
+data class WeatherInfo(val location: String, val temperature: String, val unit: String, val forecast: List<String>)
 ```
 
 ### Defining Function Parameters
@@ -102,7 +102,7 @@ val request = chatCompletionRequest {
             parameters = params
         }
     }
-    functionCall = FunctionMode.Auto
+    functionCall = FunctionMode.Named("currentWeather") // or FunctionMode.Auto
 }
 ```
 
@@ -166,7 +166,7 @@ suspend fun main() {
     val token = System.getenv("OPENAI_API_KEY")
     val openAI = OpenAI(token)
 
-    val modelId = ModelId("gpt-3.5-turbo-0613")
+    val modelId = ModelId("gpt-3.5-turbo")
     val chatMessages = mutableListOf(
         ChatMessage(
             role = ChatRole.User,

@@ -50,7 +50,7 @@ class TestChatCompletions : TestOpenAI() {
 
     @Test
     fun chatCompletionsFunction() = test {
-        val modelId = ModelId("gpt-3.5-turbo-0613")
+        val modelId = ModelId("gpt-3.5-turbo")
         val chatMessages = mutableListOf(
             ChatMessage(
                 role = ChatRole.User,
@@ -94,7 +94,7 @@ class TestChatCompletions : TestOpenAI() {
         }
 
         val response = openAI.chatCompletion(request)
-        val message = response.choices.first().message ?: error("No chat response found!")
+        val message = response.choices.first().message
         assertEquals("currentWeather",  message.functionCall?.name)
     }
 }

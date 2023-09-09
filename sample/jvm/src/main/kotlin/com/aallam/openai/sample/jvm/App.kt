@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 fun main() = runBlocking {
     val apiKey = System.getenv("OPENAI_API_KEY")
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
-    val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.All))
+    val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.None))
 
     while (true) {
         println("Select an option:")
@@ -21,8 +21,7 @@ fun main() = runBlocking {
         println("7 - Whisper")
         println("0 - Quit")
 
-        val option = readlnOrNull()?.toIntOrNull()
-        when (option) {
+        when (val option = readlnOrNull()?.toIntOrNull()) {
             1 -> engines(openAI)
             2 -> files(openAI)
             3 -> moderations(openAI)

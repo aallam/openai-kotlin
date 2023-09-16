@@ -122,7 +122,7 @@ repositories {
 
 </details>
 
-## ⚠️️ Throubleshooting
+## 🛠️ Throubleshooting
 
 For common issues and their solutions, check the [Troubleshooting Guide](TROUBLESHOOTING.md).
 

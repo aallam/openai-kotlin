@@ -1,5 +1,11 @@
+# 3.4.2
+> Published 28 Sep 2023
+
+### Added
+- **Config**: Allow custom ktor http client configuration (#239) (Thanks @rasharab)
+
 # 3.4.1
-> Published 31 Jul 2023
+> Published 31 Aug 2023
 
 ### Fix
 - **Chat**: fix(chat): `FunctionCall` nullable name/arguments (#232)

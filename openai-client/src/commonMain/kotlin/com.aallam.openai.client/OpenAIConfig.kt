@@ -19,7 +19,7 @@ import kotlin.time.Duration.Companion.seconds
  * @param proxy HTTP proxy url
  * @param host OpenAI host configuration.
  * @param retry rate limit retry configuration
- * @param configure additional custom client configuration
+ * @param httpClientConfig additional custom client configuration
  */
 public class OpenAIConfig(
     public val token: String,
@@ -30,7 +30,7 @@ public class OpenAIConfig(
     public val host: OpenAIHost = OpenAIHost.OpenAI,
     public val proxy: ProxyConfig? = null,
     public val retry: RetryStrategy = RetryStrategy(),
-    public val configure: HttpClientConfig<*>.() -> Unit = {}
+    public val httpClientConfig: HttpClientConfig<*>.() -> Unit = {}
 ) {
 
     @Deprecated(
@@ -50,7 +50,7 @@ public class OpenAIConfig(
         host: OpenAIHost = OpenAIHost.OpenAI,
         proxy: ProxyConfig? = null,
         retry: RetryStrategy = RetryStrategy(),
-        configure: HttpClientConfig<*>.() -> Unit = {}
+        httpClientConfig: HttpClientConfig<*>.() -> Unit = {}
     ) : this(
         token = token,
         logging = LoggingConfig(
@@ -63,7 +63,7 @@ public class OpenAIConfig(
         host = host,
         proxy = proxy,
         retry = retry,
-        configure = configure,
+        httpClientConfig = httpClientConfig,
     )
 }
 

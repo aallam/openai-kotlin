@@ -80,7 +80,7 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
 
         expectSuccess = true
 
-        config.configure(this)
+        config.httpClientConfig(this)
     }
 }
 

@@ -4,6 +4,7 @@ import com.aallam.openai.api.http.Timeout
 import com.aallam.openai.client.internal.OpenAIApi
 import com.aallam.openai.client.internal.createHttpClient
 import com.aallam.openai.client.internal.http.HttpTransport
+import io.ktor.client.*
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -24,6 +25,7 @@ public interface OpenAI : Completions, Files, Edits, Embeddings, Models, Moderat
  * @param proxy HTTP proxy url
  * @param host OpenAI host configuration.
  * @param retry rate limit retry configuration
+ * @param httpClientConfig additional custom client configuration
  */
 public fun OpenAI(
     token: String,
@@ -34,6 +36,7 @@ public fun OpenAI(
     host: OpenAIHost = OpenAIHost.OpenAI,
     proxy: ProxyConfig? = null,
     retry: RetryStrategy = RetryStrategy(),
+    httpClientConfig: HttpClientConfig<*>.() -> Unit = {}
 ): OpenAI = OpenAI(
     config = OpenAIConfig(
         token = token,
@@ -44,6 +47,7 @@ public fun OpenAI(
         host = host,
         proxy = proxy,
         retry = retry,
+        httpClientConfig = httpClientConfig,
     )
 )
 

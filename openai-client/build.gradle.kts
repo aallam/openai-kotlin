@@ -31,7 +31,7 @@ kotlin {
                 api(libs.coroutines.core)
                 api(libs.okio)
                 implementation(libs.serialization.json)
-                implementation(libs.ktor.client.core)
+                api(libs.ktor.client.core)
                 implementation(libs.ktor.client.logging)
                 implementation(libs.ktor.client.auth)
                 implementation(libs.ktor.client.content.negotiation)

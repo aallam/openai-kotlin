@@ -8,25 +8,34 @@ import com.aallam.openai.client.internal.env
 import com.aallam.openai.client.internal.http.HttpTransport
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
-import okio.Path.Companion.toPath
-import okio.Source
 import kotlin.time.Duration.Companion.minutes
 
 internal val token: String
     get() = requireNotNull(env("OPENAI_API_KEY")) { "OPENAI_API_KEY environment variable must be set." }
 
-internal val transport = HttpTransport(
-    createHttpClient(
-        OpenAIConfig(
-            token = token,
-            logging = LoggingConfig(logLevel = LogLevel.All),
-            timeout = Timeout(socket = 1.minutes),
-        )
-    )
+
+internal val openAIConfig: OpenAIConfig = OpenAIConfig(
+    token = token,
+    logging = LoggingConfig(logLevel = LogLevel.All),
+    timeout = Timeout(socket = 1.minutes),
 )
 
+private fun transport(config: OpenAIConfig? = null): HttpTransport {
+    return HttpTransport(
+        createHttpClient(
+            config ?: openAIConfig
+        )
+    )
+}
+
 abstract class TestOpenAI {
-    internal val openAI = OpenAIApi(transport)
+    internal val openAI = OpenAIApi(transport())
+
+    internal fun generateOpenAI(
+        config: OpenAIConfig
+    ): OpenAIApi {
+        return OpenAIApi(transport(config))
+    }
 
     fun test(testBody: suspend TestScope.() -> Unit) = runTest(timeout = 1.minutes, testBody = testBody)
 }

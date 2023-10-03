@@ -15,5 +15,8 @@ public value class Status(public val value: String) {
         public val Deleted: Status = Status("deleted")
         public val Failed: Status = Status("failed")
         public val Cancelled: Status = Status("cancelled")
+        public val ValidatingFiles: Status = Status("validating_files")
+        public val Queued: Status = Status("queued")
+        public val Running: Status = Status("running")
     }
 }

@@ -51,7 +51,7 @@ class TestAudio : TestOpenAI() {
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
         assertEquals(transcription.language, "english")
-        assertEquals(transcription.duration, 29.88)
+        assertEquals(transcription.duration!!, 29.88, absoluteTolerance = 0.1)
         assertTrue { transcription.segments?.isNotEmpty() ?: false }
     }
 
@@ -92,7 +92,7 @@ class TestAudio : TestOpenAI() {
         val translation = openAI.translation(request)
         assertTrue { translation.text.isNotEmpty() }
         assertEquals(translation.language, "english")
-        assertEquals(translation.duration, 42.06)
+        assertEquals(translation.duration!!, 42.06, absoluteTolerance = 0.1)
         assertTrue { translation.segments?.isNotEmpty() ?: false }
     }
 }

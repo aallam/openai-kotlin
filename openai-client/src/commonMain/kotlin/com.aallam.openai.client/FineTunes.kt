@@ -18,35 +18,42 @@ public interface FineTunes {
      * Response includes details of the enqueued job including job status and the name of the fine-tuned models once
      * complete.
      */
+    @Deprecated("Use FineTuning instead.")
     public suspend fun fineTune(request: FineTuneRequest): FineTune
 
     /**
      * List your organization's fine-tuning jobs.
      */
+    @Deprecated("Use FineTuning instead.")
     public suspend fun fineTunes(): List<FineTune>
 
     /**
      * Gets info about to fine-tune job.
      */
+    @Deprecated("Use FineTuning instead.")
     public suspend fun fineTune(fineTuneId: FineTuneId): FineTune?
 
     /**
      * Immediately cancel a fine-tune job.
      */
+    @Deprecated("Use FineTuning instead.")
     public suspend fun cancel(fineTuneId: FineTuneId): FineTune?
 
     /**
      * Get fine-grained status updates for fine-tune job.
      */
+    @Deprecated("Use FineTuning instead.")
     public suspend fun fineTuneEvents(fineTuneId: FineTuneId): List<FineTuneEvent>
 
     /**
      * Get fine-grained status updates for fine-tune job.
      */
+    @Deprecated("Use FineTuning instead.")
     public fun fineTuneEventsFlow(fineTuneId: FineTuneId): Flow<FineTuneEvent>
 
     /**
      * Delete a fine-tuned model. You must have the Owner role in your organization.
      */
+    @Deprecated("Use FineTuning instead.")
     public suspend fun delete(fineTuneModel: ModelId): Boolean
 }

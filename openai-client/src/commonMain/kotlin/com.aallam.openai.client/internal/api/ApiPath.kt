@@ -17,4 +17,5 @@ internal object ApiPath {
     const val ImagesVariants = "images/variations"
     const val Models = "models"
     const val Moderations = "moderations"
+    const val FineTuningJobs = "fine_tuning/jobs"
 }

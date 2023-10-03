@@ -1,3 +1,9 @@
+# 3.5.0
+> Published 04 Oct 2023
+
+### Added
+- *Fine-tuning*: API implementation (#242)
+
 # 3.4.2
 > Published 28 Sep 2023
 

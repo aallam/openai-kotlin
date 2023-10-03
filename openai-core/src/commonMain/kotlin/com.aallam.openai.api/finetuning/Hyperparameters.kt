@@ -25,6 +25,10 @@ public data class Hyperparameters(
     @SerialName("n_epochs")
     val nEpochs: NEpochs
 ) {
+
+    public constructor(nEpochs: Int) : this(NEpochs(nEpochs))
+    public constructor(nEpochs: String) : this(NEpochs(nEpochs))
+
     /**
      * A sealed interface representing a flexible parameter for the number of epochs.
      *

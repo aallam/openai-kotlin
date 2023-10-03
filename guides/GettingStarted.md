@@ -21,6 +21,12 @@ Use your `OpenAI` instance to make API requests.
   - [Create image variation](#create-image-variation)
 - [Embeddings](#embeddings)
   - [Create embeddings](#create-embeddings)
+- [Fine-tuning](#fine-tuning)
+  - [Create fine-tuning job](#create-fine-tuning-job)
+  - [List fine-tuning jobs](#list-fine-tuning-jobs)
+  - [Retrieve fine-tuning job](#retrieve-fine-tuning-job)
+  - [Cancel fine-tuning](#cancel-fine-tuning)
+  - [List fine-tuning events](#list-fine-tuning-events)
 - [Audio](#audio)
   - [Create transcription](#create-transcription)
   - [Create translation](#create-translation)
@@ -30,13 +36,6 @@ Use your `OpenAI` instance to make API requests.
   - [Delete file](#delete-file)
   - [Retrieve file](#retrieve-file)
   - [Retrieve file content](#retrieve-file-content)
-- [Fine-tunes](#fine-tunes)
-  - [Create fine-tune](#create-fine-tune)
-  - [List fine-tunes](#list-fine-tunes)
-  - [Retrieve fine-tune](#retrieve-fine-tune)
-  - [Cancel fine-tune](#cancel-fine-tune)
-  - [List fine-tune events](#list-fine-tune-events)
-  - [Delete fine-tune model](#delete-fine-tune-model)
 - [Moderations](#moderations)
   - [Create moderation](#create-moderation)
 
@@ -45,6 +44,13 @@ Use your `OpenAI` instance to make API requests.
   - [Create completion](#create-completion-legacy)
 
 #### Deprecated
+- [Fine-tunes](#fine-tunes)
+  - [Create fine-tune](#create-fine-tune)
+  - [List fine-tunes](#list-fine-tunes)
+  - [Retrieve fine-tune](#retrieve-fine-tune)
+  - [Cancel fine-tune](#cancel-fine-tune)
+  - [List fine-tune events](#list-fine-tune-events)
+  - [Delete fine-tune model](#delete-fine-tune-model)
 - [Edits](#edits)
   - [Create edits](#create-edits-deprecated)
 
@@ -162,6 +168,83 @@ val embeddings = openAI.embeddings(
 )
 ````
 
+## Fine-tuning
+
+Manage fine-tuning jobs to tailor a model to your specific training data.
+
+### Create fine-tuning job
+
+Creates a job that fine-tunes a specified model from a given dataset.
+
+Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.
+
+#### No Hyperparameters
+
+```kotlin
+val request = FineTuningRequest(
+    trainingFile = FileId("file-abc123"),
+    model = ModelId("gpt-3.5-turbo"),
+)
+val fineTuningJob = client.fineTuningJob(request)
+```
+
+#### Hyperparameters
+
+```kotlin
+val request = FineTuningRequest(
+    trainingFile = FileId("file-abc123"),
+    model = ModelId("gpt-3.5-turbo"),
+    hyperparameters = Hyperparameters(nEpochs = 2),
+)
+val fineTuningJob = client.fineTuningJob(request)
+```
+
+#### Validation File
+
+```kotlin
+val request = FineTuningRequest(
+    trainingFile = FileId("file-abc123"),
+    validation_file = FileId("file-def345"),
+    model = ModelId("gpt-3.5-turbo"),
+)
+val fineTuningJob = client.fineTuningJob(request)
+```
+
+### List fine-tuning jobs
+
+List your organization's fine-tuning jobs
+
+```kotlin
+val fineTuningJobs = client.fineTuningJobs(limit = 2)
+```
+
+### Retrieve fine-tuning job
+
+Get info about a fine-tuning job.
+
+```kotlin
+val id = FineTuningId("ft-AF1WoRqd3aJAHsqc9NY7iL8F")
+val fineTuningJob = client.fineTuningJob(id)
+```
+
+### Cancel fine-tuning
+
+Immediately cancel a fine-tune job.
+
+```kotlin
+val id = FineTuningId("ftjob-abc12")
+client.cancel(id)
+```
+
+### List fine-tuning events
+
+Get status updates for a fine-tuning job.
+
+```kotlin
+val id = FineTuningId("ftjob-abc12")
+val fineTuningEvents = client.fineTuningEvents(id)
+```
+
 ## Audio
 
 Learn how to turn audio into text.
@@ -240,6 +323,45 @@ Returns the contents of the specified file
 val bytes = openAI.download(fileId)
 ````
 
+## Moderations
+
+Given an input text, outputs if the model classifies it as violating OpenAI's content policy.
+
+### Create moderation
+
+Classifies if text violates OpenAI's Content Policy
+
+````kotlin
+val moderation = openAI.moderations(
+    request = ModerationRequest(
+        input = "I want to kill them."
+    )
+)
+````
+
+---
+
+## Completions
+
+Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.
+
+### Create Completion `legacy`
+
+Creates a completion for the provided prompt and parameters
+
+```kotlin
+val completionRequest = CompletionRequest(
+    model = ModelId("text-ada-001"),
+    prompt = "Somebody once told me the world is gonna roll me",
+    echo = true
+)
+val completion: TextCompletion = openAI.completion(completionRequest)
+// or, as flow
+val completions: Flow<TextCompletion> = openAI.completions(completionRequest)
+```
+
+---
+
 ## Fine-tunes
 
 Manage fine-tuning jobs to tailor a model to your specific training data.
@@ -300,45 +422,6 @@ Delete a fine-tuned model. You must have the Owner role in your organization.
 ```kotlin
 openAI.delete(fileId)
 ```
-
-## Moderations
-
-Given an input text, outputs if the model classifies it as violating OpenAI's content policy.
-
-### Create moderation
-
-Classifies if text violates OpenAI's Content Policy
-
-````kotlin
-val moderation = openAI.moderations(
-    request = ModerationRequest(
-        input = "I want to kill them."
-    )
-)
-````
-
----
-
-## Completions
-
-Given a prompt, the model will return one or more predicted completions, and can also return the probabilities of alternative tokens at each position.
-
-### Create Completion `legacy`
-
-Creates a completion for the provided prompt and parameters
-
-```kotlin
-val completionRequest = CompletionRequest(
-    model = ModelId("text-ada-001"),
-    prompt = "Somebody once told me the world is gonna roll me",
-    echo = true
-)
-val completion: TextCompletion = openAI.completion(completionRequest)
-// or, as flow
-val completions: Flow<TextCompletion> = openAI.completions(completionRequest)
-```
-
----
 
 ## Edits
 

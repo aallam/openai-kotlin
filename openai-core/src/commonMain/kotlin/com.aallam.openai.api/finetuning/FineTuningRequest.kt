@@ -1,5 +1,6 @@
 package com.aallam.openai.api.finetuning
 
+import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
@@ -13,85 +14,98 @@ public data class FineTuningRequest(
 
     /**
      * The ID of an uploaded file that contains training data.
+     * See [upload file](/docs/api-reference/files/upload) for how to upload a file.
      *
-     * Your dataset must be formatted as a JSONL file, where each training
-     * example is a JSON object with the keys "prompt" and "completion".
+     * Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.
+     * See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
      */
     @SerialName("training_file")
     val trainingFile: FileId,
 
     /**
-     * The ID of an uploaded file that contains validation data (Optional).
+     * The  name of the model to fine-tune. You can select one of the
+     * [supported models](/docs/guides/fine-tuning/what-models-can-be-fine-tuned).
+     */
+    @SerialName("model")
+    val model: ModelId,
+
+    /**
+     * The ID of an uploaded file that contains validation data.
      *
-     * Your dataset must be formatted as a JSONL file, where each validation
-     * example is a JSON object with the keys "prompt" and "completion".
+     * If you provide this file, the data is used to generate validation
+     * metrics periodically during fine-tuning. These metrics can be viewed in
+     * the fine-tuning results file.
+     * The same data should not be present in both train and validation files.
+     *
+     * Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.
+     * See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
      */
     @SerialName("validation_file")
     val validationFile: FileId? = null,
 
     /**
-     * The name of the base model to fine-tune (Optional).
-     *
-     * Can be one of "ada", "babbage", "curie", "davinci", or a fine-tuned model created after 2022-04-21 and before 2023-08-22.
+     * The hyperparameters used for the fine-tuning job.
      */
-    @SerialName("model")
-    val model: ModelId? = null,
+    @SerialName("hyperparameters")
+    val hyperparameters: Hyperparameters? = null,
 
     /**
-     * The number of epochs to train the model for (Optional).
-     *
-     * An epoch refers to one full cycle through the training dataset.
-     */
-    @SerialName("n_epochs")
-    val nEpochs: Int? = null,
-
-    /**
-     * The batch size to use for training (Optional).
-     *
-     * Refers to the number of training examples utilized in one iteration.
-     */
-    @SerialName("batch_size")
-    val batchSize: Int? = null,
-
-    /**
-     * The learning rate multiplier to use for training (Optional).
-     */
-    @SerialName("learning_rate_multiplier")
-    val learningRateMultiplier: Double? = null,
-
-    /**
-     * The weight to use for loss on the prompt tokens (Optional).
-     */
-    @SerialName("prompt_loss_weight")
-    val promptLossWeight: Double? = null,
-
-    /**
-     * If set, calculates classification-specific metrics such as accuracy and F-1 score using the validation set (Optional).
-     */
-    @SerialName("compute_classification_metrics")
-    val computeClassificationMetrics: Boolean? = null,
-
-    /**
-     * The number of classes in a classification task (Optional).
-     */
-    @SerialName("classification_n_classes")
-    val classificationNClasses: Int? = null,
-
-    /**
-     * The positive class in binary classification (Optional).
-     */
-    @SerialName("classification_positive_class")
-    val classificationPositiveClass: String? = null,
-
-    /**
-     * If provided, calculates F-beta scores at the specified beta values (Optional).
-     */
-    @SerialName("classification_betas")
-    val classificationBetas: List<Double>? = null,
-
-    /**
-     * A string that will be added to your fine-tuned model name (Optional).
+     * A string of up to 18 characters that will be added to your fine-tuned model name.
+     * For example, a `suffix` of "custom-model-name" would produce a model name like
+     * `ft:gpt-3.5-turbo:openai:custom-model-name:7p4lURel`.
      */
     @SerialName("suffix")
     val suffix: String? = null
 )
+
+/**
+ * Create a Fine-Tuning request.
+ */
+public fun fineTuningRequest(block: FineTuningRequestBuilder.() -> Unit): FineTuningRequest =
+    FineTuningRequestBuilder().apply(block).build()
+
+/**
+ * Builder of [FineTuningRequest] instances.
+ */
+@OpenAIDsl
+public class FineTuningRequestBuilder {
+
+    /**
+     * The ID of an uploaded file that contains training data.
+     * See [upload file](/docs/api-reference/files/upload) for how to upload a file.
+     */
+    public var trainingFile: FileId? = null
+
+    /**
+     * The name of the model to fine-tune.
+     * See [supported models](/docs/guides/fine-tuning/what-models-can-be-fine-tuned) for more details.
+     */
+    public var model: ModelId? = null
+
+    /**
+     * The ID of an uploaded file that contains validation data (Optional).
+     * The same data should not be present in both train and validation files.
+     */
+    public var validationFile: FileId? = null
+
+    /**
+     * The hyperparameters used for the fine-tuning job (Optional).
+     */
+    public var hyperparameters: Hyperparameters? = null
+
+    /**
+     * A string of up to 18 characters that will be added to your fine-tuned model name (Optional).
+     */
+    public var suffix: String? = null
+
+    /**
+     * Create a new instance of [FineTuningRequest].
+     */
+    public fun build(): FineTuningRequest = FineTuningRequest(
+        trainingFile = requireNotNull(trainingFile) { "trainingFile is required" },
+        model = requireNotNull(model) { "model is required" },
+        validationFile = validationFile,
+        hyperparameters = hyperparameters,
+        suffix = suffix,
+    )
+}

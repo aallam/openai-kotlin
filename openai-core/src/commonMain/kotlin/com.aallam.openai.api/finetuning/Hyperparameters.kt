@@ -62,10 +62,10 @@ public data class Hyperparameters(
  * An [Hyperparameters.NEpochs] implementation that holds an integer value representing a specific number of epochs.
  */
 @JvmInline
-internal value class NEpochsInt(override val value: Int) : Hyperparameters.NEpochs
+internal value class NEpochsInt(override val value: Int) : NEpochs
 
 /**
  * An [Hyperparameters.NEpochs] implementation that holds a string value which can be used to specify automatic determination of epochs.
  */
 @JvmInline
-internal value class NEpochsString(override val value: String) : Hyperparameters.NEpochs
+internal value class NEpochsString(override val value: String) : NEpochs

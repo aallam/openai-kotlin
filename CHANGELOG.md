@@ -4,6 +4,9 @@
 ### Added
 - *Fine-tuning*: API implementation (#242)
 
+### Deprecated
+- *Fine-tunes* is deprecated
+
 # 3.4.2
 > Published 28 Sep 2023
 

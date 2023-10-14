@@ -89,6 +89,8 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Fine-tunes](guides/GettingStarted.md#fine-tunes)
 - [Edits](guides/GettingStarted.md#edits)
 
+*Looking for a tokenizer? Try [ktoken](https://github.com/aallam/ktoken), a Kotlin library for tokenizing text.*
+
 ## 📚 Guides
 
 Get started and understand more about how to use OpenAI API client for Kotlin with these guides:

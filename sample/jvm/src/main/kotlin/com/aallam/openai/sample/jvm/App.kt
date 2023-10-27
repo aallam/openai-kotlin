@@ -19,6 +19,7 @@ fun main() = runBlocking {
         println("5 - Chat")
         println("6 - Chat (w/ Function)")
         println("7 - Whisper")
+        println("8 - Tokens")
         println("0 - Quit")
 
         when (val option = readlnOrNull()?.toIntOrNull()) {
@@ -29,6 +30,7 @@ fun main() = runBlocking {
             5 -> chat(openAI)
             6 -> chatFunctionCall(openAI)
             7 -> whisper(openAI)
+            8 -> tokensCount(openAI)
             0 -> {
                 println("Exiting...")
                 return@runBlocking

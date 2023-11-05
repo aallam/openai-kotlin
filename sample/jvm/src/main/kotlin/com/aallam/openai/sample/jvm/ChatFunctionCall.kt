@@ -1,8 +1,10 @@
 package com.aallam.openai.sample.jvm
 
+import com.aallam.openai.api.ExperimentalOpenAI
 import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.OpenAI
+import com.aallam.openai.client.extension.mergeToChatMessage
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
@@ -12,6 +14,7 @@ import kotlinx.serialization.json.*
  * This code snippet demonstrates the use of OpenAI's chat completion capabilities
  * with a focus on integrating function calls into the chat conversation.
  */
+@OptIn(ExperimentalOpenAI::class)
 suspend fun chatFunctionCall(openAI: OpenAI) {
     // *** Chat Completion with Function Call  *** //
 
@@ -73,8 +76,8 @@ suspend fun chatFunctionCall(openAI: OpenAI) {
     println("\n> Create Chat Completion function call (stream)...")
     val chatMessage = openAI.chatCompletions(request)
         .map { completion -> completion.choices.first() }
-        .fold(initial = ChatMessageAssembler()) { assembler, chunk -> assembler.merge(chunk) }
-        .build()
+        .toList()
+        .mergeToChatMessage()
 
     chatMessages.append(chatMessage)
     chatMessage.functionCall?.let { functionCall ->
@@ -139,39 +142,4 @@ private fun MutableList<ChatMessage>.append(message: ChatMessage) {
  */
 private fun MutableList<ChatMessage>.append(functionCall: FunctionCall, functionResponse: String) {
     add(ChatMessage(role = ChatRole.Function, name = functionCall.name, content = functionResponse))
-}
-
-/**
- * A class to help assemble chat messages from chat chunks.
- */
-class ChatMessageAssembler {
-    private val chatFuncName = StringBuilder()
-    private val chatFuncArgs = StringBuilder()
-    private val chatContent = StringBuilder()
-    private var chatRole: ChatRole? = null
-
-    /**
-     * Merges a chat chunk into the chat message being assembled.
-     */
-    fun merge(chunk: ChatChunk): ChatMessageAssembler {
-        chatRole = chunk.delta.role ?: chatRole
-        chunk.delta.content?.let { chatContent.append(it) }
-        chunk.delta.functionCall?.let { call ->
-            call.nameOrNull?.let { chatFuncName.append(it) }
-            call.argumentsOrNull?.let { chatFuncArgs.append(it) }
-        }
-        return this
-    }
-
-    /**
-     * Builds and returns the assembled chat message.
-     */
-    fun build(): ChatMessage = chatMessage {
-        this.role = chatRole
-        this.content = chatContent.toString()
-        if (chatFuncName.isNotEmpty() || chatFuncArgs.isNotEmpty()) {
-            this.functionCall = FunctionCall(chatFuncName.toString(), chatFuncArgs.toString())
-            this.name = chatFuncName.toString()
-        }
-    }
 }

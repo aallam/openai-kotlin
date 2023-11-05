@@ -1,3 +1,12 @@
+# 3.5.1
+> Published 05 Nov 2023
+
+### Fix
+- **Models**: permission field nullable (#251)
+
+### Experimental
+- **Chat**: add `mergeToChatMessage` extension (#250)
+
 # 3.5.0
 > Published 04 Oct 2023
 

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.aallam.openai.api.chat
 
 import com.aallam.openai.api.BetaOpenAI
@@ -88,6 +90,7 @@ public class ChatCompletionRequest(
     /**
      * A list of functions the model may generate JSON inputs for.
      */
+    @Deprecated(message = "Deprecated in favor of tools")
     @SerialName("functions") public val functions: List<ChatCompletionFunction>? = null,
 
     /**
@@ -98,7 +101,49 @@ public class ChatCompletionRequest(
      * [FunctionMode.None] is the default when no functions are present.
      * [FunctionMode.Auto] is the default if functions are present.
      */
+    @Deprecated(message = "Deprecated in favor of ToolChoice")
     @SerialName("function_call") public val functionCall: FunctionMode? = null,
+
+    /**
+     * An object specifying the format that the model must output.
+     *
+     * Setting to [ResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model generates is
+     * valid JSON.
+     *
+     * **Important**: when using JSON mode you must still instruct the model to produce JSON yourself via some
+     * conversation message, for example via your system message. If you don't do this, the model may generate
+     * an unending stream of whitespace until the generation reaches the token limit, which may take a lot of time
+     * and give the appearance of a "stuck" request. Also note that the message content may be partial (i.e. cut off)
+     * if finish_reason="length", which indicates the generation exceeded `max_tokens` or the conversation exceeded
+     * the max context length.
+     */
+    @SerialName("response_format") public val responseFormat: ResponseFormat? = null,
+
+    /**
+     * A list of tools the model may call. Use this to provide a list of functions the model may generate JSON inputs for.
+     */
+    @SerialName("tools") public val tools: List<Tool>? = null,
+
+    /**
+     * Controls which (if any) function is called by the model.
+     *
+     * - [ToolChoice.None] means the model will not call a function and instead generates a message.
+     * - [ToolChoice.Auto] means the model can pick between generating a message or calling a function.
+     * - Specifying a particular function via [ToolChoice.Named] (or [ToolChoice.function]) forces the model to call that function.
+     *
+     * [ToolChoice.None] is the default when no functions are present.[ToolChoice.Auto] is the default if functions are
+     * present.
+     */
+    @SerialName("tool_choice") public val toolChoice: ToolChoice? = null,
+
+    /**
+     * If specified, our system will make the best effort to sample deterministically, such that repeated requests with
+     * the same seed and parameters should return the same result.
+     * Determinism is not guaranteed, and you should refer to the `systemFingerprint` response parameter to monitor
+     * changes in the backend.
+     */
+    @property:BetaOpenAI
+    @SerialName("seed") public val seed: Int? = null,
 )
 
 /**
@@ -189,6 +234,7 @@ public class ChatCompletionRequestBuilder {
     /**
      * A list of functions the model may generate JSON inputs for.
      */
+    @Deprecated(message = "Deprecated in favor of tools")
     public var functions: List<ChatCompletionFunction>? = null
 
     /**
@@ -199,7 +245,40 @@ public class ChatCompletionRequestBuilder {
      * [FunctionMode.None] is the default when no functions are present.
      * [FunctionMode.Auto] is the default if functions are present.
      */
+    @Deprecated(message = "Deprecated in favor of ToolChoice")
     public var functionCall: FunctionMode? = null
+
+    /**
+     * An object specifying the format that the model must output.
+     *
+     * Setting to [ResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model generates is
+     * valid JSON.
+     *
+     * **Important**: when using JSON mode you must still instruct the model to produce JSON yourself via some
+     * conversation message, for example via your system message. If you don't do this, the model may generate
+     * an unending stream of whitespace until the generation reaches the token limit, which may take a lot of time
+     * and give the appearance of a "stuck" request. Also note that the message content may be partial (i.e. cut off)
+     * if finish_reason="length", which indicates the generation exceeded `max_tokens` or the conversation exceeded
+     * the max context length.
+     */
+    public var responseFormat: ResponseFormat? = null
+
+    /**
+     * A list of tools the model may call. Use this to provide a list of functions the model may generate JSON inputs for.
+     */
+    public var tools: List<Tool>? = null
+
+    /**
+     * Controls which (if any) function is called by the model.
+     *
+     * - [ToolChoice.None] means the model will not call a function and instead generates a message.
+     * - [ToolChoice.Auto] means the model can pick between generating a message or calling a function.
+     * - Specifying a particular function via [ToolChoice.Named] (or [ToolChoice.function]) forces the model to call that function.
+     *
+     * [ToolChoice.None] is the default when no functions are present.[ToolChoice.Auto] is the default if functions are
+     * present.
+     */
+    public var toolChoice: ToolChoice? = null
 
     /**
      * The messages to generate chat completions for.
@@ -209,8 +288,16 @@ public class ChatCompletionRequestBuilder {
     }
 
     /**
+     * A list of tools the model may call. Use this to provide a list of functions the model may generate JSON inputs for.
+     */
+    public fun tools(block: ToolBuilder.() -> Unit) {
+        tools = ToolBuilder().apply(block).functions
+    }
+
+    /**
      * A list of functions the model may generate JSON inputs for.
      */
+    @Deprecated(message = "Deprecated in favor of tools")
     public fun functions(block: FunctionsBuilder.() -> Unit) {
         functions = FunctionsBuilder().apply(block).functions
     }
@@ -232,6 +319,9 @@ public class ChatCompletionRequestBuilder {
         user = user,
         functions = functions,
         functionCall = functionCall,
+        responseFormat = responseFormat,
+        toolChoice = toolChoice,
+        tools = tools
     )
 }
 
@@ -260,5 +350,30 @@ public class FunctionsBuilder {
      */
     public fun function(block: ChatCompletionFunctionBuilder.() -> Unit) {
         functions += ChatCompletionFunctionBuilder().apply(block).build()
+    }
+}
+
+/**
+ * Creates a list of [Tool].
+ */
+public class ToolBuilder {
+    internal val functions = mutableListOf<Tool>()
+
+    /**
+     * Creates a [ChatMessage] instance.
+     */
+    public fun tool(tool: Tool) {
+        functions += tool
+    }
+
+    /**
+     * Creates a 'function' tool.
+     *
+     * @param name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes,
+     * with a maximum length of 64.
+     * @param parameters The parameters the functions accepts, described as a JSON Schema object.
+     */
+    public fun function(name: String, parameters: Parameters) {
+        functions += Tool.function(name, parameters)
     }
 }

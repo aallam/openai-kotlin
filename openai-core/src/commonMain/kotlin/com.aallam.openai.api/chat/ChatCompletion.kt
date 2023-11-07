@@ -36,4 +36,12 @@ public data class ChatCompletion(
      * Text completion usage data.
      */
     @SerialName("usage") public val usage: Usage? = null,
+
+    /**
+     * This fingerprint represents the backend configuration that the model runs with.
+     *
+     * Can be used in conjunction with the seed request parameter to understand when backend changes have been made that
+     * might impact determinism.
+     */
+    @SerialName("system_fingerprint") public val systemFingerprint: String,
 )

@@ -108,17 +108,17 @@ public class ChatCompletionRequest(
     /**
      * An object specifying the format that the model must output.
      *
-     * Setting to [ResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model generates is
+     * Setting to [ChatResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model generates is
      * valid JSON.
      *
-     * **Important**: when using JSON mode you must still instruct the model to produce JSON yourself via some
-     * conversation message, for example via your system message. If you don't do this, the model may generate
+     * **Important**: when using JSON mode, you must still instruct the model to produce JSON yourself via some
+     * conversation message, for example, via your system message. If you don't do this, the model may generate
      * an unending stream of whitespace until the generation reaches the token limit, which may take a lot of time
-     * and give the appearance of a "stuck" request. Also note that the message content may be partial (i.e. cut off)
+     * and give the appearance of a "stuck" request. Also note that the message content may be partial (i.e., cut off)
      * if finish_reason="length", which indicates the generation exceeded `max_tokens` or the conversation exceeded
      * the max context length.
      */
-    @SerialName("response_format") public val responseFormat: ResponseFormat? = null,
+    @SerialName("response_format") public val responseFormat: ChatResponseFormat? = null,
 
     /**
      * A list of tools the model may call. Use this to provide a list of functions the model may generate JSON inputs for.
@@ -252,7 +252,7 @@ public class ChatCompletionRequestBuilder {
     /**
      * An object specifying the format that the model must output.
      *
-     * Setting to [ResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model generates is
+     * Setting to [ChatResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model generates is
      * valid JSON.
      *
      * **Important**: when using JSON mode you must still instruct the model to produce JSON yourself via some
@@ -262,7 +262,7 @@ public class ChatCompletionRequestBuilder {
      * if finish_reason="length", which indicates the generation exceeded `max_tokens` or the conversation exceeded
      * the max context length.
      */
-    public var responseFormat: ResponseFormat? = null
+    public var responseFormat: ChatResponseFormat? = null
 
     /**
      * A list of tools the model may call. Use this to provide a list of functions the model may generate JSON inputs for.

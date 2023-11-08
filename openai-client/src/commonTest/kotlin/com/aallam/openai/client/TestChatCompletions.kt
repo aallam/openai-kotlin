@@ -5,6 +5,9 @@ import com.aallam.openai.api.chat.internal.ToolType
 import com.aallam.openai.api.model.ModelId
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlin.test.*
@@ -95,5 +98,35 @@ class TestChatCompletions : TestOpenAI() {
         assertEquals(ToolType.Function, toolCall.type)
         assertEquals("currentWeather", toolCall.function?.name)
         assertEquals(buildJsonObject { put("location", "Boston, MA") }, toolCall.function?.argumentsAsJson())
+    }
+
+    @Test
+    fun json() = test {
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-3.5-turbo-1106")
+            responseFormat = ChatResponseFormat.JsonObject
+            messages {
+                message {
+                    role = ChatRole.System
+                    content = "You are a helpful assistant.!"
+                }
+                message {
+                    role = ChatRole.System
+                    content = """All your answers should be a valid JSON, and the format: {"question": <question>, "response": <response>}"""
+                }
+                message {
+                    role = ChatRole.User
+                    content = "Who won the world cup in 1998?"
+                }
+            }
+        }
+        val response = openAI.chatCompletion(request)
+        val content = response.choices.first().message.content.orEmpty()
+
+        @Serializable
+        data class Answer(val question: String? = null, val response: String? = null)
+        val answer = Json.decodeFromString<Answer>(content)
+        assertNotNull(answer.question)
+        assertNotNull(answer.response)
     }
 }

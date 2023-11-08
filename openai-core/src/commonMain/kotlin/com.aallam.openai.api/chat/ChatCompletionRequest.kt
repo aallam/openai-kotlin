@@ -1,6 +1,5 @@
 package com.aallam.openai.api.chat
 
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
@@ -99,6 +98,20 @@ public class ChatCompletionRequest(
      * [FunctionMode.Auto] is the default if functions are present.
      */
     @SerialName("function_call") public val functionCall: FunctionMode? = null,
+
+    /**
+     * Specify the format that the model must output.
+     *
+     * Setting to [ChatResponseFormat.JSON] enables JSON mode, which guarantees the message the model generates is valid
+     * JSON. The default is [ChatResponseFormat.TEXT], which is plain text.
+     *
+     * Important: when using JSON mode you must still instruct the model to produce JSON yourself via some conversation
+     * message, for example via your system message. If you don't do this, the model may generate an unending stream of
+     * whitespace until the generation reaches the token limit, which may take a lot of time and give the appearance of
+     * a "stuck" request. Also note that the message content may be partial (i.e. cut off) if finish_reason="length",
+     * which indicates the generation exceeded max_tokens or the conversation exceeded the max context length.
+     */
+    @SerialName("response_format") public val responseFormat: ChatResponseFormat? = null,
 )
 
 /**

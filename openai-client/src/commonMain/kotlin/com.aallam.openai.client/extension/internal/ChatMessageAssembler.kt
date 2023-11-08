@@ -6,12 +6,12 @@ import com.aallam.openai.api.chat.internal.ToolType
 /**
  * A class to help assemble chat messages from chat chunks.
  */
-internal class ChatMessageAssembler() {
+internal class ChatMessageAssembler {
     private val chatFuncName = StringBuilder()
     private val chatFuncArgs = StringBuilder()
     private val chatContent = StringBuilder()
     private var chatRole: ChatRole? = null
-    private var toolCallsAssemblers = mutableListOf<ToolCallAssembler>()
+    private val toolCallsAssemblers = mutableMapOf<Int, ToolCallAssembler>()
 
     /**
      * Merges a chat chunk into the chat message being assembled.
@@ -24,12 +24,9 @@ internal class ChatMessageAssembler() {
                 call.nameOrNull?.let { chatFuncName.append(it) }
                 call.argumentsOrNull?.let { chatFuncArgs.append(it) }
             }
-            toolCalls?.first()?.let { toolCall -> // TBC: tool calls come one by one
-                if (toolCall.idOrNull != null) {
-                    val toolCallAssembler = ToolCallAssembler()
-                    toolCallsAssemblers.add(toolCallAssembler)
-                }
-                toolCallsAssemblers.last().merge(toolCall)
+            toolCalls?.onEach { toolCall ->
+                val assembler = toolCallsAssemblers.getOrPut(toolCall.index) { ToolCallAssembler() }
+                assembler.merge(toolCall)
             }
         }
         return this
@@ -46,18 +43,20 @@ internal class ChatMessageAssembler() {
             this.name = chatFuncName.toString()
         }
         if (toolCallsAssemblers.isNotEmpty()) {
-            this.toolCalls = toolCallsAssemblers.map { it.build() }.toList()
+            this.toolCalls = toolCallsAssemblers.map { (_, value) -> value.build() }.toList()
         }
     }
 }
 
 internal class ToolCallAssembler {
+    private var toolIndex: Int? = null
     private var toolId: ToolId? = null
     private var toolType: ToolType? = null
     private var funcName: String? = null
     private val funcArgs = StringBuilder()
 
     fun merge(toolCall: ToolCall): ToolCallAssembler {
+        toolCall.indexOrNull?.let { toolIndex = it }
         toolCall.idOrNull?.let { toolId = it }
         toolCall.typeOrNull?.let { toolType = it }
         toolCall.functionOrNull?.let { call ->
@@ -71,6 +70,7 @@ internal class ToolCallAssembler {
      * Builds and returns the assembled chat message.
      */
     fun build(): ToolCall = toolCall {
+        this.index = toolIndex
         this.id = toolId
         this.type = toolType
         if (funcName?.isNotEmpty() == true || funcArgs.isNotEmpty()) {

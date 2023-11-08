@@ -132,7 +132,6 @@ class TestChatChunk {
             role = ChatRole.Assistant,
             content = "The World Series in 2020 is being held in Texas.",
             name = null,
-            functionCall = null
         )
         assertEquals(chatMessage, message)
     }

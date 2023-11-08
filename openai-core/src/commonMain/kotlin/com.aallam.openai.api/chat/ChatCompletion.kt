@@ -43,5 +43,5 @@ public data class ChatCompletion(
      * Can be used in conjunction with the seed request parameter to understand when backend changes have been made that
      * might impact determinism.
      */
-    @SerialName("system_fingerprint") public val systemFingerprint: String,
+    @SerialName("system_fingerprint") public val systemFingerprint: String? = null,
 )

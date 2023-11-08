@@ -7,6 +7,7 @@ import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonObjectBuilder
 
 /**
  * Creates a completion for the chat message.
@@ -371,9 +372,31 @@ public class ToolBuilder {
      *
      * @param name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes,
      * with a maximum length of 64.
-     * @param parameters The parameters the functions accepts, described as a JSON Schema object.
+     * @param parameters The parameters the function accepts, described as a JSON Schema object.
      */
-    public fun function(name: String, parameters: Parameters) {
-        functions += Tool.function(name, parameters)
+    public fun function(name: String, description: String? = null, parameters: Parameters) {
+        functions += Tool.function(name, description, parameters)
+    }
+
+    /**
+     * Creates a 'function' tool.
+     *
+     * @param name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes,
+     * with a maximum length of 64.
+     * @param parameters The parameters the function accepts, described as a JSON Schema object.
+     */
+    public fun function(name: String, description: String? = null, parameters: String) {
+        functions += Tool.function(name, description, Parameters.fromJsonString(parameters))
+    }
+
+    /**
+     * Creates a 'function' tool.
+     *
+     * @param name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes,
+     * with a maximum length of 64.
+     * @param parameters The parameters the function accepts, described as a JSON Schema object.
+     */
+    public fun function(name: String, description: String? = null, parameters: JsonObjectBuilder.() -> Unit) {
+        functions += Tool.function(name, description, Parameters.buildJsonObject(parameters))
     }
 }

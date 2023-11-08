@@ -1,17 +1,13 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.*
+import com.aallam.openai.api.chat.internal.ToolType
 import com.aallam.openai.api.model.ModelId
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.jsonPrimitive
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
+import kotlin.test.*
 
 class TestChatCompletions : TestOpenAI() {
 
@@ -61,40 +57,43 @@ class TestChatCompletions : TestOpenAI() {
         val request = chatCompletionRequest {
             model = modelId
             messages = chatMessages
-            functions {
-                function {
-                    name = "currentWeather"
-                    description = "Get the current weather in a given location"
-                    parameters = Parameters.fromJsonString(
-                        """
-                        {
-                          "type": "object",
-                          "properties": {
-                            "location": {
-                              "type": "string",
-                              "description": "The city and state, e.g. San Francisco, CA"
-                            },
-                            "unit": {
-                              "type": "string",
-                              "enum": [
-                                "celsius",
-                                "fahrenheit"
-                              ]
-                            }
-                          },
-                          "required": [
-                            "location"
+            tools {
+                function(
+                    name = "currentWeather",
+                    parameters =
+                    """
+                    {
+                      "type": "object",
+                      "properties": {
+                        "location": {
+                          "type": "string",
+                          "description": "The city and state, e.g. San Francisco, CA"
+                        },
+                        "unit": {
+                          "type": "string",
+                          "enum": [
+                            "celsius",
+                            "fahrenheit"
                           ]
                         }
-                        """
-                    )
-                }
+                      },
+                      "required": [
+                        "location"
+                      ]
+                    }
+                    """
+                )
             }
-            functionCall = FunctionMode.Named("currentWeather")
+
+            toolChoice = ToolChoice.function("currentWeather")
         }
 
         val response = openAI.chatCompletion(request)
         val message = response.choices.first().message
-        assertEquals("currentWeather",  message.functionCall?.name)
+        val toolCall = message.toolCalls?.first()
+        assertNotNull(toolCall)
+        assertEquals(ToolType.Function, toolCall.type)
+        assertEquals("currentWeather", toolCall.function?.name)
+        assertEquals(buildJsonObject { put("location", "Boston, MA") }, toolCall.function?.argumentsAsJson())
     }
 }

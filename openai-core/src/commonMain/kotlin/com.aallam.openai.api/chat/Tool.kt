@@ -16,6 +16,11 @@ public data class Tool(
     @SerialName("type") val type: ToolType,
 
     /**
+     * Tool description.
+     */
+    @SerialName("description") val description: String? = null,
+
+    /**
      * A description of what the function does, used by the model to choose when and how to call the function.
      */
     @SerialName("function") val function: FunctionTool,
@@ -28,10 +33,10 @@ public data class Tool(
          *
          * @param name The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes,
          * with a maximum length of 64.
-         * @param parameters The parameters the functions accepts, described as a JSON Schema object.
+         * @param parameters The parameters the function accepts, described as a JSON Schema object.
          */
-        public fun function(name: String, parameters: Parameters): Tool =
-            Tool(type = ToolType.Function, function = FunctionTool(name = name, parameters = parameters))
+        public fun function(name: String, description: String? = null, parameters: Parameters): Tool =
+            Tool(type = ToolType.Function, description = description, function = FunctionTool(name = name, parameters = parameters))
     }
 }
 
@@ -47,8 +52,8 @@ public data class FunctionTool(
     @SerialName("name") val name: String,
 
     /**
-     * The parameters the functions accepts, described as a JSON Schema object.
-     * See the [guide](https://github.com/aallam/openai-kotlin/blob/main/guides/ChatFunctionCall.md) for examples,
+     * The parameters the function accepts, described as a JSON Schema object.
+     * See the [guide](https://github.com/aallam/openai-kotlin/blob/main/guides/ChatToolCalls.md) for examples,
      * and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about
      * the format.
      *

@@ -15,6 +15,7 @@ import kotlinx.serialization.Serializable
 @InternalOpenAI
 public data class ImageCreationRequest(
     @SerialName("prompt") val prompt: String,
+    @SerialName("model") val model: String?,
     @SerialName("n") val n: Int? = null,
     @SerialName("size") val size: ImageSize? = null,
     @SerialName("user") val user: String? = null,

@@ -14,6 +14,11 @@ public class ImageVariation(
     public val image: FileSource,
 
     /**
+     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
+     */
+    public val model: String? = null,
+
+    /**
      * The number of images to generate. Must be between 1 and 10.
      */
     public val n: Int? = null,
@@ -48,6 +53,11 @@ public class ImageVariationBuilder {
     public var image: FileSource? = null
 
     /**
+     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
+     */
+    public val model: String? = null
+
+    /**
      * The number of images to generate. Must be between 1 and 10.
      */
     public var n: Int? = null
@@ -67,6 +77,7 @@ public class ImageVariationBuilder {
      */
     public fun build(): ImageVariation = ImageVariation(
         image = requireNotNull(image) { "image is required" },
+        model = model,
         n = n,
         size = size,
         user = user

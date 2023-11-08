@@ -26,6 +26,11 @@ public class ImageEdit(
     public val prompt: String,
 
     /**
+     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
+     */
+    public val model: String? = null,
+
+    /**
      * The number of images to generate. Must be between 1 and 10.
      */
     public val n: Int? = null,
@@ -71,6 +76,11 @@ public class ImageEditBuilder {
     public var prompt: String? = null
 
     /**
+     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
+     */
+    public val model: String? = null
+
+    /**
      * The number of images to generate. Must be between 1 and 10.
      */
     public var n: Int? = null
@@ -92,6 +102,7 @@ public class ImageEditBuilder {
         image = requireNotNull(image) { "image field is required" },
         mask = requireNotNull(mask) { "mask field is required" },
         prompt = requireNotNull(prompt) { "prompt field is required" },
+        model = model,
         n = n,
         size = size,
         user = user

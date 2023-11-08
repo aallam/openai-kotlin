@@ -12,6 +12,10 @@ public class ImageCreation(
      */
     public val prompt: String,
     /**
+     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
+     */
+    public val model: String? = null,
+    /**
      * The number of images to generate. Must be between 1 and 10.
      */
     public val n: Int? = null,
@@ -45,6 +49,11 @@ public class ImageCreationBuilder {
     public var prompt: String? = null
 
     /**
+     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
+     */
+    public val model: String? = null
+
+    /**
      * The number of images to generate. Must be between 1 and 10.
      */
     public var n: Int? = null
@@ -64,8 +73,9 @@ public class ImageCreationBuilder {
      */
     public fun build(): ImageCreation = ImageCreation(
         prompt = requireNotNull(prompt),
+        model = model,
         n = n,
         size = size,
-        user = user
+        user = user,
     )
 }

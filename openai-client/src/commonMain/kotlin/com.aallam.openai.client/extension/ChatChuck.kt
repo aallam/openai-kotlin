@@ -10,5 +10,6 @@ import com.aallam.openai.client.extension.internal.ChatMessageAssembler
  */
 @ExperimentalOpenAI
 public fun List<ChatChunk>.mergeToChatMessage(): ChatMessage {
+    require(isNotEmpty()) { "ChatChunks List must not be empty" }
     return fold(ChatMessageAssembler()) { assembler, chatChunk -> assembler.merge(chatChunk) }.build()
 }

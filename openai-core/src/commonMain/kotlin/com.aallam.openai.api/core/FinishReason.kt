@@ -10,5 +10,6 @@ public value class FinishReason(public val value: String) {
         public val Stop: FinishReason = FinishReason("stop")
         public val Length: FinishReason = FinishReason("length")
         public val FunctionCall: FinishReason = FinishReason("function_call")
+        public val ToolCalls: FinishReason = FinishReason("tool_calls")
     }
 }

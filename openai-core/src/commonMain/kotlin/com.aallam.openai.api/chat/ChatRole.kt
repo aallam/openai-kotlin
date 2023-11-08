@@ -15,5 +15,6 @@ public value class ChatRole(public val role: String) {
         public val User: ChatRole = ChatRole("user")
         public val Assistant: ChatRole = ChatRole("assistant")
         public val Function: ChatRole = ChatRole("function")
+        public val Tool: ChatRole = ChatRole("tool")
     }
 }

@@ -115,6 +115,7 @@ Creates an image given a prompt.
 val images = openAI.imageURL( // or openAI.imageJSON
     creation = ImageCreation(
         prompt = "A cute baby sea otter",
+        model = ModelId("dall-e-3"),
         n = 2,
         size = ImageSize.is1024x1024
     )
@@ -129,6 +130,7 @@ Creates an edited or extended image given an original image and a prompt.
 val images = openAI.imageURL( // or openAI.imageJSON
     edit = ImageEdit(
         image = FileSource(name = "<filename>", source = imageSource),
+        model = ModelId("dall-e-2"),
         mask = FileSource(name = "<filename>", source = maskSource),
         prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
         n = 1,
@@ -145,6 +147,7 @@ Creates a variation of a given image.
 val images = openAI.imageURL( // or openAI.imageJSON
     variation = ImageVariation(
         image = FileSource(name = "<filename>", source = imageSource),
+        model = ModelId("dall-e-3"),
         n = 1,
         size = ImageSize.is1024x1024
     )

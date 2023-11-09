@@ -3,6 +3,7 @@ package com.aallam.openai.api.image
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileSource
+import com.aallam.openai.api.model.ModelId
 
 /**
  * Image edit request.
@@ -28,7 +29,7 @@ public class ImageEdit(
     /**
      * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
      */
-    public val model: String? = null,
+    public val model: ModelId? = null,
 
     /**
      * The number of images to generate. Must be between 1 and 10.
@@ -78,7 +79,7 @@ public class ImageEditBuilder {
     /**
      * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
      */
-    public val model: String? = null
+    public val model: ModelId? = null
 
     /**
      * The number of images to generate. Must be between 1 and 10.

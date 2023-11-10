@@ -1,6 +1,5 @@
 package com.aallam.openai.api.image
 
-import com.aallam.openai.api.BetaOpenAI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,5 +13,11 @@ public data class ImageURL(
      * Image url string.
      */
     @SerialName("url")
-    public val url: String
+    public val url: String,
+
+    /**
+     * The prompt that was used to generate the image if there was any revision to the prompt.
+     */
+    @SerialName("revised_prompt")
+    public val revisedPrompt: String? = null,
 )

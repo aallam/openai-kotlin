@@ -11,7 +11,7 @@ import kotlinx.serialization.json.JsonEncoder
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 
-internal object ToolChoiceSerializer : KSerializer<ToolChoice> {
+internal class ToolChoiceSerializer : KSerializer<ToolChoice> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor("ToolChoice")
 
     override fun deserialize(decoder: Decoder): ToolChoice {

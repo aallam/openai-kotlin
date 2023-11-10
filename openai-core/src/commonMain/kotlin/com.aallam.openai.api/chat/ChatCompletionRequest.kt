@@ -338,6 +338,10 @@ public class ChatMessagesBuilder {
     public fun message(block: ChatMessageBuilder.() -> Unit) {
         messages += ChatMessageBuilder().apply(block).build()
     }
+
+    public fun userMessage() {
+
+    }
 }
 
 /**

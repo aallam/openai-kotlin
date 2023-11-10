@@ -59,10 +59,10 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         appendFileSource("mask", edit.mask)
         append(key = "prompt", value = edit.prompt)
         append(key = "response_format", value = responseFormat.format)
-        edit.model?.let { model -> append(key = "model", value = model.id) }
         edit.n?.let { n -> append(key = "n", value = n) }
         edit.size?.let { dim -> append(key = "size", value = dim.size) }
         edit.user?.let { user -> append(key = "user", value = user) }
+        edit.model?.let { model -> append(key = "model", value = model.id) }
     }
 
     override suspend fun imageURL(variation: ImageVariation): List<ImageURL> {
@@ -87,19 +87,19 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
     private fun imageVariantRequest(edit: ImageVariation, responseFormat: ImageResponseFormat) = formData {
         appendFileSource("image", edit.image)
         append(key = "response_format", value = responseFormat.format)
-        edit.model?.let { model -> append(key = "model", value = model.id) }
         edit.n?.let { n -> append(key = "n", value = n) }
         edit.size?.let { dim -> append(key = "size", value = dim.size) }
         edit.user?.let { user -> append(key = "user", value = user) }
+        edit.model?.let { model -> append(key = "model", value = model.id) }
     }
 
     /** Convert [ImageCreation] instance to base64 JSON request */
     private fun ImageCreation.toJSONRequest() = ImageCreationRequest(
-        prompt = prompt, model = model?.id, n = n, size = size, user = user, responseFormat = ImageResponseFormat.base64Json,
+        prompt = prompt, n = n, size = size, user = user, responseFormat = ImageResponseFormat.base64Json, model = model?.id,
     )
 
     /** Convert [ImageCreation] instance to URL request */
     private fun ImageCreation.toURLRequest() = ImageCreationRequest(
-        prompt = prompt, model = model?.id, n = n, size = size, user = user, responseFormat = ImageResponseFormat.url,
+        prompt = prompt, n = n, size = size, user = user, responseFormat = ImageResponseFormat.url, model = model?.id
     )
 }

@@ -1,7 +1,9 @@
-# Unreleased
+## Unreleased
 
 ### Added
-- **Images**: Support for model selection for `ImageCreation`, `ImageEdit` and `ImageVariations`
+- **Images**: Support for model selection for `ImageCreation`, `ImageEdit` and `ImageVariations` (#257)
+- **Chat**: add tool calls (#256)
+- **Chat**: add vision feature (#258)
 
 # 3.5.1
 > Published 05 Nov 2023

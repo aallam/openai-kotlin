@@ -1,3 +1,8 @@
+# Unreleased
+
+### Added
+- **Images**: Support for model selection for `ImageCreation`, `ImageEdit` and `ImageVariations`
+
 # 3.5.1
 > Published 05 Nov 2023
 

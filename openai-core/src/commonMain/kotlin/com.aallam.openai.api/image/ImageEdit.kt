@@ -3,6 +3,7 @@ package com.aallam.openai.api.image
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileSource
+import com.aallam.openai.api.model.ModelId
 
 /**
  * Image edit request.
@@ -39,6 +40,11 @@ public class ImageEdit(
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
      */
     public val user: String? = null,
+
+    /**
+     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
+     */
+    public val model: ModelId? = null,
 )
 
 /**
@@ -86,6 +92,11 @@ public class ImageEditBuilder {
     public var user: String? = null
 
     /**
+     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
+     */
+    public var model: ModelId? = null
+
+    /**
      * Creates the [ImageEdit] instance
      */
     public fun build(): ImageEdit = ImageEdit(
@@ -94,6 +105,7 @@ public class ImageEditBuilder {
         prompt = requireNotNull(prompt) { "prompt field is required" },
         n = n,
         size = size,
-        user = user
+        user = user,
+        model = model,
     )
 }

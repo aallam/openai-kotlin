@@ -1,5 +1,4 @@
-# 3.5.2
-> Unreleased
+# Unreleased
 
 ### Added
 - **Images**: Support for model selection for `ImageCreation`, `ImageEdit` and `ImageVariations`

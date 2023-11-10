@@ -1,91 +1,14 @@
 package com.aallam.openai.api.chat
 
 import com.aallam.openai.api.OpenAIDsl
+import com.aallam.openai.api.chat.internal.ContentPartSerializer
 import com.aallam.openai.api.chat.internal.ContentPartsSerializer
 import com.aallam.openai.api.chat.internal.ContentSerializer
-import com.aallam.openai.api.chat.internal.MessageSerializer
+import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline
 
-/**
- * Represents a chat message.
- */
-@Serializable(with = MessageSerializer::class)
-public sealed interface Message {
-    /**
-     * The role of the author of this message.
-     */
-    public val role: ChatRole
-}
-
-@Serializable
-public data class SystemMessage(
-    /**
-     * The content of the message.
-     */
-    @SerialName("content") public val content: String? = null,
-    /**
-     * The author's name of this message.
-     */
-    @SerialName("name") public val name: String? = null,
-) : Message {
-    @SerialName("role")
-    public override val role: ChatRole = ChatRole.System
-}
-
-@Serializable
-public data class UserMessage(
-    /**
-     * The content of the message.
-     */
-    @SerialName("content") public val content: Content? = null,
-) : Message {
-    @SerialName("role")
-    public override val role: ChatRole = ChatRole.User
-}
-
-@Serializable
-public data class AssistantMessage(
-    /**
-     * The author's name of this message.
-     */
-    @SerialName("name") public val name: String? = null,
-    @SerialName("tool_calls") public val toolCalls: List<ToolCall>? = null,
-) : Message {
-    @SerialName("role")
-    public override val role: ChatRole = ChatRole.Assistant
-}
-
-@Serializable
-public data class ToolMessage(
-    @SerialName("tool_call_id") public val toolCallId: ToolId? = null,
-    /**
-     * The content of the message.
-     */
-    @SerialName("content") public val content: String? = null,
-) : Message {
-    @SerialName("role")
-    public override val role: ChatRole = ChatRole.Tool
-}
-
-@Serializable
-@Deprecated("Deprecated in favor of ToolMessage")
-public data class FunctionMessage(
-    /**
-     * The name of the author of this message.
-     * [name] is required if the role is `[ChatRole.Function], and it should be the name of the function whose response is
-     * in the [content]. It May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
-     */
-    @SerialName("name") public val name: String? = null,
-    /**
-     * The content of the message.
-     */
-    @SerialName("content") public val content: String? = null,
-) : Message {
-    @SerialName("role")
-    public override val role: ChatRole = ChatRole.Function
-}
 
 /**
  * The messages to generate chat completions for.
@@ -95,16 +18,16 @@ public data class ChatMessage(
     /**
      * The role of the author of this message.
      */
-    @SerialName("role") public override val role: ChatRole,
+    @SerialName("role") public val role: ChatRole,
 
     /**
      * The contents of the message.
      * **This is required for requests, and optional for responses**.
      */
-    @SerialName("content") public val content: String? = null,
+    @SerialName("content") public val messageContent: Content? = null,
 
     /**
-     * The name of the author of this message.
+     * The author's name of this message.
      * [name] is required if the role is `[ChatRole.Function], and it should be the name of the function whose response is
      * in the [content]. It May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
      */
@@ -125,43 +48,197 @@ public data class ChatMessage(
      * Tool call ID.
      */
     @SerialName("tool_call_id") public val toolCallId: ToolId? = null,
-) : Message
+) {
 
-@Serializable(with = ContentSerializer::class)
-public sealed interface Content {
+    public constructor(
+        role: ChatRole,
+        content: String? = null,
+        name: String? = null,
+        functionCall: FunctionCall? = null,
+        toolCalls: List<ToolCall>? = null,
+        toolCallId: ToolId? = null,
+    ) : this(
+        role = role,
+        messageContent = content?.let { TextContent(it) },
+        name = name,
+        functionCall = functionCall,
+        toolCalls = toolCalls,
+        toolCallId = toolCallId,
+    )
 
-    @JvmInline
-    @Serializable
-    public value class Text(public val content: String) : Content
+    public constructor(
+        role: ChatRole,
+        content: List<ContentPart>? = null,
+        name: String? = null,
+        functionCall: FunctionCall? = null,
+        toolCalls: List<ToolCall>? = null,
+        toolCallId: ToolId? = null,
+    ) : this(
+        role = role,
+        messageContent = content?.let { ListContent(it) },
+        name = name,
+        functionCall = functionCall,
+        toolCalls = toolCalls,
+        toolCallId = toolCallId,
+    )
 
-    @Serializable(with = ContentPartsSerializer::class)
-    public data class Parts(public val parts: List<MessageContent>) : Content
+    val content: String?
+        get() = when (messageContent) {
+            is TextContent? -> messageContent?.content
+            else -> error("Content is not text")
+        }
+
+    @Suppress("FunctionName")
+    public companion object {
+
+        /**
+         * Create a system chat message.
+         *
+         * @param content the contents of the message.
+         * @param name an optional name for the participant.
+         * Provides the model information to differentiate between participants of the same role.
+         */
+        public fun System(content: String? = null, name: String? = null): ChatMessage {
+            return ChatMessage(
+                role = ChatRole.System,
+                messageContent = content?.let { TextContent(it) },
+                name = name,
+            )
+        }
+
+        /**
+         * Create a system chat message.
+         *
+         * @param content the contents of the message.
+         * @param name an optional name for the participant.
+         * Provides the model information to differentiate between participants of the same role.
+         */
+        public fun User(content: String, name: String? = null): ChatMessage {
+            return ChatMessage(
+                role = ChatRole.User,
+                messageContent = TextContent(content),
+                name = name,
+            )
+        }
+
+        /**
+         * Create a system chat message.
+         *
+         * @param content the contents of the message.
+         * @param name an optional name for the participant.
+         * Provides the model information to differentiate between participants of the same role.
+         */
+        public fun User(content: List<ContentPart>, name: String? = null): ChatMessage {
+            return ChatMessage(
+                role = ChatRole.User,
+                messageContent = ListContent(content),
+                name = name,
+            )
+        }
+
+        /**
+         * Create an assistant chat message.
+         *
+         * @param content the contents of the message.
+         * @param name an optional name for the participant.
+         * Provides the model information to differentiate between participants of the same role..
+         * @param toolCalls the tool calls generated by the model, such as function calls.
+         */
+        public fun Assistant(
+            content: String? = null,
+            name: String? = null,
+            toolCalls: List<ToolCall>? = null
+        ): ChatMessage {
+            return ChatMessage(
+                role = ChatRole.Assistant,
+                messageContent = content?.let { TextContent(it) },
+                name = name,
+                toolCalls = toolCalls,
+            )
+        }
+
+        /**
+         * Create a tool chat message.
+         *
+         * @param content the contents of the message.
+         * @param toolCallId tool call that this message is responding to
+         */
+        public fun Tool(content: String? = null, toolCallId: ToolId): ChatMessage {
+            return ChatMessage(
+                role = ChatRole.Tool,
+                messageContent = content?.let { TextContent(it) },
+                toolCallId = toolCallId,
+            )
+        }
+    }
 }
 
+/**
+ * The contents of the chat message.
+ */
+@Serializable(with = ContentSerializer::class)
+public sealed interface Content
 
-public sealed interface MessageContent {
+/**
+ * The chat message content as text.
+ */
+@JvmInline
+@Serializable
+public value class TextContent(public val content: String) : Content
+
+/**
+ *  The chat message content as a list of content parts.
+ */
+@Serializable(with = ContentPartsSerializer::class)
+public data class ListContent(public val content: List<ContentPart>) : Content
+
+/**
+ * Represents a chat message part.
+ */
+@Serializable(with = ContentPartSerializer::class)
+public sealed interface ContentPart {
     public val type: String
 }
 
-public data class TextContent(public val text: String) : MessageContent {
+/**
+ * Text content part.
+ *
+ * @param text the text content.
+ */
+@Serializable
+public data class TextPart(@SerialName("text") val text: String) : ContentPart {
     @SerialName("type")
+    @Required
     override val type: String = "text"
 }
 
-
-public data class ImageContent(
-    public val imageUrl: ImageURL,
-) : MessageContent {
-
-    public constructor(
-        url: String,
-        detail: String? = null,
-    ) : this(ImageURL(url, detail))
-
+/**
+ * Image content part.
+ *
+ * @param imageUrl the image url.
+ */
+@Serializable
+public data class ImagePart(
+    @SerialName("image_url") val imageUrl: ImageURL,
+) : ContentPart {
     @SerialName("type")
-    override val type: String = "image_url"
+    @Required
+    override val type: String = "image"
 
+    /**
+     * Image content part.
+     *
+     * @param url either a URL of the image or the base64 encoded image data.
+     * @param detail specifies the detail level of the image.
+     */
+    public constructor(url: String, detail: String? = null) : this(ImageURL(url = url, detail = detail))
+
+    /**
+     * Image content part data.
+     */
+    @Serializable
     public data class ImageURL(
+
         /**
          * Either a URL of the image or the base64 encoded image data.
          */
@@ -220,12 +297,27 @@ public class ChatMessageBuilder {
     public var toolCallId: ToolId? = null
 
     /**
+     * The contents of the message.
+     */
+    internal val parts = mutableListOf<ContentPart>()
+
+    /**
+     * The contents of the message.
+     */
+    public fun content(block: ContentPartBuilder.() -> Unit) {
+        this.parts += ContentPartBuilder().apply(block).build()
+    }
+
+    /**
      * Create [ChatMessage] instance.
      */
     public fun build(): ChatMessage {
+        require(!(content != null && parts.isNotEmpty())) { "Cannot set both content string and content parts" }
+        val messageContent = content?.let { TextContent(it) }
+            ?: parts.let { if (it.isEmpty()) null else ListContent(it) }
         return ChatMessage(
             role = requireNotNull(role) { "role is required " },
-            content = content,
+            messageContent = messageContent,
             name = name,
             functionCall = functionCall,
             toolCalls = toolCalls,
@@ -237,7 +329,7 @@ public class ChatMessageBuilder {
 @OpenAIDsl
 public class ContentPartBuilder {
 
-    internal val parts = mutableListOf<MessageContent>()
+    private val parts = mutableListOf<ContentPart>()
 
     /**
      * Text content part.
@@ -245,7 +337,7 @@ public class ContentPartBuilder {
      * @param text the text content.
      */
     public fun text(text: String) {
-        this.parts += TextContent(text)
+        this.parts += TextPart(text)
     }
 
     /**
@@ -255,55 +347,171 @@ public class ContentPartBuilder {
      * @param detail the image detail.
      */
     public fun image(url: String, detail: String? = null) {
-        this.parts += ImageContent(url, detail)
+        this.parts += ImagePart(url, detail)
+    }
+
+    /**
+     * Create a list of [ContentPart]s.
+     */
+    public fun build(): List<ContentPart> {
+        return parts
     }
 }
 
-public class SystemMessageBuilder {
+/**
+ * System chat message.
+ */
+public fun systemMessage(block: SystemMessageBuilder.() -> Unit): ChatMessage =
+    SystemMessageBuilder().apply(block).build()
 
-    private val messageBuilder = ChatMessageBuilder()
+/**
+ * System message builder.
+ */
+public class SystemMessageBuilder {
 
     /**
      * The contents of system message.
      */
-    public var content: String?
-        get() = messageBuilder.content
-        set(value) {
-            messageBuilder.content = value
-        }
+    public var content: String? = null
 
     /**
      * An optional name for the participant.
      */
-    public var name: String? by messageBuilder::name
+    public var name: String? = null
 
     /**
      * Build a system chat message.
      */
     public fun build(): ChatMessage {
-        messageBuilder.role = ChatRole.System
-        return messageBuilder.build()
+        return ChatMessage.System(content, name)
     }
 }
 
-public class UserMessageBuilder {
+/**
+ * User chat message.
+ */
+public fun userMessage(block: UserMessageBuilder.() -> Unit): ChatMessage =
+    UserMessageBuilder().apply(block).build()
 
-    private val messageBuilder = ChatMessageBuilder()
+/**
+ * User message builder.
+ */
+
+public class UserMessageBuilder {
 
     /**
      * The contents of the message.
      */
-    public var content: String?
-        get() = messageBuilder.content
-        set(value) {
-            messageBuilder.content = value
-        }
+    public var content: String? = null
+
+    /**
+     * The contents of the message.
+     */
+    public var contentParts: List<ContentPart> = mutableListOf()
+
+    /**
+     * An optional name for the participant.
+     */
+    public var name: String? = null
+
+    /**
+     * The contents of the message.
+     */
+    public fun content(block: ContentPartBuilder.() -> Unit) {
+        this.contentParts += ContentPartBuilder().apply(block).build()
+    }
+
+    /**
+     * Build a user chat message.
+     */
+    public fun build(): ChatMessage {
+        require(!(content != null && contentParts.isNotEmpty())) { "Cannot set both content string and content parts" }
+        return content?.let { ChatMessage.User(it, name = name) } ?: ChatMessage.User(contentParts, name = name)
+    }
 }
 
+/**
+ * Assistant chat message.
+ */
+public fun assistantMessage(block: AssistantMessageBuilder.() -> Unit): ChatMessage =
+    AssistantMessageBuilder().apply(block).build()
+
+/**
+ * Assistant message builder.
+
+ */
 public class AssistantMessageBuilder {
 
+    /**
+     * The contents of the message.
+     */
+    public var content: String? = null
+
+    /**
+     * An optional name for the participant.
+     * Provides the model information to differentiate between participants of the same role.
+     */
+    public var name: String? = null
+
+    /**
+     * The tool calls generated by the model, such as function calls.
+     */
+    public var toolCalls: List<ToolCall>? = null
+
+    /**
+     * The tool calls generated by the model, such as function calls.
+     */
+    public fun toolCalls(block: ToolCallsBuilder.() -> Unit) {
+        this.toolCalls = ToolCallsBuilder().apply(block).build()
+    }
+
+    /**
+     * Build an assistant chat message.
+     */
+    public fun build(): ChatMessage {
+        return ChatMessage.Assistant(content = content, name = name, toolCalls = toolCalls)
+    }
 }
 
+/**
+ * List of tool calls builder.
+ */
+public class ToolCallsBuilder {
+
+    private val toolCalls = mutableListOf<ToolCall>()
+
+    public fun toolCall(block: ToolCallBuilder.() -> Unit) {
+        this.toolCalls += ToolCallBuilder().apply(block).build()
+    }
+
+    public fun build(): List<ToolCall> {
+        return toolCalls
+    }
+}
+
+
+/**
+ * Tool chat message.
+ */
+public fun toolMessage(block: ToolMessageBuilder.() -> Unit): ChatMessage =
+    ToolMessageBuilder().apply(block).build()
+
+/**
+ * Tool message builder.
+ */
 public class ToolMessageBuilder {
 
+    /**
+     * The contents of the message.
+     */
+    public var content: String? = null
+
+    /**
+     * Tool call ID.
+     */
+    public var toolCallId: ToolId? = null
+
+    public fun build(): ChatMessage {
+        return ChatMessage.Tool(content = content, toolCallId = requireNotNull(toolCallId) { "toolCallId is required" })
+    }
 }

@@ -129,4 +129,24 @@ class TestChatCompletions : TestOpenAI() {
         assertNotNull(answer.question)
         assertNotNull(answer.response)
     }
+
+    @Test
+    fun vision() = test {
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-4-vision-preview")
+            messages {
+                user {
+                    content {
+                        text("What are in these images? Is there any difference between them?")
+                        image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg")
+                        image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg")
+                    }
+                }
+            }
+            maxTokens = 300
+        }
+        val response = openAI.chatCompletion(request)
+        val content = response.choices.first().message.content.orEmpty()
+        assertNotNull(content)
+    }
 }

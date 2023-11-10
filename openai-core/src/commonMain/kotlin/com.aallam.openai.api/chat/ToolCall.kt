@@ -43,6 +43,9 @@ public data class ToolCall(
  */
 public fun toolCall(block: ToolCallBuilder.() -> Unit): ToolCall = ToolCallBuilder().apply(block).build()
 
+/**
+ * Tool call builder.
+ */
 @OpenAIDsl
 public class ToolCallBuilder {
 

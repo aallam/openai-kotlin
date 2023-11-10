@@ -339,8 +339,32 @@ public class ChatMessagesBuilder {
         messages += ChatMessageBuilder().apply(block).build()
     }
 
-    public fun userMessage() {
+    /**
+     * System chat message.
+     */
+    public fun system(block: SystemMessageBuilder.() -> Unit) {
+        this.messages += SystemMessageBuilder().apply(block).build()
+    }
 
+    /**
+     * User chat message.
+     */
+    public fun user(block: UserMessageBuilder.() -> Unit) {
+        this.messages += UserMessageBuilder().apply(block).build()
+    }
+
+    /**
+     * Assistant chat message.
+     */
+    public fun assistant(block: AssistantMessageBuilder.() -> Unit) {
+        this.messages += AssistantMessageBuilder().apply(block).build()
+    }
+
+    /**
+     * Tool chat message.
+     */
+    public fun tool(block: ToolMessageBuilder.() -> Unit) {
+        this.messages += ToolMessageBuilder().apply(block).build()
     }
 }
 

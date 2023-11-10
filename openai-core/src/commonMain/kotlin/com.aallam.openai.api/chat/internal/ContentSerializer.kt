@@ -1,6 +1,8 @@
 package com.aallam.openai.api.chat.internal
 
 import com.aallam.openai.api.chat.Content
+import com.aallam.openai.api.chat.ListContent
+import com.aallam.openai.api.chat.TextContent
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PolymorphicKind
@@ -19,18 +21,19 @@ internal class ContentSerializer : KSerializer<Content> {
 
     override fun deserialize(decoder: Decoder): Content {
         require(decoder is JsonDecoder) { "This decoder is not a JsonDecoder. Cannot deserialize `Content`" }
-        val serializer = when (decoder.decodeJsonElement()) {
-            is JsonPrimitive -> Content.Text.serializer()
-            is JsonArray -> Content.Parts.serializer()
+        val json = decoder.decodeJsonElement()
+        val serializer = when (json) {
+            is JsonPrimitive -> TextContent.serializer()
+            is JsonArray -> ListContent.serializer()
             else -> throw UnsupportedOperationException("Cannot deserialize Content. Unsupported JSON element.")
         }
-        return serializer.deserialize(decoder)
+        return decoder.json.decodeFromJsonElement(serializer, json)
     }
 
     override fun serialize(encoder: Encoder, value: Content) {
         when (value) {
-            is Content.Parts -> Content.Parts.serializer().serialize(encoder, value)
-            is Content.Text -> Content.Text.serializer().serialize(encoder, value)
+            is ListContent -> ListContent.serializer().serialize(encoder, value)
+            is TextContent -> TextContent.serializer().serialize(encoder, value)
         }
     }
 }

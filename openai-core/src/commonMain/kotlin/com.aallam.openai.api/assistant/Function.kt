@@ -1,12 +1,14 @@
-package com.aallam.openai.api.chat
+package com.aallam.openai.api.assistant
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.core.Parameters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@BetaOpenAI
 @Serializable
-public data class ChatCompletionFunction(
+public data class Function(
     /**
      * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum
      * length of 64.
@@ -15,10 +17,10 @@ public data class ChatCompletionFunction(
     /**
      * The description of what the function does.
      */
-    @SerialName("description") val description: String? = null,
+    @SerialName("description") val description: String,
     /**
      * The parameters the functions accept, described as a JSON Schema object.
-     * See the [guide](https://github.com/aallam/openai-kotlin/blob/main/guides/ChatFunctionCall.md) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
+     * See [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.
      *
      * To describe a function that accepts no parameters, provide [Parameters.Empty]`.
      */
@@ -26,10 +28,11 @@ public data class ChatCompletionFunction(
 )
 
 /**
- * Builder of [ChatCompletionFunction] instances.
+ * Builder of [Function] instances.
  */
+@BetaOpenAI
 @OpenAIDsl
-public class ChatCompletionFunctionBuilder {
+public class FunctionBuilder {
 
     /**
      * The name of the function to be called.
@@ -47,17 +50,18 @@ public class ChatCompletionFunctionBuilder {
     public var parameters: Parameters? = Parameters.Empty
 
     /**
-     * Create [ChatCompletionFunction] instance.
+     * Create [Function] instance.
      */
-    public fun build(): ChatCompletionFunction = ChatCompletionFunction(
+    public fun build(): Function = Function(
         name = requireNotNull(name) { "name is required" },
-        description = description,
+        description = requireNotNull(description) { "description is required" },
         parameters = requireNotNull(parameters) { "parameters is required" }
     )
 }
 
 /**
- * The function to generate chat completion function instances.
+ * Creates [Function] instance.
  */
-public fun chatCompletionFunction(block: ChatCompletionFunctionBuilder.() -> Unit): ChatCompletionFunction =
-    ChatCompletionFunctionBuilder().apply(block).build()
+@BetaOpenAI
+public fun function(block: FunctionBuilder.() -> Unit): Function =
+    FunctionBuilder().apply(block).build()

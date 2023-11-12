@@ -3,6 +3,7 @@ package com.aallam.openai.client.internal.extension
 import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.client.internal.JsonLenient
+import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
 import io.ktor.utils.io.core.*
@@ -36,4 +37,8 @@ internal fun FormBuilder.appendFileSource(key: String, fileSource: FileSource) {
 
         }
     }
+}
+
+internal fun HttpMessageBuilder.beta(api: String, version: Int) {
+    header("OpenAI-Beta", "$api=v$version")
 }

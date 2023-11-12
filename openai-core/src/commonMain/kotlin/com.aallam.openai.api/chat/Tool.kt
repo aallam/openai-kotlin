@@ -1,6 +1,7 @@
 package com.aallam.openai.api.chat
 
 import com.aallam.openai.api.chat.internal.ToolType
+import com.aallam.openai.api.core.Parameters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -36,7 +37,11 @@ public data class Tool(
          * @param parameters The parameters the function accepts, described as a JSON Schema object.
          */
         public fun function(name: String, description: String? = null, parameters: Parameters): Tool =
-            Tool(type = ToolType.Function, description = description, function = FunctionTool(name = name, parameters = parameters))
+            Tool(
+                type = ToolType.Function,
+                description = description,
+                function = FunctionTool(name = name, parameters = parameters)
+            )
     }
 }
 

@@ -23,4 +23,5 @@ internal class OpenAIApi(
     Chat by ChatApi(requester),
     Audio by AudioApi(requester),
     FineTuning by FineTuningApi(requester),
+    Assistants by AssistantsApi(requester),
     Closeable by requester

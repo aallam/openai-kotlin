@@ -4,6 +4,7 @@ import com.aallam.openai.api.http.Timeout
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.logging.Logger
 import io.ktor.client.HttpClientConfig
+import io.ktor.client.engine.HttpClientEngine
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -19,6 +20,7 @@ import kotlin.time.Duration.Companion.seconds
  * @param proxy HTTP proxy url
  * @param host OpenAI host configuration.
  * @param retry rate limit retry configuration
+ * @param engine explicit ktor engine for http requests.
  * @param httpClientConfig additional custom client configuration
  */
 public class OpenAIConfig(
@@ -30,6 +32,7 @@ public class OpenAIConfig(
     public val host: OpenAIHost = OpenAIHost.OpenAI,
     public val proxy: ProxyConfig? = null,
     public val retry: RetryStrategy = RetryStrategy(),
+    public val engine: HttpClientEngine? = null,
     public val httpClientConfig: HttpClientConfig<*>.() -> Unit = {}
 ) {
 

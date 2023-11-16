@@ -21,7 +21,7 @@ import kotlin.time.DurationUnit
  * Default Http Client.
  */
 internal fun createHttpClient(config: OpenAIConfig): HttpClient {
-    return HttpClient {
+    val configuration:  HttpClientConfig<*>.() -> Unit = {
         engine {
             config.proxy?.let { proxyConfig ->
                 proxy = when (proxyConfig) {
@@ -81,6 +81,12 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         expectSuccess = true
 
         config.httpClientConfig(this)
+    }
+
+    return if(config.engine != null) {
+        HttpClient(config.engine, configuration)
+    } else {
+        HttpClient(configuration)
     }
 }
 

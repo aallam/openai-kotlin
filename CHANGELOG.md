@@ -5,6 +5,7 @@
 - **Chat**: add tool calls (#256)
 - **Chat**: add vision feature (#258)
 - **Assistants**: add `Assistants` feature (#259)
+- **Config**: adding ktor engine config to support Kotlin Scripting (#261)
 
 # 3.5.1
 > Published 05 Nov 2023

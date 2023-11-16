@@ -53,6 +53,7 @@ public class OpenAIConfig(
         host: OpenAIHost = OpenAIHost.OpenAI,
         proxy: ProxyConfig? = null,
         retry: RetryStrategy = RetryStrategy(),
+        engine: HttpClientEngine? = null,
         httpClientConfig: HttpClientConfig<*>.() -> Unit = {}
     ) : this(
         token = token,
@@ -66,6 +67,7 @@ public class OpenAIConfig(
         host = host,
         proxy = proxy,
         retry = retry,
+        engine = engine,
         httpClientConfig = httpClientConfig,
     )
 }

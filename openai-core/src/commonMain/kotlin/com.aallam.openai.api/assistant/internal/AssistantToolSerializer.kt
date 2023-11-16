@@ -2,9 +2,6 @@ package com.aallam.openai.api.assistant.internal
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantTool
-import com.aallam.openai.api.assistant.CodeInterpreterTool
-import com.aallam.openai.api.assistant.FunctionTool
-import com.aallam.openai.api.assistant.RetrievalTool
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PolymorphicKind
@@ -26,18 +23,18 @@ internal class AssistantToolSerializer : KSerializer<AssistantTool> {
         val json = decoder.decodeJsonElement() as JsonObject
         val type = json["type"]?.jsonPrimitive?.content
         return when (type) {
-            "code_interpreter" -> CodeInterpreterTool
-            "retrieval" -> RetrievalTool
-            "function" -> decoder.json.decodeFromJsonElement(FunctionTool.serializer(), json)
+            "code_interpreter" -> AssistantTool.CodeInterpreter
+            "retrieval" -> AssistantTool.RetrievalTool
+            "function" -> decoder.json.decodeFromJsonElement(AssistantTool.FunctionTool.serializer(), json)
             else -> throw UnsupportedOperationException("Cannot deserialize AssistantTool. Unsupported type $type.")
         }
     }
 
     override fun serialize(encoder: Encoder, value: AssistantTool) {
         when (value) {
-            is CodeInterpreterTool -> CodeInterpreterTool.serializer().serialize(encoder, value)
-            is RetrievalTool -> RetrievalTool.serializer().serialize(encoder, value)
-            is FunctionTool -> FunctionTool.serializer().serialize(encoder, value)
+            is AssistantTool.CodeInterpreter -> AssistantTool.CodeInterpreter.serializer().serialize(encoder, value)
+            is AssistantTool.RetrievalTool -> AssistantTool.RetrievalTool.serializer().serialize(encoder, value)
+            is AssistantTool.FunctionTool -> AssistantTool.FunctionTool.serializer().serialize(encoder, value)
         }
     }
 }

@@ -93,9 +93,8 @@ class TestChatCompletions : TestOpenAI() {
 
         val response = openAI.chatCompletion(request)
         val message = response.choices.first().message
-        val toolCall = message.toolCalls?.first()
+        val toolCall = message.toolCalls?.first() as? ToolCall.Function
         assertNotNull(toolCall)
-        assertEquals(ToolType.Function, toolCall.type)
         assertEquals("currentWeather", toolCall.function?.name)
         assertEquals(buildJsonObject { put("location", "Boston, MA") }, toolCall.function?.argumentsAsJson())
     }

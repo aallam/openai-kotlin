@@ -3,13 +3,11 @@ package com.aallam.openai.api.run
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantId
 import com.aallam.openai.api.core.Status
-import com.aallam.openai.api.run.internal.RunStepSerializer
 import com.aallam.openai.api.thread.ThreadId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @BetaOpenAI
-@Serializable(with = RunStepSerializer::class)
 public sealed interface RunStep {
     /**
      * The identifier of the run step, which can be referenced in API endpoints.
@@ -84,6 +82,7 @@ public sealed interface RunStep {
 
 @BetaOpenAI
 @Serializable
+@SerialName("message_creation")
 public data class MessageCreationStep(
     /**
      * The identifier of the run step, which can be referenced in API endpoints.
@@ -154,10 +153,11 @@ public data class MessageCreationStep(
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
     @SerialName("metadata") override val metadata: Map<String, String>? = null,
-): RunStep
+) : RunStep
 
 @BetaOpenAI
 @Serializable
+@SerialName("tool_calls")
 public data class ToolCallsStep(
     /**
      * The identifier of the run step, which can be referenced in API endpoints.
@@ -228,4 +228,4 @@ public data class ToolCallsStep(
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
     @SerialName("metadata") override val metadata: Map<String, String>? = null,
-): RunStep
+) : RunStep

@@ -2,14 +2,10 @@ package com.aallam.openai.api.run
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.file.FileId
-import com.aallam.openai.api.run.internal.CodeInterpreterToolCallOutputSerializer
-import com.aallam.openai.api.run.internal.RunStepDetailsSerializer
-import com.aallam.openai.api.run.internal.ToolCallStepSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @BetaOpenAI
-@Serializable(with = RunStepDetailsSerializer::class)
 public sealed interface RunStepDetails
 
 /**
@@ -17,6 +13,7 @@ public sealed interface RunStepDetails
  */
 @BetaOpenAI
 @Serializable
+@SerialName("message_creation")
 public data class MessageCreationStepDetails(
     /**
      * The message creation details.
@@ -40,6 +37,7 @@ public data class MessageCreation(
  */
 @BetaOpenAI
 @Serializable
+@SerialName("tool_calls")
 public data class ToolCallStepDetails(
     /**
      * An array of tool calls the run step was involved in.
@@ -49,10 +47,11 @@ public data class ToolCallStepDetails(
     @SerialName("tool_calls") public val toolCalls: List<ToolCallStep>? = null,
 ) : RunStepDetails
 
-@Serializable(with = ToolCallStepSerializer::class)
+@Serializable
 public sealed interface ToolCallStep {
 
     @Serializable
+    @SerialName("code_interpreter")
     public data class CodeInterpreter(
         /**
          * The ID of the tool call.
@@ -65,6 +64,7 @@ public sealed interface ToolCallStep {
     ) : ToolCallStep
 
     @Serializable
+    @SerialName("retrieval")
     public data class RetrievalTool(
         /**
          * The ID of the tool call object.
@@ -77,6 +77,7 @@ public sealed interface ToolCallStep {
     ) : ToolCallStep
 
     @Serializable
+    @SerialName("function")
     public data class FunctionTool(
         /**
          * The name of the function.
@@ -109,32 +110,35 @@ public data class CodeInterpreterToolCall(
 
 )
 
-@Serializable(with = CodeInterpreterToolCallOutputSerializer::class)
-public sealed interface CodeInterpreterToolCallOutput
-
-/**
- * Code interpreter log output.
- *
- * Text output from the Code Interpreter tool call as part of a run step.
- */
 @Serializable
-public data class CodeInterpreterToolCallLogOutput(
+public sealed interface CodeInterpreterToolCallOutput {
     /**
-     * The text output from the Code Interpreter tool call.
+     * Code interpreter log output.
+     *
+     * Text output from the Code Interpreter tool call as part of a run step.
      */
-    @SerialName("text") public val text: String,
-) : CodeInterpreterToolCallOutput
+    @Serializable
+    @SerialName("logs")
+    public data class Logs(
+        /**
+         * The text output from the Code Interpreter tool call.
+         */
+        @SerialName("text") public val text: String,
+    ) : CodeInterpreterToolCallOutput
 
-/**
- * Code interpreter image output
- */
-@Serializable
-public data class CodeInterpreterToolCallImageOutput(
     /**
-     * The image output from the Code Interpreter tool call.
+     * Code interpreter image output
      */
-    @SerialName("image") public val image: CodeInterpreterImage,
-) : CodeInterpreterToolCallOutput
+    @Serializable
+    @SerialName("image")
+    public data class Image(
+        /**
+         * The image output from the Code Interpreter tool call.
+         */
+        @SerialName("image") public val image: CodeInterpreterImage,
+    ) : CodeInterpreterToolCallOutput
+
+}
 
 /**
  * Code interpreter image

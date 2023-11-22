@@ -1,5 +1,6 @@
 package com.aallam.openai.api.thread
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.file.FileId
 import kotlinx.serialization.SerialName
@@ -8,6 +9,7 @@ import kotlinx.serialization.Serializable
 /**
  * A message in a thread.
  */
+@BetaOpenAI
 @Serializable
 public data class ThreadMessage(
     /**
@@ -36,6 +38,7 @@ public data class ThreadMessage(
     @SerialName("metadata") public val metadata: Map<String, String>? = null,
 )
 
+@BetaOpenAI
 public class ThreadMessageBuilder {
 
     /**
@@ -77,5 +80,6 @@ public class ThreadMessageBuilder {
 /**
  * Creates a [ThreadMessage] instance using the provided builder block.
  */
+@BetaOpenAI
 public fun threadMessage(block: ThreadMessageBuilder.() -> Unit): ThreadMessage =
     ThreadMessageBuilder().apply(block).build()

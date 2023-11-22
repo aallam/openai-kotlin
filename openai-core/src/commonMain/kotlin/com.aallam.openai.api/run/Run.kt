@@ -53,7 +53,7 @@ public data class Run(
     /**
      * The Unix timestamp (in seconds) for when the run will expire.
      */
-    @SerialName("expires_at") val expiresAt: Int,
+    @SerialName("expires_at") val expiresAt: Int? = null,
 
     /**
      * The Unix timestamp (in seconds) for when the run was started.

@@ -5,6 +5,9 @@ import com.aallam.openai.api.file.FileId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * A run step object.
+ */
 @BetaOpenAI
 public sealed interface RunStepDetails
 
@@ -47,9 +50,11 @@ public data class ToolCallStepDetails(
     @SerialName("tool_calls") public val toolCalls: List<ToolCallStep>? = null,
 ) : RunStepDetails
 
+@BetaOpenAI
 @Serializable
 public sealed interface ToolCallStep {
 
+    @BetaOpenAI
     @Serializable
     @SerialName("code_interpreter")
     public data class CodeInterpreter(
@@ -63,6 +68,7 @@ public sealed interface ToolCallStep {
         @SerialName("code_interpreter") public val codeInterpreter: CodeInterpreterToolCall,
     ) : ToolCallStep
 
+    @BetaOpenAI
     @Serializable
     @SerialName("retrieval")
     public data class RetrievalTool(
@@ -76,6 +82,7 @@ public sealed interface ToolCallStep {
         @SerialName("retrieval") public val retrieval: Map<String, String>,
     ) : ToolCallStep
 
+    @BetaOpenAI
     @Serializable
     @SerialName("function")
     public data class FunctionTool(
@@ -95,6 +102,7 @@ public sealed interface ToolCallStep {
     ) : ToolCallStep
 }
 
+@BetaOpenAI
 @Serializable
 public data class CodeInterpreterToolCall(
     /**
@@ -110,6 +118,7 @@ public data class CodeInterpreterToolCall(
 
 )
 
+@BetaOpenAI
 @Serializable
 public sealed interface CodeInterpreterToolCallOutput {
     /**
@@ -117,6 +126,7 @@ public sealed interface CodeInterpreterToolCallOutput {
      *
      * Text output from the Code Interpreter tool call as part of a run step.
      */
+    @BetaOpenAI
     @Serializable
     @SerialName("logs")
     public data class Logs(
@@ -129,6 +139,7 @@ public sealed interface CodeInterpreterToolCallOutput {
     /**
      * Code interpreter image output
      */
+    @BetaOpenAI
     @Serializable
     @SerialName("image")
     public data class Image(
@@ -143,6 +154,7 @@ public sealed interface CodeInterpreterToolCallOutput {
 /**
  * Code interpreter image
  */
+@BetaOpenAI
 @Serializable
 public data class CodeInterpreterImage(
     /**

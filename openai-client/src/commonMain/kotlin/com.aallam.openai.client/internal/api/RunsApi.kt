@@ -46,7 +46,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         }
     }
 
-    override suspend fun listRuns(
+    override suspend fun runs(
         threadId: ThreadId,
         limit: Int?,
         order: SortOrder?,
@@ -77,10 +77,10 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         }
     }
 
-    override suspend fun cancel(threadId: ThreadId, runId: String): Run {
+    override suspend fun cancel(threadId: ThreadId, runId: RunId): Run {
         return requester.perform {
             it.post {
-                url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId}/cancel")
+                url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}/cancel")
                 beta("assistants", 1)
             }.body()
         }

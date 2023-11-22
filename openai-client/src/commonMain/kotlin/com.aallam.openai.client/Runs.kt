@@ -56,7 +56,7 @@ public interface Runs {
      * can include `before = RunId("obj_foo")` in order to fetch the previous page of the list.
      */
     @BetaOpenAI
-    public suspend fun listRuns(
+    public suspend fun runs(
         threadId: ThreadId,
         limit: Int? = null,
         order: SortOrder? = null,
@@ -79,7 +79,7 @@ public interface Runs {
      * @param runId the ID of the run to cancel
      */
     @BetaOpenAI
-    public suspend fun cancel(threadId: ThreadId, runId: String): Run
+    public suspend fun cancel(threadId: ThreadId, runId: RunId): Run
 
     /**
      * Create a thread and run it in one request.

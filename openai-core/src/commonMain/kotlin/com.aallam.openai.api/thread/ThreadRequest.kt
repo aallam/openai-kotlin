@@ -1,10 +1,15 @@
 package com.aallam.openai.api.thread
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.core.Role
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Represents a thread that contains messages.
+ */
+@BetaOpenAI
 @Serializable
 public data class ThreadRequest(
     /**
@@ -23,6 +28,7 @@ public data class ThreadRequest(
 /**
  * A thread request builder.
  */
+@BetaOpenAI
 @OpenAIDsl
 public class ThreadRequestBuilder {
 
@@ -57,12 +63,14 @@ public class ThreadRequestBuilder {
 /**
  * Creates a [ThreadRequest] instance using the provided builder block.
  */
+@BetaOpenAI
 public fun threadRequest(block: ThreadRequestBuilder.() -> Unit): ThreadRequest =
     ThreadRequestBuilder().apply(block).build()
 
 /**
  * A list of messages in a thread.
  */
+@BetaOpenAI
 @OpenAIDsl
 public class ThreadMessagesBuilder {
 

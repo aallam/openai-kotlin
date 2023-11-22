@@ -1,11 +1,13 @@
 package com.aallam.openai.api.thread
 
+import com.aallam.openai.api.BetaOpenAI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
  * Represents a thread that contains messages.
  */
+@BetaOpenAI
 @Serializable
 public data class Thread(
     /**

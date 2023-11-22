@@ -1,9 +1,11 @@
 package com.aallam.openai.api.run
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.chat.ToolCall
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@BetaOpenAI
 @Serializable
 public sealed interface RequiredAction {
 

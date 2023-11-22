@@ -43,4 +43,3 @@ public sealed interface AssistantTool {
     ) : AssistantTool
 
 }
-

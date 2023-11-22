@@ -20,4 +20,3 @@ public data class LastError(
      */
     @SerialName("message") public val message: String,
 )
-

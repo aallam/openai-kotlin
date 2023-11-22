@@ -17,7 +17,7 @@ public interface Threads {
      * @param request thread creation request.
      */
     @BetaOpenAI
-    public suspend fun thread(request: ThreadRequest): Thread
+    public suspend fun thread(request: ThreadRequest? = null): Thread
 
     /**
      * Retrieve a thread.

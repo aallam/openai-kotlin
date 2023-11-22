@@ -1,5 +1,6 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.message.Message
@@ -11,6 +12,7 @@ import com.aallam.openai.api.thread.ThreadId
 /**
  * Create messages within threads
  */
+@BetaOpenAI
 public interface Messages {
 
     /**
@@ -19,6 +21,7 @@ public interface Messages {
      * @param threadId the identifier of the thread
      * @param message message creation request
      */
+    @BetaOpenAI
     public suspend fun message(threadId: ThreadId, message: MessageRequest): Message
 
     /**
@@ -27,6 +30,7 @@ public interface Messages {
      * @param threadId the identifier of the thread
      * @param messageId the identifier of the message
      */
+    @BetaOpenAI
     public suspend fun message(threadId: ThreadId, messageId: MessageId): Message
 
     /**
@@ -38,6 +42,7 @@ public interface Messages {
      * This can be useful for storing additional information about the object in a structured format.
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
+    @BetaOpenAI
     public suspend fun message(threadId: ThreadId, messageId: MessageId, metadata: Map<String, String>? = null): Message
 
     /**
@@ -54,6 +59,7 @@ public interface Messages {
      * For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call
      * can include `before = MessageId("obj_foo")` in order to fetch the previous page of the list.
      */
+    @BetaOpenAI
     public suspend fun messages(
         threadId: ThreadId,
         limit: Int? = null,
@@ -69,6 +75,7 @@ public interface Messages {
      * @param messageId the ID of the message the file belongs to
      * @param fileId the ID of the file being retrieved
      */
+    @BetaOpenAI
     public suspend fun messageFile(threadId: ThreadId, messageId: MessageId, fileId: FileId): MessageFile
 
     /**
@@ -85,6 +92,7 @@ public interface Messages {
      * For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call
      * can include `before = FileId("obj_foo")` in order to fetch the previous page of the list.
      */
+    @BetaOpenAI
     public suspend fun messageFiles(
         threadId: ThreadId,
         messageId: MessageId,
@@ -92,5 +100,5 @@ public interface Messages {
         order: SortOrder? = null,
         after: FileId? = null,
         before: FileId? = null,
-    )
+    ): List<MessageFile>
 }

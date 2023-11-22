@@ -21,12 +21,14 @@ import kotlinx.serialization.json.putJsonObject
 internal class ThreadsApi(val requester: HttpRequester) : Threads {
 
     @BetaOpenAI
-    override suspend fun thread(request: ThreadRequest): Thread {
+    override suspend fun thread(request: ThreadRequest?): Thread {
         return requester.perform {
             it.post {
                 url(path = ApiPath.Threads)
-                setBody(request)
-                contentType(ContentType.Application.Json)
+                request?.let { req ->
+                    setBody(req)
+                    contentType(ContentType.Application.Json)
+                }
                 beta("assistants", 1)
             }.body()
         }

@@ -19,4 +19,5 @@ internal object ApiPath {
     const val Moderations = "moderations"
     const val FineTuningJobs = "fine_tuning/jobs"
     const val Assistants = "assistants"
+    const val Threads = "threads"
 }

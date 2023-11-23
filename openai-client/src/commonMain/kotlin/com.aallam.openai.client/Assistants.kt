@@ -54,17 +54,17 @@ public interface Assistants {
      * and [SortOrder.Descending] for descending order.
      * @param after a cursor for use in pagination. `after` is an object ID that defines your place in the list.
      * For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can
-     * include `after="obj_foo"` in order to fetch the next page of the list.
+     * include `after = AssistantId("obj_foo")` in order to fetch the next page of the list.
      * @param before a cursor for use in pagination. Before is an object ID that defines your place in the list.
      * For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can
-     * include `before="obj_foo"` in order to fetch the previous page of the list.
+     * include `before = AssistantId("obj_foo")` in order to fetch the previous page of the list.
      */
     @BetaOpenAI
     public suspend fun assistants(
         limit: Int? = null,
         order: SortOrder? = null,
-        after: String? = null,
-        before: String? = null,
+        after: AssistantId? = null,
+        before: AssistantId? = null,
     ): List<Assistant>
 
     /**
@@ -104,17 +104,17 @@ public interface Assistants {
      * and [SortOrder.Descending] for descending order.
      * @param after a cursor for use in pagination. `after` is an object ID that defines your place in the list.
      * For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can
-     * include `after="obj_foo"` in order to fetch the next page of the list.
+     * include `after = FileId("obj_foo")` in order to fetch the next page of the list.
      * @param before a cursor for use in pagination. Before is an object ID that defines your place in the list.
      * For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can
-     * include `before="obj_foo"` in order to fetch the previous page of the list.
+     * include `before = FileId("obj_foo")` in order to fetch the previous page of the list.
      */
     @BetaOpenAI
     public suspend fun files(
         id: AssistantId,
         limit: Int? = null,
         order: SortOrder? = null,
-        after: String? = null,
-        before: String? = null,
+        after: FileId? = null,
+        before: FileId? = null,
     ): List<AssistantFile>
 }

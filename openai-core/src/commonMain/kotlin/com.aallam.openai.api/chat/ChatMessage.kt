@@ -480,8 +480,8 @@ public class ToolCallsBuilder {
 
     private val toolCalls = mutableListOf<ToolCall>()
 
-    public fun toolCall(block: ToolCallBuilder.() -> Unit) {
-        this.toolCalls += ToolCallBuilder().apply(block).build()
+    public fun function(block: FunctionToolCallBuilder.() -> Unit) {
+        this.toolCalls += FunctionToolCallBuilder().apply(block).build()
     }
 
     public fun build(): List<ToolCall> {

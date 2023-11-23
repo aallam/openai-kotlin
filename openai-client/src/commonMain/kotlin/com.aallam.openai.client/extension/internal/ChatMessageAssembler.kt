@@ -1,7 +1,6 @@
 package com.aallam.openai.client.extension.internal
 
 import com.aallam.openai.api.chat.*
-import com.aallam.openai.api.chat.internal.ToolType
 
 /**
  * A class to help assemble chat messages from chat chunks.
@@ -25,7 +24,9 @@ internal class ChatMessageAssembler {
                 call.argumentsOrNull?.let { chatFuncArgs.append(it) }
             }
             toolCalls?.onEach { toolCall ->
-                val assembler = toolCallsAssemblers.getOrPut(toolCall.index) { ToolCallAssembler() }
+                toolCall as? ToolCall.Function ?: error("Tool call is not a function")
+                val index = toolCall.index ?: error("index is required in case of tool calls from chat stream variant")
+                val assembler = toolCallsAssemblers.getOrPut(index) { ToolCallAssembler() }
                 assembler.merge(toolCall)
             }
         }
@@ -51,15 +52,13 @@ internal class ChatMessageAssembler {
 internal class ToolCallAssembler {
     private var toolIndex: Int? = null
     private var toolId: ToolId? = null
-    private var toolType: ToolType? = null
     private var funcName: String? = null
     private val funcArgs = StringBuilder()
 
-    fun merge(toolCall: ToolCall): ToolCallAssembler {
-        toolCall.indexOrNull?.let { toolIndex = it }
-        toolCall.idOrNull?.let { toolId = it }
-        toolCall.typeOrNull?.let { toolType = it }
-        toolCall.functionOrNull?.let { call ->
+    fun merge(toolCall: ToolCall.Function): ToolCallAssembler {
+        toolCall.index?.let { toolIndex = it }
+        toolCall.id?.let { toolId = it }
+        toolCall.function?.let { call ->
             call.nameOrNull?.let { funcName = it }
             call.argumentsOrNull?.let { funcArgs.append(it) }
         }
@@ -69,10 +68,9 @@ internal class ToolCallAssembler {
     /**
      * Builds and returns the assembled chat message.
      */
-    fun build(): ToolCall = toolCall {
+    fun build(): ToolCall = function {
         this.index = toolIndex
         this.id = toolId
-        this.type = toolType
         if (funcName?.isNotEmpty() == true || funcArgs.isNotEmpty()) {
             this.function = FunctionCall(funcName, funcArgs.toString())
         }

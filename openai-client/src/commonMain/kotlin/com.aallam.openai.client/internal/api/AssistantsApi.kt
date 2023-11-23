@@ -89,16 +89,22 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         }
     }
 
+
     @BetaOpenAI
-    override suspend fun assistants(limit: Int?, order: SortOrder?, after: String?, before: String?): List<Assistant> {
+    override suspend fun assistants(
+        limit: Int?,
+        order: SortOrder?,
+        after: AssistantId?,
+        before: AssistantId?
+    ): List<Assistant> {
         return requester.perform<ListResponse<Assistant>> { client ->
             client.get {
                 url {
                     path(ApiPath.Assistants)
                     limit?.let { parameter("limit", it) }
                     order?.let { parameter("order", it.order) }
-                    after?.let { parameter("after", it) }
-                    before?.let { parameter("before", it) }
+                    after?.let { parameter("after", it.id) }
+                    before?.let { parameter("before", it.id) }
                 }
                 beta("assistants", 1)
             }.body()
@@ -133,8 +139,8 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         id: AssistantId,
         limit: Int?,
         order: SortOrder?,
-        after: String?,
-        before: String?
+        after: FileId?,
+        before: FileId?,
     ): List<AssistantFile> {
         return requester.perform<ListResponse<AssistantFile>> { client ->
             client.get {
@@ -142,8 +148,8 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                     path("${ApiPath.Assistants}/${id.id}/files")
                     limit?.let { parameter("limit", it) }
                     order?.let { parameter("order", it.order) }
-                    after?.let { parameter("after", it) }
-                    before?.let { parameter("before", it) }
+                    after?.let { parameter("after", it.id) }
+                    before?.let { parameter("before", it.id) }
                 }
                 beta("assistants", 1)
             }.body()

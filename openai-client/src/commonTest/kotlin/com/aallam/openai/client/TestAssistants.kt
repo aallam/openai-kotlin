@@ -1,6 +1,6 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.assistant.CodeInterpreterTool
+import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.model.ModelId
 import kotlin.test.Test
@@ -14,7 +14,7 @@ class TestAssistants : TestOpenAI() {
     fun listAssistants() = test {
         val request = assistantRequest {
             name = "Math Tutor"
-            tools = listOf(CodeInterpreterTool)
+            tools = listOf(AssistantTool.CodeInterpreter)
             model = ModelId("gpt-4")
         }
         val assistant = openAI.assistant(request)

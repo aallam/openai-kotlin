@@ -24,4 +24,7 @@ internal class OpenAIApi(
     Audio by AudioApi(requester),
     FineTuning by FineTuningApi(requester),
     Assistants by AssistantsApi(requester),
+    Threads by ThreadsApi(requester),
+    Runs by RunsApi(requester),
+    Messages by MessagesApi(requester),
     Closeable by requester

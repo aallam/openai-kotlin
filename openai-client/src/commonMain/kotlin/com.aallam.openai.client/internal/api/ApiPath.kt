@@ -6,6 +6,7 @@ package com.aallam.openai.client.internal.api
 internal object ApiPath {
     const val Translation = "audio/translations"
     const val Transcription = "audio/transcriptions"
+    const val Speech = "audio/speech"
     const val ChatCompletions = "chat/completions"
     const val Completions = "completions"
     const val Edits = "edits"

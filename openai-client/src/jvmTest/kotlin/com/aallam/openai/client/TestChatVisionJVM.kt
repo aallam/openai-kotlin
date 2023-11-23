@@ -40,4 +40,5 @@ class TestChatVisionJVM : TestOpenAI() {
         val content = response.choices.first().message.content.orEmpty()
         assertNotNull(content)
     }
+
 }

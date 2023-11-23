@@ -24,8 +24,8 @@ internal class ChatMessageAssembler {
                 call.argumentsOrNull?.let { chatFuncArgs.append(it) }
             }
             toolCalls?.onEach { toolCall ->
-                toolCall as? ToolCall.Function ?: error("Tool call is not a function")
-                val index = toolCall.index ?: error("index is required in case of tool calls from chat stream variant")
+                toolCall as? ToolCallChunk ?: error("Tool call is not a function")
+                val index = toolCall.index
                 val assembler = toolCallsAssemblers.getOrPut(index) { ToolCallAssembler() }
                 assembler.merge(toolCall)
             }
@@ -50,13 +50,11 @@ internal class ChatMessageAssembler {
 }
 
 internal class ToolCallAssembler {
-    private var toolIndex: Int? = null
     private var toolId: ToolId? = null
     private var funcName: String? = null
     private val funcArgs = StringBuilder()
 
-    fun merge(toolCall: ToolCall.Function): ToolCallAssembler {
-        toolCall.index?.let { toolIndex = it }
+    fun merge(toolCall: ToolCallChunk): ToolCallAssembler {
         toolCall.id?.let { toolId = it }
         toolCall.function?.let { call ->
             call.nameOrNull?.let { funcName = it }
@@ -69,7 +67,6 @@ internal class ToolCallAssembler {
      * Builds and returns the assembled chat message.
      */
     fun build(): ToolCall = function {
-        this.index = toolIndex
         this.id = toolId
         if (funcName?.isNotEmpty() == true || funcArgs.isNotEmpty()) {
             this.function = FunctionCall(funcName, funcArgs.toString())

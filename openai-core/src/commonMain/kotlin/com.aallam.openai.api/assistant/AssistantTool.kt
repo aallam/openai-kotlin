@@ -17,7 +17,7 @@ public sealed interface AssistantTool {
     @BetaOpenAI
     @Serializable
     @SerialName("code_interpreter")
-    public object CodeInterpreter : AssistantTool
+    public data object CodeInterpreter : AssistantTool
 
 
     /**
@@ -26,7 +26,7 @@ public sealed interface AssistantTool {
     @BetaOpenAI
     @Serializable
     @SerialName("retrieval")
-    public object RetrievalTool : AssistantTool
+    public data object RetrievalTool : AssistantTool
 
 
     /**

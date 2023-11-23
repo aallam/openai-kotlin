@@ -15,7 +15,7 @@ class TestMessages : TestOpenAI() {
             role = Role.User
             content = "How does AI work? Explain it in simple terms."
         }
-        val message = openAI.message(threadId = thread.id, message = messageRequest)
+        val message = openAI.message(threadId = thread.id, request = messageRequest)
         assertEquals(thread.id, message.threadId)
         assertEquals(messageRequest.role, message.role)
         assertEquals(messageRequest.content, (message.content.first() as MessageContent.Text).text.value)

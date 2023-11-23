@@ -1,10 +1,12 @@
-# Chat with Function Call
+# Chat with Function Call (deprecated)
+
+> Function calls are deprecated. Please use [Chat & Tool Calls](ChatToolCalls.md) instead.
 
 This guide is designed to demonstrate the interaction with OpenAI API using the Kotlin language to execute a chat completion request with function calls.
 
 ## Prerequisites
 
-- The OpenAI Kotlin SDK installed.
+- OpenAI API Client for Kotlin installed.
 - An API key from OpenAI.
 
 ## Overview
@@ -27,7 +29,7 @@ val openAI = OpenAI(token)
 Specify the model to use for the chat request.
 
 ```kotlin
-val modelId = ModelId("gpt-3.5-turbo")
+val modelId = ModelId("gpt-3.5-turbo-0613")
 ```
 
 ### Defining the Function
@@ -166,7 +168,7 @@ suspend fun main() {
     val token = System.getenv("OPENAI_API_KEY")
     val openAI = OpenAI(token)
 
-    val modelId = ModelId("gpt-3.5-turbo")
+    val modelId = ModelId("gpt-3.5-turbo-0613")
     val chatMessages = mutableListOf(
         ChatMessage(
             role = ChatRole.User,

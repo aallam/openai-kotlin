@@ -112,7 +112,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
     }
 
     @BetaOpenAI
-    override suspend fun create(assistantId: AssistantId, fileId: FileId): AssistantFile {
+    override suspend fun createFile(assistantId: AssistantId, fileId: FileId): AssistantFile {
         val request = buildJsonObject { put("file", fileId.id) }
         return requester.perform {
             it.post {

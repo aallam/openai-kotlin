@@ -82,10 +82,15 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Moderations](guides/GettingStarted.md#moderations)
 - [Audio](guides/GettingStarted.md#audio)
 
-#### Legacy
-- [Completions](guides/GettingStarted.md#completions)
+#### Beta
+
+- [Assistants](guides/GettingStarted.md#assistants)
+- [Threads](guides/GettingStarted.md#threads)
+- [Messages](guides/GettingStarted.md#messages)
+- [Runs](guides/GettingStarted.md#runs)
 
 #### Deprecated
+- [Completions](guides/GettingStarted.md#completions)
 - [Fine-tunes](guides/GettingStarted.md#fine-tunes)
 - [Edits](guides/GettingStarted.md#edits)
 
@@ -96,8 +101,9 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 Get started and understand more about how to use OpenAI API client for Kotlin with these guides:
 
 - [Getting Started](guides/GettingStarted.md)
-- [Chat with Function Call](guides/ChatFunctionCall.md)
+- [Chat & Function Call](guides/ChatToolCalls.md)
 - [FileSource Guide](guides/FileSource.md)
+- [Assistants](guides/Assistants.md)
 
 ## ℹ️ Sample apps
 

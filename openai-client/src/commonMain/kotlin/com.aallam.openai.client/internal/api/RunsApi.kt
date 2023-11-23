@@ -24,7 +24,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         }
     }
 
-    override suspend fun retrieveRun(threadId: ThreadId, runId: RunId): Run {
+    override suspend fun getRun(threadId: ThreadId, runId: RunId): Run {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}")
@@ -33,7 +33,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         }
     }
 
-    override suspend fun modifyRun(threadId: ThreadId, runId: RunId, metadata: Map<String, String>?): Run {
+    override suspend fun updateRun(threadId: ThreadId, runId: RunId, metadata: Map<String, String>?): Run {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}")
@@ -86,7 +86,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         }
     }
 
-    override suspend fun createThreadRun(request: RunRequest): Run {
+    override suspend fun createThreadRun(request: ThreadRunRequest): Run {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/runs")

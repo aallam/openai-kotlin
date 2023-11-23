@@ -29,10 +29,10 @@ public interface Runs {
      * @param runId The ID of the run to retrieve
      */
     @BetaOpenAI
-    public suspend fun retrieveRun(threadId: ThreadId, runId: RunId): Run
+    public suspend fun getRun(threadId: ThreadId, runId: RunId): Run
 
     /**
-     * Retrieves a run.
+     * Modifies a run.
      *
      * @param threadId the ID of the thread to run
      * @param runId the ID of the run to retrieve
@@ -41,7 +41,7 @@ public interface Runs {
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
     @BetaOpenAI
-    public suspend fun modifyRun(threadId: ThreadId, runId: RunId, metadata: Map<String, String>? = null): Run
+    public suspend fun updateRun(threadId: ThreadId, runId: RunId, metadata: Map<String, String>? = null): Run
 
     /**
      * Returns a list of runs belonging to a thread.
@@ -87,7 +87,7 @@ public interface Runs {
      * @param request request for a thread run
      */
     @BetaOpenAI
-    public suspend fun createThreadRun(request: RunRequest): Run
+    public suspend fun createThreadRun(request: ThreadRunRequest): Run
 
     /**
      * Retrieves a run step.

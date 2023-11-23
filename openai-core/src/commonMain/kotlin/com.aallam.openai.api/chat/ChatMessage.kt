@@ -1,10 +1,7 @@
 package com.aallam.openai.api.chat
 
 import com.aallam.openai.api.OpenAIDsl
-import com.aallam.openai.api.chat.internal.ContentPartSerializer
-import com.aallam.openai.api.chat.internal.ContentPartsSerializer
 import com.aallam.openai.api.chat.internal.ContentSerializer
-import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline
@@ -189,16 +186,15 @@ public value class TextContent(public val content: String) : Content
 /**
  *  The chat message content as a list of content parts.
  */
-@Serializable(with = ContentPartsSerializer::class)
-public data class ListContent(public val content: List<ContentPart>) : Content
+@JvmInline
+@Serializable
+public value class ListContent(public val content: List<ContentPart>) : Content
 
 /**
  * Represents a chat message part.
  */
-@Serializable(with = ContentPartSerializer::class)
-public sealed interface ContentPart {
-    public val type: String
-}
+@Serializable
+public sealed interface ContentPart
 
 /**
  * Text content part.
@@ -206,11 +202,8 @@ public sealed interface ContentPart {
  * @param text the text content.
  */
 @Serializable
-public data class TextPart(@SerialName("text") val text: String) : ContentPart {
-    @SerialName("type")
-    @Required
-    override val type: String = "text"
-}
+@SerialName("text")
+public data class TextPart(@SerialName("text") val text: String) : ContentPart
 
 /**
  * Image content part.
@@ -218,12 +211,10 @@ public data class TextPart(@SerialName("text") val text: String) : ContentPart {
  * @param imageUrl the image url.
  */
 @Serializable
+@SerialName("image")
 public data class ImagePart(
     @SerialName("image_url") val imageUrl: ImageURL,
 ) : ContentPart {
-    @SerialName("type")
-    @Required
-    override val type: String = "image"
 
     /**
      * Image content part.

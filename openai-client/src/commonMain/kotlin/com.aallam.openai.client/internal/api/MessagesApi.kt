@@ -17,11 +17,11 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 
 internal class MessagesApi(val requester: HttpRequester) : Messages {
-    override suspend fun message(threadId: ThreadId, message: MessageRequest): Message {
+    override suspend fun message(threadId: ThreadId, request: MessageRequest): Message {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages")
-                setBody(message)
+                setBody(request)
                 contentType(ContentType.Application.Json)
                 beta("assistants", 1)
             }.body()

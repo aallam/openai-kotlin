@@ -23,14 +23,14 @@ class TestRuns : TestOpenAI() {
         val run = openAI.createRun(threadId = thread.id, request = request)
         assertEquals(thread.id, run.threadId)
 
-        var retrieved = openAI.retrieveRun(threadId = thread.id, runId = run.id)
+        var retrieved = openAI.getRun(threadId = thread.id, runId = run.id)
         assertEquals(run.id, retrieved.id)
 
         val canceled = openAI.cancel(threadId = thread.id, runId = run.id)
         assertEquals(run.id, canceled.id)
 
         val metadata = mapOf("modified" to "true", "user" to "aallam")
-        val modified = openAI.modifyRun(threadId = thread.id, runId = run.id, metadata = metadata)
+        val modified = openAI.updateRun(threadId = thread.id, runId = run.id, metadata = metadata)
         assertEquals(metadata, modified.metadata)
 
         val runs = openAI.runs(threadId = thread.id)

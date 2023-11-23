@@ -12,17 +12,14 @@ public sealed interface ToolCall {
 
     /**
      * Tool call.
-     * [index] is required in the case of chat stream variant.
      */
     @Serializable
     @SerialName("function")
     public data class Function(
-        /** Tool call index. Required in the case of chat stream variant **/
-        @SerialName("index") val index: Int? = null,
         /** The ID of the tool call. **/
-        @SerialName("id") val id: ToolId? = null,
+        @SerialName("id") val id: ToolId,
         /** The function that the model called. **/
-        @SerialName("function") val function: FunctionCall? = null,
+        @SerialName("function") val function: FunctionCall,
     ) : ToolCall
 }
 
@@ -39,9 +36,6 @@ public fun function(block: FunctionToolCallBuilder.() -> Unit): ToolCall.Functio
 @OpenAIDsl
 public class FunctionToolCallBuilder {
 
-    /** Tool call index. Required in the case of chat stream variant **/
-    public var index: Int? = null
-
     /** The ID of the tool call. **/
     public var id: ToolId? = null
 
@@ -52,8 +46,7 @@ public class FunctionToolCallBuilder {
      * Create [ToolCall] instance.
      */
     public fun build(): ToolCall.Function = ToolCall.Function(
-        index = index,
-        id = id,
-        function = function,
+        id = requireNotNull(id) { "id is required" },
+        function = requireNotNull(function) { "function is required" },
     )
 }

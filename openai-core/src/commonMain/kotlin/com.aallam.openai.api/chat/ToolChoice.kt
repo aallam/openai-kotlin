@@ -1,7 +1,6 @@
 package com.aallam.openai.api.chat
 
 import com.aallam.openai.api.chat.internal.ToolChoiceSerializer
-import com.aallam.openai.api.chat.internal.ToolType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline
@@ -18,6 +17,7 @@ public sealed interface ToolChoice {
      * - `"auto"` means the model can pick between generating a message or calling a function.
      */
     @JvmInline
+    @Serializable
     public value class Mode(public val value: String) : ToolChoice
 
     /**

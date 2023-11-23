@@ -1,18 +1,8 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.*
-import com.aallam.openai.api.chat.internal.ToolType
 import com.aallam.openai.api.model.ModelId
-import com.aallam.openai.client.TestOpenAI
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.put
 import okio.FileSystem
-import okio.Okio
 import okio.Path.Companion.toPath
 import kotlin.test.*
 

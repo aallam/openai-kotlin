@@ -1,4 +1,4 @@
-package com.aallam.openai.api.chat.internal
+package com.aallam.openai.api.chat
 
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline

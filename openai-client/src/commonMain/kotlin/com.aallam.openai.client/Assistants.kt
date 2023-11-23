@@ -75,7 +75,7 @@ public interface Assistants {
      * Useful for tools like retrieval and code interpreter that can access files.
      */
     @BetaOpenAI
-    public suspend fun create(assistantId: AssistantId, fileId: FileId): AssistantFile
+    public suspend fun createFile(assistantId: AssistantId, fileId: FileId): AssistantFile
 
     /**
      * Retrieves an [AssistantFile].

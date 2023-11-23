@@ -19,10 +19,10 @@ public interface Messages {
      * Create a message.
      *
      * @param threadId the identifier of the thread
-     * @param message message creation request
+     * @param request message creation request
      */
     @BetaOpenAI
-    public suspend fun message(threadId: ThreadId, message: MessageRequest): Message
+    public suspend fun message(threadId: ThreadId, request: MessageRequest): Message
 
     /**
      * Retrieve a message.

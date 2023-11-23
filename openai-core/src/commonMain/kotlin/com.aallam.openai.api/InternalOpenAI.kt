@@ -1,7 +1,7 @@
 package com.aallam.openai.api
 
 /**
- * API marked with this annotation is internal, and it is not intended to be used outside OpenAI API client.
+ * The API marked with this annotation is internal, and it is not intended to be used outside OpenAI API client.
  * It could be modified or removed without any notice. Using it could cause undefined behaviour and/or any unexpected
  * effects.
  */

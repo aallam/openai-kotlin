@@ -5,6 +5,7 @@
 - **Chat**: add tool calls (#256)
 - **Chat**: add vision feature (#258)
 - **Config**: adding ktor engine config to support Kotlin Scripting (#261)
+- ***Audio**: add speech-to-text (#263)
 
 #### Beta
 - **Assistants**: api implementation (#259)

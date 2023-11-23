@@ -6,7 +6,9 @@ import com.aallam.openai.client.Audio
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
+import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
+import io.ktor.http.*
 
 /**
  * Implementation of [Audio].
@@ -75,5 +77,15 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
         request.prompt?.let { prompt -> append(key = "prompt", value = prompt) }
         request.responseFormat?.let { append(key = "response_format", value = it) }
         request.temperature?.let { append(key = "temperature", value = it) }
+    }
+
+    override suspend fun speech(request: SpeechRequest): ByteArray {
+        return requester.perform {
+            it.post{
+                url(ApiPath.Speech)
+                setBody(request)
+                contentType(ContentType.Application.Json)
+            }
+        }
     }
 }

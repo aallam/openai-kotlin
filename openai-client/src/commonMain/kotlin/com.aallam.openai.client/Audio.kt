@@ -1,9 +1,6 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.audio.Transcription
-import com.aallam.openai.api.audio.TranscriptionRequest
-import com.aallam.openai.api.audio.Translation
-import com.aallam.openai.api.audio.TranslationRequest
+import com.aallam.openai.api.audio.*
 
 /**
  * Learn how to turn audio into text.
@@ -19,4 +16,9 @@ public interface Audio {
      * Translates audio into English.
      */
     public suspend fun translation(request: TranslationRequest): Translation
+
+    /**
+     * Generates audio from the input text.
+     */
+    public suspend fun speech(request: SpeechRequest): ByteArray
 }

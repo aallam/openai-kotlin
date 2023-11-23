@@ -1,12 +1,12 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.audio.AudioResponseFormat
-import com.aallam.openai.api.audio.transcriptionRequest
-import com.aallam.openai.api.audio.translationRequest
+import com.aallam.openai.api.audio.*
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.TestFileSystem
 import com.aallam.openai.client.internal.testFilePath
+import okio.FileSystem
+import okio.Path.Companion.toPath
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -94,5 +94,16 @@ class TestAudio : TestOpenAI() {
         assertEquals(translation.language, "english")
         assertEquals(translation.duration!!, 42.06, absoluteTolerance = 0.1)
         assertTrue { translation.segments?.isNotEmpty() ?: false }
+    }
+
+    @Test
+    fun speech() = test {
+        val request = speechRequest {
+            model = ModelId("tts-1")
+            input = "The quick brown fox jumped over the lazy dog."
+            voice = Voice.Alloy
+        }
+        val audio = openAI.speech(request)
+        assertTrue { audio.isNotEmpty() }
     }
 }

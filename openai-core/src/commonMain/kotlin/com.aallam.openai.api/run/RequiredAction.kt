@@ -5,17 +5,19 @@ import com.aallam.openai.api.chat.ToolCall
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Details on the action required to continue the run.
+ */
 @BetaOpenAI
 @Serializable
-public data class RequiredAction(
-    @SerialName("submit_tool_outputs")
-    public val submitToolOutputs: SubmitToolOutputs? = null,
-) {
+public sealed interface RequiredAction {
+
     @Serializable
-    public data class SubmitToolOutputs(
+    @SerialName("submit_tool_outputs")
+    public class SubmitToolOutputs(
         /**
          * A list of the relevant tool calls.
          */
-        @SerialName("tool_calls") public val toolCalls: List<ToolCall>,
-    )
+        @SerialName("submit_tool_outputs") public val toolOutputs: ToolOutputs,
+    ) : RequiredAction
 }

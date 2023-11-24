@@ -47,18 +47,19 @@ an [engine](https://ktor.io/docs/http-client-engines.html) for each target.
 
 Gradle is required for multiplatform support, but there's nothing stopping you from using the jvm client in a Maven
 project. You still need to add to your dependencies one
-of [Ktor's engines](https://ktor.io/docs/http-client-engines.html). For example:
+of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
+
+<details>
+ <summary>Setup the client with maven</summary>
 
 ```xml
 <dependencies>
-    <!-- https://mvnrepository.com/artifact/com.aallam.openai/openai-client-jvm -->
     <dependency>
         <groupId>com.aallam.openai</groupId>
         <artifactId>openai-client-jvm</artifactId>
         <version>3.6.0</version>
     </dependency>
             
-    <!-- https://mvnrepository.com/artifact/io.ktor/ktor-client-okhttp-jvm -->
     <dependency>
         <groupId>io.ktor</groupId>
         <artifactId>ktor-client-okhttp-jvm</artifactId>
@@ -67,6 +68,8 @@ of [Ktor's engines](https://ktor.io/docs/http-client-engines.html). For example:
     </dependency>
 </dependencies>
 ```
+
+</details>
 
 The BOM is not supported for Maven projects.
 

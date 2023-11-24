@@ -38,10 +38,37 @@ dependencies {
 }
 ```
 
-### Multiplaform
+### Multiplatform
 
 In multiplatform projects, add openai client dependency to `commonMain`, and choose
 an [engine](https://ktor.io/docs/http-client-engines.html) for each target.
+
+### Maven
+
+Gradle is required for multiplatform support, but there's nothing stopping you from using the jvm client in a Maven
+project. You still need to add to your dependencies one
+of [Ktor's engines](https://ktor.io/docs/http-client-engines.html). For example:
+
+```xml
+<dependencies>
+    <!-- https://mvnrepository.com/artifact/com.aallam.openai/openai-client-jvm -->
+    <dependency>
+        <groupId>com.aallam.openai</groupId>
+        <artifactId>openai-client-jvm</artifactId>
+        <version>3.6.0</version>
+    </dependency>
+            
+    <!-- https://mvnrepository.com/artifact/io.ktor/ktor-client-okhttp-jvm -->
+    <dependency>
+        <groupId>io.ktor</groupId>
+        <artifactId>ktor-client-okhttp-jvm</artifactId>
+        <version>2.3.2</version>
+        <scope>runtime</scope>
+    </dependency>
+</dependencies>
+```
+
+The BOM is not supported for Maven projects.
 
 ## ⚡️ Getting Started
 
@@ -131,7 +158,7 @@ repositories {
 
 </details>
 
-## 🛠️ Throubleshooting
+## 🛠️ Troubleshooting
 
 For common issues and their solutions, check the [Troubleshooting Guide](TROUBLESHOOTING.md).
 

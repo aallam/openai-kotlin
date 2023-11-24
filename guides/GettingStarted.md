@@ -39,7 +39,10 @@ Use your `OpenAI` instance to make API requests.
     - [Retrieve file](#retrieve-file)
     - [Retrieve file content](#retrieve-file-content)
 - [Moderations](#moderations)
-    - [Create moderation](#create-moderation)- 
+    - [Create moderation](#create-moderation)
+- [Hosts](#hosts)
+    - [Azure](#azure)
+    - [Other hosts](#other-hosts)
 
 #### Beta
 
@@ -389,6 +392,44 @@ val moderation = openAI.moderations(
         input = "I want to kill them."
     )
 )
+````
+
+## Hosts
+
+This library has support for custom ChatGPT URLs. The host used by default is `https://api.openai.com/v1/`, as you would
+expect, and support for Azure hosted ChatGPT is built in as well.
+
+### Azure
+
+To connect to an Azure hosted instance, use the `OpenAIHost.azure` function like so:
+
+````kotlin
+val host = OpenAIHost.azure(
+    resourceName = "The name of your Azure OpenAI Resource.",
+    deploymentId = "The name of your model deployment.",
+    apiVersion = "The API version to use for this operation. This parameter should follow the YYYY-MM-DD format.",
+)
+val config = OpenAIConfig(
+    host = host,
+    token = "Your API token",
+)
+val openAI = OpenAI(config)
+````
+
+### Other hosts
+
+You can connect to whatever host you like by constructing your own `OpenAIHost` instance. Otherwise, it's exactly the
+same as the above Azure example.
+
+````kotlin
+val host = OpenAIHost(
+    baseUrl = "http://localhost:8080",
+)
+val config = OpenAIConfig(
+    host = host,
+    token = "Your API token",
+)
+val openAI = OpenAI(config)
 ````
 
 ---

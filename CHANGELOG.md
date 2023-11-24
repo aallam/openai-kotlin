@@ -1,11 +1,12 @@
-## Unreleased
+## 3.6.0
+> Published 24 Nov 2023
 
 ### Added
 - **Images**: Support for model selection for `ImageCreation`, `ImageEdit` and `ImageVariations` (#257)
 - **Chat**: add tool calls (#256)
 - **Chat**: add vision feature (#258)
 - **Config**: adding ktor engine config to support Kotlin Scripting (#261)
-- ***Audio**: add speech-to-text (#263)
+- **Audio**: add speech-to-text (#263)
 
 #### Beta
 - **Assistants**: api implementation (#259)

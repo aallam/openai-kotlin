@@ -4,6 +4,7 @@ import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
+import com.aallam.openai.api.run.ThreadRunRequest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -46,7 +47,7 @@ class TestRuns : TestOpenAI() {
                 model = ModelId("gpt-4")
             }
         )
-        val request = RunRequest(assistantId = assistant.id)
+        val request = ThreadRunRequest(assistantId = assistant.id)
         val run = openAI.createThreadRun(request)
         assertEquals(assistant.id, run.assistantId)
 

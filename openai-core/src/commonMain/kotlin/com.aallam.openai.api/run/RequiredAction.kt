@@ -7,14 +7,15 @@ import kotlinx.serialization.Serializable
 
 @BetaOpenAI
 @Serializable
-public sealed interface RequiredAction {
-
-    @Serializable
+public data class RequiredAction(
     @SerialName("submit_tool_outputs")
-    public class SubmitToolOutputs(
+    public val submitToolOutputs: SubmitToolOutputs? = null,
+) {
+    @Serializable
+    public data class SubmitToolOutputs(
         /**
          * A list of the relevant tool calls.
          */
         @SerialName("tool_calls") public val toolCalls: List<ToolCall>,
-    ) : RequiredAction
+    )
 }

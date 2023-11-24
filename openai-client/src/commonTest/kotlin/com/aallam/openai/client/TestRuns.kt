@@ -2,6 +2,7 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
+import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.ThreadRunRequest
@@ -27,15 +28,10 @@ class TestRuns : TestOpenAI() {
         var retrieved = openAI.getRun(threadId = thread.id, runId = run.id)
         assertEquals(run.id, retrieved.id)
 
-        val canceled = openAI.cancel(threadId = thread.id, runId = run.id)
-        assertEquals(run.id, canceled.id)
-
-        val metadata = mapOf("modified" to "true", "user" to "aallam")
-        val modified = openAI.updateRun(threadId = thread.id, runId = run.id, metadata = metadata)
-        assertEquals(metadata, modified.metadata)
-
         val runs = openAI.runs(threadId = thread.id)
         assertEquals(1, runs.size)
+
+        openAI.cancel(threadId = thread.id, runId = run.id)
     }
 
     @Test

@@ -1,8 +1,9 @@
-package com.aallam.openai.client
+package com.aallam.openai.client.misc
 
 import com.aallam.openai.api.exception.AuthenticationException
 import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -37,9 +37,38 @@ jobs:
         run: ./gradlew spotlessCheck
 
   test-jvm:
-    name: Test (JVM)
+    name: Test JVM
     runs-on: macos-11
     needs: lint
+    strategy:
+      matrix:
+        include:
+          - name: Assistants
+            test: "*.TestAssistants"
+          - name: Audio
+            test: "*.TestAudio"
+          - name: Chat Completions
+            test: "*.TestChat*"
+          - name: Embeddings
+            test: "*.TestEmbeddings"
+          - name: Files
+            test: "*.TestFiles"
+          - name: Fine-tuning
+            test: "*.TestFineTuning"
+          - name: Images
+            test: "*.TestImages"
+          - name: Messages
+            test: "*.TestMessages"
+          - name: Models
+            test: "*.TestModels"
+          - name: Moderations
+            test: "*.TestModerations"
+          - name: Runs
+            test: "*.TestRuns"
+          - name: Threads
+            test: "*.TestThreads"
+          - name: Misc.
+            test: "*.misc.*"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -56,8 +85,8 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: Build
-        run: ./gradlew :openai-client:jvmTest
+      - name: Test ${{ matrix.name }}
+        run: ./gradlew :openai-client:jvmTest --tests ${{ matrix.test }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 

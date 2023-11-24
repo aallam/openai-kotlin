@@ -1,5 +1,6 @@
-package com.aallam.openai.api.finetuning
+package com.aallam.openai.api.misc
 
+import com.aallam.openai.api.finetuning.Hyperparameters
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
 import kotlin.test.assertEquals

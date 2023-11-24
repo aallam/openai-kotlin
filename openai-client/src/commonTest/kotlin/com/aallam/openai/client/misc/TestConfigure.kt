@@ -1,6 +1,9 @@
-package com.aallam.openai.client
+package com.aallam.openai.client.misc
 
 import com.aallam.openai.api.http.Timeout
+import com.aallam.openai.client.OpenAIConfig
+import com.aallam.openai.client.TestOpenAI
+import com.aallam.openai.client.token
 import io.ktor.client.plugins.api.createClientPlugin
 import kotlin.test.Test
 import kotlinx.coroutines.test.runTest

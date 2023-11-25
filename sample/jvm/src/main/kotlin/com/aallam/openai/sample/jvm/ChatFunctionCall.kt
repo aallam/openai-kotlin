@@ -71,33 +71,6 @@ suspend fun chatFunctionCall(openAI: OpenAI) {
 }
 
 /**
- * A map that associates function names with their corresponding functions.
- */
-private val availableFunctions = mapOf("currentWeather" to ::callCurrentWeather)
-
-/**
- * Example of a fake function for retrieving weather information based on location and temperature unit.
- * In a production scenario, this function could be replaced with an actual backend or external API call.
- */
-private fun callCurrentWeather(args: JsonObject): String {
-    return when (val location = args.getValue("location").jsonPrimitive.content) {
-        "San Francisco" -> """"{"location": "San Francisco", "temperature": "72", "unit": "fahrenheit"}"""
-        "Tokyo" -> """{"location": "Tokyo", "temperature": "10", "unit": "celsius"}"""
-        "Paris" -> """{"location": "Paris", "temperature": "22", "unit": "celsius"}"""
-        else -> """{"location": "$location", "temperature": "unknown", "unit": "unknown"}"""
-    }
-}
-
-/**
- * Executes a function call and returns its result.
- */
-private fun ToolCall.Function.execute(): String {
-    val functionToCall = availableFunctions[function.name] ?: error("Function ${function.name} not found")
-    val functionArgs = function.argumentsAsJson()
-    return functionToCall(functionArgs)
-}
-
-/**
  * Appends a chat message to a list of chat messages.
  */
 private fun MutableList<ChatMessage>.append(message: ChatMessage) {

@@ -17,22 +17,53 @@ fun main() = runBlocking {
         println("3 - Moderations")
         println("4 - Images")
         println("5 - Chat")
-        println("6 - Chat (w/ Function)")
-        println("7 - Whisper")
-        println("8 - Tokens")
-        println("9 - Assistants")
+        println("6 - Whisper")
+        println("7 - Tokens")
+        println("8 - Assistants")
         println("0 - Quit")
+
+        suspend fun chats() {
+            println("Select an option:")
+            println("1 - Chat")
+            println("2 - Tool Call")
+            when (val option = readlnOrNull()?.toIntOrNull()) {
+                1 -> chat(openAI)
+                2 -> chatFunctionCall(openAI)
+                0 -> {
+                    println("Exiting...")
+                    return
+                }
+                else -> println("Invalid option selected: $option")
+            }
+        }
+
+        suspend fun assistants() {
+            println("Select an option:")
+            println("1 - Code Interpreter")
+            println("2 - Retrieval")
+            println("3 - Functions")
+            println("0 - Back")
+            when (val option = readlnOrNull()?.toIntOrNull()) {
+                1 -> assistantsCodeInterpreter(openAI)
+                2 -> assistantsRetrieval(openAI)
+                3 -> assistantsFunctions(openAI)
+                0 -> {
+                    println("Exiting...")
+                    return
+                }
+                else -> println("Invalid option selected: $option")
+            }
+        }
 
         when (val option = readlnOrNull()?.toIntOrNull()) {
             1 -> engines(openAI)
             2 -> files(openAI)
             3 -> moderations(openAI)
             4 -> images(openAI)
-            5 -> chat(openAI)
-            6 -> chatFunctionCall(openAI)
-            7 -> whisper(openAI)
-            8 -> tokensCount(openAI)
-            9 -> assistants(openAI)
+            5 -> chats()
+            6 -> whisper(openAI)
+            7 -> tokensCount(openAI)
+            8 -> assistants()
             0 -> {
                 println("Exiting...")
                 return@runBlocking

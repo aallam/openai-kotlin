@@ -11,7 +11,7 @@ import kotlin.test.assertTrue
 class TestAssistants : TestOpenAI() {
 
     @Test
-    fun listAssistants() = test {
+    fun assistants() = test {
         val request = assistantRequest {
             name = "Math Tutor"
             tools = listOf(AssistantTool.CodeInterpreter)

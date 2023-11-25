@@ -63,7 +63,7 @@ public sealed interface ToolCallStep {
         /**
          * The ID of the tool call.
          */
-        @SerialName("id") public val id: String,
+        @SerialName("id") public val id: ToolCallStepId,
         /**
          * The Code Interpreter tool call definition.
          */
@@ -77,7 +77,7 @@ public sealed interface ToolCallStep {
         /**
          * The ID of the tool call object.
          */
-        @SerialName("id") public val id: String,
+        @SerialName("id") public val id: ToolCallStepId,
         /**
          * For now, this is always going to be an empty object.
          */
@@ -89,20 +89,29 @@ public sealed interface ToolCallStep {
     @SerialName("function")
     public data class FunctionTool(
         /**
-         * The name of the function.
+         * The ID of the tool call object.
          */
-        @SerialName("name") public val name: String,
+        @SerialName("id") public val id: ToolCallStepId,
         /**
-         * The arguments passed to the function.
+         * The definition of the function that was called.
          */
-        @SerialName("arguments") public val arguments: String,
-
-        /**
-         * The output of the function. This will be null if the outputs have not been submitted yet.
-         */
-        @SerialName("output") public val output: String? = null,
+        @SerialName("function") public val function: FunctionToolCallStep,
     ) : ToolCallStep
 }
+
+@BetaOpenAI
+@Serializable
+public data class FunctionToolCallStep (
+    /**
+     * The arguments passed to the function.
+     */
+    @SerialName("arguments") public val arguments: String,
+
+    /**
+     * The output of the function. This will be null if the outputs have not been submitted yet.
+     */
+    @SerialName("output") public val output: String? = null,
+)
 
 @BetaOpenAI
 @Serializable
@@ -117,7 +126,6 @@ public data class CodeInterpreterToolCall(
      * (logs) or images (image). Each of these is represented by a different object type.
      */
     val outputs: List<CodeInterpreterToolCallOutput>
-
 )
 
 @BetaOpenAI

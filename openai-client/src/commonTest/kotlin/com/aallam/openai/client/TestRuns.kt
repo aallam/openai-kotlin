@@ -3,11 +3,9 @@ package com.aallam.openai.client
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.core.PaginatedList
-import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.RunStep
-import com.aallam.openai.api.run.RunStepDetails
 import com.aallam.openai.api.run.ThreadRunRequest
 import com.aallam.openai.client.internal.JsonLenient
 import kotlin.test.Test
@@ -56,7 +54,7 @@ class TestRuns : TestOpenAI() {
     }
 
     @Test
-    fun runSteps() = test {
+    fun json() = test {
         val json = """
             {
               "object": "list",

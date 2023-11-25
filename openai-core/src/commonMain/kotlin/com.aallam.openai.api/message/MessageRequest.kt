@@ -1,5 +1,6 @@
 package com.aallam.openai.api.message
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.file.FileId
 import kotlinx.serialization.SerialName
@@ -8,6 +9,7 @@ import kotlinx.serialization.Serializable
 /**
  * Create a message request.
  */
+@BetaOpenAI
 @Serializable
 public class MessageRequest(
     /**
@@ -38,12 +40,14 @@ public class MessageRequest(
 /**
  * A message request builder.
  */
+@BetaOpenAI
 public fun messageRequest(block: MessageRequestBuilder.() -> Unit): MessageRequest =
     MessageRequestBuilder().apply(block).build()
 
 /**
  * A message request builder.
  */
+@BetaOpenAI
 public class MessageRequestBuilder {
     /**
      * The role of the entity that is creating the message. Currently only [Role.User] is supported.

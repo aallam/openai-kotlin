@@ -30,6 +30,7 @@ public data class MessageCreationStepDetails(
  * Details of the message that occurred during the run step.
  */
 @Serializable
+@BetaOpenAI
 public data class MessageCreation(
     /**
      * The ID of the message that was created by this run step.
@@ -101,7 +102,7 @@ public sealed interface ToolCallStep {
 
 @BetaOpenAI
 @Serializable
-public data class FunctionToolCallStep (
+public data class FunctionToolCallStep(
     /**
      * The arguments passed to the function.
      */

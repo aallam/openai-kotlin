@@ -1,11 +1,13 @@
 package com.aallam.openai.api.message
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.file.FileId
 import kotlinx.serialization.Serializable
 
 /**
  * File attached to a message.
  */
+@BetaOpenAI
 @Serializable
 public data class MessageFile(
     /**

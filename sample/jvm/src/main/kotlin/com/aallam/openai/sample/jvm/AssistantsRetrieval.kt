@@ -5,25 +5,32 @@ import com.aallam.openai.api.assistant.AssistantRequest
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.core.Status
+import com.aallam.openai.api.file.FileSource
+import com.aallam.openai.api.file.FileUpload
+import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.message.MessageContent
 import com.aallam.openai.api.message.MessageRequest
 import com.aallam.openai.api.model.ModelId
-import com.aallam.openai.api.run.MessageCreationStep
 import com.aallam.openai.api.run.RunRequest
-import com.aallam.openai.api.run.ToolCallStep
-import com.aallam.openai.api.run.ToolCallsStep
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.delay
+import okio.FileSystem
+import okio.Path.Companion.toPath
 
 @OptIn(BetaOpenAI::class)
-suspend fun assistants(openAI: OpenAI) {
-    // 1. Create an Assistant
+suspend fun assistantsRetrieval(openAI: OpenAI) {
+
+    // 1. Upload a file with an "assistants" purpose
+    val fileUpload = FileUpload(file = FileSource("udhr.pdf".toPath(), FileSystem.RESOURCES), purpose = Purpose("assistants"))
+    val knowledgeBase = openAI.file(request = fileUpload)
+
     val assistant = openAI.assistant(
         request = AssistantRequest(
-            name = "Math Tutor",
-            instructions = "You are a personal math tutor. Write and run code to answer math questions.",
-            tools = listOf(AssistantTool.CodeInterpreter),
-            model = ModelId("gpt-4-1106-preview")
+            name = "Human Rights Bot",
+            instructions = "You are a chatbot specialized in 'The Universal Declaration of Human Rights.' Answer questions and provide information based on this document.",
+            tools = listOf(AssistantTool.RetrievalTool),
+            model = ModelId("gpt-4-1106-preview"),
+            fileIds = listOf(knowledgeBase.id)
         )
     )
 
@@ -32,25 +39,17 @@ suspend fun assistants(openAI: OpenAI) {
 
     // 3. Add a message to the thread
     openAI.message(
-        threadId = thread.id,
-        request = MessageRequest(
+        threadId = thread.id, request = MessageRequest(
             role = Role.User,
-            content = "I need to solve the equation `3x + 11 = 14`. Can you help me?"
+            content = "Can you explain the right to freedom of opinion and expression as stated in The Universal Declaration of Human Rights?"
         )
     )
-    val messages = openAI.messages(thread.id)
-    println("List of messages in the thread:")
-    for (message in messages) {
-        val textContent = message.content.first() as? MessageContent.Text ?: error("Expected MessageContent.Text")
-        println(textContent.text.value)
-    }
 
     // 4. Run the assistant
     val run = openAI.createRun(
-        thread.id,
-        request = RunRequest(
+        thread.id, request = RunRequest(
             assistantId = assistant.id,
-            instructions = "Please address the user as Jane Doe. The user has a premium account.",
+            instructions = "Provide a concise explanation of the right to freedom of opinion and expression.",
         )
     )
 
@@ -71,4 +70,6 @@ suspend fun assistants(openAI: OpenAI) {
         val textContent = message.content.first() as? MessageContent.Text ?: error("Expected MessageContent.Text")
         println(textContent.text.value)
     }
+
+    openAI.delete(fileId = knowledgeBase.id)
 }

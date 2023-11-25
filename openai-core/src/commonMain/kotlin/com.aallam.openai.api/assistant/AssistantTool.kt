@@ -35,7 +35,7 @@ public sealed interface AssistantTool {
     @BetaOpenAI
     @Serializable
     @SerialName("function")
-    public class FunctionTool(
+    public data class FunctionTool(
         /**
          * The name of the function to be called.
          */

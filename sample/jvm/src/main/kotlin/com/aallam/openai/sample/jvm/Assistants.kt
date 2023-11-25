@@ -8,7 +8,10 @@ import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.message.MessageContent
 import com.aallam.openai.api.message.MessageRequest
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.api.run.MessageCreationStep
 import com.aallam.openai.api.run.RunRequest
+import com.aallam.openai.api.run.ToolCallStep
+import com.aallam.openai.api.run.ToolCallsStep
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.delay
 
@@ -56,6 +59,10 @@ suspend fun assistants(openAI: OpenAI) {
         delay(1500)
         val retrievedRun = openAI.getRun(threadId = thread.id, runId = run.id)
     } while (retrievedRun.status != Status.Completed)
+
+    // 5.1 Check run steps
+    val runSteps = openAI.runSteps(threadId = run.threadId, runId = run.id)
+    println("\nRun steps: ${runSteps.size}")
 
     // 6. Display the assistant's response
     val assistantMessages = openAI.messages(thread.id)

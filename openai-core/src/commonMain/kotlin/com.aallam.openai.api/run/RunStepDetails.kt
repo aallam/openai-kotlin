@@ -2,6 +2,7 @@ package com.aallam.openai.api.run
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.file.FileId
+import com.aallam.openai.api.message.MessageId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,6 +10,7 @@ import kotlinx.serialization.Serializable
  * A run step object.
  */
 @BetaOpenAI
+@Serializable
 public sealed interface RunStepDetails
 
 /**
@@ -32,7 +34,7 @@ public data class MessageCreation(
     /**
      * The ID of the message that was created by this run step.
      */
-    @SerialName("message") public val message: String,
+    @SerialName("message_id") public val messageId: MessageId,
 )
 
 /**
@@ -133,7 +135,7 @@ public sealed interface CodeInterpreterToolCallOutput {
         /**
          * The text output from the Code Interpreter tool call.
          */
-        @SerialName("text") public val text: String,
+        @SerialName("text") public val text: String? = null,
     ) : CodeInterpreterToolCallOutput
 
     /**

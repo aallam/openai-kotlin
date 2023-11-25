@@ -2,10 +2,14 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
+import com.aallam.openai.api.core.PaginatedList
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
+import com.aallam.openai.api.run.RunStep
+import com.aallam.openai.api.run.RunStepDetails
 import com.aallam.openai.api.run.ThreadRunRequest
+import com.aallam.openai.client.internal.JsonLenient
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -49,5 +53,75 @@ class TestRuns : TestOpenAI() {
 
         val runs = openAI.runSteps(threadId = run.threadId, runId = run.id)
         assertEquals(0, runs.size)
+    }
+
+    @Test
+    fun runSteps() = test {
+        val json = """
+            {
+              "object": "list",
+              "data": [
+                {
+                  "id": "step_dVK6IlRuFv1z2d8GtB13a8Ff",
+                  "object": "thread.run.step",
+                  "created_at": 1700903454,
+                  "run_id": "run_Sc9g8odBSrMHXFajgIRD1vx6",
+                  "assistant_id": "asst_1UUuuAqyn7mctRo1bf95YV4G",
+                  "thread_id": "thread_R6mlKFGLXAz71vb05JsEPeCf",
+                  "type": "message_creation",
+                  "status": "completed",
+                  "cancelled_at": null,
+                  "completed_at": 1700903455,
+                  "expires_at": null,
+                  "failed_at": null,
+                  "last_error": null,
+                  "step_details": {
+                    "type": "message_creation",
+                    "message_creation": {
+                      "message_id": "msg_h9QzSO20zNuonZhXcwNpbnoR"
+                    }
+                  }
+                },
+                {
+                  "id": "step_kDMRs0mJcg2bN7KzrcxorXI2",
+                  "object": "thread.run.step",
+                  "created_at": 1700903443,
+                  "run_id": "run_Sc9g8odBSrMHXFajgIRD1vx6",
+                  "assistant_id": "asst_1UUuuAqyn7mctRo1bf95YV4G",
+                  "thread_id": "thread_R6mlKFGLXAz71vb05JsEPeCf",
+                  "type": "tool_calls",
+                  "status": "completed",
+                  "cancelled_at": null,
+                  "completed_at": 1700903454,
+                  "expires_at": null,
+                  "failed_at": null,
+                  "last_error": null,
+                  "step_details": {
+                    "type": "tool_calls",
+                    "tool_calls": [
+                      {
+                        "id": "call_MeXdlXsLiVDZGmjgtdzDDoKs",
+                        "type": "code_interpreter",
+                        "code_interpreter": {
+                          "input": "from sympy import symbols, Eq, solve\r\n\r\n# Define the variable\r\nx = symbols('x')\r\n\r\n# Define the equation\r\nequation = Eq(3 * x + 11, 14)\r\n\r\n# Solve the equation\r\nsolution = solve(equation, x)\r\nsolution",
+                          "outputs": [
+                            {
+                              "type": "logs",
+                              "logs": "[1]"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "first_id": "step_dVK6IlRuFv1z2d8GtB13a8Ff",
+              "last_id": "step_kDMRs0mJcg2bN7KzrcxorXI2",
+              "has_more": false
+            }
+        """.trimIndent()
+        val decoded = JsonLenient.decodeFromString<PaginatedList<RunStep>>(json)
+        println(decoded)
     }
 }

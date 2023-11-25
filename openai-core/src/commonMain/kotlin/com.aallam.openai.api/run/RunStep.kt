@@ -8,6 +8,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @BetaOpenAI
+@Serializable
 public sealed interface RunStep {
     /**
      * The identifier of the run step, which can be referenced in API endpoints.

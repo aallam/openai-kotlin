@@ -103,6 +103,11 @@ public sealed interface ToolCallStep {
 @Serializable
 public data class FunctionToolCallStep (
     /**
+     * The name of the function.
+     */
+    @SerialName("name") public val name: String,
+
+    /**
      * The arguments passed to the function.
      */
     @SerialName("arguments") public val arguments: String,

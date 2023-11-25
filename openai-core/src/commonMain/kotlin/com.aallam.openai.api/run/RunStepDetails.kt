@@ -104,7 +104,7 @@ public sealed interface ToolCallStep {
         /**
          * The arguments passed to the function.
          */
-        @SerialName("arguments") public val arguments: String? = null,
+        @SerialName("arguments") public val arguments: String,
 
         /**
          * The output of the function. This will be null if the outputs have not been submitted yet.

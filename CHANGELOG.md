@@ -1,11 +1,17 @@
+## Unreleased
+
+### Fixed
+- **Runs**: `ToolCalls`, `ToolCallStep` and `RunSteps` serialization (#266, #269, #271, #273) (thanks @voqaldev)
+- **Messages**: `MessageContent` serialization (#275)
+
 ## 3.6.0
 > Published 24 Nov 2023
 
 ### Added
-- **Images**: Support for model selection for `ImageCreation`, `ImageEdit` and `ImageVariations` (#257)
+- **Images**: Support for model selection for `ImageCreation`, `ImageEdit` and `ImageVariations` (#257) (thanks @FilipObornik)
 - **Chat**: add tool calls (#256)
 - **Chat**: add vision feature (#258)
-- **Config**: adding ktor engine config to support Kotlin Scripting (#261)
+- **Config**: adding ktor engine config to support Kotlin Scripting (#261) (thanks @DevSrSouza)
 - **Audio**: add speech-to-text (#263)
 
 #### Beta

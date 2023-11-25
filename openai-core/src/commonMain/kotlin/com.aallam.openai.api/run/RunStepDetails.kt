@@ -89,19 +89,28 @@ public sealed interface ToolCallStep {
     @SerialName("function")
     public data class FunctionTool(
         /**
-         * The name of the function.
+         * The ID of the tool call object.
          */
-        @SerialName("name") public val name: String,
+        @SerialName("id") public val id: String,
+        /**
+         * The definition of the function that was called.
+         */
+        @SerialName("function") public val function: FunctionDefinition,
+    ) : ToolCallStep
+
+    @BetaOpenAI
+    @Serializable
+    public data class FunctionDefinition (
         /**
          * The arguments passed to the function.
          */
-        @SerialName("arguments") public val arguments: String,
+        @SerialName("arguments") public val arguments: String? = null,
 
         /**
          * The output of the function. This will be null if the outputs have not been submitted yet.
          */
         @SerialName("output") public val output: String? = null,
-    ) : ToolCallStep
+    )
 }
 
 @BetaOpenAI

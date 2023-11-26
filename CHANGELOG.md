@@ -1,4 +1,5 @@
-## Unreleased
+## 3.6.1
+> Published 26 Nov 2023
 
 ### Fixed
 - **Runs**: `ToolCalls`, `ToolCallStep` and `RunSteps` serialization (#266, #269, #271, #273) (thanks @voqaldev)

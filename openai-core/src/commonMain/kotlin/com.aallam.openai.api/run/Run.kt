@@ -61,9 +61,9 @@ public data class Run(
     @SerialName("started_at") val startedAt: Int? = null,
 
     /**
-     * The Unix timestamp (in seconds) for when the run was canceled.
+     * The Unix timestamp (in seconds) for when the run was cancelled.
      */
-    @SerialName("canceled_at") val canceledAt: Int? = null,
+    @SerialName("cancelled_at") val cancelledAt: Int? = null,
 
     /**
      * The Unix timestamp (in seconds) for when the run failed.

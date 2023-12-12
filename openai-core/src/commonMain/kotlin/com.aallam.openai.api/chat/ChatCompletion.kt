@@ -20,7 +20,7 @@ public data class ChatCompletion(
     /**
      * The creation time in epoch milliseconds.
      */
-    @SerialName("created") public val created: Int,
+    @SerialName("created") public val created: Long,
 
     /**
      * The model used.

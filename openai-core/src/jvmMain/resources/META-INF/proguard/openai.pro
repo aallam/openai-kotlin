@@ -1,4 +1,5 @@
 -keepattributes InnerClasses
+-keepattributes EnclosingMethod
 
 -if @kotlinx.serialization.Serializable class
 com.aallam.openai.api.**

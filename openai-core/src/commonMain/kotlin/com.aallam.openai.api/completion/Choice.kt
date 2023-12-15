@@ -37,5 +37,5 @@ public data class Choice(
      * request was reached.
      */
     @SerialName("finish_reason")
-    public val finishReason: FinishReason,
+    public val finishReason: FinishReason? = null,
 )

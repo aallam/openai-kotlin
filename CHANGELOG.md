@@ -3,9 +3,9 @@
 
 ### Fixed
 - **Completion**: `Choice.finishReason` as nullable (#285)
-- **Chat**: `ChatCompletion.created` field change type from `Int` to `Long` (#282)
-- **Runs**: incorrect property name `Run.cancelledAt` (#279)
-- **Proguard**: add `EnclosingMethod` rule (#283)
+- **Chat**: `ChatCompletion.created` field change type from `Int` to `Long` (#282) (thanks @VarenytsiaMykhailo)
+- **Runs**: incorrect property name `Run.cancelledAt` (#279) (thanks @Gama11)
+- **Proguard**: add `EnclosingMethod` rule (#283) (thanks @rafsanjani)
 
 ## 3.6.1
 > Published 26 Nov 2023

@@ -106,8 +106,9 @@ class TestChatCompletions : TestOpenAI() {
                 }
                 message {
                     role = ChatRole.System
-                    content =
-                        """All your answers should be a valid JSON, and the format: {"question": <question>, "response": <response>}"""
+                    content = """All your answers should be a valid JSON, using the following JSON schema definition:
+                        | { "type": "object", "properties": { "question": { "type": "string" }, "response": { "type": "string" } }, "required": ["question", "response"] }
+                        """.trimMargin()
                 }
                 message {
                     role = ChatRole.User

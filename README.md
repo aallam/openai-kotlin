@@ -75,7 +75,9 @@ The BOM is not supported for Maven projects.
 
 ## ⚡️ Getting Started
 
-> **Note**: OpenAI encourages using environment variables for the API key. [Read more](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
+> [!NOTE]
+> OpenAI encourages using environment variables for the API key.
+> [Read more](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
 
 Create an instance of `OpenAI` client:
 

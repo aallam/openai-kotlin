@@ -1,3 +1,8 @@
+## Unreleased
+
+### Fixed
+- **Messages**:  `MessageFile` optional fields (#290)
+
 ## 3.6.2
 > Published 15 Dec 2023
 

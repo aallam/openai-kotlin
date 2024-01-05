@@ -17,9 +17,9 @@ public data class MessageFile(
     /**
      * The Unix timestamp (in seconds) for when the message file was created.
      */
-    val createdAt: Int,
+    val createdAt: Int? = null,
     /**
      * The ID of the message that the File is attached to.
      */
-    val messageId: MessageId,
+    val messageId: MessageId? = null,
 )

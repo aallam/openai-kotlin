@@ -1,5 +1,8 @@
 ## Unreleased
 
+### Added
+- **Images**: add `quality` and `style` fields (#292) 
+
 ### Fixed
 - **Messages**:  `MessageFile` optional fields (#290)
 

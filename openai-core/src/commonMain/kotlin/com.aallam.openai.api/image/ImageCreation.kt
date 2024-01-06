@@ -1,5 +1,6 @@
 package com.aallam.openai.api.image
 
+import Quality
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.model.ModelId
@@ -30,6 +31,19 @@ public class ImageCreation(
      * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
      */
     public val model: ModelId? = null,
+
+    /**
+     * The quality of the image that will be generated. `Quality.HD` creates images with finer details and greater
+     * consistency across the image. This param is only supported for `dall-e-3`.
+     */
+    public val quality: Quality? = null,
+
+    /**
+     * The style of the generated images. Must be one of [Style.Vivid] or `[Style.Natural]`. Vivid causes the model to
+     * lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less
+     * hyper-real looking images. This param is only supported for dall-e-3.
+     */
+    public val style: Style? = null,
 )
 
 /**

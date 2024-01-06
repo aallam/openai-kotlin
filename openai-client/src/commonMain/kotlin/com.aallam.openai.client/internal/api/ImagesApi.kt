@@ -95,11 +95,25 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
 
     /** Convert [ImageCreation] instance to base64 JSON request */
     private fun ImageCreation.toJSONRequest() = ImageCreationRequest(
-        prompt = prompt, n = n, size = size, user = user, responseFormat = ImageResponseFormat.base64Json, model = model?.id,
+        prompt = prompt,
+        n = n,
+        size = size,
+        user = user,
+        responseFormat = ImageResponseFormat.base64Json,
+        model = model?.id,
+        quality = quality,
+        style = style,
     )
 
     /** Convert [ImageCreation] instance to URL request */
     private fun ImageCreation.toURLRequest() = ImageCreationRequest(
-        prompt = prompt, n = n, size = size, user = user, responseFormat = ImageResponseFormat.url, model = model?.id
+        prompt = prompt,
+        n = n,
+        size = size,
+        user = user,
+        responseFormat = ImageResponseFormat.url,
+        model = model?.id,
+        quality = quality,
+        style = style,
     )
 }

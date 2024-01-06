@@ -1,8 +1,10 @@
 package com.aallam.openai.api.image.internal
 
+import Quality
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.InternalOpenAI
 import com.aallam.openai.api.image.ImageSize
+import com.aallam.openai.api.image.Style
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -10,7 +12,6 @@ import kotlinx.serialization.Serializable
  * Image generation request.
  * Results are expected as URLs.
  */
-@OptIn(BetaOpenAI::class)
 @Serializable
 @InternalOpenAI
 public data class ImageCreationRequest(
@@ -20,4 +21,6 @@ public data class ImageCreationRequest(
     @SerialName("user") val user: String? = null,
     @SerialName("response_format") val responseFormat: ImageResponseFormat,
     @SerialName("model") val model: String? = null,
+    @SerialName("quality") val quality: Quality? = null,
+    @SerialName("style") val style: Style? = null,
 )

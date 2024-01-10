@@ -31,6 +31,12 @@ public data class RunRequest(
     @SerialName("instructions") val instructions: String? = null,
 
     /**
+     * Appends additional instructions at the end of the instructions for the run.
+     * This is useful for modifying the behavior on a per-run basis without overriding other instructions.
+     */
+    @SerialName("additional_instructions") val additionalInstructions: String? = null,
+
+    /**
      * Override the tools the assistant can use for this run.
      * This is useful for modifying the behavior on a per-run basis.
      */
@@ -75,6 +81,12 @@ public class RunRequestBuilder {
     public var instructions: String? = null
 
     /**
+     * Appends additional instructions at the end of the instructions for the run.
+     * This is useful for modifying the behavior on a per-run basis without overriding other instructions.
+     */
+    public var additionalInstructions: String? = null,
+
+    /**
      * Override the tools the assistant can use for this run.
      * This is useful for modifying the behavior on a per-run basis.
      */
@@ -94,6 +106,7 @@ public class RunRequestBuilder {
         assistantId = requireNotNull(assistantId) { "assistantId is required" },
         model = model,
         instructions = instructions,
+        additionalInstructions = additionalInstructions,
         tools = tools,
         metadata = metadata,
     )

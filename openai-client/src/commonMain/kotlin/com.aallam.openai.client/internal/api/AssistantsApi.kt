@@ -7,11 +7,13 @@ import com.aallam.openai.api.assistant.AssistantId
 import com.aallam.openai.api.assistant.AssistantRequest
 import com.aallam.openai.api.core.DeleteResponse
 import com.aallam.openai.api.core.ListResponse
+import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.client.Assistants
 import com.aallam.openai.client.internal.extension.beta
+import com.aallam.openai.client.internal.extension.requestOptions
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.*
@@ -23,24 +25,26 @@ import kotlinx.serialization.json.put
 
 internal class AssistantsApi(val requester: HttpRequester) : Assistants {
     @BetaOpenAI
-    override suspend fun assistant(request: AssistantRequest): Assistant {
+    override suspend fun assistant(request: AssistantRequest, requestOptions: RequestOptions?): Assistant {
         return requester.perform {
             it.post {
                 url(path = ApiPath.Assistants)
                 setBody(request)
                 contentType(ContentType.Application.Json)
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }
 
     @BetaOpenAI
-    override suspend fun assistant(id: AssistantId): Assistant? {
+    override suspend fun assistant(id: AssistantId, requestOptions: RequestOptions?): Assistant? {
         try {
             return requester.perform<HttpResponse> {
                 it.get {
                     url(path = "${ApiPath.Assistants}/${id.id}")
                     beta("assistants", 1)
+                    requestOptions(requestOptions)
                 }
             }.body()
         } catch (e: OpenAIAPIException) {
@@ -50,23 +54,29 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
     }
 
     @BetaOpenAI
-    override suspend fun assistant(id: AssistantId, request: AssistantRequest): Assistant {
+    override suspend fun assistant(
+        id: AssistantId,
+        request: AssistantRequest,
+        requestOptions: RequestOptions?
+    ): Assistant {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Assistants}/${id.id}")
                 setBody(request)
                 contentType(ContentType.Application.Json)
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }
 
     @BetaOpenAI
-    override suspend fun delete(id: AssistantId): Boolean {
+    override suspend fun delete(id: AssistantId, requestOptions: RequestOptions?): Boolean {
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.Assistants}/${id.id}")
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }
         }
         return when (response.status) {
@@ -76,11 +86,12 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
     }
 
     @BetaOpenAI
-    override suspend fun delete(assistantId: AssistantId, fileId: FileId): Boolean {
+    override suspend fun delete(assistantId: AssistantId, fileId: FileId, requestOptions: RequestOptions?): Boolean {
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.Assistants}/${assistantId.id}/files/${fileId.id}")
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }
         }
         return when (response.status) {
@@ -95,7 +106,8 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         limit: Int?,
         order: SortOrder?,
         after: AssistantId?,
-        before: AssistantId?
+        before: AssistantId?,
+        requestOptions: RequestOptions?
     ): List<Assistant> {
         return requester.perform<ListResponse<Assistant>> { client ->
             client.get {
@@ -107,12 +119,17 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                     before?.let { parameter("before", it.id) }
                 }
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }
 
     @BetaOpenAI
-    override suspend fun createFile(assistantId: AssistantId, fileId: FileId): AssistantFile {
+    override suspend fun createFile(
+        assistantId: AssistantId,
+        fileId: FileId,
+        requestOptions: RequestOptions?
+    ): AssistantFile {
         val request = buildJsonObject { put("file", fileId.id) }
         return requester.perform {
             it.post {
@@ -120,16 +137,22 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                 setBody(request)
                 contentType(ContentType.Application.Json)
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }
 
     @BetaOpenAI
-    override suspend fun file(assistantId: AssistantId, fileId: FileId): AssistantFile {
+    override suspend fun file(
+        assistantId: AssistantId,
+        fileId: FileId,
+        requestOptions: RequestOptions?
+    ): AssistantFile {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Assistants}/${assistantId.id}/files/${fileId.id}")
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }
         }
     }
@@ -141,6 +164,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         order: SortOrder?,
         after: FileId?,
         before: FileId?,
+        requestOptions: RequestOptions?
     ): List<AssistantFile> {
         return requester.perform<ListResponse<AssistantFile>> { client ->
             client.get {
@@ -152,6 +176,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                     before?.let { parameter("before", it.id) }
                 }
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }

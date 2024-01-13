@@ -1,6 +1,7 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.message.Message
@@ -20,18 +21,28 @@ public interface Messages {
      *
      * @param threadId the identifier of the thread
      * @param request message creation request
+     * @param requestOptions request options.
      */
     @BetaOpenAI
-    public suspend fun message(threadId: ThreadId, request: MessageRequest): Message
+    public suspend fun message(
+        threadId: ThreadId,
+        request: MessageRequest,
+        requestOptions: RequestOptions? = null
+    ): Message
 
     /**
      * Retrieve a message.
      *
      * @param threadId the identifier of the thread
      * @param messageId the identifier of the message
+     * @param requestOptions request options.
      */
     @BetaOpenAI
-    public suspend fun message(threadId: ThreadId, messageId: MessageId): Message
+    public suspend fun message(
+        threadId: ThreadId,
+        messageId: MessageId,
+        requestOptions: RequestOptions? = null
+    ): Message
 
     /**
      * Modify a message.
@@ -41,9 +52,15 @@ public interface Messages {
      * @param metadata set of 16 key-value pairs that can be attached to an object.
      * This can be useful for storing additional information about the object in a structured format.
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
+     * @param requestOptions request options.
      */
     @BetaOpenAI
-    public suspend fun message(threadId: ThreadId, messageId: MessageId, metadata: Map<String, String>? = null): Message
+    public suspend fun message(
+        threadId: ThreadId,
+        messageId: MessageId,
+        metadata: Map<String, String>? = null,
+        requestOptions: RequestOptions? = null
+    ): Message
 
     /**
      * Returns a list of messages for a given thread.
@@ -58,6 +75,7 @@ public interface Messages {
      * @param before a cursor for use in pagination. [before] is an object ID that defines your place in the list.
      * For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call
      * can include `before = MessageId("obj_foo")` in order to fetch the previous page of the list.
+     * @param requestOptions request options.
      */
     @BetaOpenAI
     public suspend fun messages(
@@ -66,6 +84,7 @@ public interface Messages {
         order: SortOrder? = null,
         after: MessageId? = null,
         before: MessageId? = null,
+        requestOptions: RequestOptions? = null
     ): List<Message>
 
     /**
@@ -74,9 +93,15 @@ public interface Messages {
      * @param threadId the ID of the thread to which the message and File belong
      * @param messageId the ID of the message the file belongs to
      * @param fileId the ID of the file being retrieved
+     * @param requestOptions request options.
      */
     @BetaOpenAI
-    public suspend fun messageFile(threadId: ThreadId, messageId: MessageId, fileId: FileId): MessageFile
+    public suspend fun messageFile(
+        threadId: ThreadId,
+        messageId: MessageId,
+        fileId: FileId,
+        requestOptions: RequestOptions? = null
+    ): MessageFile
 
     /**
      * Returns a list of message files.
@@ -91,6 +116,7 @@ public interface Messages {
      * @param before a cursor for use in pagination. [before] is an object ID that defines your place in the list.
      * For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call
      * can include `before = FileId("obj_foo")` in order to fetch the previous page of the list.
+     * @param requestOptions request options.
      */
     @BetaOpenAI
     public suspend fun messageFiles(
@@ -100,5 +126,6 @@ public interface Messages {
         order: SortOrder? = null,
         after: FileId? = null,
         before: FileId? = null,
+        requestOptions: RequestOptions? = null
     ): List<MessageFile>
 }

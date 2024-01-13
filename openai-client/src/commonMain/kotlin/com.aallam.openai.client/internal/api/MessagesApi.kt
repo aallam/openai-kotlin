@@ -1,6 +1,7 @@
 package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.core.PaginatedList
+import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.message.Message
@@ -10,6 +11,7 @@ import com.aallam.openai.api.message.MessageRequest
 import com.aallam.openai.api.thread.ThreadId
 import com.aallam.openai.client.Messages
 import com.aallam.openai.client.internal.extension.beta
+import com.aallam.openai.client.internal.extension.requestOptions
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.*
@@ -17,27 +19,38 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 
 internal class MessagesApi(val requester: HttpRequester) : Messages {
-    override suspend fun message(threadId: ThreadId, request: MessageRequest): Message {
+    override suspend fun message(
+        threadId: ThreadId,
+        request: MessageRequest,
+        requestOptions: RequestOptions?
+    ): Message {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages")
                 setBody(request)
                 contentType(ContentType.Application.Json)
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }
 
-    override suspend fun message(threadId: ThreadId, messageId: MessageId): Message {
+    override suspend fun message(threadId: ThreadId, messageId: MessageId, requestOptions: RequestOptions?): Message {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages/${messageId.id}")
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }
 
-    override suspend fun message(threadId: ThreadId, messageId: MessageId, metadata: Map<String, String>?): Message {
+    override suspend fun message(
+        threadId: ThreadId,
+        messageId: MessageId,
+        metadata: Map<String, String>?,
+        requestOptions: RequestOptions?
+    ): Message {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages/${messageId.id}")
@@ -46,6 +59,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                     contentType(ContentType.Application.Json)
                 }
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }
@@ -55,7 +69,8 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
         limit: Int?,
         order: SortOrder?,
         after: MessageId?,
-        before: MessageId?
+        before: MessageId?,
+        requestOptions: RequestOptions?
     ): PaginatedList<Message> {
         return requester.perform {
             it.get {
@@ -66,15 +81,22 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                     after?.let { value -> parameter("after", value.id) }
                 }
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }
 
-    override suspend fun messageFile(threadId: ThreadId, messageId: MessageId, fileId: FileId): MessageFile {
+    override suspend fun messageFile(
+        threadId: ThreadId,
+        messageId: MessageId,
+        fileId: FileId,
+        requestOptions: RequestOptions?
+    ): MessageFile {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages/${messageId.id}/files/${fileId.id}")
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }
@@ -85,7 +107,8 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
         limit: Int?,
         order: SortOrder?,
         after: FileId?,
-        before: FileId?
+        before: FileId?,
+        requestOptions: RequestOptions?
     ): PaginatedList<MessageFile> {
         return requester.perform {
             it.get {
@@ -96,6 +119,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                     after?.let { value -> parameter("after", value.id) }
                 }
                 beta("assistants", 1)
+                requestOptions(requestOptions)
             }.body()
         }
     }

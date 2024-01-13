@@ -14,7 +14,7 @@ class TestEmbeddings : TestOpenAI() {
     @Test
     fun embeddings() = test {
         val response = openAI.embeddings(request = embeddingRequest {
-            model = ModelId("text-similarity-babbage-001")
+            model = ModelId("text-embedding-ada-002")
             input = listOf("The food was delicious and the waiter...")
         })
         assertTrue { response.embeddings.isNotEmpty() }

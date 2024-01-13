@@ -1,10 +1,13 @@
-## Unreleased
+## 3.6.3
+> Published 13 Jan 2024
 
 ### Added
-- **Images**: add `quality` and `style` fields (#292) 
+- **Images**: add `quality` and `style` fields (#292)
+- **Runs**: add `additionalInstructions` property to `RunRequest` (#293) (thanks @ahmedmirza994) 
 
 ### Fixed
 - **Messages**:  `MessageFile` optional fields (#290)
+- **proguard**: Add `EnclosingMethod` proguard rule (thanks @afsanjani)
 
 ## 3.6.2
 > Published 15 Dec 2023

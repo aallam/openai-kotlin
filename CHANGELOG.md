@@ -12,7 +12,7 @@
 
 ### Fixed
 - **Messages**:  `MessageFile` optional fields (#290)
-- **proguard**: Add `EnclosingMethod` proguard rule (thanks @afsanjani)
+- **proguard**: Add `EnclosingMethod` proguard rule (thanks @rafsanjani)
 
 ## 3.6.2
 > Published 15 Dec 2023

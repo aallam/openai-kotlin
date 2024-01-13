@@ -1,11 +1,13 @@
 package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.core.ListResponse
+import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.image.*
 import com.aallam.openai.api.image.internal.ImageCreationRequest
 import com.aallam.openai.api.image.internal.ImageResponseFormat
 import com.aallam.openai.client.Images
 import com.aallam.openai.client.internal.extension.appendFileSource
+import com.aallam.openai.client.internal.extension.requestOptions
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.request.*
@@ -14,40 +16,47 @@ import io.ktor.http.*
 
 internal class ImagesApi(private val requester: HttpRequester) : Images {
 
-    override suspend fun imageURL(creation: ImageCreation): List<ImageURL> {
+    override suspend fun imageURL(creation: ImageCreation, requestOptions: RequestOptions?): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.post {
                 url(path = ApiPath.ImagesGeneration)
                 setBody(creation.toURLRequest())
                 contentType(ContentType.Application.Json)
+                requestOptions(requestOptions)
             }
         }.data
     }
 
-    override suspend fun imageJSON(creation: ImageCreation): List<ImageJSON> {
+    override suspend fun imageJSON(creation: ImageCreation, requestOptions: RequestOptions?): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.post {
                 url(path = ApiPath.ImagesGeneration)
                 setBody(creation.toJSONRequest())
                 contentType(ContentType.Application.Json)
+                requestOptions(requestOptions)
             }
         }.data
     }
 
-    override suspend fun imageURL(edit: ImageEdit): List<ImageURL> {
+    override suspend fun imageURL(edit: ImageEdit, requestOptions: RequestOptions?): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.submitFormWithBinaryData(
                 url = ApiPath.ImagesEdits,
-                formData = imageEditRequest(edit, ImageResponseFormat.url)
-            )
+                formData = imageEditRequest(edit, ImageResponseFormat.url),
+            ) {
+                requestOptions(requestOptions)
+            }
         }.data
     }
 
-    override suspend fun imageJSON(edit: ImageEdit): List<ImageJSON> {
+    override suspend fun imageJSON(edit: ImageEdit, requestOptions: RequestOptions?): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.submitFormWithBinaryData(
-                url = ApiPath.ImagesEdits, formData = imageEditRequest(edit, ImageResponseFormat.base64Json)
-            )
+                url = ApiPath.ImagesEdits,
+                formData = imageEditRequest(edit, ImageResponseFormat.base64Json),
+            ) {
+                requestOptions(requestOptions)
+            }
         }.data
     }
 
@@ -65,19 +74,25 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         edit.model?.let { model -> append(key = "model", value = model.id) }
     }
 
-    override suspend fun imageURL(variation: ImageVariation): List<ImageURL> {
+    override suspend fun imageURL(variation: ImageVariation, requestOptions: RequestOptions?): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
             it.submitFormWithBinaryData(
-                url = ApiPath.ImagesVariants, formData = imageVariantRequest(variation, ImageResponseFormat.url)
-            )
+                url = ApiPath.ImagesVariants,
+                formData = imageVariantRequest(variation, ImageResponseFormat.url),
+            ) {
+                requestOptions(requestOptions)
+            }
         }.data
     }
 
-    override suspend fun imageJSON(variation: ImageVariation): List<ImageJSON> {
+    override suspend fun imageJSON(variation: ImageVariation, requestOptions: RequestOptions?): List<ImageJSON> {
         return requester.perform<ListResponse<ImageJSON>> {
             it.submitFormWithBinaryData(
-                url = ApiPath.ImagesVariants, formData = imageVariantRequest(variation, ImageResponseFormat.base64Json)
-            )
+                url = ApiPath.ImagesVariants,
+                formData = imageVariantRequest(variation, ImageResponseFormat.base64Json),
+            ) {
+                requestOptions(requestOptions)
+            }
         }.data
     }
 

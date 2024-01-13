@@ -1,5 +1,6 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.model.Model
 import com.aallam.openai.api.model.ModelId
 
@@ -13,11 +14,16 @@ public interface Models {
     /**
      * Lists the currently available models, and provides basic information about each one
      * such as the owner and availability.
+     *
+     * @param requestOptions request options.
      */
-    public suspend fun models(): List<Model>
+    public suspend fun models(requestOptions: RequestOptions? = null): List<Model>
 
     /**
-     * Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
+     * Retrieves a model instance, providing basic information about the model such as the owner and permission.
+     *
+     * @param modelId the identifier of the model.
+     * @param requestOptions request options.
      */
-    public suspend fun model(modelId: ModelId): Model
+    public suspend fun model(modelId: ModelId, requestOptions: RequestOptions? = null): Model
 }

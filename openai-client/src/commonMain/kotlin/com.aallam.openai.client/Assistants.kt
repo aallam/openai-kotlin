@@ -5,6 +5,7 @@ import com.aallam.openai.api.assistant.Assistant
 import com.aallam.openai.api.assistant.AssistantFile
 import com.aallam.openai.api.assistant.AssistantId
 import com.aallam.openai.api.assistant.AssistantRequest
+import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.file.FileId
 
@@ -20,7 +21,7 @@ public interface Assistants {
      * @param request the request to create an assistant.
      */
     @BetaOpenAI
-    public suspend fun assistant(request: AssistantRequest): Assistant
+    public suspend fun assistant(request: AssistantRequest, requestOptions: RequestOptions? = null): Assistant
 
     /**
      * Retrieves an assistant.
@@ -28,7 +29,7 @@ public interface Assistants {
      * @param id the ID of the assistant to retrieve.
      */
     @BetaOpenAI
-    public suspend fun assistant(id: AssistantId): Assistant?
+    public suspend fun assistant(id: AssistantId, requestOptions: RequestOptions? = null): Assistant?
 
     /**
      * Update an assistant.
@@ -36,7 +37,11 @@ public interface Assistants {
      * @param id rhe ID of the assistant to modify.
      */
     @BetaOpenAI
-    public suspend fun assistant(id: AssistantId, request: AssistantRequest): Assistant
+    public suspend fun assistant(
+        id: AssistantId,
+        request: AssistantRequest,
+        requestOptions: RequestOptions? = null
+    ): Assistant
 
     /**
      * Delete an assistant.
@@ -44,7 +49,7 @@ public interface Assistants {
      * @param id ID of the assistant to delete.
      */
     @BetaOpenAI
-    public suspend fun delete(id: AssistantId): Boolean
+    public suspend fun delete(id: AssistantId, requestOptions: RequestOptions? = null): Boolean
 
     /**
      * Returns a list of assistants.
@@ -65,6 +70,7 @@ public interface Assistants {
         order: SortOrder? = null,
         after: AssistantId? = null,
         before: AssistantId? = null,
+        requestOptions: RequestOptions? = null
     ): List<Assistant>
 
     /**
@@ -75,7 +81,11 @@ public interface Assistants {
      * Useful for tools like retrieval and code interpreter that can access files.
      */
     @BetaOpenAI
-    public suspend fun createFile(assistantId: AssistantId, fileId: FileId): AssistantFile
+    public suspend fun createFile(
+        assistantId: AssistantId,
+        fileId: FileId,
+        requestOptions: RequestOptions? = null
+    ): AssistantFile
 
     /**
      * Retrieves an [AssistantFile].
@@ -84,16 +94,21 @@ public interface Assistants {
      * @param fileId the ID of the file we're getting.
      */
     @BetaOpenAI
-    public suspend fun file(assistantId: AssistantId, fileId: FileId): AssistantFile
+    public suspend fun file(
+        assistantId: AssistantId,
+        fileId: FileId,
+        requestOptions: RequestOptions? = null
+    ): AssistantFile
 
     /**
      * Delete an assistant file.
      *
      * @param assistantId the ID of the assistant that the file belongs to.
      * @param fileId the ID of the file to delete.
+     * @param requestOptions request options.
      */
     @BetaOpenAI
-    public suspend fun delete(assistantId: AssistantId, fileId: FileId): Boolean
+    public suspend fun delete(assistantId: AssistantId, fileId: FileId, requestOptions: RequestOptions? = null): Boolean
 
     /**
      * Returns a list of assistant files.
@@ -108,6 +123,7 @@ public interface Assistants {
      * @param before a cursor for use in pagination. Before is an object ID that defines your place in the list.
      * For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can
      * include `before = FileId("obj_foo")` in order to fetch the previous page of the list.
+     * @param requestOptions request options.
      */
     @BetaOpenAI
     public suspend fun files(
@@ -116,5 +132,6 @@ public interface Assistants {
         order: SortOrder? = null,
         after: FileId? = null,
         before: FileId? = null,
+        requestOptions: RequestOptions? = null
     ): List<AssistantFile>
 }

@@ -1,5 +1,6 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.embedding.EmbeddingRequest
 import com.aallam.openai.api.embedding.EmbeddingResponse
 
@@ -10,6 +11,9 @@ public interface Embeddings {
 
     /**
      * Creates an embedding vector representing the input text.
+     *
+     * @param request embedding request.
+     * @param requestOptions request options.
      */
-    public suspend fun embeddings(request: EmbeddingRequest): EmbeddingResponse
+    public suspend fun embeddings(request: EmbeddingRequest, requestOptions: RequestOptions? = null): EmbeddingResponse
 }

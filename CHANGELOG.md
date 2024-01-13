@@ -1,3 +1,8 @@
+## Unreleased
+
+### Added
+- add `RequestOptions` (#296)
+
 ## 3.6.3
 > Published 13 Jan 2024
 

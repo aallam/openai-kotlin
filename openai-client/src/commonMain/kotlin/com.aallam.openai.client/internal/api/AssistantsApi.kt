@@ -133,7 +133,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         val request = buildJsonObject { put("file", fileId.id) }
         return requester.perform {
             it.post {
-                url(path = "${ApiPath.Assistants}/${assistantId.id}")
+                url(path = "${ApiPath.Assistants}/${assistantId.id}/files")
                 setBody(request)
                 contentType(ContentType.Application.Json)
                 beta("assistants", 1)

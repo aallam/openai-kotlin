@@ -1,8 +1,8 @@
 package com.aallam.openai.api.chat
 
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.Usage
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.azure.api.filtering.ContentFilterResultsForPrompt
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -44,4 +44,11 @@ public data class ChatCompletion(
      * might impact determinism.
      */
     @SerialName("system_fingerprint") public val systemFingerprint: String? = null,
+
+    /**
+     * Content filtering results for zero or more prompts in the request. In a streaming request,
+     * results for different prompts may arrive at different times or in different orders.
+     */
+    @SerialName("prompt_filter_results")
+    val promptFilterResults: List<ContentFilterResultsForPrompt>? = null
 )

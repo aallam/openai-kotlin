@@ -1,3 +1,5 @@
+package com.aallam.openai.api.image
+
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmInline
 

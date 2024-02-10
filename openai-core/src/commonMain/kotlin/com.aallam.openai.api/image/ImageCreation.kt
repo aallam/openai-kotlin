@@ -1,6 +1,5 @@
 package com.aallam.openai.api.image
 
-import Quality
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.model.ModelId

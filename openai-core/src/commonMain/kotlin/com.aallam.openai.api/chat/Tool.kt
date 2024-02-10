@@ -16,11 +16,6 @@ public data class Tool(
     @SerialName("type") val type: ToolType,
 
     /**
-     * Tool description.
-     */
-    @SerialName("description") val description: String? = null,
-
-    /**
      * A description of what the function does, used by the model to choose when and how to call the function.
      */
     @SerialName("function") val function: FunctionTool,
@@ -38,8 +33,7 @@ public data class Tool(
         public fun function(name: String, description: String? = null, parameters: Parameters): Tool =
             Tool(
                 type = ToolType.Function,
-                description = description,
-                function = FunctionTool(name = name, parameters = parameters)
+                function = FunctionTool(name = name, description = description, parameters = parameters)
             )
     }
 }
@@ -56,12 +50,17 @@ public data class FunctionTool(
     @SerialName("name") val name: String,
 
     /**
-     * The parameters the function accepts, described as a JSON Schema object.
-     * See the [guide](https://github.com/aallam/openai-kotlin/blob/main/guides/ChatToolCalls.md) for examples,
-     * and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about
+     * The parameters the functions accept, described as a JSON Schema object.
+     * See the [guide](https://platform.openai.com/docs/guides/text-generation/function-calling) for examples,
+     * and the [JSON Schema reference](https://json-schema.org/understanding-json-schema) for documentation about
      * the format.
      *
-     * To describe a function that accepts no parameters, provide [Parameters.Empty]`.
+     * Omitting `parameters` defines a function with an empty parameter list.
      */
-    @SerialName("parameters") val parameters: Parameters
+    @SerialName("parameters") val parameters: Parameters? = null,
+
+    /**
+     * A description of what the function does, used by the model to choose when and how to call the function.
+     */
+    @SerialName("description") public val description: String? = null
 )

@@ -1,7 +1,16 @@
-## Unreleased
+## 3.7.0
 
 ### Added
 - add `RequestOptions` (#296)
+
+### Fixed
+- **chat**: add `systemFingerprint` to `ChatCompletionChunk` (#303)
+- **chat**: move `description` to `FunctionTool` (#304)
+- **chat**: make `FunctionTool#Parameters` nullable (#304)
+- **finetuning**: nullable `ErrorInfo#message` and `ErrorInfo#code` (#304)
+- **image**: correct `Quality` package name (#302) (thanks @voqaldev)
+- **assistants**: files endpoint (#298) (thanks @rjeeb)
+- **runs**: `RunRequest` builder
 
 ## 3.6.3
 > Published 13 Jan 2024

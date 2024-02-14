@@ -49,4 +49,10 @@ public data class ChatCompletionChunk(
      */
     @SerialName("prompt_filter_results")
     val promptFilterResults: List<ContentFilterResultsForPrompt>? = null
+     * This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with
+     * the `seed` request parameter to understand when backend changes have been made that might impact determinism.
+     */
+
+    @SerialName("system_fingerprint")
+    public val systemFingerprint: String? = null,
 )

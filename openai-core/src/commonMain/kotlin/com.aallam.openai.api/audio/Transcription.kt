@@ -20,4 +20,5 @@ public data class Transcription(
     @SerialName("language") val language: String? = null,
     @SerialName("duration") val duration: Double? = null,
     @SerialName("segments") val segments: List<Segment>? = null,
+    @SerialName("words") val words: List<Word>? = null,
 )

@@ -1,3 +1,9 @@
+## Unreleased
+
+### Added
+
+- **Audio**: add `timestampGranularities`
+
 ## 3.7.0
 
 ### Added

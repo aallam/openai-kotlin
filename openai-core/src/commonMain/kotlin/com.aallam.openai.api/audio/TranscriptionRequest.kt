@@ -43,6 +43,14 @@ public class TranscriptionRequest(
      * [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency.
      */
     public val language: String? = null,
+
+    /**
+     * The timestamp granularities to populate for this transcription.
+     * responseFormat must be set verbose_json to use timestamp granularities.
+     * Either or both of these options are supported: word, or segment.
+     * Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.
+     */
+    public val timestampGranularities: List<TimestampGranularity> = emptyList(),
 )
 
 /**
@@ -91,6 +99,14 @@ public class TranscriptionRequestBuilder {
     public var language: String? = null
 
     /**
+     * The timestamp granularities to populate for this transcription.
+     * responseFormat must be set verbose_json to use timestamp granularities.
+     * Either or both of these options are supported: word, or segment.
+     * Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.
+     */
+    public var timestampGranularities: List<TimestampGranularity> = emptyList()
+
+    /**
      * Builder of [TranscriptionRequest] instances.
      */
     public fun build(): TranscriptionRequest = TranscriptionRequest(
@@ -100,5 +116,6 @@ public class TranscriptionRequestBuilder {
         responseFormat = responseFormat,
         temperature = temperature,
         language = language,
+        timestampGranularities = timestampGranularities,
     )
 }

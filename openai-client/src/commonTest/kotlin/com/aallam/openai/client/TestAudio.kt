@@ -56,6 +56,22 @@ class TestAudio : TestOpenAI() {
     }
 
     @Test
+    fun transcriptionWithWordTimestamps() = test {
+        val request = transcriptionRequest {
+            audio = FileSource(path = testFilePath("audio/micro-machines.wav"), fileSystem = TestFileSystem)
+            model = ModelId("whisper-1")
+            responseFormat = AudioResponseFormat.VerboseJson
+            timestampGranularities = listOf(TimestampGranularity.Word)
+        }
+        val transcription = openAI.transcription(request)
+        assertTrue { transcription.text.isNotEmpty() }
+        assertEquals(transcription.language, "english")
+        assertEquals(transcription.duration!!, 29.88, absoluteTolerance = 0.1)
+        assertEquals(transcription.segments, null)
+        assertTrue { transcription.words?.isNotEmpty() ?: false }
+    }
+
+    @Test
     fun translation() = test {
         val request = translationRequest {
             audio = FileSource(path = testFilePath("audio/multilingual.wav"), fileSystem = TestFileSystem)

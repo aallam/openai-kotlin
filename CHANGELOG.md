@@ -6,6 +6,7 @@
 
 ### Fixed
 
+- **Core**: nullable `OpenAIErrorDetails` fields (#315)
 - **Messages**: nullable field `MessageContent.Image#fileId` (#313)
 
 ## 3.7.0

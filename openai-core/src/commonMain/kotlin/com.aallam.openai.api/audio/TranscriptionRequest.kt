@@ -1,6 +1,5 @@
 package com.aallam.openai.api.audio
 
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
@@ -46,11 +45,11 @@ public class TranscriptionRequest(
 
     /**
      * The timestamp granularities to populate for this transcription.
-     * responseFormat must be set verbose_json to use timestamp granularities.
-     * Either or both of these options are supported: word, or segment.
+     * [responseFormat] must be set [AudioResponseFormat.VerboseJson] to use timestamp granularities.
+     * Either or both of these options are supported: [TimestampGranularity.Word], or [TimestampGranularity.Segment].
      * Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.
      */
-    public val timestampGranularities: List<TimestampGranularity> = emptyList(),
+    public val timestampGranularities: List<TimestampGranularity>? = null,
 )
 
 /**
@@ -104,7 +103,7 @@ public class TranscriptionRequestBuilder {
      * Either or both of these options are supported: word, or segment.
      * Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.
      */
-    public var timestampGranularities: List<TimestampGranularity> = emptyList()
+    public var timestampGranularities: List<TimestampGranularity>? = null
 
     /**
      * Builder of [TranscriptionRequest] instances.

@@ -62,7 +62,7 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
         request.temperature?.let { append(key = "temperature", value = it) }
         request.language?.let { append(key = "language", value = it) }
         if (request.responseFormat == AudioResponseFormat.VerboseJson) {
-            for (timestampGranularity in request.timestampGranularities) {
+            for (timestampGranularity in request.timestampGranularities.orEmpty()) {
                 append(key = "timestamp_granularities[]", value = timestampGranularity.value)
             }
         }

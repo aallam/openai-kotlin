@@ -2,7 +2,7 @@
 
 ### Added
 
-- **Audio**: add `timestampGranularities`
+- **Audio**: add `timestampGranularities` (thanks @mxwell)
 
 ## 3.7.0
 

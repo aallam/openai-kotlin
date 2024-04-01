@@ -6,7 +6,7 @@
 
 ### Fixed
 
-- **Messages**: nullable field `MessageContent.Image#fileId`
+- **Messages**: nullable field `MessageContent.Image#fileId` (#313)
 
 ## 3.7.0
 

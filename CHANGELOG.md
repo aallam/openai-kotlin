@@ -1,4 +1,5 @@
-## Unreleased
+## 3.7.1
+> Published 01 Apr 2024
 
 ### Added
 
@@ -7,9 +8,10 @@
 ### Fixed
 
 - **Core**: nullable `OpenAIErrorDetails` fields (#315)
-- **Messages**: nullable field `MessageContent.Image#fileId` (#313)
+- **Messages**: content as image file (#313)
 
 ## 3.7.0
+> Published 11 Feb 2024
 
 ### Added
 - add `RequestOptions` (#296)

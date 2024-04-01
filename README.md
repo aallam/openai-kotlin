@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.aallam.openai:openai-client:3.7.0"
+    implementation "com.aallam.openai:openai-client:3.7.1"
 }
 ```
 
@@ -30,7 +30,7 @@ Alternatively, you can use [openai-client-bom](/openai-client-bom)  by adding th
 ```groovy
 dependencies {
     // import Kotlin API client BOM
-    implementation platform('com.aallam.openai:openai-client-bom:3.7.0')
+    implementation platform('com.aallam.openai:openai-client-bom:3.7.1')
 
     // define dependencies without versions
     implementation 'com.aallam.openai:openai-client'
@@ -57,7 +57,7 @@ of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
     <dependency>
         <groupId>com.aallam.openai</groupId>
         <artifactId>openai-client-jvm</artifactId>
-        <version>3.7.0</version>
+        <version>3.7.1</version>
     </dependency>
             
     <dependency>

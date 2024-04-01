@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 public data class OpenAIError(
-    @SerialName("error") public val detail: OpenAIErrorDetails?,
+    @SerialName("error") public val detail: OpenAIErrorDetails? = null,
 )
 
 /**
@@ -23,8 +23,8 @@ public data class OpenAIError(
  */
 @Serializable
 public data class OpenAIErrorDetails(
-    @SerialName("code") val code: String?,
-    @SerialName("message") val message: String?,
-    @SerialName("param") val param: String?,
-    @SerialName("type") val type: String?,
+    @SerialName("code") val code: String? = null,
+    @SerialName("message") val message: String? = null,
+    @SerialName("param") val param: String? = null,
+    @SerialName("type") val type: String? = null,
 )

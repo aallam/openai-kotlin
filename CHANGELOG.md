@@ -4,6 +4,10 @@
 
 - **Audio**: add `timestampGranularities` (thanks @mxwell)
 
+### Fixed
+
+- **Core**: nullable `OpenAIErrorDetails` fields
+
 ## 3.7.0
 
 ### Added

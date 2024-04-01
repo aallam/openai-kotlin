@@ -35,7 +35,7 @@ public sealed interface MessageContent {
         /**
          * The File ID of the image in the message content.
          */
-        @SerialName("file_id") val fileId: FileId
+        @SerialName("image_file") val imageFile: ImageFile
     ) : MessageContent
 
 }

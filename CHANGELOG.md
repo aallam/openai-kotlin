@@ -6,7 +6,7 @@
 
 ### Fixed
 
-- **Core**: nullable `OpenAIErrorDetails` fields
+- **Core**: nullable `OpenAIErrorDetails` fields (#315)
 
 ## 3.7.0
 

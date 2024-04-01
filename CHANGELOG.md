@@ -4,6 +4,10 @@
 
 - **Audio**: add `timestampGranularities` (thanks @mxwell)
 
+### Fixed
+
+- **Messages**: nullable field `MessageContent.Image#fileId`
+
 ## 3.7.0
 
 ### Added

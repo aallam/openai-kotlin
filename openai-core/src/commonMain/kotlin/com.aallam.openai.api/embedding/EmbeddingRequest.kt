@@ -27,6 +27,13 @@ public class EmbeddingRequest(
     @SerialName("input") public val input: List<String>,
 
     /**
+     * The number of dimensions the resulting output embeddings should have.
+     *
+     * Only supported in text-embedding-3 and later models.
+     */
+    @SerialName("dimensions") public val dimensions: Int? = null,
+
+    /**
      * A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse.
      */
     @SerialName("user") public val user: String? = null,
@@ -60,6 +67,13 @@ public class EmbeddingRequestBuilder {
     public var input: List<String>? = null
 
     /**
+     * The number of dimensions the resulting output embeddings should have.
+     *
+     * Only supported in text-embedding-3 and later models.
+     */
+    public var dimensions: Int? = null
+
+    /**
      * A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse.
      */
     public var user: String? = null
@@ -70,6 +84,7 @@ public class EmbeddingRequestBuilder {
     public fun build(): EmbeddingRequest = EmbeddingRequest(
         model = requireNotNull(model) { "model is required" },
         input = requireNotNull(input) { "input is required" },
+        dimensions = dimensions,
         user = user
     )
 }

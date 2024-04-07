@@ -24,6 +24,20 @@ class TestEmbeddings : TestOpenAI() {
     }
 
     @Test
+    fun embeddingDimensions() = test {
+        val response = openAI.embeddings(request = embeddingRequest {
+            model = ModelId("text-embedding-3-small")
+            input = listOf("The food was delicious and the waiter...")
+            dimensions = 1024
+        })
+        assertTrue { response.embeddings.isNotEmpty() }
+        val embedding = response.embeddings.first()
+        assertTrue { embedding.embedding.isNotEmpty() }
+        assertEquals(1024, embedding.embedding.size)
+        assertEquals(0, embedding.index)
+    }
+
+    @Test
     fun similarityEqual() = test {
         val embedding1 = Embedding(embedding = listOf(1.0, 2.0, 3.0, 4.0), index = 0)
         val embedding2 = Embedding(embedding = listOf(1.0, 2.0, 3.0, 4.0), index = 0)

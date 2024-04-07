@@ -1,3 +1,8 @@
+## Unreleased
+
+### Added
+- **embeddings**: add embedding `dimensions` request field (#317) (thanks @EliasJorgensen)
+
 ## 3.7.1
 > Published 01 Apr 2024
 

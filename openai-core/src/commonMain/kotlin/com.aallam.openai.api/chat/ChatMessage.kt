@@ -211,7 +211,7 @@ public data class TextPart(@SerialName("text") val text: String) : ContentPart
  * @param imageUrl the image url.
  */
 @Serializable
-@SerialName("image")
+@SerialName("image_url")
 public data class ImagePart(
     @SerialName("image_url") val imageUrl: ImageURL,
 ) : ContentPart {

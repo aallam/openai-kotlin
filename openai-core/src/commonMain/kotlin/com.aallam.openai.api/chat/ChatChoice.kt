@@ -1,7 +1,8 @@
 package com.aallam.openai.api.chat;
 
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.FinishReason
+import com.aallam.openai.azure.api.chat.ChatFinishDetails
+import com.aallam.openai.azure.api.filtering.ContentFilterResultsForChoice
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -25,4 +26,17 @@ public data class ChatChoice(
      * The reason why OpenAI stopped generating.
      */
     @SerialName("finish_reason") public val finishReason: FinishReason? = null,
+
+    /**
+     * Information about the content filtering category (hate, sexual, violence,
+     * self_harm), if it has been detected, as well as the severity level (very_low, low, medium, high-scale that
+     * determines the intensity and risk level of harmful content) and if it has been filtered or not.
+     */
+    @SerialName("content_filter_results") public val contentFilterResults: ContentFilterResultsForChoice? = null,
+
+    /**
+     * The reason the model stopped generating tokens, together with any applicable details.
+     * This structured representation replaces 'finish_reason' for some models.
+     */
+    @SerialName("finish_details") public val finishDetails: ChatFinishDetails? = null,
 )

@@ -4,8 +4,10 @@ import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.core.Status
+import com.aallam.openai.api.core.Event
 import com.aallam.openai.api.run.*
 import com.aallam.openai.api.thread.ThreadId
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Represents an execution run on a thread.
@@ -22,6 +24,15 @@ public interface Runs {
      */
     @BetaOpenAI
     public suspend fun createRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions? = null): Run
+
+    /**
+     * Stream variant of [createRun].
+     *
+     * @param threadId The ID of the thread to run
+     * @param request request for a run
+     * @param requestOptions request options.
+     */
+    public fun createRunStream(threadId: ThreadId,  request: RunRequest, requestOptions: RequestOptions? = null): Flow<Event<Run>>
 
     /**
      * Retrieves a run.

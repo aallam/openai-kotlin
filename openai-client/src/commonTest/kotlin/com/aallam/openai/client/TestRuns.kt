@@ -2,14 +2,21 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
+import com.aallam.openai.api.core.Event
 import com.aallam.openai.api.core.PaginatedList
+import com.aallam.openai.api.core.Role
+import com.aallam.openai.api.message.MessageRequest
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.api.run.Run
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.RunStep
 import com.aallam.openai.api.run.ThreadRunRequest
 import com.aallam.openai.client.internal.JsonLenient
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 
 class TestRuns : TestOpenAI() {
 
@@ -121,5 +128,38 @@ class TestRuns : TestOpenAI() {
         """.trimIndent()
         val decoded = JsonLenient.decodeFromString<PaginatedList<RunStep>>(json)
         println(decoded)
+    }
+
+    @Test
+    fun stream() = test {
+        val assistant = openAI.assistant(
+            request = assistantRequest {
+                name = "Math Tutor"
+                instructions = "You are a personal math tutor. Write and run code to answer math questions."
+                tools = listOf(AssistantTool.CodeInterpreter)
+                model = ModelId("gpt-4-turbo-preview")
+            }
+        )
+        val thread = openAI.thread()
+        openAI.message(
+            threadId = thread.id,
+            request = MessageRequest(
+                role = Role.User,
+                content = "I need to solve the equation `3x + 11 = 14`. Can you help me?"
+            ),
+        )
+
+        val results = mutableListOf<Event<Run>>()
+        openAI.createRunStream(
+            threadId = thread.id,
+            request = RunRequest(
+                assistantId = assistant.id,
+                instructions = "Please address the user as Jane Doe. The user has a premium account.",
+            )
+        ).onEach { results += it }
+            .launchIn(this)
+            .join()
+
+        assertNotEquals(0, results.size)
     }
 }

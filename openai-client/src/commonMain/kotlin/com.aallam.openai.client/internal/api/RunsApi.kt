@@ -1,18 +1,23 @@
 package com.aallam.openai.client.internal.api
 
+import com.aallam.openai.api.core.Event
 import com.aallam.openai.api.core.PaginatedList
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.run.*
 import com.aallam.openai.api.thread.ThreadId
 import com.aallam.openai.client.Runs
+import com.aallam.openai.client.internal.extension.assistantStreamEvents
 import com.aallam.openai.client.internal.extension.beta
 import com.aallam.openai.client.internal.extension.requestOptions
+import com.aallam.openai.client.internal.extension.streamRequestOf
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 internal class RunsApi(val requester: HttpRequester) : Runs {
     override suspend fun createRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions?): Run {
@@ -24,6 +29,30 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
                 beta("assistants", 1)
                 requestOptions(requestOptions)
             }.body()
+        }
+    }
+
+    override fun createRunStream(
+        threadId: ThreadId,
+        request: RunRequest,
+        requestOptions: RequestOptions?
+    ): Flow<Event<Run>> {
+        val builder = HttpRequestBuilder().apply {
+            method = HttpMethod.Post
+            url(path = "${ApiPath.Threads}/${threadId.id}/runs")
+            setBody(streamRequestOf(request))
+            contentType(ContentType.Application.Json)
+            accept(ContentType.Text.EventStream)
+            beta("assistants", 1)
+            headers {
+                append(HttpHeaders.CacheControl, "no-cache")
+                append(HttpHeaders.Connection, "keep-alive")
+            }
+            requestOptions(requestOptions)
+        }
+
+        return flow {
+            requester.perform(builder) { response -> assistantStreamEvents(response) }
         }
     }
 

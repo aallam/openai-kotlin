@@ -94,6 +94,12 @@ public data class FileCitationAnnotation(
      * The specific quote in the file.
      */
     @SerialName("file_citation") val fileCitation: FileCitation,
+
+    /**
+     * The index of the annotation in the text content part.
+     * This is only part of stream responses.
+     */
+    @SerialName("index") public val index: Long? = null,
 ) : TextAnnotation
 
 @BetaOpenAI
@@ -124,6 +130,12 @@ public data class FilePathAnnotation(
      * The file path.
      */
     @SerialName("file_path") val filePath: FilePath,
+
+    /**
+     * The index of the annotation in the text content part.
+     * This is only part of stream responses.
+     */
+    @SerialName("index") public val index: Long? = null,
 ) : TextAnnotation
 
 @BetaOpenAI

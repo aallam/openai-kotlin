@@ -69,6 +69,12 @@ public sealed interface ToolCallStep {
          * The Code Interpreter tool call definition.
          */
         @SerialName("code_interpreter") public val codeInterpreter: CodeInterpreterToolCall,
+
+        /**
+         * The index of the tool call in the tool calls array.
+         * This is only part of stream responses.
+         */
+        @SerialName("index") public val index: Long? = null,
     ) : ToolCallStep
 
     @BetaOpenAI
@@ -83,6 +89,12 @@ public sealed interface ToolCallStep {
          * For now, this is always going to be an empty object.
          */
         @SerialName("retrieval") public val retrieval: Map<String, String>,
+
+        /**
+         * The index of the tool call in the tool calls array.
+         * This is only part of stream responses.
+         */
+        @SerialName("index") public val index: Long? = null,
     ) : ToolCallStep
 
     @BetaOpenAI
@@ -97,6 +109,12 @@ public sealed interface ToolCallStep {
          * The definition of the function that was called.
          */
         @SerialName("function") public val function: FunctionToolCallStep,
+
+        /**
+         * The index of the tool call in the tool calls array.
+         * This is only part of stream responses.
+         */
+        @SerialName("index") public val index: Long? = null,
     ) : ToolCallStep
 }
 

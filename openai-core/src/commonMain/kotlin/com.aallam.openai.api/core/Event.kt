@@ -1,15 +1,13 @@
 package com.aallam.openai.api.core
 
+import kotlinx.serialization.json.JsonElement
+
 /**
  * Represents a stream event.
  */
-public data class Event<T>(
-    /**
-     * The event type.
-     */
-    val event: EventType,
-    /**
-     * The event data.
-     */
-    val data: T
-)
+public interface Event
+
+/**
+ * Represents a custom event.
+ */
+public class CustomEvent(public val json: JsonElement) : Event

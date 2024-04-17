@@ -2,6 +2,7 @@ package com.aallam.openai.api.run
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantId
+import com.aallam.openai.api.core.Event
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.thread.ThreadId
 import kotlinx.serialization.SerialName
@@ -9,7 +10,7 @@ import kotlinx.serialization.Serializable
 
 @BetaOpenAI
 @Serializable
-public sealed interface RunStep {
+public sealed interface RunStep : Event {
     /**
      * The identifier of the run step, which can be referenced in API endpoints.
      */

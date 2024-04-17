@@ -2,6 +2,7 @@ package com.aallam.openai.api.message
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantId
+import com.aallam.openai.api.core.Event
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.run.RunId
@@ -64,4 +65,4 @@ public data class Message(
      * long, and values can be a maximum of 512 characters long.
      */
     @SerialName("metadata") val metadata: Map<String, String>
-)
+) : Event

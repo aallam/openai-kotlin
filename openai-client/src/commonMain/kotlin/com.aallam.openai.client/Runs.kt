@@ -32,7 +32,7 @@ public interface Runs {
      * @param request request for a run
      * @param requestOptions request options.
      */
-    public fun createRunStream(threadId: ThreadId,  request: RunRequest, requestOptions: RequestOptions? = null): Flow<Event<Run>>
+    public fun createRunStream(threadId: ThreadId,  request: RunRequest, requestOptions: RequestOptions? = null): Flow<Event>
 
     /**
      * Retrieves a run.

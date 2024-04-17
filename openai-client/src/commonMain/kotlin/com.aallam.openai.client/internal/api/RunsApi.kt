@@ -36,7 +36,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         threadId: ThreadId,
         request: RunRequest,
         requestOptions: RequestOptions?
-    ): Flow<Event<Run>> {
+    ): Flow<Event> {
         val builder = HttpRequestBuilder().apply {
             method = HttpMethod.Post
             url(path = "${ApiPath.Threads}/${threadId.id}/runs")

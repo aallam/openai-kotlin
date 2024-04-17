@@ -149,7 +149,7 @@ class TestRuns : TestOpenAI() {
             ),
         )
 
-        val results = mutableListOf<Event<Run>>()
+        val results = mutableListOf<Event>()
         openAI.createRunStream(
             threadId = thread.id,
             request = RunRequest(

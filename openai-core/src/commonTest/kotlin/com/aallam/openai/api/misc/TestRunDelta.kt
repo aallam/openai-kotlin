@@ -2,6 +2,9 @@ package com.aallam.openai.api.misc
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantTool
+import com.aallam.openai.api.message.Message
+import com.aallam.openai.api.message.MessageContent
+import com.aallam.openai.api.message.TextContent
 import com.aallam.openai.api.run.MessageCreationStep
 import com.aallam.openai.api.run.Run
 import com.aallam.openai.api.run.RunStep
@@ -9,9 +12,9 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 
+@OptIn(BetaOpenAI::class)
 class TestRunDelta {
 
-    @OptIn(BetaOpenAI::class)
     @Test
     fun testRun() {
         val json = """
@@ -61,7 +64,6 @@ class TestRunDelta {
         assertIs<AssistantTool.CodeInterpreter>(runDelta.tools?.first())
     }
 
-    @OptIn(BetaOpenAI::class)
     @Test
     fun testRunStep() {
         val json = """
@@ -97,5 +99,45 @@ class TestRunDelta {
         assertEquals("asst_YUepBjqI7hkbnjl37AcSZNYx", runStep.assistantId.id)
         assertEquals("thread_VRRPworPKTCh7jNsofqUEH2M", runStep.threadId.id)
         assertEquals("msg_cyQphb0jh8sakOIGn2RhP8G0", runStep.stepDetails.messageCreation.messageId.id)
+    }
+
+    @Test
+    fun testThreadMessage() {
+        val json = """
+            {
+              "id": "msg_8tPpueHqGgIqg5rIph8Gg4iA",
+              "object": "thread.message",
+              "created_at": 1713387295,
+              "assistant_id": null,
+              "thread_id": "thread_vxsrGyG2EUf3ep1Lap64bGiX",
+              "run_id": null,
+              "role": "user",
+              "content": [
+                {
+                  "type": "text",
+                  "text": {
+                    "value": "I need to solve the equation `3x + 11 = 14`. Can you help me?",
+                    "annotations": []
+                  }
+                }
+              ],
+              "file_ids": [],
+              "metadata": {}
+            }
+        """.trimIndent()
+        val message = JsonLenient.decodeFromString(Message.serializer(), json)
+        assertEquals("msg_8tPpueHqGgIqg5rIph8Gg4iA", message.id.id)
+        assertEquals(1713387295, message.createdAt)
+        assertEquals("thread_vxsrGyG2EUf3ep1Lap64bGiX", message.threadId.id)
+        assertEquals("user", message.role.role)
+        assertEquals(
+            MessageContent.Text(
+                text = TextContent(
+                    value = "I need to solve the equation `3x + 11 = 14`. Can you help me?",
+                    annotations = listOf()
+                )
+            ),
+            message.content.first()
+        )
     }
 }

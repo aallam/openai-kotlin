@@ -3,6 +3,7 @@ package com.aallam.openai.api.run
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantId
 import com.aallam.openai.api.assistant.AssistantTool
+import com.aallam.openai.api.core.Event
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.thread.ThreadId
@@ -103,4 +104,4 @@ public data class Run(
     @SerialName("metadata") val metadata: Map<String, String>? = null,
 
 
-)
+): Event

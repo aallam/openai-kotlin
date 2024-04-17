@@ -27,4 +27,5 @@ internal class OpenAIApi(
     Threads by ThreadsApi(requester),
     Runs by RunsApi(requester),
     Messages by MessagesApi(requester),
+    VectorStores by VectorStoresApi(requester),
     Closeable by requester

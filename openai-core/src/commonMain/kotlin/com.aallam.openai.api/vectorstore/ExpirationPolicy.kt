@@ -1,11 +1,13 @@
 package com.aallam.openai.api.vectorstore
 
+import com.aallam.openai.api.BetaOpenAI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
  * The expiration policy for a vector store.
  */
+@BetaOpenAI
 @Serializable
 public data class ExpirationPolicy(
     /**

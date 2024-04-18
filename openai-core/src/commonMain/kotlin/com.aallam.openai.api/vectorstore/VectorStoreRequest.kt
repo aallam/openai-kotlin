@@ -1,5 +1,6 @@
 package com.aallam.openai.api.vectorstore
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.file.FileId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,6 +8,7 @@ import kotlinx.serialization.Serializable
 /**
  * A request to create a new vector store.
  */
+@BetaOpenAI
 @Serializable
 public class VectorStoreRequest(
     /**

@@ -6,6 +6,7 @@ import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.thread.ThreadId
+import com.aallam.openai.api.core.LastError
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

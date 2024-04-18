@@ -1,11 +1,13 @@
 package com.aallam.openai.api.vectorstore
 
+import com.aallam.openai.api.BetaOpenAI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
  * The number of files that are currently being processed.
  */
+@BetaOpenAI
 @Serializable
 public data class FileCounts(
     /**

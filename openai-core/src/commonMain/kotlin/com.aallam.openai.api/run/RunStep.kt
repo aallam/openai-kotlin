@@ -2,6 +2,7 @@ package com.aallam.openai.api.run
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantId
+import com.aallam.openai.api.core.LastError
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.thread.ThreadId
 import kotlinx.serialization.SerialName

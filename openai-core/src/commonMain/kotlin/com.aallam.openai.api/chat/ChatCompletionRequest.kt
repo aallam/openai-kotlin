@@ -146,6 +146,18 @@ public class ChatCompletionRequest(
      */
     @property:BetaOpenAI
     @SerialName("seed") public val seed: Int? = null,
+
+    /**
+     * Whether to return log probabilities of the output tokens or not. If true,
+     * returns the log probabilities of each output token returned in the content of message.
+     */
+    @SerialName("logprobs") public val logprobs: Boolean? = null,
+
+    /**
+     * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position,
+     * each with an associated log probability. logprobs must be set to true if this parameter is used.
+     */
+    @SerialName("top_logprobs") public val topLogprobs: Int? = null,
 )
 
 /**
@@ -283,6 +295,18 @@ public class ChatCompletionRequestBuilder {
     public var toolChoice: ToolChoice? = null
 
     /**
+     * Whether to return log probabilities of the output tokens or not. If true,
+     * returns the log probabilities of each output token returned in the content of message.
+     */
+    public var logprobs: Boolean? = null
+
+    /**
+     * An integer between 0 and 20 specifying the number of most likely tokens to return at each token position,
+     * each with an associated log probability. logprobs must be set to true if this parameter is used.
+     */
+    public var topLogprobs: Int? = null
+
+    /**
      * The messages to generate chat completions for.
      */
     public fun messages(block: ChatMessagesBuilder.() -> Unit) {
@@ -323,7 +347,9 @@ public class ChatCompletionRequestBuilder {
         functionCall = functionCall,
         responseFormat = responseFormat,
         toolChoice = toolChoice,
-        tools = tools
+        tools = tools,
+        logprobs = logprobs,
+        topLogprobs = topLogprobs
     )
 }
 

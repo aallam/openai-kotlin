@@ -1,6 +1,5 @@
 package com.aallam.openai.api.chat
 
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.Usage
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName

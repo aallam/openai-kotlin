@@ -126,4 +126,43 @@ class TestChatCompletions : TestOpenAI() {
         assertNotNull(answer.question)
         assertNotNull(answer.response)
     }
+
+    @Test
+    fun logprobs() = test {
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-3.5-turbo-0125")
+            messages {
+                message {
+                    role = ChatRole.User
+                    content = "What's the weather like in Boston?"
+                }
+            }
+            logprobs = true
+        }
+        val response = openAI.chatCompletion(request)
+        val logprobs = response.choices.first().logprobs
+        assertNotNull(logprobs)
+        assertEquals(response.usage!!.completionTokens, logprobs.content!!.size)
+    }
+
+    @Test
+    fun top_logprobs() = test {
+        val expectedTopLogProbs = 5
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-3.5-turbo-0125")
+            messages {
+                message {
+                    role = ChatRole.User
+                    content = "What's the weather like in Boston?"
+                }
+            }
+            logprobs = true
+            topLogprobs = expectedTopLogProbs
+        }
+        val response = openAI.chatCompletion(request)
+        val logprobs = response.choices.first().logprobs
+        assertNotNull(logprobs)
+        assertEquals(response.usage!!.completionTokens, logprobs.content!!.size)
+        assertEquals(logprobs.content!![0].topLogprobs?.size, expectedTopLogProbs)
+    }
 }

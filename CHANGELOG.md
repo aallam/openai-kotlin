@@ -1,7 +1,13 @@
-## Unreleased
+## 3.7.2
+> Published 28 Apr 2024
 
 ### Added
 - **embeddings**: add embedding `dimensions` request field (#317) (thanks @EliasJorgensen)
+- **chat**: add `logprob` and `topLogprobs` (#328) (thanks @jkohls-indeed)
+
+### Fix
+- **chat**: `image_url` content type (#321)
+- **images**: remove `Quality` typealias (#318) (thanks @florentine-doemges)
 
 ## 3.7.1
 > Published 01 Apr 2024

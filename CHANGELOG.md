@@ -1,3 +1,8 @@
+## Unreleased
+
+### Added
+- **vector-stores**: add vector stores APIs (#324)
+
 ## 3.7.2
 > Published 28 Apr 2024
 

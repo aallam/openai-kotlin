@@ -21,4 +21,5 @@ internal object ApiPath {
     const val FineTuningJobs = "fine_tuning/jobs"
     const val Assistants = "assistants"
     const val Threads = "threads"
+    const val VectorStores = "vector_stores"
 }

@@ -1,11 +1,11 @@
-package com.aallam.openai.api.run
+package com.aallam.openai.api.core
 
 import com.aallam.openai.api.BetaOpenAI
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * The last error associated with this run/step.
+ * The last error information.
  */
 @BetaOpenAI
 @Serializable

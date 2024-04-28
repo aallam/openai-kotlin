@@ -67,6 +67,8 @@ jobs:
             test: "*.TestRuns"
           - name: Threads
             test: "*.TestThreads"
+          - name: Vector Stores
+            test: "*.TestVectorStores"
           - name: Misc.
             test: "*.misc.*"
     steps:

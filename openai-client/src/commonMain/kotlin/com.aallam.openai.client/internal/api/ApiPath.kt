@@ -22,4 +22,5 @@ internal object ApiPath {
     const val Assistants = "assistants"
     const val Threads = "threads"
     const val VectorStores = "vector_stores"
+    const val Batches = "batches"
 }

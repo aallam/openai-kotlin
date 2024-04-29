@@ -1,4 +1,4 @@
-package com.aallam.openai.api.vectorstore
+package com.aallam.openai.api.batch
 
 import com.aallam.openai.api.BetaOpenAI
 import kotlinx.serialization.Serializable

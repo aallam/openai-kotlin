@@ -62,7 +62,7 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
         val error = response.body<OpenAIError>()
         return when(status) {
             429 -> RateLimitException(status, error, exception)
-            400, 404, 415 -> InvalidRequestException(status, error, exception)
+            400, 404, 409, 415 -> InvalidRequestException(status, error, exception)
             401 -> AuthenticationException(status, error, exception)
             403 -> PermissionException(status, error, exception)
             else -> UnknownAPIException(status, error, exception)

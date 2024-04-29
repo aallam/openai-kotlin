@@ -1,5 +1,6 @@
 package com.aallam.openai.client.internal.api
 
+import com.aallam.openai.api.batch.BatchId
 import com.aallam.openai.api.core.*
 import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.file.FileId

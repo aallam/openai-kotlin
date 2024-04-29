@@ -1,12 +1,12 @@
 package com.aallam.openai.client.internal.extension
 
 import com.aallam.openai.client.internal.JsonLenient
-import io.ktor.client.call.body
-import io.ktor.client.statement.HttpResponse
-import io.ktor.utils.io.ByteReadChannel
-import io.ktor.utils.io.readUTF8Line
+import io.ktor.client.call.*
+import io.ktor.client.statement.*
+import io.ktor.utils.io.*
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.serialization.decodeFromString
+import kotlinx.coroutines.isActive
 
 private const val STREAM_PREFIX = "data:"
 private const val STREAM_END_TOKEN = "$STREAM_PREFIX [DONE]"
@@ -16,13 +16,17 @@ private const val STREAM_END_TOKEN = "$STREAM_PREFIX [DONE]"
  */
 internal suspend inline fun <reified T> FlowCollector<T>.streamEventsFrom(response: HttpResponse) {
     val channel: ByteReadChannel = response.body()
-    while (!channel.isClosedForRead) {
-        val line = channel.readUTF8Line() ?: continue
-        val value: T = when {
-            line.startsWith(STREAM_END_TOKEN) -> break
-            line.startsWith(STREAM_PREFIX) -> JsonLenient.decodeFromString(line.removePrefix(STREAM_PREFIX))
-            else -> continue
+    try {
+        while (currentCoroutineContext().isActive && !channel.isClosedForRead) {
+            val line = channel.readUTF8Line() ?: continue
+            val value: T = when {
+                line.startsWith(STREAM_END_TOKEN) -> break
+                line.startsWith(STREAM_PREFIX) -> JsonLenient.decodeFromString(line.removePrefix(STREAM_PREFIX))
+                else -> continue
+            }
+            emit(value)
         }
-        emit(value)
+    } finally {
+        channel.cancel()
     }
 }

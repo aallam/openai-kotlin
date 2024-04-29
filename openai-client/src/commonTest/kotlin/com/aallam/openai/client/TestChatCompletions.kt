@@ -2,10 +2,14 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.model.ModelId
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import kotlin.coroutines.cancellation.CancellationException
 import kotlin.test.*
 
 class TestChatCompletions : TestOpenAI() {
@@ -164,5 +168,39 @@ class TestChatCompletions : TestOpenAI() {
         assertNotNull(logprobs)
         assertEquals(response.usage!!.completionTokens, logprobs.content!!.size)
         assertEquals(logprobs.content!![0].topLogprobs?.size, expectedTopLogProbs)
+    }
+
+    @Test
+    fun cancellable() = test {
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-3.5-turbo")
+            messages {
+                message {
+                    role = ChatRole.System
+                    content = "You are a helpful assistant.!"
+                }
+                message {
+                    role = ChatRole.User
+                    content = "Who won the world series in 2020?"
+                }
+            }
+        }
+
+        val job = launch {
+            try {
+                openAI.chatCompletions(request).collect()
+            } catch (e: CancellationException) {
+                println("Flow was cancelled as expected.")
+            } catch (e: Exception) {
+                fail("Flow threw an unexpected exception: ${e.message}")
+            }
+        }
+
+        advanceTimeBy(1000)
+
+        job.cancel()
+        job.join()
+
+        assertTrue(job.isCancelled, "Job should be cancelled")
     }
 }

@@ -2,6 +2,7 @@
 
 ### Added
 - **vector-stores**: add vector stores APIs (#324)
+- **batch**: add batch APIs (#334)
 
 ### Fixed
 - **chat**: enhance flow cancel capability (#333)

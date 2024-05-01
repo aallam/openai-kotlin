@@ -1,5 +1,6 @@
 package com.aallam.openai.api.batch
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.exception.OpenAIErrorDetails
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,16 +8,17 @@ import kotlinx.serialization.Serializable
 /**
  * The per-line object of the batch input file.
  */
+@BetaOpenAI
 @Serializable
 public data class RequestOutput(
 
     /** The unique identifier of the request. */
-    @SerialName("id") public val id: String,
+    @SerialName("id") public val id: BatchId,
 
     /**
      * A developer-provided per-request id that will be used to match outputs to inputs.
      */
-    @SerialName("custom_id") public val customId: String,
+    @SerialName("custom_id") public val customId: CustomId,
 
     /**
      * The response.

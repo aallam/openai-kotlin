@@ -34,3 +34,28 @@ public data class BatchRequest(
      */
     @SerialName("metadata") public val metadata: Map<String, String>? = null,
 )
+
+/**
+ * Creates a new [BatchRequest].
+ */
+@BetaOpenAI
+public fun batchRequest(block: BatchRequestBuilder.() -> Unit): BatchRequest =
+    BatchRequestBuilder().apply(block).build()
+
+/**
+ * Builder for [BatchRequest].
+ */
+@BetaOpenAI
+public class BatchRequestBuilder {
+    public var inputFileId: FileId? = null
+    public var endpoint: Endpoint? = null
+    public var completionWindow: CompletionWindow? = null
+    public var metadata: Map<String, String>? = null
+
+    public fun build(): BatchRequest = BatchRequest(
+        inputFileId = requireNotNull(inputFileId) { "inputFileId is required" },
+        endpoint = requireNotNull(endpoint) { "endpoint is required" },
+        completionWindow = requireNotNull(completionWindow) { "completionWindow is required" },
+        metadata = metadata
+    )
+}

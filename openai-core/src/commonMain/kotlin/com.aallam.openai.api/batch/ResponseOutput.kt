@@ -13,7 +13,7 @@ public data class ResponseOutput(
     /**
      * The HTTP status code of the response
      */
-    @SerialName("status") public val status: Int,
+    @SerialName("status_code") public val statusCode: Int,
 
     /**
      * An unique identifier for the OpenAI API request. Please include this request ID when contacting support.

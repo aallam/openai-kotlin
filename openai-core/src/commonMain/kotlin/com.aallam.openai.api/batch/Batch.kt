@@ -34,10 +34,10 @@ public data class Batch(
     @SerialName("status") public val status: Status? = null,
 
     /** Identifier of the output file containing successfully executed requests. */
-    @SerialName("output_file_id") public val outputFileId: String? = null,
+    @SerialName("output_file_id") public val outputFileId: FileId? = null,
 
     /** Identifier of the error file containing outputs of requests with errors. */
-    @SerialName("error_file_id") public val errorFileId: String? = null,
+    @SerialName("error_file_id") public val errorFileId: FileId? = null,
 
     /** Unix timestamp for when the batch was created. */
     @SerialName("created_at") public val createdAt: Long? = null,

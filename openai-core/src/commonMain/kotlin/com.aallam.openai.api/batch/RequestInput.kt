@@ -15,12 +15,12 @@ public data class RequestInput(
      * A developer-provided per-request id that will be used to match outputs to inputs.
      * Must be unique for each request in a batch.
      */
-    @SerialName("custom_id") public val customId: String,
+    @SerialName("custom_id") public val customId: CustomId,
 
     /**
-     * The HTTP method to be used for the request. Currently only POST is supported.
+     * The HTTP method to be used for the request. Currently only [Method.Post] is supported.
      */
-    @SerialName("method") public val method: String,
+    @SerialName("method") public val method: Method,
 
     /**
      * The OpenAI API relative URL to be used for the request.

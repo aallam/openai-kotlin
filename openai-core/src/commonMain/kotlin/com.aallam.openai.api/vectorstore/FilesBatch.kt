@@ -1,6 +1,7 @@
 package com.aallam.openai.api.vectorstore
 
 import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.batch.BatchId
 import com.aallam.openai.api.core.Status
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

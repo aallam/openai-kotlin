@@ -21,7 +21,7 @@ public data class Assistant(
     /**
      * The name of the assistant. The maximum length is 256 characters.
      */
-    @SerialName("name") public val name: String,
+    @SerialName("name") public val name: String? = null,
 
     /**
      * The description of the assistant. The maximum length is 512 characters.

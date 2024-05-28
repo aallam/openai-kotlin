@@ -1,0 +1,35 @@
+{
+    "choices": [
+        {
+            "content_filter_offsets": {
+                "check_offset": 33188,
+                "start_offset": 33188,
+                "end_offset": 33557
+            },
+            "content_filter_results": {
+                "hate": {
+                    "filtered": false,
+                    "severity": "safe"
+                },
+                "self_harm": {
+                    "filtered": false,
+                    "severity": "safe"
+                },
+                "sexual": {
+                    "filtered": false,
+                    "severity": "safe"
+                },
+                "violence": {
+                    "filtered": false,
+                    "severity": "safe"
+                }
+            },
+            "finish_reason": null,
+            "index": 0
+        }
+    ],
+    "created": 0,
+    "id": "",
+    "model": "",
+    "object": ""
+}

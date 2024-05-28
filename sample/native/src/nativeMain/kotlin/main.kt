@@ -89,7 +89,7 @@ fun main(): Unit = runBlocking {
 
     println("\n>️ Creating chat completions stream...")
     openAI.chatCompletions(chatCompletionRequest)
-        .onEach { print(it.choices.first().delta.content.orEmpty()) }
+        .onEach { print(it.choices.first().delta?.content.orEmpty()) }
         .onCompletion { println() }
         .launchIn(this)
         .join()

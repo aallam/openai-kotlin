@@ -1,0 +1,16 @@
+{
+    "choices": [
+        {
+            "delta": {
+                "content": " engineering"
+            },
+            "finish_reason": null,
+            "index": 0
+        }
+    ],
+    "created": 1716855566,
+    "id": "chatcmpl-9TeqkT3BJs5zXQq12b204deXcY5nj",
+    "model": "gpt-4o-2024-05-13",
+    "object": "chat.completion.chunk",
+    "system_fingerprint": "fp_5f4bad809a"
+}

@@ -16,7 +16,7 @@ class TestAssistants : TestOpenAI() {
         val request = assistantRequest {
             name = "Math Tutor"
             tools = listOf(AssistantTool.CodeInterpreter)
-            model = ModelId("gpt-4")
+            model = ModelId("gpt-4o")
         }
         val assistant = openAI.assistant(request)
         assertEquals(request.name, assistant.name)

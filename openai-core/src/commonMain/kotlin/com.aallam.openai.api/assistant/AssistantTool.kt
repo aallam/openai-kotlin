@@ -25,8 +25,8 @@ public sealed interface AssistantTool {
      */
     @BetaOpenAI
     @Serializable
-    @SerialName("retrieval")
-    public data object RetrievalTool : AssistantTool
+    @SerialName("file_search")
+    public data object FileSearch : AssistantTool
 
 
     /**

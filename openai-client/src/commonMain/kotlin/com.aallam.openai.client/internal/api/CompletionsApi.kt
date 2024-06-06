@@ -10,7 +10,6 @@ import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import io.ktor.util.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -29,7 +28,6 @@ internal class CompletionsApi(private val requester: HttpRequester) : Completion
         }
     }
 
-    @OptIn(InternalAPI::class)
     override fun completions(request: CompletionRequest): Flow<TextCompletion> {
         val builder = HttpRequestBuilder().apply {
             method = HttpMethod.Post

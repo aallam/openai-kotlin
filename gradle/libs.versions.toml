@@ -2,8 +2,8 @@
 kotlin = "2.0.0"
 coroutines = "1.8.1"
 serialization = "1.6.3"
-ktor = "2.3.11"
-okio = "3.4.0"
+ktor = "3.0.0-beta-2-eap-940"
+okio = "3.9.0"
 logback = "1.4.8"
 
 [libraries]

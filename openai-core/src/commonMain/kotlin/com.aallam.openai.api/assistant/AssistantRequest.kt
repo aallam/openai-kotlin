@@ -49,22 +49,6 @@ public data class AssistantRequest(
     @SerialName("metadata") val metadata: Map<String, String>? = null
 )
 
-@Serializable
-public data class ToolResources(
-    @SerialName("file_search") val fileSearch: FileSearchResource? = null,
-    @SerialName("code_interpreter") val codeInterpreter: CodeInterpreterResource? = null
-)
-
-@Serializable
-public data class FileSearchResource(
-    @SerialName("vector_store_ids") val vectorStoreIds: List<String>
-)
-
-@Serializable
-public data class CodeInterpreterResource(
-    @SerialName("file_ids") val fileIds: List<String>
-)
-
 @BetaOpenAI
 @OpenAIDsl
 public class AssistantRequestBuilder {

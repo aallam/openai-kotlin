@@ -43,6 +43,7 @@ public data class Assistant(
     /**
      * A list of tools enabled on the assistant.
      * There can be a maximum of 128 tools per assistant.
+     * Tools can be of types [CodeInterpreter], [FileSearch], or [FunctionTool].
      */
     @SerialName("tools") public val tools: List<AssistantTool>,
 
@@ -56,5 +57,20 @@ public data class Assistant(
      * This can be useful for storing additional information about the object in a structured format.
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
-    @SerialName("metadata") public val metadata: Map<String, String>
+    @SerialName("metadata") public val metadata: Map<String, String>,
+
+    /**
+     * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
+     * while lower values like 0.2 will make it more focused and deterministic.
+     */
+    @SerialName("temperature") public val temperature: Double? = null,
+
+    /**
+     * An alternative to sampling with temperature, called nucleus sampling,
+     * where the model considers the results of the tokens with top_p probability mass.
+     * So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+     *
+     * We generally recommend altering this or temperature but not both.
+     */
+    @SerialName("top_p") public val topP: Double? = null
 )

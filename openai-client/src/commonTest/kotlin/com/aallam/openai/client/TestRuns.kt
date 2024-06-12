@@ -3,10 +3,14 @@ package com.aallam.openai.client
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.core.PaginatedList
+import com.aallam.openai.api.core.Role
+import com.aallam.openai.api.message.Message
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.RunStep
 import com.aallam.openai.api.run.ThreadRunRequest
+import com.aallam.openai.api.thread.ThreadMessage
+import com.aallam.openai.api.thread.ThreadRequest
 import com.aallam.openai.client.internal.JsonLenient
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -22,7 +26,16 @@ class TestRuns : TestOpenAI() {
                 model = ModelId("gpt-4")
             }
         )
-        val thread = openAI.thread()
+        val thread = openAI.thread(
+            request = ThreadRequest(
+                messages = listOf(
+                    ThreadMessage(
+                        role = Role.User,
+                        content = "Solve 3x + 11 = 14."
+                    )
+                )
+            )
+        )
         val request = RunRequest(assistantId = assistant.id)
         val run = openAI.createRun(threadId = thread.id, request = request)
         assertEquals(thread.id, run.threadId)
@@ -45,8 +58,20 @@ class TestRuns : TestOpenAI() {
                 model = ModelId("gpt-4")
             }
         )
-        val request = ThreadRunRequest(assistantId = assistant.id)
-        val run = openAI.createThreadRun(request)
+        val thread = openAI.thread(
+            request = ThreadRequest(
+                messages = listOf(
+                    ThreadMessage(
+                        role = Role.User,
+                        content = "Solve 3x + 11 = 14."
+                    )
+                )
+            )
+        )
+        val run = openAI.createRun(
+            threadId = thread.id,
+            request = RunRequest(assistantId = assistant.id)
+        )
         assertEquals(assistant.id, run.assistantId)
 
         val runs = openAI.runSteps(threadId = run.threadId, runId = run.id)

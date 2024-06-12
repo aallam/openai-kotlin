@@ -20,14 +20,12 @@ public class MessageRequest(
     /**
      * The content of the message.
      */
-    @SerialName("content") public val content: String,
+    @SerialName("content") public val content: List<Content>,
 
     /**
-     * A list of File IDs that the message should use.
-     * There can be a maximum of 10 files attached to a message.
-     * Useful for tools like retrieval and code interpreter that can access and use files.
+     * A list of attachments that the message should use.
      */
-    @SerialName("file_ids") public val fileIds: List<FileId>? = null,
+    @SerialName("attachments") public val attachments: List<Attachment>? = null,
 
     /**
      * Set of 16 key-value pairs that can be attached to an object.
@@ -57,14 +55,12 @@ public class MessageRequestBuilder {
     /**
      * The content of the message.
      */
-    public var content: String? = null
+    public var content: MutableList<Content> = mutableListOf()
 
     /**
-     * A list of File IDs that the message should use.
-     * There can be a maximum of 10 files attached to a message.
-     * Useful for tools like retrieval and code interpreter that can access and use files.
+     * A list of attachments that the message should use.
      */
-    public var fileIds: List<FileId>? = null
+    public var attachments: List<Attachment>? = null
 
     /**
      * Set of 16 key-value pairs that can be attached to an object.
@@ -73,10 +69,61 @@ public class MessageRequestBuilder {
      */
     public var metadata: Map<String, String>? = null
 
+    public fun addTextContent(text: String) {
+        content.add(Content.Text(text))
+    }
+
+    public fun addImageUrlContent(url: String, detail: String? = null) {
+        content.add(Content.ImageUrl(url, detail))
+    }
+
+    public fun addImageFileContent(fileId: FileId) {
+        content.add(Content.ImageFile(fileId))
+    }
+
     public fun build(): MessageRequest = MessageRequest(
         role = requireNotNull(role) { "role is required" },
-        content = requireNotNull(content) { "content is required" },
-        fileIds = fileIds,
+        content = content,
+        attachments = attachments,
         metadata = metadata
     )
 }
+
+@BetaOpenAI
+@Serializable
+public sealed class Content {
+    @Serializable
+    @SerialName("text")
+    public data class Text(val text: String) : Content()
+
+    @Serializable
+    @SerialName("image_url")
+    public data class ImageUrl(val url: String, val detail: String? = null) : Content()
+
+    @Serializable
+    @SerialName("image_file")
+    public data class ImageFile(val fileId: FileId) : Content()
+}
+
+@BetaOpenAI
+@Serializable
+public class Attachment(
+    /**
+     * The ID of the file to attach.
+     */
+    @SerialName("file_id") public val fileId: FileId,
+
+    /**
+     * A list of tools associated with this attachment.
+     */
+    @SerialName("tools") public val tools: List<Tool>? = null,
+)
+
+@BetaOpenAI
+@Serializable
+public class Tool(
+    /**
+     * The type of the tool.
+     */
+    @SerialName("type") public val type: String
+)

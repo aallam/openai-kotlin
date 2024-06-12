@@ -7,6 +7,7 @@ import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.message.MessageContent
 import com.aallam.openai.api.message.MessageRequest
+import com.aallam.openai.api.message.messageRequest
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.client.OpenAI
@@ -30,10 +31,10 @@ suspend fun assistantsCodeInterpreter(openAI: OpenAI) {
     // 3. Add a message to the thread
     openAI.message(
         threadId = thread.id,
-        request = MessageRequest(
-            role = Role.User,
-            content = "I need to solve the equation `3x + 11 = 14`. Can you help me?"
-        )
+        request = messageRequest {
+            role = Role.User
+            addTextContent("I need to solve the equation `3x + 11 = 14`. Can you help me?")
+        }
     )
     val messages = openAI.messages(thread.id)
     println("List of messages in the thread:")

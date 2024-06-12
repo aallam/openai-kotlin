@@ -21,7 +21,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -31,7 +31,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}")
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -50,7 +50,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
                     setBody(mapOf("metadata" to meta))
                     contentType(ContentType.Application.Json)
                 }
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -72,7 +72,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
                     after?.let { parameter("after", it.id) }
                     before?.let { parameter("before", it.id) }
                 }
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -89,7 +89,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}/submit_tool_outputs")
                 setBody(mapOf("tool_outputs" to output))
                 contentType(ContentType.Application.Json)
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -99,7 +99,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}/cancel")
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -111,7 +111,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
                 url(path = "${ApiPath.Threads}/runs")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -126,7 +126,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}/steps/${stepId.id}")
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -149,7 +149,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
                     after?.let { parameter("after", it.id) }
                     before?.let { parameter("before", it.id) }
                 }
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }

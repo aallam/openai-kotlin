@@ -38,16 +38,31 @@ public data class AssistantRequest(
     @SerialName("tools") val tools: List<AssistantTool>? = null,
 
     /**
-     * A list of file IDs attached to this assistant. Optional. Defaults to an empty list.
-     * There can be a maximum of 20 files attached to the assistant.
+     * Tool-specific resources such as vector store IDs and file IDs. Optional.
      */
-    @SerialName("file_ids") val fileIds: List<FileId>? = null,
+    @SerialName("tool_resources") val toolResources: ToolResources? = null,
 
     /**
      * Set of 16 key-value pairs that can be attached to an object. Optional.
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
     @SerialName("metadata") val metadata: Map<String, String>? = null
+)
+
+@Serializable
+public data class ToolResources(
+    @SerialName("file_search") val fileSearch: FileSearchResource? = null,
+    @SerialName("code_interpreter") val codeInterpreter: CodeInterpreterResource? = null
+)
+
+@Serializable
+public data class FileSearchResource(
+    @SerialName("vector_store_ids") val vectorStoreIds: List<String>
+)
+
+@Serializable
+public data class CodeInterpreterResource(
+    @SerialName("file_ids") val fileIds: List<String>
 )
 
 @BetaOpenAI
@@ -80,9 +95,9 @@ public class AssistantRequestBuilder {
     public var tools: List<AssistantTool>? = null
 
     /**
-     * A list of file IDs attached to this assistant.
+     * Tool-specific resources such as vector store IDs and file IDs.
      */
-    public var fileIds: List<FileId>? = null
+    public var toolResources: ToolResources? = null
 
     /**
      * Set of 16 key-value pairs that can be attached to an object.
@@ -90,7 +105,7 @@ public class AssistantRequestBuilder {
     public var metadata: Map<String, String>? = null
 
     /**
-     * Create [Assistant] instance.
+     * Create [AssistantRequest] instance.
      */
     public fun build(): AssistantRequest = AssistantRequest(
         model = model,
@@ -98,7 +113,7 @@ public class AssistantRequestBuilder {
         description = description,
         instructions = instructions,
         tools = tools,
-        fileIds = fileIds,
+        toolResources = toolResources,
         metadata = metadata,
     )
 }

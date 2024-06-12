@@ -41,23 +41,20 @@ public data class Assistant(
     @SerialName("instructions") public val instructions: String? = null,
 
     /**
-     * A list of tool enabled on the assistant.
+     * A list of tools enabled on the assistant.
      * There can be a maximum of 128 tools per assistant.
-     * Tools can be of types [CodeInterpreterTool], [RetrievalTool], or [FunctionTool].
      */
     @SerialName("tools") public val tools: List<AssistantTool>,
 
     /**
-     * A list of file IDs attached to this assistant.
-     * There can be a maximum of 20 files attached to the assistant.
-     * Files are ordered by their creation date in ascending order.
+     * Tool-specific resources such as vector store IDs and file IDs.
      */
-    @SerialName("file_ids") public val fileIds: List<FileId>,
+    @SerialName("tool_resources") public val toolResources: ToolResources? = null,
 
     /**
      * Set of 16 key-value pairs that can be attached to an object.
      * This can be useful for storing additional information about the object in a structured format.
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
-    @SerialName("metadata") public val metadata: Map<String, String>,
+    @SerialName("metadata") public val metadata: Map<String, String>
 )

@@ -31,7 +31,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                 url(path = ApiPath.Assistants)
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -43,7 +43,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
             return requester.perform<HttpResponse> {
                 it.get {
                     url(path = "${ApiPath.Assistants}/${id.id}")
-                    beta("assistants", 1)
+                    beta("assistants", 2)
                     requestOptions(requestOptions)
                 }
             }.body()
@@ -64,7 +64,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                 url(path = "${ApiPath.Assistants}/${id.id}")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -75,7 +75,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.Assistants}/${id.id}")
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }
         }
@@ -90,7 +90,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.Assistants}/${assistantId.id}/files/${fileId.id}")
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }
         }
@@ -99,7 +99,6 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
             else -> response.body<DeleteResponse>().deleted
         }
     }
-
 
     @BetaOpenAI
     override suspend fun assistants(
@@ -118,7 +117,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                     after?.let { parameter("after", it.id) }
                     before?.let { parameter("before", it.id) }
                 }
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -136,7 +135,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                 url(path = "${ApiPath.Assistants}/${assistantId.id}/files")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -151,7 +150,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Assistants}/${assistantId.id}/files/${fileId.id}")
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }
         }
@@ -175,9 +174,10 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                     after?.let { parameter("after", it.id) }
                     before?.let { parameter("before", it.id) }
                 }
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
     }
 }
+

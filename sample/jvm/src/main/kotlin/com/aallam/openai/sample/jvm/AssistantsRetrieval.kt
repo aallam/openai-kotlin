@@ -1,15 +1,17 @@
 package com.aallam.openai.sample.jvm
 
 import com.aallam.openai.api.BetaOpenAI
-import com.aallam.openai.api.assistant.AssistantRequest
 import com.aallam.openai.api.assistant.AssistantTool
+import com.aallam.openai.api.assistant.FileSearchResource
+import com.aallam.openai.api.assistant.ToolResources
+import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.file.FileUpload
 import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.message.MessageContent
-import com.aallam.openai.api.message.MessageRequest
+import com.aallam.openai.api.message.messageRequest
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.client.OpenAI
@@ -25,13 +27,18 @@ suspend fun assistantsRetrieval(openAI: OpenAI) {
     val knowledgeBase = openAI.file(request = fileUpload)
 
     val assistant = openAI.assistant(
-        request = AssistantRequest(
-            name = "Human Rights Bot",
-            instructions = "You are a chatbot specialized in 'The Universal Declaration of Human Rights.' Answer questions and provide information based on this document.",
-            tools = listOf(AssistantTool.RetrievalTool),
-            model = ModelId("gpt-4-1106-preview"),
-            fileIds = listOf(knowledgeBase.id)
-        )
+        request = assistantRequest {
+            name = "Human Rights Bot"
+            description = "A chatbot specialized in 'The Universal Declaration of Human Rights.'"
+            instructions = "You are a chatbot specialized in 'The Universal Declaration of Human Rights.' Answer questions and provide information based on this document."
+            model = ModelId("gpt-4-1106-preview")
+            tools = listOf(AssistantTool.RetrievalTool)
+            toolResources = ToolResources(
+                fileSearch = FileSearchResource(
+                    vectorStoreIds = listOf(knowledgeBase.id.toString())
+                )
+            )
+        }
     )
 
     // 2. Create a thread
@@ -39,10 +46,10 @@ suspend fun assistantsRetrieval(openAI: OpenAI) {
 
     // 3. Add a message to the thread
     openAI.message(
-        threadId = thread.id, request = MessageRequest(
-            role = Role.User,
-            content = "Can you explain the right to freedom of opinion and expression as stated in The Universal Declaration of Human Rights?"
-        )
+        threadId = thread.id, request = messageRequest {
+            role = Role.User
+            addTextContent("Can you explain the right to freedom of opinion and expression as stated in The Universal Declaration of Human Rights?")
+        }
     )
 
     // 4. Run the assistant

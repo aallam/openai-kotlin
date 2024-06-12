@@ -56,12 +56,12 @@ public data class Message(
      * A list of file IDs that the assistant should use. Useful for tools like retrieval
      * and code_interpreter that can access files. A maximum of 10 files can be attached to a message.
      */
-    @SerialName("file_ids") val fileIds: List<FileId>,
+    @SerialName("file_ids") val fileIds: List<FileId> = emptyList(),
 
     /**
      * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing
      * additional information about the object in a structured format. Keys can be a maximum of 64 characters
      * long, and values can be a maximum of 512 characters long.
      */
-    @SerialName("metadata") val metadata: Map<String, String>
+    @SerialName("metadata") val metadata: Map<String, String> = emptyMap()
 )

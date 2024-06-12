@@ -10,6 +10,7 @@ import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.message.MessageContent
 import com.aallam.openai.api.message.MessageRequest
+import com.aallam.openai.api.message.messageRequest
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RequiredAction
 import com.aallam.openai.api.run.Run
@@ -84,10 +85,10 @@ suspend fun assistantsFunctions(openAI: OpenAI) {
     // 3. Add a message to the thread
     openAI.message(
         threadId = thread.id,
-        request = MessageRequest(
-            role = Role.User,
-            content = "What's the current weather in San Francisco, and what is its nickname?"
-        )
+        request = messageRequest {
+            role = Role.User
+            addTextContent("How does AI work? Explain it in simple terms.")
+        }
     )
     val messages = openAI.messages(thread.id)
     println("List of messages in the thread:")

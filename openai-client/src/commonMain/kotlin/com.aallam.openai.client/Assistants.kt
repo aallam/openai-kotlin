@@ -34,7 +34,7 @@ public interface Assistants {
     /**
      * Update an assistant.
      *
-     * @param id rhe ID of the assistant to modify.
+     * @param id the ID of the assistant to modify.
      */
     @BetaOpenAI
     public suspend fun assistant(
@@ -46,7 +46,7 @@ public interface Assistants {
     /**
      * Delete an assistant.
      *
-     * @param id ID of the assistant to delete.
+     * @param id the ID of the assistant to delete.
      */
     @BetaOpenAI
     public suspend fun delete(id: AssistantId, requestOptions: RequestOptions? = null): Boolean
@@ -54,7 +54,7 @@ public interface Assistants {
     /**
      * Returns a list of assistants.
      *
-     * @param limit a limit on the number of objects to be returned. The Limit can range between 1 and 100, and the default is 20.
+     * @param limit a limit on the number of objects to be returned. The limit can range between 1 and 100, and the default is 20.
      * @param order sort order by the `createdAt` timestamp of the objects. [SortOrder.Ascending] for ascending order
      * and [SortOrder.Descending] for descending order.
      * @param after a cursor for use in pagination. `after` is an object ID that defines your place in the list.
@@ -114,7 +114,7 @@ public interface Assistants {
      * Returns a list of assistant files.
      *
      * @param id the ID of the assistant the file belongs to.
-     * @param limit a limit on the number of objects to be returned. The Limit can range between 1 and 100, and the default is 20.
+     * @param limit a limit on the number of objects to be returned. The limit can range between 1 and 100, and the default is 20.
      * @param order sort order by the `createdAt` timestamp of the objects. [SortOrder.Ascending] for ascending order
      * and [SortOrder.Descending] for descending order.
      * @param after a cursor for use in pagination. `after` is an object ID that defines your place in the list.

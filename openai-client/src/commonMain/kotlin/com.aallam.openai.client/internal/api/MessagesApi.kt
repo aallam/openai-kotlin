@@ -29,7 +29,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -39,7 +39,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages/${messageId.id}")
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -58,7 +58,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                     setBody(mapOf("metadata" to meta))
                     contentType(ContentType.Application.Json)
                 }
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -80,7 +80,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                     before?.let { value -> parameter("before", value.id) }
                     after?.let { value -> parameter("after", value.id) }
                 }
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -95,7 +95,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages/${messageId.id}/files/${fileId.id}")
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -118,7 +118,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                     before?.let { value -> parameter("before", value.id) }
                     after?.let { value -> parameter("after", value.id) }
                 }
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }

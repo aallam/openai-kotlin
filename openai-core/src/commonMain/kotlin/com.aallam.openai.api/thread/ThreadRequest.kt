@@ -2,6 +2,7 @@ package com.aallam.openai.api.thread
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
+import com.aallam.openai.api.assistant.ToolResources
 import com.aallam.openai.api.core.Role
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -16,6 +17,14 @@ public data class ThreadRequest(
      * The role of the entity that is creating the message. Currently only [Role.User] is supported.
      */
     @SerialName("messages") public val messages: List<ThreadMessage>? = null,
+
+    /**
+     * A set of resources that are made available to the assistant's tools in this thread.
+     * The resources are specific to the type of tool.
+     * For example, the code_interpreter tool requires a list of file IDs,
+     * while the file_search tool requires a list of vector store IDs.
+     */
+    @SerialName("tool_resources") val toolResources: List<ToolResources>? = null,
 
     /**
      * Set of 16 key-value pairs that can be attached to an object.
@@ -45,6 +54,11 @@ public class ThreadRequestBuilder {
     }
 
     /**
+     * A set of resources that are made available to the assistant's tools in this thread.
+     */
+    public var toolResources: List<ToolResources>? = null
+
+    /**
      * Set of 16 key-value pairs that can be attached to the thread.
      * This can be useful for storing additional information about the thread in a structured format.
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
@@ -56,6 +70,7 @@ public class ThreadRequestBuilder {
      */
     public fun build(): ThreadRequest = ThreadRequest(
         messages = messages,
+        toolResources = toolResources,
         metadata = metadata
     )
 }

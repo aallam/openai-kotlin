@@ -5,8 +5,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * Tool enabled on the assistant. There can be a maximum of 128 tools per assistant.
- * Tools can be of types code_interpreter, retrieval, or function.
+ * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant.
+ * Tools can be of types code_interpreter, file_search, or function.
  */
 @BetaOpenAI
 @Serializable
@@ -19,9 +19,17 @@ public sealed interface AssistantTool {
     @SerialName("code_interpreter")
     public data object CodeInterpreter : AssistantTool
 
-
     /**
      * The type of tool being defined: retrieval
+     */
+    @Deprecated("For v1 API only")
+    @BetaOpenAI
+    @Serializable
+    @SerialName("retrieval")
+    public data object RetrievalTool : AssistantTool
+
+    /**
+     * The type of tool being defined: file_search
      */
     @BetaOpenAI
     @Serializable

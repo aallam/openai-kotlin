@@ -31,7 +31,7 @@ internal class ThreadsApi(val requester: HttpRequester) : Threads {
                     setBody(req)
                     contentType(ContentType.Application.Json)
                 }
-                beta("assistants", 1)
+                beta("assistants", requestOptions?.betaVersion ?: 1)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -43,7 +43,7 @@ internal class ThreadsApi(val requester: HttpRequester) : Threads {
             return requester.perform<HttpResponse> {
                 it.get {
                     url(path = "${ApiPath.Threads}/${id.id}")
-                    beta("assistants", 1)
+                    beta("assistants", requestOptions?.betaVersion ?: 1)
                     requestOptions(requestOptions)
                 }
             }.body()
@@ -67,7 +67,7 @@ internal class ThreadsApi(val requester: HttpRequester) : Threads {
                 url(path = "${ApiPath.Threads}/${id.id}")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 1)
+                beta("assistants", requestOptions?.betaVersion ?: 1)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -78,7 +78,7 @@ internal class ThreadsApi(val requester: HttpRequester) : Threads {
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.Threads}/${id.id}")
-                beta("assistants", 1)
+                beta("assistants", requestOptions?.betaVersion ?: 1)
                 requestOptions(requestOptions)
             }
         }

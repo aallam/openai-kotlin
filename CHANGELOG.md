@@ -1,6 +1,9 @@
 ## Unreleased
 
 ### Added
+- **assistant-v2 support**: added feature for assistant beta-v2, and option for version selection
+
+### Added
 - **vector-stores**: add vector stores APIs (#324)
 - **batch**: add batch APIs (#334)
 

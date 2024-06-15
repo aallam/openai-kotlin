@@ -88,6 +88,14 @@ public interface Messages {
     ): List<Message>
 
     /**
+     * These APIs below are only used in assistant beta v1: Files are now associated with tools instead of Assistants and Messages. This means that:
+     * AssistantFile and MessageFile objects no longer exist.
+     * Instead of AssistantFile and MessageFile, files are attached to Assistants and Threads using the new tool_resources object.
+     * The tool_resources for the code interpreter tool are a list of file_ids.
+     * The tool_resources for the file_search tool are a new object called a vector_stores.
+     */
+
+    /**
      * Retrieves a message file.
      *
      * @param threadId the ID of the thread to which the message and File belong
@@ -95,6 +103,7 @@ public interface Messages {
      * @param fileId the ID of the file being retrieved
      * @param requestOptions request options.
      */
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     public suspend fun messageFile(
         threadId: ThreadId,
@@ -118,6 +127,7 @@ public interface Messages {
      * can include `before = FileId("obj_foo")` in order to fetch the previous page of the list.
      * @param requestOptions request options.
      */
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     public suspend fun messageFiles(
         threadId: ThreadId,

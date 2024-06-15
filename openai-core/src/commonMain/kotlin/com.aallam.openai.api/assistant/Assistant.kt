@@ -54,8 +54,8 @@ public data class Assistant(
      * There can be a maximum of 20 files attached to the assistant.
      * Files are ordered by their creation date in ascending order.
      */
-    @Deprecated("For v1 API only")
-    @SerialName("file_ids") public val fileIds: List<FileId>,
+    @Deprecated("For beta assistant-v1 API only")
+    @SerialName("file_ids") public val fileIds: List<FileId>? = null,
 
     /**
      * A list of file IDs attached to this assistant.

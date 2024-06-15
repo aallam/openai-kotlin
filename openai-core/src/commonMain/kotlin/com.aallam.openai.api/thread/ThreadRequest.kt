@@ -24,7 +24,7 @@ public data class ThreadRequest(
      * For example, the code_interpreter tool requires a list of file IDs,
      * while the file_search tool requires a list of vector store IDs.
      */
-    @SerialName("tool_resources") val toolResources: List<ToolResources>? = null,
+    @SerialName("tool_resources") val toolResources: ToolResources? = null,
 
     /**
      * Set of 16 key-value pairs that can be attached to an object.
@@ -56,7 +56,7 @@ public class ThreadRequestBuilder {
     /**
      * A set of resources that are made available to the assistant's tools in this thread.
      */
-    public var toolResources: List<ToolResources>? = null
+    public var toolResources: ToolResources? = null
 
     /**
      * Set of 16 key-value pairs that can be attached to the thread.

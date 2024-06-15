@@ -86,6 +86,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
         }
     }
 
+    @Deprecated("For beta assistant-v1 API only")
     override suspend fun messageFile(
         threadId: ThreadId,
         messageId: MessageId,
@@ -101,6 +102,7 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
         }
     }
 
+    @Deprecated("For beta assistant-v1 API only")
     override suspend fun messageFiles(
         threadId: ThreadId,
         messageId: MessageId,

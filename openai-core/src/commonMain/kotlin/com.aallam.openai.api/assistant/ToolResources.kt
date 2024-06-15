@@ -16,7 +16,7 @@ public data class ToolResources(
 @BetaOpenAI
 @Serializable
 public data class FileSearchResources(
-    @SerialName("vector_store_ids") val vectorStoreIds: List<VectorStoreId>? = null
+    @SerialName("vector_store_ids") val vectorStoreIds: List<VectorStoreId>? = null,
 )
 
 @BetaOpenAI

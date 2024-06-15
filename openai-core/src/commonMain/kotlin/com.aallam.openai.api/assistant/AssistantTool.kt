@@ -22,7 +22,7 @@ public sealed interface AssistantTool {
     /**
      * The type of tool being defined: retrieval
      */
-    @Deprecated("For v1 API only")
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     @Serializable
     @SerialName("retrieval")

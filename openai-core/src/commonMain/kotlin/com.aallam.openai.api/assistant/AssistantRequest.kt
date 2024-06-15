@@ -41,7 +41,7 @@ public data class AssistantRequest(
      * A set of resources that are used by the assistant's tools. The resources are specific to the type of tool.
      * For example, the code_interpreter tool requires a list of file IDs, while the file_search tool requires a list of vector store IDs.
      */
-    @SerialName("tool_resources") val toolResources: List<ToolResources>? = null,
+    @SerialName("tool_resources") val toolResources: ToolResources? = null,
 
     /**
      * A list of file IDs attached to this assistant. Optional. Defaults to an empty list.
@@ -119,7 +119,7 @@ public class AssistantRequestBuilder {
     /**
      * A set of resources that are used by the assistant's tools. The resources are specific to the type of tool.
      */
-    public var toolResources: List<ToolResources>? = null
+    public var toolResources: ToolResources? = null
 
     /**
      * A list of file IDs attached to this assistant.

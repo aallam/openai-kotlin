@@ -1,6 +1,7 @@
 package com.aallam.openai.api.thread
 
 import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.ToolResources
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -29,7 +30,7 @@ public data class Thread(
      * For example, the code_interpreter tool requires a list of file IDs,
      * while the file_search tool requires a list of vector store IDs.
      */
-    @SerialName("tool_resources") val toolResources: List<ToolResources>? = null,
+    @SerialName("tool_resources") val toolResources: ToolResources? = null,
     /**
      * A map representing a set of key-value pairs that can be attached to the thread.
      * This can be useful for storing additional information about the thread in a structured format.

@@ -1,8 +1,10 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.assistant.AssistantResponseFormat
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.chat.ToolCall
+import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RequiredAction
 import com.aallam.openai.api.run.Run
@@ -16,7 +18,7 @@ class TestAssistants : TestOpenAI() {
         val request = assistantRequest {
             name = "Math Tutor"
             tools = listOf(AssistantTool.CodeInterpreter)
-            model = ModelId("gpt-4o")
+            model = ModelId("gpt-4")
         }
         val assistant = openAI.assistant(request)
         assertEquals(request.name, assistant.name)
@@ -36,6 +38,70 @@ class TestAssistants : TestOpenAI() {
         openAI.delete(updatedAssistant.id)
 
         val fileGetAfterDelete = openAI.assistant(updatedAssistant.id)
+        assertNull(fileGetAfterDelete)
+    }
+
+    @Test
+    fun codeInterpreterV2() = test {
+        val request = assistantRequest {
+            name = "Math Tutor"
+            tools = listOf(AssistantTool.CodeInterpreter)
+            model = ModelId("gpt-4o")
+            responseFormat = AssistantResponseFormat.TEXT
+        }
+        val assistant = openAI.assistant(
+            request = request,
+            requestOptions = RequestOptions(
+                betaVersion = 2,
+            )
+        )
+        assertEquals(request.name, assistant.name)
+        assertEquals(request.tools, assistant.tools)
+        assertEquals(request.model, assistant.model)
+        assertEquals(request.responseFormat, assistant.responseFormat)
+
+        val getAssistant = openAI.assistant(
+            assistant.id,
+            requestOptions = RequestOptions(
+                betaVersion = 2,
+            )
+        )
+        assertEquals(getAssistant, assistant)
+
+        val assistants = openAI.assistants(
+            requestOptions = RequestOptions(
+                betaVersion = 2,
+            )
+        )
+        assertTrue { assistants.isNotEmpty() }
+
+        val updated = assistantRequest {
+            name = "Super Math Tutor"
+            responseFormat = AssistantResponseFormat.AUTO
+        }
+        val updatedAssistant = openAI.assistant(
+            assistant.id,
+            updated,
+            requestOptions = RequestOptions(
+                betaVersion = 2,
+            )
+        )
+        assertEquals(updated.name, updatedAssistant.name)
+        assertEquals(request.responseFormat, assistant.responseFormat)
+
+        openAI.delete(
+            updatedAssistant.id,
+            requestOptions = RequestOptions(
+                betaVersion = 2,
+            ),
+        )
+
+        val fileGetAfterDelete = openAI.assistant(
+            updatedAssistant.id,
+            requestOptions = RequestOptions(
+                betaVersion = 2,
+            )
+        )
         assertNull(fileGetAfterDelete)
     }
 

@@ -109,7 +109,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
     }
 
 
-    @Deprecated("For v1 API only")
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     override suspend fun createFile(
         assistantId: AssistantId,
@@ -128,7 +128,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         }
     }
 
-    @Deprecated("For v1 API only")
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     override suspend fun file(
         assistantId: AssistantId,
@@ -144,7 +144,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         }
     }
 
-    @Deprecated("For v1 API only")
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     override suspend fun delete(assistantId: AssistantId, fileId: FileId, requestOptions: RequestOptions?): Boolean {
         val response = requester.perform<HttpResponse> {
@@ -160,7 +160,7 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         }
     }
 
-    @Deprecated("For v1 API only")
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     override suspend fun files(
         id: AssistantId,

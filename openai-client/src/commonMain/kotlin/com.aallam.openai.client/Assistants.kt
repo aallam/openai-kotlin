@@ -74,7 +74,7 @@ public interface Assistants {
     ): List<Assistant>
 
     /**
-     * These APIs below are only used in v1: Files are now associated with tools instead of Assistants and Messages. This means that:
+     * These APIs below are only used in assistant beta v1: Files are now associated with tools instead of Assistants and Messages. This means that:
      * AssistantFile and MessageFile objects no longer exist.
      * Instead of AssistantFile and MessageFile, files are attached to Assistants and Threads using the new tool_resources object.
      * The tool_resources for the code interpreter tool are a list of file_ids.
@@ -88,7 +88,7 @@ public interface Assistants {
      * @param fileId a File ID (with purpose="assistants") that the assistant should use.
      * Useful for tools like retrieval and code interpreter that can access files.
      */
-    @Deprecated("For v1 API only")
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     public suspend fun createFile(
         assistantId: AssistantId,
@@ -102,7 +102,7 @@ public interface Assistants {
      * @param assistantId the ID of the assistant who the file belongs to.
      * @param fileId the ID of the file we're getting.
      */
-    @Deprecated("For v1 API only")
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     public suspend fun file(
         assistantId: AssistantId,
@@ -122,7 +122,7 @@ public interface Assistants {
      * delete Assistant Files / Message Files you create using v1 APIs using the v1 endpoints, or
      * delete the underlying file object — this ensures it is fully removed from all objects in all versions of the API.
      */
-    @Deprecated("For v1 API only")
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     public suspend fun delete(assistantId: AssistantId, fileId: FileId, requestOptions: RequestOptions? = null): Boolean
 
@@ -141,7 +141,7 @@ public interface Assistants {
      * include `before = FileId("obj_foo")` in order to fetch the previous page of the list.
      * @param requestOptions request options.
      */
-    @Deprecated("For v1 API only")
+    @Deprecated("For beta assistant-v1 API only")
     @BetaOpenAI
     public suspend fun files(
         id: AssistantId,

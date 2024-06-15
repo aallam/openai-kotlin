@@ -9,7 +9,10 @@ import io.ktor.client.request.*
  */
 internal fun HttpRequestBuilder.requestOptions(requestOptions: RequestOptions? = null) {
     if (requestOptions == null) return
-    requestOptions.headers.forEach { (key, value) -> headers.append(key, value) }
+    requestOptions.headers.forEach { (key, value) ->
+        if (headers.contains(key)) headers.remove(key)
+        headers[key] = value
+    }
     requestOptions.urlParameters.forEach { (key, value) -> url.parameters.append(key, value) }
     requestOptions.timeout?.let { timeout ->
         timeout {

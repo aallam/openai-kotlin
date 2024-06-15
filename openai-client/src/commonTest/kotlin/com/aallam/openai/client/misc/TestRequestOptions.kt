@@ -32,4 +32,31 @@ class TestRequestOptions {
         client.models(requestOptions = requestOptions)
         assertEquals(requestHeaders?.get(key), requestOptions.headers[key])
     }
+
+    @Test
+    fun testOverride() = runTest {
+        val key = "OpenAI-Beta"
+        val requestOptions = RequestOptions(
+            headers = mapOf(key to "assistants=v0"),
+        )
+        var requestHeaders: Map<String, String>? = null
+        val client = OpenAI(
+            token = token,
+            headers = mapOf(key to "assistants=v3"),
+            httpClientConfig = {
+                install("RequestInterceptor") {
+                    requestPipeline.intercept(HttpRequestPipeline.Before) {
+                        requestHeaders = context.headers.entries().associate { it.key to it.value.first() }
+                    }
+                }
+            }
+        )
+
+        try {
+            client.assistants(requestOptions = requestOptions)
+        } catch (e: Exception) {
+            // skip
+        }
+        assertEquals(requestHeaders?.get(key), requestOptions.headers[key])
+    }
 }

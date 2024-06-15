@@ -6,6 +6,7 @@
 
 ### Fixed
 - **chat**: enhance flow cancel capability (#333)
+- **config**: request options headers override previous values (#353)
 
 ## 3.7.2
 > Published 28 Apr 2024

@@ -4,10 +4,7 @@ import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.Assistant
 import com.aallam.openai.api.assistant.AssistantId
 import com.aallam.openai.api.assistant.AssistantRequest
-import com.aallam.openai.api.core.DeleteResponse
-import com.aallam.openai.api.core.ListResponse
-import com.aallam.openai.api.core.RequestOptions
-import com.aallam.openai.api.core.SortOrder
+import com.aallam.openai.api.core.*
 import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.client.Assistants
@@ -30,8 +27,9 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                 url(path = ApiPath.Assistants)
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", requestOptions?.betaVersion ?: 1)
-                requestOptions(requestOptions)
+                requestOptions(
+                    requestOptions.addAssistantsBeta()
+                )
             }.body()
         }
     }
@@ -42,8 +40,9 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
             return requester.perform<HttpResponse> {
                 it.get {
                     url(path = "${ApiPath.Assistants}/${id.id}")
-                    beta("assistants", requestOptions?.betaVersion ?: 1)
-                    requestOptions(requestOptions)
+                    requestOptions(
+                        requestOptions.addAssistantsBeta()
+                    )
                 }
             }.body()
         } catch (e: OpenAIAPIException) {
@@ -63,8 +62,9 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                 url(path = "${ApiPath.Assistants}/${id.id}")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 1)
-                requestOptions(requestOptions)
+                requestOptions(
+                    requestOptions.addAssistantsBeta()
+                )
             }.body()
         }
     }
@@ -74,8 +74,9 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.Assistants}/${id.id}")
-                beta("assistants", requestOptions?.betaVersion ?: 1)
-                requestOptions(requestOptions)
+                requestOptions(
+                    requestOptions.addAssistantsBeta()
+                )
             }
         }
         return when (response.status) {
@@ -101,8 +102,9 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                     after?.let { parameter("after", it.id) }
                     before?.let { parameter("before", it.id) }
                 }
-                beta("assistants", requestOptions?.betaVersion ?: 1)
-                requestOptions(requestOptions)
+                requestOptions(
+                    requestOptions.addAssistantsBeta()
+                )
             }.body()
         }
     }

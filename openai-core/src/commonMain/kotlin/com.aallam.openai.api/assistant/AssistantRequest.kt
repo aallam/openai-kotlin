@@ -2,7 +2,6 @@ package com.aallam.openai.api.assistant
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
-import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -38,16 +37,46 @@ public data class AssistantRequest(
     @SerialName("tools") val tools: List<AssistantTool>? = null,
 
     /**
-     * A list of file IDs attached to this assistant. Optional. Defaults to an empty list.
-     * There can be a maximum of 20 files attached to the assistant.
+     * A set of resources that are used by the assistant's tools. The resources are specific to the type of tool.
+     * For example, the code_interpreter tool requires a list of file IDs, while the file_search tool requires a list of vector store IDs.
      */
-    @SerialName("file_ids") val fileIds: List<FileId>? = null,
+    @SerialName("tool_resources") val toolResources: ToolResources? = null,
 
     /**
      * Set of 16 key-value pairs that can be attached to an object. Optional.
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
-    @SerialName("metadata") val metadata: Map<String, String>? = null
+    @SerialName("metadata") val metadata: Map<String, String>? = null,
+
+    /**
+     * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
+     * while lower values like 0.2 will make it more focused and deterministic.
+     */
+    @SerialName("temperature") val temperature: Double? = null,
+
+    /**
+     * An alternative to sampling with temperature, called nucleus sampling,
+     * where the model considers the results of the tokens with top_p probability mass.
+     * So 0.1 means only the tokens comprising the top 10% probability mass are considered.
+     *
+     * We generally recommend altering this or temperature but not both.
+     */
+    @SerialName("top_p") val topP: Double? = null,
+
+    /**
+     * Specifies the format that the model must output. Compatible with GPT-4o, GPT-4 Turbo, and all GPT-3.5 Turbo
+     * models since gpt-3.5-turbo-1106.
+     *
+     * Setting to [AssistantResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model
+     * generates is valid JSON.
+     *
+     * important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user
+     * message. Without this, the model may generate an unending stream of whitespace until the generation reaches the
+     * token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be
+     * partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or
+     * the conversation exceeded the max context length.
+     */
+    @SerialName("response_format") val responseFormat: AssistantResponseFormat? = null,
 )
 
 @BetaOpenAI
@@ -80,14 +109,33 @@ public class AssistantRequestBuilder {
     public var tools: List<AssistantTool>? = null
 
     /**
-     * A list of file IDs attached to this assistant.
+     * A set of resources that are used by the assistant's tools. The resources are specific to the type of tool.
      */
-    public var fileIds: List<FileId>? = null
+    public var toolResources: ToolResources? = null
 
     /**
      * Set of 16 key-value pairs that can be attached to an object.
      */
     public var metadata: Map<String, String>? = null
+
+    /**
+     * What sampling temperature to use, between 0 and 2.
+     */
+    public var temperature: Double? = null
+
+    /**
+     * An alternative to sampling with temperature, called nucleus sampling,
+     * where the model considers the results of the tokens with top_p probability mass.
+     */
+    public var topP: Double? = null
+
+    /**
+     * Specifies the format that the model must output. Compatible with GPT-4o, GPT-4 Turbo, and all GPT-3.5 Turbo
+     * models since gpt-3.5-turbo-1106.
+     */
+    public var responseFormat: AssistantResponseFormat? = null
+
+
 
     /**
      * Create [Assistant] instance.
@@ -98,8 +146,10 @@ public class AssistantRequestBuilder {
         description = description,
         instructions = instructions,
         tools = tools,
-        fileIds = fileIds,
         metadata = metadata,
+        temperature = temperature,
+        topP = topP,
+        responseFormat = responseFormat,
     )
 }
 

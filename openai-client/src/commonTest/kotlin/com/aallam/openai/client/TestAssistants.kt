@@ -1,8 +1,10 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.assistant.AssistantResponseFormat
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.chat.ToolCall
+import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RequiredAction
 import com.aallam.openai.api.run.Run
@@ -16,26 +18,43 @@ class TestAssistants : TestOpenAI() {
         val request = assistantRequest {
             name = "Math Tutor"
             tools = listOf(AssistantTool.CodeInterpreter)
-            model = ModelId("gpt-4")
+            model = ModelId("gpt-4o")
+            responseFormat = AssistantResponseFormat.TEXT
         }
-        val assistant = openAI.assistant(request)
+        val assistant = openAI.assistant(
+            request = request,
+        )
         assertEquals(request.name, assistant.name)
         assertEquals(request.tools, assistant.tools)
         assertEquals(request.model, assistant.model)
+        assertEquals(request.responseFormat, assistant.responseFormat)
 
-        val getAssistant = openAI.assistant(assistant.id)
+        val getAssistant = openAI.assistant(
+            assistant.id,
+        )
         assertEquals(getAssistant, assistant)
 
         val assistants = openAI.assistants()
         assertTrue { assistants.isNotEmpty() }
 
-        val updated = assistantRequest { name = "Super Math Tutor" }
-        val updatedAssistant = openAI.assistant(assistant.id, updated)
+        val updated = assistantRequest {
+            name = "Super Math Tutor"
+            responseFormat = AssistantResponseFormat.AUTO
+        }
+        val updatedAssistant = openAI.assistant(
+            assistant.id,
+            updated,
+        )
         assertEquals(updated.name, updatedAssistant.name)
+        assertEquals(request.responseFormat, assistant.responseFormat)
 
-        openAI.delete(updatedAssistant.id)
+        openAI.delete(
+            updatedAssistant.id,
+        )
 
-        val fileGetAfterDelete = openAI.assistant(updatedAssistant.id)
+        val fileGetAfterDelete = openAI.assistant(
+            updatedAssistant.id,
+        )
         assertNull(fileGetAfterDelete)
     }
 

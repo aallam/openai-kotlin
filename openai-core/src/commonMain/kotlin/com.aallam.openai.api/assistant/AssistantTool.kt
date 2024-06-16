@@ -20,22 +20,12 @@ public sealed interface AssistantTool {
     public data object CodeInterpreter : AssistantTool
 
     /**
-     * The type of tool being defined: retrieval
-     */
-    @Deprecated("For beta assistant-v1 API only")
-    @BetaOpenAI
-    @Serializable
-    @SerialName("retrieval")
-    public data object RetrievalTool : AssistantTool
-
-    /**
      * The type of tool being defined: file_search
      */
     @BetaOpenAI
     @Serializable
     @SerialName("file_search")
     public data object FileSearch : AssistantTool
-
 
     /**
      * The type of tool being defined: function

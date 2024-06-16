@@ -2,7 +2,6 @@ package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.Assistant
-import com.aallam.openai.api.assistant.AssistantFile
 import com.aallam.openai.api.assistant.AssistantId
 import com.aallam.openai.api.assistant.AssistantRequest
 import com.aallam.openai.api.core.DeleteResponse
@@ -103,83 +102,6 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                     before?.let { parameter("before", it.id) }
                 }
                 beta("assistants", requestOptions?.betaVersion ?: 1)
-                requestOptions(requestOptions)
-            }.body()
-        }
-    }
-
-
-    @Deprecated("For beta assistant-v1 API only")
-    @BetaOpenAI
-    override suspend fun createFile(
-        assistantId: AssistantId,
-        fileId: FileId,
-        requestOptions: RequestOptions?
-    ): AssistantFile {
-        val request = buildJsonObject { put("file", fileId.id) }
-        return requester.perform {
-            it.post {
-                url(path = "${ApiPath.Assistants}/${assistantId.id}/files")
-                setBody(request)
-                contentType(ContentType.Application.Json)
-                beta("assistants", 1)
-                requestOptions(requestOptions)
-            }.body()
-        }
-    }
-
-    @Deprecated("For beta assistant-v1 API only")
-    @BetaOpenAI
-    override suspend fun file(
-        assistantId: AssistantId,
-        fileId: FileId,
-        requestOptions: RequestOptions?
-    ): AssistantFile {
-        return requester.perform {
-            it.get {
-                url(path = "${ApiPath.Assistants}/${assistantId.id}/files/${fileId.id}")
-                beta("assistants", 1)
-                requestOptions(requestOptions)
-            }
-        }
-    }
-
-    @Deprecated("For beta assistant-v1 API only")
-    @BetaOpenAI
-    override suspend fun delete(assistantId: AssistantId, fileId: FileId, requestOptions: RequestOptions?): Boolean {
-        val response = requester.perform<HttpResponse> {
-            it.delete {
-                url(path = "${ApiPath.Assistants}/${assistantId.id}/files/${fileId.id}")
-                beta("assistants", 1)
-                requestOptions(requestOptions)
-            }
-        }
-        return when (response.status) {
-            HttpStatusCode.NotFound -> false
-            else -> response.body<DeleteResponse>().deleted
-        }
-    }
-
-    @Deprecated("For beta assistant-v1 API only")
-    @BetaOpenAI
-    override suspend fun files(
-        id: AssistantId,
-        limit: Int?,
-        order: SortOrder?,
-        after: FileId?,
-        before: FileId?,
-        requestOptions: RequestOptions?
-    ): List<AssistantFile> {
-        return requester.perform<ListResponse<AssistantFile>> { client ->
-            client.get {
-                url {
-                    path("${ApiPath.Assistants}/${id.id}/files")
-                    limit?.let { parameter("limit", it) }
-                    order?.let { parameter("order", it.order) }
-                    after?.let { parameter("after", it.id) }
-                    before?.let { parameter("before", it.id) }
-                }
-                beta("assistants", 1)
                 requestOptions(requestOptions)
             }.body()
         }

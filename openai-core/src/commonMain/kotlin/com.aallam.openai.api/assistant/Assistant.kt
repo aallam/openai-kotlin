@@ -2,7 +2,6 @@ package com.aallam.openai.api.assistant
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantTool.*
-import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -44,18 +43,9 @@ public data class Assistant(
     /**
      * A list of tool enabled on the assistant.
      * There can be a maximum of 128 tools per assistant.
-     * Tools can be of types [CodeInterpreter], [FileSearch], or [FunctionTool] for v2.
-     * for v1 api tools, use [CodeInterpreter], [RetrievalTool], or [FunctionTool].
+     * Tools can be of types [CodeInterpreter], [FileSearch], or [FunctionTool]
      */
     @SerialName("tools") public val tools: List<AssistantTool>,
-
-    /**
-     * A list of file IDs attached to this assistant.
-     * There can be a maximum of 20 files attached to the assistant.
-     * Files are ordered by their creation date in ascending order.
-     */
-    @Deprecated("For beta assistant-v1 API only")
-    @SerialName("file_ids") public val fileIds: List<FileId>? = null,
 
     /**
      * A list of file IDs attached to this assistant.

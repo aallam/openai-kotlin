@@ -2,7 +2,6 @@ package com.aallam.openai.api.assistant
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
-import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -42,13 +41,6 @@ public data class AssistantRequest(
      * For example, the code_interpreter tool requires a list of file IDs, while the file_search tool requires a list of vector store IDs.
      */
     @SerialName("tool_resources") val toolResources: ToolResources? = null,
-
-    /**
-     * A list of file IDs attached to this assistant. Optional. Defaults to an empty list.
-     * There can be a maximum of 20 files attached to the assistant.
-     */
-    @Deprecated("For v1 API only")
-    @SerialName("file_ids") val fileIds: List<FileId>? = null,
 
     /**
      * Set of 16 key-value pairs that can be attached to an object. Optional.
@@ -122,12 +114,6 @@ public class AssistantRequestBuilder {
     public var toolResources: ToolResources? = null
 
     /**
-     * A list of file IDs attached to this assistant.
-     */
-    @Deprecated("For v1 API only")
-    public var fileIds: List<FileId>? = null
-
-    /**
      * Set of 16 key-value pairs that can be attached to an object.
      */
     public var metadata: Map<String, String>? = null
@@ -160,7 +146,6 @@ public class AssistantRequestBuilder {
         description = description,
         instructions = instructions,
         tools = tools,
-        fileIds = fileIds,
         metadata = metadata,
         temperature = temperature,
         topP = topP,

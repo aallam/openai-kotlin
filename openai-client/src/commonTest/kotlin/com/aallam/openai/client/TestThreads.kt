@@ -15,30 +15,8 @@ class TestThreads : TestOpenAI() {
     fun threads() = test {
         val thread = openAI.thread()
 
-        val retrieved = openAI.thread(thread.id)
-        assertEquals(thread, retrieved)
-
-        val metadata = mapOf("modified" to "true", "user" to "aallam")
-        val updated = openAI.thread(id = thread.id, metadata = metadata)
-        assertEquals(metadata, updated.metadata)
-
-        val deleted = openAI.delete(thread.id)
-        assertEquals(true, deleted)
-    }
-
-    @Test
-    fun threadsV2() = test {
-        val thread = openAI.thread(
-            requestOptions = RequestOptions(
-                betaVersion = 2
-            )
-        )
-
         val retrieved = openAI.thread(
             thread.id,
-            requestOptions = RequestOptions(
-                betaVersion = 2
-            )
         )
         // thread creating request receives null tool_resource,
         // but retrieved one always has code interpreter with empty file_ids
@@ -50,17 +28,11 @@ class TestThreads : TestOpenAI() {
         val updated = openAI.thread(
             id = thread.id,
             metadata = metadata,
-            requestOptions = RequestOptions(
-                betaVersion = 2
-            )
         )
         assertEquals(metadata, updated.metadata)
 
         val deleted = openAI.delete(
             thread.id,
-            requestOptions = RequestOptions(
-                betaVersion = 2
-            )
         )
         assertEquals(true, deleted)
     }

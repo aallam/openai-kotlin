@@ -3,12 +3,12 @@ package com.aallam.openai.client.internal.api
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.DeleteResponse
 import com.aallam.openai.api.core.RequestOptions
+import com.aallam.openai.api.core.addAssistantsBeta
 import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.thread.Thread
 import com.aallam.openai.api.thread.ThreadId
 import com.aallam.openai.api.thread.ThreadRequest
 import com.aallam.openai.client.Threads
-import com.aallam.openai.client.internal.extension.beta
 import com.aallam.openai.client.internal.extension.requestOptions
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
@@ -31,8 +31,9 @@ internal class ThreadsApi(val requester: HttpRequester) : Threads {
                     setBody(req)
                     contentType(ContentType.Application.Json)
                 }
-                beta("assistants", requestOptions?.betaVersion ?: 1)
-                requestOptions(requestOptions)
+                requestOptions(
+                    requestOptions.addAssistantsBeta()
+                )
             }.body()
         }
     }
@@ -43,8 +44,9 @@ internal class ThreadsApi(val requester: HttpRequester) : Threads {
             return requester.perform<HttpResponse> {
                 it.get {
                     url(path = "${ApiPath.Threads}/${id.id}")
-                    beta("assistants", requestOptions?.betaVersion ?: 1)
-                    requestOptions(requestOptions)
+                    requestOptions(
+                        requestOptions.addAssistantsBeta()
+                    )
                 }
             }.body()
         } catch (e: OpenAIAPIException) {
@@ -67,8 +69,9 @@ internal class ThreadsApi(val requester: HttpRequester) : Threads {
                 url(path = "${ApiPath.Threads}/${id.id}")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", requestOptions?.betaVersion ?: 1)
-                requestOptions(requestOptions)
+                requestOptions(
+                    requestOptions.addAssistantsBeta()
+                )
             }.body()
         }
     }
@@ -78,8 +81,9 @@ internal class ThreadsApi(val requester: HttpRequester) : Threads {
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.Threads}/${id.id}")
-                beta("assistants", requestOptions?.betaVersion ?: 1)
-                requestOptions(requestOptions)
+                requestOptions(
+                    requestOptions.addAssistantsBeta()
+                )
             }
         }
         return when (response.status) {

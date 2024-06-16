@@ -27,9 +27,8 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                 url(path = ApiPath.Assistants)
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                requestOptions(
-                    requestOptions.addAssistantsBeta()
-                )
+                beta("assistants", 2)
+                requestOptions(requestOptions)
             }.body()
         }
     }
@@ -40,9 +39,8 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
             return requester.perform<HttpResponse> {
                 it.get {
                     url(path = "${ApiPath.Assistants}/${id.id}")
-                    requestOptions(
-                        requestOptions.addAssistantsBeta()
-                    )
+                    beta("assistants", 2)
+                    requestOptions(requestOptions)
                 }
             }.body()
         } catch (e: OpenAIAPIException) {
@@ -62,9 +60,8 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                 url(path = "${ApiPath.Assistants}/${id.id}")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                requestOptions(
-                    requestOptions.addAssistantsBeta()
-                )
+                beta("assistants", 2)
+                requestOptions(requestOptions)
             }.body()
         }
     }
@@ -74,9 +71,8 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.Assistants}/${id.id}")
-                requestOptions(
-                    requestOptions.addAssistantsBeta()
-                )
+                beta("assistants", 2)
+                requestOptions(requestOptions)
             }
         }
         return when (response.status) {
@@ -102,9 +98,8 @@ internal class AssistantsApi(val requester: HttpRequester) : Assistants {
                     after?.let { parameter("after", it.id) }
                     before?.let { parameter("before", it.id) }
                 }
-                requestOptions(
-                    requestOptions.addAssistantsBeta()
-                )
+                beta("assistants", 2)
+                requestOptions(requestOptions)
             }.body()
         }
     }

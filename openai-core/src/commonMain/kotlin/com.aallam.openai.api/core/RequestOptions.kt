@@ -15,9 +15,3 @@ public data class RequestOptions(
     public val urlParameters: Map<String, String> = emptyMap(),
     public val timeout: Timeout? = null,
 )
-
-public fun RequestOptions?.addAssistantsBeta(): RequestOptions {
-    val betaVersionHeaderPair = Pair("OpenAI-Beta", "assistants=v2")
-    return this?.copy(headers = this.headers.plus(betaVersionHeaderPair))
-        ?: RequestOptions(headers = mapOf(betaVersionHeaderPair))
-}

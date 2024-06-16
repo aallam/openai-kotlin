@@ -3,8 +3,6 @@ package com.aallam.openai.client.internal.api
 import com.aallam.openai.api.core.PaginatedList
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
-import com.aallam.openai.api.core.addAssistantsBeta
-import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.message.Message
 import com.aallam.openai.api.message.MessageId
 import com.aallam.openai.api.message.MessageRequest
@@ -29,8 +27,9 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages")
                 setBody(request)
                 contentType(ContentType.Application.Json)
+                beta("assistants", 2)
                 requestOptions(
-                    requestOptions.addAssistantsBeta()
+                    requestOptions
                 )
             }.body()
         }
@@ -40,9 +39,9 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
         return requester.perform {
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages/${messageId.id}")
-                beta("assistants", 1)
+                beta("assistants", 2)
                 requestOptions(
-                    requestOptions.addAssistantsBeta()
+                    requestOptions
                 )
             }.body()
         }
@@ -61,10 +60,8 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                     setBody(mapOf("metadata" to meta))
                     contentType(ContentType.Application.Json)
                 }
-                beta("assistants", 1)
-                requestOptions(
-                    requestOptions.addAssistantsBeta()
-                )
+                beta("assistants", 2)
+                requestOptions(requestOptions)
             }.body()
         }
     }
@@ -85,10 +82,8 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
                     before?.let { value -> parameter("before", value.id) }
                     after?.let { value -> parameter("after", value.id) }
                 }
-                beta("assistants", 1)
-                requestOptions(
-                    requestOptions.addAssistantsBeta()
-                )
+                beta("assistants", 2)
+                requestOptions(requestOptions)
             }.body()
         }
     }

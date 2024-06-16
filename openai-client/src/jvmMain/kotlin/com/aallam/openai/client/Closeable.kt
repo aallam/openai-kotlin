@@ -1,3 +1,3 @@
 package com.aallam.openai.client
 
-public actual typealias Closeable = AutoCloseable
+public actual typealias Closeable = java.lang.AutoCloseable

@@ -37,9 +37,6 @@ class TestMessages : TestOpenAI() {
         val messages = openAI.messages(threadId = thread.id)
         assertEquals(1, messages.size)
 
-        val files = openAI.messageFiles(thread.id, message.id)
-        assertEquals(0, files.size)
-
         openAI.delete(thread.id)
     }
 

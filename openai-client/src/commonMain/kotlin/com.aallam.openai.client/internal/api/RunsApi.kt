@@ -68,7 +68,7 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs") {
                     limit?.let { parameter("limit", it) }
-                    order?.let { parameter("order", it) }
+                    order?.let { parameter("order", it.order) }
                     after?.let { parameter("after", it.id) }
                     before?.let { parameter("before", it.id) }
                 }

@@ -1,15 +1,16 @@
-## Unreleased
+## 3.8.0
 
 ### Added
 - **assistant**: added feature for assistant beta-v2, and option for version selection (thanks @kdman98)
-
-### Added
 - **vector-stores**: add vector stores APIs (#324)
 - **batch**: add batch APIs (#334)
 
 ### Fixed
 - **chat**: enhance flow cancel capability (#333)
 - **config**: request options headers override previous values (#353)
+- **assistants**: Assistant.name is nullable (#337) (thanks @Gama11)
+- **models**: make created and ownedBy nullable (#332) (thanks @thiswillbeyourgithub)
+- **runs**: get runs order param serialization (#355) 
 
 ## 3.7.2
 > Published 28 Apr 2024

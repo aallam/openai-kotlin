@@ -6,11 +6,12 @@
 - **batch**: add batch APIs (#334)
 
 ### Fixed
-- **chat**: enhance flow cancel capability (#333)
-- **config**: request options headers override previous values (#353)
-- **assistants**: Assistant.name is nullable (#337) (thanks @Gama11)
 - **models**: make created and ownedBy nullable (#332) (thanks @thiswillbeyourgithub)
-- **runs**: get runs order param serialization (#355) 
+- **chat**: enhance flow cancel capability (#333)
+- **assistants**: Assistant.name is nullable (#337) (thanks @Gama11)
+- **chat**: add Azure OpenAI Content Filter Support (#340) (thanks @asharab)
+- **config**: request options headers override previous values (#353)
+- **runs**: get runs order param serialization (#355)
 
 ## 3.7.2
 > Published 28 Apr 2024

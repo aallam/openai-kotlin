@@ -1,6 +1,5 @@
 package com.aallam.openai.api.chat;
 
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.FinishReason
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -19,7 +18,17 @@ public data class ChatChunk(
     /**
      * The generated chat message.
      */
-    @SerialName("delta") public val delta: ChatDelta,
+    @SerialName("delta") public val delta: ChatDelta? = null,
+
+    /**
+     * Azure content filter offsets
+     */
+    @SerialName("content_filter_offsets") public val contentFilterOffsets: ContentFilterOffsets? = null,
+
+    /**
+     * Azure content filter results
+     */
+    @SerialName("content_filter_results") public val contentFilterResults: ContentFilterResults? = null,
 
     /**
      * The reason why OpenAI stopped generating.

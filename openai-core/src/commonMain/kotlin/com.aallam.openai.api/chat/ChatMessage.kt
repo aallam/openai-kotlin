@@ -45,6 +45,16 @@ public data class ChatMessage(
      * Tool call ID.
      */
     @SerialName("tool_call_id") public val toolCallId: ToolId? = null,
+
+    /**
+     * Azure Content Filter Results
+     */
+    @SerialName("content_filter_results") public val contentFilterResults: List<ContentFilterResults>? = null,
+
+    /**
+     * Azure Content Filter Offsets
+     */
+    @SerialName("content_filter_offsets") public val contentFilterOffsets: List<ContentFilterOffsets>? = null,
 ) {
 
     public constructor(
@@ -54,6 +64,8 @@ public data class ChatMessage(
         functionCall: FunctionCall? = null,
         toolCalls: List<ToolCall>? = null,
         toolCallId: ToolId? = null,
+        contentFilterResults: List<ContentFilterResults>? = null,
+        contentFilterOffsets: List<ContentFilterOffsets>? = null,
     ) : this(
         role = role,
         messageContent = content?.let { TextContent(it) },
@@ -61,6 +73,8 @@ public data class ChatMessage(
         functionCall = functionCall,
         toolCalls = toolCalls,
         toolCallId = toolCallId,
+        contentFilterOffsets = contentFilterOffsets,
+        contentFilterResults = contentFilterResults,
     )
 
     public constructor(
@@ -70,6 +84,8 @@ public data class ChatMessage(
         functionCall: FunctionCall? = null,
         toolCalls: List<ToolCall>? = null,
         toolCallId: ToolId? = null,
+        contentFilterResults: List<ContentFilterResults>? = null,
+        contentFilterOffsets: List<ContentFilterOffsets>? = null,
     ) : this(
         role = role,
         messageContent = content?.let { ListContent(it) },
@@ -77,6 +93,8 @@ public data class ChatMessage(
         functionCall = functionCall,
         toolCalls = toolCalls,
         toolCallId = toolCallId,
+        contentFilterOffsets = contentFilterOffsets,
+        contentFilterResults = contentFilterResults,
     )
 
     val content: String?
@@ -283,6 +301,16 @@ public class ChatMessageBuilder {
     public var toolCalls: List<ToolCall>? = null
 
     /**
+     * Azure content filter offsets
+     */
+    public var contentFilterOffsets: List<ContentFilterOffsets>? = null
+
+    /**
+     * Azure content filter results
+     */
+    public var contentFilterResults: List<ContentFilterResults>? = null
+
+    /**
      * Tool call ID.
      */
     public var toolCallId: ToolId? = null
@@ -313,6 +341,8 @@ public class ChatMessageBuilder {
             functionCall = functionCall,
             toolCalls = toolCalls,
             toolCallId = toolCallId,
+            contentFilterOffsets = contentFilterOffsets,
+            contentFilterResults = contentFilterResults,
         )
     }
 }

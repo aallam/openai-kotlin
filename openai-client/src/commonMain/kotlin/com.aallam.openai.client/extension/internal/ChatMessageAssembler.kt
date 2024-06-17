@@ -11,12 +11,14 @@ internal class ChatMessageAssembler {
     private val chatContent = StringBuilder()
     private var chatRole: ChatRole? = null
     private val toolCallsAssemblers = mutableMapOf<Int, ToolCallAssembler>()
+    private var chatContentFilterOffsets = mutableListOf<ContentFilterOffsets>()
+    private var chatContentFilterResults = mutableListOf<ContentFilterResults>()
 
     /**
      * Merges a chat chunk into the chat message being assembled.
      */
     fun merge(chunk: ChatChunk): ChatMessageAssembler {
-        chunk.delta.run {
+        chunk.delta?.run {
             role?.let { chatRole = it }
             content?.let { chatContent.append(it) }
             functionCall?.let { call ->
@@ -30,6 +32,12 @@ internal class ChatMessageAssembler {
                 assembler.merge(toolCall)
             }
         }
+        chunk.contentFilterOffsets?.also {
+            chatContentFilterOffsets.add(it)
+        }
+        chunk.contentFilterResults?.also {
+            chatContentFilterResults.add(it)
+        }
         return this
     }
 
@@ -39,6 +47,8 @@ internal class ChatMessageAssembler {
     fun build(): ChatMessage = chatMessage {
         this.role = chatRole
         this.content = chatContent.toString()
+        this.contentFilterOffsets = chatContentFilterOffsets
+        this.contentFilterResults = chatContentFilterResults
         if (chatFuncName.isNotEmpty() || chatFuncArgs.isNotEmpty()) {
             this.functionCall = FunctionCall(chatFuncName.toString(), chatFuncArgs.toString())
             this.name = chatFuncName.toString()

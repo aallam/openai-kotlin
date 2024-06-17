@@ -11,5 +11,6 @@ public value class FinishReason(public val value: String) {
         public val Length: FinishReason = FinishReason("length")
         public val FunctionCall: FinishReason = FinishReason("function_call")
         public val ToolCalls: FinishReason = FinishReason("tool_calls")
+        public val ContentFilter: FinishReason = FinishReason("content_filter")
     }
 }

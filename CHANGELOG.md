@@ -1,4 +1,12 @@
+# 3.8.1
+> Published 28 Jun 2024
+
+### Fixed
+- **runs**: set beta header to v2 (#357) (thanks @kdman98)
+- **chat**: default `ChatChunk.finishReason` to null (#358) (thanks @Him188)
+
 ## 3.8.0
+> Published 27 Jun 2024
 
 ### Added
 - **assistant**: added feature for assistant beta-v2, and option for version selection (thanks @kdman98)

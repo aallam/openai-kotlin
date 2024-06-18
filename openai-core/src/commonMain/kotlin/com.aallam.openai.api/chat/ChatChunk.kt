@@ -33,5 +33,5 @@ public data class ChatChunk(
     /**
      * The reason why OpenAI stopped generating.
      */
-    @SerialName("finish_reason") public val finishReason: FinishReason?,
+    @SerialName("finish_reason") public val finishReason: FinishReason? = null,
 )

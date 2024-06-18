@@ -9,7 +9,6 @@ import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.RunStep
 import com.aallam.openai.api.run.ThreadRunRequest
-import com.aallam.openai.api.thread.ThreadId
 import com.aallam.openai.api.thread.ThreadMessage
 import com.aallam.openai.api.thread.ThreadRequest
 import com.aallam.openai.client.internal.JsonLenient

@@ -3,10 +3,14 @@ package com.aallam.openai.client
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.core.PaginatedList
+import com.aallam.openai.api.core.Role
+import com.aallam.openai.api.message.MessageRequest
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.RunStep
 import com.aallam.openai.api.run.ThreadRunRequest
+import com.aallam.openai.api.thread.ThreadMessage
+import com.aallam.openai.api.thread.ThreadRequest
 import com.aallam.openai.client.internal.JsonLenient
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -19,11 +23,20 @@ class TestRuns : TestOpenAI() {
             request = assistantRequest {
                 name = "Math Tutor"
                 tools = listOf(AssistantTool.CodeInterpreter)
-                model = ModelId("gpt-4")
+                model = ModelId("gpt-4o")
             }
         )
         val thread = openAI.thread()
         val request = RunRequest(assistantId = assistant.id)
+        openAI.message(
+            threadId = thread.id,
+            request = MessageRequest(
+                role = Role.User,
+                content = "solve me 1 + 1",
+                metadata = mapOf(),
+            ),
+            requestOptions = null,
+        )
         val run = openAI.createRun(threadId = thread.id, request = request)
         assertEquals(thread.id, run.threadId)
 
@@ -32,8 +45,6 @@ class TestRuns : TestOpenAI() {
 
         val runs = openAI.runs(threadId = thread.id)
         assertEquals(1, runs.size)
-
-        openAI.cancel(threadId = thread.id, runId = run.id)
     }
 
     @Test
@@ -42,10 +53,20 @@ class TestRuns : TestOpenAI() {
             request = assistantRequest {
                 name = "Math Tutor"
                 tools = listOf(AssistantTool.CodeInterpreter)
-                model = ModelId("gpt-4")
+                model = ModelId("gpt-4o")
             }
         )
-        val request = ThreadRunRequest(assistantId = assistant.id)
+        val request = ThreadRunRequest(
+            thread = ThreadRequest(
+                listOf(
+                    ThreadMessage(
+                        role = Role.User,
+                        content = "solve 1 + 2",
+                    )
+                )
+            ),
+            assistantId = assistant.id,
+        )
         val run = openAI.createThreadRun(request)
         assertEquals(assistant.id, run.assistantId)
 

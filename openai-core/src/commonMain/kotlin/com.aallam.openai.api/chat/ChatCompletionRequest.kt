@@ -158,6 +158,11 @@ public class ChatCompletionRequest(
      * each with an associated log probability. logprobs must be set to true if this parameter is used.
      */
     @SerialName("top_logprobs") public val topLogprobs: Int? = null,
+
+    /**
+     * A unique identifier representing the Multi LORA reserved instance.
+     */
+    @SerialName("instance_id") public val instanceId: String? = null,
 )
 
 /**
@@ -307,6 +312,11 @@ public class ChatCompletionRequestBuilder {
     public var topLogprobs: Int? = null
 
     /**
+     * A unique identifier representing the Multi LORA reserved instance.
+     */
+    public var instanceId: String? = null
+
+    /**
      * The messages to generate chat completions for.
      */
     public fun messages(block: ChatMessagesBuilder.() -> Unit) {
@@ -349,7 +359,8 @@ public class ChatCompletionRequestBuilder {
         toolChoice = toolChoice,
         tools = tools,
         logprobs = logprobs,
-        topLogprobs = topLogprobs
+        topLogprobs = topLogprobs,
+        instanceId = instanceId,
     )
 }
 

@@ -1,3 +1,8 @@
+# Unreleased
+
+### Added
+- **chat**: add stream options (#363)
+
 # 3.8.1
 > Published 28 Jun 2024
 

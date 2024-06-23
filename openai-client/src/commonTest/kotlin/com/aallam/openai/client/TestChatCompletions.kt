@@ -203,4 +203,40 @@ class TestChatCompletions : TestOpenAI() {
 
         assertTrue(job.isCancelled, "Job should be cancelled")
     }
+
+    @Test
+    fun streamOptions() = test {
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-3.5-turbo")
+            messages {
+                message {
+                    role = ChatRole.System
+                    content = "You are a helpful assistant.!"
+                }
+                message {
+                    role = ChatRole.User
+                    content = "Who won the world series in 2020?"
+                }
+                message {
+                    role = ChatRole.Assistant
+                    content = "The Los Angeles Dodgers won the World Series in 2020."
+                }
+                message {
+                    role = ChatRole.User
+                    content = "Where was it played?"
+                }
+            }
+            streamOptions = streamOptions {
+                includeUsage = true
+            }
+        }
+
+        val results = mutableListOf<ChatCompletionChunk>()
+        openAI.chatCompletions(request).onEach { results += it }.launchIn(this).join()
+
+        assertNotNull(results.last().usage)
+        assertNotNull(results.last().usage?.promptTokens)
+        assertNotNull(results.last().usage?.completionTokens)
+        assertNotNull(results.last().usage?.totalTokens)
+    }
 }

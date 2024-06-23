@@ -163,6 +163,11 @@ public class ChatCompletionRequest(
      * A unique identifier representing the Multi LORA reserved instance.
      */
     @SerialName("instance_id") public val instanceId: String? = null,
+
+    /**
+     * Options for streaming response. Only used when in streaming mode.
+     */
+    @SerialName("stream_options") public val streamOptions: StreamOptions? = null
 )
 
 /**
@@ -339,6 +344,11 @@ public class ChatCompletionRequestBuilder {
     }
 
     /**
+     * Options for streaming response. Only used when in streaming mode.
+     */
+    public var streamOptions: StreamOptions? = null
+
+    /**
      * Builder of [ChatCompletionRequest] instances.
      */
     public fun build(): ChatCompletionRequest = ChatCompletionRequest(
@@ -361,6 +371,7 @@ public class ChatCompletionRequestBuilder {
         logprobs = logprobs,
         topLogprobs = topLogprobs,
         instanceId = instanceId,
+        streamOptions = streamOptions,
     )
 }
 

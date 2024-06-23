@@ -1,7 +1,8 @@
-# Unreleased
+## Unreleased
 
 ### Added
 - **chat**: add stream options (#363)
+- **chat**: add `instanceId` field to `ChatCompletionRequest` (#359) (thanks @harishv-collab)
 
 # 3.8.1
 > Published 28 Jun 2024

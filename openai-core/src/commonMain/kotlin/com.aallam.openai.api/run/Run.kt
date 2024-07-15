@@ -7,6 +7,7 @@ import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.thread.ThreadId
 import com.aallam.openai.api.core.LastError
+import com.aallam.openai.api.core.Usage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -102,4 +103,30 @@ public data class Run(
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
     @SerialName("metadata") val metadata: Map<String, String>? = null,
+
+    /**
+     * Usage statistics related to the run.
+     * This value will be null if the run is not in a terminal state (i.e. in_progress, queued, etc.).
+     */
+    @SerialName("usage") public val usage: Usage? = null,
+
+    /**
+     * The Unix timestamp (in seconds) for when the run was completed.
+     */
+    @SerialName("temperature") val temperature: Int? = null,
+
+    /**
+     * The nucleus sampling value used for this run. If not set, defaults to 1.
+     */
+    @SerialName("top_p") val topP: Int? = null,
+
+    /**
+     * The maximum number of prompt tokens specified to have been used over the course of the run.
+     */
+    @SerialName("max_prompt_tokens") val maxPromptTokens: Int? = null,
+
+    /**
+     * The maximum number of completion tokens specified to have been used over the course of the run.
+     */
+    @SerialName("max_completion_tokens") val maxCompletionTokens: Int? = null,
 )

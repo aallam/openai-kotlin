@@ -1,8 +1,15 @@
-## Unreleased
+## 3.8.2
 
 ### Added
 - **chat**: add stream options (#363)
 - **chat**: add `instanceId` field to `ChatCompletionRequest` (#359) (thanks @harishv-collab)
+- **messages**: add assistant tools to attachments (#370)
+- **assistants**: add `attachments.fileId` field to `MessageRequest` (#367) (thanks @0chil)
+- **runs**: feat(runs): add new fields into assistant run (#366) (thanks @ahmedmirza994)
+
+### Fixed
+- **messages**: update `quote` to optional field for openai compatibility assistant on FileCitation (#361) (thanks @AntoDev)
+- **messages**: serialization exception while retrieving thread messages (#369) (thanks @meroving)
 
 # 3.8.1
 > Published 28 Jun 2024

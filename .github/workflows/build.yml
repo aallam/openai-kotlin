@@ -31,7 +31,7 @@ jobs:
           java-version: 11
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
 
       - name: Run lint
         run: ./gradlew spotlessCheck
@@ -85,7 +85,7 @@ jobs:
           java-version: 11
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
 
       - name: Test ${{ matrix.name }}
         run: ./gradlew :openai-client:jvmTest --tests ${{ matrix.test }}
@@ -112,7 +112,7 @@ jobs:
           java-version: 11
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
 
       - name: Build docs
         run: ./gradlew dokkaHtmlMultiModule

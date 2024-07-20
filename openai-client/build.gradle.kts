@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.target.HostManager
+
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
@@ -72,9 +74,11 @@ kotlin {
                 implementation(libs.ktor.client.curl)
             }
         }
-        val darwinTest by getting {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
+        if (HostManager.hostIsMac) {
+            val darwinTest by getting {
+                dependencies {
+                    implementation(libs.ktor.client.darwin)
+                }
             }
         }
     }

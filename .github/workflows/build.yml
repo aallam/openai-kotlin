@@ -38,7 +38,7 @@ jobs:
 
   test-jvm:
     name: Test JVM
-    runs-on: macos-11
+    runs-on: ubuntu-latest
     needs: lint
     strategy:
       matrix:

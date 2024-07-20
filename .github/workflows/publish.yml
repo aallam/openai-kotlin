@@ -9,7 +9,7 @@ env:
 jobs:
   publish:
     name: Publish to Sonatype
-    runs-on: macos-11
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4

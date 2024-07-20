@@ -25,7 +25,7 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: Configure JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 11
@@ -79,7 +79,7 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: Configure JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 11
@@ -106,7 +106,7 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: Configure JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 11

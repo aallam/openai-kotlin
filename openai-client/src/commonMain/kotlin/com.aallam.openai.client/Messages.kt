@@ -3,11 +3,11 @@ package com.aallam.openai.client
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
-import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.message.Message
 import com.aallam.openai.api.message.MessageId
 import com.aallam.openai.api.message.MessageRequest
 import com.aallam.openai.api.thread.ThreadId
+import io.ktor.http.*
 
 /**
  * Create messages within threads
@@ -84,5 +84,5 @@ public interface Messages {
         after: MessageId? = null,
         before: MessageId? = null,
         requestOptions: RequestOptions? = null
-    ): List<Message>
+    ): Pair<Headers, List<Message>>
 }

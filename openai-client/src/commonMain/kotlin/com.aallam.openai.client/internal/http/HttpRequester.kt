@@ -4,6 +4,7 @@ import com.aallam.openai.client.Closeable
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.http.*
 import io.ktor.util.reflect.*
 
 /**
@@ -15,6 +16,11 @@ internal interface HttpRequester : Closeable {
      * Perform an HTTP request and get a result.
      */
     suspend fun <T : Any> perform(info: TypeInfo, block: suspend (HttpClient) -> HttpResponse): T
+
+    /**
+     * Perform an HTTP request and get a result with headers
+     */
+    suspend fun <T : Any> performGetHeaders(info: TypeInfo, block: suspend (HttpClient) -> HttpResponse): Pair<Headers, T>
 
     /**
      * Perform an HTTP request and get a result.
@@ -32,4 +38,11 @@ internal interface HttpRequester : Closeable {
  */
 internal suspend inline fun <reified T> HttpRequester.perform(noinline block: suspend (HttpClient) -> HttpResponse): T {
     return perform(typeInfo<T>(), block)
+}
+
+/**
+ * Perform an HTTP request and get a result with headers
+ */
+internal suspend inline fun <reified T> HttpRequester.performGetHeaders(noinline block: suspend (HttpClient) -> HttpResponse): Pair<Headers, T> {
+    return performGetHeaders(typeInfo<T>(), block)
 }

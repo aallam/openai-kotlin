@@ -12,6 +12,7 @@ import com.aallam.openai.client.internal.extension.beta
 import com.aallam.openai.client.internal.extension.requestOptions
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
+import com.aallam.openai.client.internal.http.performGetHeaders
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -73,8 +74,8 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
         after: MessageId?,
         before: MessageId?,
         requestOptions: RequestOptions?
-    ): PaginatedList<Message> {
-        return requester.perform {
+    ): Pair<Headers, PaginatedList<Message>> {
+        return requester.performGetHeaders{
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages") {
                     limit?.let { value -> parameter("limit", value) }

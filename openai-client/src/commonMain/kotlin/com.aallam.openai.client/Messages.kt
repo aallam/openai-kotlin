@@ -84,5 +84,30 @@ public interface Messages {
         after: MessageId? = null,
         before: MessageId? = null,
         requestOptions: RequestOptions? = null
+    ): List<Message>
+
+    /**
+     * Returns a list of messages for a given thread with response headers.
+     *
+     * @param threadId the identifier of the thread
+     * @param limit a limit on the number of objects to be returned.
+     * The Limit can range between 1 and 100, and the default is 20.
+     * @param order sort order by the `created_at` timestamp of the objects.
+     * @param after a cursor for use in pagination. [after] is an object ID that defines your place in the list.
+     * For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call
+     * can include `after = MessageId("obj_foo")` in order to fetch the next page of the list.
+     * @param before a cursor for use in pagination. [before] is an object ID that defines your place in the list.
+     * For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call
+     * can include `before = MessageId("obj_foo")` in order to fetch the previous page of the list.
+     * @param requestOptions request options.
+     */
+    @BetaOpenAI
+    public suspend fun messagesWithHeaders(
+        threadId: ThreadId,
+        limit: Int? = null,
+        order: SortOrder? = null,
+        after: MessageId? = null,
+        before: MessageId? = null,
+        requestOptions: RequestOptions? = null
     ): Pair<Headers, List<Message>>
 }

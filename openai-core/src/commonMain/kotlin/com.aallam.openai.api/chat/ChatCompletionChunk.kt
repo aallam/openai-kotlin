@@ -22,7 +22,7 @@ public data class ChatCompletionChunk(
      * The creation time in epoch milliseconds.
      */
     @SerialName("created")
-    public val created: Int,
+    public val created: Long,
 
     /**
      * The model used.

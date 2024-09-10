@@ -52,11 +52,6 @@ fun KotlinMultiplatformExtension.jsNode() {
             }
         }
         nodejs {
-            testTask {
-                useMocha {
-                    timeout = "300s"
-                }
-            }
         }
     }
 }

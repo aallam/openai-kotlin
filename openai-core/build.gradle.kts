@@ -12,6 +12,7 @@ kotlin {
     explicitApi()
     jvm()
     jsNode()
+    jsWasm()
     native()
 
     sourceSets {
@@ -41,6 +42,11 @@ kotlin {
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
+            }
+        }
+        val wasmJsTest by getting {
+            dependencies {
+                implementation(kotlin("test-wasm-js"))
             }
         }
     }

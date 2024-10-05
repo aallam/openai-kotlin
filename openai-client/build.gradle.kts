@@ -14,6 +14,7 @@ kotlin {
     explicitApi()
     jvm()
     jsNode()
+    jsWasm()
     native()
 
     sourceSets {
@@ -47,7 +48,6 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
                 implementation(libs.coroutines.test)
                 implementation(libs.okio.fakefilesystem)
-                implementation(libs.ulid)
             }
         }
         val jvmMain by getting
@@ -67,6 +67,15 @@ kotlin {
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
+            }
+        }
+        val wasmJsMain by getting {
+            dependencies {
+            }
+        }
+        val wasmJsTest by getting {
+            dependencies {
+                implementation(kotlin("test-wasm-js"))
             }
         }
         val desktopTest by getting {

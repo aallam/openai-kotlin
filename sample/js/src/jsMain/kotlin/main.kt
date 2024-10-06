@@ -12,44 +12,27 @@ import com.aallam.openai.api.image.ImageSize
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.moderation.ModerationRequest
-import com.aallam.openai.api.LegacyOpenAI
 import com.aallam.openai.client.LoggingConfig
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
-import okio.NodeJsFileSystem
-import okio.Path.Companion.toPath
+import kotlinx.io.files.Path
 import kotlin.coroutines.coroutineContext
 
-@OptIn(LegacyOpenAI::class)
 suspend fun main() {
     val apiKey = js("process.env.OPENAI_API_KEY").unsafeCast<String?>()
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
-    val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.All))
+    val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.Info))
     val scope = CoroutineScope(coroutineContext)
 
     println("> Getting available models...")
     openAI.models().forEach(::println)
 
-    println("\n> Getting ada model...")
-    val ada = openAI.model(modelId = ModelId("text-ada-001"))
+    println("\n> Getting model...")
+    val ada = openAI.model(modelId = ModelId("gpt-3.5-turbo"))
     println(ada)
-
-    println("\n>️ Creating completion...")
-    val completionRequest = CompletionRequest(
-        model = ada.id,
-        prompt = "Somebody once told me the world is gonna roll me"
-    )
-    openAI.completion(completionRequest).choices.forEach(::println)
-
-    println("\n>️ Creating completion stream...")
-    openAI.completions(completionRequest)
-        .onEach { print(it.choices[0].text) }
-        .onCompletion { println() }
-        .launchIn(scope)
-        .join()
 
     println("\n> Read files...")
     val files = openAI.files()
@@ -75,8 +58,8 @@ suspend fun main() {
 
     println("\n> Edit images...")
     val imageEdit = ImageEdit(
-        image = FileSource(path = "kotlin/image.png".toPath(), fileSystem = NodeJsFileSystem),
-        mask = FileSource(path = "kotlin/mask.png".toPath(), fileSystem = NodeJsFileSystem),
+        image = FileSource(path = Path("kotlin","image.png")),
+        mask = FileSource(path = Path("kotlin","mask.png")),
         prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
         n = 1,
         size = ImageSize.is1024x1024,
@@ -109,7 +92,7 @@ suspend fun main() {
 
     println("\n>️ Create transcription...")
     val transcriptionRequest = TranscriptionRequest(
-        audio = FileSource(path = "kotlin/micro-machines.wav".toPath(), fileSystem = NodeJsFileSystem),
+        audio = FileSource(path = Path("kotlin","micro-machines.wav")),
         model = ModelId("whisper-1"),
     )
     val transcription = openAI.transcription(transcriptionRequest)
@@ -117,7 +100,7 @@ suspend fun main() {
 
     println("\n>️ Create translation...")
     val translationRequest = TranslationRequest(
-        audio = FileSource(path = "kotlin/multilingual.wav".toPath(), fileSystem = NodeJsFileSystem),
+        audio = FileSource(path = Path("kotlin", "multilingual.wav")),
         model = ModelId("whisper-1"),
     )
     val translation = openAI.translation(translationRequest)

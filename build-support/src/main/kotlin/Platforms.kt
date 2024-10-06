@@ -45,7 +45,9 @@ fun KotlinMultiplatformExtension.native() {
 
 @OptIn(ExperimentalWasmDsl::class)
 fun KotlinMultiplatformExtension.jsWasm() {
-    wasmJs()
+    wasmJs {
+        nodejs()
+    }
 }
 
 fun KotlinMultiplatformExtension.jsNode() {

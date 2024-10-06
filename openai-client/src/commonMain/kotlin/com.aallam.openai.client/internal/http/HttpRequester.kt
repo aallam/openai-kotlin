@@ -1,6 +1,5 @@
 package com.aallam.openai.client.internal.http
 
-import com.aallam.openai.client.Closeable
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -9,7 +8,7 @@ import io.ktor.util.reflect.*
 /**
  * Http request performer.
  */
-internal interface HttpRequester : Closeable {
+internal interface HttpRequester : AutoCloseable {
 
     /**
      * Perform an HTTP request and get a result.

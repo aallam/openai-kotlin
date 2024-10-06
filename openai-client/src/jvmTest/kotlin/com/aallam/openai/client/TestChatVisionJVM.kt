@@ -2,18 +2,25 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.model.ModelId
-import okio.FileSystem
-import okio.Path.Companion.toPath
+import kotlinx.io.buffered
+import kotlinx.io.bytestring.encode
+import kotlinx.io.files.Path
+import kotlinx.io.files.SystemFileSystem
+import kotlinx.io.readByteString
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
+
 import kotlin.test.*
 
 class TestChatVisionJVM : TestOpenAI() {
 
+    @OptIn(ExperimentalEncodingApi::class)
     @Test
     fun encoded() = test {
-        val byteString = FileSystem.RESOURCES.read("nature.jpeg".toPath()) {
-            readByteString()
+        val byteString = SystemFileSystem.source(path = Path("src/jvmTest/resources/nature.jpeg")).buffered().use {
+            it.readByteString()
         }
-        val encoded = byteString.base64()
+        val encoded = Base64.encode(source = byteString)
         val request = chatCompletionRequest {
             model = ModelId("gpt-4-vision-preview")
             messages {

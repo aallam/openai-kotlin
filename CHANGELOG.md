@@ -1,3 +1,15 @@
+## Unreleased
+
+### Added
+- WasmJs target (#387)
+
+### Changed
+- Upgrade to Kotlin 2.0 (#387)
+- Update Ktor to 3.0 (#387)
+
+### Breaking Changes
+- Replace okio by kotlinx.io (#387)
+
 ## 3.8.2
 
 ### Added

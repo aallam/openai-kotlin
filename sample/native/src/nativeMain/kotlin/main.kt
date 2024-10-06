@@ -18,8 +18,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
-import okio.FileSystem
-import okio.Path.Companion.toPath
+import kotlinx.io.files.Path
 import platform.posix.getenv
 
 fun main(): Unit = runBlocking {
@@ -62,8 +61,8 @@ fun main(): Unit = runBlocking {
 
     println("\n> Edit images...")
     val imageEdit = ImageEdit(
-        image = FileSource(path = "$resourcesPrefix/image.png".toPath(), fileSystem = FileSystem.SYSTEM),
-        mask = FileSource(path = "$resourcesPrefix/mask.png".toPath(), fileSystem = FileSystem.SYSTEM),
+        image = FileSource(path = Path(resourcesPrefix, "image.png")),
+        mask = FileSource(path = Path(resourcesPrefix, "mask.png")),
         prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
         n = 1,
         size = ImageSize.is1024x1024,
@@ -96,7 +95,7 @@ fun main(): Unit = runBlocking {
 
     println("\n>️ Create transcription...")
     val transcriptionRequest = TranscriptionRequest(
-        audio = FileSource(path = "$resourcesPrefix/micro-machines.wav".toPath(), fileSystem = FileSystem.SYSTEM),
+        audio = FileSource(path = Path(resourcesPrefix, "micro-machines.wav")),
         model = ModelId("whisper-1"),
     )
     val transcription = openAI.transcription(transcriptionRequest)
@@ -104,7 +103,7 @@ fun main(): Unit = runBlocking {
 
     println("\n>️ Create translation...")
     val translationRequest = TranslationRequest(
-        audio = FileSource(path = "$resourcesPrefix/multilingual.wav".toPath(), fileSystem = FileSystem.SYSTEM),
+        audio = FileSource(path = Path(resourcesPrefix, "multilingual.wav")),
         model = ModelId("whisper-1"),
     )
     val translation = openAI.translation(translationRequest)

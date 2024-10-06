@@ -5,8 +5,6 @@ import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.TestFileSystem
 import com.aallam.openai.client.internal.testFilePath
-import okio.FileSystem
-import okio.Path.Companion.toPath
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

@@ -5,8 +5,7 @@ import com.aallam.openai.api.image.ImageCreation
 import com.aallam.openai.api.image.ImageEdit
 import com.aallam.openai.api.image.ImageSize
 import com.aallam.openai.client.OpenAI
-import okio.FileSystem
-import okio.Path.Companion.toPath
+import kotlinx.io.files.Path
 
 suspend fun images(openAI: OpenAI) {
     println("\n> Create images...")
@@ -21,8 +20,8 @@ suspend fun images(openAI: OpenAI) {
 
     println("\n> Edit images...")
     val imageEdit = ImageEdit(
-        image = FileSource(path = "image.png".toPath(), fileSystem = FileSystem.RESOURCES),
-        mask = FileSource(path = "image.png".toPath(), fileSystem = FileSystem.RESOURCES),
+        image = FileSource(path = Path("image.png")),
+        mask = FileSource(path = Path("image.png")),
         prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
         n = 1,
         size = ImageSize.is1024x1024,

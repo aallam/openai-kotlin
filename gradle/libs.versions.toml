@@ -1,9 +1,8 @@
 [versions]
 kotlin = "2.0.20"
 coroutines = "1.8.1"
-serialization = "1.6.3"
+serialization = "1.7.3"
 ktor = "3.0.0-rc-2"
-okio = "3.9.0"
 kotlinio = "0.5.4"
 logback = "1.4.8"
 
@@ -29,11 +28,9 @@ ktor-client-jetty = { group = "io.ktor", name = "ktor-client-jetty", version.ref
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
-# Okio
-kotlinxio = { group = "org.jetbrains.kotlinx", name = "kotlinx-io", version.ref = "kotlinio" }
-okio = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
-okio-nodefilesystem = { group = "com.squareup.okio", name = "okio-nodefilesystem", version.ref = "okio" }
-okio-fakefilesystem = { group = "com.squareup.okio", name = "okio-fakefilesystem", version.ref = "okio" }
+# IO
+kotlinx-io-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinio" }
+kotlinx-io-bytestring = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-bytestring", version.ref = "kotlinio" }
 # Logback
 logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 # ulid

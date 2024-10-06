@@ -6,10 +6,10 @@ import com.aallam.openai.client.internal.JsonLenient
 import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
-import io.ktor.utils.io.core.*
+import io.ktor.utils.io.core.readAvailable
+import io.ktor.utils.io.core.writeFully
+import kotlinx.io.buffered
 import kotlinx.serialization.json.*
-import okio.buffer
-import okio.use
 
 /**
  * Adds `stream` parameter to the request.
@@ -27,14 +27,13 @@ internal inline fun <reified T> streamRequestOf(serializable: T): JsonElement {
 }
 
 internal fun FormBuilder.appendFileSource(key: String, fileSource: FileSource) {
-    append(key, fileSource.name, ContentType.Application.OctetStream) {
-        fileSource.source.buffer().use { source ->
+    append(key = key, filename = fileSource.name, contentType = ContentType.Application.OctetStream) {
+        fileSource.source.buffered().use { source ->
             val buffer = ByteArray(8192) // 8 KiB
             var bytesRead: Int
-            while (source.read(buffer).also { bytesRead = it } != -1) {
+            while (source.readAvailable(buffer).also { bytesRead = it } != 0) {
                 writeFully(buffer = buffer, offset = 0, length = bytesRead)
             }
-
         }
     }
 }

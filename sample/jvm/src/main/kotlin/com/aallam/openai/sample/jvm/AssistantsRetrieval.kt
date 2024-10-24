@@ -30,7 +30,6 @@ suspend fun assistantsRetrieval(openAI: OpenAI) {
             instructions = "You are a chatbot specialized in 'The Universal Declaration of Human Rights.' Answer questions and provide information based on this document.",
             tools = listOf(AssistantTool.FileSearch),
             model = ModelId("gpt-4-1106-preview"),
-            fileIds = listOf(knowledgeBase.id)
         )
     )
 

@@ -29,4 +29,4 @@ internal class OpenAIApi(
     Messages by MessagesApi(requester),
     VectorStores by VectorStoresApi(requester),
     Batch by BatchApi(requester),
-    Closeable by requester
+    AutoCloseable by requester

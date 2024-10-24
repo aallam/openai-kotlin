@@ -107,7 +107,7 @@ public data class FileCitation(
     /**
      * The specific quote in the file
      */
-    @SerialName("quote") val quote: String,
+    @SerialName("quote") val quote: String? = null,
 )
 
 /**

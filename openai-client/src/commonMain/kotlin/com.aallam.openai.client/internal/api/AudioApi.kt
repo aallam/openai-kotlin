@@ -19,11 +19,8 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
     @BetaOpenAI
     override suspend fun transcription(request: TranscriptionRequest, requestOptions: RequestOptions?): Transcription {
         return when (request.responseFormat) {
-            AudioResponseFormat.Json, AudioResponseFormat.VerboseJson, null -> transcriptionAsJson(
-                request,
-                requestOptions
-            )
-
+            AudioResponseFormat.Json, AudioResponseFormat.VerboseJson, null ->
+                transcriptionAsJson(request, requestOptions)
             else -> transcriptionAsString(request, requestOptions)
         }
     }

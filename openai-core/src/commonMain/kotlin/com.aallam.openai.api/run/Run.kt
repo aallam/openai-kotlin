@@ -111,14 +111,14 @@ public data class Run(
     @SerialName("usage") public val usage: Usage? = null,
 
     /**
-     * The Unix timestamp (in seconds) for when the run was completed.
+     * The sampling temperature used for this run. If not set, defaults to 1.
      */
-    @SerialName("temperature") val temperature: Int? = null,
+    @SerialName("temperature") val temperature: Double? = null,
 
     /**
      * The nucleus sampling value used for this run. If not set, defaults to 1.
      */
-    @SerialName("top_p") val topP: Int? = null,
+    @SerialName("top_p") val topP: Double? = null,
 
     /**
      * The maximum number of prompt tokens specified to have been used over the course of the run.

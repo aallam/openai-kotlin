@@ -5,7 +5,6 @@ import com.aallam.openai.api.file.fileSource
 import com.aallam.openai.api.file.fileUpload
 import com.aallam.openai.client.internal.asSource
 import com.aallam.openai.client.internal.waitFileProcess
-import ulid.ULID
 import kotlin.test.*
 
 class TestFiles : TestOpenAI() {
@@ -17,7 +16,7 @@ class TestFiles : TestOpenAI() {
                 {"prompt": "<prompt text>", "completion": "<ideal generated text>"}
                 {"prompt": "<prompt text>", "completion": "<ideal generated text>"}
             """.trimIndent()
-        val id = ULID.randomULID()
+        val id = "d227742e-c572-4f51-b8a3-89f1d5105ebe"
 
         val source = fileSource {
             name = "$id.jsonl"

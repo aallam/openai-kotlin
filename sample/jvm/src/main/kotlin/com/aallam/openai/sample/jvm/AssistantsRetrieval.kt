@@ -14,14 +14,13 @@ import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.delay
-import okio.FileSystem
-import okio.Path.Companion.toPath
+import kotlinx.io.files.Path
 
 @OptIn(BetaOpenAI::class)
 suspend fun assistantsRetrieval(openAI: OpenAI) {
 
     // 1. Upload a file with an "assistants" purpose
-    val fileUpload = FileUpload(file = FileSource("udhr.pdf".toPath(), FileSystem.RESOURCES), purpose = Purpose("assistants"))
+    val fileUpload = FileUpload(file = FileSource(Path("udhr.pdf")), purpose = Purpose("assistants"))
     val knowledgeBase = openAI.file(request = fileUpload)
 
     val assistant = openAI.assistant(

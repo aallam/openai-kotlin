@@ -2,7 +2,6 @@ package com.aallam.openai.api.message
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.Role
-import com.aallam.openai.api.file.FileId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,6 +20,11 @@ public class MessageRequest(
      * The content of the message.
      */
     @SerialName("content") public val content: String,
+
+    /**
+     * A list of files attached to the message.
+     */
+    @SerialName("attachments") public val attachments: List<Attachment>? = null,
 
     /**
      * Set of 16 key-value pairs that can be attached to an object.
@@ -53,6 +57,11 @@ public class MessageRequestBuilder {
     public var content: String? = null
 
     /**
+     * A list of files attached to the message.
+     */
+    public var attachments: List<Attachment>? = null
+
+    /**
      * Set of 16 key-value pairs that can be attached to an object.
      * This can be useful for storing additional information about the object in a structured format.
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
@@ -62,6 +71,7 @@ public class MessageRequestBuilder {
     public fun build(): MessageRequest = MessageRequest(
         role = requireNotNull(role) { "role is required" },
         content = requireNotNull(content) { "content is required" },
+        attachments = attachments,
         metadata = metadata
     )
 }

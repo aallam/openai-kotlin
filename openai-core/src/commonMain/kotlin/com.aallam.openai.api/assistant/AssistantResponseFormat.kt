@@ -18,11 +18,10 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
 /**
- * string: auto is the default value
+ * Represents the format of the response from the assistant.
  *
- * object: An object describing the expected output of the model. If json_object only function type tools are allowed to be passed to the Run.
- * If text, the model can return text or any value needed.
- * type: string Must be one of text or json_object.
+ * @property type The type of the response format.
+ * @property jsonSchema The JSON schema associated with the response format, if type is "json_schema" otherwise null.
  */
 @BetaOpenAI
 @Serializable(with = AssistantResponseFormat.ResponseFormatSerializer::class)
@@ -31,6 +30,14 @@ public data class AssistantResponseFormat(
     val jsonSchema: JsonSchema? = null
 ) {
 
+    /**
+     * Represents a JSON schema.
+     *
+     * @property name The name of the schema.
+     * @property description The description of the schema.
+     * @property schema The actual JSON schema.
+     * @property strict Indicates if the schema is strict.
+     */
     @Serializable
     public data class JsonSchema(
         val name: String,
@@ -43,6 +50,16 @@ public data class AssistantResponseFormat(
         public val AUTO: AssistantResponseFormat = AssistantResponseFormat("auto")
         public val TEXT: AssistantResponseFormat = AssistantResponseFormat("text")
         public val JSON_OBJECT: AssistantResponseFormat = AssistantResponseFormat("json_object")
+
+        /**
+         * Creates an instance of `AssistantResponseFormat` with type `json_schema`.
+         *
+         * @param name The name of the schema.
+         * @param description The description of the schema.
+         * @param schema The actual JSON schema.
+         * @param strict Indicates if the schema is strict.
+         * @return An instance of `AssistantResponseFormat` with the specified JSON schema.
+         */
         public fun JSON_SCHEMA(
             name: String,
             description: String? = null,

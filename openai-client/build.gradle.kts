@@ -8,6 +8,30 @@ plugins {
     id("com.diffplug.spotless")
     id("org.jetbrains.dokka")
     id("build-support")
+    id("maven-publish")
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/getstep/openai-kotlin")
+            // Requires GitHubPackagesUsername and GitHubPackagesPassword to be
+            // set in your local gradle.properties.
+            //
+            // See:
+            // https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry
+            // https://docs.gradle.org/current/userguide/declaring_repositories.html#sec:handling_credentials
+            credentials(PasswordCredentials::class)
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            groupId = "com.github.notrly.openai-kotlin"
+            artifactId = "openai-client"
+            version = "4.0.0-SNAPSHOT"
+        }
+    }
 }
 
 kotlin {

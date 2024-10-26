@@ -2,6 +2,7 @@ package com.aallam.openai.sample.jvm
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantRequest
+import com.aallam.openai.api.assistant.AssistantResponseFormat
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.Function
 import com.aallam.openai.api.chat.ToolCall
@@ -17,7 +18,10 @@ import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.ToolOutput
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.delay
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.add
+import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonArray
 import kotlinx.serialization.json.putJsonObject
@@ -29,6 +33,36 @@ suspend fun assistantsFunctions(openAI: OpenAI) {
         request = AssistantRequest(
             name = "Math Tutor",
             instructions = "You are a weather bot. Use the provided functions to answer questions.",
+            responseFormat = AssistantResponseFormat.JSON_SCHEMA(
+                name = "math_response",
+                strict = true,
+                schema = buildJsonObject {
+                    put("type", "object")
+                    putJsonObject("properties") {
+                        putJsonObject("steps") {
+                            put("type", "array")
+                            putJsonObject("items") {
+                                put("type", "object")
+                                putJsonObject("properties") {
+                                    putJsonObject("explanation") {
+                                        put("type", "string")
+                                    }
+                                    putJsonObject("output") {
+                                        put("type", "string")
+                                    }
+                                }
+                                put("required", JsonArray(listOf(JsonPrimitive("explanation"), JsonPrimitive("output"))))
+                                put("additionalProperties", false)
+                            }
+                        }
+                        putJsonObject("final_answer") {
+                            put("type", "string")
+                        }
+                    }
+                    put("additionalProperties", false)
+                    put("required", JsonArray(listOf(JsonPrimitive("steps"), JsonPrimitive("final_answer"))))
+                },
+            ),
             tools = listOf(
                 AssistantTool.FunctionTool(
                     function = Function(
@@ -74,7 +108,7 @@ suspend fun assistantsFunctions(openAI: OpenAI) {
                     )
                 )
             ),
-            model = ModelId("gpt-4-1106-preview")
+            model = ModelId("gpt-4o-mini")
         )
     )
 

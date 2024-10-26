@@ -111,7 +111,7 @@ public data class Run(
     @SerialName("usage") public val usage: Usage? = null,
 
     /**
-     * The Unix timestamp (in seconds) for when the run was completed.
+     * The sampling temperature used for this run. If not set, defaults to 1.
      */
     @SerialName("temperature") val temperature: Double? = null,
 

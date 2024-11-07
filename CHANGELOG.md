@@ -1,7 +1,9 @@
-## Unreleased
+## 4.0.0-beta01
+> Published 27 Oct 2024
 
 ### Added
 - WasmJs target (#387)
+- feat(assistants): add structured response (#391) (thanks @ahmedmirza994)
 
 ### Changed
 - Upgrade to Kotlin 2.0 (#387)

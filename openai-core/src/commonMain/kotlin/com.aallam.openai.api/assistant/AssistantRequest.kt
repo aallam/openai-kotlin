@@ -2,6 +2,7 @@ package com.aallam.openai.api.assistant
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
+import com.aallam.openai.api.core.ResponseFormat
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -67,15 +68,15 @@ public data class AssistantRequest(
      * Specifies the format that the model must output. Compatible with GPT-4o, GPT-4 Turbo, and all GPT-3.5 Turbo
      * models since gpt-3.5-turbo-1106.
      *
-     * Setting to [AssistantResponseFormat.JSON_SCHEMA] enables Structured Outputs which ensures the model will match your supplied JSON schema.
+     * Setting to [ResponseFormat.JsonSchemaResponseFormat] enables Structured Outputs which ensures the model will match your supplied JSON schema.
      *
-     * Structured Outputs ([AssistantResponseFormat.JSON_SCHEMA]) are available in our latest large language models, starting with GPT-4o:
+     * Structured Outputs [ResponseFormat.JsonSchemaResponseFormat] are available in our latest large language models, starting with GPT-4o:
      * 1. gpt-4o-mini-2024-07-18 and later
      * 2. gpt-4o-2024-08-06 and later
      *
-     * Older models like gpt-4-turbo and earlier may use JSON mode ([AssistantResponseFormat.JSON_OBJECT]) instead.
+     * Older models like gpt-4-turbo and earlier may use JSON mode [ResponseFormat.JsonObjectResponseFormat] instead.
      *
-     * Setting to [AssistantResponseFormat.JSON_OBJECT] enables JSON mode, which guarantees the message the model
+     * Setting to [ResponseFormat.JsonObjectResponseFormat] enables JSON mode, which guarantees the message the model
      * generates is valid JSON.
      *
      * important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user
@@ -83,9 +84,8 @@ public data class AssistantRequest(
      * token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be
      * partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or
      * the conversation exceeded the max context length.
-     *
      */
-    @SerialName("response_format") val responseFormat: AssistantResponseFormat? = null,
+    @SerialName("response_format") val responseFormat: ResponseFormat? = null,
 )
 
 @BetaOpenAI
@@ -141,10 +141,25 @@ public class AssistantRequestBuilder {
     /**
      * Specifies the format that the model must output. Compatible with GPT-4o, GPT-4 Turbo, and all GPT-3.5 Turbo
      * models since gpt-3.5-turbo-1106.
+     *
+     * Setting to [OldResponseFormat.JSON_SCHEMA] enables Structured Outputs which ensures the model will match your supplied JSON schema.
+     *
+     * Structured Outputs ([OldResponseFormat.JSON_SCHEMA]) are available in our latest large language models, starting with GPT-4o:
+     * 1. gpt-4o-mini-2024-07-18 and later
+     * 2. gpt-4o-2024-08-06 and later
+     *
+     * Older models like gpt-4-turbo and earlier may use JSON mode ([OldResponseFormat.JSON_OBJECT]) instead.
+     *
+     * Setting to [OldResponseFormat.JSON_OBJECT] enables JSON mode, which guarantees the message the model
+     * generates is valid JSON.
+     *
+     * important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user
+     * message. Without this, the model may generate an unending stream of whitespace until the generation reaches the
+     * token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be
+     * partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or
+     * the conversation exceeded the max context length.
      */
-    public var responseFormat: AssistantResponseFormat? = null
-
-
+    public var responseFormat: ResponseFormat? = null
 
     /**
      * Create [Assistant] instance.

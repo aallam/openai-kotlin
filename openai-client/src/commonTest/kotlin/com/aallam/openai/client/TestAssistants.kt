@@ -1,9 +1,11 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.assistant.AssistantResponseFormat
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.chat.ToolCall
+import com.aallam.openai.api.core.JsonSchema
+import com.aallam.openai.api.core.ResponseFormat
+import com.aallam.openai.api.core.Schema
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RequiredAction
 import com.aallam.openai.api.run.Run
@@ -26,7 +28,7 @@ class TestAssistants : TestOpenAI() {
             name = "Math Tutor"
             tools = listOf(AssistantTool.CodeInterpreter)
             model = ModelId("gpt-4o")
-            responseFormat = AssistantResponseFormat.TEXT
+            responseFormat = ResponseFormat.TextResponseFormat
         }
         val assistant = openAI.assistant(
             request = request,
@@ -46,7 +48,7 @@ class TestAssistants : TestOpenAI() {
 
         val updated = assistantRequest {
             name = "Super Math Tutor"
-            responseFormat = AssistantResponseFormat.AUTO
+            responseFormat = ResponseFormat.AutoResponseFormat
         }
         val updatedAssistant = openAI.assistant(
             assistant.id,
@@ -154,20 +156,22 @@ class TestAssistants : TestOpenAI() {
 
     @Test
     fun jsonSchemaAssistant() = test {
-        val jsonSchema = AssistantResponseFormat.JSON_SCHEMA(
-            name = "TestSchema",
-            description = "A test schema",
-            schema = buildJsonObject {
-                put("type", "object")
-                put("properties", buildJsonObject {
-                    put("name", buildJsonObject {
-                        put("type", "string")
+        val jsonSchema = ResponseFormat.JsonSchemaResponseFormat(
+            schema = JsonSchema(
+                name = "TestSchema",
+                description = "A test schema",
+                schema = Schema.buildJsonObject {
+                    put("type", "object")
+                    put("properties", buildJsonObject {
+                        put("name", buildJsonObject {
+                            put("type", "string")
+                        })
                     })
-                })
-                put("required", JsonArray(listOf(JsonPrimitive("name"))))
-                put("additionalProperties", false)
-            },
-            strict = true
+                    put("required", JsonArray(listOf(JsonPrimitive("name"))))
+                    put("additionalProperties", false)
+                },
+                strict = true
+            )
         )
 
         val request = assistantRequest {
@@ -193,7 +197,7 @@ class TestAssistants : TestOpenAI() {
 
         val updated = assistantRequest {
             name = "Updated Schema Assistant"
-            responseFormat = AssistantResponseFormat.AUTO
+            responseFormat = ResponseFormat.AutoResponseFormat
         }
         val updatedAssistant = openAI.assistant(
             assistant.id,

@@ -1,3 +1,8 @@
+# Unreleased
+
+### Added
+- **chat**: Add support for structured outputs (#397)
+
 ## 4.0.0-beta01
 > Published 27 Oct 2024
 

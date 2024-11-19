@@ -15,7 +15,7 @@ public data class Function(
      */
     @SerialName("name") val name: String,
     /**
-     * The description of what the function does.
+     * The description of what the function does. used by the model to choose when and how to call the function.
      */
     @SerialName("description") val description: String,
     /**
@@ -25,6 +25,13 @@ public data class Function(
      * To describe a function that accepts no parameters, provide [Parameters.Empty]`.
      */
     @SerialName("parameters") val parameters: Parameters,
+    /**
+     * Whether to enable strict schema adherence when generating the function call.
+     * If set to true, the model will always follow the exact schema defined in the parameters field.
+     * Only a subset of JSON Schema is supported when strict is true.
+     * To learn more about Structured Outputs in the [function calling guide](https://platform.openai.com/docs/api-reference/assistants/docs/guides/function-calling).
+     */
+    val strict: Boolean? = null
 )
 
 /**
@@ -50,12 +57,21 @@ public class FunctionBuilder {
     public var parameters: Parameters? = Parameters.Empty
 
     /**
+     * Whether to enable strict schema adherence when generating the function call.
+     * If set to true, the model will always follow the exact schema defined in the parameters field.
+     * Only a subset of JSON Schema is supported when strict is true.
+     * To learn more about Structured Outputs in the [function calling guide](https://platform.openai.com/docs/api-reference/assistants/docs/guides/function-calling).
+     */
+    public var strict: Boolean? = null
+
+    /**
      * Create [Function] instance.
      */
     public fun build(): Function = Function(
         name = requireNotNull(name) { "name is required" },
         description = requireNotNull(description) { "description is required" },
-        parameters = requireNotNull(parameters) { "parameters is required" }
+        parameters = requireNotNull(parameters) { "parameters is required" },
+        strict = strict
     )
 }
 

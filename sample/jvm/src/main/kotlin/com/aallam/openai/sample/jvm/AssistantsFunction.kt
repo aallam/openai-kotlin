@@ -2,12 +2,14 @@ package com.aallam.openai.sample.jvm
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantRequest
-import com.aallam.openai.api.assistant.AssistantResponseFormat
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.Function
 import com.aallam.openai.api.chat.ToolCall
+import com.aallam.openai.api.core.JsonSchema
 import com.aallam.openai.api.core.Parameters
+import com.aallam.openai.api.core.ResponseFormat
 import com.aallam.openai.api.core.Role
+import com.aallam.openai.api.core.Schema
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.message.MessageContent
 import com.aallam.openai.api.message.MessageRequest
@@ -18,10 +20,11 @@ import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.ToolOutput
 import com.aallam.openai.client.OpenAI
 import kotlinx.coroutines.delay
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.add
-import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonArray
 import kotlinx.serialization.json.putJsonObject
@@ -33,35 +36,38 @@ suspend fun assistantsFunctions(openAI: OpenAI) {
         request = AssistantRequest(
             name = "Math Tutor",
             instructions = "You are a weather bot. Use the provided functions to answer questions.",
-            responseFormat = AssistantResponseFormat.JSON_SCHEMA(
-                name = "math_response",
-                strict = true,
-                schema = buildJsonObject {
-                    put("type", "object")
-                    putJsonObject("properties") {
-                        putJsonObject("steps") {
-                            put("type", "array")
-                            putJsonObject("items") {
-                                put("type", "object")
-                                putJsonObject("properties") {
-                                    putJsonObject("explanation") {
-                                        put("type", "string")
+            responseFormat = ResponseFormat.JsonSchemaResponseFormat(
+                schema = JsonSchema(
+                    name = "math_response",
+                    strict = true,
+                    description = "The response format for the math tutor assistant.",
+                    schema = Schema.buildJsonObject {
+                        put("type", "object")
+                        putJsonObject("properties") {
+                            putJsonObject("steps") {
+                                put("type", "array")
+                                putJsonObject("items") {
+                                    put("type", "object")
+                                    putJsonObject("properties") {
+                                        putJsonObject("explanation") {
+                                            put("type", "string")
+                                        }
+                                        putJsonObject("output") {
+                                            put("type", "string")
+                                        }
                                     }
-                                    putJsonObject("output") {
-                                        put("type", "string")
-                                    }
+                                    put("required", JsonArray(listOf(JsonPrimitive("explanation"), JsonPrimitive("output"))))
+                                    put("additionalProperties", false)
                                 }
-                                put("required", JsonArray(listOf(JsonPrimitive("explanation"), JsonPrimitive("output"))))
-                                put("additionalProperties", false)
+                            }
+                            putJsonObject("final_answer") {
+                                put("type", "string")
                             }
                         }
-                        putJsonObject("final_answer") {
-                            put("type", "string")
-                        }
+                        put("additionalProperties", false)
+                        put("required", JsonArray(listOf(JsonPrimitive("steps"), JsonPrimitive("final_answer"))))
                     }
-                    put("additionalProperties", false)
-                    put("required", JsonArray(listOf(JsonPrimitive("steps"), JsonPrimitive("final_answer"))))
-                },
+                )
             ),
             tools = listOf(
                 AssistantTool.FunctionTool(
@@ -112,7 +118,9 @@ suspend fun assistantsFunctions(openAI: OpenAI) {
         )
     )
 
-    // 2. Create a thread
+    println(Json.encodeToString(assistant))
+
+    //2. Create a thread
     val thread = openAI.thread()
 
     // 3. Add a message to the thread
@@ -133,10 +141,10 @@ suspend fun assistantsFunctions(openAI: OpenAI) {
     // 4. Run the assistant
     val run = openAI.createRun(
         threadId = thread.id,
-        request = RunRequest(assistantId = assistant.id)
+        request = RunRequest(assistantId = assistant.id, responseFormat = ResponseFormat.TextResponseFormat)
     )
 
-    // 5. Check the run status
+//    // 5. Check the run status
     var retrievedRun: Run
     do {
         delay(1500)

@@ -7,6 +7,7 @@ import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.thread.ThreadId
 import com.aallam.openai.api.core.LastError
+import com.aallam.openai.api.core.ResponseFormat
 import com.aallam.openai.api.core.Usage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -129,4 +130,33 @@ public data class Run(
      * The maximum number of completion tokens specified to have been used over the course of the run.
      */
     @SerialName("max_completion_tokens") val maxCompletionTokens: Int? = null,
+
+    /**
+     * Whether to enable parallel function calling during tool use.
+     */
+    public var parallelToolCalls: Boolean? = null,
+
+    /**
+     * Specifies the format that the model must output. Compatible with GPT-4o, GPT-4 Turbo, and all GPT-3.5 Turbo
+     * models since gpt-3.5-turbo-1106.
+     *
+     * Setting to [ResponseFormat.JsonSchemaResponseFormat] enables Structured Outputs which ensures the model will match your supplied JSON schema.
+     *
+     * Structured Outputs [ResponseFormat.JsonSchemaResponseFormat] are available in our latest large language models, starting with GPT-4o:
+     * 1. gpt-4o-mini-2024-07-18 and later
+     * 2. gpt-4o-2024-08-06 and later
+     *
+     * Older models like gpt-4-turbo and earlier may use JSON mode [ResponseFormat.JsonObjectResponseFormat] instead.
+     *
+     * Setting to [ResponseFormat.JsonObjectResponseFormat] enables JSON mode, which guarantees the message the model
+     * generates is valid JSON.
+     *
+     * important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user
+     * message. Without this, the model may generate an unending stream of whitespace until the generation reaches the
+     * token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be
+     * partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or
+     * the conversation exceeded the max context length.
+     *
+     */
+    public var responseFormat: ResponseFormat? = null
 )

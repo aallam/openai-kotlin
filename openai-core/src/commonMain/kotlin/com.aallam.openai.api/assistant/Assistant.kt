@@ -2,6 +2,7 @@ package com.aallam.openai.api.assistant
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.assistant.AssistantTool.*
+import com.aallam.openai.api.core.ResponseFormat
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -80,7 +81,7 @@ public data class Assistant(
      * Specifies the format that the model must output. Compatible with GPT-4o, GPT-4 Turbo, and all GPT-3.5 Turbo
      * models since gpt-3.5-turbo-1106.
      *
-     * Setting to [AssistantResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model
+     * Setting to [ResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model
      * generates is valid JSON.
      *
      * important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user
@@ -89,5 +90,5 @@ public data class Assistant(
      * partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or
      * the conversation exceeded the max context length.
      */
-    @SerialName("response_format") public val responseFormat: AssistantResponseFormat? = null,
+    @SerialName("response_format") public val responseFormat: ResponseFormat? = null,
 )

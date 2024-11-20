@@ -12,6 +12,7 @@ import com.aallam.openai.client.internal.extension.beta
 import com.aallam.openai.client.internal.extension.requestOptions
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
+import com.aallam.openai.client.internal.http.performGetHeaders
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -74,7 +75,29 @@ internal class MessagesApi(val requester: HttpRequester) : Messages {
         before: MessageId?,
         requestOptions: RequestOptions?
     ): PaginatedList<Message> {
-        return requester.perform {
+        return requester.perform{
+            it.get {
+                url(path = "${ApiPath.Threads}/${threadId.id}/messages") {
+                    limit?.let { value -> parameter("limit", value) }
+                    order?.let { value -> parameter("order", value.order) }
+                    before?.let { value -> parameter("before", value.id) }
+                    after?.let { value -> parameter("after", value.id) }
+                }
+                beta("assistants", 2)
+                requestOptions(requestOptions)
+            }.body()
+        }
+    }
+
+    override suspend fun messagesWithHeaders(
+        threadId: ThreadId,
+        limit: Int?,
+        order: SortOrder?,
+        after: MessageId?,
+        before: MessageId?,
+        requestOptions: RequestOptions?
+    ): Pair<Headers, PaginatedList<Message>> {
+        return requester.performGetHeaders{
             it.get {
                 url(path = "${ApiPath.Threads}/${threadId.id}/messages") {
                     limit?.let { value -> parameter("limit", value) }

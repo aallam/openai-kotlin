@@ -1,30 +1,62 @@
 package com.aallam.openai.client.internal.api
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.PaginatedList
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.run.*
 import com.aallam.openai.api.thread.ThreadId
 import com.aallam.openai.client.Runs
+import com.aallam.openai.client.internal.JsonLenient
 import com.aallam.openai.client.internal.extension.beta
 import com.aallam.openai.client.internal.extension.requestOptions
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.*
+import io.ktor.client.plugins.sse.ClientSSESession
+import io.ktor.client.plugins.sse.sse
+import io.ktor.client.plugins.sse.sseSession
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.sse.ServerSentEvent
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.onEach
+import kotlinx.serialization.encodeToString
 
 internal class RunsApi(val requester: HttpRequester) : Runs {
     override suspend fun createRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions?): Run {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs")
-                setBody(request)
+                setBody(request.copy(stream = false))
                 contentType(ContentType.Application.Json)
                 beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
+    }
+
+    @BetaOpenAI
+    override suspend fun createStreamingRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions?, block: suspend (AssistantStreamEvent) -> Unit) {
+        requester
+            .performSse {
+                url(path = "${ApiPath.Threads}/${threadId.id}/runs")
+                setBody(JsonLenient.encodeToString(RunRequest.serializer(), request.copy(stream = true)))
+                contentType(ContentType.Application.Json)
+                accept(ContentType.Text.EventStream)
+                beta("assistants", 2)
+                requestOptions(requestOptions)
+                method = HttpMethod.Post
+            }
+            .mapNotNull { "{ \"event\": \"${it.event}\", \"data\": \"${it.data!!.replace("\"", "\\\"")}\" }" }
+            .map { JsonLenient.decodeFromString<AssistantStreamEvent>(it) }
+            .onEach(block)
+            .collect()
     }
 
     override suspend fun getRun(threadId: ThreadId, runId: RunId, requestOptions: RequestOptions?): Run {

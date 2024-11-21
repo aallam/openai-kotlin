@@ -6,6 +6,7 @@ import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.run.*
 import com.aallam.openai.api.thread.ThreadId
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Represents an execution run on a thread.
@@ -22,6 +23,17 @@ public interface Runs {
      */
     @BetaOpenAI
     public suspend fun createRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions? = null): Run
+
+    /**
+     * Create a run with event streaming.
+     *
+     * @param threadId The ID of the thread to run
+     * @param request request for a run
+     * @param requestOptions request options.
+     * @param block a lambda function that will be called for each event.
+     */
+    @BetaOpenAI
+    public suspend fun createStreamingRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions? = null, block: suspend (AssistantStreamEvent) -> Unit)
 
     /**
      * Retrieves a run.

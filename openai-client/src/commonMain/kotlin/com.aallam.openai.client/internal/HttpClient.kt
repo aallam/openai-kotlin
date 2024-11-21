@@ -11,6 +11,7 @@ import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.client.plugins.sse.SSE
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
 import io.ktor.util.*
@@ -70,6 +71,8 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             retryIf { _, response -> response.status.value.let { it == 429 } }
             exponentialDelay(config.retry.base, config.retry.maxDelay.inWholeMilliseconds)
         }
+
+        install(SSE)
 
         defaultRequest {
             url(config.host.baseUrl)

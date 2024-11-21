@@ -6,14 +6,19 @@ import com.aallam.openai.api.core.PaginatedList
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.message.MessageRequest
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.api.run.AssistantStreamEventType
+import com.aallam.openai.api.run.Run
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.RunStep
 import com.aallam.openai.api.run.ThreadRunRequest
+import com.aallam.openai.api.thread.Thread
 import com.aallam.openai.api.thread.ThreadMessage
 import com.aallam.openai.api.thread.ThreadRequest
+import com.aallam.openai.client.extension.getValue
 import com.aallam.openai.client.internal.JsonLenient
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.asserter
 
 class TestRuns : TestOpenAI() {
 
@@ -45,6 +50,44 @@ class TestRuns : TestOpenAI() {
 
         val runs = openAI.runs(threadId = thread.id)
         assertEquals(1, runs.size)
+    }
+
+    @Test
+    fun createStreamingRun() = test {
+        val assistant = openAI.assistant(
+            request = assistantRequest {
+                name = "Math Tutor"
+                tools = listOf(AssistantTool.CodeInterpreter)
+                model = ModelId("gpt-4o")
+            }
+        )
+        val thread = openAI.thread()
+        val request = RunRequest(assistantId = assistant.id)
+        openAI.message(
+            threadId = thread.id,
+            request = MessageRequest(
+                role = Role.User,
+                content = "solve me 1 + 1",
+                metadata = mapOf(),
+            ),
+            requestOptions = null,
+        )
+
+        openAI.createStreamingRun(threadId = thread.id, request = request) {
+            println(it)
+
+            if(it.event == AssistantStreamEventType.THREAD_RUN_CREATED) {
+                println("THREAD_RUN_CREATED")
+                val run = it.getValue<Run>()
+                print("Deserialized run: $run")
+            }
+        }
+//        assertEquals(thread.id, run.threadId)
+//        var retrieved = openAI.getRun(threadId = thread.id, runId = run.id)
+//        assertEquals(run.id, retrieved.id)
+//
+//        val runs = openAI.runs(threadId = thread.id)
+//        assertEquals(1, runs.size)
     }
 
     @Test

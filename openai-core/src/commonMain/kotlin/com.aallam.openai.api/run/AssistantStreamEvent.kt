@@ -1,7 +1,6 @@
 package com.aallam.openai.api.run
 
 import com.aallam.openai.api.BetaOpenAI
-import com.aallam.openai.api.core.Parameters
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.message.Message
 import com.aallam.openai.api.message.MessageContent
@@ -11,26 +10,33 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.descriptors.buildClassSerialDescriptor
-import kotlinx.serialization.descriptors.element
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import kotlinx.serialization.json.JsonDecoder
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonEncoder
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
 import kotlin.reflect.KClass
 
+/**
+ * Represents an event emitted when streaming a run.
+ * @property rawType the raw string of the event type.
+ * @property type the type of the event or [AssistantStreamEventType.UNKNOWN] if unrecognized.
+ * @property data the string serialized representation of the data for the event.
+ */
 @BetaOpenAI
 @Serializable
 public data class AssistantStreamEvent(
-	@SerialName("event") val event: AssistantStreamEventType,
-	@SerialName("data") val data: String
+    @SerialName("rawType") val rawType: String?,
+    @SerialName("type") val type: AssistantStreamEventType,
+    @SerialName("data") val data: String?
 )
 
+/**
+ * Represents a run step delta i.e. any changed fields on a run step during streaming.
+ * @property id the identifier of the run step, which can be referenced in API endpoints.
+ * @property object the object type, which is always thread.run.step.delta.
+ * @property delta the delta containing the fields that have changed on the run step.
+ */
 @BetaOpenAI
 @Serializable
 public data class RunStepDelta(
@@ -39,12 +45,22 @@ public data class RunStepDelta(
     @SerialName("delta") val delta: RunStepDeltaData
 )
 
+/**
+ * The delta containing the fields that have changed on the run step.
+ * @property stepDetails the details of the run step.
+ */
 @BetaOpenAI
 @Serializable
 public data class RunStepDeltaData(
     @SerialName("step_details") val stepDetails: RunStepDetails
 )
 
+/**
+ * Represents a message delta i.e. any changed fields on a message during streaming.
+ * @param id the identifier of the message, which can be referenced in API endpoints.
+ * @param object the object type, which is always thread.message.delta.
+ * @param delta the delta containing the fields that have changed on the message.
+ */
 @BetaOpenAI
 @Serializable
 public data class MessageDelta(
@@ -53,6 +69,11 @@ public data class MessageDelta(
     @SerialName("delta") val delta: MessageDeltaData
 )
 
+/**
+ * The delta containing the fields that have changed on the message.
+ * @param role the entity that produced the message. One of user or assistant.
+ * @param content the content of the message in array of text and/or images.
+ */
 @BetaOpenAI
 @Serializable
 public data class MessageDeltaData(
@@ -60,158 +81,171 @@ public data class MessageDeltaData(
     @SerialName("content") val content: MessageContent
 )
 
+/**
+ * Represents an event type emitted when streaming a Run.
+ * @property event the string representation of event type.
+ * @property dataType the type of the data.
+ * @property serializer the serializer corresponding to the data type.
+ */
 @BetaOpenAI
-@Serializable
-public enum class AssistantStreamEventType(public val dataType: KClass<*>, public val serializer: KSerializer<*>) {
+@Serializable(with = AssistantStreamEventTypeSerializer::class)
+public enum class AssistantStreamEventType(
+    public val event: String,
+    @Suppress("MemberVisibilityCanBePrivate") public val dataType: KClass<*>,
+    public val serializer: KSerializer<*>
+) {
 
     /**
      * Occurs when a new thread is created.
      */
-    @SerialName("thread.created")
-    THREAD_CREATED(Thread::class, Thread.serializer()),
+    THREAD_CREATED("thread.created", Thread::class, Thread.serializer()),
 
     /**
      * Occurs when a new run is created.
      */
-    @SerialName("thread.run.created")
-    THREAD_RUN_CREATED(Run::class, Run.serializer()),
+    THREAD_RUN_CREATED("thread.run.created", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run moves to a queued status.
      */
-    @SerialName("thread.run.queued")
-    THREAD_RUN_QUEUED(Run::class, Run.serializer()),
+    THREAD_RUN_QUEUED("thread.run.queued", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run moves to an in_progress status.
      */
-    @SerialName("thread.run.in_progress")
-    THREAD_RUN_IN_PROGRESS(Run::class, Run.serializer()),
+    THREAD_RUN_IN_PROGRESS("thread.run.in_progress", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run moves to a requires_action status.
      */
-    @SerialName("thread.run.requires_action")
-    THREAD_RUN_REQUIRES_ACTION(Run::class, Run.serializer()),
+    THREAD_RUN_REQUIRES_ACTION("thread.run.requires_action", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run is completed.
      */
-    @SerialName("thread.run.completed")
-    THREAD_RUN_COMPLETED(Run::class, Run.serializer()),
+    THREAD_RUN_COMPLETED("thread.run.completed", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run ends with status incomplete.
      */
-    @SerialName("thread.run.incomplete")
-    THREAD_RUN_INCOMPLETE(Run::class, Run.serializer()),
+    THREAD_RUN_INCOMPLETE("thread.run.incomplete", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run fails.
      */
-    @SerialName("thread.run.failed")
-    THREAD_RUN_FAILED(Run::class, Run.serializer()),
+    THREAD_RUN_FAILED("thread.run.failed", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run moves to a cancelling status.
      */
-    @SerialName("thread.run.cancelling")
-    THREAD_RUN_CANCELLING(Run::class, Run.serializer()),
+    THREAD_RUN_CANCELLING("thread.run.cancelling", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run is cancelled.
      */
-    @SerialName("thread.run.cancelled")
-    THREAD_RUN_CANCELLED(Run::class, Run.serializer()),
+    THREAD_RUN_CANCELLED("thread.run.cancelled", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run expires.
      */
-    @SerialName("thread.run.expired")
-    THREAD_RUN_EXPIRED(Run::class, Run.serializer()),
+    THREAD_RUN_EXPIRED("thread.run.expired", Run::class, Run.serializer()),
 
     /**
      * Occurs when a run step is created.
      */
-    @SerialName("thread.run.step.created")
-    THREAD_RUN_STEP_CREATED(RunStep::class, RunStep.serializer()),
+    THREAD_RUN_STEP_CREATED("thread.run.step.created", RunStep::class, RunStep.serializer()),
 
     /**
      * Occurs when a run step moves to an in_progress state.
      */
-    @SerialName("thread.run.step.in_progress")
-    THREAD_RUN_STEP_IN_PROGRESS(RunStep::class, RunStep.serializer()),
+    THREAD_RUN_STEP_IN_PROGRESS("thread.run.step.in_progress", RunStep::class, RunStep.serializer()),
 
     /**
      * Occurs when parts of a run step are being streamed.
      */
-    @SerialName("thread.run.step.delta")
-    THREAD_RUN_STEP_DELTA(RunStepDelta::class, RunStepDelta.serializer()),
+    THREAD_RUN_STEP_DELTA("thread.run.step.delta", RunStepDelta::class, RunStepDelta.serializer()),
 
     /**
      * Occurs when a run step is completed.
      */
-    @SerialName("thread.run.step.completed")
-    THREAD_RUN_STEP_COMPLETED(RunStep::class, RunStep.serializer()),
+    THREAD_RUN_STEP_COMPLETED("thread.run.step.completed", RunStep::class, RunStep.serializer()),
 
     /**
      * Occurs when a run step fails.
      */
-    @SerialName("thread.run.step.failed")
-    THREAD_RUN_STEP_FAILED(RunStep::class, RunStep.serializer()),
+    THREAD_RUN_STEP_FAILED("thread.run.step.failed", RunStep::class, RunStep.serializer()),
 
     /**
      * Occurs when a run step is cancelled.
      */
-    @SerialName("thread.run.step.cancelled")
-    THREAD_RUN_STEP_CANCELLED(RunStep::class, RunStep.serializer()),
+    THREAD_RUN_STEP_CANCELLED("thread.run.step.cancelled", RunStep::class, RunStep.serializer()),
 
     /**
      * Occurs when a run step expires.
      */
-    @SerialName("thread.run.step.expired")
-    THREAD_RUN_STEP_EXPIRED(RunStep::class, RunStep.serializer()),
+    THREAD_RUN_STEP_EXPIRED("thread.run.step.expired", RunStep::class, RunStep.serializer()),
 
     /**
      * Occurs when a message is created.
      */
-    @SerialName("thread.message.created")
-    THREAD_MESSAGE_CREATED(Message::class, RunStep.serializer()),
+    THREAD_MESSAGE_CREATED("thread.message.created", Message::class, RunStep.serializer()),
 
     /**
      * Occurs when a message moves to an in_progress state.
      */
-    @SerialName("thread.message.in_progress")
-    THREAD_MESSAGE_IN_PROGRESS(Message::class, Message.serializer()),
+    THREAD_MESSAGE_IN_PROGRESS("thread.message.in_progress", Message::class, Message.serializer()),
 
     /**
      * Occurs when parts of a Message are being streamed.
      */
-    @SerialName("thread.message.delta")
-    THREAD_MESSAGE_DELTA(MessageDelta::class, MessageDelta.serializer()),
+    THREAD_MESSAGE_DELTA("thread.message.delta", MessageDelta::class, MessageDelta.serializer()),
 
     /**
      * Occurs when a message is completed.
      */
-    @SerialName("thread.message.completed")
-    THREAD_MESSAGE_COMPLETED(Message::class, Message.serializer()),
+    THREAD_MESSAGE_COMPLETED("thread.message.completed", Message::class, Message.serializer()),
 
     /**
      * Occurs when a message ends before it is completed.
      */
-    @SerialName("thread.message.incomplete")
-    THREAD_MESSAGE_INCOMPLETE(Message::class, Message.serializer()),
+    THREAD_MESSAGE_INCOMPLETE("thread.message.incomplete", Message::class, Message.serializer()),
 
     /**
      * Occurs when an error occurs. This can happen due to an internal server error or a timeout.
      */
-    @SerialName("error")
-    ERROR(String::class, String.serializer()),
+    ERROR("error", String::class, String.serializer()),
 
     /**
      * Occurs when a stream ends.
      * data is [DONE]
      */
-    @SerialName("done")
-    DONE(String::class, String.serializer())
+    DONE("done", String::class, String.serializer()),
+
+    /**
+     * Occurs when the event type is not recognized
+     */
+    UNKNOWN("unknown", String::class, String.serializer());
+
+    public companion object {
+        public fun fromEvent(event: String): AssistantStreamEventType =
+            entries
+                .find { it.event == event }
+                ?: UNKNOWN
+    }
+}
+
+/**
+ * Custom serializer for [AssistantStreamEventType].
+ */
+@OptIn(BetaOpenAI::class)
+public class AssistantStreamEventTypeSerializer : KSerializer<AssistantStreamEventType> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("AssistantStreamEventType", PrimitiveKind.STRING)
+
+    override fun deserialize(decoder: Decoder): AssistantStreamEventType {
+        val value = decoder.decodeString()
+        return AssistantStreamEventType.entries.single { value == it.event }
+    }
+    override fun serialize(encoder: Encoder, value: AssistantStreamEventType) {
+        encoder.encodeString(value.event)
+    }
 }

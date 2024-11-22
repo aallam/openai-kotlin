@@ -53,8 +53,6 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
                 requestOptions(requestOptions)
                 method = HttpMethod.Post
             }
-            .mapNotNull { "{ \"event\": \"${it.event}\", \"data\": \"${it.data!!.replace("\"", "\\\"")}\" }" }
-            .map { JsonLenient.decodeFromString<AssistantStreamEvent>(it) }
             .onEach(block)
             .collect()
     }
@@ -127,6 +125,28 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         }
     }
 
+    @BetaOpenAI
+    override suspend fun submitStreamingToolOutput(
+        threadId: ThreadId,
+        runId: RunId,
+        output: List<ToolOutput>,
+        requestOptions: RequestOptions?,
+        block: suspend (AssistantStreamEvent) -> Unit
+    ) {
+        return requester
+            .performSse {
+                url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}/submit_tool_outputs")
+                setBody(mapOf("tool_outputs" to output, "stream" to true))
+                contentType(ContentType.Application.Json)
+                accept(ContentType.Text.EventStream)
+                beta("assistants", 2)
+                requestOptions(requestOptions)
+                method = HttpMethod.Post
+            }
+            .onEach(block)
+            .collect()
+    }
+
     override suspend fun cancel(threadId: ThreadId, runId: RunId, requestOptions: RequestOptions?): Run {
         return requester.perform {
             it.post {
@@ -141,13 +161,30 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/runs")
-                setBody(request)
+                setBody(request.copy(stream = false))
                 contentType(ContentType.Application.Json)
                 beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
     }
+
+    @BetaOpenAI
+    override suspend fun createStreamingThreadRun(request: ThreadRunRequest, requestOptions: RequestOptions?, block: suspend (AssistantStreamEvent) -> Unit) {
+        return requester
+            .performSse {
+                url(path = "${ApiPath.Threads}/runs")
+                setBody(request.copy(stream = true))
+                contentType(ContentType.Application.Json)
+                accept(ContentType.Text.EventStream)
+                beta("assistants", 2)
+                requestOptions(requestOptions)
+                method = HttpMethod.Post
+            }
+            .onEach(block)
+            .collect()
+    }
+
 
     override suspend fun runStep(
         threadId: ThreadId,

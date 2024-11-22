@@ -1,5 +1,6 @@
 package com.aallam.openai.client.internal.http
 
+import com.aallam.openai.api.run.AssistantStreamEvent
 import io.ktor.client.*
 import io.ktor.client.plugins.sse.ClientSSESession
 import io.ktor.client.request.*
@@ -24,7 +25,7 @@ internal interface HttpRequester : AutoCloseable {
      */
     suspend fun performSse(
         builderBlock: HttpRequestBuilder.() -> Unit
-    ): Flow<ServerSentEvent>
+    ): Flow<AssistantStreamEvent>
 
     /**
      * Perform an HTTP request and get a result.

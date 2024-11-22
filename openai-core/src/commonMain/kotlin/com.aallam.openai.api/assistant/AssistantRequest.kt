@@ -2,6 +2,7 @@ package com.aallam.openai.api.assistant
 
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
+import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -86,6 +87,8 @@ public data class AssistantRequest(
      *
      */
     @SerialName("response_format") val responseFormat: AssistantResponseFormat? = null,
+
+    @SerialName("file_ids") val fileIds: List<FileId>? = null,
 )
 
 @BetaOpenAI

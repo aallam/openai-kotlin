@@ -6,14 +6,23 @@ import com.aallam.openai.api.core.PaginatedList
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.message.MessageRequest
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.api.run.AssistantStreamEvent
+import com.aallam.openai.api.run.AssistantStreamEventType
+import com.aallam.openai.api.run.Run
 import com.aallam.openai.api.run.RunRequest
 import com.aallam.openai.api.run.RunStep
 import com.aallam.openai.api.run.ThreadRunRequest
 import com.aallam.openai.api.thread.ThreadMessage
 import com.aallam.openai.api.thread.ThreadRequest
+import com.aallam.openai.client.extension.getData
 import com.aallam.openai.client.internal.JsonLenient
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.singleOrNull
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class TestRuns : TestOpenAI() {
 
@@ -48,6 +57,45 @@ class TestRuns : TestOpenAI() {
     }
 
     @Test
+    fun streamingRuns() = test {
+        val assistant = openAI.assistant(
+            request = assistantRequest {
+                name = "Math Tutor"
+                tools = listOf(AssistantTool.CodeInterpreter)
+                model = ModelId("gpt-4o")
+            }
+        )
+        val thread = openAI.thread()
+        val request = RunRequest(assistantId = assistant.id)
+        openAI.message(
+            threadId = thread.id,
+            request = MessageRequest(
+                role = Role.User,
+                content = "solve me 1 + 1",
+                metadata = mapOf(),
+            ),
+            requestOptions = null,
+        )
+
+        val runCompletedEvent = openAI
+            .createStreamingRun(threadId = thread.id, request = request)
+            .filter { it.type == AssistantStreamEventType.THREAD_RUN_COMPLETED }
+            .singleOrNull()
+
+        assertNotNull(runCompletedEvent)
+
+        val run = runCompletedEvent.getData<Run>()
+
+        assertEquals(thread.id, run.threadId)
+
+        var retrieved = openAI.getRun(threadId = thread.id, runId = run.id)
+        assertEquals(run.id, retrieved.id)
+
+        val runs = openAI.runs(threadId = thread.id)
+        assertEquals(1, runs.size)
+    }
+
+    @Test
     fun threadAndRuns() = test {
         val assistant = openAI.assistant(
             request = assistantRequest {
@@ -72,6 +120,42 @@ class TestRuns : TestOpenAI() {
 
         val runs = openAI.runSteps(threadId = run.threadId, runId = run.id)
         assertEquals(0, runs.size)
+    }
+
+    @Test
+    fun streamingThreadAndRuns() = test {
+        val assistant = openAI.assistant(
+            request = assistantRequest {
+                name = "Math Tutor"
+                tools = listOf(AssistantTool.CodeInterpreter)
+                model = ModelId("gpt-4o")
+            }
+        )
+        val request = ThreadRunRequest(
+            thread = ThreadRequest(
+                listOf(
+                    ThreadMessage(
+                        role = Role.User,
+                        content = "solve 1 + 2",
+                    )
+                )
+            ),
+            assistantId = assistant.id,
+        )
+
+        val runCompletedEvent = openAI
+            .createStreamingThreadRun(request = request)
+            .filter { it.type == AssistantStreamEventType.THREAD_RUN_COMPLETED }
+            .singleOrNull()
+
+        assertNotNull(runCompletedEvent)
+
+        val run = runCompletedEvent.getData<Run>()
+
+        assertEquals(assistant.id, run.assistantId)
+
+        val runs = openAI.runSteps(threadId = run.threadId, runId = run.id)
+        assertEquals(1, runs.size)
     }
 
     @Test

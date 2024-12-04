@@ -1,5 +1,6 @@
 package com.aallam.openai.client.internal.api
 
+import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.PaginatedList
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
@@ -13,18 +14,35 @@ import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
 
 internal class RunsApi(val requester: HttpRequester) : Runs {
     override suspend fun createRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions?): Run {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs")
-                setBody(request)
+                setBody(request.copy(stream = false))
                 contentType(ContentType.Application.Json)
                 beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
+    }
+
+    @BetaOpenAI
+    override suspend fun createStreamingRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions?) : Flow<AssistantStreamEvent> {
+        return requester
+            .performSse {
+                url(path = "${ApiPath.Threads}/${threadId.id}/runs")
+                setBody(request.copy(stream = true))
+                contentType(ContentType.Application.Json)
+                accept(ContentType.Text.EventStream)
+                beta("assistants", 2)
+                requestOptions(requestOptions)
+                method = HttpMethod.Post
+            }
     }
 
     override suspend fun getRun(threadId: ThreadId, runId: RunId, requestOptions: RequestOptions?): Run {
@@ -95,6 +113,25 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         }
     }
 
+    @BetaOpenAI
+    override suspend fun submitStreamingToolOutput(
+        threadId: ThreadId,
+        runId: RunId,
+        output: List<ToolOutput>,
+        requestOptions: RequestOptions?
+    ) : Flow<AssistantStreamEvent> {
+        return requester
+            .performSse {
+                url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}/submit_tool_outputs")
+                setBody(mapOf("tool_outputs" to output, "stream" to true))
+                contentType(ContentType.Application.Json)
+                accept(ContentType.Text.EventStream)
+                beta("assistants", 2)
+                requestOptions(requestOptions)
+                method = HttpMethod.Post
+            }
+    }
+
     override suspend fun cancel(threadId: ThreadId, runId: RunId, requestOptions: RequestOptions?): Run {
         return requester.perform {
             it.post {
@@ -109,13 +146,31 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.Threads}/runs")
-                setBody(request)
+                setBody(request.copy(stream = false))
                 contentType(ContentType.Application.Json)
                 beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
     }
+
+    @BetaOpenAI
+    override suspend fun createStreamingThreadRun(
+        request: ThreadRunRequest,
+        requestOptions: RequestOptions?
+    ) : Flow<AssistantStreamEvent> {
+        return requester
+            .performSse {
+                url(path = "${ApiPath.Threads}/runs")
+                setBody(request.copy(stream = true))
+                contentType(ContentType.Application.Json)
+                accept(ContentType.Text.EventStream)
+                beta("assistants", 2)
+                requestOptions(requestOptions)
+                method = HttpMethod.Post
+            }
+    }
+
 
     override suspend fun runStep(
         threadId: ThreadId,

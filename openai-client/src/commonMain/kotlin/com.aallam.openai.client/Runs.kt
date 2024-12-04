@@ -6,6 +6,8 @@ import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.run.*
 import com.aallam.openai.api.thread.ThreadId
+import io.ktor.sse.ServerSentEvent
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Represents an execution run on a thread.
@@ -22,6 +24,21 @@ public interface Runs {
      */
     @BetaOpenAI
     public suspend fun createRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions? = null): Run
+
+    /**
+     * Create a run with event streaming.
+     *
+     * @param threadId The ID of the thread to run
+     * @param request request for a run
+     * @param requestOptions request options.
+     * @param block a lambda function that will be called for each event.
+     */
+    @BetaOpenAI
+    public suspend fun createStreamingRun(
+        threadId: ThreadId,
+        request: RunRequest,
+        requestOptions: RequestOptions? = null
+    ) : Flow<AssistantStreamEvent>
 
     /**
      * Retrieves a run.
@@ -93,6 +110,25 @@ public interface Runs {
     ): Run
 
     /**
+     * When a run has the status: [Status.RequiresAction] and required action is [RequiredAction.SubmitToolOutputs],
+     * this endpoint can be used to submit the outputs from the tool calls once they're all completed.
+     * All outputs must be submitted in a single request using event streaming.
+     *
+     * @param threadId the ID of the thread to which this run belongs
+     * @param runId the ID of the run to submit tool outputs for
+     * @param output list of tool outputs to submit
+     * @param requestOptions request options.
+     * @param block a lambda function that will be called for each event.
+     */
+    @BetaOpenAI
+    public suspend fun submitStreamingToolOutput(
+        threadId: ThreadId,
+        runId: RunId,
+        output: List<ToolOutput>,
+        requestOptions: RequestOptions? = null
+    ) : Flow<AssistantStreamEvent>
+
+    /**
      * Cancels a run that is [Status.InProgress].
      *
      * @param threadId the ID of the thread to which this run belongs
@@ -110,6 +146,19 @@ public interface Runs {
      */
     @BetaOpenAI
     public suspend fun createThreadRun(request: ThreadRunRequest, requestOptions: RequestOptions? = null): Run
+
+    /**
+     * Create a thread and run it in one request with event streaming.
+     *
+     * @param request request for a thread run
+     * @param requestOptions request options.
+     * @param block a lambda function that will be called for each event.
+     */
+    @BetaOpenAI
+    public suspend fun createStreamingThreadRun(
+        request: ThreadRunRequest,
+        requestOptions: RequestOptions? = null
+    ) : Flow<AssistantStreamEvent>
 
     /**
      * Retrieves a run step.

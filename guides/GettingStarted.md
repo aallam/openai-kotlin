@@ -849,3 +849,57 @@ val runSteps = openAI.runSteps(
   runId = RunId("run_abc123")
 )
 ```
+
+### Event streaming
+
+Create a thread and run it in one request and process streaming events.
+
+```kotlin
+openAI.createStreamingThreadRun(
+    request = ThreadRunRequest(
+        assistantId = AssistantId("asst_abc123"),
+        thread = ThreadRequest(
+            messages = listOf(
+                ThreadMessage(
+                    role = Role.User,
+                    content = "Explain deep learning to a 5 year old."
+                )
+            )
+        ),
+    )
+      .onEach { assistantStreamEvent: AssistantStreamEvent -> println(assistantStreamEvent) }
+      .collect()
+)
+```
+
+Get data object from AssistantStreamEvent.
+
+```kotlin
+//Type of data for generic type can be found in AssistantStreamEventType
+when(assistantStreamEvent.type) {
+    AssistantStreamEventType.THREAD_CREATED -> {
+        val thread = assistantStreamEvent.getData<Thread>()
+        ...
+    }
+    AssistantStreamEventType.MESSAGE_CREATED -> {
+        val message = assistantStreamEvent.getData<Message>()
+        ...
+    }
+    AssistantStreamEventType.UNKNOWN -> {
+        //Data field is a string and can be used instead of calling getData
+        val data = assistantStreamEvent.data
+        //Handle unknown message type
+    }
+}
+```
+
+If a new event type is released before the library is updated, you can create and deserialize your own type by providing a KSerializer.
+
+```kotlin
+when(assistantStreamEvent.type) {
+    AssistantStreamEventType.UNKNOWN -> {
+        val data = assistantStreamEvent.getDate<MyCustomType>(myCustomSerializer)
+        ...
+    }
+}
+```

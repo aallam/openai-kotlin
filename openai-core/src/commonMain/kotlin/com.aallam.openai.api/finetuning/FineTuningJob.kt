@@ -47,7 +47,7 @@ public data class FineTuningJob(
      * The hyperparameters used for the fine-tuning job.
      */
     @SerialName("hyperparameters")
-    val hyperparameters: Hyperparameters,
+    val hyperparameters: Hyperparameters? = null,
 
     /**
      * The file ID used for training, retrievable via the Files API.

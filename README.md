@@ -5,6 +5,12 @@
 This fork is currently manually published as a Maven package to our own private Maven repo. We have stripped out all
 references to the public Maven Central repo.
 
+To publish a new version, first update the version in gradle.properties (set VERSION_NAME), then run.
+
+```
+./gradlew publish
+```
+
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/docs-api-a97bff.svg?logo=kotlin)](https://mouaad.aallam.com/openai-kotlin/)
 

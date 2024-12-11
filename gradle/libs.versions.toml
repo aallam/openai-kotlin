@@ -41,6 +41,5 @@ ktoken = { group = "com.aallam.ktoken", name = "ktoken", version = "0.3.0" }
 kotlin-multiplaform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinx-binary-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version = "0.14.0" }
-maven-publish = { id = "com.vanniktech.maven.publish", version = "0.25.3" }
 spotless = { id = "com.diffplug.gradle.spotless", version = "6.25.0" }
 dokka = { id = "org.jetbrains.dokka", version = "1.9.20" }

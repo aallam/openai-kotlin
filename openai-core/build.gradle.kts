@@ -1,13 +1,16 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
-    id("com.vanniktech.maven.publish")
+    id("maven-publish")
     id("com.google.cloud.artifactregistry.gradle-plugin") version "2.2.0"
     id("binary-compatibility-validator")
     id("com.diffplug.spotless")
     id("org.jetbrains.dokka")
     id("build-support")
 }
+
+val VERSION_NAME: String by project
+version = VERSION_NAME
 
 kotlin {
     explicitApi()

@@ -16,6 +16,9 @@ plugins {
     alias(libs.plugins.dokka)
 }
 
+val GROUP: String by project
+val VERSION_NAME: String by project
+
 subprojects {
     apply(plugin = "com.diffplug.spotless")
     configure<SpotlessExtension> {
@@ -25,6 +28,9 @@ subprojects {
             endWithNewline()
         }
     }
+
+    group = GROUP
+    version = VERSION_NAME
 
     tasks.withType<Test> {
         testLogging {

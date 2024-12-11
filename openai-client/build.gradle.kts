@@ -9,9 +9,6 @@ plugins {
     id("build-support")
 }
 
-val VERSION_NAME: String by project
-version = VERSION_NAME
-
 kotlin {
     explicitApi()
     jvm()
@@ -61,12 +58,6 @@ kotlin {
 }
 
 publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["kotlin"])
-        }
-    }
-
     repositories {
         maven {
             name = "slingshot"

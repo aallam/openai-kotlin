@@ -8,7 +8,7 @@ references to the public Maven Central repo.
 To publish a new version, first update the version in gradle.properties (set VERSION_NAME), then run.
 
 ```
-./gradlew publish
+./gradlew  publishJvmPublicationToSlingshotRepository
 ```
 
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)

@@ -61,6 +61,12 @@ kotlin {
 }
 
 publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["kotlin"])
+        }
+    }
+
     repositories {
         maven {
             name = "slingshot"

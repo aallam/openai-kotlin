@@ -1,10 +1,11 @@
 import com.diffplug.gradle.spotless.SpotlessExtension
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent.*
+import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.STARTED
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
 import org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest
-import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeTest
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -37,17 +38,8 @@ subprojects {
     tasks.withType<KotlinJvmTest>().configureEach {
         environment("LIB_ROOT", rootDir)
     }
-
-    tasks.withType<KotlinNativeTest>().configureEach {
-        environment("SIMCTL_CHILD_LIB_ROOT", rootDir)
-        environment("LIB_ROOT", rootDir)
-    }
-
-    tasks.withType<KotlinJsTest>().configureEach {
-        environment("LIB_ROOT", rootDir.toString())
-    }
 }
 
-tasks.withType<DokkaMultiModuleTask>() {
+tasks.withType<DokkaMultiModuleTask> {
     outputDirectory.set(projectDir.resolve("docs"))
 }

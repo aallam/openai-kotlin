@@ -1,6 +1,10 @@
 # OpenAI API client for Kotlin
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.aallam.openai/openai-client?color=blue&label=Download)](https://central.sonatype.com/namespace/com.aallam.openai)
+## Slingshot Notes
+
+This fork is currently manually published as a Maven package to our own private Maven repo. We have stripped out all
+references to the public Maven Central repo.
+
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/docs-api-a97bff.svg?logo=kotlin)](https://mouaad.aallam.com/openai-kotlin/)
 

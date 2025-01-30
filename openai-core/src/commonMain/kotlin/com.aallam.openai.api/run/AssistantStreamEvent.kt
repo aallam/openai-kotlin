@@ -188,7 +188,7 @@ public enum class AssistantStreamEventType(
     /**
      * Occurs when a message is created.
      */
-    THREAD_MESSAGE_CREATED("thread.message.created", Message::class, RunStep.serializer()),
+    THREAD_MESSAGE_CREATED("thread.message.created", Message::class, Message.serializer()),
 
     /**
      * Occurs when a message moves to an in_progress state.

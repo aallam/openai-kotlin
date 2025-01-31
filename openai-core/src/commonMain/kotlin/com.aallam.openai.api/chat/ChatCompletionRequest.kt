@@ -14,7 +14,7 @@ import kotlinx.serialization.json.JsonObjectBuilder
  * Creates a completion for the chat message.
  */
 @Serializable
-public class ChatCompletionRequest(
+public data class ChatCompletionRequest(
     /**
      * ID of the model to use.
      */

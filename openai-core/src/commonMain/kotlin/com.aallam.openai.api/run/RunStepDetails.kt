@@ -153,7 +153,7 @@ public data class FileSearchToolCallRankingOptions(
     /**
      * The configured ranker.
      */
-    public val ranker: String,
+    @SerialName("ranker") public val ranker: String,
 
     /**
      * The configured score threshold.

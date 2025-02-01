@@ -1,14 +1,15 @@
-# Unreleased
-
-### Added
-- **chat**: Add support for structured outputs (#397)
-
-## 4.0.0-beta01
-> Published 27 Oct 2024
+## 4.0.0
+> Published 01 Feb 2025
 
 ### Added
 - WasmJs target (#387)
-- feat(assistants): add structured response (#391) (thanks @ahmedmirza994)
+- **assistants**: add structured response (#391) (thanks @ahmedmirza994)
+- **chat**: Add support for structured outputs (#397)
+- **chat**: make ChatCompletionRequest a data class (#399) (thanks @yunmanger1)
+- **assistant**: add streaming (#400) (thanks @Daltomon)
+
+### Fixed 
+- **runs**: support for file search tool calls (#405) (thanks @averyaube)
 
 ### Changed
 - Upgrade to Kotlin 2.0 (#387)

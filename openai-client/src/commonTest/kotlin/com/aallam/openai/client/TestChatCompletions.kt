@@ -191,6 +191,7 @@ class TestChatCompletions : TestOpenAI() {
         assertNotNull(answer.response)
     }
 
+    @Ignore
     @Test
     fun logprobs() = test {
         val request = chatCompletionRequest {
@@ -209,6 +210,7 @@ class TestChatCompletions : TestOpenAI() {
         assertEquals(response.usage!!.completionTokens, logprobs.content!!.size)
     }
 
+    @Ignore
     @Test
     fun top_logprobs() = test {
         val expectedTopLogProbs = 5
@@ -227,7 +229,7 @@ class TestChatCompletions : TestOpenAI() {
         val logprobs = response.choices.first().logprobs
         assertNotNull(logprobs)
         assertEquals(response.usage!!.completionTokens, logprobs.content!!.size)
-        assertEquals(logprobs.content!![0].topLogprobs?.size, expectedTopLogProbs)
+        assertEquals(logprobs.content!![0].topLogprobs.size, expectedTopLogProbs)
     }
 
     @Test

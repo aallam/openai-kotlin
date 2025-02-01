@@ -62,7 +62,14 @@ public data class ChatCompletionRequest(
      * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can
      * return will be (4096 - prompt tokens).
      */
+    @Deprecated(message = "Deprecated in favor of `max_completion_tokens`")
     @SerialName("max_tokens") public val maxTokens: Int? = null,
+
+    /**
+     * An upper bound for the number of tokens that can be generated for a completion,
+     * including visible output tokens and reasoning tokens.
+     */
+    @SerialName("max_completion_tokens") public val maxCompletionTokens: Int? = null,
 
     /**
      * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,
@@ -234,7 +241,14 @@ public class ChatCompletionRequestBuilder {
      * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can
      * return will be (4096 - prompt tokens).
      */
+    @Deprecated(message = "Deprecated in favor of `max_completion_tokens`")
     public var maxTokens: Int? = null
+
+    /**
+     * An upper bound for the number of tokens that can be generated for a completion,
+     * including visible output tokens and reasoning tokens.
+     */
+    public val maxCompletionTokens: Int? = null
 
     /**
      * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,
@@ -372,6 +386,7 @@ public class ChatCompletionRequestBuilder {
         n = n,
         stop = stop,
         maxTokens = maxTokens,
+        maxCompletionTokens = maxCompletionTokens,
         presencePenalty = presencePenalty,
         frequencyPenalty = frequencyPenalty,
         logitBias = logitBias,

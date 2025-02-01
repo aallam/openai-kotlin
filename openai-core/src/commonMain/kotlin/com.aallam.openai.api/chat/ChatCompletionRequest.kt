@@ -59,6 +59,11 @@ public data class ChatCompletionRequest(
     @SerialName("stop") public val stop: List<String>? = null,
 
     /**
+     * Whether to store the output of this chat completion request for use in our model distillation or evals products
+     */
+    @SerialName("store") public val store: Boolean? = null,
+
+    /**
      * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can
      * return will be (4096 - prompt tokens).
      */
@@ -238,6 +243,11 @@ public class ChatCompletionRequestBuilder {
     public var stop: List<String>? = null
 
     /**
+     * Whether to store the output of this chat completion request for use in our model distillation or evals products
+     */
+    public val store: Boolean? = null
+
+    /**
      * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can
      * return will be (4096 - prompt tokens).
      */
@@ -385,6 +395,7 @@ public class ChatCompletionRequestBuilder {
         topP = topP,
         n = n,
         stop = stop,
+        store = store,
         maxTokens = maxTokens,
         maxCompletionTokens = maxCompletionTokens,
         presencePenalty = presencePenalty,

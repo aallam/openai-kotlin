@@ -7,6 +7,7 @@
 - **chat**: Add support for structured outputs (#397)
 - **chat**: make ChatCompletionRequest a data class (#399) (thanks @yunmanger1)
 - **assistant**: add streaming (#400) (thanks @Daltomon)
+- **chat**: add reasoning effort, max completion tokens, store options for reasoning model support (#415) (thanks @Taewan-P)
 
 ### Fixed 
 - **runs**: support for file search tool calls (#405) (thanks @averyaube)

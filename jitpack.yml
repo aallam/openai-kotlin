@@ -1,0 +1,5 @@
+jdk:
+  - openjdk17
+install:
+  - chmod +x gradlew
+  - ./gradlew -Pgroup=$GROUP -Pversion=$VERSION :openai-client-bom:publishToMavenLocal publishJvmPublicationToMavenLocal publishKotlinMultiplatformPublicationToMavenLocal

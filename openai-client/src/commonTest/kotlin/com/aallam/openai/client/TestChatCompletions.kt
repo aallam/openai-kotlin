@@ -2,12 +2,17 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.chat.ChatResponseFormat.Companion.jsonSchema
+import com.aallam.openai.api.exception.InvalidRequestException
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.internal.testFilePath
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceTimeBy
+import kotlinx.io.buffered
+import kotlinx.io.files.SystemFileSystem
+import kotlinx.io.readString
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -17,6 +22,46 @@ import kotlin.coroutines.cancellation.CancellationException
 import kotlin.test.*
 
 class TestChatCompletions : TestOpenAI() {
+
+    @Test
+    fun testChatCompletionExceedingTokenLimit() = test {
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-3.5-turbo")
+            messages {
+                message {
+                    role = ChatRole.User
+                    content = SystemFileSystem.source(
+                        testFilePath("text/two_character_screenplay.txt")
+                    ).buffered().readString()
+                }
+            }
+        }
+
+        assertFailsWith<InvalidRequestException> {
+            openAI.chatCompletion(request)
+        }
+    }
+
+    @Test
+    fun testStreamingChatCompletionsExceedingTokenLimit() = test {
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-3.5-turbo")
+            messages {
+                message {
+                    role = ChatRole.User
+                    content = SystemFileSystem.source(
+                        testFilePath("text/two_character_screenplay.txt")
+                    ).buffered().readString()
+                }
+            }
+        }
+
+        val result = runCatching {
+            openAI.chatCompletions(request).collect { }
+        }
+
+        assert(result.exceptionOrNull() is InvalidRequestException)
+    }
 
     @Test
     fun chatCompletions() = test {

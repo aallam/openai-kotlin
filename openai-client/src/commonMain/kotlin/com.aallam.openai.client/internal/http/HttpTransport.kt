@@ -10,6 +10,11 @@ import io.ktor.client.statement.*
 import io.ktor.util.reflect.*
 import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.CancellationException
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
+import java.lang.RuntimeException
 
 /** HTTP transport layer */
 internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester {
@@ -46,10 +51,29 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
     private suspend fun handleException(e: Throwable) = when (e) {
         is CancellationException -> e // propagate coroutine cancellation
         is ClientRequestException -> openAIAPIException(e)
-        is ServerResponseException -> OpenAIServerException(e)
+        is ServerResponseException -> handleServerResponseException(e)
         is HttpRequestTimeoutException, is SocketTimeoutException, is ConnectTimeoutException -> OpenAITimeoutException(e)
+        is InvalidRequestException -> e
         is IOException -> GenericIOException(e)
         else -> OpenAIHttpException(e)
+    }
+
+    private suspend fun handleServerResponseException(e: ServerResponseException): RuntimeException {
+        // DeepInfra API returns a 500 status code when the context length exceeds the maximum allowed length, while
+        // the openAI API returns a 400 status code. This is a workaround to handle the DeepInfra API response.
+        if(e.response.status.value == 500) {
+            val body = e.response.body<JsonObject>()
+            val errorContent = body["error"]?.jsonObject?.get("message")?.jsonPrimitive?.content
+            val errorJson = errorContent?.let { Json.parseToJsonElement(it) }
+            val errorMsg = errorJson?.jsonObject?.get("message")?.jsonPrimitive?.content
+            if (errorMsg?.startsWith("This model's maximum context length is") == true) {
+                return InvalidRequestException(400, OpenAIError(detail =
+                    OpenAIErrorDetails(message = errorMsg, code = "context_length_exceeded", param="messages", type = "invalid_request_error")), e)
+            }
+            return OpenAIServerException(e)
+        } else {
+            return OpenAIServerException(e)
+        }
     }
 
     /**

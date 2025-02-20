@@ -100,6 +100,11 @@ public class OpenAIHost(
         public val OpenAI: OpenAIHost = OpenAIHost(baseUrl = "https://api.openai.com/v1/")
 
         /**
+         * A pre-configured instance of [OpenAIHost] for Google Gemini`.
+         */
+        public val Gemini: OpenAIHost = OpenAIHost(baseUrl = "https://generativelanguage.googleapis.com/v1beta/openai/")
+
+        /**
          * Creates an instance of [OpenAIHost] configured for Azure hosting with the given resource name, deployment ID,
          * and API version.
          *

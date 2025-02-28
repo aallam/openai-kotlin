@@ -47,8 +47,8 @@ public data class MessageCreation(
 public data class ToolCallStepDetails(
     /**
      * An array of tool calls the run step was involved in.
-     * These can be associated with one of three types of tools:
-     * [ToolCallStep.CodeInterpreter], [ToolCallStep.RetrievalTool],  [ToolCallStep.FunctionTool] or [ToolCallStep.FileSearch].
+     * These can be associated with one of four types of tools:
+     * [ToolCallStep.CodeInterpreter], [ToolCallStep.RetrievalTool], [ToolCallStep.FunctionTool], or [ToolCallStep.FileSearchTool].
      */
     @SerialName("tool_calls") public val toolCalls: List<ToolCallStep>? = null,
 ) : RunStepDetails
@@ -102,80 +102,16 @@ public sealed interface ToolCallStep {
     @BetaOpenAI
     @Serializable
     @SerialName("file_search")
-    public data class FileSearch(
+    public data class FileSearchTool(
         /**
-         * The ID of the tool call.
+         * The ID of the tool call object.
          */
         @SerialName("id") public val id: ToolCallStepId,
         /**
-         * The File Search tool call definition.
+         * The options and results of the file search.
          */
         @SerialName("file_search") public val fileSearch: FileSearchToolCallStep,
     ) : ToolCallStep
-}
-
-@BetaOpenAI
-@Serializable
-public data class FileSearchToolCallStep(
-    /**
-     * The ranking options for the file search.
-     */
-    @SerialName("ranking_options") val rankingOptions: RankingOptions,
-    /**
-     * The results of the file search.
-     */
-    @SerialName("results") val results: List<FileSearchResult>,
-)
-
-/**
- * RankingOption for FileSearch Call Step
- */
-@BetaOpenAI
-@Serializable
-public data class RankingOptions(
-    /**
-     * The ranker used for the file search.
-     */
-    @SerialName("ranker") val ranker: String,
-    /**
-     * The score threshold for the file search.
-     * All values must be a floating point number between 0 and 1.
-     */
-    @SerialName("score_threshold") val scoreThreshold: Double
-)
-
-/**
- * The results of the file search.
- */
-@BetaOpenAI
-@Serializable
-public data class FileSearchResult(
-    /**
-     * The ID of the file that result was found in.
-     */
-    @SerialName("file_id") val fileID: String,
-    /**
-     * The name of the file that result was found in.
-     */
-    @SerialName("file_name") val fileName: String,
-    /**
-     * The score of the result.
-     * All values must be a floating point number between 0 and 1.
-     */
-    @SerialName("score") val score: Double,
-    /**
-     * The content of the result that was found.
-     * The content is only included if requested via the include query parameter.
-     */
-    @SerialName("content") val content: List<TextContent>? = null,
-) {
-
-    @BetaOpenAI
-    @Serializable
-    @SerialName("text")
-    public data class TextContent(
-        @SerialName("text") public val text: String
-    )
 }
 
 @BetaOpenAI
@@ -195,6 +131,53 @@ public data class FunctionToolCallStep(
      * The output of the function. This will be null if the outputs have not been submitted yet.
      */
     @SerialName("output") public val output: String? = null,
+)
+
+@BetaOpenAI
+@Serializable
+public data class FileSearchToolCallStep(
+    /**
+     * The configured options for ranking.
+     */
+    @SerialName("ranking_options") public val rankingOptions: FileSearchToolCallRankingOptions,
+
+    /**
+     * The returned results of the file search, ordered by score.
+     */
+    @SerialName("results") public val results: List<FileSearchToolCallResult>,
+)
+
+@BetaOpenAI
+@Serializable
+public data class FileSearchToolCallRankingOptions(
+    /**
+     * The configured ranker.
+     */
+    @SerialName("ranker") public val ranker: String,
+
+    /**
+     * The configured score threshold.
+     */
+    @SerialName("score_threshold") public val scoreThreshold: Double,
+)
+
+@BetaOpenAI
+@Serializable
+public data class FileSearchToolCallResult(
+    /**
+     * The ID of the file object.
+     */
+    @SerialName("file_id") public val fileId: FileId,
+
+    /**
+     * The original filename of the file object.
+     */
+    @SerialName("file_name") public val fileName: String,
+
+    /**
+     * The score given to the provided result.
+     */
+    @SerialName("score") public val score: Double,
 )
 
 @BetaOpenAI

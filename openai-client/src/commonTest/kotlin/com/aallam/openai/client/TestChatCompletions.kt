@@ -1,6 +1,7 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.*
+import com.aallam.openai.api.chat.ChatResponseFormat.Companion.jsonSchema
 import com.aallam.openai.api.model.ModelId
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
@@ -9,6 +10,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.test.*
 
@@ -132,6 +136,63 @@ class TestChatCompletions : TestOpenAI() {
     }
 
     @Test
+    fun jsonSchema() = test {
+        val schemaJson = JsonObject(mapOf(
+            "type" to JsonPrimitive("object"),
+            "properties" to JsonObject(mapOf(
+                "question" to JsonObject(mapOf(
+                    "type" to JsonPrimitive("string"),
+                    "description" to JsonPrimitive("The question that was asked")
+                )),
+                "response" to JsonObject(mapOf(
+                    "type" to JsonPrimitive("string"),
+                    "description" to JsonPrimitive("The answer to the question")
+                ))
+            )),
+            "required" to JsonArray(listOf(
+                JsonPrimitive("question"),
+                JsonPrimitive("response")
+            ))
+        ))
+
+        val jsonSchema = JsonSchema(
+            name = "AnswerSchema",
+            schema = schemaJson,
+            strict = true
+        )
+
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-4o-mini-2024-07-18")
+            responseFormat = jsonSchema(jsonSchema)
+            messages {
+                message {
+                    role = ChatRole.System
+                    content = "You are a helpful assistant.!"
+                }
+                message {
+                    role = ChatRole.System
+                    content = """All your answers should be a valid JSON
+                        """.trimMargin()
+                }
+                message {
+                    role = ChatRole.User
+                    content = "Who won the world cup in 1998?"
+                }
+            }
+        }
+        val response = openAI.chatCompletion(request)
+        val content = response.choices.first().message.content.orEmpty()
+
+        @Serializable
+        data class Answer(val question: String? = null, val response: String? = null)
+
+        val answer = Json.decodeFromString<Answer>(content)
+        assertNotNull(answer.question)
+        assertNotNull(answer.response)
+    }
+
+    @Ignore
+    @Test
     fun logprobs() = test {
         val request = chatCompletionRequest {
             model = ModelId("gpt-3.5-turbo-0125")
@@ -149,6 +210,7 @@ class TestChatCompletions : TestOpenAI() {
         assertEquals(response.usage!!.completionTokens, logprobs.content!!.size)
     }
 
+    @Ignore
     @Test
     fun top_logprobs() = test {
         val expectedTopLogProbs = 5
@@ -167,7 +229,7 @@ class TestChatCompletions : TestOpenAI() {
         val logprobs = response.choices.first().logprobs
         assertNotNull(logprobs)
         assertEquals(response.usage!!.completionTokens, logprobs.content!!.size)
-        assertEquals(logprobs.content!![0].topLogprobs?.size, expectedTopLogProbs)
+        assertEquals(logprobs.content!![0].topLogprobs.size, expectedTopLogProbs)
     }
 
     @Test

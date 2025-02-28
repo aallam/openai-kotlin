@@ -12,6 +12,7 @@ kotlin {
     explicitApi()
     jvm()
     jsNode()
+    jsWasm()
     native()
 
     sourceSets {
@@ -22,7 +23,7 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
-                api(libs.okio)
+                api(libs.kotlinx.io.core)
                 api(libs.serialization.json)
                 implementation(libs.serialization.core)
             }
@@ -41,6 +42,11 @@ kotlin {
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
+            }
+        }
+        val wasmJsTest by getting {
+            dependencies {
+                implementation(kotlin("test-wasm-js"))
             }
         }
     }

@@ -7,6 +7,7 @@ import com.aallam.openai.api.vectorstore.FileBatchRequest
 import com.aallam.openai.api.vectorstore.VectorStoreFileRequest
 import com.aallam.openai.api.vectorstore.VectorStoreRequest
 import com.aallam.openai.client.internal.asSource
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
@@ -35,6 +36,7 @@ class TestVectorStores : TestOpenAI() {
         assertEquals(true, deleted)
     }
 
+    @Ignore
     @Test
     fun testVectorStoreFiles() = test {
         val filetxt = """

@@ -67,7 +67,15 @@ public data class AssistantRequest(
      * Specifies the format that the model must output. Compatible with GPT-4o, GPT-4 Turbo, and all GPT-3.5 Turbo
      * models since gpt-3.5-turbo-1106.
      *
-     * Setting to [AssistantResponseFormat.JsonObject] enables JSON mode, which guarantees the message the model
+     * Setting to [AssistantResponseFormat.JSON_SCHEMA] enables Structured Outputs which ensures the model will match your supplied JSON schema.
+     *
+     * Structured Outputs ([AssistantResponseFormat.JSON_SCHEMA]) are available in our latest large language models, starting with GPT-4o:
+     * 1. gpt-4o-mini-2024-07-18 and later
+     * 2. gpt-4o-2024-08-06 and later
+     *
+     * Older models like gpt-4-turbo and earlier may use JSON mode ([AssistantResponseFormat.JSON_OBJECT]) instead.
+     *
+     * Setting to [AssistantResponseFormat.JSON_OBJECT] enables JSON mode, which guarantees the message the model
      * generates is valid JSON.
      *
      * important: when using JSON mode, you must also instruct the model to produce JSON yourself via a system or user
@@ -75,6 +83,7 @@ public data class AssistantRequest(
      * token limit, resulting in a long-running and seemingly "stuck" request. Also note that the message content may be
      * partially cut off if finish_reason="length", which indicates the generation exceeded max_tokens or
      * the conversation exceeded the max context length.
+     *
      */
     @SerialName("response_format") val responseFormat: AssistantResponseFormat? = null,
 )

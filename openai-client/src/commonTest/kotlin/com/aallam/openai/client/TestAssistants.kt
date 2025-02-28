@@ -4,12 +4,19 @@ import com.aallam.openai.api.assistant.AssistantResponseFormat
 import com.aallam.openai.api.assistant.AssistantTool
 import com.aallam.openai.api.assistant.assistantRequest
 import com.aallam.openai.api.chat.ToolCall
-import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.run.RequiredAction
 import com.aallam.openai.api.run.Run
 import com.aallam.openai.client.internal.JsonLenient
-import kotlin.test.*
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertIs
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class TestAssistants : TestOpenAI() {
 
@@ -143,5 +150,65 @@ class TestAssistants : TestOpenAI() {
         assertIs<RequiredAction.SubmitToolOutputs>(decoded.requiredAction)
         val action = decoded.requiredAction as RequiredAction.SubmitToolOutputs
         assertIs<ToolCall.Function>(action.toolOutputs.toolCalls.first())
+    }
+
+    @Test
+    fun jsonSchemaAssistant() = test {
+        val jsonSchema = AssistantResponseFormat.JSON_SCHEMA(
+            name = "TestSchema",
+            description = "A test schema",
+            schema = buildJsonObject {
+                put("type", "object")
+                put("properties", buildJsonObject {
+                    put("name", buildJsonObject {
+                        put("type", "string")
+                    })
+                })
+                put("required", JsonArray(listOf(JsonPrimitive("name"))))
+                put("additionalProperties", false)
+            },
+            strict = true
+        )
+
+        val request = assistantRequest {
+            name = "Schema Assistant"
+            model = ModelId("gpt-4o-mini")
+            responseFormat = jsonSchema
+        }
+
+        val assistant = openAI.assistant(
+            request = request,
+        )
+        assertEquals(request.name, assistant.name)
+        assertEquals(request.model, assistant.model)
+        assertEquals(request.responseFormat, assistant.responseFormat)
+
+        val getAssistant = openAI.assistant(
+            assistant.id,
+        )
+        assertEquals(getAssistant, assistant)
+
+        val assistants = openAI.assistants()
+        assertTrue { assistants.isNotEmpty() }
+
+        val updated = assistantRequest {
+            name = "Updated Schema Assistant"
+            responseFormat = AssistantResponseFormat.AUTO
+        }
+        val updatedAssistant = openAI.assistant(
+            assistant.id,
+            updated,
+        )
+        assertEquals(updated.name, updatedAssistant.name)
+        assertEquals(updated.responseFormat, updatedAssistant.responseFormat)
+
+        openAI.delete(
+            updatedAssistant.id,
+        )
+
+        val fileGetAfterDelete = openAI.assistant(
+            updatedAssistant.id,
+        )
+        assertNull(fileGetAfterDelete)
     }
 }

@@ -14,6 +14,7 @@ kotlin {
     explicitApi()
     jvm()
     jsNode()
+    jsWasm()
     native()
 
     sourceSets {
@@ -31,7 +32,8 @@ kotlin {
             dependencies {
                 api(projects.openaiCore)
                 api(libs.coroutines.core)
-                api(libs.okio)
+                api(libs.kotlinx.io.core)
+                implementation(libs.kotlinx.io.bytestring)
                 implementation(libs.serialization.json)
                 api(libs.ktor.client.core)
                 implementation(libs.ktor.client.logging)
@@ -46,8 +48,6 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(libs.coroutines.test)
-                implementation(libs.okio.fakefilesystem)
-                implementation(libs.ulid)
             }
         }
         val jvmMain by getting
@@ -61,12 +61,20 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                implementation(libs.okio.nodefilesystem)
             }
         }
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
+            }
+        }
+        val wasmJsMain by getting {
+            dependencies {
+            }
+        }
+        val wasmJsTest by getting {
+            dependencies {
+                implementation(kotlin("test-wasm-js"))
             }
         }
         val desktopTest by getting {

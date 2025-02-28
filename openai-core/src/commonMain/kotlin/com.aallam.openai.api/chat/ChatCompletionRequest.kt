@@ -14,7 +14,7 @@ import kotlinx.serialization.json.JsonObjectBuilder
  * Creates a completion for the chat message.
  */
 @Serializable
-public class ChatCompletionRequest(
+public data class ChatCompletionRequest(
     /**
      * ID of the model to use.
      */
@@ -24,6 +24,12 @@ public class ChatCompletionRequest(
      * The messages to generate chat completions for.
      */
     @SerialName("messages") public val messages: List<ChatMessage>,
+
+    /**
+     * Constrains effort on reasoning for reasoning models. Currently supported values are low, medium, and high.
+     * Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+     */
+    @SerialName("reasoning_effort") public val reasoningEffort: Effort? = null,
 
     /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
@@ -53,10 +59,22 @@ public class ChatCompletionRequest(
     @SerialName("stop") public val stop: List<String>? = null,
 
     /**
+     * Whether to store the output of this chat completion request for use in our model distillation or evals products
+     */
+    @SerialName("store") public val store: Boolean? = null,
+
+    /**
      * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can
      * return will be (4096 - prompt tokens).
      */
+    @Deprecated(message = "Deprecated in favor of `max_completion_tokens`")
     @SerialName("max_tokens") public val maxTokens: Int? = null,
+
+    /**
+     * An upper bound for the number of tokens that can be generated for a completion,
+     * including visible output tokens and reasoning tokens.
+     */
+    @SerialName("max_completion_tokens") public val maxCompletionTokens: Int? = null,
 
     /**
      * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,
@@ -192,6 +210,12 @@ public class ChatCompletionRequestBuilder {
     public var messages: List<ChatMessage>? = null
 
     /**
+     * Constrains effort on reasoning for reasoning models. Currently supported values are low, medium, and high.
+     * Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
+     */
+    public val reasoningEffort: Effort? = null
+
+    /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
      * while lower values like 0.2 will make it more focused and deterministic.
      *
@@ -219,10 +243,22 @@ public class ChatCompletionRequestBuilder {
     public var stop: List<String>? = null
 
     /**
+     * Whether to store the output of this chat completion request for use in our model distillation or evals products
+     */
+    public val store: Boolean? = null
+
+    /**
      * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can
      * return will be (4096 - prompt tokens).
      */
+    @Deprecated(message = "Deprecated in favor of `max_completion_tokens`")
     public var maxTokens: Int? = null
+
+    /**
+     * An upper bound for the number of tokens that can be generated for a completion,
+     * including visible output tokens and reasoning tokens.
+     */
+    public val maxCompletionTokens: Int? = null
 
     /**
      * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,
@@ -354,11 +390,14 @@ public class ChatCompletionRequestBuilder {
     public fun build(): ChatCompletionRequest = ChatCompletionRequest(
         model = requireNotNull(model) { "model is required" },
         messages = requireNotNull(messages) { "messages is required" },
+        reasoningEffort = reasoningEffort,
         temperature = temperature,
         topP = topP,
         n = n,
         stop = stop,
+        store = store,
         maxTokens = maxTokens,
+        maxCompletionTokens = maxCompletionTokens,
         presencePenalty = presencePenalty,
         frequencyPenalty = frequencyPenalty,
         logitBias = logitBias,

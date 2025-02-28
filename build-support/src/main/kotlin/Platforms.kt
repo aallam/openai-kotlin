@@ -2,6 +2,7 @@ import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.getValue
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.konan.target.HostManager
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 fun KotlinMultiplatformExtension.native() {
     sourceSets.apply {
@@ -42,6 +43,13 @@ fun KotlinMultiplatformExtension.native() {
     }
 }
 
+@OptIn(ExperimentalWasmDsl::class)
+fun KotlinMultiplatformExtension.jsWasm() {
+    wasmJs {
+        nodejs()
+    }
+}
+
 fun KotlinMultiplatformExtension.jsNode() {
     js {
         compilations.all {
@@ -51,12 +59,6 @@ fun KotlinMultiplatformExtension.jsNode() {
                 metaInfo = true
             }
         }
-        nodejs {
-            testTask {
-                useMocha {
-                    timeout = "300s"
-                }
-            }
-        }
+        nodejs()
     }
 }

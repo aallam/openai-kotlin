@@ -1,3 +1,29 @@
+## 4.0.1
+> Published 02 Feb 2025
+
+### Added
+- **chat**: add reasoning effort, max completion tokens, store options for reasoning model support (#415) (thanks @Taewan-P)
+
+## 4.0.0
+> Published 01 Feb 2025
+
+### Added
+- WasmJs target (#387)
+- **assistants**: add structured response (#391) (thanks @ahmedmirza994)
+- **chat**: Add support for structured outputs (#397)
+- **chat**: make ChatCompletionRequest a data class (#399) (thanks @yunmanger1)
+- **assistant**: add streaming (#400) (thanks @Daltomon)
+
+### Fixed 
+- **runs**: support for file search tool calls (#405) (thanks @averyaube)
+
+### Changed
+- Upgrade to Kotlin 2.0 (#387)
+- Update Ktor to 3.0 (#387)
+
+### Breaking Changes
+- Replace okio by kotlinx.io (#387)
+
 ## 3.8.2
 
 ### Added

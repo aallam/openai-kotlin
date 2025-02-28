@@ -1,9 +1,11 @@
 package com.aallam.openai.api.file
 
 import com.aallam.openai.api.OpenAIDsl
-import okio.FileSystem
-import okio.Path
-import okio.Source
+import kotlinx.io.RawSource
+import kotlinx.io.Source
+import kotlinx.io.files.FileSystem
+import kotlinx.io.files.Path
+import kotlinx.io.files.SystemFileSystem
 
 /**
  * Represents a file resource.
@@ -17,16 +19,16 @@ public class FileSource(
     /**
      * File source.
      */
-    public val source: Source,
+    public val source: RawSource,
 ) {
 
     /**
      * Create [FileSource] instance.
      *
-     * @param path file path to upload
+     * @param path the file path to upload
      * @param fileSystem file system to be used
      */
-    public constructor(path: Path, fileSystem: FileSystem) : this(path.name, fileSystem.source(path))
+    public constructor(path: Path, fileSystem: FileSystem = SystemFileSystem) : this(path.name, fileSystem.source(path))
 }
 
 /**

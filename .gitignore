@@ -22,3 +22,5 @@ coverage-error.log
 
 # kmp
 kotlin-js-store
+
+.kotlin

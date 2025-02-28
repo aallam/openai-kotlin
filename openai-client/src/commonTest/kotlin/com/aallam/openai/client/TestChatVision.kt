@@ -9,7 +9,7 @@ class TestChatVision : TestOpenAI() {
     @Test
     fun textimage() = test {
         val request = chatCompletionRequest {
-            model = ModelId("gpt-4-vision-preview")
+            model = ModelId("gpt-4o")
             messages {
                 user {
                     content {
@@ -28,7 +28,7 @@ class TestChatVision : TestOpenAI() {
     @Test
     fun multiImage() = test {
         val request = chatCompletionRequest {
-            model = ModelId("gpt-4-vision-preview")
+            model = ModelId("gpt-4o")
             messages {
                 user {
                     content {

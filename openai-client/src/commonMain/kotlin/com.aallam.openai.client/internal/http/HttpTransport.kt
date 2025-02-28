@@ -1,15 +1,26 @@
 package com.aallam.openai.client.internal.http
 
 import com.aallam.openai.api.exception.*
+import com.aallam.openai.api.run.AssistantStreamEvent
+import com.aallam.openai.client.extension.toAssistantStreamEvent
+import com.aallam.openai.client.internal.api.ApiPath
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.network.sockets.*
 import io.ktor.client.plugins.*
+import io.ktor.client.plugins.sse.ClientSSESession
+import io.ktor.client.plugins.sse.sseSession
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.http.ContentType
+import io.ktor.sse.ServerSentEvent
 import io.ktor.util.reflect.*
 import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 
 /** HTTP transport layer */
 internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester {
@@ -30,6 +41,19 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
     ) {
         try {
             HttpStatement(builder = builder, client = httpClient).execute(block)
+        } catch (e: Exception) {
+            throw handleException(e)
+        }
+    }
+
+    override suspend fun performSse(
+        builderBlock: HttpRequestBuilder.() -> Unit
+    ): Flow<AssistantStreamEvent> {
+        try {
+            return httpClient
+                .sseSession(block = builderBlock)
+                .incoming
+                .map(ServerSentEvent::toAssistantStreamEvent)
         } catch (e: Exception) {
             throw handleException(e)
         }

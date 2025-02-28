@@ -3,9 +3,7 @@ package com.aallam.openai.api.message
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.file.FileId
-import com.aallam.openai.api.message.MessageRequestPart.ImageFilePart
-import com.aallam.openai.api.message.MessageRequestPart.ImageUrlPart
-import com.aallam.openai.api.message.MessageRequestPart.TextPart
+import com.aallam.openai.api.message.MessageRequestPart.*
 import com.aallam.openai.api.message.internal.MessageRequestContentSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

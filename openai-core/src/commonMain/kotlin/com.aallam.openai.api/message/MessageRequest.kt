@@ -3,7 +3,6 @@ package com.aallam.openai.api.message
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.message.MessageRequestContent.ListContent
-import com.aallam.openai.api.message.MessageRequestContent.TextContent
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -19,7 +18,7 @@ public class MessageRequest(
     @SerialName("role") public val role: Role,
 
     /**
-     * The content of the message.
+     * The content of the message. Change this field to support multi-type content.
      */
     @SerialName("content") public val messageContent: MessageRequestContent,
 
@@ -42,7 +41,7 @@ public class MessageRequest(
         metadata: Map<String, String>? = null,
     ) : this(
         role = role,
-        messageContent = TextContent(content),
+        messageContent = MessageRequestContent.TextContent(content),
         attachments = attachments,
         metadata = metadata
     )
@@ -61,7 +60,7 @@ public class MessageRequest(
 
     public val content: String
         get() = when (messageContent) {
-            is TextContent -> messageContent.content
+            is MessageRequestContent.TextContent -> messageContent.content
             else -> error("Content is not text")
         }
 }
@@ -127,4 +126,3 @@ public class MessageRequestBuilder {
         )
     }
 }
-

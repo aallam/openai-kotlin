@@ -31,7 +31,7 @@ public sealed interface MessageContent {
     @BetaOpenAI
     @Serializable
     @SerialName("image_file")
-    public data class ImageFile(
+    public data class Image(
         /**
          * The File ID of the image in the message content.
          */
@@ -66,6 +66,7 @@ public sealed interface MessageContent {
     ) : MessageContent
 
 }
+
 /**
  * The text content of the message value and annotations.
  */

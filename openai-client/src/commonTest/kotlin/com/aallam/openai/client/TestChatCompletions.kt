@@ -152,7 +152,8 @@ class TestChatCompletions : TestOpenAI() {
             "required" to JsonArray(listOf(
                 JsonPrimitive("question"),
                 JsonPrimitive("response")
-            ))
+            )),
+            "additionalProperties" to JsonPrimitive(false)
         ))
 
         val jsonSchema = JsonSchema(

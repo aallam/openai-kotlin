@@ -68,7 +68,7 @@ class TestChatCompletions : TestOpenAI() {
                 function(
                     name = "currentWeather",
                     parameters =
-                    """
+                        """
                     {
                       "type": "object",
                       "properties": {
@@ -137,23 +137,33 @@ class TestChatCompletions : TestOpenAI() {
 
     @Test
     fun jsonSchema() = test {
-        val schemaJson = JsonObject(mapOf(
-            "type" to JsonPrimitive("object"),
-            "properties" to JsonObject(mapOf(
-                "question" to JsonObject(mapOf(
-                    "type" to JsonPrimitive("string"),
-                    "description" to JsonPrimitive("The question that was asked")
-                )),
-                "response" to JsonObject(mapOf(
-                    "type" to JsonPrimitive("string"),
-                    "description" to JsonPrimitive("The answer to the question")
-                ))
-            )),
-            "required" to JsonArray(listOf(
-                JsonPrimitive("question"),
-                JsonPrimitive("response")
-            ))
-        ))
+        val schemaJson = JsonObject(
+            mapOf(
+                "type" to JsonPrimitive("object"),
+                "properties" to JsonObject(
+                    mapOf(
+                        "question" to JsonObject(
+                            mapOf(
+                                "type" to JsonPrimitive("string"),
+                                "description" to JsonPrimitive("The question that was asked")
+                            )
+                        ),
+                        "response" to JsonObject(
+                            mapOf(
+                                "type" to JsonPrimitive("string"),
+                                "description" to JsonPrimitive("The answer to the question")
+                            )
+                        )
+                    )
+                ),
+                "required" to JsonArray(
+                    listOf(
+                        JsonPrimitive("question"),
+                        JsonPrimitive("response")
+                    )
+                )
+            )
+        )
 
         val jsonSchema = JsonSchema(
             name = "AnswerSchema",
@@ -300,5 +310,26 @@ class TestChatCompletions : TestOpenAI() {
         assertNotNull(results.last().usage?.promptTokens)
         assertNotNull(results.last().usage?.completionTokens)
         assertNotNull(results.last().usage?.totalTokens)
+    }
+
+    @Test
+    fun usage_fields() = test {
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-3.5-turbo")
+            messages {
+                message {
+                    role = ChatRole.User
+                    content = "What's the weather like in Boston?"
+                }
+            }
+        }
+        val response = openAI.chatCompletion(request)
+        assertNotNull(response.usage)
+        assertNotNull(response.usage?.promptTokens)
+        assertNotNull(response.usage?.completionTokens)
+        assertNotNull(response.usage?.totalTokens)
+        assertNotNull(response.usage?.promptTokensDetails)
+        assertNotNull(response.usage?.promptTokensDetails?.cachedTokens)
+        assertNotNull(response.usage?.completionTokensDetails)
     }
 }

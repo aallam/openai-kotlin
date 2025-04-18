@@ -15,10 +15,7 @@ public data class ResponseTextConfig(
  * Configuration for text response format
  */
 @Serializable
-public sealed interface TextResponseFormatConfiguration {
-    /** The type of format */
-    public val type: String
-}
+public sealed interface TextResponseFormatConfiguration
 
 /**
  * Plain text format - default response format.
@@ -26,10 +23,7 @@ public sealed interface TextResponseFormatConfiguration {
  */
 @Serializable
 @SerialName("text")
-public data class TextFormat(
-    /** Always "text" for plain text format */
-    @SerialName("type") override val type: String = "text"
-) : TextResponseFormatConfiguration
+public data object TextFormat : TextResponseFormatConfiguration
 
 /**
  * JSON object response format. An older method of generating JSON responses.
@@ -39,10 +33,7 @@ public data class TextFormat(
  */
 @Serializable
 @SerialName("json_object")
-public data class JsonObjectFormat(
-    /** Always "json_object" for JSON object format */
-    @SerialName("type") override val type: String = "json_object"
-) : TextResponseFormatConfiguration
+public data object JsonObjectFormat : TextResponseFormatConfiguration
 
 /**
  * JSON Schema response format. Used to generate structured JSON responses.
@@ -50,9 +41,6 @@ public data class JsonObjectFormat(
 @Serializable
 @SerialName("json_schema")
 public data class JsonSchemaFormat(
-    /** Always "json_schema" for JSON schema format */
-    @SerialName("type") override val type: String = "json_schema",
-
     /** Structured Outputs configuration options, including a JSON Schema */
     @SerialName("json_schema") val jsonSchema: ResponseJsonSchema
 ) : TextResponseFormatConfiguration

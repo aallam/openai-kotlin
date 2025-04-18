@@ -12,7 +12,7 @@ import kotlin.jvm.JvmInline
  * Controls which (if any) tool is called by the model in the Responses API.
  */
 @Serializable(with = ResponseToolChoiceSerializer::class)
-public sealed interface ResponseToolChoice {
+public sealed interface ResponseToolChoiceConfig {
 
     /**
      * Represents a tool choice mode.
@@ -22,7 +22,7 @@ public sealed interface ResponseToolChoice {
      */
     @JvmInline
     @Serializable
-    public value class Mode(public val value: String) : ResponseToolChoice
+    public value class Mode(public val value: String) : ResponseToolChoiceConfig
 
     /**
      * Specifies a specific tool the model should use.
@@ -38,33 +38,33 @@ public sealed interface ResponseToolChoice {
          * The function details, only used when type is "function"
          */
         @SerialName("function") public val function: FunctionToolChoice? = null,
-    ) : ResponseToolChoice
+    ) : ResponseToolChoiceConfig
 
     public companion object {
         /** Represents the `auto` mode. */
-        public val Auto: ResponseToolChoice = Mode("auto")
+        public val Auto: ResponseToolChoiceConfig = Mode("auto")
 
         /** Represents the `none` mode. */
-        public val None: ResponseToolChoice = Mode("none")
+        public val None: ResponseToolChoiceConfig = Mode("none")
 
         /** Represents the `required` mode. */
-        public val Required: ResponseToolChoice = Mode("required")
+        public val Required: ResponseToolChoiceConfig = Mode("required")
 
         /** Specifies a function for the model to call. */
-        public fun function(name: String): ResponseToolChoice =
+        public fun function(name: String): ResponseToolChoiceConfig =
             Named(type = "function", function = FunctionToolChoice(name = name))
 
         /** Specifies a file search tool for the model to use. */
-        public fun fileSearch(): ResponseToolChoice = Named(type = "file_search")
+        public fun fileSearch(): ResponseToolChoiceConfig = Named(type = "file_search")
 
         /** Specifies a web search tool for the model to use. */
-        public fun webSearch(): ResponseToolChoice = Named(type = "web_search_preview")
+        public fun webSearch(): ResponseToolChoiceConfig = Named(type = "web_search_preview")
 
         /** Specifies a web search tool (preview 2025-03-11) for the model to use. */
-        public fun webSearch2025(): ResponseToolChoice = Named(type = "web_search_preview_2025_03_11")
+        public fun webSearch2025(): ResponseToolChoiceConfig = Named(type = "web_search_preview_2025_03_11")
 
         /** Specifies a computer use tool for the model to use. */
-        public fun computerUse(): ResponseToolChoice = Named(type = "computer_use_preview")
+        public fun computerUse(): ResponseToolChoiceConfig = Named(type = "computer_use_preview")
     }
 }
 
@@ -80,13 +80,13 @@ public data class FunctionToolChoice(
 )
 
 /**
- * Serializer for [ResponseToolChoice].
+ * Serializer for [ResponseToolChoiceConfig].
  */
 internal class ResponseToolChoiceSerializer :
-    JsonContentPolymorphicSerializer<ResponseToolChoice>(ResponseToolChoice::class) {
+    JsonContentPolymorphicSerializer<ResponseToolChoiceConfig>(ResponseToolChoiceConfig::class) {
     override fun selectDeserializer(element: JsonElement) = when (element) {
-        is JsonPrimitive -> ResponseToolChoice.Mode.serializer()
-        is JsonObject -> ResponseToolChoice.Named.serializer()
+        is JsonPrimitive -> ResponseToolChoiceConfig.Mode.serializer()
+        is JsonObject -> ResponseToolChoiceConfig.Named.serializer()
         else -> throw IllegalArgumentException("Unknown element type: $element")
     }
 } 

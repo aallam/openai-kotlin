@@ -4,6 +4,8 @@ import com.aallam.openai.api.core.Parameters
 import com.aallam.openai.api.vectorstore.VectorStoreId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
 
 /**
  * An array of tools the model may call while generating a response.
@@ -22,7 +24,7 @@ public sealed interface ResponseTool {
          */
         @SerialName("vector_store_ids")
         val vectorStoreIds: List<VectorStoreId> = emptyList(),
-        
+
         /**
          * Maximum number of results to return
          */
@@ -37,73 +39,57 @@ public sealed interface ResponseTool {
     @SerialName("web_search_preview")
     public data class WebSearchPreview(
         /**
-         * The type of web search tool - must be "web_search_preview"
-         */
-        @SerialName("type")
-        val type: String = "web_search_preview",
-        
-        /**
          * User location information (optional)
          */
         @SerialName("user_location")
         val userLocation: Map<String, String>? = null,
-        
+
         /**
          * Search context size
          */
         @SerialName("search_context_size")
         val searchContextSize: String? = null
     ) : ResponseTool
-    
+
     /**
      * Web search tool (preview 2025-03-11)
      */
     @Serializable
     @SerialName("web_search_preview_2025_03_11")
     public data class WebSearchPreview2025(
-        /**
-         * The type of web search tool - must be "web_search_preview_2025_03_11"
-         */
-        @SerialName("type")
-        val type: String = "web_search_preview_2025_03_11",
-        
+
         /**
          * User location information (optional)
          */
         @SerialName("user_location")
         val userLocation: Map<String, String>? = null,
-        
+
         /**
          * Search context size
          */
         @SerialName("search_context_size")
         val searchContextSize: String? = null
     ) : ResponseTool
-    
+
     /**
      * Computer tool for computational tasks (preview)
      */
     @Serializable
     @SerialName("computer_use_preview")
     public data class ComputerUsePreview(
-        /**
-         * The type of computer use tool - must be "computer_use_preview"
-         */
-        @SerialName("type")
-        val type: String = "computer_use_preview",
-        
+
         /**
          * The width of the computer display
          */
         @SerialName("display_width")
         val displayWidth: Int,
-        
+
         /**
          * The height of the computer display
          */
         @SerialName("display_height")
         val displayHeight: Int,
-        
+
         /**
          * The type of computer environment to control
          */
@@ -116,7 +102,7 @@ public sealed interface ResponseTool {
      */
     @Serializable
     @SerialName("function")
-    public data class Function(
+    public data class ResponseFunctionTool(
         /**
          * The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum
          * length of 64.
@@ -144,38 +130,27 @@ public sealed interface ResponseTool {
  * Computer action for the computer use tool
  */
 @Serializable
-public sealed interface ComputerAction {
-    /**
-     * The type of the computer action
-     */
-    public val type: String
-}
-
+public sealed interface ComputerAction
 /**
  * A click action
  */
 @Serializable
 @SerialName("click")
 public data class Click(
-    /**
-     * The type of the action. Always "click".
-     */
-    @SerialName("type")
-    override val type: String = "click",
-    
+
     /**
      * The mouse button used for the click.
      * One of "left", "right", "wheel", "back", or "forward"
      */
     @SerialName("button")
     val button: String,
-    
+
     /**
      * The x-coordinate where the click occurred
      */
     @SerialName("x")
     val x: Int,
-    
+
     /**
      * The y-coordinate where the click occurred
      */
@@ -189,18 +164,13 @@ public data class Click(
 @Serializable
 @SerialName("double_click")
 public data class DoubleClick(
-    /**
-     * The type of the action. Always "double_click".
-     */
-    @SerialName("type")
-    override val type: String = "double_click",
-    
+
     /**
      * The x-coordinate where the double click occurred
      */
     @SerialName("x")
     val x: Int,
-    
+
     /**
      * The y-coordinate where the double click occurred
      */
@@ -214,12 +184,7 @@ public data class DoubleClick(
 @Serializable
 @SerialName("drag")
 public data class Drag(
-    /**
-     * The type of the action. Always "drag".
-     */
-    @SerialName("type")
-    override val type: String = "drag",
-    
+
     /**
      * An array of coordinates representing the path of the drag action
      */
@@ -233,12 +198,7 @@ public data class Drag(
 @Serializable
 @SerialName("keypress")
 public data class KeyPress(
-    /**
-     * The type of the action. Always "keypress".
-     */
-    @SerialName("type")
-    override val type: String = "keypress",
-    
+
     /**
      * The combination of keys to press
      */
@@ -252,18 +212,13 @@ public data class KeyPress(
 @Serializable
 @SerialName("move")
 public data class Move(
-    /**
-     * The type of the action. Always "move".
-     */
-    @SerialName("type")
-    override val type: String = "move",
-    
+
     /**
      * The x-coordinate to move to
      */
     @SerialName("x")
     val x: Int,
-    
+
     /**
      * The y-coordinate to move to
      */
@@ -276,13 +231,7 @@ public data class Move(
  */
 @Serializable
 @SerialName("screenshot")
-public data class Screenshot(
-    /**
-     * The type of the action. Always "screenshot".
-     */
-    @SerialName("type")
-    override val type: String = "screenshot"
-) : ComputerAction
+public data object Screenshot : ComputerAction
 
 /**
  * A scroll action
@@ -290,30 +239,25 @@ public data class Screenshot(
 @Serializable
 @SerialName("scroll")
 public data class Scroll(
-    /**
-     * The type of the action. Always "scroll".
-     */
-    @SerialName("type")
-    override val type: String = "scroll",
-    
+
     /**
      * The x-coordinate where the scroll occurred
      */
     @SerialName("x")
     val x: Int,
-    
+
     /**
      * The y-coordinate where the scroll occurred
      */
     @SerialName("y")
     val y: Int,
-    
+
     /**
      * The horizontal scroll distance
      */
     @SerialName("scroll_x")
     val scrollX: Int,
-    
+
     /**
      * The vertical scroll distance
      */
@@ -327,12 +271,7 @@ public data class Scroll(
 @Serializable
 @SerialName("type")
 public data class Type(
-    /**
-     * The type of the action. Always "type".
-     */
-    @SerialName("type")
-    override val type: String = "type",
-    
+
     /**
      * The text to type
      */
@@ -345,13 +284,7 @@ public data class Type(
  */
 @Serializable
 @SerialName("wait")
-public data class Wait(
-    /**
-     * The type of the action. Always "wait".
-     */
-    @SerialName("type")
-    override val type: String = "wait"
-) : ComputerAction
+public data object Wait : ComputerAction
 
 /**
  * A coordinate pair (x, y)
@@ -363,10 +296,259 @@ public data class Coordinate(
      */
     @SerialName("x")
     val x: Int,
-    
+
     /**
      * The y-coordinate
      */
     @SerialName("y")
     val y: Int
-) 
+)
+
+
+/**
+ * File search tool call in a response
+ */
+@Serializable
+@SerialName("file_search_call")
+public data class FileSearchToolCall(
+    /**
+     * The unique ID of the file search tool call.
+     */
+    @SerialName("id")
+    override val id: String,
+
+    /**
+     * The status of the file search tool call.
+     */
+    @SerialName("status")
+    override val status: ResponseStatus,
+
+    /**
+     * The queries used to search for files.
+     */
+    @SerialName("queries")
+    val queries: List<String>,
+
+    /**
+     * The results of the file search tool call.
+     */
+    @SerialName("results")
+    val results: List<FileSearchResult>? = null
+) : ResponseOutput
+
+/**
+ * Function tool call in a response
+ */
+@Serializable
+@SerialName("function_call")
+public data class FunctionToolCall(
+    /**
+     * The unique ID of the function tool call.
+     */
+    @SerialName("id")
+    override val id: String,
+
+    /**
+     * The status of the function tool call.
+     */
+    @SerialName("status")
+    override val status: ResponseStatus,
+
+    /**
+     * The unique ID of the function tool call generated by the model.
+     */
+    @SerialName("call_id")
+    val callId: String,
+
+    /**
+     * The name of the function to run.
+     */
+    @SerialName("name")
+    val name: String,
+
+    /**
+     * A JSON string of the arguments to pass to the function.
+     */
+    @SerialName("arguments")
+    val arguments: String,
+) : ResponseOutput {
+
+    /**
+     * Decodes the [arguments] JSON string into a JsonObject.
+     * If [arguments] is null, the function will return null.
+     *
+     * @param json The Json object to be used for decoding, defaults to a default Json instance
+     */
+    public fun argumentsAsJson(json: Json = Json): JsonObject = json.decodeFromString(arguments)
+
+}
+
+/**
+ * The output of a function tool call.
+ *
+ */
+@Serializable
+@SerialName("function_call_output")
+public data class FunctionToolCallOutput(
+
+    /**
+     * The unique ID of the function tool call output. Populated when this item is returned via API.
+     */
+    @SerialName("id")
+    val id: String? = null,
+
+    /**
+     * The unique ID of the function tool call generated by the model.
+     */
+    @SerialName("call_id")
+    val callId: String,
+
+    /**
+     * A JSON string of the output of the function tool call.
+     */
+    @SerialName("output")
+    val output: String,
+
+    /**
+     * The status of the item. One of in_progress, completed, or incomplete. Populated when items are returned via API.
+     */
+    @SerialName("status")
+    val status: ResponseStatus? = null
+) : ResponseItem
+
+/**
+ * Web search tool call in a response
+ */
+@Serializable
+@SerialName("web_search_call")
+public data class WebSearchToolCall(
+    /**
+     * The unique ID of the web search tool call.
+     */
+    @SerialName("id")
+    override val id: String,
+
+    /**
+     * The status of the web search tool call.
+     */
+    @SerialName("status")
+    override val status: ResponseStatus
+) : ResponseOutput
+
+/**
+ * Computer tool call in a response
+ */
+@Serializable
+@SerialName("computer_call")
+public data class ComputerToolCall(
+    /**
+     * The unique ID of the computer tool call.
+     */
+    @SerialName("id")
+    override val id: String,
+
+    /**
+     * The status of the computer tool call.
+     */
+    @SerialName("status")
+    override val status: ResponseStatus,
+
+    /**
+     * An identifier used when responding to the tool call with output.
+     */
+    @SerialName("call_id")
+    val callId: String,
+
+    /**
+     * The action to be performed
+     */
+    @SerialName("action")
+    val action: ComputerAction,
+
+    /**
+     * The pending safety checks for the computer call.
+     */
+    @SerialName("pending_safety_checks")
+    val pendingSafetyChecks: List<SafetyCheck> = emptyList()
+) : ResponseOutput
+
+/**
+ * A safety check for a computer call
+ */
+@Serializable
+public data class SafetyCheck(
+    /**
+     * The ID of the safety check
+     */
+    @SerialName("id")
+    val id: String,
+
+    /**
+     * The type code of the safety check
+     */
+    @SerialName("code")
+    val code: String,
+
+    /**
+     * The message about the safety check
+     */
+    @SerialName("message")
+    val message: String
+)
+
+/**
+ * The output of a computer tool call.
+ */
+@Serializable
+@SerialName("computer_call_output")
+public data class ComputerToolCallOutput(
+    /**
+     * The unique ID of the computer tool call output.
+     */
+    @SerialName("id")
+    val id: String? = null,
+
+    /**
+     * The ID of the computer tool call that produced the output.
+     */
+    @SerialName("call_id")
+    val callId: String,
+
+    /**
+     * A computer screenshot image used with the computer use tool.
+     */
+    @SerialName("output")
+    val output: ComputerScreenshot,
+
+    /**
+     * The safety checks reported by the API that have been acknowledged by the developer.
+     */
+    @SerialName("acknowledged_safety_checks")
+    val acknowledgedSafetyChecks: List<SafetyCheck> = emptyList(),
+
+    /**
+     * The status of the item. One of in_progress, completed, or incomplete. Populated when items are returned via API.
+     */
+    @SerialName("status")
+    val status: ResponseStatus? = null
+) : ResponseItem
+
+/**
+ * A computer screenshot image used with the computer use tool.
+ */
+@Serializable
+@SerialName("computer_screenshot")
+public data class ComputerScreenshot(
+
+    /**
+     * The identifier of an uploaded file that contains the screenshot.
+     */
+    @SerialName("file_id")
+    val fileId: String? = null,
+
+    /**
+     * The URL of the screenshot image.
+     */
+    @SerialName("image_url")
+    val imageUrl: String? = null
+)

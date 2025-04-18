@@ -1,6 +1,7 @@
 package com.aallam.openai.api.responses
 
 import com.aallam.openai.api.core.Status
+import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -63,7 +64,7 @@ public data class Response(
      * Model ID used to generate the response, like gpt-4o or o1. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points. Refer to the model guide to browse and compare available models.
      */
     @SerialName("model")
-    val model: String,
+    val model: ModelId,
 
     /**
      * The object type, always "response"
@@ -78,7 +79,7 @@ public data class Response(
      * The length and order of items in the output array is dependent on the model's response.
      */
     @SerialName("output")
-    val output: List<ResponseOutputItem> = emptyList(),
+    val output: List<ResponseOutput> = emptyList(),
 
     /**
      * Whether parallel tool calls were enabled
@@ -90,13 +91,14 @@ public data class Response(
      * The unique ID of the previous response to the model. Use this to create multi-turn conversations.
      */
     @SerialName("previous_response_id")
-    val previousResponseId: String? = null,
+    val previousResponseId: String?,
 
     /**
-     * Reasoning information if included in the response
+     * Configuration options for reasoning models.
+     *
      */
     @SerialName("reasoning")
-    val reasoning: Reasoning? = null,
+    val reasoning: ReasoningConfig?,
 
     /**
      * The status of the response generation. One of `completed`, `failed`, `in_progress`, or `incomplete`.
@@ -119,7 +121,7 @@ public data class Response(
      * How the model should select which tool (or tools) to use when generating a response. See the tools parameter to see how to specify which tools the model can call.
      */
     @SerialName("tool_choice")
-    val toolChoice: ResponseToolChoice,
+    val toolChoice: ResponseToolChoiceConfig,
 
     /**
      * An array of tools the model may call while generating a response. You can specify which tool to use by setting the tool_choice parameter.
@@ -156,9 +158,9 @@ public data class Response(
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
      */
     @SerialName("user")
-    val user: String? = null,
+    val user: String? = null
 
-    )
+)
 
 /**
  * Details about why the response is incomplete

@@ -12,7 +12,7 @@ public data class ResponseRequest(
     /**
      * Text, image, or file inputs to the model, used to generate a response.
      */
-    @SerialName("input") val input: Input,
+    @SerialName("input") val input: ResponseInput,
 
     /**
      * Model ID used to generate the response, like gpt-4o or o1. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points. Refer to the model guide to browse and compare available models.
@@ -49,7 +49,7 @@ public data class ResponseRequest(
     @SerialName("previous_response_id") val previousResponseId: String? = null,
 
     /** Configuration for reasoning models. */
-    @SerialName("reasoning") val reasoning: Reasoning? = null,
+    @SerialName("reasoning") val reasoning: ReasoningConfig? = null,
 
     /** Whether to store the generated model response for later retrieval via API.*/
     @SerialName("store") val store: Boolean? = null,
@@ -69,7 +69,7 @@ public data class ResponseRequest(
 
 
     /** How the model should select which tool (or tools) to use when generating a response. See the tools parameter to see how to specify which tools the model can call. */
-    @SerialName("tool_choice") val toolChoice: ResponseToolChoice? = null,
+    @SerialName("tool_choice") val toolChoice: ResponseToolChoiceConfig? = null,
 
 
     /**
@@ -112,7 +112,7 @@ public class ResponseRequestBuilder {
     public var model: ModelId? = null
 
     /** The input to the model */
-    public var input: Input? = null
+    public var input: ResponseInput? = null
 
     /** Specify additional output data to include in the model response */
     public var include: List<ResponseIncludable>? = null
@@ -133,7 +133,7 @@ public class ResponseRequestBuilder {
     public var previousResponseId: String? = null
 
     /** Reasoning configuration */
-    public var reasoning: Reasoning? = null
+    public var reasoning: ReasoningConfig? = null
 
     /** Whether to store the response */
     public var store: Boolean? = null
@@ -148,7 +148,7 @@ public class ResponseRequestBuilder {
     public var text: ResponseTextConfig? = null
 
     /** Tool choice configuration */
-    public var toolChoice: ResponseToolChoice? = null
+    public var toolChoice: ResponseToolChoiceConfig? = null
 
     /** Tools that the model may use */
     public var tools: MutableList<ResponseTool>? = null
@@ -223,5 +223,3 @@ public fun responseRequest(init: ResponseRequestBuilder.() -> Unit): ResponseReq
     builder.init()
     return builder.build()
 }
-
-

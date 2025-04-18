@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Configuration options for reasoning models
  */
 @Serializable
-public data class Reasoning(
+public data class ReasoningConfig(
     /**
      * Constrains effort on reasoning for reasoning models.
      * Currently supported values are `low`, `medium`, and `high`.
@@ -15,7 +15,7 @@ public data class Reasoning(
      */
     @SerialName("effort")
     val effort: ReasoningEffort? = null,
-    
+
     /**
      * A summary of the reasoning performed by the model.
      * This can be useful for debugging and understanding the model's reasoning process.
@@ -24,6 +24,7 @@ public data class Reasoning(
     @SerialName("generate_summary")
     val generateSummary: String? = null
 )
+
 
 /**
  * Reasoning effort levels for models with reasoning capabilities
@@ -35,16 +36,16 @@ public enum class ReasoningEffort {
      */
     @SerialName("low")
     LOW,
-    
+
     /**
      * Medium reasoning effort (default)
      */
     @SerialName("medium")
     MEDIUM,
-    
+
     /**
      * High reasoning effort
      */
     @SerialName("high")
     HIGH
-} 
+}

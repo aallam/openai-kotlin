@@ -17,7 +17,7 @@ class TestResponses : TestOpenAI() {
         val response = openAI.createResponse(
             request = responseRequest {
                 model = ModelId("gpt-4o")
-                input = TextInput("What is the capital of France?")
+                input = ResponseInput.from("What is the capital of France?")
             }
         )
 
@@ -30,10 +30,10 @@ class TestResponses : TestOpenAI() {
         val response = openAI.createResponse(
             request = responseRequest {
                 model = ModelId("gpt-4o")
-                input = TextInput("What's the weather like in Paris?")
+                input = ResponseInput.from("What's the weather like in Paris?")
                 tools {
                     add(
-                        ResponseTool.Function(
+                        ResponseTool.ResponseFunctionTool(
                             name = "get_weather",
                             description = "Get the current weather",
                             parameters = buildJsonObject {
@@ -69,7 +69,7 @@ class TestResponses : TestOpenAI() {
         val response = openAI.createResponse(
             request = responseRequest {
                 model = ModelId("gpt-4o")
-                input = TextInput("Tell me about artificial intelligence")
+                input = ResponseInput.from("Tell me about artificial intelligence")
                 instructions = "Provide a concise answer focusing on recent developments"
                 maxOutputTokens = 200
             }

@@ -1,11 +1,16 @@
 package com.aallam.openai.api.responses
 
 import com.aallam.openai.api.core.Parameters
+import com.aallam.openai.api.responses.ResponseTool.*
 import com.aallam.openai.api.vectorstore.VectorStoreId
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.descriptors.buildClassSerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.json.*
 
 /**
  * An array of tools the model may call while generating a response.
@@ -14,23 +19,107 @@ import kotlinx.serialization.json.JsonObject
 public sealed interface ResponseTool {
 
     /**
-     * File search tool for searching through files
+     * A tool that searches for relevant content from uploaded files.
      */
     @Serializable
     @SerialName("file_search")
     public data class FileSearch(
         /**
-         * The vector store IDs to search in
+         * The IDs of the vector stores to search.
          */
         @SerialName("vector_store_ids")
         val vectorStoreIds: List<VectorStoreId> = emptyList(),
+        /**
+         * A filter to apply based on file attributes.
+         */
+        @SerialName("filters")
+        val filters: FileSearchFilter? = null,
 
         /**
-         * Maximum number of results to return
+         * Ranking options for search.
+         */
+        @SerialName("ranking_options")
+        val rankingOptions: FileSearchRankingOptions? = null,
+
+        /**
+         * The maximum number of results to return. This number should be between 1 and 50 inclusive.
          */
         @SerialName("max_num_results")
         val maxNumResults: Int? = null,
     ) : ResponseTool
+
+
+    @Serializable(
+        with = FileSearchFilterSerializer::class
+    )
+    public sealed interface FileSearchFilter
+
+    /**
+     * A filter used to compare a specified attribute key to a given value using a defined comparison operation.
+     */
+    @Serializable
+    public data class ComparisonFilter(
+
+        /**
+         * Specifies the comparison operator: eq, ne, gt, gte, lt, lte.
+         */
+        @SerialName("type")
+        public val type: String,
+
+        /**
+         * The key to compare against the value.
+         */
+        @SerialName("key")
+        public val key: String,
+
+        /**
+         * The value to compare the attribute key to.
+         */
+        @SerialName("value")
+        public val value: String,
+
+        ) : FileSearchFilter
+
+    /**
+     * Combine multiple filters using 'and' or 'or'.
+     */
+    @Serializable
+    public data class CompoundFilter(
+        /**
+         * The logical operator to use: 'and' or 'or'.
+         */
+        @SerialName("type")
+        public val type: String,
+
+        /**
+         * Array of filters to combine. Items can be ComparisonFilter or CompoundFilter.
+         */
+        @SerialName("filters")
+        public val filters: List<FileSearchFilter>,
+
+        ) : FileSearchFilter
+
+    /**
+     * Ranking options for search.
+     */
+    @Serializable
+    public data class FileSearchRankingOptions(
+        /**
+         *The ranker to use for the file search.
+         * Defaults to "auto"
+         */
+        @SerialName("ranker")
+        val ranker: String? = null,
+
+        /**
+         * The score threshold for the file search, a number between 0 and 1.
+         * Numbers closer to 1 will attempt to return only the most relevant results, but may return fewer results.
+         * Defaults to 0
+         */
+        @SerialName("score_threshold")
+        val scoreThreshold: Int? = null,
+    )
+
 
     /**
      * Web search tool (preview)
@@ -39,16 +128,18 @@ public sealed interface ResponseTool {
     @SerialName("web_search_preview")
     public data class WebSearchPreview(
         /**
-         * User location information (optional)
+         * Approximate location parameters for the search.
          */
         @SerialName("user_location")
-        val userLocation: Map<String, String>? = null,
+        val userLocation: WebSearchLocation? = null,
 
         /**
-         * Search context size
+         * High level guidance for the amount of context window space to use for the search.
+         * One of 'low', 'medium', or 'high'.
+         * 'medium' is the default.
          */
         @SerialName("search_context_size")
-        val searchContextSize: String? = null
+        val searchContextSize: WebSearchContextSize? = null,
     ) : ResponseTool
 
     /**
@@ -59,17 +150,83 @@ public sealed interface ResponseTool {
     public data class WebSearchPreview2025(
 
         /**
-         * User location information (optional)
+         * Approximate location parameters for the search.
          */
         @SerialName("user_location")
-        val userLocation: Map<String, String>? = null,
+        val userLocation: WebSearchLocation? = null,
 
         /**
-         * Search context size
+         * High level guidance for the amount of context window space to use for the search.
+         * One of 'low', 'medium', or 'high'.
+         * 'medium' is the default.
          */
         @SerialName("search_context_size")
-        val searchContextSize: String? = null
+        val searchContextSize: WebSearchContextSize? = null,
     ) : ResponseTool
+
+
+    /**
+     * Web search context size
+     */
+    @Serializable
+    public enum class WebSearchContextSize {
+
+        /**
+         * Low context size
+         */
+        @SerialName("low")
+        LOW,
+
+        /**
+         * Medium context size
+         */
+        @SerialName("medium")
+        MEDIUM,
+
+        /**
+         * High context size
+         */
+        @SerialName("high")
+        HIGH
+    }
+
+    /**
+     * Web search location
+     */
+    @Serializable
+    public data class WebSearchLocation(
+        /**
+         * Free text input for the city of the user, e.g., San Francisco.
+         */
+        @SerialName("city")
+        val city: String? = null,
+
+        /**
+         * The two-letter ISO-country code of the user, e.g., US.
+         */
+        @SerialName("country")
+        val country: String? = null,
+
+        /**
+         * Free text input for the region of the user, e.g., California.
+         */
+        @SerialName("region")
+        val region: String? = null,
+
+        /**
+         * The IANA time zone of the user, e.g., America/Los_Angeles.
+         */
+        @SerialName("timezone")
+        val timezone: String? = null,
+
+        ) {
+        /**
+         * The type of location approximation. Always approximate.
+         */
+        @SerialName("type")
+        @Required
+        val type: String = "approximate"
+    }
 
     /**
      * Computer tool for computational tasks (preview)
@@ -122,8 +279,72 @@ public sealed interface ResponseTool {
         /**
          * A description of what the function does, used by the model to choose when and how to call the function.
          */
-        @SerialName("description") val description: String? = null
+        @SerialName("description") val description: String? = null,
+
+        /**
+         * Whether to enforce strict parameter validation. Default true.
+         */
+        @SerialName("strict") val strict: Boolean? = null,
     ) : ResponseTool
+}
+
+internal class FileSearchFilterSerializer : KSerializer<FileSearchFilter> {
+
+    override val descriptor = buildClassSerialDescriptor("FileSearchFilter")
+
+    override fun serialize(encoder: Encoder, value: FileSearchFilter) {
+        val jsonEncoder = encoder as? JsonEncoder
+            ?: throw IllegalArgumentException("This serializer can only be used with JSON")
+
+        when (value) {
+            is ComparisonFilter -> ComparisonFilter.serializer().serialize(jsonEncoder, value)
+            is CompoundFilter -> CompoundFilter.serializer().serialize(jsonEncoder, value)
+        }
+    }
+
+    override fun deserialize(decoder: Decoder): FileSearchFilter {
+        val jsonDecoder = decoder as? JsonDecoder
+            ?: throw IllegalArgumentException("This serializer can only be used with JSON")
+
+        return when (val type = jsonDecoder.decodeJsonElement().jsonObject["type"]?.jsonPrimitive?.content) {
+            "and" -> {
+                ComparisonFilter.serializer().deserialize(jsonDecoder)
+            }
+
+            "or" -> {
+                CompoundFilter.serializer().deserialize(jsonDecoder)
+            }
+
+            "eq" -> {
+                ComparisonFilter.serializer().deserialize(jsonDecoder)
+            }
+
+            "ne" -> {
+                ComparisonFilter.serializer().deserialize(jsonDecoder)
+            }
+
+            "gt" -> {
+                ComparisonFilter.serializer().deserialize(jsonDecoder)
+            }
+
+            "gte" -> {
+                ComparisonFilter.serializer().deserialize(jsonDecoder)
+            }
+
+            "lt" -> {
+                ComparisonFilter.serializer().deserialize(jsonDecoder)
+            }
+
+            "lte" -> {
+                ComparisonFilter.serializer().deserialize(jsonDecoder)
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unknown filter type: $type")
+            }
+        }
+    }
+
 }
 
 /**
@@ -131,6 +352,7 @@ public sealed interface ResponseTool {
  */
 @Serializable
 public sealed interface ComputerAction
+
 /**
  * A click action
  */
@@ -335,6 +557,36 @@ public data class FileSearchToolCall(
     @SerialName("results")
     val results: List<FileSearchResult>? = null
 ) : ResponseOutput
+
+/**
+ * Result of a file search
+ */
+@Serializable
+public data class FileSearchResult(
+    /**
+     * The ID of the file
+     */
+    @SerialName("file_id")
+    val fileId: String,
+
+    /**
+     * The text content from the file
+     */
+    @SerialName("text")
+    val text: String,
+
+    /**
+     * The filename
+     */
+    @SerialName("filename")
+    val filename: String,
+
+    /**
+     * The score or relevance rating
+     */
+    @SerialName("score")
+    val score: Double
+)
 
 /**
  * Function tool call in a response

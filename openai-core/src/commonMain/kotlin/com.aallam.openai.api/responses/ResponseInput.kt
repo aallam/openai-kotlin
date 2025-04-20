@@ -1,15 +1,17 @@
 package com.aallam.openai.api.responses
 
 import com.aallam.openai.api.OpenAIDsl
-import kotlinx.serialization.KSerializer
+import com.aallam.openai.api.responses.ResponseInput.ListInput
+import com.aallam.openai.api.responses.ResponseInput.TextInput
+import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.descriptors.buildClassSerialDescriptor
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
-import kotlinx.serialization.json.*
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonPrimitive
+import kotlin.jvm.JvmInline
 
 /**
  * Text, image, or file inputs to the model, used to generate a response.
@@ -17,36 +19,20 @@ import kotlinx.serialization.json.*
  * Can be either a simple text string or a list of messages.
  */
 @Serializable(with = InputSerializer::class)
-public sealed class ResponseInput {
+public sealed interface ResponseInput {
     /**
      * A text input to the model, equivalent to a text input with the `user` role.
      */
-    public class TextInput(public val value: String) : ResponseInput() {
-        override fun toString(): String = value
-
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (other !is TextInput) return false
-            return value == other.value
-        }
-
-        override fun hashCode(): Int = value.hashCode()
-    }
+    @Serializable
+    @JvmInline
+    public value class TextInput(public val value: String) : ResponseInput
 
     /**
      * A list of chat messages as input to the model.
      */
-    public class ListInput(public val values: List<ResponseItem>) : ResponseInput() {
-        override fun toString(): String = values.toString()
-
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (other !is ListInput) return false
-            return values == other.values
-        }
-
-        override fun hashCode(): Int = values.hashCode()
-    }
+    @Serializable
+    @JvmInline
+    public value class ListInput(public val values: List<ResponseItem>) : ResponseInput
 
     public companion object {
         /**
@@ -64,244 +50,14 @@ public sealed class ResponseInput {
 /**
  * Custom serializer for Input that handles direct string or array serialization.
  */
-internal class InputSerializer : KSerializer<ResponseInput> {
-    private val json = Json { ignoreUnknownKeys = true }
+internal class InputSerializer : JsonContentPolymorphicSerializer<ResponseInput>(ResponseInput::class) {
 
-    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("Input")
-
-    override fun serialize(encoder: Encoder, value: ResponseInput) {
-        val jsonEncoder = encoder as? JsonEncoder
-            ?: throw IllegalArgumentException("This serializer can only be used with JSON")
-
-        when (value) {
-            is ResponseInput.TextInput -> jsonEncoder.encodeString(value.value)
-            is ResponseInput.ListInput -> {
-                val messageList = json.encodeToJsonElement(
-                    ListSerializer(ResponseItem.serializer()),
-                    value.values
-                )
-                jsonEncoder.encodeJsonElement(messageList)
-            }
+    override fun selectDeserializer(element: JsonElement): DeserializationStrategy<ResponseInput> {
+        return when (element) {
+            is JsonPrimitive -> TextInput.serializer()
+            is JsonArray -> ListInput.serializer()
+            else -> throw SerializationException("Unsupported JSON element: $element")
         }
-    }
-
-    override fun deserialize(decoder: Decoder): ResponseInput {
-        val jsonDecoder = decoder as? JsonDecoder
-            ?: throw IllegalArgumentException("This serializer can only be used with JSON")
-
-        return when (val element = jsonDecoder.decodeJsonElement()) {
-            is JsonPrimitive -> ResponseInput.TextInput(element.content)
-            is JsonArray -> {
-                // Check if it's an array
-                if (element.isNotEmpty() && element[0] is JsonObject) {
-                    val items = json.decodeFromJsonElement(
-                        ListSerializer(ResponseItem.serializer()),
-                        element
-                    )
-                    ResponseInput.ListInput(items)
-                } else {
-                    throw IllegalArgumentException("Unsupported array format: must be an array of ResponseItem")
-                }
-            }
-
-            else -> throw IllegalArgumentException("Unsupported JSON element: $element")
-        }
-    }
-}
-
-
-/**
- * A message input to the model with a role indicating instruction following hierarchy. Instructions given with the developer or system role take precedence over instructions given with the user role. Messages with the assistant role are presumed to have been generated by the model in previous interactions.
- *
- */
-@Serializable
-@SerialName("message")
-public data class ResponseInputMessage(
-    /**
-     * The role of the author of this message. May not be "Assistant" due to the way the API works.
-     */
-    @SerialName("role") public val role: ResponseRole,
-
-    /**
-     * A list of one or many input items to the model, containing different content types.
-     */
-    @SerialName("content") public val content: List<ResponseInputContent>? = null,
-
-    /**
-     * The status of item. One of in_progress, completed, or incomplete. Populated when items are returned via API.
-     */
-    @SerialName("status") public val status: ResponseStatus? = null,
-) : ResponseItem
-
-/**
- * Represents a chat message part.
- */
-@Serializable
-public sealed interface ResponseInputContent
-
-/**
- * A text input to the model.
- *
- * @param text the text content.
- */
-@Serializable
-@SerialName("input_text")
-public data class ResponseInputText(@SerialName("text") val text: String) : ResponseInputContent
-
-/**
- * An image input to the model.
- *
- * @param imageUrl the image url.
- */
-@Serializable
-@SerialName("input_image")
-public data class ResponseInputImage(
-    /**
-     * The detail level of the image to be sent to the model. One of high, low, or auto. Defaults to auto.
-     * */
-    @SerialName("detail") val detail: ImageDetail? = null,
-    /**
-     * The URL of the image to be sent to the model. A fully qualified URL or base64 encoded image in a data URL.
-     * */
-    @SerialName("image_url") val imageUrl: String? = null,
-    /**
-     * The ID of the file to be sent to the model.
-     */
-    @SerialName("file_id") val fileId: String? = null,
-) : ResponseInputContent
-
-
-/**
- * The detail level of the image to be sent to the model.
- */
-@Serializable
-public enum class ImageDetail {
-    @SerialName("high")
-    HIGH,
-
-    @SerialName("low")
-    LOW,
-
-    @SerialName("auto")
-    AUTO
-}
-
-/**
- * A file input to the model.
- */
-@Serializable
-@SerialName("input_file")
-public data class ResponseInputFile(
-
-    /**
-     * The content of the file to be sent to the model.
-     *
-     */
-    @SerialName("file_data") val fileData: String? = null,
-
-    /**
-     * The ID of the file to be sent to the model.
-     */
-    @SerialName("file_id") val fileId: String? = null,
-
-    /**
-     * The name of the file to be sent to the model.
-     */
-    @SerialName("filename") val fileName: String? = null,
-) : ResponseInputContent
-
-
-//TODO add input_audio (when available)
-
-/**
- * Create a [ResponseInputMessage] instance.
- */
-public fun responseInputMessage(block: ResponseInputMessageBuilder.() -> Unit): ResponseInputMessage =
-    ResponseInputMessageBuilder().apply(block).build()
-
-/**
- * Builder of [ResponseInputMessage] instances.
- */
-@OpenAIDsl
-public class ResponseInputMessageBuilder {
-
-    /**
-     * The role of the author of this message.
-     */
-    public var role: ResponseRole? = null
-
-    /**
-     * The contents of the message.
-     */
-    private val parts = mutableListOf<ResponseInputContent>()
-
-    /**
-     * The status of item. One of in_progress, completed, or incomplete. Populated when items are returned via API.
-     */
-    public var status: ResponseStatus? = null
-
-    /**
-     * The contents of the message.
-     */
-    public fun content(block: ResponseInputContentBuilder.() -> Unit) {
-        this.parts += ResponseInputContentBuilder().apply(block).build()
-    }
-
-    /**
-     * Create [ResponseInputMessage] instance.
-     */
-    public fun build(): ResponseInputMessage {
-        return ResponseInputMessage(
-            role = requireNotNull(role) { "role is required " },
-            content = parts,
-            status = status
-        )
-    }
-}
-
-@OpenAIDsl
-public class ResponseInputContentBuilder {
-
-    private val parts = mutableListOf<ResponseInputContent>()
-
-    /**
-     * Text content part.
-     *
-     * @param text the text content.
-     */
-    public fun text(text: String) {
-        this.parts += ResponseInputText(text)
-    }
-
-    /**
-     * Image content part.
-     *
-     * @param url the image url.
-     * @param detail the image detail.
-     */
-    public fun image(url: String, detail: ImageDetail? = null) {
-        this.parts += ResponseInputImage(
-            imageUrl = url,
-            detail = detail
-        )
-    }
-
-    /**
-     * File content part.
-     *
-     * @param data the file data.
-     * @param id the file id.
-     * @param name the file name.
-     */
-    public fun file(data: String? = null, id: String? = null, name: String? = null) {
-        this.parts += ResponseInputFile(data, id, name)
-    }
-
-    /**
-     * Create a list of [ResponseInputContent]s.
-     */
-    public fun build(): List<ResponseInputContent> {
-        return parts
     }
 }
 

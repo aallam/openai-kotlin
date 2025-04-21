@@ -30,7 +30,7 @@ public data class ResponseRequest(
     @SerialName("instructions") val instructions: String? = null,
 
     /** An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens. */
-    @SerialName("max_output_tokens") val maxOutputTokens: Long? = null,
+    @SerialName("max_output_tokens") val maxOutputTokens: Int? = null,
 
     /**
      * Set of key-value pairs that can be attached to an object. This can be
@@ -121,7 +121,7 @@ public class ResponseRequestBuilder {
     public var instructions: String? = null
 
     /** Maximum number of tokens to generate */
-    public var maxOutputTokens: Long? = null
+    public var maxOutputTokens: Int? = null
 
     /** Custom metadata */
     public var metadata: Map<String, String>? = null

@@ -11,6 +11,7 @@ import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.*
+import kotlin.jvm.JvmInline
 
 /**
  * An array of tools the model may call while generating a response.
@@ -168,26 +169,25 @@ public sealed interface ResponseTool {
     /**
      * Web search context size
      */
+    @JvmInline
     @Serializable
-    public enum class WebSearchContextSize {
+    public value class WebSearchContextSize(public val value: String) {
+        public companion object {
+            /**
+             * Low context size
+             */
+            public val Low: WebSearchContextSize = WebSearchContextSize("low")
 
-        /**
-         * Low context size
-         */
-        @SerialName("low")
-        LOW,
+            /**
+             * Medium context size
+             */
+            public val Medium: WebSearchContextSize = WebSearchContextSize("medium")
 
-        /**
-         * Medium context size
-         */
-        @SerialName("medium")
-        MEDIUM,
-
-        /**
-         * High context size
-         */
-        @SerialName("high")
-        HIGH
+            /**
+             * High context size
+             */
+            public val High: WebSearchContextSize = WebSearchContextSize("high")
+        }
     }
 
     /**
@@ -307,41 +307,15 @@ internal class FileSearchFilterSerializer : KSerializer<FileSearchFilter> {
             ?: throw IllegalArgumentException("This serializer can only be used with JSON")
 
         return when (val type = jsonDecoder.decodeJsonElement().jsonObject["type"]?.jsonPrimitive?.content) {
-            "and" -> {
-                ComparisonFilter.serializer().deserialize(jsonDecoder)
-            }
-
-            "or" -> {
-                CompoundFilter.serializer().deserialize(jsonDecoder)
-            }
-
-            "eq" -> {
-                ComparisonFilter.serializer().deserialize(jsonDecoder)
-            }
-
-            "ne" -> {
-                ComparisonFilter.serializer().deserialize(jsonDecoder)
-            }
-
-            "gt" -> {
-                ComparisonFilter.serializer().deserialize(jsonDecoder)
-            }
-
-            "gte" -> {
-                ComparisonFilter.serializer().deserialize(jsonDecoder)
-            }
-
-            "lt" -> {
-                ComparisonFilter.serializer().deserialize(jsonDecoder)
-            }
-
-            "lte" -> {
-                ComparisonFilter.serializer().deserialize(jsonDecoder)
-            }
-
-            else -> {
-                throw IllegalArgumentException("Unknown filter type: $type")
-            }
+            "and" -> ComparisonFilter.serializer().deserialize(jsonDecoder)
+            "or" -> CompoundFilter.serializer().deserialize(jsonDecoder)
+            "eq" -> ComparisonFilter.serializer().deserialize(jsonDecoder)
+            "ne" -> ComparisonFilter.serializer().deserialize(jsonDecoder)
+            "gt" -> ComparisonFilter.serializer().deserialize(jsonDecoder)
+            "gte" -> ComparisonFilter.serializer().deserialize(jsonDecoder)
+            "lt" -> ComparisonFilter.serializer().deserialize(jsonDecoder)
+            "lte" -> ComparisonFilter.serializer().deserialize(jsonDecoder)
+            else -> throw IllegalArgumentException("Unknown filter type: $type")
         }
     }
 

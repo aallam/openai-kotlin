@@ -2,6 +2,7 @@ package com.aallam.openai.api.responses
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmInline
 
 /**
  * A single output item in the response
@@ -140,16 +141,14 @@ public data class ResponseInputImage(
 /**
  * The detail level of the image to be sent to the model.
  */
+@JvmInline
 @Serializable
-public enum class ImageDetail {
-    @SerialName("high")
-    HIGH,
-
-    @SerialName("low")
-    LOW,
-
-    @SerialName("auto")
-    AUTO
+public value class ImageDetail(public val value: String) {
+    public companion object {
+        public val High: ImageDetail = ImageDetail("high")
+        public val Low: ImageDetail = ImageDetail("low")
+        public val Auto: ImageDetail = ImageDetail("auto")
+    }
 }
 
 /**

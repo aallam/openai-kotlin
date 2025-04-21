@@ -2,6 +2,7 @@ package com.aallam.openai.api.responses
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmInline
 
 /**
  * Configuration options for reasoning models
@@ -29,23 +30,23 @@ public data class ReasoningConfig(
 /**
  * Reasoning effort levels for models with reasoning capabilities
  */
+@JvmInline
 @Serializable
-public enum class ReasoningEffort {
-    /**
-     * Low reasoning effort
-     */
-    @SerialName("low")
-    LOW,
+public value class ReasoningEffort(public val value: String) {
+    public companion object {
+        /**
+         * Low reasoning effort
+         */
+        public val Low: ReasoningEffort = ReasoningEffort("low")
 
-    /**
-     * Medium reasoning effort (default)
-     */
-    @SerialName("medium")
-    MEDIUM,
+        /**
+         * Medium reasoning effort (default)
+         */
+        public val Medium: ReasoningEffort = ReasoningEffort("medium")
 
-    /**
-     * High reasoning effort
-     */
-    @SerialName("high")
-    HIGH
+        /**
+         * High reasoning effort
+         */
+        public val High: ReasoningEffort = ReasoningEffort("high")
+    }
 }

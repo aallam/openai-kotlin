@@ -1,7 +1,6 @@
 package com.aallam.openai.api.responses
 
 import com.aallam.openai.api.core.Status
-import com.aallam.openai.api.core.Usage
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -153,7 +152,7 @@ public data class Response(
      * Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used.
      */
     @SerialName("usage")
-    val usage: Usage? = null,
+    val usage: ResponseUsage? = null,
 
     /**
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.

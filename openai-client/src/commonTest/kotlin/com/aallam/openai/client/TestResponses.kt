@@ -78,4 +78,4 @@ class TestResponses : TestOpenAI() {
         assertNotNull(response)
         assertNotNull(response.output)
     }
-} 
+}

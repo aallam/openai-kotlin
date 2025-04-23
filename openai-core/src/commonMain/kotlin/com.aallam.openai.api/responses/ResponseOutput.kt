@@ -297,4 +297,3 @@ public data class SummaryText(
     @SerialName("text")
     val text: String
 )
-

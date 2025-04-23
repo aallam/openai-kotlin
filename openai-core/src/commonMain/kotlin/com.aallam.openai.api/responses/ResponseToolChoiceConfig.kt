@@ -89,4 +89,4 @@ internal class ResponseToolChoiceSerializer :
         is JsonObject -> ResponseToolChoiceConfig.Named.serializer()
         else -> throw IllegalArgumentException("Unknown element type: $element")
     }
-} 
+}

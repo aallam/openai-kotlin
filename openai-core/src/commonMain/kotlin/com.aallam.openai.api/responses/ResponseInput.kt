@@ -1,10 +1,8 @@
 package com.aallam.openai.api.responses
 
-import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.responses.ResponseInput.ListInput
 import com.aallam.openai.api.responses.ResponseInput.TextInput
 import kotlinx.serialization.DeserializationStrategy
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.JsonArray
@@ -60,4 +58,3 @@ internal class InputSerializer : JsonContentPolymorphicSerializer<ResponseInput>
         }
     }
 }
-

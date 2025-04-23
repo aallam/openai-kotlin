@@ -62,4 +62,4 @@ public data class OutputTokensDetails(
      */
     @SerialName("reasoning_tokens")
     val reasoningTokens: Int
-) 
+)

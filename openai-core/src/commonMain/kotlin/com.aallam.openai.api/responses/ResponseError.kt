@@ -19,4 +19,4 @@ public data class ResponseError(
      */
     @SerialName("message")
     val message: String? = null,
-) 
+)

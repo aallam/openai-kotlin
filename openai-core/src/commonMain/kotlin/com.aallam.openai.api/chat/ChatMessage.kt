@@ -55,6 +55,11 @@ public data class ChatMessage(
      * Azure Content Filter Offsets
      */
     @SerialName("content_filter_offsets") public val contentFilterOffsets: List<ContentFilterOffsets>? = null,
+
+    /**
+     * Response metadata. May be used for web search `url_citation`, for example
+     */
+    @SerialName("annotations") public val annotations: List<Annotations>? = null
 ) {
 
     public constructor(

@@ -302,4 +302,29 @@ class TestChatCompletions : TestOpenAI() {
         assertNotNull(results.last().usage?.completionTokens)
         assertNotNull(results.last().usage?.totalTokens)
     }
+
+    @Test
+    fun webSearchOptions() = test {
+        val request = chatCompletionRequest {
+            model = ModelId("gpt-4o-search-preview")
+            messages {
+                message {
+                    role = ChatRole.System
+                    content = "You are a helpful assistant.!"
+                }
+                message {
+                    role = ChatRole.User
+                    content = "Who won the world series last year?"
+                }
+            }
+            webSearchOptions = webSearchOptions {
+                searchContextSize = SearchContextSize("low")
+            }
+        }
+
+        val result = openAI.chatCompletion(request)
+
+        val resultChoices = result.choices
+        assertTrue(resultChoices.isNotEmpty())
+    }
 }

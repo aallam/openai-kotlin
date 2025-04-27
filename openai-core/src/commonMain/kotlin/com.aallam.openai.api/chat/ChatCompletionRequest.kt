@@ -185,7 +185,18 @@ public data class ChatCompletionRequest(
     /**
      * Options for streaming response. Only used when in streaming mode.
      */
-    @SerialName("stream_options") public val streamOptions: StreamOptions? = null
+    @SerialName("stream_options") public val streamOptions: StreamOptions? = null,
+
+    /**
+     * Using the Chat Completions API, you can directly access the fine-tuned models and tool used by Search in ChatGPT.
+     *
+     * When using Chat Completions, the model always retrieves information from the web before responding to your query.
+     * To use web_search_preview as a tool that models like gpt-4o and gpt-4o-mini invoke only when necessary,
+     * switch to using the Responses API.
+     *
+     * [Read more](https://platform.openai.com/docs/guides/tools-web-search?api-mode=chat)
+     */
+    @SerialName("web_search_options") public val webSearchOptions: WebSearchOptions? = null
 )
 
 /**
@@ -385,6 +396,12 @@ public class ChatCompletionRequestBuilder {
     public var streamOptions: StreamOptions? = null
 
     /**
+     * Options for web search.
+     * Only used when the gpt model supported web search in chat completion (gpt-4o-search-preview for example)
+     */
+    public var webSearchOptions: WebSearchOptions? = null
+
+    /**
      * Builder of [ChatCompletionRequest] instances.
      */
     public fun build(): ChatCompletionRequest = ChatCompletionRequest(
@@ -411,6 +428,7 @@ public class ChatCompletionRequestBuilder {
         topLogprobs = topLogprobs,
         instanceId = instanceId,
         streamOptions = streamOptions,
+        webSearchOptions = webSearchOptions,
     )
 }
 

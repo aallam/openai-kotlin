@@ -213,7 +213,7 @@ public class ChatCompletionRequestBuilder {
      * Constrains effort on reasoning for reasoning models. Currently supported values are low, medium, and high.
      * Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
      */
-    public val reasoningEffort: Effort? = null
+    public var reasoningEffort: Effort? = null
 
     /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
@@ -245,7 +245,7 @@ public class ChatCompletionRequestBuilder {
     /**
      * Whether to store the output of this chat completion request for use in our model distillation or evals products
      */
-    public val store: Boolean? = null
+    public var store: Boolean? = null
 
     /**
      * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can
@@ -258,7 +258,7 @@ public class ChatCompletionRequestBuilder {
      * An upper bound for the number of tokens that can be generated for a completion,
      * including visible output tokens and reasoning tokens.
      */
-    public val maxCompletionTokens: Int? = null
+    public var maxCompletionTokens: Int? = null
 
     /**
      * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,

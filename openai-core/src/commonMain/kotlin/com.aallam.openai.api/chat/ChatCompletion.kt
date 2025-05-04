@@ -15,7 +15,7 @@ public data class ChatCompletion(
     /**
      * A unique id assigned to this completion
      */
-    @SerialName("id") public val id: String,
+    @SerialName("id") public val idOrNull: String? = null,
     /**
      * The creation time in epoch milliseconds.
      */
@@ -43,4 +43,9 @@ public data class ChatCompletion(
      * might impact determinism.
      */
     @SerialName("system_fingerprint") public val systemFingerprint: String? = null,
-)
+
+    @SerialName("citations") public val citations: List<String>? = null,
+) {
+    val id: String
+        get() = requireNotNull(idOrNull)
+}

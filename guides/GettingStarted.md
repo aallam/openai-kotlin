@@ -569,7 +569,7 @@ Modifies an assistant.
 val assistant = openAI.assistant(
     id = AssistantId("asst_abc123"), request = AssistantRequest(
         instructions = "You are an HR bot, and you have access to files to answer employee questions about company policies. Always response with info from either of the files.",
-        tools = listOf(AssistantTool.RetrievalTool),
+        tools = listOf(AssistantTool.FileSearch),
         model = ModelId("gpt-4"),
         fileIds = listOf(FileId("file-abc123"), FileId("file-abc123")),
     )

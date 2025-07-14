@@ -30,7 +30,7 @@ kotlin {
                 api(libs.coroutines.core)
                 api(libs.kotlinx.io.core)
                 implementation(libs.kotlinx.io.bytestring)
-                implementation(libs.serialization.json)
+                api(libs.serialization.json)
                 api(libs.ktor.client.core)
                 implementation(libs.ktor.client.logging)
                 implementation(libs.ktor.client.auth)

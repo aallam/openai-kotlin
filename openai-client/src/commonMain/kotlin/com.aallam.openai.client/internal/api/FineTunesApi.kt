@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.flow
  */
 internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
 
+    @Deprecated("Use FineTuning instead.")
     override suspend fun fineTune(request: FineTuneRequest): FineTune {
         return requester.perform {
             it.post {
@@ -33,6 +34,7 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
         }
     }
 
+    @Deprecated("Use FineTuning instead.")
     override suspend fun fineTune(fineTuneId: FineTuneId): FineTune? {
         val response = requester.perform<HttpResponse> {
             it.get { url(path = "${ApiPath.FineTunes}/${fineTuneId.id}") }
@@ -40,12 +42,14 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
+    @Deprecated("Use FineTuning instead.")
     override suspend fun fineTunes(): List<FineTune> {
         return requester.perform<ListResponse<FineTune>> {
             it.get { url(path = ApiPath.FineTunes) }
         }.data
     }
 
+    @Deprecated("Use FineTuning instead.")
     override suspend fun cancel(fineTuneId: FineTuneId): FineTune? {
         val response = requester.perform<HttpResponse> {
             it.post { url(path = "${ApiPath.FineTunes}/${fineTuneId.id}/cancel") }
@@ -53,12 +57,14 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
         return if (response.status == HttpStatusCode.NotFound) null else response.body()
     }
 
+    @Deprecated("Use FineTuning instead.")
     override suspend fun fineTuneEvents(fineTuneId: FineTuneId): List<FineTuneEvent> {
         return requester.perform<ListResponse<FineTuneEvent>> {
             it.get { url(path = "${ApiPath.FineTunes}/${fineTuneId.id}/events") }
         }.data
     }
 
+    @Deprecated("Use FineTuning instead.")
     override fun fineTuneEventsFlow(fineTuneId: FineTuneId): Flow<FineTuneEvent> {
         val request = HttpRequestBuilder().apply {
             method = HttpMethod.Get
@@ -76,6 +82,7 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
         }
     }
 
+    @Deprecated("Use FineTuning instead.")
     override suspend fun delete(fineTuneModel: ModelId): Boolean {
         val response = requester.perform<HttpResponse> {
             it.delete {

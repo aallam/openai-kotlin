@@ -28,6 +28,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-test:2.2.0")
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }

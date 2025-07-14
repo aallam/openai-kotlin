@@ -8,8 +8,8 @@ import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.util.reflect.*
-import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.CancellationException
+import kotlinx.io.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject

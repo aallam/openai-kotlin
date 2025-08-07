@@ -32,6 +32,12 @@ public data class ChatCompletionRequest(
     @SerialName("reasoning_effort") public val reasoningEffort: Effort? = null,
 
     /**
+     * Constrains the verbosity of responses. Currently supported values are low, medium, and high.
+     * Controls how concise or verbose the model's output will be.
+     */
+    @SerialName("verbosity") public val verbosity: Verbosity? = null,
+
+    /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
      * while lower values like 0.2 will make it more focused and deterministic.
      *
@@ -213,7 +219,13 @@ public class ChatCompletionRequestBuilder {
      * Constrains effort on reasoning for reasoning models. Currently supported values are low, medium, and high.
      * Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
      */
-    public val reasoningEffort: Effort? = null
+    public var reasoningEffort: Effort? = null
+
+    /**
+     * Constrains the verbosity of responses. Currently supported values are low, medium, and high.
+     * Controls how concise or verbose the model's output will be.
+     */
+    public var verbosity: Verbosity? = null
 
     /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
@@ -391,6 +403,7 @@ public class ChatCompletionRequestBuilder {
         model = requireNotNull(model) { "model is required" },
         messages = requireNotNull(messages) { "messages is required" },
         reasoningEffort = reasoningEffort,
+        verbosity = verbosity,
         temperature = temperature,
         topP = topP,
         n = n,

@@ -1,3 +1,8 @@
+## Unreleased
+
+### Added
+- **chat**: add verbosity parameter support for controlling response length and detail
+
 ## 4.0.1
 > Published 02 Feb 2025
 

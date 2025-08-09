@@ -9,75 +9,83 @@ import kotlinx.serialization.json.JsonPrimitive
 import kotlin.jvm.JvmInline
 
 /**
- * Controls which (if any) tool is called by the model in the Responses API.
+ * How the model should select which tool (or tools) to use when generating a response.
+ * See the tools parameter to see how to specify which tools the model can call.
  */
 @Serializable(with = ResponseToolChoiceSerializer::class)
 public sealed interface ResponseToolChoiceConfig {
 
     /**
      * Represents a tool choice mode.
-     * - `"none"` means the model will not call any tool and instead generates a message.
-     * - `"auto"` means the model can pick between generating a message or calling one or more tools.
-     * - `"required"` means the model must call one or more tools.
+     * - `none` means the model will not call any tool and instead generates a message.
+     * - `auto` means the model can pick between generating a message or calling one or more tools.
+     * - `required` means the model must call one or more tools.
      */
     @JvmInline
     @Serializable
-    public value class Mode(public val value: String) : ResponseToolChoiceConfig
+    public value class Mode(public val value: String) : ResponseToolChoiceConfig {
+        public companion object {
+            public val Auto: Mode = Mode("auto")
+            public val None: Mode = Mode("none")
+            public val Required: Mode = Mode("required")
+        }
+    }
+
+    @Serializable
+    @SerialName("file_search")
+    public class FileSearch : ResponseToolChoice
+
+    @Serializable
+    @SerialName("web_search_preview")
+    public class WebSearchPreview : ResponseToolChoice
+
+    @Serializable
+    @SerialName("computer_use_preview")
+    public class ComputerUsePreview : ResponseToolChoice
+
+    @Serializable
+    @SerialName("code_interpreter")
+    public class CodeInterpreter : ResponseToolChoice
+
+    //TODO add image_generation after updates to image API are implemented
 
     /**
-     * Specifies a specific tool the model should use.
+     * Use this option to force the model to call a specific function.
      */
     @Serializable
-    public data class Named(
-        /**
-         * The type of tool to use, either "function" or a built-in tool type
-         */
-        @SerialName("type") public val type: String,
+    @SerialName("function")
+    public data class Function(
+        /** The name of the function to call. */
+        @SerialName("name") val name: String
+    ) : ResponseToolChoice
 
-        /**
-         * The function details, only used when type is "function"
-         */
-        @SerialName("function") public val function: FunctionToolChoice? = null,
-    ) : ResponseToolChoiceConfig
+    /**
+     * Use this option to force the model to call a specific tool on a remote MCP server.
+     */
+    @Serializable
+    @SerialName("mcp")
+    public data class MCPTool(
+        /** The label of the MCP server to use. */
+        @SerialName("server_label") val serverLabel: String,
 
-    public companion object {
-        /** Represents the `auto` mode. */
-        public val Auto: ResponseToolChoiceConfig = Mode("auto")
+        /** The name of the tool to call on the server.*/
+        @SerialName("name") val name: String? = null
 
-        /** Represents the `none` mode. */
-        public val None: ResponseToolChoiceConfig = Mode("none")
+    ) : ResponseToolChoice
 
-        /** Represents the `required` mode. */
-        public val Required: ResponseToolChoiceConfig = Mode("required")
-
-        /** Specifies a function for the model to call. */
-        public fun function(name: String): ResponseToolChoiceConfig =
-            Named(type = "function", function = FunctionToolChoice(name = name))
-
-        /** Specifies a file search tool for the model to use. */
-        public fun fileSearch(): ResponseToolChoiceConfig = Named(type = "file_search")
-
-        /** Specifies a web search tool for the model to use. */
-        public fun webSearch(): ResponseToolChoiceConfig = Named(type = "web_search_preview")
-
-        /** Specifies a web search tool (preview 2025-03-11) for the model to use. */
-        public fun webSearch2025(): ResponseToolChoiceConfig = Named(type = "web_search_preview_2025_03_11")
-
-        /** Specifies a computer use tool for the model to use. */
-        public fun computerUse(): ResponseToolChoiceConfig = Named(type = "computer_use_preview")
-    }
+    /**
+     * Use this option to force the model to call a specific custom tool.
+     */
+    @Serializable
+    @SerialName("custom")
+    public data class Custom(
+        /** The name of the custom tool to call. */
+        @SerialName("name") val name: String
+    ) : ResponseToolChoice
 }
 
-/**
- * Represents the function tool choice option.
- */
 @Serializable
-public data class FunctionToolChoice(
-    /**
-     * The name of the function to call.
-     */
-    @SerialName("name") val name: String
-)
+public sealed interface ResponseToolChoice : ResponseToolChoiceConfig
 
 /**
  * Serializer for [ResponseToolChoiceConfig].
@@ -86,7 +94,7 @@ internal class ResponseToolChoiceSerializer :
     JsonContentPolymorphicSerializer<ResponseToolChoiceConfig>(ResponseToolChoiceConfig::class) {
     override fun selectDeserializer(element: JsonElement) = when (element) {
         is JsonPrimitive -> ResponseToolChoiceConfig.Mode.serializer()
-        is JsonObject -> ResponseToolChoiceConfig.Named.serializer()
+        is JsonObject -> ResponseToolChoice.serializer()
         else -> throw IllegalArgumentException("Unknown element type: $element")
     }
 }

@@ -33,7 +33,7 @@ class TestResponses : TestOpenAI() {
                 input = ResponseInput.from("What's the weather like in Paris?")
                 tools {
                     add(
-                        ResponseTool.ResponseFunctionTool(
+                        ResponseTool.Function(
                             name = "get_weather",
                             description = "Get the current weather",
                             parameters = buildJsonObject {

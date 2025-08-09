@@ -3,6 +3,7 @@ package com.aallam.openai.api.responses
 import com.aallam.openai.api.responses.ResponseInput.ListInput
 import com.aallam.openai.api.responses.ResponseInput.TextInput
 import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.JsonArray
@@ -58,3 +59,72 @@ internal class InputSerializer : JsonContentPolymorphicSerializer<ResponseInput>
         }
     }
 }
+
+/**
+ * A text input to the model.
+ *
+ * @param text the text content.
+ */
+@Serializable
+@SerialName("input_text")
+public data class ResponseInputText(@SerialName("text") val text: String) : ResponseContent
+
+/**
+ * An image input to the model.
+ *
+ * @param imageUrl the image url.
+ */
+@Serializable
+@SerialName("input_image")
+public data class ResponseInputImage(
+    /**
+     * The detail level of the image to be sent to the model. One of high, low, or auto. Defaults to auto.
+     * */
+    @SerialName("detail") val detail: ImageDetail? = null,
+    /**
+     * The URL of the image to be sent to the model. A fully qualified URL or base64 encoded image in a data URL.
+     * */
+    @SerialName("image_url") val imageUrl: String? = null,
+    /**
+     * The ID of the file to be sent to the model.
+     */
+    @SerialName("file_id") val fileId: String? = null,
+) : ResponseContent
+
+
+/**
+ * The detail level of the image to be sent to the model.
+ */
+@JvmInline
+@Serializable
+public value class ImageDetail(public val value: String) {
+    public companion object {
+        public val High: ImageDetail = ImageDetail("high")
+        public val Low: ImageDetail = ImageDetail("low")
+        public val Auto: ImageDetail = ImageDetail("auto")
+    }
+}
+
+/**
+ * A file input to the model.
+ */
+@Serializable
+@SerialName("input_file")
+public data class ResponseInputFile(
+
+    /**
+     * The content of the file to be sent to the model.
+     *
+     */
+    @SerialName("file_data") val fileData: String? = null,
+
+    /**
+     * The ID of the file to be sent to the model.
+     */
+    @SerialName("file_id") val fileId: String? = null,
+
+    /**
+     * The name of the file to be sent to the model.
+     */
+    @SerialName("filename") val fileName: String? = null,
+) : ResponseContent

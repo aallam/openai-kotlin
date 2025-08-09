@@ -58,7 +58,16 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
         }
     }
 
-    override suspend fun listResponseItems(
+    override suspend fun cancelResponse(responseId: String, requestOptions: RequestOptions?): Response {
+        return requester.perform<HttpResponse> {
+            it.post {
+                url(path = "${ApiPath.Responses}/$responseId/cancel")
+                requestOptions(requestOptions)
+            }
+        }.body()
+    }
+
+    override suspend fun listInputItems(
         responseId: String,
         after: String?,
         before: String?,

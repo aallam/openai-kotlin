@@ -22,8 +22,17 @@ public data class ReasoningConfig(
      * This can be useful for debugging and understanding the model's reasoning process.
      * One of `concise` or `detailed`.
      */
+    @Deprecated("Use summary instead.")
     @SerialName("generate_summary")
-    val generateSummary: String? = null
+    val generateSummary: ReasoningSummary? = null,
+
+    /**
+     * A summary of the reasoning performed by the model.
+     * This can be useful for debugging and understanding the model's reasoning process.
+     * One of `concise` or `detailed`.
+     */
+    @SerialName("summary")
+    val summary: ReasoningSummary? = null
 )
 
 
@@ -34,6 +43,11 @@ public data class ReasoningConfig(
 @Serializable
 public value class ReasoningEffort(public val value: String) {
     public companion object {
+        /**
+         * Minimal reasoning effort
+         */
+        public val Minimal: ReasoningEffort = ReasoningEffort("minimal")
+
         /**
          * Low reasoning effort
          */
@@ -48,5 +62,18 @@ public value class ReasoningEffort(public val value: String) {
          * High reasoning effort
          */
         public val High: ReasoningEffort = ReasoningEffort("high")
+    }
+}
+
+/**
+ * Reasoning summary levels for models with reasoning capabilities
+ */
+@JvmInline
+@Serializable
+public value class ReasoningSummary(public val value: String) {
+    public companion object {
+        public val Auto: ReasoningSummary = ReasoningSummary("auto")
+        public val Concise: ReasoningSummary = ReasoningSummary("concise")
+        public val Detailed: ReasoningSummary = ReasoningSummary("detailed")
     }
 }

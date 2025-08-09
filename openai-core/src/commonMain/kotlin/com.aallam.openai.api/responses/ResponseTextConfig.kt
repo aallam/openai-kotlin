@@ -8,7 +8,15 @@ import kotlinx.serialization.json.JsonObject
 @Serializable
 public data class ResponseTextConfig(
     /** The format to use for text responses */
-    @SerialName("format") val format: TextResponseFormatConfiguration
+    @SerialName("format") val format: TextResponseFormatConfiguration? = null,
+
+    /**
+     * Constrains the verbosity of the model's response.
+     * Lower values will result in more concise responses, while higher values will result in more verbose responses.
+     * Currently supported values are `low`, `medium`, and `high`.
+     */
+    @SerialName("verbosity") val verbosity: Verbosity? = null,
+    // Implementation note: In the OpenAI doc, this is wrongly placed at the top level of response
 )
 
 /**
@@ -42,7 +50,7 @@ public data object JsonObjectFormat : TextResponseFormatConfiguration
 @SerialName("json_schema")
 public data class JsonSchemaFormat(
     /** Structured Outputs configuration options, including a JSON Schema */
-    @SerialName("json_schema") val jsonSchema: ResponseJsonSchema
+    @SerialName("json_schema") val jsonSchema: ResponseJsonSchema,
 ) : TextResponseFormatConfiguration
 
 /**
@@ -72,5 +80,5 @@ public data class ResponseJsonSchema(
      * If set to true, the model will always follow the exact schema defined
      * in the `schema` field.
      */
-    @SerialName("strict") val strict: Boolean? = null
+    @SerialName("strict") val strict: Boolean? = null,
 )

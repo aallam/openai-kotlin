@@ -12,6 +12,17 @@ import kotlin.jvm.JvmInline
 @Serializable
 public value class ResponseIncludable(public val value: String) {
     public companion object {
+
+        /**
+         *  Includes the outputs of python code execution in code interpreter tool call items.
+         */
+        public val CodeInterpreterCallOutputs: ResponseIncludable = ResponseIncludable("code_interpreter_call.outputs")
+
+        /**
+         * Include image urls from the computer call output.
+         */
+        public val ComputerCallOutputImageUrl: ResponseIncludable = ResponseIncludable("computer_call_output.output.image_url")
+
         /**
          * Include the search results of the file search tool call
          */
@@ -23,8 +34,15 @@ public value class ResponseIncludable(public val value: String) {
         public val MessageInputImageUrl: ResponseIncludable = ResponseIncludable("message.input_image.image_url")
 
         /**
-         * Include image urls from the computer call output
+         * Include logprobs with assistant messages.
          */
-        public val ComputerCallOutputImageUrl: ResponseIncludable = ResponseIncludable("computer_call_output.output.image_url")
+        public val MessageOutputTextLogprobs: ResponseIncludable = ResponseIncludable("message.output_text.logprobs")
+
+        /**
+         * Includes an encrypted version of reasoning tokens in reasoning item outputs.
+         * This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly
+         * (like when the store parameter is set to false, or when an organization is enrolled in the zero data retention program).
+         */
+        public val ReasoningEncryptedContent: ResponseIncludable = ResponseIncludable("reasoning.encrypted_content")
     }
 }

@@ -1,8 +1,8 @@
 package com.aallam.openai.api.responses
 
+import kotlinx.serialization.Required
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmInline
 
 /**
  * A single output item in the response
@@ -16,13 +16,6 @@ public sealed interface ResponseOutput : ResponseItem {
      */
     @SerialName("id")
     public val id: String?
-
-    /**
-     * The status of the item, one of "in_progress", "completed", or "incomplete".
-     * Will always be populated when coming from the AP. It is optional here, so you can construct your own OutputMessages
-     */
-    @SerialName("status")
-    public val status: ResponseStatus?
 }
 
 
@@ -49,11 +42,9 @@ public data class ResponseMessage(
      * If the role is "User", only ResponseInputText, ResponseInputImage,
      * and ResponseInputFile are allowed in the content.
      *
-     * Note: If we were to implement this with proper polymorphism,
-     * serialization breaks because of the common "message" type.
      */
     @SerialName("content") public val content: List<ResponseContent> = emptyList(),
-
+    //Implementation note: If we were to implement this distinction between input and output messages with proper polymorphism, serialization would break because of the common "message" type.
 
     /**
      * The unique ID of the input message.
@@ -63,7 +54,7 @@ public data class ResponseMessage(
     /**
      * The status of item. One of in_progress, completed, or incomplete. Populated when items are returned via API.
      */
-    @SerialName("status") public override val status: ResponseStatus? = null,
+    @SerialName("status") public val status: ResponseStatus? = null,
 ) : ResponseOutput
 
 /**
@@ -105,78 +96,6 @@ public data class Refusal(
     @SerialName("refusal")
     val refusal: String
 ) : ResponseContent
-
-/**
- * A text input to the model.
- *
- * @param text the text content.
- */
-@Serializable
-@SerialName("input_text")
-public data class ResponseInputText(@SerialName("text") val text: String) : ResponseContent
-
-/**
- * An image input to the model.
- *
- * @param imageUrl the image url.
- */
-@Serializable
-@SerialName("input_image")
-public data class ResponseInputImage(
-    /**
-     * The detail level of the image to be sent to the model. One of high, low, or auto. Defaults to auto.
-     * */
-    @SerialName("detail") val detail: ImageDetail? = null,
-    /**
-     * The URL of the image to be sent to the model. A fully qualified URL or base64 encoded image in a data URL.
-     * */
-    @SerialName("image_url") val imageUrl: String? = null,
-    /**
-     * The ID of the file to be sent to the model.
-     */
-    @SerialName("file_id") val fileId: String? = null,
-) : ResponseContent
-
-
-/**
- * The detail level of the image to be sent to the model.
- */
-@JvmInline
-@Serializable
-public value class ImageDetail(public val value: String) {
-    public companion object {
-        public val High: ImageDetail = ImageDetail("high")
-        public val Low: ImageDetail = ImageDetail("low")
-        public val Auto: ImageDetail = ImageDetail("auto")
-    }
-}
-
-/**
- * A file input to the model.
- */
-@Serializable
-@SerialName("input_file")
-public data class ResponseInputFile(
-
-    /**
-     * The content of the file to be sent to the model.
-     *
-     */
-    @SerialName("file_data") val fileData: String? = null,
-
-    /**
-     * The ID of the file to be sent to the model.
-     */
-    @SerialName("file_id") val fileId: String? = null,
-
-    /**
-     * The name of the file to be sent to the model.
-     */
-    @SerialName("filename") val fileName: String? = null,
-) : ResponseContent
-
-
-//TODO add input_audio (when available)
 
 
 /**
@@ -272,28 +191,61 @@ public data class Reasoning(
     override val id: String,
 
     /**
-     * The status of the reasoning item.
+     * Reasoning summary content.
      */
-    @SerialName("status")
-    override val status: ResponseStatus,
+    @SerialName("summary")
+    val summary: List<SummaryText>,
 
     /**
      * Reasoning text contents.
      */
-    @SerialName("summary")
-    val summary: List<SummaryText>
+    @SerialName("content")
+    val content: List<ReasoningText>? = null, // Implementation note: OpenAI doc says this is always present, but it isn't
+
+    /**
+     * The encrypted content of the reasoning item - populated when a response is generated with `reasoning.encrypted_content` in the `include` parameter.
+     */
+    @SerialName("encrypted_content")
+    val encryptedContent: String? = null,
+
+    /**
+     * The status of the reasoning item.
+     */
+    @SerialName("status")
+    val status: ResponseStatus? = null
+
 ) : ResponseOutput
+
+/**
+ * A summary item in the reasoning output
+ */
+@Serializable
+@SerialName("summary_text")
+public data class SummaryText(
+    /**
+     * A short summary of the reasoning used by the model.
+     */
+    @SerialName("text")
+    val text: String,
+) {
+    @SerialName("type")
+    @Required
+    val type: String = "summary_text" // Implementation note: We need to specify the type explicitly because this is not a polymorphic type
+}
 
 /**
  * A summary text item in the reasoning output
  */
 @Serializable
-@SerialName("summary_text")
-public data class SummaryText(
-
+@SerialName("reasoning_text")
+public data class ReasoningText(
     /**
-     * A short summary of the reasoning used by the model.
+     * Reasoning text output from the model.
      */
     @SerialName("text")
-    val text: String
-)
+    val text: String,
+) {
+    @SerialName("type")
+    @Required
+    val type: String = "reasoning_text" // Implementation note: We need to specify the type explicitly because this is not a polymorphic type
+}

@@ -43,6 +43,15 @@ public interface Responses {
             requestOptions: RequestOptions? = null): Boolean
 
     /**
+     * Cancels a model response with the given ID. Only responses created with the background parameter set to true can be cancelled.
+     *
+     * @param responseId The ID of the response to cancel
+     */
+    public suspend fun cancelResponse(
+            responseId: String,
+            requestOptions: RequestOptions? = null): Response
+
+    /**
      * Returns a list of input items for a given response.
      *
      * @param responseId The ID of the response
@@ -53,7 +62,7 @@ public interface Responses {
      * @param order The order to return the input items in. Can be either "asc" or "desc". Default is "desc".
      * @param requestOptions Optional request configuration
      */
-    public suspend fun listResponseItems(
+    public suspend fun listInputItems(
             responseId: String,
             after: String? = null,
             before: String? = null,

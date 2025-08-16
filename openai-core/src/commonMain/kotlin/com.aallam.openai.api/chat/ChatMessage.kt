@@ -24,6 +24,12 @@ public data class ChatMessage(
     @SerialName("content") public val messageContent: Content? = null,
 
     /**
+     * The model's reasoning content, providing intermediate logical steps or justification for the response.
+     * This field is typically populated by advanced models supporting reasoning transparency.
+     */
+    @SerialName("reasoning_content") public val messageReasoningContent: Content? = null,
+
+    /**
      * The author's name of this message.
      * [name] is required if the role is `[ChatRole.Function], and it should be the name of the function whose response is
      * in the [content]. It May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
@@ -100,6 +106,12 @@ public data class ChatMessage(
     val content: String?
         get() = when (messageContent) {
             is TextContent? -> messageContent?.content
+            else -> error("Content is not text")
+        }
+
+    val reasoningContent: String?
+        get() = when (messageReasoningContent) {
+            is TextContent? -> messageReasoningContent?.content
             else -> error("Content is not text")
         }
 

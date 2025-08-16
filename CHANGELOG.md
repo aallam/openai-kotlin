@@ -4,6 +4,9 @@
 ### Added
 - **chat**: add reasoning effort, max completion tokens, store options for reasoning model support (#415) (thanks @Taewan-P)
 
+### Added
+- **chat**: feat(chat): add reasoningContent support for both ChatMessage and ChatDelta
+
 ## 4.0.0
 > Published 01 Feb 2025
 

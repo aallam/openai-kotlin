@@ -57,6 +57,11 @@ public data class ResponseRequest(
      * Nucleus sampling parameter.
      */
     @SerialName("top_p") public val topP: Double? = null,
+
+    /**
+     * Whether to stream the response.
+     */
+    @SerialName("stream") public val stream: Boolean? = null,
 )
 
 /**
@@ -110,6 +115,11 @@ public class ResponseRequestBuilder {
     public var instructions: String? = null
     
     /**
+     * Whterh to stream the response.
+     */
+     public var stream: Boolean? = null
+    
+    /**
      * Build the input items using a DSL.
      */
     public fun input(block: ResponseInputBuilder.() -> Unit) {
@@ -129,6 +139,7 @@ public class ResponseRequestBuilder {
         maxOutputTokens = maxOutputTokens,
         topP = topP,
         instructions = instructions,
+        stream = stream,
     )
 }
 
@@ -143,7 +154,8 @@ public class ResponseInputBuilder {
      * Add a message input item.
      */
     public fun message(role: ChatRole, content: String) {
-        items.add(ResponseInputItem.Message(role = role, content = content))
+        val status = if (role == ChatRole.Assistant) "completed" else null
+        items.add(ResponseInputItem.Message(role = role, content = content, status = status))
     }
     
     /**
@@ -151,9 +163,12 @@ public class ResponseInputBuilder {
      */
     public fun message(block: MessageInputBuilder.() -> Unit) {
         val builder = MessageInputBuilder().apply(block)
+        val role = requireNotNull(builder.role) { "role is required" }
+        val status = if (role == ChatRole.Assistant) "completed" else null
         items.add(ResponseInputItem.Message(
-            role = requireNotNull(builder.role) { "role is required" },
-            content = requireNotNull(builder.content) { "content is required" }
+            role = role,
+            content = requireNotNull(builder.content) { "content is required" },
+            status = status
         ))
     }
     

@@ -25,6 +25,11 @@ public sealed interface ResponseInputItem {
          * The content of the message.
          */
         @SerialName("content") public val content: String,
+
+        /**
+         * The status of the message. Required for assistant messages, always "completed".
+         */
+        @SerialName("status") public val status: String? = null,
     ) : ResponseInputItem
 
     /**
@@ -64,6 +69,15 @@ public sealed interface SummaryContentPart
 @Serializable
 @SerialName("summary_text")
 public data class SummaryTextPart(@SerialName("text") val text: String) : SummaryContentPart
+
+/**
+ * Output text content part (used in streaming responses).
+ *
+ * @param text the text content.
+ */
+@Serializable
+@SerialName("output_text")
+public data class OutputTextPart(@SerialName("text") val text: String) : SummaryContentPart
 
 /**
  * Content parts for reasoning content.

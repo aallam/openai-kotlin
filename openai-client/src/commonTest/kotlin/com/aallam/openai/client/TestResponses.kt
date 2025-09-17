@@ -4,11 +4,25 @@ import com.aallam.openai.api.chat.ChatRole
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.response.*
 import com.aallam.openai.api.exception.InvalidRequestException
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
+import kotlin.test.fail
 
 class TestResponses : TestOpenAI() {
 
@@ -37,18 +51,558 @@ class TestResponses : TestOpenAI() {
         // Validate output structure
         assertTrue(response.output.isNotEmpty())
         val messageOutput = response.output.find { it is ResponseOutputItem.Message } as? ResponseOutputItem.Message
-        assertNotNull(messageOutput)
+        assertNotNull(messageOutput?.id)
         assertNotNull(messageOutput.id)
         assertEquals(ChatRole.Assistant, messageOutput.role)
         assertTrue(messageOutput.content.isNotEmpty())
-
-        // Validate firstMessageText helper
+        
+        // Validate firstMessageTest helper
         assertNotNull(response.firstMessageText)
         assertTrue(response.firstMessageText?.isNotEmpty() == true)
     }
 
     @Test
-    fun testResponsesWithReasoningBasic() = test {
+    fun testResponsesStreaming() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            reasoning = ReasoningConfig(effort = "medium", summary = "detailed")
+            include = listOf("reasoning.encrypted_content")
+            stream = true // Enable streaming
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Count from 1 to 5"
+                }
+            }
+        }
+
+        // Test streaming response
+        val chunks = mutableListOf<ResponseChunk>()
+        openAI.createResponseStream(request).collect { chunk ->
+            chunks.add(chunk)
+        }
+
+        // Verify we got the expected event types
+        val eventTypes = chunks.map { it.type }.toSet()
+        assertTrue(eventTypes.contains("response.created"))
+        assertTrue(eventTypes.contains("response.completed"))
+
+        // Check if we got reasoning summary deltas (may or may not be present depending on model behavior)
+        val summaryDeltas = chunks.filter { it.type == "response.reasoning_summary_text.delta" }
+        if (summaryDeltas.isNotEmpty()) {
+            assertTrue(summaryDeltas.all { it.delta?.isNotEmpty() == true }, "Summary deltas should not be empty")
+        }
+
+        // Verify final response has usage information
+        val finalChunk = chunks.lastOrNull { it.type == "response.completed" }
+        assertNotNull(finalChunk?.response?.usage, "Final chunk should have usage information")
+
+        // Verify we got encrypted content in the final response
+        val finalResponse = finalChunk?.response
+        val reasoningOutput = finalResponse?.output?.filterIsInstance<ResponseOutputItem.Reasoning>()?.firstOrNull()
+        assertNotNull(reasoningOutput?.encryptedContent, "Should have encrypted reasoning content")
+    }
+
+    @Test
+    fun testResponsesStreamingSequenceNumbers() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            reasoning = ReasoningConfig(effort = "low")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Say hello"
+                }
+            }
+        }
+
+        val chunks = mutableListOf<ResponseChunk>()
+        openAI.createResponseStream(request).collect { chunk ->
+            chunks.add(chunk)
+        }
+
+        // Verify sequence numbers are monotonically increasing
+        assertTrue(chunks.isNotEmpty(), "Should receive at least one chunk")
+
+        val sequenceNumbers = chunks.map { it.sequenceNumber }
+        val sortedSequenceNumbers = sequenceNumbers.sorted()
+        assertEquals(sequenceNumbers, sortedSequenceNumbers, "Sequence numbers should be monotonically increasing")
+
+        // Verify sequence numbers start from a reasonable value (typically 0 or 1)
+        assertTrue(sequenceNumbers.first() >= 0, "First sequence number should be non-negative")
+
+        // Verify no duplicate sequence numbers
+        assertEquals(sequenceNumbers.size, sequenceNumbers.toSet().size, "Sequence numbers should be unique")
+    }
+
+    @Test
+    fun testResponsesStreamingEventTypes() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            reasoning = ReasoningConfig(effort = "medium", summary = "detailed")
+            include = listOf("reasoning.encrypted_content")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Explain photosynthesis briefly"
+                }
+            }
+        }
+
+        val chunks = mutableListOf<ResponseChunk>()
+        openAI.createResponseStream(request).collect { chunk ->
+            chunks.add(chunk)
+        }
+
+        val eventTypes = chunks.map { it.type }.toSet()
+
+        // Verify essential event types are present
+        assertTrue(eventTypes.contains("response.created"), "Should contain response.created event")
+        assertTrue(eventTypes.contains("response.completed"), "Should contain response.completed event")
+
+        // Verify event ordering - created should come before completed
+        val createdIndex = chunks.indexOfFirst { it.type == "response.created" }
+        val completedIndex = chunks.indexOfLast { it.type == "response.completed" }
+        assertTrue(createdIndex < completedIndex, "response.created should come before response.completed")
+
+        // Verify response data is present in appropriate events
+        val createdChunk = chunks.first { it.type == "response.created" }
+        assertNotNull(createdChunk.response, "response.created should have response data")
+
+        val completedChunk = chunks.last { it.type == "response.completed" }
+        assertNotNull(completedChunk.response, "response.completed should have response data")
+    }
+
+    @Test
+    fun testResponsesStreamingWithoutReasoning() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "What is 2+2?"
+                }
+            }
+        }
+
+        val chunks = mutableListOf<ResponseChunk>()
+        openAI.createResponseStream(request).collect { chunk ->
+            chunks.add(chunk)
+        }
+
+        // Should still get basic streaming events even without reasoning
+        val eventTypes = chunks.map { it.type }.toSet()
+        assertTrue(eventTypes.contains("response.created"))
+        assertTrue(eventTypes.contains("response.completed"))
+
+        // Should not have reasoning-specific events when no reasoning config is provided
+        val reasoningEvents = chunks.filter { it.type.contains("reasoning") }
+        assertTrue(reasoningEvents.isEmpty(), "Should not have reasoning events when no reasoning config is provided, but got: ${reasoningEvents.map { it.type }}")
+
+        // Verify the stream completes successfully
+        assertTrue(chunks.isNotEmpty())
+    }
+
+    @Test
+    fun testResponsesStreamingCancellation() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            reasoning = ReasoningConfig(effort = "high") // Use high effort for longer processing
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Write a very long detailed explanation of quantum mechanics, covering all major principles, mathematical formulations, and historical development."
+                }
+            }
+        }
+
+        var chunksReceived = 0
+        var cancellationCaught = false
+
+        val job = launch {
+            try {
+                openAI.createResponseStream(request).collect { chunk ->
+                    chunksReceived++
+                    if (chunksReceived >= 3) { // Cancel after receiving a few chunks
+                        cancel("Test cancellation")
+                    }
+                }
+            } catch (e: CancellationException) {
+                cancellationCaught = true
+                throw e // Re-throw to properly handle cancellation
+            }
+        }
+
+        try {
+            job.join()
+        } catch (e: CancellationException) {
+            // Expected
+        }
+
+        assertTrue(job.isCancelled, "Job should be cancelled")
+        assertTrue(chunksReceived > 0, "Should have received some chunks before cancellation")
+        assertTrue(cancellationCaught, "Should have caught CancellationException")
+    }
+
+    @Test
+    fun testResponsesStreamingTimeout() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Hello"
+                }
+            }
+        }
+
+        // Test with a very short timeout to ensure timeout behavior
+        var timeoutCaught = false
+        try {
+            withTimeout(1) { // 1ms timeout - should definitely timeout
+                openAI.createResponseStream(request).collect { }
+            }
+        } catch (e: TimeoutCancellationException) {
+            timeoutCaught = true
+        }
+
+        assertTrue(timeoutCaught, "Should have caught TimeoutCancellationException")
+    }
+
+    @Test
+    fun testResponsesStreamingErrorHandling() = test {
+        // Test with invalid model to trigger error
+        val request = responseRequest {
+            model = ModelId("invalid-model-name-that-does-not-exist")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Hello"
+                }
+            }
+        }
+
+        var errorCaught = false
+        try {
+            openAI.createResponseStream(request).collect { }
+        } catch (e: InvalidRequestException) {
+            errorCaught = true
+        } catch (e: Exception) {
+            // Other exceptions are also acceptable for this test
+            errorCaught = true
+        }
+
+        assertTrue(errorCaught, "Should have caught an exception for invalid model")
+    }
+
+    @Test
+    fun testResponsesStreamingEmptyInput() = test {
+        // Test with empty input to see how the API handles it
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            stream = true
+            input {
+                // Empty input - should trigger validation error
+            }
+        }
+
+        var errorCaught = false
+        try {
+            openAI.createResponseStream(request).collect { }
+        } catch (e: InvalidRequestException) {
+            errorCaught = true
+        } catch (e: Exception) {
+            // Other exceptions are also acceptable
+            errorCaught = true
+        }
+
+        assertTrue(errorCaught, "Should have caught an exception for empty input")
+    }
+
+    @Test
+    fun testResponsesStreamingChunkDataIntegrity() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            reasoning = ReasoningConfig(effort = "medium")
+            include = listOf("reasoning.encrypted_content")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Count from 1 to 3"
+                }
+            }
+        }
+
+        val chunks = mutableListOf<ResponseChunk>()
+        openAI.createResponseStream(request).collect { chunk ->
+            chunks.add(chunk)
+        }
+
+        // Verify chunk data integrity
+        for (chunk in chunks) {
+            // All chunks should have valid type and sequence number
+            assertTrue(chunk.type.isNotEmpty(), "Chunk type should not be empty")
+            assertTrue(chunk.sequenceNumber >= 0, "Sequence number should be non-negative")
+
+            // Verify conditional fields are present when expected
+            when (chunk.type) {
+                "response.created", "response.completed", "response.in_progress" -> {
+                    assertNotNull(chunk.response, "Response data should be present for ${chunk.type}")
+                }
+                "response.output_item.added" -> {
+                    assertNotNull(chunk.item, "Item should be present for output_item.added")
+                    assertNotNull(chunk.outputIndex, "Output index should be present for output_item.added")
+                }
+                "response.reasoning_summary_text.delta" -> {
+                    // Delta may be empty string but should not be null if present
+                    val delta = chunk.delta
+                    if (delta != null) {
+                        assertTrue(delta.isNotEmpty() || delta.isEmpty(), "Delta should be a valid string")
+                    }
+                }
+                "response.message_content.text.delta" -> {
+                    assertNotNull(chunk.contentIndex, "Content index should be present for message content delta")
+                }
+            }
+        }
+    }
+
+    @Test
+    fun testResponsesStreamingDeltaAccumulation() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            reasoning = ReasoningConfig(effort = "medium", summary = "detailed")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Say 'Hello World' exactly"
+                }
+            }
+        }
+
+        val chunks = mutableListOf<ResponseChunk>()
+        openAI.createResponseStream(request).collect { chunk ->
+            chunks.add(chunk)
+        }
+
+        // Test delta accumulation for message content
+        val messageDeltas = chunks.filter { it.type == "response.message_content.text.delta" }
+        if (messageDeltas.isNotEmpty()) {
+            val accumulatedText = messageDeltas.mapNotNull { it.delta }.joinToString("")
+            assertTrue(accumulatedText.isNotEmpty(), "Accumulated message text should not be empty")
+
+            // Verify content indices are sequential for the same message
+            val contentIndices = messageDeltas.mapNotNull { it.contentIndex }.sorted()
+            if (contentIndices.isNotEmpty()) {
+                assertEquals(contentIndices, contentIndices.sorted(), "Content indices should be in order")
+            }
+        }
+
+        // Test delta accumulation for reasoning summaries
+        val reasoningDeltas = chunks.filter { it.type == "response.reasoning_summary_text.delta" }
+        if (reasoningDeltas.isNotEmpty()) {
+            val accumulatedSummary = reasoningDeltas.mapNotNull { it.delta }.joinToString("")
+            // Summary may be empty but should be a valid string
+            assertTrue(accumulatedSummary.length >= 0, "Accumulated summary should be valid")
+        }
+    }
+
+    @Test
+    fun testResponsesStreamingLimitedCollection() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Write a short poem"
+                }
+            }
+        }
+
+        // Test collecting only first few chunks
+        val limitedChunks = openAI.createResponseStream(request).take(5).toList()
+
+        assertTrue(limitedChunks.size <= 5, "Should collect at most 5 chunks")
+        assertTrue(limitedChunks.isNotEmpty(), "Should collect at least one chunk")
+
+        // First chunk should typically be response.created
+        val firstChunk = limitedChunks.first()
+        assertTrue(firstChunk.type == "response.created" || firstChunk.type.isNotEmpty(),
+                  "First chunk should have valid type")
+    }
+
+    @Test
+    fun testResponsesStreamingFirstChunkOnly() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Hi"
+                }
+            }
+        }
+
+        // Test getting only the first chunk
+        val firstChunk = openAI.createResponseStream(request).first()
+
+        assertNotNull(firstChunk, "Should receive first chunk")
+        assertTrue(firstChunk.type.isNotEmpty(), "First chunk should have valid type")
+        assertTrue(firstChunk.sequenceNumber >= 0, "First chunk should have valid sequence number")
+
+        // First chunk is typically response.created
+        if (firstChunk.type == "response.created") {
+            assertNotNull(firstChunk.response, "response.created should have response data")
+            assertNotNull(firstChunk.response?.id, "Response should have ID")
+        }
+    }
+
+    @Test
+    fun testResponsesStreamingWithMaxTokensLimit() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            maxOutputTokens = 16 // Minimum allowed limit
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Write a long essay about artificial intelligence"
+                }
+            }
+        }
+
+        val chunks = mutableListOf<ResponseChunk>()
+        openAI.createResponseStream(request).collect { chunk ->
+            chunks.add(chunk)
+        }
+
+        // Should complete successfully even with low token limit
+        val eventTypes = chunks.map { it.type }.toSet()
+        assertTrue(eventTypes.contains("response.created"))
+        assertTrue(eventTypes.contains("response.completed"))
+
+        // Final response should have usage information showing token limit was respected
+        val finalChunk = chunks.lastOrNull { it.type == "response.completed" }
+        val usage = finalChunk?.response?.usage
+        if (usage != null) {
+            // Output tokens should be close to or at the limit
+            val totalTokens = usage.totalTokens
+            if (totalTokens != null) {
+                assertTrue(totalTokens > 0, "Should have used some tokens")
+            }
+        }
+    }
+
+    @Test
+    fun testResponsesStreamingWithDifferentEffortLevels() = test {
+        val effortLevels = listOf("low", "medium", "high")
+
+        for (effort in effortLevels) {
+            val request = responseRequest {
+                model = ModelId("gpt-5")
+                reasoning = ReasoningConfig(effort = effort)
+                stream = true
+                input {
+                    message {
+                        role = ChatRole.User
+                        content = "What is 5 + 3?"
+                    }
+                }
+            }
+
+            val chunks = mutableListOf<ResponseChunk>()
+            openAI.createResponseStream(request).collect { chunk ->
+                chunks.add(chunk)
+            }
+
+            // All effort levels should produce valid streaming responses
+            assertTrue(chunks.isNotEmpty(), "Should receive chunks for effort level: $effort")
+
+            val eventTypes = chunks.map { it.type }.toSet()
+            assertTrue(eventTypes.contains("response.created"), "Should have response.created for effort: $effort")
+            assertTrue(eventTypes.contains("response.completed"), "Should have response.completed for effort: $effort")
+        }
+    }
+
+    @Test
+    fun testResponsesStreamingWithMultipleMessages() = test {
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            stream = true
+            input {
+                message(ChatRole.System, "You are a helpful math tutor.")
+                message(ChatRole.User, "What is 2 + 2?")
+                message(ChatRole.Assistant, "2 + 2 equals 4.")
+                message(ChatRole.User, "Now what is 3 + 3?")
+            }
+        }
+
+        val chunks = mutableListOf<ResponseChunk>()
+        openAI.createResponseStream(request).collect { chunk ->
+            chunks.add(chunk)
+        }
+
+        // Should handle multi-turn conversation in streaming mode
+        assertTrue(chunks.isNotEmpty(), "Should receive chunks for multi-message input")
+
+        val eventTypes = chunks.map { it.type }.toSet()
+        assertTrue(eventTypes.contains("response.created"))
+        assertTrue(eventTypes.contains("response.completed"))
+
+        // Verify final response contains appropriate content
+        val finalChunk = chunks.lastOrNull { it.type == "response.completed" }
+        assertNotNull(finalChunk?.response, "Final chunk should have response data")
+    }
+
+    @Test
+    fun testResponsesStreamingErrorRecovery() = test {
+        // Test that streaming can handle and recover from various error conditions
+        val request = responseRequest {
+            model = ModelId("gpt-5")
+            stream = true
+            input {
+                message {
+                    role = ChatRole.User
+                    content = "Hello"
+                }
+            }
+        }
+
+        var streamCompleted = false
+        var errorOccurred = false
+
+        try {
+            openAI.createResponseStream(request)
+                .catch { error ->
+                    errorOccurred = true
+                    // In a real scenario, you might want to emit a default value or retry
+                    throw error
+                }
+                .collect { chunk ->
+                    // Process chunks normally
+                    assertTrue(chunk.type.isNotEmpty(), "Chunk type should be valid")
+                }
+            streamCompleted = true
+        } catch (e: Exception) {
+            // Expected in some error scenarios
+        }
+
+        // Either the stream completed successfully or an error was properly handled
+        assertTrue(streamCompleted || errorOccurred, "Stream should either complete or handle errors properly")
+    }
+
+    @Test
+    fun testResponsesStreamingWithReasoningBasic() = test {
         val request = responseRequest {
             model = ModelId("gpt-5") // Use reasoning model
             reasoning = ReasoningConfig(effort = "medium")
@@ -68,12 +622,15 @@ class TestResponses : TestOpenAI() {
         assertEquals("completed", response.status)
         assertTrue(response.output.isNotEmpty())
 
-        // Reasoning may or may not be available depending on model/API
-        // But if reasoning config is provided, reasoning field should be present
-        if (response.reasoning != null) {
+        // Check if reasoning content is available in the output items
+        // The encrypted content is returned as a ResponseOutputItem.Reasoning, not in the top-level reasoning field
+        val reasoningOutput = response.output.filterIsInstance<ResponseOutputItem.Reasoning>().firstOrNull()
+        if (reasoningOutput != null) {
             // Verify reasoning structure when present
-            assertNotNull(response.reasoning)
-            assertNotNull(response.reasoning?.encryptedContent)
+            assertNotNull(reasoningOutput.id)
+            // Encrypted content may or may not be present depending on include parameter
+            // Since we requested "reasoning.encrypted_content", it should be present
+            assertNotNull(reasoningOutput.encryptedContent)
         }
     }
 

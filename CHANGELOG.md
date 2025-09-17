@@ -3,15 +3,24 @@
 ### Added
 - **responses**: OpenAI Responses API implementation with reasoning support
 - **responses**: stateless response generation with manual context management
-- **responses**: streaming support for real-time response generation
+- **responses**: streaming support for real-time response generation with `createResponseStream()`
 - **responses**: reasoning traces access through encrypted content
 - **responses**: comprehensive DSL builder for request construction
 - **responses**: support for reasoning effort levels (low, medium, high)
 - **responses**: reasoning summary options (auto, concise, detailed)
 - **responses**: max output tokens and instructions parameters
+- **responses**: `ResponseChunk` data class for streaming response events
+- **responses**: support for various streaming event types (created, completed, deltas, etc.)
+- **responses**: enhanced message input with status field for assistant messages
+- **responses**: `OutputTextPart` for streaming response content parts
 - **core**: enhanced Usage class with reasoning-specific token counts
 - **guides**: comprehensive Responses API documentation and examples
 - **chat**: add verbosity parameter support for controlling response length and detail
+
+### Enhanced
+- **responses**: improved test coverage with streaming response validation
+- **responses**: better error handling and response structure validation
+- **responses**: enhanced DSL builder with stream parameter support
 
 ## 4.0.1
 > Published 02 Feb 2025

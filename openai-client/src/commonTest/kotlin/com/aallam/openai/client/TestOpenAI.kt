@@ -2,6 +2,7 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.http.Timeout
 import com.aallam.openai.api.logging.LogLevel
+import com.aallam.openai.api.logging.Logger
 import com.aallam.openai.client.internal.OpenAIApi
 import com.aallam.openai.client.internal.createHttpClient
 import com.aallam.openai.client.internal.env

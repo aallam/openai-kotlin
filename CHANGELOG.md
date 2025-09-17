@@ -1,6 +1,16 @@
 ## Unreleased
 
 ### Added
+- **responses**: OpenAI Responses API implementation with reasoning support
+- **responses**: stateless response generation with manual context management
+- **responses**: streaming support for real-time response generation
+- **responses**: reasoning traces access through encrypted content
+- **responses**: comprehensive DSL builder for request construction
+- **responses**: support for reasoning effort levels (low, medium, high)
+- **responses**: reasoning summary options (auto, concise, detailed)
+- **responses**: max output tokens and instructions parameters
+- **core**: enhanced Usage class with reasoning-specific token counts
+- **guides**: comprehensive Responses API documentation and examples
 - **chat**: add verbosity parameter support for controlling response length and detail
 
 ## 4.0.1

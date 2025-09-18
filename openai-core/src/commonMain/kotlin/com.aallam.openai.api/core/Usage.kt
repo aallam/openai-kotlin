@@ -1,53 +1,132 @@
 package com.aallam.openai.api.core
 
 import kotlinx.serialization.*
-import kotlinx.serialization.descriptors.*
-import kotlinx.serialization.encoding.*
-import kotlinx.serialization.json.*
 
-@Serializable(with = UsageSerializer::class)
+@Serializable
 public data class Usage(
     /**
-     * Count of prompts tokens.
+     * Count of prompt tokens (Chat Completions API).
      */
+    @SerialName("prompt_tokens")
     public val promptTokens: Int? = null,
+
     /**
-     * Count of completion tokens.
-     * Also accepts "output_tokens" for compatibility with Responses API.
+     * Count of completion tokens (Chat Completions API).
      */
+    @SerialName("completion_tokens")
     public val completionTokens: Int? = null,
+
     /**
      * Count of total tokens.
      */
+    @SerialName("total_tokens")
     public val totalTokens: Int? = null,
+
+    /**
+     * Count of input tokens (Responses API).
+     */
+    @SerialName("input_tokens")
+    public val inputTokens: Int? = null,
+
+    /**
+     * Count of output tokens (Responses API).
+     */
+    @SerialName("output_tokens")
+    public val outputTokens: Int? = null,
+
+    /**
+     * Details about prompt tokens (Chat Completions API).
+     */
+    @SerialName("prompt_tokens_details")
+    public val promptTokensDetails: PromptTokensDetails? = null,
+
+    /**
+     * Details about completion tokens (Chat Completions API).
+     */
+    @SerialName("completion_tokens_details")
+    public val completionTokensDetails: CompletionTokensDetails? = null,
+
+    /**
+     * Details about input tokens (Responses API).
+     */
+    @SerialName("input_tokens_details")
+    public val inputTokensDetails: InputTokensDetails? = null,
+
+    /**
+     * Details about output tokens (Responses API).
+     */
+    @SerialName("output_tokens_details")
+    public val outputTokensDetails: OutputTokensDetails? = null,
 )
 
 /**
- * Custom serializer for Usage that handles both "completion_tokens" and "output_tokens" field names.
+ * Details about prompt tokens (Chat Completions API).
  */
-internal object UsageSerializer : KSerializer<Usage> {
-    override val descriptor: SerialDescriptor = buildClassSerialDescriptor("Usage") {
-        element<Int?>("prompt_tokens")
-        element<Int?>("completion_tokens")
-        element<Int?>("total_tokens")
-    }
+@Serializable
+public data class PromptTokensDetails(
+    /**
+     * Number of cached tokens.
+     */
+    @SerialName("cached_tokens")
+    public val cachedTokens: Int? = null,
 
-    override fun serialize(encoder: Encoder, value: Usage) {
-        val composite = encoder.beginStructure(descriptor)
-        composite.encodeNullableSerializableElement(descriptor, 0, serializer<Int>(), value.promptTokens)
-        composite.encodeNullableSerializableElement(descriptor, 1, serializer<Int>(), value.completionTokens)
-        composite.encodeNullableSerializableElement(descriptor, 2, serializer<Int>(), value.totalTokens)
-        composite.endStructure(descriptor)
-    }
+    /**
+     * Number of audio tokens.
+     */
+    @SerialName("audio_tokens")
+    public val audioTokens: Int? = null,
+)
 
-    override fun deserialize(decoder: Decoder): Usage {
-        require(decoder is JsonDecoder) { "This serializer can only be used with Json format" }
-        val element = decoder.decodeJsonElement().jsonObject
+/**
+ * Details about completion tokens (Chat Completions API).
+ */
+@Serializable
+public data class CompletionTokensDetails(
+    /**
+     * Number of reasoning tokens.
+     */
+    @SerialName("reasoning_tokens")
+    public val reasoningTokens: Int? = null,
 
-        val promptTokens = element["prompt_tokens"]?.jsonPrimitive?.intOrNull ?: element["input_tokens"]?.jsonPrimitive?.intOrNull
-        val completionTokens = element["completion_tokens"]?.jsonPrimitive?.intOrNull ?: element["output_tokens"]?.jsonPrimitive?.intOrNull
-        val totalTokens = element["total_tokens"]?.jsonPrimitive?.intOrNull
+    /**
+     * Number of audio tokens.
+     */
+    @SerialName("audio_tokens")
+    public val audioTokens: Int? = null,
 
-        return Usage(promptTokens, completionTokens, totalTokens)
-    }
-}
+    /**
+     * Number of accepted prediction tokens.
+     */
+    @SerialName("accepted_prediction_tokens")
+    public val acceptedPredictionTokens: Int? = null,
+
+    /**
+     * Number of rejected prediction tokens.
+     */
+    @SerialName("rejected_prediction_tokens")
+    public val rejectedPredictionTokens: Int? = null,
+)
+
+/**
+ * Details about input tokens (Responses API).
+ */
+@Serializable
+public data class InputTokensDetails(
+    /**
+     * Number of cached tokens.
+     */
+    @SerialName("cached_tokens")
+    public val cachedTokens: Int? = null,
+)
+
+/**
+ * Details about output tokens (Responses API).
+ */
+@Serializable
+public data class OutputTokensDetails(
+    /**
+     * Number of reasoning tokens.
+     */
+    @SerialName("reasoning_tokens")
+    public val reasoningTokens: Int? = null,
+)

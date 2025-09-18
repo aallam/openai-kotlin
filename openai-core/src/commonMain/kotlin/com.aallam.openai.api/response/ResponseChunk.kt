@@ -1,5 +1,6 @@
 package com.aallam.openai.api.response
 
+import com.aallam.openai.api.core.Usage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -62,6 +63,12 @@ public data class ResponseChunk(
      * The content index (present in message content events).
      */
     @SerialName("content_index") public val contentIndex: Int? = null,
+
+    /**
+     * Text completion usage data.
+     */
+    @SerialName("usage")
+    public val usage: Usage? = null,
 )
 
 

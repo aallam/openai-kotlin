@@ -491,15 +491,48 @@ class TestResponses : TestOpenAI() {
         assertTrue(eventTypes.contains("response.created"))
         assertTrue(eventTypes.contains("response.completed"))
 
+        // Validate that we received chunks and the response structure is correct
+        assertTrue(chunks.isNotEmpty(), "Should have received streaming chunks")
+
         // Final response should have usage information showing token limit was respected
         val finalChunk = chunks.lastOrNull { it.type == "response.completed" }
-        val usage = finalChunk?.response?.usage
-        if (usage != null) {
-            // Output tokens should be close to or at the limit
-            val totalTokens = usage.totalTokens
-            if (totalTokens != null) {
-                assertTrue(totalTokens > 0, "Should have used some tokens")
-            }
+        assertNotNull(finalChunk, "Should have a response.completed chunk")
+
+        // Look for usage information in any chunk (might be in different places)
+        val usage = finalChunk?.response?.usage ?: finalChunk?.usage ?: chunks.lastOrNull()?.usage
+        assertNotNull(usage, "Usage information should be present somewhere in the response")
+
+        // Validate Responses API usage fields are present and correct
+
+        // For Responses API, these fields should be present
+        assertNotNull(usage.inputTokens, "inputTokens should be present for Responses API")
+        assertNotNull(usage.totalTokens, "totalTokens should be present")
+
+        // Validate token counts are reasonable
+        assertTrue(usage.inputTokens!! > 0, "Should have used input tokens")
+        assertTrue(usage.totalTokens!! > 0, "Should have used total tokens")
+
+        // Output tokens might be 0 if the response was cut off due to token limit
+        // but should be present as a field
+        assertNotNull(usage.outputTokens, "outputTokens field should be present for Responses API")
+        assertTrue(usage.outputTokens!! >= 0, "Output tokens should be non-negative")
+
+        // If we have output tokens, validate the limit was respected
+        if (usage.outputTokens!! > 0) {
+            assertTrue(usage.outputTokens!! <= 16, "Output tokens should respect the limit of 16")
+            assertEquals(usage.inputTokens!! + usage.outputTokens!!, usage.totalTokens!!,
+                        "Total tokens should equal input + output tokens")
+        }
+
+        // For Responses API, Chat Completions fields should be null or not present
+        // (The API returns only the Responses API format)
+
+        // Validate token details if present (optional validation)
+        usage.inputTokensDetails?.let {
+            assertNotNull(it.cachedTokens, "Cached tokens should be reported in input token details")
+        }
+        usage.outputTokensDetails?.let {
+            // Reasoning tokens might be present for reasoning models
         }
     }
 
@@ -856,7 +889,7 @@ class TestResponses : TestOpenAI() {
         assertEquals("completed", response.status)
 
         // Usage statistics may or may not be present
-        // Note: The API returns different field names than expected by the Usage class
+        // Responses API returns input_tokens, output_tokens, total_tokens
         if (response.usage != null) {
             // The totalTokens field should always be present if usage is provided
             assertNotNull(response.usage?.totalTokens)
@@ -987,8 +1020,10 @@ class TestResponses : TestOpenAI() {
 
         // Validate usage information shows limited output tokens
         assertNotNull(response.usage)
-        assertTrue((response.usage?.completionTokens ?: 0) <= 100) // Should be within the limit
-        assertTrue((response.usage?.completionTokens ?: 0) > 0) // Should have generated some tokens
+        // For Responses API, check output_tokens field
+        val outputTokens = response.usage?.outputTokens ?: response.usage?.completionTokens ?: 0
+        assertTrue(outputTokens <= 100) // Should be within the limit
+        assertTrue(outputTokens > 0) // Should have generated some tokens
     }
 
     @Test
@@ -1018,7 +1053,9 @@ class TestResponses : TestOpenAI() {
 
         // Validate usage information shows limited output tokens (even more restrictive)
         assertNotNull(response.usage)
-        assertTrue((response.usage?.completionTokens ?: 0) <= 50) // Should be within the stricter limit
+        // For Responses API, check output_tokens field
+        val outputTokens = response.usage?.outputTokens ?: response.usage?.completionTokens ?: 0
+        assertTrue(outputTokens <= 50) // Should be within the stricter limit
         // Note: Some reasoning models may return 0 tokens for certain requests, so we just check the limit
     }
 }

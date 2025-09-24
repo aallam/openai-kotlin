@@ -13,7 +13,16 @@
 - **responses**: support for various streaming event types (created, completed, deltas, etc.)
 - **responses**: enhanced message input with status field for assistant messages
 - **responses**: `OutputTextPart` for streaming response content parts
+- **responses**: **tool calling support** with multi-turn conversation workflows
+- **responses**: function tool definitions with comprehensive schema support (ObjectSchema, StringSchema, etc.)
+- **responses**: tool call execution and response handling with `FunctionCall` and `FunctionCallOutput`
+- **responses**: tool call status tracking (completed, in_progress, incomplete)
+- **responses**: comprehensive tool calling DSL builders for request construction
 - **core**: enhanced Usage class with reasoning-specific token counts
+- **core**: new `Message` class with rich content support (InputText, OutputText, annotations)
+- **core**: `Reasoning` class for reasoning input/output with encrypted content support
+- **core**: tool-related classes (`Tool`, `FunctionTool`, `ToolCall`, `ToolCallId`, etc.)
+- **core**: comprehensive schema definitions for tool parameters
 - **guides**: comprehensive Responses API documentation and examples
 - **chat**: add verbosity parameter support for controlling response length and detail
 
@@ -21,6 +30,8 @@
 - **responses**: improved test coverage with streaming response validation
 - **responses**: better error handling and response structure validation
 - **responses**: enhanced DSL builder with stream parameter support
+- **responses**: comprehensive multi-turn tool calling test coverage
+- **responses**: enhanced message content builders with type safety
 
 ## 4.0.1
 > Published 02 Feb 2025

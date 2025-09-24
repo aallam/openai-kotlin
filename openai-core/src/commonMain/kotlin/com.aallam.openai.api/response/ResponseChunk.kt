@@ -13,7 +13,7 @@ public data class ResponseChunk(
      * The type of the streaming event.
      */
     @SerialName("type") public val type: String,
-    
+
     /**
      * The sequence number of this chunk.
      */

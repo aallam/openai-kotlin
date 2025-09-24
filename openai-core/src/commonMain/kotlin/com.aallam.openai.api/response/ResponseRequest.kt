@@ -62,6 +62,8 @@ public data class ResponseRequest(
      * Whether to stream the response.
      */
     @SerialName("stream") public val stream: Boolean? = null,
+
+    @SerialName("tools") public val tools: List<Tool>? = null,
 )
 
 /**
@@ -78,6 +80,8 @@ public class ResponseRequestBuilder {
      * The input items for the response.
      */
     public var input: List<ResponseInputItem>? = null
+
+    public var tools: List<Tool>? = null
     
     /**
      * Whether to store the response. Always false for stateless usage.
@@ -125,6 +129,10 @@ public class ResponseRequestBuilder {
     public fun input(block: ResponseInputBuilder.() -> Unit) {
         input = ResponseInputBuilder().apply(block).build()
     }
+
+    public fun tools(block: ToolsBuilder.() -> Unit) {
+        tools = ToolsBuilder().apply(block).build()
+    }
     
     /**
      * Build the [ResponseRequest].
@@ -140,7 +148,19 @@ public class ResponseRequestBuilder {
         topP = topP,
         instructions = instructions,
         stream = stream,
+        tools = tools,
     )
+}
+
+@OpenAIDsl
+public class ToolsBuilder {
+    private val tools = mutableListOf<Tool>()
+
+    public fun tool(block: ToolBuilder.() -> Unit) {
+        tools.add(ToolBuilder().apply(block).build())
+    }
+
+    internal fun build(): List<Tool> = tools.toList()
 }
 
 /**
@@ -154,82 +174,50 @@ public class ResponseInputBuilder {
      * Add a message input item.
      */
     public fun message(role: ChatRole, content: String) {
-        val status = if (role == ChatRole.Assistant) "completed" else null
-        items.add(ResponseInputItem.Message(role = role, content = content, status = status))
+        val status = if (role == ChatRole.Assistant) MessageStatus.Completed else null
+        val messageContent = if (role == ChatRole.Assistant) {
+            MessageContent.OutputText(content)
+        } else {
+            MessageContent.InputText(content)
+        }
+        items.add(
+            Message(
+                role = role,
+                content = listOf(messageContent),
+                status = status,
+            ),
+        )
     }
     
     /**
      * Add a message input item using a builder.
      */
-    public fun message(block: MessageInputBuilder.() -> Unit) {
-        val builder = MessageInputBuilder().apply(block)
-        val role = requireNotNull(builder.role) { "role is required" }
-        val status = if (role == ChatRole.Assistant) "completed" else null
-        items.add(ResponseInputItem.Message(
-            role = role,
-            content = requireNotNull(builder.content) { "content is required" },
-            status = status
-        ))
+    public fun message(block: MessageBuilder.() -> Unit) {
+        items.add(MessageBuilder().apply(block).build())
     }
     
     /**
      * Add a reasoning input item.
      */
-    public fun reasoning(content: List<ReasoningContentPart>, summary: List<SummaryContentPart>, encryptedContent: String? = null) {
-        items.add(ResponseInputItem.Reasoning(content = content, summary = summary, encryptedContent = encryptedContent))
+    public fun reasoning(block: ReasoningBuilder.() -> Unit) {
+        items.add(ReasoningBuilder().apply(block).build())
     }
-    
+
+    public fun functionCall(block: FunctionCallBuilder.() -> Unit) {
+        items.add(FunctionCallBuilder().apply(block).build())
+    }
+
+    public fun functionCallOutput(block: FunctionCallOutputBuilder.() -> Unit) {
+        items.add(FunctionCallOutputBuilder().apply(block).build())
+    }
+
     /**
-     * Add a reasoning input item using a builder.
+     * Add a tool input item.
      */
-    public fun reasoning(block: ReasoningInputBuilder.() -> Unit) {
-        val builder = ReasoningInputBuilder().apply(block)
-        items.add(ResponseInputItem.Reasoning(
-            content = requireNotNull(builder.content) { "content is required" },
-            summary = requireNotNull(builder.summary) { "summary is required" },
-            encryptedContent = builder.encryptedContent
-        ))
-    }
     
     internal fun build(): List<ResponseInputItem> = items.toList()
 }
 
-/**
- * Builder for message input items.
- */
-@OpenAIDsl
-public class MessageInputBuilder {
-    /**
-     * The role of the message author.
-     */
-    public var role: ChatRole? = null
-    
-    /**
-     * The content of the message.
-     */
-    public var content: String? = null
-}
-
-/**
- * Builder for reasoning input items.
- */
-@OpenAIDsl
-public class ReasoningInputBuilder {
-    /**
-     * The reasoning content.
-     */
-    public var content: List<ReasoningContentPart>? = null
-
-    /**
-     * A summary of the reasoning content.
-     */
-    public var summary: List<SummaryContentPart>? = null
-
-    /**
-     * The encrypted reasoning content from a previous response.
-     */
-    public var encryptedContent: String? = null
-}
 
 /**
  * Create a [ResponseRequest] using a DSL.

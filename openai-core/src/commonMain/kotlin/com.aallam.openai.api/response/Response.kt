@@ -69,13 +69,25 @@ public data class Response(
      * Get the first message output content as text, if available.
      */
     public val firstMessageText: String?
-        get() = output.filterIsInstance<ResponseOutputItem.Message>()
+        get() = output.filterIsInstance<Message>()
             .firstOrNull()
             ?.content
-            ?.filterIsInstance<MessageContent.Text>()
+            ?.filterIsInstance<MessageContent.OutputText>()
             ?.firstOrNull()
             ?.text
 }
+
+/**
+ * Input items for the responses API.
+ */
+@Serializable
+public sealed interface ResponseInputItem
+
+/**
+ * Output items from the responses API.
+ */
+@Serializable
+public sealed interface ResponseOutputItem
 
 /**
  * Error information for a failed response.

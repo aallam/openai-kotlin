@@ -114,9 +114,9 @@ public class OpenAIHost(
             )
         }
 
-        public fun azureV1(resourceName: String): OpenAIHost {
+        public fun azureV1(resourceName: String, domain: String = "openai.azure.com"): OpenAIHost {
             return OpenAIHost(
-                baseUrl = "https://$resourceName.openai.azure.com/openai/v1/",
+                baseUrl = "https://$resourceName.$domain/openai/v1/",
             )
         }
     }

@@ -107,11 +107,18 @@ public class OpenAIHost(
          * @param deploymentId The name of your model deployment.
          * @param apiVersion The API version to use for this operation. This parameter should follow the YYYY-MM-DD format.
          */
-        public fun azure(resourceName: String, deploymentId: String, apiVersion: String): OpenAIHost =
-            OpenAIHost(
+        public fun azure(resourceName: String, deploymentId: String, apiVersion: String): OpenAIHost {
+            return OpenAIHost(
                 baseUrl = "https://$resourceName.openai.azure.com/openai/deployments/$deploymentId/",
                 queryParams = mapOf("api-version" to apiVersion),
             )
+        }
+
+        public fun azureV1(resourceName: String): OpenAIHost {
+            return OpenAIHost(
+                baseUrl = "https://$resourceName.openai.azure.com/openai/v1/",
+            )
+        }
     }
 }
 

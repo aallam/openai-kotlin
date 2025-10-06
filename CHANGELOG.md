@@ -32,6 +32,7 @@
 - **responses**: enhanced DSL builder with stream parameter support
 - **responses**: comprehensive multi-turn tool calling test coverage
 - **responses**: enhanced message content builders with type safety
+- **Azure API V1**: Support for OpenAI Azure's v1 API
 
 ## 4.0.1
 > Published 02 Feb 2025

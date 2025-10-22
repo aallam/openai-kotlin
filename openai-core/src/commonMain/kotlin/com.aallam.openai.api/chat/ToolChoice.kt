@@ -36,6 +36,9 @@ public sealed interface ToolChoice {
         /** Represents the `none` mode. */
         public val None: ToolChoice = Mode("none")
 
+        /** Represents the `required` mode. */
+        public val Required: ToolChoice = Mode("required")
+
         /** Specifies a function for the model to call **/
         public fun function(name: String): ToolChoice =
             Named(type = ToolType.Function, function = FunctionToolChoice(name = name))

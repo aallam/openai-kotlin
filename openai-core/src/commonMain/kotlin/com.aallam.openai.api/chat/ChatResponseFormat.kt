@@ -56,5 +56,5 @@ public data class JsonSchema(
     /**
      * Whether to enforce strict schema validation
      */
-    @SerialName("strict") val strict: Boolean = true
+    @SerialName("strict") val strict: Boolean? = null
 )

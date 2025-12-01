@@ -11,7 +11,7 @@ public data class FunctionCall(
     @SerialName("call_id")
     val callId: ToolCallId,
     val arguments: JsonEncodedArguments,
-    val status: ToolCallStatus = ToolCallStatus.Completed,
+    val status: ToolCallStatus,
 ) : ResponseOutputItem, ResponseInputItem
 
 @Serializable @SerialName("function_call_output")

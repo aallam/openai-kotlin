@@ -2,6 +2,7 @@ package com.aallam.openai.api.response
 
 import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.chat.ChatRole
+import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -52,6 +53,7 @@ public sealed interface MessageContent {
         /**
          * Annotations for the text content.
          */
+        @EncodeDefault(EncodeDefault.Mode.ALWAYS)
         @SerialName("annotations") public val annotations: List<Annotation> = emptyList(),
     ) : MessageContent
 

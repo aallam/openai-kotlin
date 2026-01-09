@@ -72,6 +72,60 @@ public sealed interface ResponseTool {
     ) : ResponseTool
 
     /**
+     * Web search tool
+     */
+    @Serializable
+    @SerialName("web_search")
+    public data class WebSearch(
+        /**
+         * The approximate location of the user.
+         */
+        @SerialName("user_location")
+        val userLocation: WebSearchLocation? = null,
+
+        /**
+         * High level guidance for the amount of context window space to use for the search.
+         * One of 'low', 'medium', or 'high'.
+         * 'medium' is the default.
+         */
+        @SerialName("search_context_size")
+        val searchContextSize: WebSearchContextSize? = null,
+
+        /**
+         * Filters for the search.
+         */
+        @SerialName("filters")
+        val filters: WebSearchFilter? = null,
+    ) : ResponseTool
+
+    /**
+     * Web search tool (2025-08-26)
+     */
+    @Serializable
+    @SerialName("web_search_2025_08_26")
+    public data class WebSearch2025(
+        /**
+         * The approximate location of the user.
+         */
+        @SerialName("user_location")
+        val userLocation: WebSearchLocation? = null,
+
+        /**
+         * High level guidance for the amount of context window space to use for the search.
+         * One of 'low', 'medium', or 'high'.
+         * 'medium' is the default.
+         */
+        @SerialName("search_context_size")
+        val searchContextSize: WebSearchContextSize? = null,
+
+        /**
+         * Filters for the search.
+         */
+        @SerialName("filters")
+        val filters: WebSearchFilter? = null,
+    ) : ResponseTool
+
+    /**
      * Web search tool (preview)
      */
     @Serializable

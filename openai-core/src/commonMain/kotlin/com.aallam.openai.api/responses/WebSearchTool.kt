@@ -68,6 +68,20 @@ public data class WebSearchLocation(
 }
 
 /**
+* Filters for the search.
+*/
+@Serializable
+public data class WebSearchFilter(
+    /**
+     * Allowed domains for the search. If not provided, all domains are allowed.
+     * Subdomains of the provided domains are allowed as well.
+     * Defaults to [].
+     */
+    @SerialName("allowed_domains")
+    val allowedDomains: List<String>? = null,
+)
+
+/**
  * Web search tool call in a response
  */
 @Serializable

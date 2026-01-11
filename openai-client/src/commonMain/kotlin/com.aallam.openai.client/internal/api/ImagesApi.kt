@@ -3,6 +3,7 @@ package com.aallam.openai.client.internal.api
 import com.aallam.openai.api.core.ListResponse
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.image.*
+import com.aallam.openai.api.image.internal.GptImageCreationRequest
 import com.aallam.openai.api.image.internal.ImageCreationRequest
 import com.aallam.openai.api.image.internal.ImageResponseFormat
 import com.aallam.openai.client.Images
@@ -15,6 +16,61 @@ import io.ktor.client.request.forms.*
 import io.ktor.http.*
 
 internal class ImagesApi(private val requester: HttpRequester) : Images {
+
+    override suspend fun imageCreate(creation: ImageCreation, requestOptions: RequestOptions?): List<ImageJSON> {
+        return requester.perform<ListResponse<ImageJSON>> {
+            it.post {
+                url(path = ApiPath.ImagesGeneration)
+                setBody(creation.toRequest())
+                contentType(ContentType.Application.Json)
+                requestOptions(requestOptions)
+            }
+        }.data
+    }
+
+    /** Convert [ImageCreation] instance to request with all parameters */
+    private fun ImageCreation.toRequest() = GptImageCreationRequest(
+        prompt = prompt,
+        background = background,
+        model = model?.id,
+        moderation = moderation,
+        n = n,
+        outputCompression = outputCompression,
+        outputFormat = outputFormat,
+        partialImages = partialImages,
+        quality = quality,
+        size = size,
+        stream = stream,
+        user = user,
+    )
+
+    override suspend fun imageEdit(edit: ImageEdit, requestOptions: RequestOptions?): List<ImageJSON> {
+        return requester.perform<ListResponse<ImageJSON>> {
+            it.submitFormWithBinaryData(
+                url = ApiPath.ImagesEdits,
+                formData = imageEditRequest(edit, ImageResponseFormat.base64Json),
+            ) {
+                requestOptions(requestOptions)
+            }
+        }.data
+    }
+
+    private fun gptImageEditRequest(edit: ImageEdit) = formData {
+        appendFileSource("image", edit.image)
+        appendFileSource("mask", edit.mask)
+        append(key = "prompt", value = edit.prompt)
+        edit.background?.let { bg -> append(key = "background", value = bg.value) }
+        edit.inputFidelity?.let { i -> append(key = "input_fidelity", value = i.value) }
+        edit.model?.let { model -> append(key = "model", value = model.id) }
+        edit.n?.let { n -> append(key = "n", value = n) }
+        edit.outputCompression?.let { comp -> append(key = "output_compression", value = comp) }
+        edit.outputFormat?.let { format -> append(key = "output_format", value = format.value) }
+        edit.partialImages?.let { partial -> append(key = "partial_images", value = partial) }
+        edit.quality?.let { quality -> append(key = "quality", value = quality.value) }
+        edit.size?.let { dim -> append(key = "size", value = dim.size) }
+        edit.stream?.let { stream -> append(key = "stream", value = stream) }
+        edit.user?.let { user -> append(key = "user", value = user) }
+    }
 
     override suspend fun imageURL(creation: ImageCreation, requestOptions: RequestOptions?): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {

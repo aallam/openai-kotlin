@@ -10,11 +10,34 @@ public interface Images {
 
     /**
      * Creates an image given a prompt.
+     * Returns images as base64 JSON (the only format supported by GPT image models).
+     *
+     * @param creation image creation request.
+     * @param requestOptions request options.
+     */
+    public suspend fun imageCreate(creation: ImageCreation, requestOptions: RequestOptions? = null): List<ImageJSON>
+
+    /**
+     * Creates an edited or extended image given an original image and a prompt.
+     * Returns images as base64 JSON (the only format supported by GPT image models).
+     *
+     * @param edit image edit request.
+     * @param requestOptions request options.
+     */
+    public suspend fun imageEdit(edit: ImageEdit, requestOptions: RequestOptions? = null): List<ImageJSON>
+
+    /**
+     * Creates an image given a prompt.
      * Get images as URLs.
      *
      * @param creation image creation request.
      * @param requestOptions request options.
      */
+    @Deprecated(
+        message = "Use image() for GPT models (returns base64). URL responses only work with DALL-E models which are being removed in May 2026.",
+        replaceWith = ReplaceWith("image(creation, requestOptions)"),
+        level = DeprecationLevel.WARNING
+    )
     public suspend fun imageURL(creation: ImageCreation, requestOptions: RequestOptions? = null): List<ImageURL>
 
     /**
@@ -24,6 +47,11 @@ public interface Images {
      * @param creation image creation request.
      * @param requestOptions request options.
      */
+    @Deprecated(
+        message = "Use image() instead for a unified API that works with both GPT and DALL-E models.",
+        replaceWith = ReplaceWith("image(creation, requestOptions)"),
+        level = DeprecationLevel.WARNING
+    )
     public suspend fun imageJSON(creation: ImageCreation, requestOptions: RequestOptions? = null): List<ImageJSON>
 
     /**
@@ -33,6 +61,11 @@ public interface Images {
      * @param edit image edit request.
      * @param requestOptions request options.
      */
+    @Deprecated(
+        message = "Use image() for GPT models (returns base64). URL responses only work with DALL-E models which are being removed in May 2026.",
+        replaceWith = ReplaceWith("image(edit, requestOptions)"),
+        level = DeprecationLevel.WARNING
+    )
     public suspend fun imageURL(edit: ImageEdit, requestOptions: RequestOptions? = null): List<ImageURL>
 
     /**
@@ -42,6 +75,11 @@ public interface Images {
      * @param edit image edit request.
      * @param requestOptions request options.
      */
+    @Deprecated(
+        message = "Use image() instead for a unified API that works with both GPT and DALL-E models.",
+        replaceWith = ReplaceWith("image(edit, requestOptions)"),
+        level = DeprecationLevel.WARNING
+    )
     public suspend fun imageJSON(edit: ImageEdit, requestOptions: RequestOptions? = null): List<ImageJSON>
 
     /**
@@ -51,6 +89,11 @@ public interface Images {
      * @param variation image variation request.
      * @param requestOptions request options.
      */
+    @Deprecated(
+        message = "Use image() for GPT models (returns base64). URL responses only work with DALL-E models which are being removed in May 2026.",
+        replaceWith = ReplaceWith("image(variation, requestOptions)"),
+        level = DeprecationLevel.WARNING
+    )
     public suspend fun imageURL(variation: ImageVariation, requestOptions: RequestOptions? = null): List<ImageURL>
 
     /**
@@ -60,5 +103,10 @@ public interface Images {
      * @param variation image variation request.
      * @param requestOptions request options.
      */
+    @Deprecated(
+        message = "Use image() instead for a unified API that works with both GPT and DALL-E models.",
+        replaceWith = ReplaceWith("image(variation, requestOptions)"),
+        level = DeprecationLevel.WARNING
+    )
     public suspend fun imageJSON(variation: ImageVariation, requestOptions: RequestOptions? = null): List<ImageJSON>
 }

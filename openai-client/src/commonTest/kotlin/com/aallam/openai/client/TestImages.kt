@@ -38,8 +38,8 @@ class TestImages : TestOpenAI() {
     @Test
     fun imageEditURL() = test {
         val request = imageEdit {
-            image = FileSource(path = testFilePath("image/pool.png"), fileSystem = TestFileSystem)
-            mask = FileSource(path = testFilePath("image/poolmask.png"), fileSystem = TestFileSystem)
+            image = FileSource(path = testFilePath("image/pool.png"), fileSystem = TestFileSystem, contentType = "image/png")
+            mask = FileSource(path = testFilePath("image/poolmask.png"), fileSystem = TestFileSystem, contentType = "image/png")
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
             n = 1
             size = ImageSize.is1024x1024
@@ -51,8 +51,8 @@ class TestImages : TestOpenAI() {
     @Test
     fun imageEditJSON() = test {
         val request = imageEdit {
-            image = FileSource(path = testFilePath("image/pool.png"), fileSystem = TestFileSystem)
-            mask = FileSource(path = testFilePath("image/poolmask.png"), fileSystem = TestFileSystem)
+            image = FileSource(path = testFilePath("image/pool.png"), fileSystem = TestFileSystem, contentType = "image/png")
+            mask = FileSource(path = testFilePath("image/poolmask.png"), fileSystem = TestFileSystem, contentType = "image/png")
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
             n = 1
             size = ImageSize.is1024x1024
@@ -64,7 +64,7 @@ class TestImages : TestOpenAI() {
     @Test
     fun imageVariationURL() = test {
         val request = imageVariation {
-            image = FileSource(path = testFilePath("image/pets.png"), fileSystem = TestFileSystem)
+            image = FileSource(path = testFilePath("image/pets.png"), fileSystem = TestFileSystem, contentType = "image/png")
             n = 1
             size = ImageSize.is1024x1024
         }
@@ -75,7 +75,7 @@ class TestImages : TestOpenAI() {
     @Test
     fun imageVariationJSON() = test {
         val request = imageVariation {
-            image = FileSource(path = testFilePath("image/pets.png"), fileSystem = TestFileSystem)
+            image = FileSource(path = testFilePath("image/pets.png"), fileSystem = TestFileSystem, contentType = "image/png")
             n = 1
             size = ImageSize.is1024x1024
         }

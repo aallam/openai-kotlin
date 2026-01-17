@@ -2,6 +2,7 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.image.*
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Given a prompt and/or an input image, the model will generate a new image.
@@ -25,6 +26,25 @@ public interface Images {
      * @param requestOptions request options.
      */
     public suspend fun imageEdit(edit: ImageEdit, requestOptions: RequestOptions? = null): List<ImageJSON>
+
+    /**
+     * Creates an image given a prompt and streams the response back as a series of partial images.
+     * This allows you to stream partial images as they are generated, providing a more interactive experience.
+     *
+     * @param creation image creation request.
+     * @param requestOptions request options.
+     */
+    public fun imageCreateFlow(creation: ImageCreation, requestOptions: RequestOptions? = null): Flow<PartialImage>
+
+    /**
+     * Creates an edited or extended image given an original image and a prompt
+     * and streams the response back as a series of partial images.
+     * This allows you to stream partial images as they are generated, providing a more interactive experience.
+     *
+     * @param edit image edit request.
+     * @param requestOptions request options.
+     */
+    public fun imageEditFlow(edit: ImageEdit, requestOptions: RequestOptions? = null): Flow<PartialImage>
 
     /**
      * Creates an image given a prompt.

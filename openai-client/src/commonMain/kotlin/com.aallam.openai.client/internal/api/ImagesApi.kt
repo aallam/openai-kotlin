@@ -9,11 +9,15 @@ import com.aallam.openai.api.image.internal.ImageResponseFormat
 import com.aallam.openai.client.Images
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.extension.requestOptions
+import com.aallam.openai.client.internal.extension.streamEventsFrom
+import com.aallam.openai.client.internal.extension.streamRequestOf
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 internal class ImagesApi(private val requester: HttpRequester) : Images {
 
@@ -52,6 +56,48 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
                 requestOptions(requestOptions)
             }
         }.data
+    }
+
+    override fun imageCreateFlow(
+        creation: ImageCreation,
+        requestOptions: RequestOptions?
+    ): Flow<PartialImage> {
+        val builder = HttpRequestBuilder().apply {
+            method = HttpMethod.Post
+            url(path = ApiPath.ImagesGeneration)
+            setBody(streamRequestOf(creation.toRequest()))
+            contentType(ContentType.Application.Json)
+            accept(ContentType.Text.EventStream)
+            headers {
+                append(HttpHeaders.CacheControl, "no-cache")
+                append(HttpHeaders.Connection, "keep-alive")
+            }
+            requestOptions(requestOptions)
+        }
+        return flow {
+            requester.perform(builder) { response -> streamEventsFrom(response) }
+        }
+    }
+
+    override fun imageEditFlow(
+        edit: ImageEdit,
+        requestOptions: RequestOptions?
+    ): Flow<PartialImage> {
+        val builder = HttpRequestBuilder().apply {
+            method = HttpMethod.Post
+            url(path = ApiPath.ImagesEdits)
+            setBody(streamRequestOf(gptImageEditRequest(edit)))
+            contentType(ContentType.Application.Json)
+            accept(ContentType.Text.EventStream)
+            headers {
+                append(HttpHeaders.CacheControl, "no-cache")
+                append(HttpHeaders.Connection, "keep-alive")
+            }
+            requestOptions(requestOptions)
+        }
+        return flow {
+            requester.perform(builder) { response -> streamEventsFrom(response) }
+        }
     }
 
     private fun gptImageEditRequest(edit: ImageEdit) = formData {

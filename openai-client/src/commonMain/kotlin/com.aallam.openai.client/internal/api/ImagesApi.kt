@@ -83,11 +83,11 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         edit: ImageEdit,
         requestOptions: RequestOptions?
     ): Flow<PartialImage> {
+        val formDataContent = MultiPartFormDataContent(gptImageEditRequest(edit, stream = true))
         val builder = HttpRequestBuilder().apply {
             method = HttpMethod.Post
             url(path = ApiPath.ImagesEdits)
-            setBody(streamRequestOf(gptImageEditRequest(edit)))
-            contentType(ContentType.Application.Json)
+            setBody(formDataContent)
             accept(ContentType.Text.EventStream)
             headers {
                 append(HttpHeaders.CacheControl, "no-cache")
@@ -100,10 +100,11 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         }
     }
 
-    private fun gptImageEditRequest(edit: ImageEdit) = formData {
+    private fun gptImageEditRequest(edit: ImageEdit, stream: Boolean = false) = formData {
         appendFileSource("image", edit.image)
         appendFileSource("mask", edit.mask)
         append(key = "prompt", value = edit.prompt)
+        append(key = "stream", value = stream)
         edit.background?.let { bg -> append(key = "background", value = bg.value) }
         edit.inputFidelity?.let { i -> append(key = "input_fidelity", value = i.value) }
         edit.model?.let { model -> append(key = "model", value = model.id) }

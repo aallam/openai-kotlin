@@ -40,7 +40,6 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         partialImages = partialImages,
         quality = quality,
         size = size,
-        stream = stream,
         user = user,
     )
 
@@ -48,7 +47,7 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         return requester.perform<ListResponse<ImageJSON>> {
             it.submitFormWithBinaryData(
                 url = ApiPath.ImagesEdits,
-                formData = imageEditRequest(edit, ImageResponseFormat.base64Json),
+                formData = gptImageEditRequest(edit),
             ) {
                 requestOptions(requestOptions)
             }
@@ -68,7 +67,6 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
         edit.partialImages?.let { partial -> append(key = "partial_images", value = partial) }
         edit.quality?.let { quality -> append(key = "quality", value = quality.value) }
         edit.size?.let { dim -> append(key = "size", value = dim.size) }
-        edit.stream?.let { stream -> append(key = "stream", value = stream) }
         edit.user?.let { user -> append(key = "user", value = user) }
     }
 

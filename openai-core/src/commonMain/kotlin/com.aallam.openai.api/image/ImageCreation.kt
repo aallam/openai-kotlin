@@ -81,12 +81,6 @@ public class ImageCreation(
     public val partialImages: Int? = null,
 
     /**
-     * Generate the image in streaming mode. Defaults to false.
-     * This parameter is only supported for the GPT image models.
-     */
-    public val stream: Boolean? = null,
-
-    /**
      * The format in which generated images with dall-e-2 and dall-e-3 are returned.
      * Must be one of url or b64_json. URLs are only valid for 60 minutes after the image has been generated.
      * This parameter isn't supported for the GPT image models, which always return base64-encoded images.
@@ -176,12 +170,6 @@ public class ImageCreationBuilder {
     public var partialImages: Int? = null
 
     /**
-     * Generate the image in streaming mode.
-     * This parameter is only supported for the GPT image models.
-     */
-    public var stream: Boolean? = null
-
-    /**
      * The format in which generated images with dall-e-2 and dall-e-3 are returned.
      * Must be one of url or b64_json.
      */
@@ -207,7 +195,6 @@ public class ImageCreationBuilder {
         outputFormat = outputFormat,
         outputCompression = outputCompression,
         partialImages = partialImages,
-        stream = stream,
         responseFormat = responseFormat,
         user = user,
     )

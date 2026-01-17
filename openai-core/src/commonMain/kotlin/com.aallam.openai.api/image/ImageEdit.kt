@@ -80,12 +80,6 @@ public class ImageEdit(
     public val partialImages: Int? = null,
 
     /**
-     * Generate the image in streaming mode.
-     * This parameter is only supported for the GPT image models.
-     */
-    public val stream: Boolean? = null,
-
-    /**
      * The format in which generated images with dall-e-2 and dall-e-3 are returned.
      * Must be one of url or b64_json.
      */
@@ -173,11 +167,6 @@ public class ImageEditBuilder {
     public var partialImages: Int? = null
 
     /**
-     * Generate the image in streaming mode.
-     */
-    public var stream: Boolean? = null
-
-    /**
      * The format in which generated images with dall-e-2 and dall-e-3 are returned.
      */
     public var responseFormat: String? = null
@@ -203,7 +192,6 @@ public class ImageEditBuilder {
         outputFormat = outputFormat,
         outputCompression = outputCompression,
         partialImages = partialImages,
-        stream = stream,
         responseFormat = responseFormat,
         user = user,
     )

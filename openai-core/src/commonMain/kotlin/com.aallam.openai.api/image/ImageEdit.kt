@@ -22,9 +22,16 @@ public class ImageEdit(
     public val mask: FileSource,
 
     /**
-     * A text description of the desired image(s). The maximum length is 1000 characters.
+     * A text description of the desired image(s).
+     * Maximum length: 32000 characters for GPT image models, 4000 for dall-e-3, 1000 for dall-e-2.
      */
     public val prompt: String,
+
+    /**
+     * The model to use for image generation.
+     * One of dall-e-2, dall-e-3, or a GPT image model (gpt-image-1, gpt-image-1-mini, gpt-image-1.5).
+     */
+    public val model: ModelId? = null,
 
     /**
      * The number of images to generate. Must be between 1 and 10.
@@ -37,14 +44,51 @@ public class ImageEdit(
     public val size: ImageSize? = null,
 
     /**
+     * The quality of the image that will be generated.
+     */
+    public val quality: Quality? = null,
+
+    /**
+     * Allows to set transparency for the background of the generated image(s).
+     * This parameter is only supported for the GPT image models.
+     */
+    public val background: Background? = null,
+
+    /**
+     * Control how much effort the model will exert to match the style and features,
+     * especially facial features, of input images.
+     * This parameter is only supported for gpt-image-1
+     */
+    public val inputFidelity: InputFidelity? = null,
+
+    /**
+     * The format in which the generated images are returned.
+     * This parameter is only supported for the GPT image models.
+     */
+    public val outputFormat: OutputFormat? = null,
+
+    /**
+     * The compression level (0-100%) for the generated images.
+     * This parameter is only supported for the GPT image models with the webp or jpeg output formats.
+     */
+    public val outputCompression: Int? = null,
+
+    /**
+     * The number of partial images to generate (0-3).
+     * This parameter is used for streaming responses that return partial images.
+     */
+    public val partialImages: Int? = null,
+
+    /**
+     * The format in which generated images with dall-e-2 and dall-e-3 are returned.
+     * Must be one of url or b64_json.
+     */
+    public val responseFormat: String? = null,
+
+    /**
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
      */
     public val user: String? = null,
-
-    /**
-     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
-     */
-    public val model: ModelId? = null,
 )
 
 /**
@@ -72,9 +116,15 @@ public class ImageEditBuilder {
     public var mask: FileSource? = null
 
     /**
-     * A text description of the desired image(s). The maximum length is 1000 characters.
+     * A text description of the desired image(s).
+     * Maximum length: 32000 characters for GPT image models, 4000 for dall-e-3, 1000 for dall-e-2.
      */
     public var prompt: String? = null
+
+    /**
+     * The model to use for image generation.
+     */
+    public var model: ModelId? = null
 
     /**
      * The number of images to generate. Must be between 1 and 10.
@@ -87,14 +137,44 @@ public class ImageEditBuilder {
     public var size: ImageSize? = null
 
     /**
+     * The quality of the image that will be generated.
+     */
+    public var quality: Quality? = null
+
+    /**
+     * Allows to set transparency for the background of the generated image(s).
+     */
+    public var background: Background? = null
+
+    /**
+     * Control how much effort the model will exert to match the style and features of input images.
+     */
+    public val inputFidelity: InputFidelity? = null
+
+    /**
+     * The format in which the generated images are returned.
+     */
+    public var outputFormat: OutputFormat? = null
+
+    /**
+     * The compression level (0-100%) for the generated images.
+     */
+    public var outputCompression: Int? = null
+
+    /**
+     * The number of partial images to generate (0-3).
+     */
+    public var partialImages: Int? = null
+
+    /**
+     * The format in which generated images with dall-e-2 and dall-e-3 are returned.
+     */
+    public var responseFormat: String? = null
+
+    /**
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.
      */
     public var user: String? = null
-
-    /**
-     * The model used to generate image. Must be one of dall-e-2 or dall-e-3. If not provided, dall-e-2 is used.
-     */
-    public var model: ModelId? = null
 
     /**
      * Creates the [ImageEdit] instance
@@ -103,9 +183,16 @@ public class ImageEditBuilder {
         image = requireNotNull(image) { "image field is required" },
         mask = requireNotNull(mask) { "mask field is required" },
         prompt = requireNotNull(prompt) { "prompt field is required" },
+        model = model,
         n = n,
         size = size,
+        quality = quality,
+        background = background,
+        inputFidelity = inputFidelity,
+        outputFormat = outputFormat,
+        outputCompression = outputCompression,
+        partialImages = partialImages,
+        responseFormat = responseFormat,
         user = user,
-        model = model,
     )
 }

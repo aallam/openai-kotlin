@@ -27,7 +27,7 @@ internal inline fun <reified T> streamRequestOf(serializable: T): JsonElement {
 }
 
 internal fun FormBuilder.appendFileSource(key: String, fileSource: FileSource) {
-    append(key = key, filename = fileSource.name, contentType = ContentType.Application.OctetStream) {
+    append(key = key, filename = fileSource.name, contentType = ContentType.parse(fileSource.contentType)) {
         fileSource.source.buffered().use { source ->
             val buffer = ByteArray(8192) // 8 KiB
             var bytesRead: Int

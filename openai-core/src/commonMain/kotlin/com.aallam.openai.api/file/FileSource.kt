@@ -20,6 +20,11 @@ public class FileSource(
      * File source.
      */
     public val source: RawSource,
+
+    /**
+     * content type
+     */
+    public val contentType: String
 ) {
 
     /**
@@ -28,7 +33,7 @@ public class FileSource(
      * @param path the file path to upload
      * @param fileSystem file system to be used
      */
-    public constructor(path: Path, fileSystem: FileSystem = SystemFileSystem) : this(path.name, fileSystem.source(path))
+    public constructor(path: Path, fileSystem: FileSystem = SystemFileSystem, contentType: String = "application/octet-stream") : this(path.name, fileSystem.source(path), contentType)
 }
 
 /**
@@ -53,10 +58,16 @@ public class FileSourceBuilder {
     public var source: Source? = null
 
     /**
+     * content type
+     */
+    public var contentType: String? = null
+
+    /**
      * Creates the [FileSource] instance
      */
     public fun build(): FileSource = FileSource(
         name = requireNotNull(name) { "name is required" },
-        source = requireNotNull(source) { "source is required" }
+        source = requireNotNull(source) { "source is required" },
+        contentType = contentType ?: "application/octet-stream"
     )
 }

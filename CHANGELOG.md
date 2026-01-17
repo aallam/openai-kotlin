@@ -1,3 +1,9 @@
+## 4.1.0
+> Published 30 Jan 2026
+
+### Added
+- **images**: added support for gpt-image class of models. Deprecated Dall-E specific API behavior.
+
 ## 4.0.1
 > Published 02 Feb 2025
 

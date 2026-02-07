@@ -48,7 +48,11 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         install(Auth) {
             bearer {
                 loadTokens {
-                    BearerTokens(accessToken = config.token, refreshToken = "")
+                    BearerTokens(accessToken = config.token, refreshToken = null)
+                }
+                // In the event of a 401, do NOT clear the token; just return the old token - OpenAI tokens do not have a refresh mechanism
+                refreshTokens {
+                    oldTokens
                 }
             }
         }

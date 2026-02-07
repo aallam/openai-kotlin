@@ -1,18 +1,28 @@
 ## Unreleased
 
+## 4.1.0
+> Published 07 Feb 2026
+
 ### Added
+- **batch**: make `OpenAI` interface extend `Batch` interface (#433).
 - **responses**: add Responses API support (`create`, `retrieve`, `cancel`, `delete`, and `input_items` listing).
 - **chat**: add `web_search_options` request support.
 - **chat**: expose `annotations` and `reasoning_content` in chat message payloads.
+- **chat**: support `required` tool choice mode (#429).
 
 ### Fixed
 - **chat**: make `ChatCompletionRequestBuilder.reasoningEffort`, `store`, and `maxCompletionTokens` configurable.
 - **chat**: improve `ChatResponseFormat` compatibility by supporting both primitive and object variants.
+- **chat**: always encode `JsonSchema.strict`, including its default `true` value (#430).
 - **chat**: set explicit JSON class discriminator for polymorphic `ContentPart` serialization.
+- **images**: stabilize image edit uploads for live API compatibility (#459).
+- **tests**: remove flaky external image URL dependency from chat vision live tests.
+- **tests**: stabilize vector store live tests with current API behavior (#459).
 
 ### Changed
 - **tests**: make `openai-client` live API tests opt-in via `OPENAI_LIVE_TESTS=1`.
 - **ci**: split billable live tests into a small JVM smoke job and a separate full-live workflow.
+- **docs**: fix RetrievalTool usage in Getting Started guide (#427).
 
 ## 4.0.1
 > Published 02 Feb 2025

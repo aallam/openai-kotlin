@@ -168,6 +168,23 @@ repositories {
 
 For common issues and their solutions, check the [Troubleshooting Guide](TROUBLESHOOTING.md).
 
+## 🧪 Testing
+
+`openai-client` tests are live integration tests and can generate billable API traffic.
+
+- Default (non-billable): live tests are disabled.
+- Opt-in live tests: set `OPENAI_LIVE_TESTS=1` and `OPENAI_API_KEY`.
+
+Examples:
+
+```bash
+# Free/offline checks
+./gradlew :openai-core:jvmTest :openai-core:jsTest :openai-core:wasmJsTest :openai-core:apiCheck :openai-client:apiCheck
+
+# Live smoke (billable)
+OPENAI_LIVE_TESTS=1 OPENAI_API_KEY=... ./gradlew :openai-client:jvmTest --tests "*.TestModels"
+```
+
 ## ⭐️ Support
 
 Appreciate the project? Here's how you can help:

@@ -10,26 +10,31 @@ import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import kotlin.time.Duration.Companion.minutes
 
+internal fun isLiveTestsEnabled(): Boolean = env("OPENAI_LIVE_TESTS") == "1"
+
 internal val token: String
-    get() = requireNotNull(env("OPENAI_API_KEY")) { "OPENAI_API_KEY environment variable must be set." }
+    get() = requireNotNull(env("OPENAI_API_KEY")) {
+        "OPENAI_API_KEY environment variable must be set when OPENAI_LIVE_TESTS=1."
+    }
 
 
-internal val openAIConfig: OpenAIConfig = OpenAIConfig(
+internal fun openAIConfig(): OpenAIConfig = OpenAIConfig(
     token = token,
     logging = LoggingConfig(logLevel = LogLevel.All),
     timeout = Timeout(socket = 1.minutes),
+    retry = RetryStrategy(maxRetries = 0),
 )
 
 private fun transport(config: OpenAIConfig? = null): HttpTransport {
     return HttpTransport(
         createHttpClient(
-            config ?: openAIConfig
+            config ?: openAIConfig()
         )
     )
 }
 
 abstract class TestOpenAI {
-    internal val openAI = OpenAIApi(transport())
+    internal val openAI: OpenAIApi by lazy { OpenAIApi(transport()) }
 
     internal fun generateOpenAI(
         config: OpenAIConfig
@@ -37,5 +42,8 @@ abstract class TestOpenAI {
         return OpenAIApi(transport(config))
     }
 
-    fun test(testBody: suspend TestScope.() -> Unit) = runTest(timeout = 1.minutes, testBody = testBody)
+    fun test(testBody: suspend TestScope.() -> Unit) = runTest(timeout = 1.minutes) {
+        if (!isLiveTestsEnabled()) return@runTest
+        testBody()
+    }
 }

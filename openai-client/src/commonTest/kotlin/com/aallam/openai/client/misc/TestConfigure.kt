@@ -6,13 +6,12 @@ import com.aallam.openai.client.TestOpenAI
 import com.aallam.openai.client.token
 import io.ktor.client.plugins.api.createClientPlugin
 import kotlin.test.Test
-import kotlinx.coroutines.test.runTest
 import kotlin.test.assertTrue
 import kotlin.time.Duration.Companion.minutes
 
 class TestConfigure : TestOpenAI() {
     @Test
-    fun configureClientPlugin() = runTest {
+    fun configureClientPlugin() = test {
         val responseHeaders = mutableListOf<String>()
         val plugin = createClientPlugin("CustomHeaderPlugin") {
             onResponse { response ->

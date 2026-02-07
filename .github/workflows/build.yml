@@ -36,41 +36,10 @@ jobs:
       - name: Run lint
         run: ./gradlew spotlessCheck
 
-  test-jvm:
-    name: Test JVM
+  offline-checks:
+    name: Offline Checks
     runs-on: ubuntu-latest
     needs: lint
-    strategy:
-      matrix:
-        include:
-          - name: Assistants
-            test: "*.TestAssistants"
-          - name: Audio
-            test: "*.TestAudio"
-          - name: Chat Completions
-            test: "*.TestChat*"
-          - name: Embeddings
-            test: "*.TestEmbeddings"
-          - name: Files
-            test: "*.TestFiles"
-          - name: Fine-tuning
-            test: "*.TestFineTuning"
-          - name: Images
-            test: "*.TestImages"
-          - name: Messages
-            test: "*.TestMessages"
-          - name: Models
-            test: "*.TestModels"
-          - name: Moderations
-            test: "*.TestModerations"
-          - name: Runs
-            test: "*.TestRuns"
-          - name: Threads
-            test: "*.TestThreads"
-          - name: Vector Stores
-            test: "*.TestVectorStores"
-          - name: Misc.
-            test: "*.misc.*"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -87,15 +56,54 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
 
-      - name: Test ${{ matrix.name }}
-        run: ./gradlew :openai-client:jvmTest --tests ${{ matrix.test }}
+      - name: Run offline checks
+        run: >
+          ./gradlew
+          :openai-core:jvmTest
+          :openai-core:jsTest
+          :openai-core:wasmJsTest
+          :openai-core:apiCheck
+          :openai-client:apiCheck
+          :openai-client:compileTestKotlinJvm
+          :openai-client:compileTestKotlinJs
+          :openai-client:compileTestKotlinWasmJs
+
+  live-smoke-jvm:
+    name: Live Smoke JVM
+    runs-on: ubuntu-latest
+    needs: offline-checks
+    if: ${{ github.repository == 'aallam/openai-kotlin' && secrets.OPENAI_API_KEY != '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v3
+
+      - name: Configure JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 11
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
+
+      - name: Run live smoke tests
+        run: >
+          ./gradlew
+          :openai-client:jvmTest
+          --tests "*.TestModels"
+          --tests "*.TestEmbeddings.embeddings"
+          --tests "*.TestChatCompletions.chatCompletions"
         env:
+          OPENAI_LIVE_TESTS: "1"
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
   publish-docs:
     runs-on: ubuntu-latest
-    needs: [ test-jvm ]
-    if: github.repository == 'aallam/openai-kotlin' && github.ref == 'refs/heads/main'
+    needs: [ offline-checks, live-smoke-jvm ]
+    if: ${{ github.repository == 'aallam/openai-kotlin' && github.ref == 'refs/heads/main' && (needs['live-smoke-jvm'].result == 'success' || needs['live-smoke-jvm'].result == 'skipped') }}
     permissions:
       contents: write
     steps:

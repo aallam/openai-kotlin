@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/docs-api-a97bff.svg?logo=kotlin)](https://mouaad.aallam.com/openai-kotlin/)
 
-Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines
+Kotlin client for [OpenAI's API](https://platform.openai.com/docs/api-reference) with multiplatform and coroutines
 capabilities.
 
 ## 📦 Setup
@@ -105,6 +105,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 
 ### Supported features
 
+- [Responses](guides/GettingStarted.md#responses)
 - [Models](guides/GettingStarted.md#models)
 - [Chat](guides/GettingStarted.md#chat)
 - [Images](guides/GettingStarted.md#images)

@@ -1,3 +1,15 @@
+## Unreleased
+
+### Added
+- **responses**: add Responses API support (`create`, `retrieve`, `cancel`, `delete`, and `input_items` listing).
+- **chat**: add `web_search_options` request support.
+- **chat**: expose `annotations` and `reasoning_content` in chat message payloads.
+
+### Fixed
+- **chat**: make `ChatCompletionRequestBuilder.reasoningEffort`, `store`, and `maxCompletionTokens` configurable.
+- **chat**: improve `ChatResponseFormat` compatibility by supporting both primitive and object variants.
+- **chat**: set explicit JSON class discriminator for polymorphic `ContentPart` serialization.
+
 ## 4.0.1
 > Published 02 Feb 2025
 

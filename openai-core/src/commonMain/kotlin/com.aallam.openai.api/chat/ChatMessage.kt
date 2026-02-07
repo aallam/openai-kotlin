@@ -4,6 +4,7 @@ import com.aallam.openai.api.OpenAIDsl
 import com.aallam.openai.api.chat.internal.ContentSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonClassDiscriminator
 import kotlin.jvm.JvmInline
 
 
@@ -55,6 +56,16 @@ public data class ChatMessage(
      * Azure Content Filter Offsets
      */
     @SerialName("content_filter_offsets") public val contentFilterOffsets: List<ContentFilterOffsets>? = null,
+
+    /**
+     * Annotations associated with the assistant message content.
+     */
+    @SerialName("annotations") public val annotations: List<ChatAnnotation>? = null,
+
+    /**
+     * Additional reasoning content returned by reasoning-capable models.
+     */
+    @SerialName("reasoning_content") public val reasoningContent: String? = null,
 ) {
 
     public constructor(
@@ -66,6 +77,8 @@ public data class ChatMessage(
         toolCallId: ToolId? = null,
         contentFilterResults: List<ContentFilterResults>? = null,
         contentFilterOffsets: List<ContentFilterOffsets>? = null,
+        annotations: List<ChatAnnotation>? = null,
+        reasoningContent: String? = null,
     ) : this(
         role = role,
         messageContent = content?.let { TextContent(it) },
@@ -75,6 +88,8 @@ public data class ChatMessage(
         toolCallId = toolCallId,
         contentFilterOffsets = contentFilterOffsets,
         contentFilterResults = contentFilterResults,
+        annotations = annotations,
+        reasoningContent = reasoningContent,
     )
 
     public constructor(
@@ -86,6 +101,8 @@ public data class ChatMessage(
         toolCallId: ToolId? = null,
         contentFilterResults: List<ContentFilterResults>? = null,
         contentFilterOffsets: List<ContentFilterOffsets>? = null,
+        annotations: List<ChatAnnotation>? = null,
+        reasoningContent: String? = null,
     ) : this(
         role = role,
         messageContent = content?.let { ListContent(it) },
@@ -95,6 +112,8 @@ public data class ChatMessage(
         toolCallId = toolCallId,
         contentFilterOffsets = contentFilterOffsets,
         contentFilterResults = contentFilterResults,
+        annotations = annotations,
+        reasoningContent = reasoningContent,
     )
 
     val content: String?
@@ -211,6 +230,7 @@ public value class ListContent(public val content: List<ContentPart>) : Content
 /**
  * Represents a chat message part.
  */
+@JsonClassDiscriminator("type")
 @Serializable
 public sealed interface ContentPart
 
@@ -259,6 +279,19 @@ public data class ImagePart(
         @SerialName("detail") val detail: String? = null,
     )
 }
+
+/**
+ * Annotation for assistant message content.
+ */
+@Serializable
+public data class ChatAnnotation(
+    @SerialName("type") val type: String,
+    @SerialName("url") val url: String? = null,
+    @SerialName("title") val title: String? = null,
+    @SerialName("start_index") val startIndex: Int? = null,
+    @SerialName("end_index") val endIndex: Int? = null,
+    @SerialName("text") val text: String? = null,
+)
 
 /**
  * The messages to generate chat completions for.
@@ -316,6 +349,16 @@ public class ChatMessageBuilder {
     public var toolCallId: ToolId? = null
 
     /**
+     * Annotations associated with assistant content.
+     */
+    public var annotations: List<ChatAnnotation>? = null
+
+    /**
+     * Additional reasoning content returned by reasoning-capable models.
+     */
+    public var reasoningContent: String? = null
+
+    /**
      * The contents of the message.
      */
     internal val parts = mutableListOf<ContentPart>()
@@ -343,6 +386,8 @@ public class ChatMessageBuilder {
             toolCallId = toolCallId,
             contentFilterOffsets = contentFilterOffsets,
             contentFilterResults = contentFilterResults,
+            annotations = annotations,
+            reasoningContent = reasoningContent,
         )
     }
 }

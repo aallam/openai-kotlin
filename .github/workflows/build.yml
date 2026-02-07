@@ -68,11 +68,11 @@ jobs:
           :openai-client:compileTestKotlinJs
           :openai-client:compileTestKotlinWasmJs
 
-  live-smoke-jvm:
-    name: Live Smoke JVM
+  live-full-jvm:
+    name: Live Full JVM
     runs-on: ubuntu-latest
     needs: offline-checks
-    if: ${{ github.repository == 'aallam/openai-kotlin' && github.ref == 'refs/heads/main' && secrets.OPENAI_API_KEY != '' }}
+    if: ${{ github.repository == 'aallam/openai-kotlin' && github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.OPENAI_API_KEY != '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -89,21 +89,16 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
 
-      - name: Run live smoke tests
-        run: >
-          ./gradlew
-          :openai-client:jvmTest
-          --tests "*.TestModels"
-          --tests "*.TestEmbeddings.embeddings"
-          --tests "*.TestChatCompletions.chatCompletions"
+      - name: Run full live tests
+        run: ./gradlew :openai-client:jvmTest
         env:
           OPENAI_LIVE_TESTS: "1"
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
   publish-docs:
     runs-on: ubuntu-latest
-    needs: [ offline-checks, live-smoke-jvm ]
-    if: ${{ github.repository == 'aallam/openai-kotlin' && github.ref == 'refs/heads/main' && (needs['live-smoke-jvm'].result == 'success' || needs['live-smoke-jvm'].result == 'skipped') }}
+    needs: [ offline-checks, live-full-jvm ]
+    if: ${{ github.repository == 'aallam/openai-kotlin' && github.ref == 'refs/heads/main' && (needs['live-full-jvm'].result == 'success' || needs['live-full-jvm'].result == 'skipped') }}
     permissions:
       contents: write
     steps:

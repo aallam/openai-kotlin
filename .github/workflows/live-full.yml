@@ -2,8 +2,6 @@ name: Live Full Tests
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 3 * * *"
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"

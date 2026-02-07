@@ -925,7 +925,7 @@ If a new event type is released before the library is updated, you can create an
 ```kotlin
 when(assistantStreamEvent.type) {
     AssistantStreamEventType.UNKNOWN -> {
-        val data = assistantStreamEvent.getDate<MyCustomType>(myCustomSerializer)
+        val data = assistantStreamEvent.getData<MyCustomType>(myCustomSerializer)
         ...
     }
 }

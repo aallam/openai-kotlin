@@ -16,7 +16,7 @@ jobs:
   live-jvm:
     name: Live Full JVM
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'aallam/openai-kotlin' && secrets.OPENAI_API_KEY != '' }}
+    if: ${{ github.repository == 'aallam/openai-kotlin' && github.ref == 'refs/heads/main' && secrets.OPENAI_API_KEY != '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

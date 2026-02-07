@@ -11,6 +11,9 @@ val openAI = OpenAI(apiKey)
 
 Use your `OpenAI` instance to make API requests.
 
+- [Responses](#responses)
+    - [Create response](#create-response)
+    - [Retrieve a response](#retrieve-a-response)
 - [Models](#models)
     - [List models](#list-models)
     - [Retrieve a model](#retrieve-a-model)
@@ -112,6 +115,30 @@ Retrieves a model instance, providing basic information about the model such as 
 ```kotlin
 val id = ModelId("text-ada-001")
 val model: Model = openAI.model(id)
+```
+
+## Responses
+
+Create model responses with the Responses API.
+
+### Create response
+
+```kotlin
+val response = openAI.response(
+    request = ResponseRequest(
+        model = ModelId("gpt-4.1"),
+        input = ResponseInput("Write a haiku about Kotlin.")
+    )
+)
+
+println(response.outputText)
+```
+
+### Retrieve a response
+
+```kotlin
+val responseId = ResponseId("resp_123")
+val response: Response? = openAI.response(responseId)
 ```
 
 ## Chat

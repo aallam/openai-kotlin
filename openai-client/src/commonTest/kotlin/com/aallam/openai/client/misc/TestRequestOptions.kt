@@ -2,16 +2,16 @@ package com.aallam.openai.client.misc
 
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.client.OpenAI
+import com.aallam.openai.client.TestOpenAI
 import com.aallam.openai.client.token
 import io.ktor.client.request.*
-import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class TestRequestOptions {
+class TestRequestOptions : TestOpenAI() {
 
     @Test
-    fun test() = runTest {
+    fun test() = test {
         val key = "key"
         val requestOptions = RequestOptions(
             headers = mapOf(key to "valueB"),
@@ -34,7 +34,7 @@ class TestRequestOptions {
     }
 
     @Test
-    fun testOverride() = runTest {
+    fun testOverride() = test {
         val key = "OpenAI-Beta"
         val requestOptions = RequestOptions(
             headers = mapOf(key to "assistants=v0"),

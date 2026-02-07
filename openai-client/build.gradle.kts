@@ -1,4 +1,7 @@
 import org.jetbrains.kotlin.konan.target.HostManager
+import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
+import org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest
+import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeTest
 
 plugins {
     kotlin("multiplatform")
@@ -90,4 +93,20 @@ kotlin {
             }
         }
     }
+}
+
+val liveTestsEnabled = providers.environmentVariable("OPENAI_LIVE_TESTS")
+    .map { it == "1" }
+    .orElse(false)
+
+tasks.withType<KotlinJvmTest>().configureEach {
+    onlyIf("Live API tests are disabled. Set OPENAI_LIVE_TESTS=1 to enable.") { liveTestsEnabled.get() }
+}
+
+tasks.withType<KotlinJsTest>().configureEach {
+    onlyIf("Live API tests are disabled. Set OPENAI_LIVE_TESTS=1 to enable.") { liveTestsEnabled.get() }
+}
+
+tasks.withType<KotlinNativeTest>().configureEach {
+    onlyIf("Live API tests are disabled. Set OPENAI_LIVE_TESTS=1 to enable.") { liveTestsEnabled.get() }
 }

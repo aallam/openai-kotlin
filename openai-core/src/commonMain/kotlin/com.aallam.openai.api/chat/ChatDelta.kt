@@ -33,4 +33,9 @@ public data class ChatDelta(
      * Tool call ID.
      */
     @SerialName("tool_call_id") public val toolCallId: ToolId? = null,
+
+    /**
+     * Additional reasoning content returned by reasoning-capable models.
+     */
+    @SerialName("reasoning_content") public val reasoningContent: String? = null,
 )

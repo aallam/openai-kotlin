@@ -1,0 +1,209 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>TranscriptionRequest</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            openai-kotlin
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":openai-core:dokkaHtmlPartial/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="openai-core::com.aallam.openai.api.audio/TranscriptionRequest///PointingToDeclaration//-1970785397">
+  <div class="breadcrumbs"><a href="../../index.html">openai-core</a><span class="delimiter">/</span><a href="../index.html">com.aallam.openai.api.audio</a><span class="delimiter">/</span><span class="current">TranscriptionRequest</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Transcription</span><wbr><span><span>Request</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">TranscriptionRequest</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>audio<span class="token operator">: </span><a href="../../com.aallam.openai.api.file/-file-source/index.html">FileSource</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>model<span class="token operator">: </span><a href="../../com.aallam.openai.api.model/-model-id/index.html">ModelId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>prompt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>responseFormat<span class="token operator">: </span><a href="../-audio-response-format/index.html">AudioResponseFormat</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>temperature<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>language<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>timestampGranularities<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-timestamp-granularity/index.html">TimestampGranularity</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><p class="paragraph">Request to transcribe audio into the input <a href="language.html">language</a>.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="79643245%2FConstructors%2F-1970785397" anchor-label="TranscriptionRequest" id="79643245%2FConstructors%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-transcription-request.html"><span>Transcription</span><wbr><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="79643245%2FConstructors%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">audio<span class="token operator">: </span><a href="../../com.aallam.openai.api.file/-file-source/index.html">FileSource</a><span class="token punctuation">, </span></span><span class="parameter ">model<span class="token operator">: </span><a href="../../com.aallam.openai.api.model/-model-id/index.html">ModelId</a><span class="token punctuation">, </span></span><span class="parameter ">prompt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">responseFormat<span class="token operator">: </span><a href="../-audio-response-format/index.html">AudioResponseFormat</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">temperature<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">language<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">timestampGranularities<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-timestamp-granularity/index.html">TimestampGranularity</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="96488869%2FProperties%2F-1970785397" anchor-label="audio" id="96488869%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="audio.html"><span><span>audio</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="96488869%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="audio.html">audio</a><span class="token operator">: </span><a href="../../com.aallam.openai.api.file/-file-source/index.html">FileSource</a></div><div class="brief "><p class="paragraph">The audio file to transcribe, in one of these formats: mp3, mp4, mpeg, mpga, m4a, wav, or webm.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="936972711%2FProperties%2F-1970785397" anchor-label="language" id="936972711%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="language.html"><span><span>language</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="936972711%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="language.html">language</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">The language of the input audio. Supplying the input language in <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO-639-1</a> format will improve accuracy and latency.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="724091314%2FProperties%2F-1970785397" anchor-label="model" id="724091314%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="model.html"><span><span>model</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="724091314%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="model.html">model</a><span class="token operator">: </span><a href="../../com.aallam.openai.api.model/-model-id/index.html">ModelId</a></div><div class="brief "><p class="paragraph">ID of the model to use. Only <code class="lang-kotlin">whisper-1</code> is currently available.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="203397531%2FProperties%2F-1970785397" anchor-label="prompt" id="203397531%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="prompt.html"><span><span>prompt</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="203397531%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="prompt.html">prompt</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">An optional text to guide the model's style or continue a previous audio segment. The <a href="https://platform.openai.com/docs/guides/speech-to-text/prompting">prompt</a> should match the audio language.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="528822247%2FProperties%2F-1970785397" anchor-label="responseFormat" id="528822247%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="response-format.html"><span>response</span><wbr><span><span>Format</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="528822247%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="response-format.html">responseFormat</a><span class="token operator">: </span><a href="../-audio-response-format/index.html">AudioResponseFormat</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">The format of the transcript output, in one of these options: json, text, srt, verbose_json, or vtt.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2004048711%2FProperties%2F-1970785397" anchor-label="temperature" id="2004048711%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="temperature.html"><span><span>temperature</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2004048711%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="temperature.html">temperature</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use <a href="https://en.wikipedia.org/wiki/Log_probability">log probability</a> to automatically increase the temperature until certain thresholds are hit.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1244125769%2FProperties%2F-1970785397" anchor-label="timestampGranularities" id="1244125769%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="timestamp-granularities.html"><span>timestamp</span><wbr><span><span>Granularities</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1244125769%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="timestamp-granularities.html">timestampGranularities</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-timestamp-granularity/index.html">TimestampGranularity</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</div><div class="brief "><p class="paragraph">The timestamp granularities to populate for this transcription. <a href="response-format.html">responseFormat</a> must be set <a href="../-audio-response-format/-companion/-verbose-json.html">AudioResponseFormat.VerboseJson</a> to use timestamp granularities. Either or both of these options are supported: <a href="../-timestamp-granularity/-companion/-word.html">TimestampGranularity.Word</a>, or <a href="../-timestamp-granularity/-companion/-segment.html">TimestampGranularity.Segment</a>. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

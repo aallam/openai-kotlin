@@ -1,0 +1,464 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Response</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            openai-kotlin
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":openai-core:dokkaHtmlPartial/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="openai-core::com.aallam.openai.api.response/Response///PointingToDeclaration//-1970785397">
+  <div class="breadcrumbs"><a href="../../index.html">openai-core</a><span class="delimiter">/</span><a href="../index.html">com.aallam.openai.api.response</a><span class="delimiter">/</span><span class="current">Response</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Response</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">Response</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>id<span class="token operator">: </span><a href="../-response-id/index.html">ResponseId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>objectType<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>createdAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>status<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>error<span class="token operator">: </span><a href="../../com.aallam.openai.api.exception/-open-a-i-error-details/index.html">OpenAIErrorDetails</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>incompleteDetails<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonObject///PointingToDeclaration/">JsonObject</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>instructions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maxOutputTokens<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>model<span class="token operator">: </span><a href="../../com.aallam.openai.api.model/-model-id/index.html">ModelId</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>output<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-response-output-item/index.html">ResponseOutputItem</a><span class="token operator">&gt;</span><span class="token operator"> = </span>emptyList()<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>parallelToolCalls<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>previousResponseId<span class="token operator">: </span><a href="../-response-id/index.html">ResponseId</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>reasoning<span class="token operator">: </span><a href="../-response-reasoning/index.html">ResponseReasoning</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>store<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>temperature<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>text<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonObject///PointingToDeclaration/">JsonObject</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>toolChoice<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonElement///PointingToDeclaration/">JsonElement</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>tools<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonElement///PointingToDeclaration/">JsonElement</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>topP<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>truncation<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>usage<span class="token operator">: </span><a href="../-response-usage/index.html">ResponseUsage</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>user<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>metadata<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>outputText<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><p class="paragraph">A model response object.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="530083479%2FConstructors%2F-1970785397" anchor-label="Response" id="530083479%2FConstructors%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-response.html"><span><span>Response</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="530083479%2FConstructors%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../-response-id/index.html">ResponseId</a><span class="token punctuation">, </span></span><span class="parameter ">objectType<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">createdAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">status<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">error<span class="token operator">: </span><a href="../../com.aallam.openai.api.exception/-open-a-i-error-details/index.html">OpenAIErrorDetails</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">incompleteDetails<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonObject///PointingToDeclaration/">JsonObject</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">instructions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">maxOutputTokens<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">model<span class="token operator">: </span><a href="../../com.aallam.openai.api.model/-model-id/index.html">ModelId</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">output<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-response-output-item/index.html">ResponseOutputItem</a><span class="token operator">&gt;</span><span class="token operator"> = </span>emptyList()<span class="token punctuation">, </span></span><span class="parameter ">parallelToolCalls<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">previousResponseId<span class="token operator">: </span><a href="../-response-id/index.html">ResponseId</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">reasoning<span class="token operator">: </span><a href="../-response-reasoning/index.html">ResponseReasoning</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">store<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">temperature<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">text<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonObject///PointingToDeclaration/">JsonObject</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">toolChoice<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonElement///PointingToDeclaration/">JsonElement</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">tools<span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonElement///PointingToDeclaration/">JsonElement</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">topP<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">truncation<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">usage<span class="token operator">: </span><a href="../-response-usage/index.html">ResponseUsage</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">user<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">metadata<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">outputText<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1232158403%2FProperties%2F-1970785397" anchor-label="createdAt" id="-1232158403%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="created-at.html"><span>created</span><wbr><span><span>At</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1232158403%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"created_at"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="created-at.html">createdAt</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1435619984%2FProperties%2F-1970785397" anchor-label="error" id="1435619984%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="error.html"><span><span>error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1435619984%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"error"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="error.html">error</a><span class="token operator">: </span><a href="../../com.aallam.openai.api.exception/-open-a-i-error-details/index.html">OpenAIErrorDetails</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-988456697%2FProperties%2F-1970785397" anchor-label="id" id="-988456697%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="id.html"><span><span>id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-988456697%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"id"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="id.html">id</a><span class="token operator">: </span><a href="../-response-id/index.html">ResponseId</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1414130836%2FProperties%2F-1970785397" anchor-label="incompleteDetails" id="1414130836%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="incomplete-details.html"><span>incomplete</span><wbr><span><span>Details</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1414130836%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"incomplete_details"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="incomplete-details.html">incompleteDetails</a><span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonObject///PointingToDeclaration/">JsonObject</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1204587901%2FProperties%2F-1970785397" anchor-label="instructions" id="1204587901%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="instructions.html"><span><span>instructions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1204587901%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"instructions"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="instructions.html">instructions</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1248217401%2FProperties%2F-1970785397" anchor-label="maxOutputTokens" id="1248217401%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="max-output-tokens.html"><span>max</span><wbr><span>Output</span><wbr><span><span>Tokens</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1248217401%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"max_output_tokens"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="max-output-tokens.html">maxOutputTokens</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-21311053%2FProperties%2F-1970785397" anchor-label="metadata" id="-21311053%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="metadata.html"><span><span>metadata</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-21311053%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"metadata"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="metadata.html">metadata</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1800831119%2FProperties%2F-1970785397" anchor-label="model" id="1800831119%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="model.html"><span><span>model</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1800831119%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"model"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="model.html">model</a><span class="token operator">: </span><a href="../../com.aallam.openai.api.model/-model-id/index.html">ModelId</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-821675063%2FProperties%2F-1970785397" anchor-label="objectType" id="-821675063%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="object-type.html"><span>object</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-821675063%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"object"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="object-type.html">objectType</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2120143201%2FProperties%2F-1970785397" anchor-label="output" id="2120143201%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="output.html"><span><span>output</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2120143201%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"output"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="output.html">output</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../-response-output-item/index.html">ResponseOutputItem</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1422932300%2FProperties%2F-1970785397" anchor-label="outputText" id="-1422932300%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="output-text.html"><span>output</span><wbr><span><span>Text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1422932300%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"output_text"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="output-text.html">outputText</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-583805182%2FProperties%2F-1970785397" anchor-label="parallelToolCalls" id="-583805182%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="parallel-tool-calls.html"><span>parallel</span><wbr><span>Tool</span><wbr><span><span>Calls</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-583805182%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"parallel_tool_calls"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="parallel-tool-calls.html">parallelToolCalls</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1732334479%2FProperties%2F-1970785397" anchor-label="previousResponseId" id="1732334479%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="previous-response-id.html"><span>previous</span><wbr><span>Response</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1732334479%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"previous_response_id"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="previous-response-id.html">previousResponseId</a><span class="token operator">: </span><a href="../-response-id/index.html">ResponseId</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1590645946%2FProperties%2F-1970785397" anchor-label="reasoning" id="1590645946%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="reasoning.html"><span><span>reasoning</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1590645946%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"reasoning"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="reasoning.html">reasoning</a><span class="token operator">: </span><a href="../-response-reasoning/index.html">ResponseReasoning</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2116936816%2FProperties%2F-1970785397" anchor-label="status" id="-2116936816%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="status.html"><span><span>status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2116936816%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"status"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="status.html">status</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1931076055%2FProperties%2F-1970785397" anchor-label="store" id="1931076055%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="store.html"><span><span>store</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1931076055%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"store"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="store.html">store</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1399078812%2FProperties%2F-1970785397" anchor-label="temperature" id="-1399078812%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="temperature.html"><span><span>temperature</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1399078812%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"temperature"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="temperature.html">temperature</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1479969781%2FProperties%2F-1970785397" anchor-label="text" id="1479969781%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="text.html"><span><span>text</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1479969781%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"text"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="text.html">text</a><span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonObject///PointingToDeclaration/">JsonObject</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-629862007%2FProperties%2F-1970785397" anchor-label="toolChoice" id="-629862007%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tool-choice.html"><span>tool</span><wbr><span><span>Choice</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-629862007%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"tool_choice"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="tool-choice.html">toolChoice</a><span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonElement///PointingToDeclaration/">JsonElement</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1731411485%2FProperties%2F-1970785397" anchor-label="tools" id="1731411485%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tools.html"><span><span>tools</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1731411485%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"tools"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="tools.html">tools</a><span class="token operator">: </span><span data-unresolved-link="kotlinx.serialization.json/JsonElement///PointingToDeclaration/">JsonElement</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1287086265%2FProperties%2F-1970785397" anchor-label="topP" id="-1287086265%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="top-p.html"><span>top</span><wbr><span><span>P</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1287086265%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"top_p"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="top-p.html">topP</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1130117095%2FProperties%2F-1970785397" anchor-label="truncation" id="-1130117095%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="truncation.html"><span><span>truncation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1130117095%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"truncation"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="truncation.html">truncation</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1455868649%2FProperties%2F-1970785397" anchor-label="usage" id="-1455868649%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="usage.html"><span><span>usage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1455868649%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"usage"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="usage.html">usage</a><span class="token operator">: </span><a href="../-response-usage/index.html">ResponseUsage</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1748890391%2FProperties%2F-1970785397" anchor-label="user" id="1748890391%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="user.html"><span><span>user</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1748890391%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"user"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="user.html">user</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

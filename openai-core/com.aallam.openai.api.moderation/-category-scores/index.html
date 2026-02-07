@@ -1,0 +1,269 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>CategoryScores</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            openai-kotlin
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":openai-core:dokkaHtmlPartial/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="openai-core::com.aallam.openai.api.moderation/CategoryScores///PointingToDeclaration//-1970785397">
+  <div class="breadcrumbs"><a href="../../index.html">openai-core</a><span class="delimiter">/</span><a href="../index.html">com.aallam.openai.api.moderation</a><span class="delimiter">/</span><span class="current">CategoryScores</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Category</span><wbr><span><span>Scores</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">class </span><a href="index.html">CategoryScores</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>hate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>hateThreatening<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>selfHarm<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sexual<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>sexualMinors<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>violence<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>violenceGraphic<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>harassment<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>harassmentThreatening<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>selfHarmIntent<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>selfHarmInstructions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-779257414%2FConstructors%2F-1970785397" anchor-label="CategoryScores" id="-779257414%2FConstructors%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-category-scores.html"><span>Category</span><wbr><span><span>Scores</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-779257414%2FConstructors%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">hate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">hateThreatening<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">selfHarm<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">sexual<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">sexualMinors<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">violence<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">violenceGraphic<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">harassment<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">harassmentThreatening<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">selfHarmIntent<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">selfHarmInstructions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="686796757%2FProperties%2F-1970785397" anchor-label="harassment" id="686796757%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="harassment.html"><span><span>harassment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="686796757%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"harassment"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="harassment.html">harassment</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">The score for the category 'harassment'.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-798031642%2FProperties%2F-1970785397" anchor-label="harassmentThreatening" id="-798031642%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="harassment-threatening.html"><span>harassment</span><wbr><span><span>Threatening</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-798031642%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"harassment/threatening"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="harassment-threatening.html">harassmentThreatening</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">The score for the category 'harassment/threatening'.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="155371601%2FProperties%2F-1970785397" anchor-label="hate" id="155371601%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="hate.html"><span><span>hate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="155371601%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"hate"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="hate.html">hate</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-272039190%2FProperties%2F-1970785397" anchor-label="hateThreatening" id="-272039190%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="hate-threatening.html"><span>hate</span><wbr><span><span>Threatening</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-272039190%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"hate/threatening"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="hate-threatening.html">hateThreatening</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Hateful content that also includes violence or serious harm towards the targeted group.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1861272795%2FProperties%2F-1970785397" anchor-label="selfHarm" id="1861272795%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="self-harm.html"><span>self</span><wbr><span><span>Harm</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1861272795%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"self-harm"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="self-harm.html">selfHarm</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1521034678%2FProperties%2F-1970785397" anchor-label="selfHarmInstructions" id="1521034678%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="self-harm-instructions.html"><span>self</span><wbr><span>Harm</span><wbr><span><span>Instructions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1521034678%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"self-harm/instructions"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="self-harm-instructions.html">selfHarmInstructions</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">The score for the category 'self-harm/instructions'.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-883155169%2FProperties%2F-1970785397" anchor-label="selfHarmIntent" id="-883155169%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="self-harm-intent.html"><span>self</span><wbr><span>Harm</span><wbr><span><span>Intent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-883155169%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"self-harm/intent"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="self-harm-intent.html">selfHarmIntent</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">The score for the category 'self-harm/intent'.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-176836927%2FProperties%2F-1970785397" anchor-label="sexual" id="-176836927%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sexual.html"><span><span>sexual</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-176836927%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"sexual"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="sexual.html">sexual</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="362883587%2FProperties%2F-1970785397" anchor-label="sexualMinors" id="362883587%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sexual-minors.html"><span>sexual</span><wbr><span><span>Minors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="362883587%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"sexual/minors"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="sexual-minors.html">sexualMinors</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Sexual content that includes an individual who is under 18 years old.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-903936768%2FProperties%2F-1970785397" anchor-label="violence" id="-903936768%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="violence.html"><span><span>violence</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-903936768%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"violence"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="violence.html">violence</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Content that promotes or glorifies violence or celebrates the suffering or humiliation of others.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1698809682%2FProperties%2F-1970785397" anchor-label="violenceGraphic" id="1698809682%2FProperties%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="violence-graphic.html"><span>violence</span><wbr><span><span>Graphic</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1698809682%2FProperties%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"violence/graphic"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">val </span><a href="violence-graphic.html">violenceGraphic</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Violent content that depicts death, violence, or serious physical injury in extreme graphic detail.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

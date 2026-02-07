@@ -1,0 +1,643 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.aallam.openai.api.run</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../index.html">
+                            openai-kotlin
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":openai-core:dokkaHtmlPartial/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="openai-core::com.aallam.openai.api.run////PointingToDeclaration//-1970785397">
+  <div class="breadcrumbs"><a href="../index.html">openai-core</a><span class="delimiter">/</span><span class="current">com.aallam.openai.api.run</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="149157622%2FClasslikes%2F-1970785397" anchor-label="AssistantStreamEvent" id="149157622%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-assistant-stream-event/index.html"><span>Assistant</span><wbr><span>Stream</span><wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="149157622%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-assistant-stream-event/index.html">AssistantStreamEvent</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>rawType<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>type<span class="token operator">: </span><a href="-assistant-stream-event-type/index.html">AssistantStreamEventType</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>data<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Represents an event emitted when streaming a run.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-316366244%2FClasslikes%2F-1970785397" anchor-label="AssistantStreamEventType" id="-316366244%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-assistant-stream-event-type/index.html"><span>Assistant</span><wbr><span>Stream</span><wbr><span>Event</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-316366244%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span><span class="token punctuation">(</span><span>with<span class="token operator"> = </span><a href="-assistant-stream-event-type-serializer/index.html">AssistantStreamEventTypeSerializer::class</a></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">enum </span><a href="-assistant-stream-event-type/index.html">AssistantStreamEventType</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-assistant-stream-event-type/index.html">AssistantStreamEventType</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Represents an event type emitted when streaming a Run.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1241203498%2FClasslikes%2F-1970785397" anchor-label="AssistantStreamEventTypeSerializer" id="1241203498%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-assistant-stream-event-type-serializer/index.html"><span>Assistant</span><wbr><span>Stream</span><wbr><span>Event</span><wbr><span>Type</span><wbr><span><span>Serializer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1241203498%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-assistant-stream-event-type-serializer/index.html">AssistantStreamEventTypeSerializer</a> : <span data-unresolved-link="kotlinx.serialization/KSerializer///PointingToDeclaration/">KSerializer</span><span class="token operator">&lt;</span><a href="-assistant-stream-event-type/index.html">AssistantStreamEventType</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Custom serializer for <a href="-assistant-stream-event-type/index.html">AssistantStreamEventType</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="727847268%2FClasslikes%2F-1970785397" anchor-label="CodeInterpreterImage" id="727847268%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-code-interpreter-image/index.html"><span>Code</span><wbr><span>Interpreter</span><wbr><span><span>Image</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="727847268%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-code-interpreter-image/index.html">CodeInterpreterImage</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>fileId<span class="token operator">: </span><a href="../com.aallam.openai.api.file/-file-id/index.html">FileId</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Code interpreter image</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1600479213%2FClasslikes%2F-1970785397" anchor-label="CodeInterpreterToolCall" id="1600479213%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-code-interpreter-tool-call/index.html"><span>Code</span><wbr><span>Interpreter</span><wbr><span>Tool</span><wbr><span><span>Call</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1600479213%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-code-interpreter-tool-call/index.html">CodeInterpreterToolCall</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>input<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>outputs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-code-interpreter-tool-call-output/index.html">CodeInterpreterToolCallOutput</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-415533844%2FClasslikes%2F-1970785397" anchor-label="CodeInterpreterToolCallOutput" id="-415533844%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-code-interpreter-tool-call-output/index.html"><span>Code</span><wbr><span>Interpreter</span><wbr><span>Tool</span><wbr><span>Call</span><wbr><span><span>Output</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-415533844%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-code-interpreter-tool-call-output/index.html">CodeInterpreterToolCallOutput</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-23978288%2FClasslikes%2F-1970785397" anchor-label="FileSearchToolCallRankingOptions" id="-23978288%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-search-tool-call-ranking-options/index.html"><span>File</span><wbr><span>Search</span><wbr><span>Tool</span><wbr><span>Call</span><wbr><span>Ranking</span><wbr><span><span>Options</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-23978288%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-file-search-tool-call-ranking-options/index.html">FileSearchToolCallRankingOptions</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>ranker<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scoreThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-143468325%2FClasslikes%2F-1970785397" anchor-label="FileSearchToolCallResult" id="-143468325%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-search-tool-call-result/index.html"><span>File</span><wbr><span>Search</span><wbr><span>Tool</span><wbr><span>Call</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-143468325%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-file-search-tool-call-result/index.html">FileSearchToolCallResult</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>fileId<span class="token operator">: </span><a href="../com.aallam.openai.api.file/-file-id/index.html">FileId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fileName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>score<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="921963212%2FClasslikes%2F-1970785397" anchor-label="FileSearchToolCallStep" id="921963212%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-search-tool-call-step/index.html"><span>File</span><wbr><span>Search</span><wbr><span>Tool</span><wbr><span>Call</span><wbr><span><span>Step</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="921963212%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-file-search-tool-call-step/index.html">FileSearchToolCallStep</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>rankingOptions<span class="token operator">: </span><a href="-file-search-tool-call-ranking-options/index.html">FileSearchToolCallRankingOptions</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>results<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-file-search-tool-call-result/index.html">FileSearchToolCallResult</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1147574776%2FClasslikes%2F-1970785397" anchor-label="FunctionToolCallStep" id="1147574776%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-function-tool-call-step/index.html"><span>Function</span><wbr><span>Tool</span><wbr><span>Call</span><wbr><span><span>Step</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1147574776%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-function-tool-call-step/index.html">FunctionToolCallStep</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>arguments<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>output<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2132616758%2FClasslikes%2F-1970785397" anchor-label="MessageCreation" id="-2132616758%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-creation/index.html"><span>Message</span><wbr><span><span>Creation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2132616758%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-message-creation/index.html">MessageCreation</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>messageId<span class="token operator">: </span><a href="../com.aallam.openai.api.message/-message-id/index.html">MessageId</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Details of the message that occurred during the run step.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1929628638%2FClasslikes%2F-1970785397" anchor-label="MessageCreationStep" id="1929628638%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-creation-step/index.html"><span>Message</span><wbr><span>Creation</span><wbr><span><span>Step</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1929628638%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"message_creation"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-message-creation-step/index.html">MessageCreationStep</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>id<span class="token operator">: </span><a href="-run-step-id/index.html">RunStepId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>createdAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>assistantId<span class="token operator">: </span><a href="../com.aallam.openai.api.assistant/-assistant-id/index.html">AssistantId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>threadId<span class="token operator">: </span><a href="../com.aallam.openai.api.thread/-thread-id/index.html">ThreadId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>runId<span class="token operator">: </span><a href="-run-id/index.html">RunId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>status<span class="token operator">: </span><a href="../com.aallam.openai.api.core/-status/index.html">Status</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>stepDetails<span class="token operator">: </span><a href="-message-creation-step-details/index.html">MessageCreationStepDetails</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lastError<span class="token operator">: </span><a href="../com.aallam.openai.api.core/-last-error/index.html">LastError</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>expiredAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>cancelledAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>failedAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>completedAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>metadata<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="-run-step/index.html">RunStep</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2048480258%2FClasslikes%2F-1970785397" anchor-label="MessageCreationStepDetails" id="2048480258%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-creation-step-details/index.html"><span>Message</span><wbr><span>Creation</span><wbr><span>Step</span><wbr><span><span>Details</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2048480258%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"message_creation"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-message-creation-step-details/index.html">MessageCreationStepDetails</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>messageCreation<span class="token operator">: </span><a href="-message-creation/index.html">MessageCreation</a></span></span><span class="token punctuation">)</span> : <a href="-run-step-details/index.html">RunStepDetails</a></div><div class="brief "><p class="paragraph">Details of the message creation by the run step.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="728307425%2FClasslikes%2F-1970785397" anchor-label="MessageDelta" id="728307425%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-delta/index.html"><span>Message</span><wbr><span><span>Delta</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="728307425%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-message-delta/index.html">MessageDelta</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>id<span class="token operator">: </span><a href="../com.aallam.openai.api.message/-message-id/index.html">MessageId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>object<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>delta<span class="token operator">: </span><a href="-message-delta-data/index.html">MessageDeltaData</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Represents a message delta i.e. any changed fields on a message during streaming.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1137061289%2FClasslikes%2F-1970785397" anchor-label="MessageDeltaData" id="-1137061289%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-delta-data/index.html"><span>Message</span><wbr><span>Delta</span><wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1137061289%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-message-delta-data/index.html">MessageDeltaData</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>role<span class="token operator">: </span><a href="../com.aallam.openai.api.core/-role/index.html">Role</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>content<span class="token operator">: </span><a href="../com.aallam.openai.api.message/-message-content/index.html">MessageContent</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The delta containing the fields that have changed on the message.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2023967651%2FClasslikes%2F-1970785397" anchor-label="RequiredAction" id="-2023967651%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-required-action/index.html"><span>Required</span><wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2023967651%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-required-action/index.html">RequiredAction</a></div><div class="brief "><p class="paragraph">Details on the action required to continue the run.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1078853275%2FClasslikes%2F-1970785397" anchor-label="Run" id="-1078853275%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-run/index.html"><span><span>Run</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1078853275%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-run/index.html">Run</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>id<span class="token operator">: </span><a href="-run-id/index.html">RunId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>createdAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>threadId<span class="token operator">: </span><a href="../com.aallam.openai.api.thread/-thread-id/index.html">ThreadId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>assistantId<span class="token operator">: </span><a href="../com.aallam.openai.api.assistant/-assistant-id/index.html">AssistantId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>status<span class="token operator">: </span><a href="../com.aallam.openai.api.core/-status/index.html">Status</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>requiredAction<span class="token operator">: </span><a href="-required-action/index.html">RequiredAction</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lastError<span class="token operator">: </span><a href="../com.aallam.openai.api.core/-last-error/index.html">LastError</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>expiresAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>startedAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>cancelledAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>failedAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>completedAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>model<span class="token operator">: </span><a href="../com.aallam.openai.api.model/-model-id/index.html">ModelId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>instructions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>tools<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../com.aallam.openai.api.assistant/-assistant-tool/index.html">AssistantTool</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fileIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>metadata<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>usage<span class="token operator">: </span><a href="../com.aallam.openai.api.core/-usage/index.html">Usage</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>temperature<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>topP<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maxPromptTokens<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>maxCompletionTokens<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Represents an execution run on a thread.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2104902538%2FClasslikes%2F-1970785397" anchor-label="RunId" id="2104902538%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-run-id/index.html"><span>Run</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2104902538%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-run-id/index.html">RunId</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>id<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A run id.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="240920814%2FClasslikes%2F-1970785397" anchor-label="RunRequest" id="240920814%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-run-request/index.html"><span>Run</span><wbr><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="240920814%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-run-request/index.html">RunRequest</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>assistantId<span class="token operator">: </span><a href="../com.aallam.openai.api.assistant/-assistant-id/index.html">AssistantId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>model<span class="token operator">: </span><a href="../com.aallam.openai.api.model/-model-id/index.html">ModelId</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>instructions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>additionalInstructions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>tools<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../com.aallam.openai.api.assistant/-assistant-tool/index.html">AssistantTool</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>metadata<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>stream<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Create a run request.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-315970119%2FClasslikes%2F-1970785397" anchor-label="RunRequestBuilder" id="-315970119%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-run-request-builder/index.html"><span>Run</span><wbr><span>Request</span><wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-315970119%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-run-request-builder/index.html">RunRequestBuilder</a></div><div class="brief "><p class="paragraph">Builder for <a href="-run-request/index.html">RunRequest</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-529551879%2FClasslikes%2F-1970785397" anchor-label="RunStep" id="-529551879%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-run-step/index.html"><span>Run</span><wbr><span><span>Step</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-529551879%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-run-step/index.html">RunStep</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1477610193%2FClasslikes%2F-1970785397" anchor-label="RunStepDelta" id="1477610193%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-run-step-delta/index.html"><span>Run</span><wbr><span>Step</span><wbr><span><span>Delta</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1477610193%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-run-step-delta/index.html">RunStepDelta</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>id<span class="token operator">: </span><a href="-run-step-id/index.html">RunStepId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>object<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>delta<span class="token operator">: </span><a href="-run-step-delta-data/index.html">RunStepDeltaData</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Represents a run step delta i.e. any changed fields on a run step during streaming.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-836252089%2FClasslikes%2F-1970785397" anchor-label="RunStepDeltaData" id="-836252089%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-run-step-delta-data/index.html"><span>Run</span><wbr><span>Step</span><wbr><span>Delta</span><wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-836252089%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-run-step-delta-data/index.html">RunStepDeltaData</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>stepDetails<span class="token operator">: </span><a href="-run-step-details/index.html">RunStepDetails</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The delta containing the fields that have changed on the run step.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-324342393%2FClasslikes%2F-1970785397" anchor-label="RunStepDetails" id="-324342393%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-run-step-details/index.html"><span>Run</span><wbr><span>Step</span><wbr><span><span>Details</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-324342393%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-run-step-details/index.html">RunStepDetails</a></div><div class="brief "><p class="paragraph">A run step object.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1702566686%2FClasslikes%2F-1970785397" anchor-label="RunStepId" id="1702566686%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-run-step-id/index.html"><span>Run</span><wbr><span>Step</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1702566686%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-run-step-id/index.html">RunStepId</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>id<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A run step id.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="820314564%2FClasslikes%2F-1970785397" anchor-label="ThreadRunRequest" id="820314564%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-thread-run-request/index.html"><span>Thread</span><wbr><span>Run</span><wbr><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="820314564%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-thread-run-request/index.html">ThreadRunRequest</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>assistantId<span class="token operator">: </span><a href="../com.aallam.openai.api.assistant/-assistant-id/index.html">AssistantId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>thread<span class="token operator">: </span><a href="../com.aallam.openai.api.thread/-thread-request/index.html">ThreadRequest</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>model<span class="token operator">: </span><a href="../com.aallam.openai.api.model/-model-id/index.html">ModelId</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>instructions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>tools<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../com.aallam.openai.api.assistant/-assistant-tool/index.html">AssistantTool</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>metadata<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>stream<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Create a thread and run it in one request.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="901404707%2FClasslikes%2F-1970785397" anchor-label="ThreadRunRequestBuilder" id="901404707%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-thread-run-request-builder/index.html"><span>Thread</span><wbr><span>Run</span><wbr><span>Request</span><wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="901404707%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-thread-run-request-builder/index.html">ThreadRunRequestBuilder</a></div><div class="brief "><p class="paragraph">Create a thread and run it in one request.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-888115353%2FClasslikes%2F-1970785397" anchor-label="ToolCallsStep" id="-888115353%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tool-calls-step/index.html"><span>Tool</span><wbr><span>Calls</span><wbr><span><span>Step</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-888115353%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"tool_calls"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-tool-calls-step/index.html">ToolCallsStep</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>id<span class="token operator">: </span><a href="-run-step-id/index.html">RunStepId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>createdAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>assistantId<span class="token operator">: </span><a href="../com.aallam.openai.api.assistant/-assistant-id/index.html">AssistantId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>threadId<span class="token operator">: </span><a href="../com.aallam.openai.api.thread/-thread-id/index.html">ThreadId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>runId<span class="token operator">: </span><a href="-run-id/index.html">RunId</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>status<span class="token operator">: </span><a href="../com.aallam.openai.api.core/-status/index.html">Status</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>stepDetails<span class="token operator">: </span><a href="-tool-call-step-details/index.html">ToolCallStepDetails</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>lastError<span class="token operator">: </span><a href="../com.aallam.openai.api.core/-last-error/index.html">LastError</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>expiredAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>cancelledAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>failedAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>completedAt<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>metadata<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="-run-step/index.html">RunStep</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="336300016%2FClasslikes%2F-1970785397" anchor-label="ToolCallStep" id="336300016%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tool-call-step/index.html"><span>Tool</span><wbr><span>Call</span><wbr><span><span>Step</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="336300016%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-tool-call-step/index.html">ToolCallStep</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1644478544%2FClasslikes%2F-1970785397" anchor-label="ToolCallStepDetails" id="-1644478544%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tool-call-step-details/index.html"><span>Tool</span><wbr><span>Call</span><wbr><span>Step</span><wbr><span><span>Details</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1644478544%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span class="token annotation builtin">SerialName</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="breakable-word"><span class="token string">"tool_calls"</span></span></span><wbr><span class="token punctuation">)</span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-tool-call-step-details/index.html">ToolCallStepDetails</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>toolCalls<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-tool-call-step/index.html">ToolCallStep</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <a href="-run-step-details/index.html">RunStepDetails</a></div><div class="brief "><p class="paragraph">Details of the tool call.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="562582357%2FClasslikes%2F-1970785397" anchor-label="ToolCallStepId" id="562582357%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tool-call-step-id/index.html"><span>Tool</span><wbr><span>Call</span><wbr><span>Step</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="562582357%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.jvm/-jvm-inline/index.html"><span class="token annotation builtin">JvmInline</span></a></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">value </span><span class="token keyword">class </span><a href="-tool-call-step-id/index.html">ToolCallStepId</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>id<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Tool call step identifier.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1727246503%2FClasslikes%2F-1970785397" anchor-label="ToolOutput" id="-1727246503%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tool-output/index.html"><span>Tool</span><wbr><span><span>Output</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1727246503%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-tool-output/index.html">ToolOutput</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>toolCallId<span class="token operator">: </span><a href="../com.aallam.openai.api.chat/-tool-id/index.html">ToolId</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>output<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Represents a tool output.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-733902610%2FClasslikes%2F-1970785397" anchor-label="ToolOutputBuilder" id="-733902610%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tool-output-builder/index.html"><span>Tool</span><wbr><span>Output</span><wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-733902610%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-tool-output-builder/index.html">ToolOutputBuilder</a></div><div class="brief "><p class="paragraph">A tool output builder.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2086151946%2FClasslikes%2F-1970785397" anchor-label="ToolOutputs" id="-2086151946%2FClasslikes%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tool-outputs/index.html"><span>Tool</span><wbr><span><span>Outputs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2086151946%2FClasslikes%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span class="token annotation builtin">Serializable</span></span></div></div><span class="token keyword">data </span><span class="token keyword">class </span><a href="-tool-outputs/index.html">ToolOutputs</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>toolCalls<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../com.aallam.openai.api.chat/-tool-call/index.html">ToolCall</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Details on the tool outputs needed for this run to continue.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1873892565%2FFunctions%2F-1970785397" anchor-label="runRequest" id="-1873892565%2FFunctions%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="run-request.html"><span>run</span><wbr><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1873892565%2FFunctions%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="run-request.html"><span class="token function">runRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="-run-request-builder/index.html">RunRequestBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-run-request/index.html">RunRequest</a></div><div class="brief "><p class="paragraph">Create a run request.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1777260203%2FFunctions%2F-1970785397" anchor-label="threadRunRequest" id="1777260203%2FFunctions%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="thread-run-request.html"><span>thread</span><wbr><span>Run</span><wbr><span><span>Request</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1777260203%2FFunctions%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="thread-run-request.html"><span class="token function">threadRunRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="-thread-run-request-builder/index.html">ThreadRunRequestBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-thread-run-request/index.html">ThreadRunRequest</a></div><div class="brief "><p class="paragraph">Create a thread and run it in one request.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-583342389%2FFunctions%2F-1970785397" anchor-label="toolOutput" id="-583342389%2FFunctions%2F-1970785397" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-core:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-core:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tool-output.html"><span>tool</span><wbr><span><span>Output</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-583342389%2FFunctions%2F-1970785397"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-core:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="tool-output.html"><span class="token function">toolOutput</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="-tool-output-builder/index.html">ToolOutputBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-tool-output/index.html">ToolOutput</a></div><div class="brief "><p class="paragraph">Creates a <a href="-tool-output/index.html">ToolOutput</a> instance using the provided builder block.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

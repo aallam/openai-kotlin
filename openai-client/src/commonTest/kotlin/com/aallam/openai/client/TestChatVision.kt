@@ -2,7 +2,22 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.*
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.internal.TestFileSystem
+import com.aallam.openai.client.internal.testFilePath
+import kotlinx.io.buffered
+import kotlinx.io.bytestring.encode
+import kotlinx.io.readByteString
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlin.test.*
+
+@OptIn(ExperimentalEncodingApi::class)
+private val InlineTestImage: String by lazy {
+    val imageBytes = TestFileSystem.source(path = testFilePath("image/pets.png")).buffered().use {
+        it.readByteString()
+    }
+    "data:image/png;base64,${Base64.encode(source = imageBytes)}"
+}
 
 class TestChatVision : TestOpenAI() {
 
@@ -14,7 +29,8 @@ class TestChatVision : TestOpenAI() {
                 user {
                     content {
                         text("What’s in this image?")
-                        image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg")
+                        // Keep this test deterministic in CI by avoiding external image hosts.
+                        image(InlineTestImage)
                     }
                 }
             }
@@ -33,8 +49,8 @@ class TestChatVision : TestOpenAI() {
                 user {
                     content {
                         text("What are in these images? Is there any difference between them?")
-                        image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg")
-                        image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg")
+                        image(InlineTestImage)
+                        image(InlineTestImage)
                     }
                 }
             }

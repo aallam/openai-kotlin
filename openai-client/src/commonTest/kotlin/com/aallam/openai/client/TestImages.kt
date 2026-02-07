@@ -5,6 +5,7 @@ import com.aallam.openai.api.image.ImageSize
 import com.aallam.openai.api.image.imageCreation
 import com.aallam.openai.api.image.imageEdit
 import com.aallam.openai.api.image.imageVariation
+import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.TestFileSystem
 import com.aallam.openai.client.internal.testFilePath
 import kotlin.test.Test
@@ -43,6 +44,7 @@ class TestImages : TestOpenAI() {
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
             n = 1
             size = ImageSize.is1024x1024
+            model = ModelId("dall-e-2")
         }
         val response = openAI.imageURL(request)
         assertTrue { response.isNotEmpty() }
@@ -56,6 +58,7 @@ class TestImages : TestOpenAI() {
             prompt = "a sunlit indoor lounge area with a pool containing a flamingo"
             n = 1
             size = ImageSize.is1024x1024
+            model = ModelId("dall-e-2")
         }
         val response = openAI.imageJSON(request)
         assertTrue { response.isNotEmpty() }

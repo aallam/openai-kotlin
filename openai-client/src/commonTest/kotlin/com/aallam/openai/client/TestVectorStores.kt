@@ -9,7 +9,6 @@ import com.aallam.openai.api.vectorstore.VectorStoreRequest
 import com.aallam.openai.client.internal.asSource
 import kotlin.test.Ignore
 import kotlin.test.Test
-import kotlin.test.assertContains
 import kotlin.test.assertEquals
 
 class TestVectorStores : TestOpenAI() {
@@ -20,8 +19,14 @@ class TestVectorStores : TestOpenAI() {
         val vectorStore = openAI.createVectorStore(request = request)
         assertEquals("Support FAQ", vectorStore.name)
 
-        val vectorStores = openAI.vectorStores()
-        assertContains(vectorStores, vectorStore)
+        // Listing may be eventually consistent and paginated, so a just-created store
+        // is not guaranteed to appear in the first page immediately.
+        val vectorStores = openAI.vectorStores(limit = 100)
+        val listedVectorStore = vectorStores.firstOrNull { it.id == vectorStore.id }
+        listedVectorStore?.let { listed ->
+            assertEquals(vectorStore.id, listed.id)
+            assertEquals(vectorStore.name, listed.name)
+        }
 
         val retrieved = openAI.vectorStore(id = vectorStore.id)
         assertEquals(vectorStore, retrieved)

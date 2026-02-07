@@ -5,6 +5,7 @@ import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.image.*
 import com.aallam.openai.api.image.internal.ImageCreationRequest
 import com.aallam.openai.api.image.internal.ImageResponseFormat
+import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.Images
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.extension.requestOptions
@@ -15,6 +16,7 @@ import io.ktor.client.request.forms.*
 import io.ktor.http.*
 
 internal class ImagesApi(private val requester: HttpRequester) : Images {
+    private val defaultEditModel = ModelId("dall-e-2")
 
     override suspend fun imageURL(creation: ImageCreation, requestOptions: RequestOptions?): List<ImageURL> {
         return requester.perform<ListResponse<ImageURL>> {
@@ -64,14 +66,14 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
      * Build image edit request.
      */
     private fun imageEditRequest(edit: ImageEdit, responseFormat: ImageResponseFormat) = formData {
-        appendFileSource("image", edit.image)
-        appendFileSource("mask", edit.mask)
+        appendFileSource("image", edit.image, ContentType.Image.PNG)
+        appendFileSource("mask", edit.mask, ContentType.Image.PNG)
         append(key = "prompt", value = edit.prompt)
         append(key = "response_format", value = responseFormat.format)
         edit.n?.let { n -> append(key = "n", value = n) }
         edit.size?.let { dim -> append(key = "size", value = dim.size) }
         edit.user?.let { user -> append(key = "user", value = user) }
-        edit.model?.let { model -> append(key = "model", value = model.id) }
+        append(key = "model", value = (edit.model ?: defaultEditModel).id)
     }
 
     override suspend fun imageURL(variation: ImageVariation, requestOptions: RequestOptions?): List<ImageURL> {
@@ -100,7 +102,7 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
      * Build image variant request.
      */
     private fun imageVariantRequest(edit: ImageVariation, responseFormat: ImageResponseFormat) = formData {
-        appendFileSource("image", edit.image)
+        appendFileSource("image", edit.image, ContentType.Image.PNG)
         append(key = "response_format", value = responseFormat.format)
         edit.n?.let { n -> append(key = "n", value = n) }
         edit.size?.let { dim -> append(key = "size", value = dim.size) }

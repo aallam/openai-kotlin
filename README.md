@@ -148,7 +148,7 @@ The specific rules are [already bundled](openai-core/src/jvmMain/resources/META-
 
 ## 📸 Snapshots
 
-[![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://oss.sonatype.org/service/local/repositories/snapshots/content/com/aallam/openai/openai-client/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)](https://oss.sonatype.org/content/repositories/snapshots/com/aallam/openai/openai-client/)
+[![Snapshot](https://img.shields.io/badge/dynamic/xml?url=https://central.sonatype.com/repository/maven-snapshots/com/aallam/openai/openai-client/maven-metadata.xml&label=snapshot&color=red&query=.//versioning/latest)](https://central.sonatype.com/repository/maven-snapshots/com/aallam/openai/openai-client/)
 
 <details>
  <summary>Learn how to import snapshot version</summary>
@@ -158,7 +158,7 @@ To import snapshot versions into your project, add the following code snippet to
 ```groovy
 repositories {
    //...
-   maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+   maven { url 'https://central.sonatype.com/repository/maven-snapshots/' }
 }
 ```
 

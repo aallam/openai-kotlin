@@ -1,10 +1,10 @@
 package com.aallam.openai.api.run
 
 import com.aallam.openai.api.BetaOpenAI
+import com.aallam.openai.api.chat.ImagePart
 import com.aallam.openai.api.core.Role
-import com.aallam.openai.api.message.Message
-import com.aallam.openai.api.message.MessageContent
-import com.aallam.openai.api.message.MessageId
+import com.aallam.openai.api.image.ImageURL
+import com.aallam.openai.api.message.*
 import com.aallam.openai.api.thread.Thread
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
@@ -72,13 +72,80 @@ public data class MessageDelta(
 /**
  * The delta containing the fields that have changed on the message.
  * @param role the entity that produced the message. One of user or assistant.
- * @param content the content of the message in array of text and/or images.
+ * @param content the content of the message in array of text and/or image files and/or refusals and/or image urls.
  */
 @BetaOpenAI
 @Serializable
 public data class MessageDeltaData(
     @SerialName("role") val role: Role,
-    @SerialName("content") val content: MessageContent
+    @SerialName("content") val content: List<MessageDeltaContent>
+)
+
+/**
+ * The content of the message in array of text and/or images.
+ */
+@BetaOpenAI
+@Serializable
+public sealed interface MessageDeltaContent {
+
+    /**
+     * The text data that contains the text that has been added to the message.
+     * @param text the field containing the text message.
+     */
+    @BetaOpenAI
+    @Serializable
+    @SerialName("text")
+    public data class Text(
+        @SerialName("text") val text: TextDeltaContent
+    ): MessageDeltaContent
+
+    /**
+     * The image data that contains the image file field.
+     * @param imageFile the field containing the image file.
+     */
+   @BetaOpenAI
+   @Serializable
+   @SerialName("image_file")
+   public data class Image(
+       @SerialName("image_file") val imageFile: ImageFile
+   ): MessageDeltaContent
+
+    /**
+     * The refusal content that is part of a message.
+     * @param refusal the string containing the refusal.
+     */
+    @BetaOpenAI
+    @Serializable
+    @SerialName("refusal")
+    public data class Refusal(
+        @SerialName("refusal") val refusal: String
+    ): MessageDeltaContent
+
+    /**
+     * References an image URL in the content of a message.
+     * @param imageURL the object of type imageURL.
+     */
+    @BetaOpenAI
+    @Serializable
+    @SerialName("image_url")
+    public data class ImageURL(
+        @SerialName("image_url") val imageURL: ImagePart.ImageURL
+    ): MessageDeltaContent
+
+}
+
+/**
+ * The text content that is part of a message.
+ * @param index The index of the content part in the message.
+ * @param value The data that makes up the text.
+ * @param annotations The annotations for the text.
+ */
+@BetaOpenAI
+@Serializable
+public data class TextDeltaContent(
+    @SerialName("index") val index: Int,
+    @SerialName("value") val value: String,
+    @SerialName("annotations") val annotations: List<TextAnnotation>
 )
 
 /**

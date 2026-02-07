@@ -63,7 +63,7 @@ of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
     <dependency>
         <groupId>io.ktor</groupId>
         <artifactId>ktor-client-okhttp-jvm</artifactId>
-        <version>2.3.2</version>
+        <version>3.0.0</version>
         <scope>runtime</scope>
     </dependency>
 </dependencies>
@@ -114,6 +114,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Fine-tuning](guides/GettingStarted.md#fine-tuning)
 - [Moderations](guides/GettingStarted.md#moderations)
 - [Audio](guides/GettingStarted.md#audio)
+- [Batch](guides/GettingStarted.md#batch)
 
 #### Beta
 
@@ -121,6 +122,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Threads](guides/GettingStarted.md#threads)
 - [Messages](guides/GettingStarted.md#messages)
 - [Runs](guides/GettingStarted.md#runs)
+- [Vector Stores](guides/GettingStarted.md#vector-stores)
 
 #### Deprecated
 - [Completions](guides/GettingStarted.md#completions)
@@ -134,7 +136,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 Get started and understand more about how to use OpenAI API client for Kotlin with these guides:
 
 - [Getting Started](guides/GettingStarted.md)
-- [Chat & Function Call](guides/ChatToolCalls.md)
+- [Chat & Tool Calls](guides/ChatToolCalls.md)
 - [FileSource Guide](guides/FileSource.md)
 - [Assistants](guides/Assistants.md)
 

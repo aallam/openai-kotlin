@@ -8,14 +8,19 @@ import com.aallam.openai.api.response.Response
 import com.aallam.openai.api.response.ResponseId
 import com.aallam.openai.api.response.ResponseInputItem
 import com.aallam.openai.api.response.ResponseRequest
+import com.aallam.openai.api.response.ResponseStreamEvent
 import com.aallam.openai.client.Responses
 import com.aallam.openai.client.internal.extension.requestOptions
+import com.aallam.openai.client.internal.extension.streamEventsFrom
+import com.aallam.openai.client.internal.extension.streamRequestOf
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 internal class ResponsesApi(private val requester: HttpRequester) : Responses {
     override suspend fun response(
@@ -29,6 +34,27 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
                 contentType(ContentType.Application.Json)
                 requestOptions(requestOptions)
             }.body()
+        }
+    }
+
+    override fun responseStream(
+        request: ResponseRequest,
+        requestOptions: RequestOptions?
+    ): Flow<ResponseStreamEvent> {
+        val builder = HttpRequestBuilder().apply {
+            method = HttpMethod.Post
+            url(path = ApiPath.Responses)
+            setBody(streamRequestOf(request))
+            contentType(ContentType.Application.Json)
+            accept(ContentType.Text.EventStream)
+            headers {
+                append(HttpHeaders.CacheControl, "no-cache")
+                append(HttpHeaders.Connection, "keep-alive")
+            }
+            requestOptions(requestOptions)
+        }
+        return flow {
+            requester.perform(builder) { response -> streamEventsFrom(response) }
         }
     }
 

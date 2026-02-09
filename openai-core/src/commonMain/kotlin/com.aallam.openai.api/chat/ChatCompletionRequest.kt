@@ -32,12 +32,6 @@ public data class ChatCompletionRequest(
     @SerialName("reasoning_effort") public val reasoningEffort: Effort? = null,
 
     /**
-     * Constrains the verbosity of responses. Currently supported values are low, medium, and high.
-     * Controls how concise or verbose the model's output will be.
-     */
-    @SerialName("verbosity") public val verbosity: Verbosity? = null,
-
-    /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
      * while lower values like 0.2 will make it more focused and deterministic.
      *
@@ -163,6 +157,11 @@ public data class ChatCompletionRequest(
     @SerialName("tool_choice") public val toolChoice: ToolChoice? = null,
 
     /**
+     * This tool searches the web for relevant results to use in a response.
+     */
+    @SerialName("web_search_options") public val webSearchOptions: WebSearchOptions? = null,
+
+    /**
      * If specified, our system will make the best effort to sample deterministically, such that repeated requests with
      * the same seed and parameters should return the same result.
      * Determinism is not guaranteed, and you should refer to the `systemFingerprint` response parameter to monitor
@@ -222,12 +221,6 @@ public class ChatCompletionRequestBuilder {
     public var reasoningEffort: Effort? = null
 
     /**
-     * Constrains the verbosity of responses. Currently supported values are low, medium, and high.
-     * Controls how concise or verbose the model's output will be.
-     */
-    public var verbosity: Verbosity? = null
-
-    /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random,
      * while lower values like 0.2 will make it more focused and deterministic.
      *
@@ -257,7 +250,7 @@ public class ChatCompletionRequestBuilder {
     /**
      * Whether to store the output of this chat completion request for use in our model distillation or evals products
      */
-    public val store: Boolean? = null
+    public var store: Boolean? = null
 
     /**
      * The maximum number of tokens allowed for the generated answer. By default, the number of tokens the model can
@@ -270,7 +263,7 @@ public class ChatCompletionRequestBuilder {
      * An upper bound for the number of tokens that can be generated for a completion,
      * including visible output tokens and reasoning tokens.
      */
-    public val maxCompletionTokens: Int? = null
+    public var maxCompletionTokens: Int? = null
 
     /**
      * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,
@@ -353,6 +346,11 @@ public class ChatCompletionRequestBuilder {
     public var toolChoice: ToolChoice? = null
 
     /**
+     * This tool searches the web for relevant results to use in a response.
+     */
+    public var webSearchOptions: WebSearchOptions? = null
+
+    /**
      * Whether to return log probabilities of the output tokens or not. If true,
      * returns the log probabilities of each output token returned in the content of message.
      */
@@ -403,7 +401,6 @@ public class ChatCompletionRequestBuilder {
         model = requireNotNull(model) { "model is required" },
         messages = requireNotNull(messages) { "messages is required" },
         reasoningEffort = reasoningEffort,
-        verbosity = verbosity,
         temperature = temperature,
         topP = topP,
         n = n,
@@ -419,6 +416,7 @@ public class ChatCompletionRequestBuilder {
         functionCall = functionCall,
         responseFormat = responseFormat,
         toolChoice = toolChoice,
+        webSearchOptions = webSearchOptions,
         tools = tools,
         logprobs = logprobs,
         topLogprobs = topLogprobs,

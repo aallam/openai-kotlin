@@ -1,38 +1,28 @@
 ## Unreleased
 
-### Added
-- **responses**: OpenAI Responses API implementation with reasoning support
-- **responses**: stateless response generation with manual context management
-- **responses**: streaming support for real-time response generation with `createResponseStream()`
-- **responses**: reasoning traces access through encrypted content
-- **responses**: comprehensive DSL builder for request construction
-- **responses**: support for reasoning effort levels (low, medium, high)
-- **responses**: reasoning summary options (auto, concise, detailed)
-- **responses**: max output tokens and instructions parameters
-- **responses**: `ResponseChunk` data class for streaming response events
-- **responses**: support for various streaming event types (created, completed, deltas, etc.)
-- **responses**: enhanced message input with status field for assistant messages
-- **responses**: `OutputTextPart` for streaming response content parts
-- **responses**: **tool calling support** with multi-turn conversation workflows
-- **responses**: function tool definitions with comprehensive schema support (ObjectSchema, StringSchema, etc.)
-- **responses**: tool call execution and response handling with `FunctionCall` and `FunctionCallOutput`
-- **responses**: tool call status tracking (completed, in_progress, incomplete)
-- **responses**: comprehensive tool calling DSL builders for request construction
-- **core**: enhanced Usage class with reasoning-specific token counts
-- **core**: new `Message` class with rich content support (InputText, OutputText, annotations)
-- **core**: `Reasoning` class for reasoning input/output with encrypted content support
-- **core**: tool-related classes (`Tool`, `FunctionTool`, `ToolCall`, `ToolCallId`, etc.)
-- **core**: comprehensive schema definitions for tool parameters
-- **guides**: comprehensive Responses API documentation and examples
-- **chat**: add verbosity parameter support for controlling response length and detail
+## 4.1.0
+> Published 07 Feb 2026
 
-### Enhanced
-- **responses**: improved test coverage with streaming response validation
-- **responses**: better error handling and response structure validation
-- **responses**: enhanced DSL builder with stream parameter support
-- **responses**: comprehensive multi-turn tool calling test coverage
-- **responses**: enhanced message content builders with type safety
-- **Azure API V1**: Support for OpenAI Azure's v1 API
+### Added
+- **batch**: make `OpenAI` interface extend `Batch` interface (#433).
+- **responses**: add Responses API support (`create`, `retrieve`, `cancel`, `delete`, and `input_items` listing).
+- **chat**: add `web_search_options` request support.
+- **chat**: expose `annotations` and `reasoning_content` in chat message payloads.
+- **chat**: support `required` tool choice mode (#429).
+
+### Fixed
+- **chat**: make `ChatCompletionRequestBuilder.reasoningEffort`, `store`, and `maxCompletionTokens` configurable.
+- **chat**: improve `ChatResponseFormat` compatibility by supporting both primitive and object variants.
+- **chat**: always encode `JsonSchema.strict`, including its default `true` value (#430).
+- **chat**: set explicit JSON class discriminator for polymorphic `ContentPart` serialization.
+- **images**: stabilize image edit uploads for live API compatibility (#459).
+- **tests**: remove flaky external image URL dependency from chat vision live tests.
+- **tests**: stabilize vector store live tests with current API behavior (#459).
+
+### Changed
+- **tests**: make `openai-client` live API tests opt-in via `OPENAI_LIVE_TESTS=1`.
+- **ci**: split billable live tests into a small JVM smoke job and a separate full-live workflow.
+- **docs**: fix RetrievalTool usage in Getting Started guide (#427).
 
 ## 4.0.1
 > Published 02 Feb 2025

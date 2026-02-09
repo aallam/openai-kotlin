@@ -303,29 +303,4 @@ class TestChatCompletions : TestOpenAI() {
         assertNotNull(results.last().usage?.totalTokens)
     }
 
-    @Test
-    fun chatCompletionsWithVerbosity() = test {
-        val request = chatCompletionRequest {
-            model = ModelId("gpt-4o")
-            verbosity = Verbosity.Low
-            messages {
-                user {
-                    content = "Explain quantum computing"
-                }
-            }
-            maxTokens = 100
-        }
-
-        val completion = openAI.chatCompletion(request)
-        assertTrue { completion.choices.isNotEmpty() }
-        assertNotNull(completion.choices.first().message.content)
-    }
-
-    @Test
-    fun verbosityValues() {
-        // Test that verbosity values are correctly defined
-        assertEquals("low", Verbosity.Low.id)
-        assertEquals("medium", Verbosity.Medium.id)
-        assertEquals("high", Verbosity.High.id)
-    }
 }

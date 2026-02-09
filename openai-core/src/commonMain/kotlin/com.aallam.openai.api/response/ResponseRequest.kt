@@ -1,226 +1,127 @@
 package com.aallam.openai.api.response
 
-import com.aallam.openai.api.OpenAIDsl
-import com.aallam.openai.api.chat.ChatRole
+import com.aallam.openai.api.chat.ChatResponseFormat
+import com.aallam.openai.api.chat.Effort
+import com.aallam.openai.api.chat.SearchContextSize
+import com.aallam.openai.api.chat.UserLocation
+import com.aallam.openai.api.core.Parameters
 import com.aallam.openai.api.model.ModelId
-import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 
 /**
- * Request for creating a response using the responses API.
+ * Creates a model response.
  */
 @Serializable
 public data class ResponseRequest(
     /**
-     * ID of the model to use.
+     * Model to use for this response.
      */
     @SerialName("model") public val model: ModelId,
-    
+
     /**
-     * The input items for the response.
+     * Text or structured input.
      */
-    @SerialName("input") public val input: List<ResponseInputItem>,
-    
+    @SerialName("input") public val input: ResponseInput? = null,
+
     /**
-     * Whether to store the response. Always false for stateless usage.
+     * Optional instructions that prepended to model context.
      */
-    @EncodeDefault @SerialName("store") public val store: Boolean = false,
-    
+    @SerialName("instructions") public val instructions: String? = null,
+
     /**
-     * Configuration for reasoning behavior.
-     */
-    @SerialName("reasoning") public val reasoning: ReasoningConfig? = null,
-    
-    /**
-     * Additional fields to include in the response.
-     * Use ["reasoning.encrypted_content"] to get reasoning traces.
-     */
-    @SerialName("include") public val include: List<String>? = null,
-    
-    /**
-     * Sampling temperature between 0 and 2.
-     */
-    @SerialName("temperature") public val temperature: Double? = null,
-    
-    /**
-     * Maximum number of tokens to generate.
+     * Upper bound for generated output tokens.
      */
     @SerialName("max_output_tokens") public val maxOutputTokens: Int? = null,
 
     /**
-     * Instructions for the model on how to respond.
+     * Arbitrary metadata for this response.
      */
-    @SerialName("instructions") public val instructions: String? = null,
-    
+    @SerialName("metadata") public val metadata: Map<String, String>? = null,
+
+    /**
+     * Whether the model can execute multiple tool calls in parallel.
+     */
+    @SerialName("parallel_tool_calls") public val parallelToolCalls: Boolean? = null,
+
+    /**
+     * Continue from a previous response.
+     */
+    @SerialName("previous_response_id") public val previousResponseId: ResponseId? = null,
+
+    /**
+     * Reasoning configuration.
+     */
+    @SerialName("reasoning") public val reasoning: ResponseReasoning? = null,
+
+    /**
+     * Whether to store this response for evals/distillation products.
+     */
+    @SerialName("store") public val store: Boolean? = null,
+
+    /**
+     * Sampling temperature.
+     */
+    @SerialName("temperature") public val temperature: Double? = null,
+
+    /**
+     * Text output format configuration.
+     */
+    @SerialName("text") public val text: ResponseText? = null,
+
+    /**
+     * Tool choice strategy.
+     */
+    @SerialName("tool_choice") public val toolChoice: JsonElement? = null,
+
+    /**
+     * Tools available to the model.
+     */
+    @SerialName("tools") public val tools: List<ResponseTool>? = null,
+
     /**
      * Nucleus sampling parameter.
      */
     @SerialName("top_p") public val topP: Double? = null,
 
     /**
-     * Whether to stream the response.
+     * Truncation strategy.
      */
-    @SerialName("stream") public val stream: Boolean? = null,
+    @SerialName("truncation") public val truncation: String? = null,
 
-    @SerialName("tools") public val tools: List<Tool>? = null,
+    /**
+     * End-user identifier.
+     */
+    @SerialName("user") public val user: String? = null,
 )
 
 /**
- * Builder for [ResponseRequest].
+ * Reasoning configuration for response requests.
  */
-@OpenAIDsl
-public class ResponseRequestBuilder {
-    /**
-     * ID of the model to use.
-     */
-    public var model: ModelId? = null
-    
-    /**
-     * The input items for the response.
-     */
-    public var input: List<ResponseInputItem>? = null
-
-    public var tools: List<Tool>? = null
-    
-    /**
-     * Whether to store the response. Always false for stateless usage.
-     */
-    public var store: Boolean = false
-    
-    /**
-     * Configuration for reasoning behavior.
-     */
-    public var reasoning: ReasoningConfig? = null
-    
-    /**
-     * Additional fields to include in the response.
-     */
-    public var include: List<String>? = null
-    
-    /**
-     * Sampling temperature between 0 and 2.
-     */
-    public var temperature: Double? = null
-    
-    /**
-     * Maximum number of tokens to generate.
-     */
-    public var maxOutputTokens: Int? = null
-    
-    /**
-     * Nucleus sampling parameter.
-     */
-    public var topP: Double? = null
-
-    /**
-     * Instructions for the model on how to respond.
-     */
-    public var instructions: String? = null
-    
-    /**
-     * Whterh to stream the response.
-     */
-     public var stream: Boolean? = null
-    
-    /**
-     * Build the input items using a DSL.
-     */
-    public fun input(block: ResponseInputBuilder.() -> Unit) {
-        input = ResponseInputBuilder().apply(block).build()
-    }
-
-    public fun tools(block: ToolsBuilder.() -> Unit) {
-        tools = ToolsBuilder().apply(block).build()
-    }
-    
-    /**
-     * Build the [ResponseRequest].
-     */
-    public fun build(): ResponseRequest = ResponseRequest(
-        model = requireNotNull(model) { "model is required" },
-        input = requireNotNull(input) { "input is required" },
-        store = store,
-        reasoning = reasoning,
-        include = include,
-        temperature = temperature,
-        maxOutputTokens = maxOutputTokens,
-        topP = topP,
-        instructions = instructions,
-        stream = stream,
-        tools = tools,
-    )
-}
-
-@OpenAIDsl
-public class ToolsBuilder {
-    private val tools = mutableListOf<Tool>()
-
-    public fun tool(block: ToolBuilder.() -> Unit) {
-        tools.add(ToolBuilder().apply(block).build())
-    }
-
-    internal fun build(): List<Tool> = tools.toList()
-}
+@Serializable
+public data class ResponseReasoning(
+    @SerialName("effort") public val effort: Effort? = null,
+)
 
 /**
- * Builder for response input items.
+ * Text output configuration for response requests.
  */
-@OpenAIDsl
-public class ResponseInputBuilder {
-    private val items = mutableListOf<ResponseInputItem>()
-    
-    /**
-     * Add a message input item.
-     */
-    public fun message(role: ChatRole, content: String) {
-        val status = if (role == ChatRole.Assistant) MessageStatus.Completed else null
-        val messageContent = if (role == ChatRole.Assistant) {
-            MessageContent.OutputText(content)
-        } else {
-            MessageContent.InputText(content)
-        }
-        items.add(
-            Message(
-                role = role,
-                content = listOf(messageContent),
-                status = status,
-            ),
-        )
-    }
-    
-    /**
-     * Add a message input item using a builder.
-     */
-    public fun message(block: MessageBuilder.() -> Unit) {
-        items.add(MessageBuilder().apply(block).build())
-    }
-    
-    /**
-     * Add a reasoning input item.
-     */
-    public fun reasoning(block: ReasoningBuilder.() -> Unit) {
-        items.add(ReasoningBuilder().apply(block).build())
-    }
-
-    public fun functionCall(block: FunctionCallBuilder.() -> Unit) {
-        items.add(FunctionCallBuilder().apply(block).build())
-    }
-
-    public fun functionCallOutput(block: FunctionCallOutputBuilder.() -> Unit) {
-        items.add(FunctionCallOutputBuilder().apply(block).build())
-    }
-
-    /**
-     * Add a tool input item.
-     */
-    
-    internal fun build(): List<ResponseInputItem> = items.toList()
-}
-
+@Serializable
+public data class ResponseText(
+    @SerialName("format") public val format: ChatResponseFormat? = null,
+)
 
 /**
- * Create a [ResponseRequest] using a DSL.
+ * Tool declaration for response requests.
  */
-public fun responseRequest(block: ResponseRequestBuilder.() -> Unit): ResponseRequest =
-    ResponseRequestBuilder().apply(block).build()
+@Serializable
+public data class ResponseTool(
+    @SerialName("type") public val type: String,
+    @SerialName("name") public val name: String? = null,
+    @SerialName("description") public val description: String? = null,
+    @SerialName("parameters") public val parameters: Parameters? = null,
+    @SerialName("strict") public val strict: Boolean? = null,
+    @SerialName("search_context_size") public val searchContextSize: SearchContextSize? = null,
+    @SerialName("user_location") public val userLocation: UserLocation? = null,
+)

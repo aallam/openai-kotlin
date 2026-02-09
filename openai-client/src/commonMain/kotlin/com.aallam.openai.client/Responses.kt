@@ -1,44 +1,59 @@
 package com.aallam.openai.client
 
+import com.aallam.openai.api.core.PaginatedList
 import com.aallam.openai.api.core.RequestOptions
+import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.response.Response
-import com.aallam.openai.api.response.ResponseChunk
+import com.aallam.openai.api.response.ResponseId
+import com.aallam.openai.api.response.ResponseInputItem
 import com.aallam.openai.api.response.ResponseRequest
-import kotlinx.coroutines.flow.Flow
 
 /**
- * The Responses API provides a stateless interface for generating responses with reasoning support.
- * This API is particularly useful for accessing reasoning traces from reasoning models.
+ * Create and manage model responses.
  */
 public interface Responses {
 
     /**
-     * Creates a response for the given input.
-     *
-     * This method always operates in stateless mode (store=false), requiring manual context management.
-     * To access reasoning traces, include "reasoning.encrypted_content" in the request's include parameter.
-     *
-     * @param request the response request containing model, input, and configuration
-     * @param requestOptions additional request options
-     * @return the generated response with optional reasoning traces
+     * Creates a model response.
      */
-    public suspend fun createResponse(
+    public suspend fun response(
         request: ResponseRequest,
         requestOptions: RequestOptions? = null
     ): Response
 
     /**
-     * Stream variant of [createResponse].
-     *
-     * This method streams response chunks as they are generated, allowing real-time access to
-     * reasoning summaries and message content as they are produced.
-     *
-     * @param request the response request containing model, input, and configuration (with stream=true)
-     * @param requestOptions additional request options
-     * @return a flow of response chunks
+     * Retrieves a response by its identifier.
      */
-    public fun createResponseStream(
-        request: ResponseRequest,
+    public suspend fun response(
+        id: ResponseId,
         requestOptions: RequestOptions? = null
-    ): Flow<ResponseChunk>
+    ): Response?
+
+    /**
+     * Deletes a stored response.
+     */
+    public suspend fun delete(
+        id: ResponseId,
+        requestOptions: RequestOptions? = null
+    ): Boolean
+
+    /**
+     * Cancels an in-progress response.
+     */
+    public suspend fun cancel(
+        id: ResponseId,
+        requestOptions: RequestOptions? = null
+    ): Response?
+
+    /**
+     * Lists input items for a response.
+     */
+    public suspend fun responseInputItems(
+        id: ResponseId,
+        limit: Int? = null,
+        order: SortOrder? = null,
+        after: String? = null,
+        before: String? = null,
+        requestOptions: RequestOptions? = null
+    ): PaginatedList<ResponseInputItem>
 }

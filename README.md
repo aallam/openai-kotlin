@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/Aallam/openai-kotlin?color=yellow)](LICENSE.md)
 [![Documentation](https://img.shields.io/badge/docs-api-a97bff.svg?logo=kotlin)](https://mouaad.aallam.com/openai-kotlin/)
 
-Kotlin client for [OpenAI's API](https://beta.openai.com/docs/api-reference) with multiplatform and coroutines
+Kotlin client for [OpenAI's API](https://platform.openai.com/docs/api-reference) with multiplatform and coroutines
 capabilities.
 
 ## 📦 Setup
@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.aallam.openai:openai-client:4.0.1"
+    implementation "com.aallam.openai:openai-client:4.1.0"
 }
 ```
 
@@ -30,7 +30,7 @@ Alternatively, you can use [openai-client-bom](/openai-client-bom)  by adding th
 ```groovy
 dependencies {
     // import Kotlin API client BOM
-    implementation platform('com.aallam.openai:openai-client-bom:4.0.1')
+    implementation platform('com.aallam.openai:openai-client-bom:4.1.0')
 
     // define dependencies without versions
     implementation 'com.aallam.openai:openai-client'
@@ -57,7 +57,7 @@ of [Ktor's engines](https://ktor.io/docs/http-client-engines.html).
     <dependency>
         <groupId>com.aallam.openai</groupId>
         <artifactId>openai-client-jvm</artifactId>
-        <version>3.8.0</version>
+        <version>4.1.0</version>
     </dependency>
             
     <dependency>
@@ -105,6 +105,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 
 ### Supported features
 
+- [Responses](guides/GettingStarted.md#responses)
 - [Models](guides/GettingStarted.md#models)
 - [Chat](guides/GettingStarted.md#chat)
 - [Images](guides/GettingStarted.md#images)
@@ -166,6 +167,23 @@ repositories {
 ## 🛠️ Troubleshooting
 
 For common issues and their solutions, check the [Troubleshooting Guide](TROUBLESHOOTING.md).
+
+## 🧪 Testing
+
+`openai-client` tests are live integration tests and can generate billable API traffic.
+
+- Default (non-billable): live tests are disabled.
+- Opt-in live tests: set `OPENAI_LIVE_TESTS=1` and `OPENAI_API_KEY`.
+
+Examples:
+
+```bash
+# Free/offline checks
+./gradlew :openai-core:jvmTest :openai-core:jsTest :openai-core:wasmJsTest :openai-core:apiCheck :openai-client:apiCheck
+
+# Live smoke (billable)
+OPENAI_LIVE_TESTS=1 OPENAI_API_KEY=... ./gradlew :openai-client:jvmTest --tests "*.TestModels"
+```
 
 ## ⭐️ Support
 

@@ -222,11 +222,19 @@ public final class com/aallam/openai/client/ProxyConfig$Socks : com/aallam/opena
 }
 
 public abstract interface class com/aallam/openai/client/Responses {
-	public abstract fun createResponse (Lcom/aallam/openai/api/response/ResponseRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun cancel-PmuLqX4 (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun delete-PmuLqX4 (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun response (Lcom/aallam/openai/api/response/ResponseRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun response-PmuLqX4 (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun responseInputItems-t6pSt08 (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/Responses$DefaultImpls {
-	public static synthetic fun createResponse$default (Lcom/aallam/openai/client/Responses;Lcom/aallam/openai/api/response/ResponseRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun cancel-PmuLqX4$default (Lcom/aallam/openai/client/Responses;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun delete-PmuLqX4$default (Lcom/aallam/openai/client/Responses;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun response$default (Lcom/aallam/openai/client/Responses;Lcom/aallam/openai/api/response/ResponseRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun response-PmuLqX4$default (Lcom/aallam/openai/client/Responses;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun responseInputItems-t6pSt08$default (Lcom/aallam/openai/client/Responses;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/RetryStrategy {

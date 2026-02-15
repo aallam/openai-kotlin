@@ -16,7 +16,7 @@ public data class ChatCompletionChunk(
      * A unique id assigned to this completion
      */
     @SerialName("id")
-    public val id: String,
+    public val id: String? = null,
 
     /**
      * The creation time in epoch milliseconds.
@@ -48,4 +48,7 @@ public data class ChatCompletionChunk(
      */
     @SerialName("system_fingerprint")
     public val systemFingerprint: String? = null,
+
+    @SerialName("citations")
+    public val citations: List<String>? = null,
 )

@@ -602,6 +602,23 @@ val config = OpenAIConfig(
 val openAI = OpenAI(config)
 ```
 
+For example, Tuning Engines exposes an OpenAI-compatible endpoint for teams that
+want a governed control plane for model access, policy checks, audit logs,
+traces, and usage/cost reporting:
+
+```kotlin
+val host = OpenAIHost(
+    baseUrl = "https://api.tuningengines.com/v1/",
+)
+
+val config = OpenAIConfig(
+    host = host,
+    token = System.getenv("TUNING_ENGINES_API_KEY"),
+)
+
+val openAI = OpenAI(config)
+```
+
 ---
 
 ## Assistants

@@ -602,6 +602,23 @@ val config = OpenAIConfig(
 val openAI = OpenAI(config)
 ```
 
+For applications that switch between OpenAI and another OpenAI-compatible
+endpoint across environments, the host can be read from `OPENAI_BASE_URL`.
+The value should include the API base path and end with `/`.
+
+```kotlin
+val host = OpenAIHost(
+    baseUrl = System.getenv("OPENAI_BASE_URL") ?: "https://api.openai.com/v1/",
+)
+
+val config = OpenAIConfig(
+    host = host,
+    token = System.getenv("OPENAI_API_KEY") ?: error("OPENAI_API_KEY is required"),
+)
+
+val openAI = OpenAI(config)
+```
+
 ---
 
 ## Assistants

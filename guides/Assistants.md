@@ -1,22 +1,56 @@
 # Assistants
 
-This guide provides a step-by-step example for using the Assistants API from Kotlin.
+> **Sunset:** OpenAI sunset the Assistants API on August 26, 2026 ([#470](https://github.com/aallam/openai-kotlin/issues/470)). The client retains these beta endpoints for compatible services that still implement them, but they are not a supported path for OpenAI. For new OpenAI integrations, use the [Responses API](GettingStarted.md#responses).
+
+This guide documents the legacy Assistants API methods for compatible services.
 
 > ℹ️ Assistants/Threads/Messages/Runs APIs in this client are marked as beta.
+
+## Migrating to Responses
+
+The Responses API is available in this client. Move assistant instructions into each `ResponseRequest`, provide turn input with `ResponseInput`, and continue a conversation with `previousResponseId`. This is not a one-to-one migration: Responses do not create a stored assistant, thread, or run, and this client currently exposes non-streaming Responses methods.
+
+```kotlin
+val first = openAI.response(
+    request = ResponseRequest(
+        model = ModelId("gpt-4.1"),
+        instructions = "You are a math tutor.",
+        input = ResponseInput("What is 3 + 11?")
+    )
+)
+
+val followUp = openAI.response(
+    request = ResponseRequest(
+        model = ModelId("gpt-4.1"),
+        previousResponseId = first.id,
+        input = ResponseInput("Can you show another way?")
+    )
+)
+```
+
+See [Getting Started](GettingStarted.md#responses) for the full Responses API surface.
 
 ## Prerequisites
 
 - OpenAI API Kotlin client installed.
-- An API key from OpenAI.
+- A compatible service that still implements the Assistants API, with its API base URL (including `/v1/` and ending in `/`) and token. Do not use an OpenAI API key with these legacy examples.
 
 ## Complete Example
 
 ```kotlin
 suspend fun main() {
 
-    // 1) Configure client
-    val token = System.getenv("OPENAI_API_KEY")
-    val openAI = OpenAI(token)
+    // 1) Configure a compatible host that still supports Assistants
+    val baseUrl = System.getenv("ASSISTANTS_API_BASE_URL")
+        ?: error("ASSISTANTS_API_BASE_URL is required")
+    val token = System.getenv("ASSISTANTS_API_TOKEN")
+        ?: error("ASSISTANTS_API_TOKEN is required")
+    val openAI = OpenAI(
+        OpenAIConfig(
+            token = token,
+            host = OpenAIHost(baseUrl = baseUrl),
+        )
+    )
 
     // 2) Create an assistant
     val assistant = openAI.assistant(

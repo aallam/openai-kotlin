@@ -204,54 +204,49 @@ val chunks: Flow<ChatCompletionChunk> = openAI.chatCompletions(request)
 
 ## Images
 
-Given a prompt and/or an input image, the model will generate a new image.
+Use a current GPT Image model for generation and editing. These operations return base64 image data and response metadata. See the [Images guide](Images.md) for streaming, controls, usage and image reference options.
 
-### Create image
-
-Creates an image given a prompt.
+### Generate an image
 
 ```kotlin
-val images = openAI.imageURL( // or openAI.imageJSON
-    creation = ImageCreation(
+val response = openAI.image(
+    ImageGenerationRequest(
         prompt = "A cute baby sea otter",
-        model = ModelId("dall-e-3"),
+        model = ModelId("gpt-image-2.5-sunburst"),
         n = 1,
-        size = ImageSize.is1024x1024
+        size = ImageSize.is1024x1024,
+        quality = Quality.Low,
+        outputFormat = ImageOutputFormat.Png,
     )
 )
+val base64Image = response.data.single().b64JSON
+val usage = response.usage
 ```
 
-### Edit images
+### Edit an uploaded image
 
-Creates an edited or extended image given an original image and a prompt.
+Upload an image with the Files API, then reference its ID. The mask is optional. Delete the uploaded input when it is no longer needed.
 
 ```kotlin
-val images = openAI.imageURL( // or openAI.imageJSON
-    edit = ImageEdit(
-        image = FileSource(path = Path("image.png")),
-        model = ModelId("dall-e-2"),
-        mask = FileSource(path = Path("mask.png")),
-        prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
-        n = 1,
-        size = ImageSize.is1024x1024
-    )
+val input = openAI.file(
+    FileUpload(FileSource(path = Path("image.png")), purpose = Purpose("vision"))
 )
+try {
+    val response = openAI.image(
+        ImageEditRequest(
+            images = listOf(ImageReference.file(input.id)),
+            prompt = "Add a flamingo floating in the pool",
+            model = ModelId("gpt-image-2.5-sunburst"),
+            n = 1,
+        )
+    )
+    val base64Image = response.data.single().b64JSON
+} finally {
+    openAI.delete(input.id)
+}
 ```
 
-### Create image variation
-
-Creates a variation of a given image.
-
-```kotlin
-val images = openAI.imageURL( // or openAI.imageJSON
-    variation = ImageVariation(
-        image = FileSource(path = Path("image.png")),
-        model = ModelId("dall-e-2"),
-        n = 1,
-        size = ImageSize.is1024x1024
-    )
-)
-```
+DALL-E models and their URL/variation workflows have retired from OpenAI. The legacy methods remain available for compatible providers; use `image()` and `imageEvents()` for current OpenAI image models. The JVM sample and live image tests accept `OPENAI_IMAGE_MODEL` to select another supported GPT Image model. Changing that setting does not bypass model-specific parameter constraints.
 
 ## Embeddings
 
@@ -438,7 +433,7 @@ val bytes = openAI.download(FileId("file-abc123"))
 
 ## Moderations
 
-Given an input text, outputs if the model classifies it as violating OpenAI's content policy.
+Classify text and image inputs against OpenAI's content policy.
 
 ### Create moderation
 
@@ -447,11 +442,28 @@ Classifies if text violates OpenAI's content policy.
 ```kotlin
 val moderation = openAI.moderations(
     request = ModerationRequest(
-        model = ModerationModel.Latest,
-        input = "I want to kill them."
+        model = ModerationModel.OmniLatest,
+        input = listOf("I want to kill them.")
     )
 )
 ```
+
+For mixed text and images, use typed content parts:
+
+```kotlin
+val moderation = openAI.moderate(
+    MultimodalModerationRequest(
+        input = listOf(
+            ModerationInput.Text("Describe the scene."),
+            ModerationInput.Image("https://example.com/image.png"),
+        ),
+        model = ModerationModel.OmniLatest,
+    )
+)
+```
+
+Omit `model` to use OpenAI's default. Results include category scores and the input
+modalities evaluated for each category through `categoryAppliedInputTypes`.
 
 ## Batch
 

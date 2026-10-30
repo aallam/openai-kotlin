@@ -12,6 +12,7 @@ import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.sse.SSE
+import io.ktor.client.plugins.websocket.WebSockets
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
 import io.ktor.util.*
@@ -73,6 +74,7 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         }
 
         install(SSE)
+        install(WebSockets)
 
         defaultRequest {
             url(config.host.baseUrl)
@@ -86,11 +88,13 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         config.httpClientConfig(this)
     }
 
-    return if(config.engine != null) {
+    val client = if(config.engine != null) {
         HttpClient(config.engine, configuration)
     } else {
         HttpClient(configuration)
     }
+    client.attributes.put(RealtimeBaseUrl, config.host.baseUrl)
+    return client
 }
 
 /**
@@ -100,3 +104,5 @@ internal val JsonLenient = Json {
     isLenient = true
     ignoreUnknownKeys = true
 }
+
+internal val RealtimeBaseUrl = AttributeKey<String>("OpenAIRealtimeBaseUrl")

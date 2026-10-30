@@ -394,6 +394,9 @@ public class ChatCompletionRequestBuilder {
      */
     public var streamOptions: StreamOptions? = null
 
+    /** Seed for best-effort reproducible sampling. */
+    public var seed: Int? = null
+
     /**
      * Builder of [ChatCompletionRequest] instances.
      */
@@ -422,6 +425,7 @@ public class ChatCompletionRequestBuilder {
         topLogprobs = topLogprobs,
         instanceId = instanceId,
         streamOptions = streamOptions,
+        seed = seed,
     )
 }
 
@@ -430,6 +434,11 @@ public class ChatCompletionRequestBuilder {
  */
 public class ChatMessagesBuilder {
     internal val messages = mutableListOf<ChatMessage>()
+
+    /** Developer instructions for current models. */
+    public fun developer(block: SystemMessageBuilder.() -> Unit) {
+        messages += SystemMessageBuilder().apply(block).build().copy(role = ChatRole.Developer)
+    }
 
     /**
      * Creates a [ChatMessage] instance.

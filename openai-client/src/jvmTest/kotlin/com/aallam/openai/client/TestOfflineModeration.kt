@@ -5,6 +5,7 @@ import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.moderation.ModerationInput
 import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.api.moderation.MultimodalModerationRequest
+import com.aallam.openai.api.moderation.ModerationModel
 import com.aallam.openai.api.moderation.TextModeration
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
@@ -20,13 +21,25 @@ import kotlin.test.assertFailsWith
 
 class TestOfflineModeration {
     @Test
+    fun legacyInferredModerationReferenceRemainsUnambiguous() = runTest {
+        val client = object : Moderations {
+            override suspend fun moderations(request: ModerationRequest, requestOptions: RequestOptions?): TextModeration {
+                assertEquals(listOf("check"), request.input)
+                return TextModeration("modr_legacy", ModerationModel.OmniLatest, emptyList())
+            }
+        }
+        val reference = client::moderations
+        assertEquals("modr_legacy", reference(ModerationRequest(listOf("check")), null).id)
+    }
+
+    @Test
     fun existingTextOnlyClientStillCompiles() = runTest {
         val client = object : Moderations {
             override suspend fun moderations(request: ModerationRequest, requestOptions: RequestOptions?): TextModeration =
                 throw UnsupportedOperationException("Text-only test client")
         }
         assertFailsWith<UnsupportedOperationException> {
-            client.moderations(MultimodalModerationRequest(listOf(ModerationInput.Text("check"))))
+            client.moderate(MultimodalModerationRequest(listOf(ModerationInput.Text("check"))))
         }
     }
 
@@ -51,7 +64,7 @@ class TestOfflineModeration {
             logging = LoggingConfig(logLevel = LogLevel.None),
         ))
         try {
-            val result = client.moderations(
+            val result = client.moderate(
                 MultimodalModerationRequest(listOf(
                     ModerationInput.Text("check"),
                     ModerationInput.Image("https://example.com/image.png"),

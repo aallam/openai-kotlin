@@ -456,7 +456,7 @@ val moderation = openAI.moderations(
 For mixed text and images, use typed content parts:
 
 ```kotlin
-val moderation = openAI.moderations(
+val moderation = openAI.moderate(
     MultimodalModerationRequest(
         input = listOf(
             ModerationInput.Text("Describe the scene."),

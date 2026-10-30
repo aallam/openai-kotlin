@@ -28,7 +28,7 @@ internal class ModerationsApi(private val requester: HttpRequester) : Moderation
         }
     }
 
-    override suspend fun moderations(
+    override suspend fun moderate(
         request: MultimodalModerationRequest,
         requestOptions: RequestOptions?,
     ): TextModeration {

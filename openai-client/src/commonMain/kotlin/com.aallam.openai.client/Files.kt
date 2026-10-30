@@ -1,18 +1,20 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.core.RequestOptions
+import com.aallam.openai.api.core.PaginatedList
+import com.aallam.openai.api.core.SortOrder
+import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileUpload
 
 /**
- * Files are used to upload documents that can be used across features like [Answers], [Searches], and [Classifications]
+ * Files contain data for Responses, vector stores, batch requests, and fine-tuning.
  */
 public interface Files {
 
     /**
      * Upload a file that contains document(s) to be used across various endpoints/features.
-     * Currently, the size of all the files uploaded by one organization can be up to 1 GB.
      *
      * @param request file upload request.
      * @param requestOptions request options.
@@ -25,6 +27,15 @@ public interface Files {
      * @param requestOptions request options.
      */
     public suspend fun files(requestOptions: RequestOptions? = null): List<File>
+
+    /** Lists a page of files while preserving pagination cursors. */
+    public suspend fun filesPage(
+        after: FileId? = null,
+        limit: Int? = null,
+        order: SortOrder? = null,
+        purpose: Purpose? = null,
+        requestOptions: RequestOptions? = null,
+    ): PaginatedList<File> = throw UnsupportedOperationException("File pagination is not implemented by this client")
 
     /**
      * Returns information about a specific file.

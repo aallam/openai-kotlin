@@ -62,4 +62,7 @@ public data class VectorStore(
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
     @SerialName("metadata") public val metadata: Map<String, String>? = null,
+    /** Description of the indexed collection. */
+    @SerialName("description") public val description: String? = null,
+
 )

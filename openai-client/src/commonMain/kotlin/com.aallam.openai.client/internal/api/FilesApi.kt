@@ -2,6 +2,9 @@ package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.core.DeleteResponse
 import com.aallam.openai.api.core.ListResponse
+import com.aallam.openai.api.core.PaginatedList
+import com.aallam.openai.api.core.SortOrder
+import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.file.File
@@ -28,6 +31,10 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
             it.submitFormWithBinaryData(url = ApiPath.Files, formData = formData {
                 appendFileSource("file", request.file)
                 append(key = "purpose", value = request.purpose.raw)
+                request.expiresAfter?.let {
+                    append("expires_after[anchor]", it.anchor)
+                    append("expires_after[seconds]", it.seconds)
+                }
             }) {
                 requestOptions(requestOptions)
             }
@@ -41,6 +48,20 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
                 requestOptions(requestOptions)
             }
         }.data
+    }
+
+    override suspend fun filesPage(
+        after: FileId?, limit: Int?, order: SortOrder?, purpose: Purpose?, requestOptions: RequestOptions?
+    ): PaginatedList<File> = requester.perform {
+        it.get {
+            url(path = ApiPath.Files) {
+                after?.let { parameter("after", it.id) }
+                limit?.let { parameter("limit", it) }
+                order?.let { parameter("order", it.order) }
+                purpose?.let { parameter("purpose", it.raw) }
+            }
+            requestOptions(requestOptions)
+        }.body()
     }
 
     override suspend fun file(fileId: FileId, requestOptions: RequestOptions?): File? {

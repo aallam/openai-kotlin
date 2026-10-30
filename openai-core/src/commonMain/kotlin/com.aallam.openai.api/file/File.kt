@@ -50,4 +50,7 @@ public data class File(
      * File status details
      */
     @SerialName("status_details") val statusDetails: String? = null,
+
+    /** Unix timestamp when the file expires. */
+    @SerialName("expires_at") public val expiresAt: Long? = null,
 )

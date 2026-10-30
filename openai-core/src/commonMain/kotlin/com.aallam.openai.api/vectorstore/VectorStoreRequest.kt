@@ -32,5 +32,11 @@ public class VectorStoreRequest(
      * information about the object in a structured format. Keys can be a maximum of 64 characters long, and values can
      * be a maximum of 512 characters long.
      */
-    @SerialName("metadata") public val metadata: Map<String, String>? = null
+    @SerialName("metadata") public val metadata: Map<String, String>? = null,
+
+    /** Description of the vector store. */
+    @SerialName("description") public val description: String? = null,
+
+    /** Chunking policy for files attached during creation. */
+    @SerialName("chunking_strategy") public val chunkingStrategy: ChunkingStrategy? = null,
 )

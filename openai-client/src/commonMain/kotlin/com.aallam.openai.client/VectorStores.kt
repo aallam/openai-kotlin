@@ -112,6 +112,7 @@ public interface VectorStores {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("Use vectorStoreFilesPage with FileId cursors")
     public suspend fun vectorStoreFiles(
         id: VectorStoreId,
         limit: Int? = null,
@@ -195,6 +196,7 @@ public interface VectorStores {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("Use vectorStoreBatchFilesPage with FileId cursors")
     public suspend fun vectorStoreFilesBatches(
         vectorStoreId: VectorStoreId,
         batchId: BatchId,
@@ -205,4 +207,56 @@ public interface VectorStores {
         filter: Status? = null,
         requestOptions: RequestOptions? = null,
     ): List<VectorStoreFile>
+    /** Updates supplied fields, including explicit nulls, without create-only file IDs. */
+    public suspend fun updateVectorStore(
+        id: VectorStoreId,
+        request: VectorStoreUpdateRequest,
+        requestOptions: RequestOptions? = null,
+    ): VectorStore = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+
+    /** Retrieves an indexed file, or null if it does not exist. */
+    public suspend fun vectorStoreFile(
+        id: VectorStoreId, fileId: FileId, requestOptions: RequestOptions? = null,
+    ): VectorStoreFile? = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+
+    /** Replaces file attributes; null clears all attributes. */
+    public suspend fun updateVectorStoreFile(
+        id: VectorStoreId, fileId: FileId,
+        attributes: Map<String, kotlinx.serialization.json.JsonPrimitive>?,
+        requestOptions: RequestOptions? = null,
+    ): VectorStoreFile = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+
+    /** Retrieves parsed content rather than the original binary file. */
+    public suspend fun vectorStoreFileContent(
+        id: VectorStoreId, fileId: FileId, requestOptions: RequestOptions? = null,
+    ): VectorStoreContentPage = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+
+    /** Searches indexed file chunks with optional attribute filters. */
+    public suspend fun searchVectorStore(
+        id: VectorStoreId, request: VectorStoreSearchRequest, requestOptions: RequestOptions? = null,
+    ): VectorStoreSearchPage = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+
+    /** Lists indexed files using file identifiers as cursors and preserves pagination metadata. */
+    public suspend fun vectorStoreFilesPage(
+        id: VectorStoreId,
+        limit: Int? = null, order: SortOrder? = null,
+        after: FileId? = null, before: FileId? = null, filter: Status? = null,
+        requestOptions: RequestOptions? = null,
+    ): com.aallam.openai.api.core.PaginatedList<VectorStoreFile> = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+
+    /** Lists files in a batch using file identifiers as cursors. */
+    public suspend fun vectorStoreBatchFilesPage(
+        id: VectorStoreId, batchId: BatchId,
+        limit: Int? = null, order: SortOrder? = null,
+        after: FileId? = null, before: FileId? = null, filter: Status? = null,
+        requestOptions: RequestOptions? = null,
+    ): com.aallam.openai.api.core.PaginatedList<VectorStoreFile> = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+
+    /** Creates a file batch with separate configuration for each attachment. */
+    public suspend fun createVectorStoreFilesBatch(
+        id: VectorStoreId,
+        request: VectorStoreFileBatchRequest,
+        requestOptions: RequestOptions? = null,
+    ): FilesBatch = throw UnsupportedOperationException("Per-file batch configuration is not supported by this implementation")
+
 }

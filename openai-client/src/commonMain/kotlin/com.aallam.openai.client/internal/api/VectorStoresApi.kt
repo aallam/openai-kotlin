@@ -6,7 +6,6 @@ import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.vectorstore.*
 import com.aallam.openai.client.VectorStores
-import com.aallam.openai.client.internal.extension.beta
 import com.aallam.openai.client.internal.extension.requestOptions
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
@@ -28,7 +27,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
                     setBody(req)
                     contentType(ContentType.Application.Json)
                 }
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -50,7 +48,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
                     after?.let { parameter("after", it.id) }
                     before?.let { parameter("before", it.id) }
                 }
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -61,7 +58,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
             return requester.perform<HttpResponse> {
                 it.get {
                     url(path = "${ApiPath.VectorStores}/${id.id}")
-                    beta("assistants", 2)
                     requestOptions(requestOptions)
                 }
             }.body()
@@ -79,9 +75,8 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
         return requester.perform {
             it.post {
                 url(path = "${ApiPath.VectorStores}/${id.id}")
-                setBody(request)
+                setBody(VectorStoreUpdateRequest(request.name, request.metadata, request.expiresAfter))
                 contentType(ContentType.Application.Json)
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -91,7 +86,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.VectorStores}/${id.id}")
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }
         }
@@ -111,7 +105,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
                 url(path = "${ApiPath.VectorStores}/${id.id}/files")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -136,7 +129,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
                     before?.let { parameter("before", it.id) }
                     filter?.let { parameter("filter", it.value) }
                 }
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -146,7 +138,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
         val response = requester.perform<HttpResponse> {
             it.delete {
                 url(path = "${ApiPath.VectorStores}/${id.id}/files/${fileId.id}")
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }
         }
@@ -166,7 +157,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
                 url(path = "${ApiPath.VectorStores}/${id.id}/file_batches")
                 setBody(request)
                 contentType(ContentType.Application.Json)
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
@@ -181,7 +171,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
             return requester.perform<HttpResponse> {
                 it.get {
                     url(path = "${ApiPath.VectorStores}/${vectorStoreId.id}/file_batches/${batchId.id}")
-                    beta("assistants", 2)
                     requestOptions(requestOptions)
                 }
             }.body()
@@ -199,7 +188,6 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
         val response = requester.perform<HttpResponse> {
             it.post {
                 url(path = "${ApiPath.VectorStores}/${vectorStoreId.id}/file_batches/${batchId.id}/cancel")
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }
         }
@@ -226,9 +214,109 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
                     before?.let { parameter("before", it.id) }
                     filter?.let { parameter("filter", it.value) }
                 }
-                beta("assistants", 2)
                 requestOptions(requestOptions)
             }.body()
         }
     }
+    override suspend fun updateVectorStore(
+        id: VectorStoreId, request: VectorStoreUpdateRequest, requestOptions: RequestOptions?
+    ): VectorStore = requester.perform {
+        it.post {
+            url(path = "${ApiPath.VectorStores}/${id.id}")
+            contentType(ContentType.Application.Json)
+            setBody(request)
+            requestOptions(requestOptions)
+        }.body()
+    }
+
+    override suspend fun vectorStoreFile(
+        id: VectorStoreId, fileId: FileId, requestOptions: RequestOptions?
+    ): VectorStoreFile? = try {
+        requester.perform<HttpResponse> {
+            it.get {
+                url(path = "${ApiPath.VectorStores}/${id.id}/files/${fileId.id}")
+                requestOptions(requestOptions)
+            }
+        }.body()
+    } catch (error: OpenAIAPIException) {
+        if (error.statusCode == HttpStatusCode.NotFound.value) null else throw error
+    }
+
+    override suspend fun updateVectorStoreFile(
+        id: VectorStoreId, fileId: FileId,
+        attributes: Map<String, kotlinx.serialization.json.JsonPrimitive>?, requestOptions: RequestOptions?
+    ): VectorStoreFile = requester.perform {
+        it.post {
+            url(path = "${ApiPath.VectorStores}/${id.id}/files/${fileId.id}")
+            contentType(ContentType.Application.Json)
+            setBody(kotlinx.serialization.json.buildJsonObject {
+                put("attributes", attributes?.let { values -> kotlinx.serialization.json.JsonObject(values) }
+                    ?: kotlinx.serialization.json.JsonNull)
+            })
+            requestOptions(requestOptions)
+        }.body()
+    }
+
+    override suspend fun vectorStoreFileContent(
+        id: VectorStoreId, fileId: FileId, requestOptions: RequestOptions?
+    ): VectorStoreContentPage = requester.perform {
+        it.get {
+            url(path = "${ApiPath.VectorStores}/${id.id}/files/${fileId.id}/content")
+            requestOptions(requestOptions)
+        }.body()
+    }
+
+    override suspend fun searchVectorStore(
+        id: VectorStoreId, request: VectorStoreSearchRequest, requestOptions: RequestOptions?
+    ): VectorStoreSearchPage = requester.perform {
+        it.post {
+            url(path = "${ApiPath.VectorStores}/${id.id}/search")
+            contentType(ContentType.Application.Json)
+            setBody(request)
+            requestOptions(requestOptions)
+        }.body()
+    }
+
+    override suspend fun vectorStoreFilesPage(
+        id: VectorStoreId, limit: Int?, order: SortOrder?, after: FileId?, before: FileId?,
+        filter: Status?, requestOptions: RequestOptions?
+    ): PaginatedList<VectorStoreFile> = indexedFilesPage(
+        "${ApiPath.VectorStores}/${id.id}/files", limit, order, after, before, filter, requestOptions
+    )
+
+    override suspend fun vectorStoreBatchFilesPage(
+        id: VectorStoreId, batchId: BatchId, limit: Int?, order: SortOrder?, after: FileId?, before: FileId?,
+        filter: Status?, requestOptions: RequestOptions?
+    ): PaginatedList<VectorStoreFile> = indexedFilesPage(
+        "${ApiPath.VectorStores}/${id.id}/file_batches/${batchId.id}/files",
+        limit, order, after, before, filter, requestOptions
+    )
+
+    private suspend fun indexedFilesPage(
+        path: String, limit: Int?, order: SortOrder?, after: FileId?, before: FileId?,
+        filter: Status?, requestOptions: RequestOptions?
+    ): PaginatedList<VectorStoreFile> = requester.perform {
+        it.get {
+            url(path = path) {
+                limit?.let { parameter("limit", it) }
+                order?.let { parameter("order", it.order) }
+                after?.let { parameter("after", it.id) }
+                before?.let { parameter("before", it.id) }
+                filter?.let { parameter("filter", it.value) }
+            }
+            requestOptions(requestOptions)
+        }.body()
+    }
+
+    override suspend fun createVectorStoreFilesBatch(
+        id: VectorStoreId, request: VectorStoreFileBatchRequest, requestOptions: RequestOptions?
+    ): FilesBatch = requester.perform {
+        it.post {
+            url(path = "${ApiPath.VectorStores}/${id.id}/file_batches")
+            setBody(request)
+            contentType(ContentType.Application.Json)
+            requestOptions(requestOptions)
+        }.body()
+    }
+
 }

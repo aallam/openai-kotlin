@@ -94,6 +94,33 @@ public data class ResponseRequest(
      * End-user identifier.
      */
     @SerialName("user") public val user: String? = null,
+    /** Run asynchronously in the background. */
+    @SerialName("background") public val background: Boolean? = null,
+    /** Context compaction configuration. */
+    @SerialName("context_management") public val contextManagement: List<ResponseContextManagement>? = null,
+    /** Conversation whose items are prepended and updated. */
+    @SerialName("conversation") public val conversation: String? = null,
+    /** Additional response fields to include. */
+    @SerialName("include") public val include: List<String>? = null,
+    /** Maximum hosted-tool calls. */
+    @SerialName("max_tool_calls") public val maxToolCalls: Int? = null,
+    /** Moderation policy. */
+    @SerialName("moderation") public val moderation: ResponseModeration? = null,
+    /** Stable cache routing key. */
+    @SerialName("prompt_cache_key") public val promptCacheKey: String? = null,
+    /** Prompt caching controls. */
+    @SerialName("prompt_cache_options") public val promptCacheOptions: ResponsePromptCacheOptions? = null,
+    /** Stable end-user safety identifier. */
+    @SerialName("safety_identifier") public val safetyIdentifier: String? = null,
+    /** Requested processing tier. */
+    @SerialName("service_tier") public val serviceTier: String? = null,
+    /** Streaming payload options. */
+    @SerialName("stream_options") public val streamOptions: ResponseStreamOptions? = null,
+    /** Number of output token log probabilities. */
+    @SerialName("top_logprobs") public val topLogprobs: Int? = null,
+    /** Restricted program configuration. */
+    @SerialName("access_programs") public val accessPrograms: ResponseAccessPrograms? = null,
+
 )
 
 /**
@@ -102,6 +129,12 @@ public data class ResponseRequest(
 @Serializable
 public data class ResponseReasoning(
     @SerialName("effort") public val effort: Effort? = null,
+    /** Reasoning summary detail. */
+    @SerialName("summary") public val summary: String? = null,
+    /** Reasoning history included on subsequent turns. */
+    @SerialName("context") public val context: String? = null,
+    /** Reasoning execution mode. */
+    @SerialName("mode") public val mode: String? = null,
 )
 
 /**
@@ -109,7 +142,10 @@ public data class ResponseReasoning(
  */
 @Serializable
 public data class ResponseText(
+    @Serializable(with = ResponseFormatSerializer::class)
     @SerialName("format") public val format: ChatResponseFormat? = null,
+    /** Requested text verbosity. */
+    @SerialName("verbosity") public val verbosity: String? = null,
 )
 
 /**
@@ -124,4 +160,78 @@ public data class ResponseTool(
     @SerialName("strict") public val strict: Boolean? = null,
     @SerialName("search_context_size") public val searchContextSize: SearchContextSize? = null,
     @SerialName("user_location") public val userLocation: UserLocation? = null,
+    /** Vector stores searched by file search. */
+    @SerialName("vector_store_ids") public val vectorStoreIds: List<String>? = null,
+    /** Search filter expression. */
+    @SerialName("filters") public val filters: JsonElement? = null,
+    /** File search ranking controls. */
+    @SerialName("ranking_options") public val rankingOptions: ResponseRankingOptions? = null,
+    /** Maximum search results. */
+    @SerialName("max_num_results") public val maxNumResults: Int? = null,
+    /** MCP server label. */
+    @SerialName("server_label") public val serverLabel: String? = null,
+    /** Remote MCP server URL. */
+    @SerialName("server_url") public val serverUrl: String? = null,
+    /** MCP connector identifier. */
+    @SerialName("connector_id") public val connectorId: String? = null,
+    /** MCP server description. */
+    @SerialName("server_description") public val serverDescription: String? = null,
+    /** MCP server request headers; may contain credentials. */
+    @SerialName("headers") public val headers: Map<String, String>? = null,
+    /** MCP authorization token. */
+    @SerialName("authorization") public val authorization: String? = null,
+    /** MCP tool names or filter. */
+    @SerialName("allowed_tools") public val allowedTools: JsonElement? = null,
+    /** MCP approval policy. */
+    @SerialName("require_approval") public val requireApproval: JsonElement? = null,
+    /** Code interpreter container ID or configuration. */
+    @SerialName("container") public val container: JsonElement? = null,
+    /** Custom tool input format. */
+    @SerialName("format") public val format: JsonElement? = null,
+    /** Image background mode. */
+    @SerialName("background") public val background: String? = null,
+    /** Image quality. */
+    @SerialName("quality") public val quality: String? = null,
+    /** Image dimensions. */
+    @SerialName("size") public val size: String? = null,
+    /** Generated image format. */
+    @SerialName("output_format") public val outputFormat: String? = null,
+    /** Generated image compression. */
+    @SerialName("output_compression") public val outputCompression: Int? = null,
+    /** Number of streamed partial images. */
+    @SerialName("partial_images") public val partialImages: Int? = null,
+    /** Image moderation level. */
+    @SerialName("moderation") public val moderation: String? = null,
+    /** Image generation model. */
+    @SerialName("model") public val model: String? = null,
+    /** Callers allowed to invoke this tool. */
+    @SerialName("allowed_callers") public val allowedCallers: List<String>? = null,
+    /** Whether tool execution can be asynchronous. */
+    @SerialName("async") public val async: Boolean? = null,
+    /** Defer loading until tool search selects the tool. */
+    @SerialName("defer_loading") public val deferLoading: Boolean? = null,
+    /** Function output JSON schema. */
+    @SerialName("output_schema") public val outputSchema: JsonElement? = null,
+    /** Computer display height. */
+    @SerialName("display_height") public val displayHeight: Int? = null,
+    /** Computer display width. */
+    @SerialName("display_width") public val displayWidth: Int? = null,
+    /** Computer environment name or shell environment configuration. */
+    @SerialName("environment") public val environment: JsonElement? = null,
+    /** Whether web search can access external sources. */
+    @SerialName("external_web_access") public val externalWebAccess: Boolean? = null,
+    /** Secure MCP tunnel identifier. */
+    @SerialName("tunnel_id") public val tunnelId: String? = null,
+    /** Image generation action. */
+    @SerialName("action") public val action: String? = null,
+    /** Image edit fidelity. */
+    @SerialName("input_fidelity") public val inputFidelity: String? = null,
+    /** Mask for image editing. */
+    @SerialName("input_image_mask") public val inputImageMask: ResponseImageMask? = null,
+    /** Functions or custom tools in a namespace. */
+    @SerialName("tools") public val tools: List<ResponseTool>? = null,
+    /** Tool search execution location. */
+    @SerialName("execution") public val execution: String? = null,
+    /** Web search result content types. */
+    @SerialName("search_content_types") public val searchContentTypes: List<String>? = null,
 )

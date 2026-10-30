@@ -56,4 +56,29 @@ public data class ResponseInputItem(
     @SerialName("status") public val status: String? = null,
     @SerialName("role") public val role: String? = null,
     @SerialName("content") public val content: JsonElement? = null,
+    /** Tool call identifier. */
+    @SerialName("call_id") public val callId: String? = null,
+    /** Tool result. */
+    @SerialName("output") public val output: JsonElement? = null,
+    /** Tool name. */
+    @SerialName("name") public val name: String? = null,
+    /** Function arguments. */
+    @SerialName("arguments") public val arguments: String? = null,
+    /** Encrypted context. */
+    @SerialName("encrypted_content") public val encryptedContent: String? = null,
+    /** MCP approval request identifier. */
+    @SerialName("approval_request_id") public val approvalRequestId: String? = null,
+    /** Whether an MCP request is approved. */
+    @SerialName("approve") public val approve: Boolean? = null,
+    /** MCP server label. */
+    @SerialName("server_label") public val serverLabel: String? = null,
+    /** Tool error details. */
+    @SerialName("error") public val error: JsonElement? = null,
+    /** Tool action details. */
+    @SerialName("action") public val action: JsonElement? = null,
+    /** Hosted image result. */
+    @SerialName("result") public val result: String? = null,
+    /** Reasoning summary. */
+    @SerialName("summary") public val summary: JsonElement? = null,
+
 )

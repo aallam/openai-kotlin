@@ -2,7 +2,6 @@ package com.aallam.openai.api.moderation
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlin.jvm.JvmOverloads
 
 /**
  * Moderation response.
@@ -27,7 +26,7 @@ public class TextModeration(
 )
 
 @Serializable
-public class ModerationResult @JvmOverloads constructor(
+public class ModerationResult(
     /**
      * Per-category binary content policy violation flags.
      */
@@ -43,14 +42,15 @@ public class ModerationResult @JvmOverloads constructor(
      * Set to `true` if the model classifies the content as violating OpenAI's content policy, `false` otherwise.
      */
     @SerialName("flagged") public val flagged: Boolean,
-
+) {
     /** Input modalities evaluated for each category, keyed by the API category name. */
     @SerialName("category_applied_input_types")
-    public val categoryAppliedInputTypes: Map<String, List<String>>? = null,
-)
+    public var categoryAppliedInputTypes: Map<String, List<String>>? = null
+        private set
+}
 
 @Serializable
-public class Categories @JvmOverloads constructor(
+public class Categories(
 
     /**
      * Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual
@@ -110,16 +110,18 @@ public class Categories @JvmOverloads constructor(
      * gives instructions or advice on how to commit such acts.
      */
     @SerialName("self-harm/instructions") public val selfHarmInstructions: Boolean,
-
+) {
     /** Whether the input facilitates illicit activity; null when unsupported by the model. */
-    @SerialName("illicit") public val illicit: Boolean? = null,
+    @SerialName("illicit") public var illicit: Boolean? = null
+        private set
 
     /** Whether the input facilitates illicit activity involving violence or weapons. */
-    @SerialName("illicit/violent") public val illicitViolent: Boolean? = null,
-)
+    @SerialName("illicit/violent") public var illicitViolent: Boolean? = null
+        private set
+}
 
 @Serializable
-public class CategoryScores @JvmOverloads constructor(
+public class CategoryScores(
     /**
      * Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual
      * orientation, disability status, or caste.
@@ -176,10 +178,12 @@ public class CategoryScores @JvmOverloads constructor(
      * The score for the category 'self-harm/instructions'.
      */
     @SerialName("self-harm/instructions") public val selfHarmInstructions: Double,
-
+) {
     /** Confidence score for illicit activity, when returned by the model. */
-    @SerialName("illicit") public val illicit: Double? = null,
+    @SerialName("illicit") public var illicit: Double? = null
+        private set
 
     /** Confidence score for illicit activity involving violence or weapons. */
-    @SerialName("illicit/violent") public val illicitViolent: Double? = null,
-)
+    @SerialName("illicit/violent") public var illicitViolent: Double? = null
+        private set
+}

@@ -61,6 +61,10 @@ class TestModeration {
         assertEquals(0.9, result.categoryScores.illicit)
         assertEquals(0.1, result.categoryScores.illicitViolent)
         assertEquals(listOf("text", "image"), result.categoryAppliedInputTypes?.get("violence"))
+        val roundTrip = Json.decodeFromString<ModerationResult>(Json.encodeToString(result))
+        assertEquals(result.categoryAppliedInputTypes, roundTrip.categoryAppliedInputTypes)
+        assertEquals(result.categories.illicit, roundTrip.categories.illicit)
+        assertEquals(result.categoryScores.illicitViolent, roundTrip.categoryScores.illicitViolent)
     }
 
     @Test

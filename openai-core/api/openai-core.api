@@ -5279,9 +5279,6 @@ public final class com/aallam/openai/api/model/ModelPermission$Companion {
 public final class com/aallam/openai/api/moderation/Categories {
 	public static final field Companion Lcom/aallam/openai/api/moderation/Categories$Companion;
 	public fun <init> (ZZZZZZZZZZZ)V
-	public fun <init> (ZZZZZZZZZZZLjava/lang/Boolean;)V
-	public fun <init> (ZZZZZZZZZZZLjava/lang/Boolean;Ljava/lang/Boolean;)V
-	public synthetic fun <init> (ZZZZZZZZZZZLjava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getHarassment ()Z
 	public final fun getHarassmentThreatening ()Z
 	public final fun getHate ()Z
@@ -5315,9 +5312,6 @@ public final class com/aallam/openai/api/moderation/Categories$Companion {
 public final class com/aallam/openai/api/moderation/CategoryScores {
 	public static final field Companion Lcom/aallam/openai/api/moderation/CategoryScores$Companion;
 	public fun <init> (DDDDDDDDDDD)V
-	public fun <init> (DDDDDDDDDDDLjava/lang/Double;)V
-	public fun <init> (DDDDDDDDDDDLjava/lang/Double;Ljava/lang/Double;)V
-	public synthetic fun <init> (DDDDDDDDDDDLjava/lang/Double;Ljava/lang/Double;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getHarassment ()D
 	public final fun getHarassmentThreatening ()D
 	public final fun getHate ()D
@@ -5511,8 +5505,6 @@ public final class com/aallam/openai/api/moderation/ModerationRequestKt {
 public final class com/aallam/openai/api/moderation/ModerationResult {
 	public static final field Companion Lcom/aallam/openai/api/moderation/ModerationResult$Companion;
 	public fun <init> (Lcom/aallam/openai/api/moderation/Categories;Lcom/aallam/openai/api/moderation/CategoryScores;Z)V
-	public fun <init> (Lcom/aallam/openai/api/moderation/Categories;Lcom/aallam/openai/api/moderation/CategoryScores;ZLjava/util/Map;)V
-	public synthetic fun <init> (Lcom/aallam/openai/api/moderation/Categories;Lcom/aallam/openai/api/moderation/CategoryScores;ZLjava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getCategories ()Lcom/aallam/openai/api/moderation/Categories;
 	public final fun getCategoryAppliedInputTypes ()Ljava/util/Map;
 	public final fun getCategoryScores ()Lcom/aallam/openai/api/moderation/CategoryScores;

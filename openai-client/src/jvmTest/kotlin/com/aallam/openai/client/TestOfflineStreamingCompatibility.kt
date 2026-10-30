@@ -1,20 +1,24 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.ChatCompletionRequest
+import com.aallam.openai.api.chat.ChatCompletionChunk
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.exception.OpenAIServerException
 import com.aallam.openai.client.internal.api.ChatApi
 import com.aallam.openai.client.internal.createHttpClient
+import com.aallam.openai.client.internal.extension.streamEventsFrom
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.HttpTransport
 import io.ktor.client.engine.mock.*
 import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
@@ -24,6 +28,21 @@ import kotlin.test.assertTrue
 import kotlin.test.assertFailsWith
 
 class TestOfflineStreamingCompatibility {
+    @Test
+    fun flowCollectorAndChannelProducersShareTheEventDecoder() = runTest {
+        val engine = MockEngine {
+            respond(
+                "data: {\"id\":\"chat_1\",\"created\":0,\"model\":\"test\",\"choices\":[]}\n\ndata: [DONE]\n\n",
+                headers = headersOf(HttpHeaders.ContentType, "text/event-stream"),
+            )
+        }
+        createHttpClient(OpenAIConfig("test", engine = engine, logging = LoggingConfig(LogLevel.None))).use { client ->
+            val response = client.get("/chat/completions")
+            val chunks = flow<ChatCompletionChunk> { streamEventsFrom(response) }.toList()
+            assertEquals(listOf("chat_1"), chunks.map { it.id })
+        }
+    }
+
     @Test
     fun actualTransportStreamsOnConfiguredEngineDispatcher() = runTest {
         val engine = MockEngine {

@@ -162,7 +162,7 @@ class TestOfflineResponses {
             respond("""{"object":"list","data":[{"type":"function_call_output","call_id":"call_1","output":"result"}],"has_more":false,"first_id":"item_2","last_id":"item_2"}""", headers = headersOf(HttpHeaders.ContentType, "application/json"))
         }))
         try {
-            val items = client.responseInputItems(ResponseId("resp_1"), listOf("reasoning.encrypted_content", "file_search_call.results"), limit = 3, after = "item_1")
+            val items = client.responseInputItemsPage(ResponseId("resp_1"), listOf("reasoning.encrypted_content", "file_search_call.results"), limit = 3, after = "item_1")
             assertEquals("call_1", items.data.single().callId)
             assertEquals("result", items.data.single().output?.jsonPrimitive?.content)
         } finally { client.close() }

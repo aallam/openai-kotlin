@@ -122,7 +122,7 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
         }
     }
 
-    override suspend fun responseInputItems(
+    override suspend fun responseInputItemsPage(
         id: ResponseId,
         include: List<String>,
         limit: Int?,

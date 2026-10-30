@@ -58,7 +58,7 @@ public interface Responses {
         requestOptions: RequestOptions? = null
     ): PaginatedList<ResponseInputItem>
     /** Lists input items while requesting additional tool or reasoning fields. */
-    public suspend fun responseInputItems(
+    public suspend fun responseInputItemsPage(
         id: ResponseId,
         include: List<String>,
         limit: Int? = null,

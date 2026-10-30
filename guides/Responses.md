@@ -14,6 +14,8 @@ val originalOutput = ResponseInput(original.getValue("output"))
 
 These values reflect the original payload, not edits made with `copy()`. When using edited typed fields, construct the intended continuation input explicitly.
 
+For input-item pagination with additional tool or reasoning fields, use `responseInputItemsPage(id, include = listOf("reasoning.encrypted_content"))`. The original `responseInputItems` method and its inferred callable reference remain available.
+
 ## Structured output
 
 The existing `ChatResponseFormat` type can configure Responses output. The client serializes JSON schemas in the flat Responses format while keeping Chat Completions serialization unchanged. A schema name is required.

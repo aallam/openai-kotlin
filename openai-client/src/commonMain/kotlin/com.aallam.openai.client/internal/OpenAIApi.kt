@@ -30,4 +30,5 @@ internal class OpenAIApi(
     VectorStores by VectorStoresApi(requester),
     Batch by BatchApi(requester),
     Responses by ResponsesApi(requester),
+    Realtime by RealtimeApi(requester),
     AutoCloseable by requester

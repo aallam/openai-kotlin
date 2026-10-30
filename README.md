@@ -106,6 +106,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 ### Supported features
 
 - [Responses](guides/GettingStarted.md#responses)
+- [Conversations](guides/Conversations.md)
 - [Models](guides/GettingStarted.md#models)
 - [Chat](guides/GettingStarted.md#chat)
 - [Images](guides/Images.md)

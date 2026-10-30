@@ -112,6 +112,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Images](guides/Images.md)
 - [Embeddings](guides/GettingStarted.md#embeddings)
 - [Files](guides/GettingStarted.md#files)
+- [Multipart uploads](guides/Uploads.md)
 - [Fine-tuning](guides/GettingStarted.md#fine-tuning)
 - [Moderations](guides/GettingStarted.md#moderations)
 - [Audio](guides/GettingStarted.md#audio)

@@ -30,6 +30,20 @@ import kotlin.test.*
 
 class TestOfflineAudio {
     @Test
+    fun legacyInferredAudioReferencesRemainUnambiguous() = runTest {
+        val client = client(MockEngine { request ->
+            if (request.url.encodedPath.endsWith("/transcriptions")) respond("legacy text", headers = headersOf(HttpHeaders.ContentType, "text/plain"))
+            else respond(byteArrayOf(1, 2), headers = headersOf(HttpHeaders.ContentType, "audio/mpeg"))
+        })
+        try {
+            val transcription = client::transcription
+            val speech = client::speech
+            assertEquals("legacy text", transcription(request(AudioResponseFormat.Text), null).text)
+            assertContentEquals(byteArrayOf(1, 2), speech(speechRequest(), null))
+        } finally { client.close() }
+    }
+
+    @Test
     fun modernTranscriptionSendsArraysAndVadControls() = runTest {
         val client = client(MockEngine { request ->
             val body = request.body.toByteArray().decodeToString()
@@ -41,7 +55,7 @@ class TestOfflineAudio {
             respond("""{"text":"hello","languages":[{"code":"en"}],"usage":{"type":"tokens","total_tokens":2}}""", headers = jsonHeaders)
         })
         try {
-            val result = client.transcription(request(), TranscriptionOptions(
+            val result = client.transcribe(request(), TranscriptionOptions(
                 chunkingStrategy = TranscriptionChunkingStrategy.ServerVad(threshold = 0.7),
                 include = listOf("logprobs"), keywords = listOf("Kotlin"), languages = listOf("en", "fr"),
                 knownSpeakerNames = listOf("Alice"), knownSpeakerReferences = listOf("data:audio/wav;base64,AA=="),
@@ -55,14 +69,14 @@ class TestOfflineAudio {
     fun textOutputRemainsTextWithModernOptions() = runTest {
         val client = client(MockEngine { respond("hello", headers = headersOf(HttpHeaders.ContentType, "text/plain")) })
         try {
-            assertEquals("hello", client.transcription(request(AudioResponseFormat.Text), TranscriptionOptions()).text)
+            assertEquals("hello", client.transcribe(request(AudioResponseFormat.Text), TranscriptionOptions()).text)
         } finally { client.close() }
     }
 
     @Test
     fun transcriptionStreamHandlesMultilineRecordsAndCompletion() = runTest {
         val client = client(MockEngine { request ->
-            assertContains(request.body.toByteArray().decodeToString(), "name=stream")
+            assertEquals("true", multipartFields(request)["stream"])
             respond(":keepalive\n\nevent: transcript.text.delta\ndata: {\"type\":\"transcript.text.delta\",\ndata: \"delta\":\"hello\",\"segment_id\":\"seg_0\"}\n\ndata: {\"type\":\"transcript.text.done\",\"text\":\"hello\"}\n\n", headers = sseHeaders)
         })
         try {
@@ -185,6 +199,20 @@ class TestOfflineAudio {
         } finally {
             transport.close()
         }
+    }
+
+    private suspend fun multipartFields(request: io.ktor.client.request.HttpRequestData): Map<String, String> {
+        val boundary = requireNotNull(request.body.contentType?.parameter("boundary"))
+        return request.body.toByteArray().decodeToString().split("--$boundary").mapNotNull { part ->
+            val sections = part.split("\r\n\r\n", limit = 2)
+            if (sections.size != 2) return@mapNotNull null
+            val disposition = sections[0].lineSequence().firstOrNull {
+                it.substringBefore(':').equals(HttpHeaders.ContentDisposition, ignoreCase = true)
+            } ?: return@mapNotNull null
+            val name = ContentDisposition.parse(disposition.substringAfter(':').trim()).parameters
+                .single { it.name.equals("name", ignoreCase = true) }.value
+            name to sections[1].removeSuffix("\r\n")
+        }.toMap()
     }
 
     private fun request(format: AudioResponseFormat? = null) = TranscriptionRequest(

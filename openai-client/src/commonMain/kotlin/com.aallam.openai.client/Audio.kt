@@ -40,7 +40,7 @@ public interface Audio {
      * Transcribes audio with modern controls and returns usage, confidence and speaker data.
      * @throws UnsupportedOperationException when a custom client has not implemented this operation.
      */
-    public suspend fun transcription(
+    public suspend fun transcribe(
         request: TranscriptionRequest,
         options: TranscriptionOptions,
         requestOptions: RequestOptions? = null,
@@ -61,7 +61,7 @@ public interface Audio {
      * Generates complete audio with voice instructions or a custom voice reference.
      * @throws UnsupportedOperationException when a custom client has not implemented this operation.
      */
-    public suspend fun speech(
+    public suspend fun createSpeech(
         request: SpeechRequest,
         options: SpeechOptions,
         requestOptions: RequestOptions? = null,

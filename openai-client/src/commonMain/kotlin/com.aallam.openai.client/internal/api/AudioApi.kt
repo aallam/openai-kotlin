@@ -136,7 +136,7 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
         }
     }
 
-    override suspend fun transcription(
+    override suspend fun transcribe(
         request: TranscriptionRequest,
         options: TranscriptionOptions,
         requestOptions: RequestOptions?,
@@ -175,7 +175,7 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
         }
     }
 
-    override suspend fun speech(request: SpeechRequest, options: SpeechOptions, requestOptions: RequestOptions?): ByteArray {
+    override suspend fun createSpeech(request: SpeechRequest, options: SpeechOptions, requestOptions: RequestOptions?): ByteArray {
         require(options.streamFormat != SpeechStreamFormat.Sse) { "Use speechEvents for SSE output" }
         return requester.perform {
             it.post {

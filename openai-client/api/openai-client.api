@@ -15,26 +15,26 @@ public final class com/aallam/openai/client/Assistants$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/Audio {
-	public abstract fun speech (Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createSpeech (Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun speech (Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun speechAudio (Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public abstract fun speechEvents (Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
-	public abstract fun transcription (Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun transcribe (Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun transcription (Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun transcriptions (Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public abstract fun translation (Lcom/aallam/openai/api/audio/TranslationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/Audio$DefaultImpls {
-	public static fun speech (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun speech$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun createSpeech (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createSpeech$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun speech$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static fun speechAudio (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static synthetic fun speechAudio$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 	public static fun speechEvents (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static synthetic fun speechEvents$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
-	public static fun transcription (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun transcription$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun transcribe (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun transcribe$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun transcription$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static fun transcriptions (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static synthetic fun transcriptions$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
@@ -187,10 +187,10 @@ public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/ope
 }
 
 public final class com/aallam/openai/client/OpenAI$DefaultImpls {
-	public static fun speech (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun createSpeech (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun speechAudio (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun speechEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
-	public static fun transcription (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun transcribe (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun transcriptions (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 }
 

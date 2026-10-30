@@ -443,7 +443,7 @@ Keep using `TranscriptionRequest` for the file, model and output format. Pass
 usage, detected languages and speaker-labeled `diarizedSegments`:
 
 ```kotlin
-val result = openAI.transcription(
+val result = openAI.transcribe(
     request = transcriptionRequest,
     options = TranscriptionOptions(
         include = listOf("logprobs"),

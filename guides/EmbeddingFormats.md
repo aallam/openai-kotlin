@@ -1,11 +1,11 @@
 # Embedding input and vector formats
 
 The existing `EmbeddingRequest` and `EmbeddingResponse` API remains available with
-text-list inputs and numeric vectors. Use the `EmbeddingCreateRequest` overload for
+text-list inputs and numeric vectors. Use `createEmbeddings` with `EmbeddingCreateRequest` for
 single text, text batches, token-ID arrays, token-ID batches, or base64 output:
 
 ```kotlin
-val result = openAI.embeddings(
+val result = openAI.createEmbeddings(
     EmbeddingCreateRequest(
         model = ModelId("text-embedding-3-small"),
         input = EmbeddingInput.TokenBatch(listOf(listOf(12, 34), listOf(56))),

@@ -24,7 +24,7 @@ class TestOfflineEmbeddingFormats {
         OpenAI(OpenAIConfig(token = "offline-token", engine = engine)).use { api ->
             for (format in EmbeddingEncodingFormat.entries) {
                 val request = EmbeddingCreateRequest(ModelId("model"), EmbeddingInput.TokenBatch(listOf(listOf(12), listOf(34, 56))), 4, encodingFormat = format)
-                val result = api.embeddings(request, RequestOptions(headers = mapOf("X-Client-Request-Id" to "request-123")))
+                val result = api.createEmbeddings(request, RequestOptions(headers = mapOf("X-Client-Request-Id" to "request-123")))
                 assertEquals("server-model", result.model.id)
                 assertEquals("list", result.objectType)
                 assertEquals("embedding", result.embeddings.single().objectType)

@@ -19,7 +19,7 @@ public interface Embeddings {
      */
     public suspend fun embeddings(request: EmbeddingRequest, requestOptions: RequestOptions? = null): EmbeddingResponse
     /** Create embeddings from text or token IDs and retain vector encoding metadata. */
-    public suspend fun embeddings(
+    public suspend fun createEmbeddings(
         request: EmbeddingCreateRequest,
         requestOptions: RequestOptions? = null,
     ): EmbeddingResult = throw UnsupportedOperationException("Encoded embeddings are not supported by this implementation")

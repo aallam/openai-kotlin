@@ -28,7 +28,7 @@ internal class EmbeddingsApi(private val requester: HttpRequester) : Embeddings 
             }.body()
         }
     }
-    override suspend fun embeddings(request: EmbeddingCreateRequest, requestOptions: RequestOptions?): EmbeddingResult =
+    override suspend fun createEmbeddings(request: EmbeddingCreateRequest, requestOptions: RequestOptions?): EmbeddingResult =
         requester.perform {
             it.post {
                 url(path = ApiPath.Embeddings)

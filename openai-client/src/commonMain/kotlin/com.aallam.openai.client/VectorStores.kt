@@ -252,7 +252,7 @@ public interface VectorStores {
         requestOptions: RequestOptions? = null,
     ): com.aallam.openai.api.core.PaginatedList<VectorStoreFileResource> = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
 
-    /** Creates a file batch with separate configuration for each attachment. */
+    /** Creates a file batch with shared settings or per-file configuration. */
     public suspend fun createVectorStoreFileBatch(
         id: VectorStoreId,
         request: VectorStoreFileBatchRequest,

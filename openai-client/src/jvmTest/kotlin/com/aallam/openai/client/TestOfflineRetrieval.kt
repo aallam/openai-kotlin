@@ -136,4 +136,48 @@ class TestOfflineRetrieval {
         }
     }
 
+    @Test
+    fun fileBatchSendsSharedConfigurationOnlyWithFileIds() = runTest {
+        val engine = MockEngine { request ->
+            assertEquals("/v1/vector_stores/vs-1/file_batches", request.url.encodedPath)
+            val body = Json.parseToJsonElement((request.body as TextContent).text).jsonObject
+            assertFalse("files" in body)
+            assertEquals("file-1", body["file_ids"]!!.jsonArray.single().jsonPrimitive.content)
+            assertEquals("docs", body["attributes"]!!.jsonObject["kind"]!!.jsonPrimitive.content)
+            assertEquals(800, body["chunking_strategy"]!!.jsonObject["static"]!!.jsonObject["max_chunk_size_tokens"]!!.jsonPrimitive.int)
+            respond("""{"id":"batch-1","created_at":0,"vector_store_id":"vs-1","status":"completed","file_counts":{"in_progress":0,"completed":1,"failed":0,"cancelled":0,"total":1}}""",
+                headers = headersOf(HttpHeaders.ContentType, "application/json"))
+        }
+        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+            val result = client.createVectorStoreFileBatch(VectorStoreId("vs-1"), VectorStoreFileBatchRequest(
+                fileIds = listOf(FileId("file-1")),
+                attributes = mapOf("kind" to JsonPrimitive("docs")),
+                chunkingStrategy = ChunkingStrategy("static", StaticChunking(800, 200)),
+            ))
+            assertEquals("batch-1", result.id.id)
+        }
+    }
+
+    @Test
+    fun fileBatchSendsIndividualConfigurationInsideFiles() = runTest {
+        val engine = MockEngine { request ->
+            val body = Json.parseToJsonElement((request.body as TextContent).text).jsonObject
+            assertFalse("file_ids" in body)
+            assertFalse("attributes" in body)
+            assertFalse("chunking_strategy" in body)
+            val file = body["files"]!!.jsonArray.single().jsonObject
+            assertEquals("file-1", file["file_id"]!!.jsonPrimitive.content)
+            assertEquals(true, file["attributes"]!!.jsonObject["reviewed"]!!.jsonPrimitive.boolean)
+            assertEquals("auto", file["chunking_strategy"]!!.jsonObject["type"]!!.jsonPrimitive.content)
+            respond("""{"id":"batch-1","created_at":0,"vector_store_id":"vs-1","status":"completed","file_counts":{"in_progress":0,"completed":1,"failed":0,"cancelled":0,"total":1}}""",
+                headers = headersOf(HttpHeaders.ContentType, "application/json"))
+        }
+        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+            client.createVectorStoreFileBatch(VectorStoreId("vs-1"), VectorStoreFileBatchRequest(
+                files = listOf(VectorStoreFileCreateRequest(FileId("file-1"),
+                    attributes = mapOf("reviewed" to JsonPrimitive(true)), chunkingStrategy = ChunkingStrategy())),
+            ))
+        }
+    }
+
 }

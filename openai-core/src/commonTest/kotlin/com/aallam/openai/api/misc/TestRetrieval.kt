@@ -53,4 +53,24 @@ class TestRetrieval {
         assertEquals(true, result.data.single().attributes?.get("reviewed")?.boolean)
         assertEquals(listOf("pricing"), result.searchQuery)
     }
+    @Test
+    fun fileBatchRejectsAmbiguousOrIgnoredConfiguration() {
+        val ids = listOf(FileId("file-1"))
+        val files = listOf(VectorStoreFileCreateRequest(FileId("file-1")))
+        assertFailsWith<IllegalArgumentException> { VectorStoreFileBatchRequest() }
+        assertFailsWith<IllegalArgumentException> { VectorStoreFileBatchRequest(fileIds = ids, files = files) }
+        assertFailsWith<IllegalArgumentException> {
+            VectorStoreFileBatchRequest(files = files, attributes = mapOf("kind" to JsonPrimitive("docs")))
+        }
+        assertFailsWith<IllegalArgumentException> {
+            VectorStoreFileBatchRequest(files = files, chunkingStrategy = ChunkingStrategy())
+        }
+        assertFailsWith<IllegalArgumentException> { VectorStoreFileBatchRequest(fileIds = emptyList()) }
+        assertFailsWith<IllegalArgumentException> { VectorStoreFileBatchRequest(fileIds = List(2001) { FileId("file-$it") }) }
+        assertEquals(2000, VectorStoreFileBatchRequest(fileIds = List(2000) { FileId("file-$it") }).fileIds?.size)
+        assertFailsWith<IllegalArgumentException> {
+            VectorStoreFileBatchRequest(files = listOf(VectorStoreFileCreateRequest()))
+        }
+    }
+
 }

@@ -22,7 +22,7 @@ openAI.updateVectorStoreFields(
 )
 ```
 
-Use `attachVectorStoreFile` with `VectorStoreFileCreateRequest` for attributes and chunking configuration. Current attachment retrieval/update/page methods return `VectorStoreFileResource`. Batches can use `FileBatchRequest` with `fileIds`, or `VectorStoreFileBatchRequest` with per-file `files` configurations through `createVectorStoreFileBatch`. Use `vectorStoreFilesPage` and `vectorStoreBatchFilesPage` for file listing with `FileId` cursors; these methods retain pagination metadata. The older methods with `VectorStoreId` file cursors are deprecated.
+Use `attachVectorStoreFile` with `VectorStoreFileCreateRequest` for attributes and chunking configuration. Current attachment retrieval/update/page methods return `VectorStoreFileResource`. The legacy `FileBatchRequest` remains available for IDs alone. With `createVectorStoreFileBatch`, choose exactly one mode in `VectorStoreFileBatchRequest`: `fileIds` with shared `attributes`/`chunkingStrategy`, or `files` with configuration on each file. Shared settings are rejected with `files` because the API ignores them in that mode. Both modes require between 1 and 2000 files. Use `vectorStoreFilesPage` and `vectorStoreBatchFilesPage` for file listing with `FileId` cursors; these methods retain pagination metadata. The older methods with `VectorStoreId` file cursors are deprecated.
 
 ## Search and parsed content
 

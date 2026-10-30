@@ -448,7 +448,7 @@ Classifies if text violates OpenAI's content policy.
 val moderation = openAI.moderations(
     request = ModerationRequest(
         // Omit the model to use the server default, or choose an available omni-moderation model.
-        input = "I want to kill them."
+        input = listOf("I want to kill them.")
     )
 )
 ```

@@ -2,6 +2,7 @@ package com.aallam.openai.api.moderation
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
 
 /**
  * Moderation response.
@@ -26,7 +27,7 @@ public class TextModeration(
 )
 
 @Serializable
-public class ModerationResult(
+public class ModerationResult @JvmOverloads constructor(
     /**
      * Per-category binary content policy violation flags.
      */
@@ -42,10 +43,14 @@ public class ModerationResult(
      * Set to `true` if the model classifies the content as violating OpenAI's content policy, `false` otherwise.
      */
     @SerialName("flagged") public val flagged: Boolean,
+
+    /** Input modalities evaluated for each category, keyed by the API category name. */
+    @SerialName("category_applied_input_types")
+    public val categoryAppliedInputTypes: Map<String, List<String>>? = null,
 )
 
 @Serializable
-public class Categories(
+public class Categories @JvmOverloads constructor(
 
     /**
      * Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual
@@ -105,10 +110,16 @@ public class Categories(
      * gives instructions or advice on how to commit such acts.
      */
     @SerialName("self-harm/instructions") public val selfHarmInstructions: Boolean,
+
+    /** Whether the input facilitates illicit activity; null when unsupported by the model. */
+    @SerialName("illicit") public val illicit: Boolean? = null,
+
+    /** Whether the input facilitates illicit activity involving violence or weapons. */
+    @SerialName("illicit/violent") public val illicitViolent: Boolean? = null,
 )
 
 @Serializable
-public class CategoryScores(
+public class CategoryScores @JvmOverloads constructor(
     /**
      * Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual
      * orientation, disability status, or caste.
@@ -165,4 +176,10 @@ public class CategoryScores(
      * The score for the category 'self-harm/instructions'.
      */
     @SerialName("self-harm/instructions") public val selfHarmInstructions: Double,
+
+    /** Confidence score for illicit activity, when returned by the model. */
+    @SerialName("illicit") public val illicit: Double? = null,
+
+    /** Confidence score for illicit activity involving violence or weapons. */
+    @SerialName("illicit/violent") public val illicitViolent: Double? = null,
 )

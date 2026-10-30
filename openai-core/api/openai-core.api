@@ -5279,10 +5279,15 @@ public final class com/aallam/openai/api/model/ModelPermission$Companion {
 public final class com/aallam/openai/api/moderation/Categories {
 	public static final field Companion Lcom/aallam/openai/api/moderation/Categories$Companion;
 	public fun <init> (ZZZZZZZZZZZ)V
+	public fun <init> (ZZZZZZZZZZZLjava/lang/Boolean;)V
+	public fun <init> (ZZZZZZZZZZZLjava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (ZZZZZZZZZZZLjava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getHarassment ()Z
 	public final fun getHarassmentThreatening ()Z
 	public final fun getHate ()Z
 	public final fun getHateThreatening ()Z
+	public final fun getIllicit ()Ljava/lang/Boolean;
+	public final fun getIllicitViolent ()Ljava/lang/Boolean;
 	public final fun getSelfHarm ()Z
 	public final fun getSelfHarmInstructions ()Z
 	public final fun getSelfHarmIntent ()Z
@@ -5310,10 +5315,15 @@ public final class com/aallam/openai/api/moderation/Categories$Companion {
 public final class com/aallam/openai/api/moderation/CategoryScores {
 	public static final field Companion Lcom/aallam/openai/api/moderation/CategoryScores$Companion;
 	public fun <init> (DDDDDDDDDDD)V
+	public fun <init> (DDDDDDDDDDDLjava/lang/Double;)V
+	public fun <init> (DDDDDDDDDDDLjava/lang/Double;Ljava/lang/Double;)V
+	public synthetic fun <init> (DDDDDDDDDDDLjava/lang/Double;Ljava/lang/Double;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getHarassment ()D
 	public final fun getHarassmentThreatening ()D
 	public final fun getHate ()D
 	public final fun getHateThreatening ()D
+	public final fun getIllicit ()Ljava/lang/Double;
+	public final fun getIllicitViolent ()Ljava/lang/Double;
 	public final fun getSelfHarm ()D
 	public final fun getSelfHarmInstructions ()D
 	public final fun getSelfHarmIntent ()D
@@ -5335,6 +5345,96 @@ public synthetic class com/aallam/openai/api/moderation/CategoryScores$$serializ
 }
 
 public final class com/aallam/openai/api/moderation/CategoryScores$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aallam/openai/api/moderation/ModerationInput {
+	public static final field Companion Lcom/aallam/openai/api/moderation/ModerationInput$Companion;
+}
+
+public final class com/aallam/openai/api/moderation/ModerationInput$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/moderation/ModerationInput$Image : com/aallam/openai/api/moderation/ModerationInput {
+	public static final field Companion Lcom/aallam/openai/api/moderation/ModerationInput$Image$Companion;
+	public fun <init> (Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;
+	public final fun copy (Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;)Lcom/aallam/openai/api/moderation/ModerationInput$Image;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/moderation/ModerationInput$Image;Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;ILjava/lang/Object;)Lcom/aallam/openai/api/moderation/ModerationInput$Image;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getImageUrl ()Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/moderation/ModerationInput$Image$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/moderation/ModerationInput$Image$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/moderation/ModerationInput$Image;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/moderation/ModerationInput$Image;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/moderation/ModerationInput$Image$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/moderation/ModerationInput$ImageUrl {
+	public static final field Companion Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/moderation/ModerationInput$ImageUrl$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/moderation/ModerationInput$ImageUrl;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/moderation/ModerationInput$ImageUrl$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/moderation/ModerationInput$Text : com/aallam/openai/api/moderation/ModerationInput {
+	public static final field Companion Lcom/aallam/openai/api/moderation/ModerationInput$Text$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/moderation/ModerationInput$Text;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/moderation/ModerationInput$Text;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/moderation/ModerationInput$Text;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/moderation/ModerationInput$Text$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/moderation/ModerationInput$Text$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/moderation/ModerationInput$Text;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/moderation/ModerationInput$Text;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/moderation/ModerationInput$Text$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -5366,6 +5466,8 @@ public synthetic class com/aallam/openai/api/moderation/ModerationModel$$seriali
 
 public final class com/aallam/openai/api/moderation/ModerationModel$Companion {
 	public final fun getLatest-JJB8Cpg ()Ljava/lang/String;
+	public final fun getOmni20240926-JJB8Cpg ()Ljava/lang/String;
+	public final fun getOmniLatest-JJB8Cpg ()Ljava/lang/String;
 	public final fun getStable-JJB8Cpg ()Ljava/lang/String;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
@@ -5409,7 +5511,10 @@ public final class com/aallam/openai/api/moderation/ModerationRequestKt {
 public final class com/aallam/openai/api/moderation/ModerationResult {
 	public static final field Companion Lcom/aallam/openai/api/moderation/ModerationResult$Companion;
 	public fun <init> (Lcom/aallam/openai/api/moderation/Categories;Lcom/aallam/openai/api/moderation/CategoryScores;Z)V
+	public fun <init> (Lcom/aallam/openai/api/moderation/Categories;Lcom/aallam/openai/api/moderation/CategoryScores;ZLjava/util/Map;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/moderation/Categories;Lcom/aallam/openai/api/moderation/CategoryScores;ZLjava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getCategories ()Lcom/aallam/openai/api/moderation/Categories;
+	public final fun getCategoryAppliedInputTypes ()Ljava/util/Map;
 	public final fun getCategoryScores ()Lcom/aallam/openai/api/moderation/CategoryScores;
 	public final fun getFlagged ()Z
 }
@@ -5426,6 +5531,36 @@ public synthetic class com/aallam/openai/api/moderation/ModerationResult$$serial
 }
 
 public final class com/aallam/openai/api/moderation/ModerationResult$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/moderation/MultimodalModerationRequest {
+	public static final field Companion Lcom/aallam/openai/api/moderation/MultimodalModerationRequest$Companion;
+	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2-JBqyUb8 ()Ljava/lang/String;
+	public final fun copy-pjZ7-rY (Ljava/util/List;Ljava/lang/String;)Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;
+	public static synthetic fun copy-pjZ7-rY$default (Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInput ()Ljava/util/List;
+	public final fun getModel-JBqyUb8 ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/moderation/MultimodalModerationRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/moderation/MultimodalModerationRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/moderation/MultimodalModerationRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 

@@ -85,6 +85,25 @@ class TestOfflineConversations {
     }
 
     @Test
+    fun customClientsCanOmitConversationOperations() = runTest {
+        // Compiling this implementation verifies that no Conversations methods are required.
+        val customClient = object : Conversations {}
+        val id = ConversationId("conv_1")
+        assertFailsWith<UnsupportedOperationException> { customClient.conversation() }
+        assertFailsWith<UnsupportedOperationException> { customClient.conversation(id) }
+        assertFailsWith<UnsupportedOperationException> {
+            customClient.updateConversation(id, ConversationUpdateRequest(null))
+        }
+        assertFailsWith<UnsupportedOperationException> { customClient.delete(id) }
+        assertFailsWith<UnsupportedOperationException> {
+            customClient.createConversationItems(id, ConversationItemsRequest(emptyList()))
+        }
+        assertFailsWith<UnsupportedOperationException> { customClient.conversationItem(id, "msg_1") }
+        assertFailsWith<UnsupportedOperationException> { customClient.deleteConversationItem(id, "msg_1") }
+        assertFailsWith<UnsupportedOperationException> { customClient.conversationItems(id) }
+    }
+
+    @Test
     fun missingResourcesAreNullableButOtherErrorsPropagate() = runTest {
         var status = HttpStatusCode.NotFound
         val engine = MockEngine {

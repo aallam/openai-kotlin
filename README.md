@@ -109,7 +109,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Conversations](guides/Conversations.md)
 - [Models](guides/GettingStarted.md#models)
 - [Chat](guides/GettingStarted.md#chat)
-- [Images](guides/GettingStarted.md#images)
+- [Images](guides/Images.md)
 - [Embeddings](guides/GettingStarted.md#embeddings)
 - [Files](guides/GettingStarted.md#files)
 - [Fine-tuning](guides/GettingStarted.md#fine-tuning)

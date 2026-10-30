@@ -24,6 +24,8 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flow
 
 internal class ChatApi(private val requester: HttpRequester) : Chat {
@@ -154,7 +156,10 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
             setBody(streamRequestOf(advancedBody(request, options)))
             requestOptions(requestOptions)
         }
-        return flow { requester.perform(builder) { response -> streamEventsFrom(response) } }
+        return channelFlow {
+            val collector = FlowCollector<ChatCompletionResult> { send(it) }
+            requester.perform(builder) { response -> collector.streamEventsFrom(response) }
+        }
     }
 
     private fun advancedBody(request: ChatCompletionRequest, options: ChatCompletionOptions): JsonObject =

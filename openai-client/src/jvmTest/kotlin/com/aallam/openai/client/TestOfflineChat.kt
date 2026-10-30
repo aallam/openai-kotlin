@@ -5,6 +5,14 @@ import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.extension.mergeToChatMessage
+import com.aallam.openai.client.internal.api.ChatApi
+import com.aallam.openai.client.internal.createHttpClient
+import com.aallam.openai.client.internal.http.HttpRequester
+import com.aallam.openai.client.internal.http.HttpTransport
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.statement.HttpResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import kotlinx.coroutines.test.runTest
@@ -106,6 +114,28 @@ class TestOfflineChat {
             assertEquals("high", assertIs<ChatInputPart.Image>(parts[1]).imageUrl.detail)
             assertEquals("wav", assertIs<ChatInputPart.Audio>(parts[2]).inputAudio.format)
             assertEquals("file_123", assertIs<ChatInputPart.File>(parts[3]).file.fileId)
+        }
+    }
+
+    @Test
+    fun richStreamingAllowsTransportCallbackOnAnotherDispatcher() = runTest {
+        val first = """{"id":"chat_1","created":1,"model":"model","choices":[{"index":0,"delta":{"content":"one"}}]}"""
+        val second = """{"id":"chat_1","created":1,"model":"model","choices":[{"index":0,"delta":{"content":"two"}}]}"""
+        val engine = MockEngine {
+            respond("data: $first\n\ndata: $second\n\ndata: [DONE]\n\n", HttpStatusCode.OK, headersOf(HttpHeaders.ContentType, "text/event-stream"))
+        }
+        HttpTransport(createHttpClient(OpenAIConfig(token = "offline-token", engine = engine))).use { transport ->
+            val requester = object : HttpRequester by transport {
+                override suspend fun <T : Any> perform(builder: HttpRequestBuilder, block: suspend (HttpResponse) -> T) {
+                    withContext(Dispatchers.Default) { transport.perform(builder, block) }
+                }
+            }
+            val values = ChatApi(requester).chatCompletions(
+                ChatCompletionRequest(ModelId("model"), listOf(ChatMessage.User("hello"))),
+                ChatCompletionOptions(),
+                null,
+            ).toList()
+            assertEquals(listOf("one", "two"), values.map { it.choices.single().delta?.content })
         }
     }
 

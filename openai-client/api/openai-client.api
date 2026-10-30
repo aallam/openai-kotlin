@@ -221,6 +221,10 @@ public final class com/aallam/openai/client/ProxyConfig$Socks : com/aallam/opena
 	public final fun getPort ()I
 }
 
+public final class com/aallam/openai/client/ResponseMetadataKt {
+	public static final fun onResponseMetadata (Lio/ktor/client/HttpClientConfig;Lkotlin/jvm/functions/Function1;)V
+}
+
 public abstract interface class com/aallam/openai/client/Responses {
 	public abstract fun cancel-PmuLqX4 (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun delete-PmuLqX4 (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

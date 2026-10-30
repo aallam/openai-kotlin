@@ -81,8 +81,6 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             exponentialDelay(config.retry.base, config.retry.maxDelay.inWholeMilliseconds)
         }
 
-        install(ResponseMetadataPlugin)
-
         install(SSE)
 
         defaultRequest {

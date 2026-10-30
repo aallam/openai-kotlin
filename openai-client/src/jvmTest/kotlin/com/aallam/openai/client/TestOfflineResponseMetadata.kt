@@ -3,7 +3,6 @@ package com.aallam.openai.client
 import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
-import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.ResponseMetadata
 import com.aallam.openai.api.exception.InvalidRequestException
 import com.aallam.openai.api.exception.OpenAIHttpException
@@ -19,6 +18,41 @@ import kotlin.test.*
 
 class TestOfflineResponseMetadata {
     @Test
+    fun callsWithoutMetadataConfigurationKeepTheirNormalResult() = runTest {
+        val engine = MockEngine {
+            respond("""{"id":"test","created":0,"owned_by":"openai"}""",
+                headers = headersOf(HttpHeaders.ContentType, "application/json"))
+        }
+        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+            assertEquals("test", client.model(ModelId("test")).id.id)
+        }
+    }
+
+    @Test
+    fun configuredObserverReceivesEveryRequestAndRateLimitRetry() = runTest {
+        var requests = 0
+        val statuses = mutableListOf<Int>()
+        val engine = MockEngine {
+            if (++requests == 1) {
+                respond("""{"error":{"message":"slow down","type":"rate_limit_error","code":null,"param":null}}""",
+                    HttpStatusCode.TooManyRequests, headersOf(HttpHeaders.ContentType, "application/json"))
+            } else {
+                respond("""{"id":"test","created":0,"owned_by":"openai"}""",
+                    headers = headersOf(HttpHeaders.ContentType, "application/json"))
+            }
+        }
+        val config = OpenAIConfig(token = "test", engine = engine,
+            retry = RetryStrategy(maxRetries = 1, maxDelay = 1.milliseconds)) {
+            onResponseMetadata { statuses.add(it.statusCode) }
+        }
+        OpenAI(config).use { client ->
+            repeat(2) { assertEquals("test", client.model(ModelId("test")).id.id) }
+            assertEquals(3, requests)
+            assertEquals(listOf(429, 200, 200), statuses)
+        }
+    }
+
+    @Test
     fun successHeadersArriveBeforeBodyDecodingAndDoNotConsumeBody() = runTest {
         var metadata: ResponseMetadata? = null
         val engine = MockEngine {
@@ -28,8 +62,10 @@ class TestOfflineResponseMetadata {
                 "x-ratelimit-remaining-requests" to listOf("9"),
             ))
         }
-        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
-            val model = client.model(ModelId("test"), RequestOptions(onResponse = { metadata = it }))
+        OpenAI(OpenAIConfig(token = "test", engine = engine) {
+            onResponseMetadata { metadata = it }
+        }).use { client ->
+            val model = client.model(ModelId("test"))
             assertEquals("test", model.id.id)
             assertEquals("req-success", metadata?.requestId)
             assertEquals(9L, metadata?.rateLimitRemainingRequests)
@@ -44,12 +80,14 @@ class TestOfflineResponseMetadata {
             respond("""{"error":{"message":"bad input","type":"invalid_request_error","code":null,"param":null}}""", HttpStatusCode.BadRequest,
                 headersOf(HttpHeaders.ContentType to listOf("application/json"), "x-request-id" to listOf("req-error")))
         }
-        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+        OpenAI(OpenAIConfig(token = "test", engine = engine) {
+            onResponseMetadata {
+                assertEquals("req-error", it.requestId)
+                seen.add(it.statusCode)
+            }
+        }).use { client ->
             assertFailsWith<InvalidRequestException> {
-                client.model(ModelId("test"), RequestOptions(onResponse = {
-                    assertEquals("req-error", it.requestId)
-                    seen.add(it.statusCode)
-                }))
+                client.model(ModelId("test"))
             }
             assertEquals(listOf(400), seen)
         }
@@ -62,13 +100,14 @@ class TestOfflineResponseMetadata {
             respond("data: {\"id\":\"chunk-1\",\"created\":0,\"model\":\"test\",\"choices\":[]}\n\ndata: [DONE]\n\n",
                 headers = headersOf(HttpHeaders.ContentType to listOf("text/event-stream"), "X-Request-Id" to listOf("req-stream")))
         }
-        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+        OpenAI(OpenAIConfig(token = "test", engine = engine) {
+            onResponseMetadata {
+                assertEquals("req-stream", it.requestId)
+                order.add("headers")
+            }
+        }).use { client ->
             val chunks = client.chatCompletions(
                 ChatCompletionRequest(ModelId("test"), listOf(ChatMessage(ChatRole.User, "hello"))),
-                RequestOptions(onResponse = {
-                    assertEquals("req-stream", it.requestId)
-                    order.add("headers")
-                }),
             ).take(1).toList()
             order.add("chunk")
             assertEquals("chunk-1", chunks.single().id)
@@ -78,14 +117,19 @@ class TestOfflineResponseMetadata {
 
     @Test
     fun observerCancellationIsNotConvertedToAnHttpFailure() = runTest {
+        var requests = 0
         val engine = MockEngine {
+            requests++
             respond("""{"id":"test","created":0,"owned_by":"openai"}""", headers = headersOf(HttpHeaders.ContentType, "application/json"))
         }
-        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+        OpenAI(OpenAIConfig(token = "test", engine = engine) {
+            onResponseMetadata { throw CancellationException("stop") }
+        }).use { client ->
             val error = assertFailsWith<CancellationException> {
-                client.model(ModelId("test"), RequestOptions(onResponse = { throw CancellationException("stop") }))
+                client.model(ModelId("test"))
             }
             assertEquals("stop", error.message)
+            assertEquals(1, requests)
         }
     }
     @Test
@@ -94,9 +138,11 @@ class TestOfflineResponseMetadata {
         val engine = MockEngine {
             respond("not json", headers = headersOf(HttpHeaders.ContentType to listOf("application/json"), "x-request-id" to listOf("req-invalid-body")))
         }
-        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+        OpenAI(OpenAIConfig(token = "test", engine = engine) {
+            onResponseMetadata { metadata = it }
+        }).use { client ->
             assertFailsWith<OpenAIHttpException> {
-                client.model(ModelId("test"), RequestOptions(onResponse = { metadata = it }))
+                client.model(ModelId("test"))
             }
             assertEquals("req-invalid-body", metadata?.requestId)
         }
@@ -106,9 +152,11 @@ class TestOfflineResponseMetadata {
     fun cancellationBeforeAResponseDoesNotInvokeObserver() = runTest {
         var observed = false
         val engine = MockEngine { throw CancellationException("before headers") }
-        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+        OpenAI(OpenAIConfig(token = "test", engine = engine) {
+            onResponseMetadata { observed = true }
+        }).use { client ->
             assertFailsWith<CancellationException> {
-                client.model(ModelId("test"), RequestOptions(onResponse = { observed = true }))
+                client.model(ModelId("test"))
             }
             assertFalse(observed)
         }
@@ -125,12 +173,13 @@ class TestOfflineResponseMetadata {
                 headers = headersOf(HttpHeaders.ContentType, "application/json"))
         }
         val config = OpenAIConfig(token = "test", engine = engine,
-            retry = RetryStrategy(maxRetries = 2, maxDelay = 1.milliseconds))
+            retry = RetryStrategy(maxRetries = 2, maxDelay = 1.milliseconds)) {
+            onResponseMetadata { throw failure }
+        }
         OpenAI(config).use { client ->
             val error = assertFailsWith<OpenAIHttpException> {
                 client.chatCompletion(
                     ChatCompletionRequest(ModelId("test"), listOf(ChatMessage(ChatRole.User, "hello"))),
-                    RequestOptions(onResponse = { throw failure }),
                 )
             }
             assertSame(failure, error.cause)
@@ -148,9 +197,11 @@ class TestOfflineResponseMetadata {
                 headers = headersOf(HttpHeaders.ContentType, "application/json"))
         }
         val config = OpenAIConfig(token = "test", engine = engine,
-            retry = RetryStrategy(maxRetries = 1, maxDelay = 1.milliseconds))
+            retry = RetryStrategy(maxRetries = 1, maxDelay = 1.milliseconds)) {
+            onResponseMetadata { observations++ }
+        }
         OpenAI(config).use { client ->
-            val model = client.model(ModelId("test"), RequestOptions(onResponse = { observations++ }))
+            val model = client.model(ModelId("test"))
             assertEquals("test", model.id.id)
             assertEquals(2, requests)
             assertEquals(1, observations)

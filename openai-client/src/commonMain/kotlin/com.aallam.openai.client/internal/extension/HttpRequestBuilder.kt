@@ -1,7 +1,6 @@
 package com.aallam.openai.client.internal.extension
 
 import com.aallam.openai.api.core.RequestOptions
-import com.aallam.openai.client.internal.responseObserverKey
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 
@@ -10,7 +9,6 @@ import io.ktor.client.request.*
  */
 internal fun HttpRequestBuilder.requestOptions(requestOptions: RequestOptions? = null) {
     if (requestOptions == null) return
-    requestOptions.onResponse?.let { attributes.put(responseObserverKey, it) }
     requestOptions.headers.forEach { (key, value) ->
         if (headers.contains(key)) headers.remove(key)
         headers[key] = value

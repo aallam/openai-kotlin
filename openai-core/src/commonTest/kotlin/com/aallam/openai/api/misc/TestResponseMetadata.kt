@@ -36,6 +36,5 @@ class TestResponseMetadata {
         assertEquals(headers, old.copy().headers)
         assertEquals(parameters, old.urlParameters)
         assertEquals(timeout, duration)
-        assertNull(old.onResponse)
     }
 }

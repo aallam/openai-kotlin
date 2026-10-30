@@ -124,6 +124,10 @@ public data class ChatMessage(
 
     @Suppress("FunctionName")
     public companion object {
+        /** Create developer instructions for current models. */
+        public fun Developer(content: String, name: String? = null): ChatMessage =
+            ChatMessage(role = ChatRole.Developer, messageContent = TextContent(content), name = name)
+
 
         /**
          * Create a system chat message.
@@ -283,7 +287,7 @@ public data class ImagePart(
 /**
  * Annotation for assistant message content.
  */
-@Serializable
+@Serializable(with = com.aallam.openai.api.chat.internal.ChatAnnotationSerializer::class)
 public data class ChatAnnotation(
     @SerialName("type") val type: String,
     @SerialName("url") val url: String? = null,

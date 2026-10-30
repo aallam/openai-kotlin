@@ -14,7 +14,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.channelFlow
 
 internal class ChatApi(private val requester: HttpRequester) : Chat {
     override suspend fun chatCompletion(
@@ -47,7 +47,7 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
             }
             requestOptions(requestOptions)
         }
-        return flow {
+        return channelFlow {
             requester.perform(builder) { response -> streamEventsFrom(response) }
         }
     }

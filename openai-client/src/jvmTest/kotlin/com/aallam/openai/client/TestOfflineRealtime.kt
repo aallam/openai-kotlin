@@ -51,9 +51,31 @@ class TestOfflineRealtime {
             when (request.url.encodedPath) {
                 "/v1/realtime/calls" -> {
                     val multipart = request.body.toByteArray().decodeToString()
-                    assertContains(multipart, "name=sdp")
-                    assertContains(multipart, "v=0")
-                    assertContains(multipart, "name=session")
+                    val boundary = requireNotNull(request.body.contentType?.parameter("boundary"))
+                    val parts = multipart.split("--$boundary").drop(1).dropLast(1).map { part ->
+                        val (rawHeaders, body) = part.removePrefix("\r\n").removeSuffix("\r\n")
+                            .split("\r\n\r\n", limit = 2)
+                        val headers = rawHeaders.lineSequence().associate { header ->
+                            header.substringBefore(':').lowercase() to header.substringAfter(':').trim()
+                        }
+                        val disposition = ContentDisposition.parse(headers.getValue("content-disposition"))
+                        Triple(
+                            requireNotNull(disposition.parameter(ContentDisposition.Parameters.Name)),
+                            body,
+                            ContentType.parse(headers.getValue("content-type")),
+                        )
+                    }
+                    assertEquals(2, parts.size)
+                    assertEquals(setOf("sdp", "session"), parts.map { it.first }.toSet())
+                    val sdp = parts.single { it.first == "sdp" }
+                    assertEquals("v=0", sdp.second)
+                    assertTrue(sdp.third.match(ContentType.parse("application/sdp")))
+                    val session = parts.single { it.first == "session" }
+                    assertTrue(session.third.match(ContentType.Application.Json))
+                    assertEquals(
+                        Json.parseToJsonElement("""{"type":"realtime","model":"realtime-model"}"""),
+                        Json.parseToJsonElement(session.second),
+                    )
                     respond("v=0\ns=answer", headers = headersOf(HttpHeaders.ContentType to listOf("application/sdp"), HttpHeaders.Location to listOf("/v1/realtime/calls/rtc_123")))
                 }
                 "/v1/realtime/calls/rtc_123/refer" -> {

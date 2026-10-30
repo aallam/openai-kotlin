@@ -15,6 +15,7 @@ public interface Images {
      * @param creation image creation request.
      * @param requestOptions request options.
      */
+    @Deprecated("OpenAI retired DALL-E-only operations. Use current GPT Image generation or editing.")
     public suspend fun imageURL(creation: ImageCreation, requestOptions: RequestOptions? = null): List<ImageURL>
 
     /**
@@ -33,6 +34,7 @@ public interface Images {
      * @param edit image edit request.
      * @param requestOptions request options.
      */
+    @Deprecated("OpenAI retired DALL-E-only operations. Use current GPT Image generation or editing.")
     public suspend fun imageURL(edit: ImageEdit, requestOptions: RequestOptions? = null): List<ImageURL>
 
     /**
@@ -51,6 +53,7 @@ public interface Images {
      * @param variation image variation request.
      * @param requestOptions request options.
      */
+    @Deprecated("OpenAI retired DALL-E-only operations. Use current GPT Image generation or editing.")
     public suspend fun imageURL(variation: ImageVariation, requestOptions: RequestOptions? = null): List<ImageURL>
 
     /**
@@ -60,5 +63,6 @@ public interface Images {
      * @param variation image variation request.
      * @param requestOptions request options.
      */
+    @Deprecated("OpenAI retired DALL-E-only operations. Use current GPT Image generation or editing.")
     public suspend fun imageJSON(variation: ImageVariation, requestOptions: RequestOptions? = null): List<ImageJSON>
 }

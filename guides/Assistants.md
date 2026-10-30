@@ -1,8 +1,9 @@
 # Assistants
 
-This guide provides a step-by-step example for using the Assistants API from Kotlin.
+> [!WARNING]
+> OpenAI shut down the Assistants API, including v2, on August 26, 2026. This guide is historical. Use [Responses and the migration guide](Migration.md) for new OpenAI integrations.
 
-> ℹ️ Assistants/Threads/Messages/Runs APIs in this client are marked as beta.
+The library retains these interfaces for source compatibility, including integrations with other providers that still implement them. Their presence does not establish OpenAI endpoint availability.
 
 ## Prerequisites
 

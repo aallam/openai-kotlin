@@ -606,6 +606,8 @@ val openAI = OpenAI(config)
 
 ## Assistants
 
+> OpenAI retired this API on August 26, 2026. The examples below are historical; see [API migration](Migration.md).
+
 Build assistants that can call models and use tools to perform tasks.
 
 ### Create assistant
@@ -666,6 +668,8 @@ val assistants = openAI.assistants()
 
 ## Threads
 
+> OpenAI retired this API on August 26, 2026. The examples below are historical; see [API migration](Migration.md).
+
 Create threads that assistants can interact with.
 
 ### Create thread
@@ -707,6 +711,8 @@ openAI.delete(id = ThreadId("thread_abc123"))
 ```
 
 ## Messages
+
+> OpenAI retired this API on August 26, 2026. The examples below are historical; see [API migration](Migration.md).
 
 Create messages within threads.
 
@@ -759,6 +765,8 @@ val messages = openAI.messages(threadId = ThreadId("thread_abc123"))
 ```
 
 ## Runs
+
+> OpenAI retired this API on August 26, 2026. The examples below are historical; see [API migration](Migration.md).
 
 Represents an execution run on a thread.
 
@@ -910,6 +918,8 @@ if (assistantStreamEvent.type == AssistantStreamEventType.UNKNOWN) {
 
 ## Completions
 
+> This is a legacy API. Endpoint support and the availability of individual models are separate; prefer Responses for new integrations.
+
 Given a prompt, the model will return one or more predicted completions, and can also return token probabilities.
 
 ### Create completion `legacy`
@@ -930,6 +940,8 @@ val completions: Flow<TextCompletion> = openAI.completions(request)
 ---
 
 ## Fine-tunes
+
+> OpenAI retired this endpoint on January 4, 2024. It remains in the library for source compatibility; see [API migration](Migration.md).
 
 Legacy fine-tunes API.
 
@@ -978,6 +990,8 @@ val deleted = openAI.delete(ModelId("ft:gpt-3.5-turbo:org:custom:abc123"))
 ```
 
 ## Edits
+
+> OpenAI retired this endpoint on January 4, 2024. It remains in the library for source compatibility; see [API migration](Migration.md).
 
 Given a prompt and an instruction, the model returns an edited version of the prompt.
 

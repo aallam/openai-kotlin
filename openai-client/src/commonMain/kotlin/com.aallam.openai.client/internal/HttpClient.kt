@@ -48,7 +48,11 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         install(Auth) {
             bearer {
                 loadTokens {
-                    BearerTokens(accessToken = config.token, refreshToken = "")
+                    BearerTokens(accessToken = config.token, refreshToken = null)
+                }
+                refreshTokens {
+                    // Static API keys cannot be refreshed. A temporary 401 must not discard the key.
+                    oldTokens
                 }
             }
         }

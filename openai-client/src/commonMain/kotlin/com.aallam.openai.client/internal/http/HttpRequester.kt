@@ -13,6 +13,9 @@ import kotlinx.coroutines.flow.Flow
  * Http request performer.
  */
 internal interface HttpRequester : AutoCloseable {
+    suspend fun realtimeSocket(builder: HttpRequestBuilder.() -> Unit): RealtimeSocket =
+        throw UnsupportedOperationException("WebSocket transport is not implemented")
+
 
     /**
      * Perform an HTTP request and get a result.

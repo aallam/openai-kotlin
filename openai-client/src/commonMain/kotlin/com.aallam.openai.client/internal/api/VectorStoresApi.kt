@@ -218,7 +218,7 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
             }.body()
         }
     }
-    override suspend fun updateVectorStore(
+    override suspend fun updateVectorStoreFields(
         id: VectorStoreId, request: VectorStoreUpdateRequest, requestOptions: RequestOptions?
     ): VectorStore = requester.perform {
         it.post {
@@ -308,7 +308,7 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
         }.body()
     }
 
-    override suspend fun createVectorStoreFilesBatch(
+    override suspend fun createVectorStoreFileBatch(
         id: VectorStoreId, request: VectorStoreFileBatchRequest, requestOptions: RequestOptions?
     ): FilesBatch = requester.perform {
         it.post {

@@ -16,13 +16,13 @@ File uploads can specify `expiresAfter = FileExpiration(seconds = 3600)`. Batch 
 Create requests accept `description` and `chunkingStrategy`. Update requests have a separate shape so create-only file IDs are not sent to the update endpoint. Omitted fields remain unchanged; explicit clear flags send JSON null.
 
 ```kotlin
-openAI.updateVectorStore(
+openAI.updateVectorStoreFields(
     id = VectorStoreId("vs_123"),
     request = VectorStoreUpdateRequest(name = "Product documentation", clearExpiresAfter = true),
 )
 ```
 
-File attachment and batch requests accept attributes and chunking configuration. Batches can use `FileBatchRequest` with `fileIds`, or `VectorStoreFileBatchRequest` with per-file `files` configurations. Use `vectorStoreFilesPage` and `vectorStoreBatchFilesPage` for file listing with `FileId` cursors; these methods retain pagination metadata. The older methods with `VectorStoreId` file cursors are deprecated.
+File attachment and batch requests accept attributes and chunking configuration. Batches can use `FileBatchRequest` with `fileIds`, or `VectorStoreFileBatchRequest` with per-file `files` configurations through `createVectorStoreFileBatch`. Use `vectorStoreFilesPage` and `vectorStoreBatchFilesPage` for file listing with `FileId` cursors; these methods retain pagination metadata. The older methods with `VectorStoreId` file cursors are deprecated.
 
 ## Search and parsed content
 

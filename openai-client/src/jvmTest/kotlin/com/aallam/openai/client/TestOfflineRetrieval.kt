@@ -79,7 +79,7 @@ class TestOfflineRetrieval {
         }
         OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
             client.updateVectorStore(VectorStoreId("vs-1"), VectorStoreRequest(fileIds = listOf(FileId("ignored")), name = "renamed"))
-            client.updateVectorStore(VectorStoreId("vs-1"), VectorStoreUpdateRequest(clearExpiresAfter = true))
+            client.updateVectorStoreFields(VectorStoreId("vs-1"), VectorStoreUpdateRequest(clearExpiresAfter = true))
         }
     }
 

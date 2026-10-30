@@ -34,6 +34,15 @@ class TestOfflineRetrievalSourceCompatibility {
     }
 
     @Test
+    fun legacyInferredMethodReferencesRemainUnambiguous() {
+        val client: VectorStores = LegacyVectorStores()
+        val update = client::updateVectorStore
+        val createBatch = client::createVectorStoreFilesBatch
+        assertEquals("updateVectorStore", update.name)
+        assertEquals("createVectorStoreFilesBatch", createBatch.name)
+    }
+
+    @Test
     fun oldCustomImplementationsCompileAndNewMethodsFailExplicitly() = runTest {
         assertFailsWith<UnsupportedOperationException> { LegacyFiles().filesPage() }
         assertFailsWith<UnsupportedOperationException> {

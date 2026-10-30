@@ -208,7 +208,7 @@ public interface VectorStores {
         requestOptions: RequestOptions? = null,
     ): List<VectorStoreFile>
     /** Updates supplied fields, including explicit nulls, without create-only file IDs. */
-    public suspend fun updateVectorStore(
+    public suspend fun updateVectorStoreFields(
         id: VectorStoreId,
         request: VectorStoreUpdateRequest,
         requestOptions: RequestOptions? = null,
@@ -253,7 +253,7 @@ public interface VectorStores {
     ): com.aallam.openai.api.core.PaginatedList<VectorStoreFile> = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
 
     /** Creates a file batch with separate configuration for each attachment. */
-    public suspend fun createVectorStoreFilesBatch(
+    public suspend fun createVectorStoreFileBatch(
         id: VectorStoreId,
         request: VectorStoreFileBatchRequest,
         requestOptions: RequestOptions? = null,

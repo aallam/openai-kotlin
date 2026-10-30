@@ -173,10 +173,13 @@ public final class com/aallam/openai/client/Models$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/Moderations {
+	public abstract fun moderate (Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun moderations (Lcom/aallam/openai/api/moderation/ModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/Moderations$DefaultImpls {
+	public static fun moderate (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun moderate$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun moderations$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/ModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -188,6 +191,7 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun image (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun moderate (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {

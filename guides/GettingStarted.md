@@ -433,7 +433,7 @@ val bytes = openAI.download(FileId("file-abc123"))
 
 ## Moderations
 
-Given an input text, outputs if the model classifies it as violating OpenAI's content policy.
+Classify text and image inputs against OpenAI's content policy.
 
 ### Create moderation
 
@@ -442,11 +442,28 @@ Classifies if text violates OpenAI's content policy.
 ```kotlin
 val moderation = openAI.moderations(
     request = ModerationRequest(
-        model = ModerationModel.Latest,
-        input = "I want to kill them."
+        model = ModerationModel.OmniLatest,
+        input = listOf("I want to kill them.")
     )
 )
 ```
+
+For mixed text and images, use typed content parts:
+
+```kotlin
+val moderation = openAI.moderate(
+    MultimodalModerationRequest(
+        input = listOf(
+            ModerationInput.Text("Describe the scene."),
+            ModerationInput.Image("https://example.com/image.png"),
+        ),
+        model = ModerationModel.OmniLatest,
+    )
+)
+```
+
+Omit `model` to use OpenAI's default. Results include category scores and the input
+modalities evaluated for each category through `categoryAppliedInputTypes`.
 
 ## Batch
 

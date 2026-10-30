@@ -15,8 +15,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
+import kotlinx.serialization.json.*
 
 internal class RunsApi(val requester: HttpRequester) : Runs {
     override suspend fun createRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions?): Run {
@@ -123,13 +122,29 @@ internal class RunsApi(val requester: HttpRequester) : Runs {
         return requester
             .performSse {
                 url(path = "${ApiPath.Threads}/${threadId.id}/runs/${runId.id}/submit_tool_outputs")
-                setBody(mapOf("tool_outputs" to output, "stream" to true))
+                val bodyObject = buildJsonObject {
+                    put("tool_outputs", output.toJsonArray())
+                    put("stream", JsonPrimitive(true))
+                }
+                setBody(bodyObject)
                 contentType(ContentType.Application.Json)
                 accept(ContentType.Text.EventStream)
                 beta("assistants", 2)
                 requestOptions(requestOptions)
                 method = HttpMethod.Post
             }
+    }
+
+    // Need to manual convert to JsonObject as Kotlinx serialization fails when multiple data types are present in the same collection
+    // java.lang.IllegalStateException: Serializing collections of different element types is not yet supported. Selected serializers: [kotlin.collections.ArrayList, kotlin.Boolean]
+    // https://youtrack.jetbrains.com/issue/KTOR-3063/Support-serializing-collections-of-different-element-types
+    private fun List<ToolOutput>.toJsonArray(): JsonArray = buildJsonArray {
+        forEach { add(it.toJsonObject()) }
+    }
+
+    private fun ToolOutput.toJsonObject(): JsonObject = buildJsonObject {
+        toolCallId?.id?.let { put("tool_call_id", JsonPrimitive(it)) }
+        output?.let { put("output", JsonPrimitive(it)) }
     }
 
     override suspend fun cancel(threadId: ThreadId, runId: RunId, requestOptions: RequestOptions?): Run {

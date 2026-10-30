@@ -168,7 +168,17 @@ public final class com/aallam/openai/client/Moderations$DefaultImpls {
 	public static synthetic fun moderations$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/ModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/VectorStores, java/lang/AutoCloseable {
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/VectorStores, com/aallam/openai/client/Webhooks, java/lang/AutoCloseable {
+}
+
+public final class com/aallam/openai/client/OpenAI$DefaultImpls {
+	public static fun deleteWebhookEndpoint (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun rotateWebhookSecret (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookSecretRotation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun testWebhookEndpoint (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookTestRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun updateWebhookEndpoint (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun webhookEndpoint (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/webhook/WebhookEndpointRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun webhookEndpoint (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun webhookEndpoints (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {
@@ -317,6 +327,33 @@ public final class com/aallam/openai/client/VectorStores$DefaultImpls {
 	public static synthetic fun vectorStoreFiles-qT82-_w$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun vectorStoreFilesBatches-qXaThJU$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun vectorStores-GCwikq4$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/Webhooks {
+	public abstract fun deleteWebhookEndpoint (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun rotateWebhookSecret (Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookSecretRotation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun testWebhookEndpoint (Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookTestRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun updateWebhookEndpoint (Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun webhookEndpoint (Lcom/aallam/openai/api/webhook/WebhookEndpointRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun webhookEndpoint (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun webhookEndpoints (Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aallam/openai/client/Webhooks$DefaultImpls {
+	public static fun deleteWebhookEndpoint (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun deleteWebhookEndpoint$default (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun rotateWebhookSecret (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookSecretRotation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun rotateWebhookSecret$default (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookSecretRotation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun testWebhookEndpoint (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookTestRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun testWebhookEndpoint$default (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookTestRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun updateWebhookEndpoint (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun updateWebhookEndpoint$default (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun webhookEndpoint (Lcom/aallam/openai/client/Webhooks;Lcom/aallam/openai/api/webhook/WebhookEndpointRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun webhookEndpoint (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun webhookEndpoint$default (Lcom/aallam/openai/client/Webhooks;Lcom/aallam/openai/api/webhook/WebhookEndpointRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun webhookEndpoint$default (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun webhookEndpoints (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun webhookEndpoints$default (Lcom/aallam/openai/client/Webhooks;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/extension/AssistantStreamEventKt {

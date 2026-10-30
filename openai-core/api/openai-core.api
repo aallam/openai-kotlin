@@ -7571,3 +7571,234 @@ public final class com/aallam/openai/api/vectorstore/VectorStoreRequest$Companio
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/webhook/InvalidWebhookSignatureException : java/lang/IllegalArgumentException {
+	public fun <init> (Ljava/lang/String;)V
+}
+
+public final class com/aallam/openai/api/webhook/WebhookEndpoint {
+	public static final field Companion Lcom/aallam/openai/api/webhook/WebhookEndpoint$Companion;
+	public fun <init> (Ljava/lang/String;JLjava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;JLjava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/Long;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;JLjava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/webhook/WebhookEndpoint;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/webhook/WebhookEndpoint;Ljava/lang/String;JLjava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/webhook/WebhookEndpoint;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getEventTypes ()Ljava/util/List;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public final fun getSigningSecret ()Ljava/lang/String;
+	public final fun getSigningSecretHint ()Ljava/lang/String;
+	public final fun getUpdatedAt ()Ljava/lang/Long;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/webhook/WebhookEndpoint$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/webhook/WebhookEndpoint$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/webhook/WebhookEndpoint;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/webhook/WebhookEndpoint;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookEndpoint$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookEndpointRequest {
+	public static final field Companion Lcom/aallam/openai/api/webhook/WebhookEndpointRequest$Companion;
+	public fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/webhook/WebhookEndpointRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/webhook/WebhookEndpointRequest;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/webhook/WebhookEndpointRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEventTypes ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/webhook/WebhookEndpointRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/webhook/WebhookEndpointRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/webhook/WebhookEndpointRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/webhook/WebhookEndpointRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookEndpointRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookEndpointUpdate {
+	public static final field Companion Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEventTypes ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/webhook/WebhookEndpointUpdate$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/webhook/WebhookEndpointUpdate;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookEndpointUpdate$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookEvent {
+	public static final field Companion Lcom/aallam/openai/api/webhook/WebhookEvent$Companion;
+	public fun <init> (Lkotlinx/serialization/json/JsonObject;)V
+	public final fun component1 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun copy (Lkotlinx/serialization/json/JsonObject;)Lcom/aallam/openai/api/webhook/WebhookEvent;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/webhook/WebhookEvent;Lkotlinx/serialization/json/JsonObject;ILjava/lang/Object;)Lcom/aallam/openai/api/webhook/WebhookEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getData ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getPayload ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookSecretRotation {
+	public static final field Companion Lcom/aallam/openai/api/webhook/WebhookSecretRotation$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/Boolean;)Lcom/aallam/openai/api/webhook/WebhookSecretRotation;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/webhook/WebhookSecretRotation;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/aallam/openai/api/webhook/WebhookSecretRotation;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getKeepOldSecretActiveFor24Hours ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/webhook/WebhookSecretRotation$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/webhook/WebhookSecretRotation$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/webhook/WebhookSecretRotation;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/webhook/WebhookSecretRotation;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookSecretRotation$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookTestRequest {
+	public static final field Companion Lcom/aallam/openai/api/webhook/WebhookTestRequest$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/webhook/WebhookTestRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/webhook/WebhookTestRequest;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/webhook/WebhookTestRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEventType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/webhook/WebhookTestRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/webhook/WebhookTestRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/webhook/WebhookTestRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/webhook/WebhookTestRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookTestRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookTestResult {
+	public static final field Companion Lcom/aallam/openai/api/webhook/WebhookTestResult$Companion;
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;ZLjava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;ILjava/lang/String;ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Z
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;ILjava/lang/String;ZLjava/lang/String;)Lcom/aallam/openai/api/webhook/WebhookTestResult;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/webhook/WebhookTestResult;Ljava/lang/String;ILjava/lang/String;ZLjava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/webhook/WebhookTestResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEventType ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public final fun getStatusCode ()I
+	public final fun getSuccess ()Z
+	public final fun getWebhookEndpointId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/webhook/WebhookTestResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/webhook/WebhookTestResult$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/webhook/WebhookTestResult;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/webhook/WebhookTestResult;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookTestResult$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/webhook/WebhookVerifier {
+	public fun <init> (Ljava/lang/String;J)V
+	public synthetic fun <init> (Ljava/lang/String;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun unwrap ([BLjava/util/Map;J)Lcom/aallam/openai/api/webhook/WebhookEvent;
+	public final fun verify ([BLjava/util/Map;J)V
+}
+

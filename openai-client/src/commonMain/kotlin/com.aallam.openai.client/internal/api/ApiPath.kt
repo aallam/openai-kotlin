@@ -24,4 +24,5 @@ internal object ApiPath {
     const val VectorStores = "vector_stores"
     const val Batches = "batches"
     const val Responses = "responses"
+    const val WebhookEndpoints = "webhook_endpoints"
 }

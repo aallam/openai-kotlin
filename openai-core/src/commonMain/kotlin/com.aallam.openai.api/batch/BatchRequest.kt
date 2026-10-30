@@ -3,7 +3,6 @@ package com.aallam.openai.api.batch
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.core.Endpoint
 import com.aallam.openai.api.file.FileId
-import com.aallam.openai.api.file.FileExpiration
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,7 +20,7 @@ public data class BatchRequest(
     @SerialName("input_file_id") public val inputFileId: FileId,
 
     /**
-     * The endpoint to be used for all requests in the batch. Use an endpoint supported by the selected batch model.
+     * The endpoint to be used for all requests in the batch. Currently only [Endpoint.Completions] is supported.
      */
     @SerialName("endpoint") public val endpoint: Endpoint,
 
@@ -34,9 +33,6 @@ public data class BatchRequest(
      * Optional custom metadata for the batch.
      */
     @SerialName("metadata") public val metadata: Map<String, String>? = null,
-
-    /** Expiration policy for output and error files. */
-    @SerialName("output_expires_after") public val outputExpiresAfter: FileExpiration? = null,
 )
 
 /**
@@ -56,14 +52,10 @@ public class BatchRequestBuilder {
     public var completionWindow: CompletionWindow? = null
     public var metadata: Map<String, String>? = null
 
-    /** Expiration policy for output and error files. */
-    public var outputExpiresAfter: FileExpiration? = null
-
     public fun build(): BatchRequest = BatchRequest(
         inputFileId = requireNotNull(inputFileId) { "inputFileId is required" },
         endpoint = requireNotNull(endpoint) { "endpoint is required" },
         completionWindow = requireNotNull(completionWindow) { "completionWindow is required" },
-        metadata = metadata,
-        outputExpiresAfter = outputExpiresAfter,
+        metadata = metadata
     )
 }

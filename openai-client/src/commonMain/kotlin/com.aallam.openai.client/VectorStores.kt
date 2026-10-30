@@ -212,19 +212,19 @@ public interface VectorStores {
         id: VectorStoreId,
         request: VectorStoreUpdateRequest,
         requestOptions: RequestOptions? = null,
-    ): VectorStore = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+    ): VectorStoreResource = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
 
     /** Retrieves an indexed file, or null if it does not exist. */
     public suspend fun vectorStoreFile(
         id: VectorStoreId, fileId: FileId, requestOptions: RequestOptions? = null,
-    ): VectorStoreFile? = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+    ): VectorStoreFileResource? = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
 
     /** Replaces file attributes; null clears all attributes. */
     public suspend fun updateVectorStoreFile(
         id: VectorStoreId, fileId: FileId,
         attributes: Map<String, kotlinx.serialization.json.JsonPrimitive>?,
         requestOptions: RequestOptions? = null,
-    ): VectorStoreFile = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+    ): VectorStoreFileResource = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
 
     /** Retrieves parsed content rather than the original binary file. */
     public suspend fun vectorStoreFileContent(
@@ -242,7 +242,7 @@ public interface VectorStores {
         limit: Int? = null, order: SortOrder? = null,
         after: FileId? = null, before: FileId? = null, filter: Status? = null,
         requestOptions: RequestOptions? = null,
-    ): com.aallam.openai.api.core.PaginatedList<VectorStoreFile> = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+    ): com.aallam.openai.api.core.PaginatedList<VectorStoreFileResource> = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
 
     /** Lists files in a batch using file identifiers as cursors. */
     public suspend fun vectorStoreBatchFilesPage(
@@ -250,7 +250,7 @@ public interface VectorStores {
         limit: Int? = null, order: SortOrder? = null,
         after: FileId? = null, before: FileId? = null, filter: Status? = null,
         requestOptions: RequestOptions? = null,
-    ): com.aallam.openai.api.core.PaginatedList<VectorStoreFile> = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
+    ): com.aallam.openai.api.core.PaginatedList<VectorStoreFileResource> = throw UnsupportedOperationException("This vector store operation is not supported by this implementation")
 
     /** Creates a file batch with separate configuration for each attachment. */
     public suspend fun createVectorStoreFileBatch(
@@ -258,5 +258,15 @@ public interface VectorStores {
         request: VectorStoreFileBatchRequest,
         requestOptions: RequestOptions? = null,
     ): FilesBatch = throw UnsupportedOperationException("Per-file batch configuration is not supported by this implementation")
+
+    /** Creates a vector store with current description and chunking options. */
+    public suspend fun createVectorStoreResource(
+        request: VectorStoreCreateRequest, requestOptions: RequestOptions? = null,
+    ): VectorStoreResource = throw UnsupportedOperationException("Current vector store creation is not supported by this implementation")
+
+    /** Attaches a file with attributes and chunking configuration. */
+    public suspend fun attachVectorStoreFile(
+        id: VectorStoreId, request: VectorStoreFileCreateRequest, requestOptions: RequestOptions? = null,
+    ): VectorStoreFileResource = throw UnsupportedOperationException("File attachment options are not supported by this implementation")
 
 }

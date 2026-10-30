@@ -4,6 +4,11 @@ import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.Purpose
+import com.aallam.openai.api.file.*
+import com.aallam.openai.api.batch.BatchCreateRequest
+import com.aallam.openai.api.batch.CompletionWindow
+import com.aallam.openai.api.core.Endpoint
+import kotlinx.io.Buffer
 import com.aallam.openai.api.vectorstore.*
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
@@ -80,6 +85,54 @@ class TestOfflineRetrieval {
         OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
             client.updateVectorStore(VectorStoreId("vs-1"), VectorStoreRequest(fileIds = listOf(FileId("ignored")), name = "renamed"))
             client.updateVectorStoreFields(VectorStoreId("vs-1"), VectorStoreUpdateRequest(clearExpiresAfter = true))
+        }
+    }
+
+    @Test
+    fun richUploadKeepsExpiryOnTheWireAndInResults() = runTest {
+        val engine = MockEngine { request ->
+            val body = request.body.toByteArray().decodeToString()
+            assertTrue(body.contains("expires_after[anchor]"))
+            assertTrue(body.contains("created_at"))
+            assertTrue(body.contains("expires_after[seconds]"))
+            assertTrue(body.contains("3600"))
+            respond("""{"id":"file-1","bytes":0,"created_at":0,"filename":"data.jsonl","purpose":"batch","expires_at":3600}""",
+                headers = headersOf(HttpHeaders.ContentType, "application/json"))
+        }
+        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+            val file = client.uploadFile(FileUploadRequest(FileSource("data.jsonl", Buffer()), Purpose("batch"), FileExpiration(3600)))
+            assertEquals(3600L, file.expiresAt)
+            assertEquals(3600L, file.copy().expiresAt)
+        }
+    }
+
+    @Test
+    fun richCreationKeepsVectorOptionsAndReturnedDescription() = runTest {
+        val engine = MockEngine { request ->
+            val body = Json.parseToJsonElement((request.body as TextContent).text).jsonObject
+            assertEquals("docs", body["description"]?.jsonPrimitive?.content)
+            assertEquals("auto", body["chunking_strategy"]?.jsonObject?.get("type")?.jsonPrimitive?.content)
+            respond("""{"id":"vs-1","created_at":0,"usage_bytes":0,"file_counts":{"in_progress":0,"completed":0,"failed":0,"cancelled":0,"total":0},"status":"completed","description":"docs"}""",
+                headers = headersOf(HttpHeaders.ContentType, "application/json"))
+        }
+        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+            val store = client.createVectorStoreResource(VectorStoreCreateRequest(description = "docs", chunkingStrategy = ChunkingStrategy()))
+            assertEquals("docs", store.description)
+            assertEquals("docs", store.copy().description)
+        }
+    }
+
+    @Test
+    fun additiveBatchCreationSendsOutputExpiry() = runTest {
+        val engine = MockEngine { request ->
+            val body = Json.parseToJsonElement((request.body as TextContent).text).jsonObject
+            assertEquals(3600, body["output_expires_after"]?.jsonObject?.get("seconds")?.jsonPrimitive?.int)
+            respond("""{"id":"batch-1","endpoint":"/v1/responses","errors":null}""",
+                headers = headersOf(HttpHeaders.ContentType, "application/json"))
+        }
+        OpenAI(OpenAIConfig(token = "test", engine = engine)).use { client ->
+            val batch = client.createBatch(BatchCreateRequest(FileId("file-1"), Endpoint.Responses, CompletionWindow.TwentyFourHours, outputExpiresAfter = FileExpiration(3600)))
+            assertEquals("batch-1", batch.id.id)
         }
     }
 

@@ -6,7 +6,6 @@ import com.aallam.openai.api.core.Status
 import com.aallam.openai.api.file.FileId
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonPrimitive
 
 /**
  * A list of files attached to a vector store.
@@ -44,9 +43,4 @@ public data class VectorStoreFile(
      * The last error associated with this vector store file. Will be `null` if there are no errors.
      */
     @SerialName("last_error") public val lastError: LastError? = null,
-    /** File attributes used for filtering search results. */
-    @SerialName("attributes") public val attributes: Map<String, JsonPrimitive>? = null,
-    /** Chunking strategy used to process the file(s). */
-    @SerialName("chunking_strategy") public val chunkingStrategy: ChunkingStrategy? = null,
-
 )

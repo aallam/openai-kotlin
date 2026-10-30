@@ -22,19 +22,19 @@ class TestRetrieval {
 
     @Test
     fun batchAndFileConfigurationsPreserveWireFields() {
-        val request = batchRequest {
+        val request = batchCreateRequest {
             inputFileId = FileId("file-input")
             endpoint = Endpoint.Responses
             completionWindow = CompletionWindow.TwentyFourHours
             outputExpiresAfter = FileExpiration(3600)
         }
-        val encoded = Json.encodeToJsonElement(BatchRequest.serializer(), request).jsonObject
+        val encoded = Json.encodeToJsonElement(BatchCreateRequest.serializer(), request).jsonObject
         assertEquals("/v1/responses", encoded["endpoint"]?.jsonPrimitive?.content)
         // The default anchor must still be sent when the API requires it.
         val policy = encoded["output_expires_after"]!!.jsonObject
         assertEquals("created_at", policy["anchor"]?.jsonPrimitive?.content)
         assertEquals(3600, policy["seconds"]?.jsonPrimitive?.int)
-        val perFile = VectorStoreFileRequest(FileId("file-1"), mapOf("reviewed" to JsonPrimitive(true)), ChunkingStrategy("static", StaticChunking(800, 200)))
+        val perFile = VectorStoreFileCreateRequest(FileId("file-1"), mapOf("reviewed" to JsonPrimitive(true)), ChunkingStrategy("static", StaticChunking(800, 200)))
         val batch = Json.encodeToJsonElement(VectorStoreFileBatchRequest.serializer(), VectorStoreFileBatchRequest(files = listOf(perFile))).jsonObject
         assertFalse("file_ids" in batch)
         assertEquals(true, batch["files"]!!.jsonArray.single().jsonObject["attributes"]!!.jsonObject["reviewed"]!!.jsonPrimitive.boolean)

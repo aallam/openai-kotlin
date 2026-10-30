@@ -891,6 +891,61 @@ public final class com/aallam/openai/api/batch/Batch$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/batch/BatchCreateRequest {
+	public static final field Companion Lcom/aallam/openai/api/batch/BatchCreateRequest$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/file/FileExpiration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/file/FileExpiration;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-B854uN0 ()Ljava/lang/String;
+	public final fun component2-YdN44cg ()Ljava/lang/String;
+	public final fun component3-epsWu6s ()Ljava/lang/String;
+	public final fun component4 ()Ljava/util/Map;
+	public final fun component5 ()Lcom/aallam/openai/api/file/FileExpiration;
+	public final fun copy-eaqF5K4 (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/file/FileExpiration;)Lcom/aallam/openai/api/batch/BatchCreateRequest;
+	public static synthetic fun copy-eaqF5K4$default (Lcom/aallam/openai/api/batch/BatchCreateRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/file/FileExpiration;ILjava/lang/Object;)Lcom/aallam/openai/api/batch/BatchCreateRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCompletionWindow-epsWu6s ()Ljava/lang/String;
+	public final fun getEndpoint-YdN44cg ()Ljava/lang/String;
+	public final fun getInputFileId-B854uN0 ()Ljava/lang/String;
+	public final fun getMetadata ()Ljava/util/Map;
+	public final fun getOutputExpiresAfter ()Lcom/aallam/openai/api/file/FileExpiration;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/batch/BatchCreateRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/batch/BatchCreateRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/batch/BatchCreateRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/batch/BatchCreateRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/batch/BatchCreateRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/batch/BatchCreateRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/batch/BatchCreateRequest;
+	public final fun getCompletionWindow-9qoZ7-s ()Ljava/lang/String;
+	public final fun getEndpoint-JCmaW-U ()Ljava/lang/String;
+	public final fun getInputFileId-jQTuF1U ()Ljava/lang/String;
+	public final fun getMetadata ()Ljava/util/Map;
+	public final fun getOutputExpiresAfter ()Lcom/aallam/openai/api/file/FileExpiration;
+	public final fun setCompletionWindow-mGDffYk (Ljava/lang/String;)V
+	public final fun setEndpoint-k4OlNjI (Ljava/lang/String;)V
+	public final fun setInputFileId-IcKNrF4 (Ljava/lang/String;)V
+	public final fun setMetadata (Ljava/util/Map;)V
+	public final fun setOutputExpiresAfter (Lcom/aallam/openai/api/file/FileExpiration;)V
+}
+
+public final class com/aallam/openai/api/batch/BatchCreateRequestKt {
+	public static final fun batchCreateRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/batch/BatchCreateRequest;
+}
+
 public final class com/aallam/openai/api/batch/BatchId {
 	public static final field Companion Lcom/aallam/openai/api/batch/BatchId$Companion;
 	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/aallam/openai/api/batch/BatchId;
@@ -923,21 +978,19 @@ public final class com/aallam/openai/api/batch/BatchId$Companion {
 
 public final class com/aallam/openai/api/batch/BatchRequest {
 	public static final field Companion Lcom/aallam/openai/api/batch/BatchRequest$Companion;
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/file/FileExpiration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/file/FileExpiration;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1-B854uN0 ()Ljava/lang/String;
 	public final fun component2-YdN44cg ()Ljava/lang/String;
 	public final fun component3-epsWu6s ()Ljava/lang/String;
 	public final fun component4 ()Ljava/util/Map;
-	public final fun component5 ()Lcom/aallam/openai/api/file/FileExpiration;
-	public final fun copy-eaqF5K4 (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/file/FileExpiration;)Lcom/aallam/openai/api/batch/BatchRequest;
-	public static synthetic fun copy-eaqF5K4$default (Lcom/aallam/openai/api/batch/BatchRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/file/FileExpiration;ILjava/lang/Object;)Lcom/aallam/openai/api/batch/BatchRequest;
+	public final fun copy-vt8OxJQ (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lcom/aallam/openai/api/batch/BatchRequest;
+	public static synthetic fun copy-vt8OxJQ$default (Lcom/aallam/openai/api/batch/BatchRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lcom/aallam/openai/api/batch/BatchRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCompletionWindow-epsWu6s ()Ljava/lang/String;
 	public final fun getEndpoint-YdN44cg ()Ljava/lang/String;
 	public final fun getInputFileId-B854uN0 ()Ljava/lang/String;
 	public final fun getMetadata ()Ljava/util/Map;
-	public final fun getOutputExpiresAfter ()Lcom/aallam/openai/api/file/FileExpiration;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
@@ -964,12 +1017,10 @@ public final class com/aallam/openai/api/batch/BatchRequestBuilder {
 	public final fun getEndpoint-JCmaW-U ()Ljava/lang/String;
 	public final fun getInputFileId-jQTuF1U ()Ljava/lang/String;
 	public final fun getMetadata ()Ljava/util/Map;
-	public final fun getOutputExpiresAfter ()Lcom/aallam/openai/api/file/FileExpiration;
 	public final fun setCompletionWindow-mGDffYk (Ljava/lang/String;)V
 	public final fun setEndpoint-k4OlNjI (Ljava/lang/String;)V
 	public final fun setInputFileId-IcKNrF4 (Ljava/lang/String;)V
 	public final fun setMetadata (Ljava/util/Map;)V
-	public final fun setOutputExpiresAfter (Lcom/aallam/openai/api/file/FileExpiration;)V
 }
 
 public final class com/aallam/openai/api/batch/BatchRequestKt {
@@ -3730,8 +3781,8 @@ public final class com/aallam/openai/api/exception/UnknownAPIException : com/aal
 
 public final class com/aallam/openai/api/file/File {
 	public static final field Companion Lcom/aallam/openai/api/file/File$Companion;
-	public synthetic fun <init> (Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1-B854uN0 ()Ljava/lang/String;
 	public final fun component2 ()I
 	public final fun component3 ()J
@@ -3740,13 +3791,11 @@ public final class com/aallam/openai/api/file/File {
 	public final fun component6-vRn6Y3o ()Ljava/lang/String;
 	public final fun component7 ()Ljava/lang/String;
 	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Ljava/lang/Long;
-	public final fun copy-HY6Pn3E (Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;)Lcom/aallam/openai/api/file/File;
-	public static synthetic fun copy-HY6Pn3E$default (Lcom/aallam/openai/api/file/File;Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;ILjava/lang/Object;)Lcom/aallam/openai/api/file/File;
+	public final fun copy-M-f72CI (Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/file/File;
+	public static synthetic fun copy-M-f72CI$default (Lcom/aallam/openai/api/file/File;Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/file/File;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBytes ()I
 	public final fun getCreatedAt ()J
-	public final fun getExpiresAt ()Ljava/lang/Long;
 	public final fun getFilename ()Ljava/lang/String;
 	public final fun getFormat ()Ljava/lang/String;
 	public final fun getId-B854uN0 ()Ljava/lang/String;
@@ -3832,6 +3881,50 @@ public final class com/aallam/openai/api/file/FileId$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/file/FileResource {
+	public static final field Companion Lcom/aallam/openai/api/file/FileResource$Companion;
+	public synthetic fun <init> (Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-B854uN0 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()J
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5-7X0yglE ()Ljava/lang/String;
+	public final fun component6-vRn6Y3o ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/Long;
+	public final fun copy-HY6Pn3E (Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;)Lcom/aallam/openai/api/file/FileResource;
+	public static synthetic fun copy-HY6Pn3E$default (Lcom/aallam/openai/api/file/FileResource;Ljava/lang/String;IJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;ILjava/lang/Object;)Lcom/aallam/openai/api/file/FileResource;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBytes ()I
+	public final fun getCreatedAt ()J
+	public final fun getExpiresAt ()Ljava/lang/Long;
+	public final fun getFilename ()Ljava/lang/String;
+	public final fun getFormat ()Ljava/lang/String;
+	public final fun getId-B854uN0 ()Ljava/lang/String;
+	public final fun getPurpose-7X0yglE ()Ljava/lang/String;
+	public final fun getStatus-vRn6Y3o ()Ljava/lang/String;
+	public final fun getStatusDetails ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/file/FileResource$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/file/FileResource$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/file/FileResource;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/file/FileResource;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/file/FileResource$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/file/FileSource {
 	public fun <init> (Ljava/lang/String;Lkotlinx/io/RawSource;)V
 	public fun <init> (Lkotlinx/io/files/Path;Lkotlinx/io/files/FileSystem;)V
@@ -3884,9 +3977,7 @@ public final class com/aallam/openai/api/file/FileStatus$Companion {
 }
 
 public final class com/aallam/openai/api/file/FileUpload {
-	public synthetic fun <init> (Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;Lcom/aallam/openai/api/file/FileExpiration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;Lcom/aallam/openai/api/file/FileExpiration;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getExpiresAfter ()Lcom/aallam/openai/api/file/FileExpiration;
+	public synthetic fun <init> (Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getFile ()Lcom/aallam/openai/api/file/FileSource;
 	public final fun getPurpose-7X0yglE ()Ljava/lang/String;
 }
@@ -3894,6 +3985,27 @@ public final class com/aallam/openai/api/file/FileUpload {
 public final class com/aallam/openai/api/file/FileUploadBuilder {
 	public fun <init> ()V
 	public final fun build ()Lcom/aallam/openai/api/file/FileUpload;
+	public final fun getFile ()Lcom/aallam/openai/api/file/FileSource;
+	public final fun getPurpose-wh03rMo ()Ljava/lang/String;
+	public final fun setFile (Lcom/aallam/openai/api/file/FileSource;)V
+	public final fun setPurpose-RaJvOTs (Ljava/lang/String;)V
+}
+
+public final class com/aallam/openai/api/file/FileUploadKt {
+	public static final fun fileUpload (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/file/FileUpload;
+}
+
+public final class com/aallam/openai/api/file/FileUploadRequest {
+	public synthetic fun <init> (Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;Lcom/aallam/openai/api/file/FileExpiration;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;Lcom/aallam/openai/api/file/FileExpiration;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getExpiresAfter ()Lcom/aallam/openai/api/file/FileExpiration;
+	public final fun getFile ()Lcom/aallam/openai/api/file/FileSource;
+	public final fun getPurpose-7X0yglE ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/file/FileUploadRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/file/FileUploadRequest;
 	public final fun getExpiresAfter ()Lcom/aallam/openai/api/file/FileExpiration;
 	public final fun getFile ()Lcom/aallam/openai/api/file/FileSource;
 	public final fun getPurpose-wh03rMo ()Ljava/lang/String;
@@ -3902,8 +4014,8 @@ public final class com/aallam/openai/api/file/FileUploadBuilder {
 	public final fun setPurpose-RaJvOTs (Ljava/lang/String;)V
 }
 
-public final class com/aallam/openai/api/file/FileUploadKt {
-	public static final fun fileUpload (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/file/FileUpload;
+public final class com/aallam/openai/api/file/FileUploadRequestKt {
+	public static final fun fileUploadRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/file/FileUploadRequest;
 }
 
 public final class com/aallam/openai/api/file/Purpose {
@@ -7387,16 +7499,11 @@ public final class com/aallam/openai/api/vectorstore/ExpirationPolicy$Companion 
 
 public final class com/aallam/openai/api/vectorstore/FileBatchRequest {
 	public static final field Companion Lcom/aallam/openai/api/vectorstore/FileBatchRequest$Companion;
-	public fun <init> (Ljava/util/List;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;)V
-	public synthetic fun <init> (Ljava/util/List;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
 	public final fun component1 ()Ljava/util/List;
-	public final fun component2 ()Ljava/util/Map;
-	public final fun component3 ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
-	public final fun copy (Ljava/util/List;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;)Lcom/aallam/openai/api/vectorstore/FileBatchRequest;
-	public static synthetic fun copy$default (Lcom/aallam/openai/api/vectorstore/FileBatchRequest;Ljava/util/List;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/FileBatchRequest;
+	public final fun copy (Ljava/util/List;)Lcom/aallam/openai/api/vectorstore/FileBatchRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/vectorstore/FileBatchRequest;Ljava/util/List;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/FileBatchRequest;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAttributes ()Ljava/util/Map;
-	public final fun getChunkingStrategy ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
 	public final fun getFileIds ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -7518,11 +7625,10 @@ public final class com/aallam/openai/api/vectorstore/StaticChunking$Companion {
 
 public final class com/aallam/openai/api/vectorstore/VectorStore {
 	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStore$Companion;
-	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1-8EbyS38 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/util/Map;
-	public final fun component11 ()Ljava/lang/String;
 	public final fun component2 ()J
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()J
@@ -7531,11 +7637,10 @@ public final class com/aallam/openai/api/vectorstore/VectorStore {
 	public final fun component7 ()Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;
 	public final fun component8 ()Ljava/lang/Long;
 	public final fun component9 ()Ljava/lang/Long;
-	public final fun copy-vNbfjFM (Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;)Lcom/aallam/openai/api/vectorstore/VectorStore;
-	public static synthetic fun copy-vNbfjFM$default (Lcom/aallam/openai/api/vectorstore/VectorStore;Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/VectorStore;
+	public final fun copy-9CfSh9g (Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;)Lcom/aallam/openai/api/vectorstore/VectorStore;
+	public static synthetic fun copy-9CfSh9g$default (Lcom/aallam/openai/api/vectorstore/VectorStore;Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/VectorStore;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCreatedAt ()J
-	public final fun getDescription ()Ljava/lang/String;
 	public final fun getExpiresAfter ()Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;
 	public final fun getExpiresAt ()Ljava/lang/Long;
 	public final fun getFileCounts ()Lcom/aallam/openai/api/vectorstore/FileCounts;
@@ -7627,23 +7732,47 @@ public final class com/aallam/openai/api/vectorstore/VectorStoreContentPage$Comp
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/vectorstore/VectorStoreCreateRequest {
+	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/util/Map;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/util/Map;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getChunkingStrategy ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getExpiresAfter ()Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;
+	public final fun getFileIds ()Ljava/util/List;
+	public final fun getMetadata ()Ljava/util/Map;
+	public final fun getName ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/vectorstore/VectorStoreCreateRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/vectorstore/VectorStoreCreateRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/vectorstore/VectorStoreFile {
 	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStoreFile$Companion;
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1-B854uN0 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/Long;
 	public final fun component3 ()J
 	public final fun component4-8EbyS38 ()Ljava/lang/String;
 	public final fun component5-3xryCA8 ()Ljava/lang/String;
 	public final fun component6 ()Lcom/aallam/openai/api/core/LastError;
-	public final fun component7 ()Ljava/util/Map;
-	public final fun component8 ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
-	public final fun copy-8ujnADM (Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;)Lcom/aallam/openai/api/vectorstore/VectorStoreFile;
-	public static synthetic fun copy-8ujnADM$default (Lcom/aallam/openai/api/vectorstore/VectorStoreFile;Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/VectorStoreFile;
+	public final fun copy-Cjn7IF8 (Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;)Lcom/aallam/openai/api/vectorstore/VectorStoreFile;
+	public static synthetic fun copy-Cjn7IF8$default (Lcom/aallam/openai/api/vectorstore/VectorStoreFile;Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/VectorStoreFile;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAttributes ()Ljava/util/Map;
-	public final fun getChunkingStrategy ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
 	public final fun getCreatedAt ()J
 	public final fun getId-B854uN0 ()Ljava/lang/String;
 	public final fun getLastError ()Lcom/aallam/openai/api/core/LastError;
@@ -7671,11 +7800,16 @@ public final class com/aallam/openai/api/vectorstore/VectorStoreFile$Companion {
 
 public final class com/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest {
 	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest$Companion;
-	public fun <init> (Ljava/util/List;)V
+	public fun <init> (Ljava/util/List;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/util/List;
-	public final fun copy (Ljava/util/List;)Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;
-	public static synthetic fun copy$default (Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;Ljava/util/List;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;
+	public final fun component2 ()Ljava/util/Map;
+	public final fun component3 ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
+	public final fun copy (Ljava/util/List;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;)Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;Ljava/util/List;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAttributes ()Ljava/util/Map;
+	public final fun getChunkingStrategy ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
 	public final fun getFiles ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -7696,12 +7830,34 @@ public final class com/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class com/aallam/openai/api/vectorstore/VectorStoreFileRequest {
-	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStoreFileRequest$Companion;
+public final class com/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest {
+	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest$Companion;
 	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getAttributes ()Ljava/util/Map;
 	public final fun getChunkingStrategy ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
+	public final fun getFileId-jQTuF1U ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/vectorstore/VectorStoreFileRequest {
+	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStoreFileRequest$Companion;
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getFileId-jQTuF1U ()Ljava/lang/String;
 }
 
@@ -7717,6 +7873,48 @@ public synthetic class com/aallam/openai/api/vectorstore/VectorStoreFileRequest$
 }
 
 public final class com/aallam/openai/api/vectorstore/VectorStoreFileRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/vectorstore/VectorStoreFileResource {
+	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStoreFileResource$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-B854uN0 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Long;
+	public final fun component3 ()J
+	public final fun component4-8EbyS38 ()Ljava/lang/String;
+	public final fun component5-3xryCA8 ()Ljava/lang/String;
+	public final fun component6 ()Lcom/aallam/openai/api/core/LastError;
+	public final fun component7 ()Ljava/util/Map;
+	public final fun component8 ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
+	public final fun copy-8ujnADM (Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;)Lcom/aallam/openai/api/vectorstore/VectorStoreFileResource;
+	public static synthetic fun copy-8ujnADM$default (Lcom/aallam/openai/api/vectorstore/VectorStoreFileResource;Ljava/lang/String;Ljava/lang/Long;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/LastError;Ljava/util/Map;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/VectorStoreFileResource;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAttributes ()Ljava/util/Map;
+	public final fun getChunkingStrategy ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
+	public final fun getCreatedAt ()J
+	public final fun getId-B854uN0 ()Ljava/lang/String;
+	public final fun getLastError ()Lcom/aallam/openai/api/core/LastError;
+	public final fun getStatus-3xryCA8 ()Ljava/lang/String;
+	public final fun getUsageBytes ()Ljava/lang/Long;
+	public final fun getVectorStoreId-8EbyS38 ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/vectorstore/VectorStoreFileResource$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/vectorstore/VectorStoreFileResource$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/vectorstore/VectorStoreFileResource;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/vectorstore/VectorStoreFileResource;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/vectorstore/VectorStoreFileResource$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -7818,10 +8016,8 @@ public final class com/aallam/openai/api/vectorstore/VectorStoreRankingOptions$C
 public final class com/aallam/openai/api/vectorstore/VectorStoreRequest {
 	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStoreRequest$Companion;
 	public fun <init> ()V
-	public fun <init> (Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/util/Map;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;)V
-	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/util/Map;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getChunkingStrategy ()Lcom/aallam/openai/api/vectorstore/ChunkingStrategy;
-	public final fun getDescription ()Ljava/lang/String;
+	public fun <init> (Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getExpiresAfter ()Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;
 	public final fun getFileIds ()Ljava/util/List;
 	public final fun getMetadata ()Ljava/util/Map;
@@ -7840,6 +8036,54 @@ public synthetic class com/aallam/openai/api/vectorstore/VectorStoreRequest$$ser
 }
 
 public final class com/aallam/openai/api/vectorstore/VectorStoreRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/vectorstore/VectorStoreResource {
+	public static final field Companion Lcom/aallam/openai/api/vectorstore/VectorStoreResource$Companion;
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-8EbyS38 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/util/Map;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun component5 ()Lcom/aallam/openai/api/vectorstore/FileCounts;
+	public final fun component6-3xryCA8 ()Ljava/lang/String;
+	public final fun component7 ()Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;
+	public final fun component8 ()Ljava/lang/Long;
+	public final fun component9 ()Ljava/lang/Long;
+	public final fun copy-vNbfjFM (Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;)Lcom/aallam/openai/api/vectorstore/VectorStoreResource;
+	public static synthetic fun copy-vNbfjFM$default (Lcom/aallam/openai/api/vectorstore/VectorStoreResource;Ljava/lang/String;JLjava/lang/String;JLcom/aallam/openai/api/vectorstore/FileCounts;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;Ljava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/vectorstore/VectorStoreResource;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getExpiresAfter ()Lcom/aallam/openai/api/vectorstore/ExpirationPolicy;
+	public final fun getExpiresAt ()Ljava/lang/Long;
+	public final fun getFileCounts ()Lcom/aallam/openai/api/vectorstore/FileCounts;
+	public final fun getId-8EbyS38 ()Ljava/lang/String;
+	public final fun getLastActiveAt ()Ljava/lang/Long;
+	public final fun getMetadata ()Ljava/util/Map;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getStatus-3xryCA8 ()Ljava/lang/String;
+	public final fun getUsageBytes ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/vectorstore/VectorStoreResource$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/vectorstore/VectorStoreResource$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/vectorstore/VectorStoreResource;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/vectorstore/VectorStoreResource;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/vectorstore/VectorStoreResource$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 

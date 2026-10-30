@@ -10,6 +10,8 @@ import com.aallam.openai.api.exception.OpenAIAPIException
 import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileUpload
+import com.aallam.openai.api.file.FileUploadRequest
+import com.aallam.openai.api.file.FileResource
 import com.aallam.openai.client.Files
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.extension.requestOptions
@@ -31,10 +33,6 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
             it.submitFormWithBinaryData(url = ApiPath.Files, formData = formData {
                 appendFileSource("file", request.file)
                 append(key = "purpose", value = request.purpose.raw)
-                request.expiresAfter?.let {
-                    append("expires_after[anchor]", it.anchor)
-                    append("expires_after[seconds]", it.seconds)
-                }
             }) {
                 requestOptions(requestOptions)
             }
@@ -52,7 +50,7 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
 
     override suspend fun filesPage(
         after: FileId?, limit: Int?, order: SortOrder?, purpose: Purpose?, requestOptions: RequestOptions?
-    ): PaginatedList<File> = requester.perform {
+    ): PaginatedList<FileResource> = requester.perform {
         it.get {
             url(path = ApiPath.Files) {
                 after?.let { parameter("after", it.id) }
@@ -99,6 +97,28 @@ internal class FilesApi(private val requester: HttpRequester) : Files {
                 requestOptions(requestOptions)
             }
         }
+    }
+
+    override suspend fun uploadFile(request: FileUploadRequest, requestOptions: RequestOptions?): FileResource = requester.perform {
+        it.submitFormWithBinaryData(url = ApiPath.Files, formData = formData {
+            appendFileSource("file", request.file)
+            append("purpose", request.purpose.raw)
+            request.expiresAfter?.let {
+                append("expires_after[anchor]", it.anchor)
+                append("expires_after[seconds]", it.seconds)
+            }
+        }) { requestOptions(requestOptions) }.body()
+    }
+
+    override suspend fun retrieveFile(fileId: FileId, requestOptions: RequestOptions?): FileResource? = try {
+        requester.perform<HttpResponse> {
+            it.get {
+                url(path = "${ApiPath.Files}/${fileId.id}")
+                requestOptions(requestOptions)
+            }
+        }.body()
+    } catch (error: OpenAIAPIException) {
+        if (error.statusCode == HttpStatusCode.NotFound.value) null else throw error
     }
 
 }

@@ -9,11 +9,11 @@ val next = if (page.hasMore == true) {
 } else null
 ```
 
-File uploads can specify `expiresAfter = FileExpiration(seconds = 3600)`. Batch requests accept the same policy through `outputExpiresAfter` for their output and error files.
+Use `uploadFile(FileUploadRequest(...))` with `expiresAfter = FileExpiration(seconds = 3600)` for expiring uploads; `retrieveFile` and `filesPage` return `FileResource` including expiry metadata. `createBatch(BatchCreateRequest(...))` accepts the same policy through `outputExpiresAfter` for its output and error files. Legacy upload and batch request models retain their original constructor and copy shapes.
 
 ## Vector store updates
 
-Create requests accept `description` and `chunkingStrategy`. Update requests have a separate shape so create-only file IDs are not sent to the update endpoint. Omitted fields remain unchanged; explicit clear flags send JSON null.
+Use `createVectorStoreResource(VectorStoreCreateRequest(...))` for `description` and `chunkingStrategy`; it returns `VectorStoreResource`. Update requests have a separate shape so create-only file IDs are not sent to the update endpoint. Omitted fields remain unchanged; explicit clear flags send JSON null.
 
 ```kotlin
 openAI.updateVectorStoreFields(
@@ -22,7 +22,7 @@ openAI.updateVectorStoreFields(
 )
 ```
 
-File attachment and batch requests accept attributes and chunking configuration. Batches can use `FileBatchRequest` with `fileIds`, or `VectorStoreFileBatchRequest` with per-file `files` configurations through `createVectorStoreFileBatch`. Use `vectorStoreFilesPage` and `vectorStoreBatchFilesPage` for file listing with `FileId` cursors; these methods retain pagination metadata. The older methods with `VectorStoreId` file cursors are deprecated.
+Use `attachVectorStoreFile` with `VectorStoreFileCreateRequest` for attributes and chunking configuration. Current attachment retrieval/update/page methods return `VectorStoreFileResource`. Batches can use `FileBatchRequest` with `fileIds`, or `VectorStoreFileBatchRequest` with per-file `files` configurations through `createVectorStoreFileBatch`. Use `vectorStoreFilesPage` and `vectorStoreBatchFilesPage` for file listing with `FileId` cursors; these methods retain pagination metadata. The older methods with `VectorStoreId` file cursors are deprecated.
 
 ## Search and parsed content
 

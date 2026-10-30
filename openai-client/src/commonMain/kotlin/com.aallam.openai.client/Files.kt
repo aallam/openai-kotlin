@@ -7,6 +7,8 @@ import com.aallam.openai.api.file.Purpose
 import com.aallam.openai.api.file.File
 import com.aallam.openai.api.file.FileId
 import com.aallam.openai.api.file.FileUpload
+import com.aallam.openai.api.file.FileUploadRequest
+import com.aallam.openai.api.file.FileResource
 
 /**
  * Files contain data for Responses, vector stores, batch requests, and fine-tuning.
@@ -35,7 +37,7 @@ public interface Files {
         order: SortOrder? = null,
         purpose: Purpose? = null,
         requestOptions: RequestOptions? = null,
-    ): PaginatedList<File> = throw UnsupportedOperationException("File pagination is not implemented by this client")
+    ): PaginatedList<FileResource> = throw UnsupportedOperationException("File pagination is not implemented by this client")
 
     /**
      * Returns information about a specific file.
@@ -60,4 +62,12 @@ public interface Files {
      * @param requestOptions request options.
      */
     public suspend fun download(fileId: FileId, requestOptions: RequestOptions? = null): ByteArray
+    /** Uploads a file with optional expiration and returns current response metadata. */
+    public suspend fun uploadFile(request: FileUploadRequest, requestOptions: RequestOptions? = null): FileResource =
+        throw UnsupportedOperationException("File upload options are not supported by this implementation")
+
+    /** Retrieves current file metadata, including its expiration timestamp. */
+    public suspend fun retrieveFile(fileId: FileId, requestOptions: RequestOptions? = null): FileResource? =
+        throw UnsupportedOperationException("Current file metadata is not supported by this implementation")
+
 }

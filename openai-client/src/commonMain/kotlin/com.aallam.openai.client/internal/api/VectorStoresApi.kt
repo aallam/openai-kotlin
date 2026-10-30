@@ -220,7 +220,7 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
     }
     override suspend fun updateVectorStoreFields(
         id: VectorStoreId, request: VectorStoreUpdateRequest, requestOptions: RequestOptions?
-    ): VectorStore = requester.perform {
+    ): VectorStoreResource = requester.perform {
         it.post {
             url(path = "${ApiPath.VectorStores}/${id.id}")
             contentType(ContentType.Application.Json)
@@ -231,7 +231,7 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
 
     override suspend fun vectorStoreFile(
         id: VectorStoreId, fileId: FileId, requestOptions: RequestOptions?
-    ): VectorStoreFile? = try {
+    ): VectorStoreFileResource? = try {
         requester.perform<HttpResponse> {
             it.get {
                 url(path = "${ApiPath.VectorStores}/${id.id}/files/${fileId.id}")
@@ -245,7 +245,7 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
     override suspend fun updateVectorStoreFile(
         id: VectorStoreId, fileId: FileId,
         attributes: Map<String, kotlinx.serialization.json.JsonPrimitive>?, requestOptions: RequestOptions?
-    ): VectorStoreFile = requester.perform {
+    ): VectorStoreFileResource = requester.perform {
         it.post {
             url(path = "${ApiPath.VectorStores}/${id.id}/files/${fileId.id}")
             contentType(ContentType.Application.Json)
@@ -280,14 +280,14 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
     override suspend fun vectorStoreFilesPage(
         id: VectorStoreId, limit: Int?, order: SortOrder?, after: FileId?, before: FileId?,
         filter: Status?, requestOptions: RequestOptions?
-    ): PaginatedList<VectorStoreFile> = indexedFilesPage(
+    ): PaginatedList<VectorStoreFileResource> = indexedFilesPage(
         "${ApiPath.VectorStores}/${id.id}/files", limit, order, after, before, filter, requestOptions
     )
 
     override suspend fun vectorStoreBatchFilesPage(
         id: VectorStoreId, batchId: BatchId, limit: Int?, order: SortOrder?, after: FileId?, before: FileId?,
         filter: Status?, requestOptions: RequestOptions?
-    ): PaginatedList<VectorStoreFile> = indexedFilesPage(
+    ): PaginatedList<VectorStoreFileResource> = indexedFilesPage(
         "${ApiPath.VectorStores}/${id.id}/file_batches/${batchId.id}/files",
         limit, order, after, before, filter, requestOptions
     )
@@ -295,7 +295,7 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
     private suspend fun indexedFilesPage(
         path: String, limit: Int?, order: SortOrder?, after: FileId?, before: FileId?,
         filter: Status?, requestOptions: RequestOptions?
-    ): PaginatedList<VectorStoreFile> = requester.perform {
+    ): PaginatedList<VectorStoreFileResource> = requester.perform {
         it.get {
             url(path = path) {
                 limit?.let { parameter("limit", it) }
@@ -313,6 +313,28 @@ internal class VectorStoresApi(private val requester: HttpRequester) : VectorSto
     ): FilesBatch = requester.perform {
         it.post {
             url(path = "${ApiPath.VectorStores}/${id.id}/file_batches")
+            setBody(request)
+            contentType(ContentType.Application.Json)
+            requestOptions(requestOptions)
+        }.body()
+    }
+
+    override suspend fun createVectorStoreResource(
+        request: VectorStoreCreateRequest, requestOptions: RequestOptions?
+    ): VectorStoreResource = requester.perform {
+        it.post {
+            url(path = ApiPath.VectorStores)
+            setBody(request)
+            contentType(ContentType.Application.Json)
+            requestOptions(requestOptions)
+        }.body()
+    }
+
+    override suspend fun attachVectorStoreFile(
+        id: VectorStoreId, request: VectorStoreFileCreateRequest, requestOptions: RequestOptions?
+    ): VectorStoreFileResource = requester.perform {
+        it.post {
+            url(path = "${ApiPath.VectorStores}/${id.id}/files")
             setBody(request)
             contentType(ContentType.Application.Json)
             requestOptions(requestOptions)

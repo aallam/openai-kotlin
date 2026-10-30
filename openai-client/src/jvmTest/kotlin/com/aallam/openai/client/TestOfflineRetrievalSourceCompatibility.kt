@@ -22,7 +22,7 @@ class TestOfflineRetrievalSourceCompatibility {
         assertEquals(ids, request.copy(fileIds = ids).component1())
         val source = FileSource("data.jsonl", Buffer())
         assertEquals("batch", FileUpload(source, Purpose("batch")).purpose.raw)
-        val upload = fileUpload {
+        val upload = fileUploadRequest {
             file = source
             purpose = Purpose("batch")
             expiresAfter = FileExpiration(3600)

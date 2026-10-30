@@ -110,6 +110,10 @@ public final class com/aallam/openai/client/FineTuning$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/Images {
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun imageEvents (Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun imageEvents (Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public abstract fun imageJSON (Lcom/aallam/openai/api/image/ImageCreation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun imageJSON (Lcom/aallam/openai/api/image/ImageEdit;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun imageJSON (Lcom/aallam/openai/api/image/ImageVariation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -119,6 +123,14 @@ public abstract interface class com/aallam/openai/client/Images {
 }
 
 public final class com/aallam/openai/client/Images$DefaultImpls {
+	public static fun image (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun image (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun image$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun image$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun imageEvents (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun imageEvents (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun imageEvents$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun imageEvents$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 	public static synthetic fun imageJSON$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageCreation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun imageJSON$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEdit;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun imageJSON$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageVariation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
@@ -169,6 +181,13 @@ public final class com/aallam/openai/client/Moderations$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/VectorStores, java/lang/AutoCloseable {
+}
+
+public final class com/aallam/openai/client/OpenAI$DefaultImpls {
+	public static fun image (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun image (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {

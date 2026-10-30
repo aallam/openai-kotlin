@@ -66,6 +66,12 @@ public data class ChatMessage(
      * Additional reasoning content returned by reasoning-capable models.
      */
     @SerialName("reasoning_content") public val reasoningContent: String? = null,
+    /** Generated audio or a reference to prior audio. */
+    @SerialName("audio") public val audio: ChatAudio? = null,
+    /** Refusal explanation returned by the model. */
+    @SerialName("refusal") public val refusal: String? = null,
+    /** Message ID returned by stored-completion message listing. */
+    @SerialName("id") public val id: String? = null,
 ) {
 
     public constructor(
@@ -124,6 +130,10 @@ public data class ChatMessage(
 
     @Suppress("FunctionName")
     public companion object {
+
+        /** Create developer instructions for current models. */
+        public fun Developer(content: String, name: String? = null): ChatMessage =
+            ChatMessage(role = ChatRole.Developer, messageContent = TextContent(content), name = name)
 
         /**
          * Create a system chat message.
@@ -241,7 +251,11 @@ public sealed interface ContentPart
  */
 @Serializable
 @SerialName("text")
-public data class TextPart(@SerialName("text") val text: String) : ContentPart
+public data class TextPart(
+    @SerialName("text") val text: String,
+    /** Optional explicit cache boundary after this part. */
+    @SerialName("prompt_cache_breakpoint") public val promptCacheBreakpoint: PromptCacheBreakpoint? = null,
+) : ContentPart
 
 /**
  * Image content part.
@@ -252,6 +266,8 @@ public data class TextPart(@SerialName("text") val text: String) : ContentPart
 @SerialName("image_url")
 public data class ImagePart(
     @SerialName("image_url") val imageUrl: ImageURL,
+    /** Optional explicit cache boundary after this part. */
+    @SerialName("prompt_cache_breakpoint") public val promptCacheBreakpoint: PromptCacheBreakpoint? = null,
 ) : ContentPart {
 
     /**
@@ -291,6 +307,8 @@ public data class ChatAnnotation(
     @SerialName("start_index") val startIndex: Int? = null,
     @SerialName("end_index") val endIndex: Int? = null,
     @SerialName("text") val text: String? = null,
+    /** Nested URL citation returned by Chat Completions. Flat fields remain for Responses. */
+    @SerialName("url_citation") public val urlCitation: UrlCitation? = null,
 )
 
 /**
@@ -358,6 +376,12 @@ public class ChatMessageBuilder {
      */
     public var reasoningContent: String? = null
 
+    /** Generated audio or reference to prior audio. */
+    public var audio: ChatAudio? = null
+
+    /** Refusal explanation returned by the model. */
+    public var refusal: String? = null
+
     /**
      * The contents of the message.
      */
@@ -388,6 +412,8 @@ public class ChatMessageBuilder {
             contentFilterResults = contentFilterResults,
             annotations = annotations,
             reasoningContent = reasoningContent,
+            audio = audio,
+            refusal = refusal,
         )
     }
 }
@@ -414,6 +440,16 @@ public class ContentPartBuilder {
      */
     public fun image(url: String, detail: String? = null) {
         this.parts += ImagePart(url, detail)
+    }
+
+    /** Append a text part followed by an explicit cache boundary. */
+    public fun text(text: String, promptCacheBreakpoint: PromptCacheBreakpoint) {
+        parts += TextPart(text, promptCacheBreakpoint)
+    }
+
+    /** Append an image followed by an explicit cache boundary. */
+    public fun image(url: String, detail: String?, promptCacheBreakpoint: PromptCacheBreakpoint) {
+        parts += ImagePart(ImagePart.ImageURL(url, detail), promptCacheBreakpoint)
     }
 
     /**
@@ -581,3 +617,16 @@ public class ToolMessageBuilder {
         return ChatMessage.Tool(content = content, toolCallId = requireNotNull(toolCallId) { "toolCallId is required" })
     }
 }
+
+/** URL citation returned inside a Chat annotation. */
+@Serializable
+public data class UrlCitation(
+    /** Source URL. */
+    @SerialName("url") public val url: String,
+    /** Source title. */
+    @SerialName("title") public val title: String,
+    /** First cited character. */
+    @SerialName("start_index") public val startIndex: Int,
+    /** Character following the cited span. */
+    @SerialName("end_index") public val endIndex: Int,
+)

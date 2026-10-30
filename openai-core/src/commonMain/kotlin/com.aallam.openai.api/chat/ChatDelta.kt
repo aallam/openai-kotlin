@@ -38,4 +38,6 @@ public data class ChatDelta(
      * Additional reasoning content returned by reasoning-capable models.
      */
     @SerialName("reasoning_content") public val reasoningContent: String? = null,
+    /** Incremental refusal explanation. */
+    @SerialName("refusal") public val refusal: String? = null,
 )

@@ -41,13 +41,34 @@ public final class com/aallam/openai/client/Batch$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/Chat {
+	public abstract fun chatCompletion (Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun chatCompletion (Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun chatCompletion (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun chatCompletionMessages-QdOu9A0 (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun chatCompletions (Lcom/aallam/openai/api/chat/ChatCompletionListQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun chatCompletions (Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public abstract fun chatCompletions (Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun deleteChatCompletion (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun updateChatCompletion (Ljava/lang/String;Lcom/aallam/openai/api/chat/ChatCompletionUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/Chat$DefaultImpls {
+	public static fun chatCompletion (Lcom/aallam/openai/client/Chat;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun chatCompletion (Lcom/aallam/openai/client/Chat;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun chatCompletion$default (Lcom/aallam/openai/client/Chat;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun chatCompletion$default (Lcom/aallam/openai/client/Chat;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun chatCompletion$default (Lcom/aallam/openai/client/Chat;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun chatCompletionMessages-QdOu9A0 (Lcom/aallam/openai/client/Chat;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun chatCompletionMessages-QdOu9A0$default (Lcom/aallam/openai/client/Chat;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun chatCompletions (Lcom/aallam/openai/client/Chat;Lcom/aallam/openai/api/chat/ChatCompletionListQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun chatCompletions (Lcom/aallam/openai/client/Chat;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun chatCompletions$default (Lcom/aallam/openai/client/Chat;Lcom/aallam/openai/api/chat/ChatCompletionListQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun chatCompletions$default (Lcom/aallam/openai/client/Chat;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 	public static synthetic fun chatCompletions$default (Lcom/aallam/openai/client/Chat;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+	public static fun deleteChatCompletion (Lcom/aallam/openai/client/Chat;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun deleteChatCompletion$default (Lcom/aallam/openai/client/Chat;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun updateChatCompletion (Lcom/aallam/openai/client/Chat;Ljava/lang/String;Lcom/aallam/openai/api/chat/ChatCompletionUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun updateChatCompletion$default (Lcom/aallam/openai/client/Chat;Ljava/lang/String;Lcom/aallam/openai/api/chat/ChatCompletionUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aallam/openai/client/Completions {
@@ -169,6 +190,16 @@ public final class com/aallam/openai/client/Moderations$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/VectorStores, java/lang/AutoCloseable {
+}
+
+public final class com/aallam/openai/client/OpenAI$DefaultImpls {
+	public static fun chatCompletion (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun chatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun chatCompletionMessages-QdOu9A0 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun chatCompletions (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionListQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun chatCompletions (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun deleteChatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun updateChatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/chat/ChatCompletionUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {

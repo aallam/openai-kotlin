@@ -48,4 +48,7 @@ public data class ChatCompletionChunk(
      */
     @SerialName("system_fingerprint")
     public val systemFingerprint: String? = null,
+    /** Effective processing tier used for this response. */
+    @SerialName("service_tier") public val serviceTier: String? = null,
+
 )

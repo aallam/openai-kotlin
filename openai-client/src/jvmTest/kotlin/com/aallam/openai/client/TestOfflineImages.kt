@@ -2,10 +2,18 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.image.*
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.internal.createHttpClient
+import com.aallam.openai.client.internal.api.ImagesApi
+import com.aallam.openai.client.internal.http.HttpRequester
+import com.aallam.openai.client.internal.http.HttpTransport
 import io.ktor.client.engine.mock.*
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.*
 import io.ktor.http.content.TextContent
 import io.ktor.utils.io.ByteReadChannel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
@@ -77,4 +85,32 @@ class TestOfflineImages {
     }
 
     private val jsonHeaders = headersOf(HttpHeaders.ContentType, "application/json")
+
+    @Test
+    fun generationAndEditEventsSupportEngineCallbacksOnIoDispatcher() = runTest {
+        val engine = MockEngine { request ->
+            val type = if (request.url.encodedPath.endsWith("edits")) "image_edit.completed" else "image_generation.completed"
+            respond(
+                "data: {\"type\":\"$type\",\"b64_json\":\"result\"}\n\n",
+                headers = headersOf(HttpHeaders.ContentType, "text/event-stream"),
+            )
+        }
+        val transport = HttpTransport(createHttpClient(OpenAIConfig(token = "offline", engine = engine)))
+        val requester = object : HttpRequester by transport {
+            override suspend fun <T : Any> perform(builder: HttpRequestBuilder, block: suspend (HttpResponse) -> T) {
+                withContext(Dispatchers.IO) { transport.perform(builder, block) }
+            }
+        }
+        try {
+            val images = ImagesApi(requester)
+            val generation = images.imageEvents(ImageGenerationRequest("A tree", model = ModelId("image-model")), null).toList()
+            val edit = images.imageEvents(ImageEditRequest(listOf(ImageReference.url("https://example.com/image.png")), "Add a tree"), null).toList()
+            assertEquals("image_generation.completed", generation.single().type)
+            assertEquals("image_edit.completed", edit.single().type)
+            assertEquals("result", generation.single().b64JSON)
+            assertEquals("result", edit.single().b64JSON)
+        } finally {
+            transport.close()
+        }
+    }
 }

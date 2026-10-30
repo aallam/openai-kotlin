@@ -12,6 +12,9 @@ import com.aallam.openai.client.internal.extension.requestOptions
 import com.aallam.openai.client.internal.extension.streamEventsFrom
 import com.aallam.openai.client.internal.extension.streamRequestOf
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.channels.ProducerScope
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import com.aallam.openai.client.internal.http.HttpRequester
 import com.aallam.openai.client.internal.http.perform
@@ -29,11 +32,11 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
     override suspend fun image(edit: ImageEditRequest, requestOptions: RequestOptions?): ImageResponse =
         createImage(ApiPath.ImagesEdits, edit, requestOptions)
 
-    override fun imageEvents(creation: ImageGenerationRequest, requestOptions: RequestOptions?): Flow<ImageEvent> = flow {
+    override fun imageEvents(creation: ImageGenerationRequest, requestOptions: RequestOptions?): Flow<ImageEvent> = channelFlow {
         streamImage(ApiPath.ImagesGeneration, streamRequestOf(creation), requestOptions)
     }
 
-    override fun imageEvents(edit: ImageEditRequest, requestOptions: RequestOptions?): Flow<ImageEvent> = flow {
+    override fun imageEvents(edit: ImageEditRequest, requestOptions: RequestOptions?): Flow<ImageEvent> = channelFlow {
         streamImage(ApiPath.ImagesEdits, streamRequestOf(edit), requestOptions)
     }
 
@@ -47,7 +50,7 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
             }
         }
 
-    private suspend fun kotlinx.coroutines.flow.FlowCollector<ImageEvent>.streamImage(
+    private suspend fun ProducerScope<ImageEvent>.streamImage(
         path: String,
         request: kotlinx.serialization.json.JsonElement,
         options: RequestOptions?,
@@ -60,7 +63,9 @@ internal class ImagesApi(private val requester: HttpRequester) : Images {
             accept(ContentType.Text.EventStream)
             requestOptions(options)
         }
-        requester.perform(builder) { response -> streamEventsFrom(response) }
+        requester.perform<Unit>(builder) { response ->
+            flow<ImageEvent> { this.streamEventsFrom(response) }.collect { send(it) }
+        }
     }
 
     override suspend fun imageURL(creation: ImageCreation, requestOptions: RequestOptions?): List<ImageURL> {

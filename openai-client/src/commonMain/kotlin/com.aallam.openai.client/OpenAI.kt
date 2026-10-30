@@ -11,7 +11,7 @@ import kotlin.time.Duration.Companion.seconds
  * OpenAI API.
  */
 public interface OpenAI : Completions, Files, Edits, Embeddings, Models, Moderations, FineTunes, Images, Chat, Audio,
-    FineTuning, Assistants, Threads, Runs, Messages, VectorStores, Batch, Responses, AutoCloseable
+    FineTuning, Assistants, Threads, Runs, Messages, VectorStores, Batch, Responses, Conversations, AutoCloseable
 
 /**
  * Creates an instance of [OpenAI].

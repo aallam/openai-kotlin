@@ -7,6 +7,8 @@ import kotlin.jvm.JvmInline
 @JvmInline
 public value class AudioResponseFormat(public val value: String) {
     public companion object {
+        /** JSON transcript with speaker-labeled segments. */
+        public val DiarizedJson: AudioResponseFormat = AudioResponseFormat("diarized_json")
         public val Json: AudioResponseFormat = AudioResponseFormat("json")
         public val Text: AudioResponseFormat = AudioResponseFormat("text")
         public val Srt: AudioResponseFormat = AudioResponseFormat("srt")

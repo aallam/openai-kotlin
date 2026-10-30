@@ -15,14 +15,29 @@ public final class com/aallam/openai/client/Assistants$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/Audio {
+	public abstract fun createSpeech (Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun speech (Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun speechAudio (Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun speechEvents (Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun transcribe (Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun transcription (Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun transcriptions (Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public abstract fun translation (Lcom/aallam/openai/api/audio/TranslationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/Audio$DefaultImpls {
+	public static fun createSpeech (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createSpeech$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun speech$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun speechAudio (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun speechAudio$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+	public static fun speechEvents (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun speechEvents$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+	public static fun transcribe (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun transcribe$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun transcription$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun transcriptions (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun transcriptions$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 	public static synthetic fun translation$default (Lcom/aallam/openai/client/Audio;Lcom/aallam/openai/api/audio/TranslationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -31,6 +46,7 @@ public abstract interface class com/aallam/openai/client/Batch {
 	public abstract fun batch-WY7BKpg (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun batches-EpI8HNI (Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun cancel-WY7BKpg (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createBatch (Lcom/aallam/openai/api/batch/BatchCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/Batch$DefaultImpls {
@@ -38,6 +54,8 @@ public final class com/aallam/openai/client/Batch$DefaultImpls {
 	public static synthetic fun batch-WY7BKpg$default (Lcom/aallam/openai/client/Batch;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun batches-EpI8HNI$default (Lcom/aallam/openai/client/Batch;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun cancel-WY7BKpg$default (Lcom/aallam/openai/client/Batch;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun createBatch (Lcom/aallam/openai/client/Batch;Lcom/aallam/openai/api/batch/BatchCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createBatch$default (Lcom/aallam/openai/client/Batch;Lcom/aallam/openai/api/batch/BatchCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aallam/openai/client/Chat {
@@ -124,6 +142,9 @@ public abstract interface class com/aallam/openai/client/Files {
 	public abstract fun file (Lcom/aallam/openai/api/file/FileUpload;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun file-l7QrTQ8 (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun files (Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun filesPage-H6L0-_I (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun retrieveFile-l7QrTQ8 (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun uploadFile (Lcom/aallam/openai/api/file/FileUploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/Files$DefaultImpls {
@@ -132,6 +153,12 @@ public final class com/aallam/openai/client/Files$DefaultImpls {
 	public static synthetic fun file$default (Lcom/aallam/openai/client/Files;Lcom/aallam/openai/api/file/FileUpload;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun file-l7QrTQ8$default (Lcom/aallam/openai/client/Files;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun files$default (Lcom/aallam/openai/client/Files;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun filesPage-H6L0-_I (Lcom/aallam/openai/client/Files;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun filesPage-H6L0-_I$default (Lcom/aallam/openai/client/Files;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun retrieveFile-l7QrTQ8 (Lcom/aallam/openai/client/Files;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun retrieveFile-l7QrTQ8$default (Lcom/aallam/openai/client/Files;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun uploadFile (Lcom/aallam/openai/client/Files;Lcom/aallam/openai/api/file/FileUploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun uploadFile$default (Lcom/aallam/openai/client/Files;Lcom/aallam/openai/api/file/FileUploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aallam/openai/client/FineTunes {
@@ -238,6 +265,7 @@ public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/ope
 }
 
 public final class com/aallam/openai/client/OpenAI$DefaultImpls {
+	public static fun attachVectorStoreFile-PRrSv6s (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun cancelUpload-oxTNcyY (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun chatCompletionMessages-QdOu9A0 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun completeUpload-MUtU0V8 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/upload/UploadCompletionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -245,23 +273,41 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun conversation--uOxk4c (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun conversationItem-FaCfgoc (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun conversationItems-6Nd58ow (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun createBatch (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/batch/BatchCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createChatCompletion (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createConversationItems-FaCfgoc (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationItemsRequest;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun createSpeech (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun createVectorStoreFileBatch-PRrSv6s (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun createVectorStoreResource (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun delete--uOxk4c (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteChatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteConversationItem-ilotfys (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun filesPage-H6L0-_I (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun image (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun image (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun moderate (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun retrieveFile-l7QrTQ8 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun searchVectorStore-PRrSv6s (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreSearchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun speechAudio (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun speechEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun storedChatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun storedChatCompletions (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionListQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun streamChatCompletions (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun transcribe (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun transcriptions (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/TranscriptionRequest;Lcom/aallam/openai/api/audio/TranscriptionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun updateChatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/chat/ChatCompletionUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun updateConversation-ilotfys (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun updateVectorStoreFields-PRrSv6s (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun updateVectorStoreFile-nJxD578 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun upload (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/upload/UploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun uploadFile (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/file/FileUploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun uploadPart-MUtU0V8 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun vectorStoreBatchFilesPage-hjmPGos (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun vectorStoreFile-dI__4xI (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun vectorStoreFileContent-dI__4xI (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun vectorStoreFilesPage-mYqyVSA (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {
@@ -401,32 +447,62 @@ public final class com/aallam/openai/client/Uploads$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/VectorStores {
+	public abstract fun attachVectorStoreFile-PRrSv6s (Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun cancel-VTq4NZo (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun createVectorStore (Lcom/aallam/openai/api/vectorstore/VectorStoreRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun createVectorStoreFile-PRrSv6s (Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createVectorStoreFileBatch-PRrSv6s (Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun createVectorStoreFilesBatch-PRrSv6s (Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/FileBatchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createVectorStoreResource (Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun delete-dI__4xI (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun delete-lJHOuUk (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun searchVectorStore-PRrSv6s (Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreSearchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun updateVectorStore-PRrSv6s (Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun updateVectorStoreFields-PRrSv6s (Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun updateVectorStoreFile-nJxD578 (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun vectorStore-lJHOuUk (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun vectorStoreBatchFilesPage-hjmPGos (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun vectorStoreFile-dI__4xI (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun vectorStoreFileBatch-VTq4NZo (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun vectorStoreFileContent-dI__4xI (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun vectorStoreFiles-qT82-_w (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun vectorStoreFilesBatches-qXaThJU (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun vectorStoreFilesPage-mYqyVSA (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun vectorStores-GCwikq4 (Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/VectorStores$DefaultImpls {
+	public static fun attachVectorStoreFile-PRrSv6s (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun attachVectorStoreFile-PRrSv6s$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun cancel-VTq4NZo$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun createVectorStore$default (Lcom/aallam/openai/client/VectorStores;Lcom/aallam/openai/api/vectorstore/VectorStoreRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun createVectorStoreFile-PRrSv6s$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun createVectorStoreFileBatch-PRrSv6s (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createVectorStoreFileBatch-PRrSv6s$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun createVectorStoreFilesBatch-PRrSv6s$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/FileBatchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun createVectorStoreResource (Lcom/aallam/openai/client/VectorStores;Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createVectorStoreResource$default (Lcom/aallam/openai/client/VectorStores;Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun delete-dI__4xI$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun delete-lJHOuUk$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun searchVectorStore-PRrSv6s (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreSearchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun searchVectorStore-PRrSv6s$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreSearchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun updateVectorStore-PRrSv6s$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun updateVectorStoreFields-PRrSv6s (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun updateVectorStoreFields-PRrSv6s$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun updateVectorStoreFile-nJxD578 (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun updateVectorStoreFile-nJxD578$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun vectorStore-lJHOuUk$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun vectorStoreBatchFilesPage-hjmPGos (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun vectorStoreBatchFilesPage-hjmPGos$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun vectorStoreFile-dI__4xI (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun vectorStoreFile-dI__4xI$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun vectorStoreFileBatch-VTq4NZo$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun vectorStoreFileContent-dI__4xI (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun vectorStoreFileContent-dI__4xI$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun vectorStoreFiles-qT82-_w$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun vectorStoreFilesBatches-qXaThJU$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun vectorStoreFilesPage-mYqyVSA (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun vectorStoreFilesPage-mYqyVSA$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun vectorStores-GCwikq4$default (Lcom/aallam/openai/client/VectorStores;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 

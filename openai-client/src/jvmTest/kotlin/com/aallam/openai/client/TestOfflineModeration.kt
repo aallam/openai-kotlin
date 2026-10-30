@@ -3,7 +3,9 @@ package com.aallam.openai.client
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.moderation.ModerationInput
+import com.aallam.openai.api.moderation.ModerationRequest
 import com.aallam.openai.api.moderation.MultimodalModerationRequest
+import com.aallam.openai.api.moderation.TextModeration
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.engine.mock.toByteArray
@@ -14,8 +16,20 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class TestOfflineModeration {
+    @Test
+    fun existingTextOnlyClientStillCompiles() = runTest {
+        val client = object : Moderations {
+            override suspend fun moderations(request: ModerationRequest, requestOptions: RequestOptions?): TextModeration =
+                throw UnsupportedOperationException("Text-only test client")
+        }
+        assertFailsWith<UnsupportedOperationException> {
+            client.moderations(MultimodalModerationRequest(listOf(ModerationInput.Text("check"))))
+        }
+    }
+
     @Test
     fun multimodalRequestReachesModerationsWithRequestOptions() = runTest {
         val engine = MockEngine { request ->

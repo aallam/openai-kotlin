@@ -166,11 +166,16 @@ public abstract interface class com/aallam/openai/client/Moderations {
 }
 
 public final class com/aallam/openai/client/Moderations$DefaultImpls {
+	public static fun moderations (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun moderations$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/ModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun moderations$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/VectorStores, java/lang/AutoCloseable {
+}
+
+public final class com/aallam/openai/client/OpenAI$DefaultImpls {
+	public static fun moderations (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {

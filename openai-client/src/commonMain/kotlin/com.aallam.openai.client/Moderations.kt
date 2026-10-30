@@ -23,9 +23,10 @@ public interface Moderations {
      *
      * @param request multimodal moderation request.
      * @param requestOptions request options.
+     * @throws UnsupportedOperationException when a custom client has not implemented this overload.
      */
     public suspend fun moderations(
         request: MultimodalModerationRequest,
         requestOptions: RequestOptions? = null,
-    ): TextModeration
+    ): TextModeration = throw UnsupportedOperationException("This client does not support multimodal moderation.")
 }

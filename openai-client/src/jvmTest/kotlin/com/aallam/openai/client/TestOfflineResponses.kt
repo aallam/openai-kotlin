@@ -23,6 +23,30 @@ import kotlin.test.*
 
 class TestOfflineResponses {
     @Test
+    fun currentHttpMethodsPreserveControlsAndRichResultsWhileLegacyMethodsRemainAvailable() = runTest {
+        val payload = """{"id":"resp_current","background":true,"service_tier":"default","output":[{"type":"mcp_call","server_label":"remote","output":"result"}]}"""
+        val client = OpenAI(OpenAIConfig(token = "offline", engine = MockEngine { request ->
+            if (request.method == HttpMethod.Post && request.url.encodedPath == "/v1/responses") {
+                val body = Json.parseToJsonElement((request.body as TextContent).text).jsonObject
+                assertEquals(true, body["background"]?.jsonPrimitive?.boolean)
+                assertEquals("updated", body["instructions"]?.jsonPrimitive?.content)
+                assertEquals("vs_1", body["tools"]?.jsonArray?.single()?.jsonObject?.get("vector_store_ids")?.jsonArray?.single()?.jsonPrimitive?.content)
+            }
+            respond(payload, headers = headersOf(HttpHeaders.ContentType, "application/json"))
+        }))
+        try {
+            val request = ResponseCreateRequest(ModelId("model"), background = true, tools = listOf(ResponseToolDefinition("file_search", vectorStoreIds = listOf("vs_1"))))
+            val created = client.createResponse(request.copy(instructions = "updated"))
+            assertEquals(true, created.background)
+            assertEquals("result", created.output.single().output?.jsonPrimitive?.content)
+            assertEquals("remote", client.retrieveResponse(created.id)?.output?.single()?.serverLabel)
+            assertEquals("default", client.cancelResponse(created.id)?.serviceTier)
+            assertEquals(created.id, client.response(created.id)?.id)
+            assertEquals(created.id, client.cancel(created.id)?.id)
+        } finally { client.close() }
+    }
+
+    @Test
     fun streamCallbacksMaySwitchDispatcherWithoutViolatingFlowContext() = runTest {
         val transport = HttpTransport(createHttpClient(OpenAIConfig(token = "offline", engine = MockEngine {
             respond("data: {\"type\":\"response.output_text.delta\",\"delta\":\"hello\"}\n\ndata: {\"type\":\"response.completed\"}\n\n", headers = headersOf(HttpHeaders.ContentType, "text/event-stream"))
@@ -33,7 +57,7 @@ class TestOfflineResponses {
             }
         }
         try {
-            val events = ResponsesApi(requester).responses(ResponseRequest(ModelId("model"))).toList()
+            val events = ResponsesApi(requester).streamResponses(ResponseCreateRequest(ModelId("model"))).toList()
             assertEquals("hello", events.first().delta)
             assertEquals("response.completed", events.last().type)
         } finally { transport.close() }
@@ -55,7 +79,7 @@ class TestOfflineResponses {
             }
         }
         try {
-            val events = ResponsesApi(requester).responses(ResponseRequest(ModelId("model"))).take(1).toList()
+            val events = ResponsesApi(requester).streamResponses(ResponseCreateRequest(ModelId("model"))).take(1).toList()
             assertEquals("hello", events.single().delta)
             assertTrue(callbackFinished.isCompleted)
             assertTrue(body.isClosedForRead)
@@ -75,7 +99,7 @@ class TestOfflineResponses {
             )
         }))
         try {
-            val events = client.responses(ResponseRequest(ModelId("model"), ResponseInput("hello"))).toList()
+            val events = client.streamResponses(ResponseCreateRequest(ModelId("model"), ResponseInput("hello"))).toList()
             assertEquals("hello", events.first().delta)
             assertEquals("resp_1", events.last().response?.id?.id)
         } finally { client.close() }
@@ -91,7 +115,7 @@ class TestOfflineResponses {
             respond("data: {\"type\":\"response.output_text.delta\",\"delta\":\"first\"}\n\ndata: {\"type\":\"response.completed\"}\n\n", headers = headersOf(HttpHeaders.ContentType, "text/event-stream"))
         }))
         try {
-            val events = client.responses(ResponseId("resp_1"), 5, listOf("reasoning.encrypted_content", "file_search_call.results"), false).take(1).toList()
+            val events = client.resumeResponse(ResponseId("resp_1"), 5, listOf("reasoning.encrypted_content", "file_search_call.results"), false).take(1).toList()
             assertEquals("first", events.single().delta)
         } finally { client.close() }
     }
@@ -120,7 +144,7 @@ class TestOfflineResponses {
             respond("data: {\"type\":\"error\",\"code\":\"server_error\",\"message\":\"retry later\"}\n\n", headers = headersOf(HttpHeaders.ContentType, "text/event-stream"))
         }))
         try {
-            val error = client.responses(ResponseRequest(ModelId("model"))).toList().single()
+            val error = client.streamResponses(ResponseCreateRequest(ModelId("model"))).toList().single()
             assertEquals("error", error.type)
             assertEquals("retry later", error.data["message"]?.jsonPrimitive?.content)
         } finally { client.close() }
@@ -139,13 +163,15 @@ class TestOfflineResponses {
                 val id = ResponseId("missing")
                 if (status == HttpStatusCode.NotFound) {
                     assertNull(client.response(id))
-                    assertNull(client.response(id, listOf("reasoning.encrypted_content")))
+                    assertNull(client.retrieveResponse(id, listOf("reasoning.encrypted_content")))
                     assertNull(client.cancel(id))
+                    assertNull(client.cancelResponse(id))
                     assertFalse(client.delete(id))
                 } else {
                     assertFailsWith<com.aallam.openai.api.exception.PermissionException> { client.response(id) }
-                    assertFailsWith<com.aallam.openai.api.exception.PermissionException> { client.response(id, emptyList()) }
+                    assertFailsWith<com.aallam.openai.api.exception.PermissionException> { client.retrieveResponse(id, emptyList()) }
                     assertFailsWith<com.aallam.openai.api.exception.PermissionException> { client.cancel(id) }
+                    assertFailsWith<com.aallam.openai.api.exception.PermissionException> { client.cancelResponse(id) }
                     assertFailsWith<com.aallam.openai.api.exception.PermissionException> { client.delete(id) }
                 }
             } finally { client.close() }

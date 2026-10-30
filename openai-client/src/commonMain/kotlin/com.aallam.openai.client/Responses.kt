@@ -6,6 +6,7 @@ import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.response.Response
 import com.aallam.openai.api.response.ResponseId
 import com.aallam.openai.api.response.ResponseInputItem
+import com.aallam.openai.api.response.ResponseRequest
 import com.aallam.openai.api.response.*
 import kotlinx.coroutines.flow.Flow
 
@@ -57,22 +58,36 @@ public interface Responses {
         before: String? = null,
         requestOptions: RequestOptions? = null
     ): PaginatedList<ResponseInputItem>
-    /** Lists input items while requesting additional tool or reasoning fields. */
+
+    /** Creates a response with current request controls and complete result metadata. */
+    public suspend fun createResponse(request: ResponseCreateRequest, requestOptions: RequestOptions? = null): ResponseResult =
+        throw UnsupportedOperationException("Current response creation is not implemented")
+
+    /** Retrieves a current response, optionally including additional tool or reasoning fields. */
+    public suspend fun retrieveResponse(id: ResponseId, include: List<String> = emptyList(), requestOptions: RequestOptions? = null): ResponseResult? =
+        throw UnsupportedOperationException("Current response retrieval is not implemented")
+
+    /** Cancels a background response and returns its current result metadata. */
+    public suspend fun cancelResponse(id: ResponseId, requestOptions: RequestOptions? = null): ResponseResult? =
+        throw UnsupportedOperationException("Current response cancellation is not implemented")
+
+    /** Lists current input items, optionally including tool or reasoning fields. */
     public suspend fun responseInputItemsPage(
         id: ResponseId,
-        include: List<String>,
+        include: List<String> = emptyList(),
         limit: Int? = null,
         order: SortOrder? = null,
         after: String? = null,
         before: String? = null,
         requestOptions: RequestOptions? = null,
-    ): PaginatedList<ResponseInputItem> = throw UnsupportedOperationException("Extended input item listing is not implemented")
+    ): PaginatedList<ResponseInputEntry> = throw UnsupportedOperationException("Current input item listing is not implemented")
 
-    /** Streams a new response. Cancelling collection cancels the HTTP connection. */
-    public fun responses(request: ResponseRequest, requestOptions: RequestOptions? = null): Flow<ResponseStreamEvent> = throw UnsupportedOperationException("Response streaming is not implemented")
+    /** Streams a current response. Cancelling collection closes the HTTP connection. */
+    public fun streamResponses(request: ResponseCreateRequest, requestOptions: RequestOptions? = null): Flow<ResponseStreamEvent> =
+        throw UnsupportedOperationException("Response streaming is not implemented")
 
-    /** Resumes events from a stored background response after the supplied sequence number. */
-    public fun responses(
+    /** Resumes events from a stored background response after a sequence number. */
+    public fun resumeResponse(
         id: ResponseId,
         startingAfter: Int? = null,
         include: List<String>? = null,
@@ -80,24 +95,14 @@ public interface Responses {
         requestOptions: RequestOptions? = null,
     ): Flow<ResponseStreamEvent> = throw UnsupportedOperationException("Response streaming is not implemented")
 
-    /** Retrieves a response with additional fields selected by include. */
-    public suspend fun response(
-        id: ResponseId,
-        include: List<String>,
-        requestOptions: RequestOptions? = null,
-    ): Response? = throw UnsupportedOperationException("Extended response retrieval is not implemented")
-
     /** Compacts context into items suitable for a later response. */
-    public suspend fun compactResponse(
-        request: ResponseCompactRequest,
-        requestOptions: RequestOptions? = null,
-    ): ResponseCompaction = throw UnsupportedOperationException("Response compaction is not implemented")
+    public suspend fun compactResponse(request: ResponseCompactRequest, requestOptions: RequestOptions? = null): ResponseCompaction =
+        throw UnsupportedOperationException("Response compaction is not implemented")
 
     /** Counts input tokens without generating output. */
-    public suspend fun responseInputTokens(
-        request: ResponseTokenCountRequest,
-        requestOptions: RequestOptions? = null,
-    ): ResponseTokenCount = throw UnsupportedOperationException("Response token counting is not implemented")
+    public suspend fun responseInputTokens(request: ResponseTokenCountRequest, requestOptions: RequestOptions? = null): ResponseTokenCount =
+        throw UnsupportedOperationException("Response token counting is not implemented")
+
     /**
      * Opens a scoped Responses WebSocket. The block owns the connection lifetime.
      * Requires a WebSocket-capable engine. secure=false is intended only for trusted local servers.

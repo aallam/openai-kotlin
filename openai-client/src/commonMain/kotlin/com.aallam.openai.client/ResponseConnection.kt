@@ -1,6 +1,6 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.response.ResponseRequest
+import com.aallam.openai.api.response.ResponseCreateRequest
 import com.aallam.openai.api.response.ResponseStreamEvent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.json.JsonObject
@@ -18,7 +18,7 @@ public interface ResponseConnection {
      * Sends are serialized. streamId selects a multiplexed conversation lane; generate=false warms up state.
      * Background requests are unsupported on WebSockets and are rejected before sending.
      */
-    public suspend fun create(request: ResponseRequest, streamId: String? = null, generate: Boolean? = null)
+    public suspend fun create(request: ResponseCreateRequest, streamId: String? = null, generate: Boolean? = null)
 
     /** Sends an arbitrary protocol event, such as response.steer. Sends are serialized. */
     public suspend fun send(event: JsonObject)

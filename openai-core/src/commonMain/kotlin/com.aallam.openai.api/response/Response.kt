@@ -11,7 +11,7 @@ import kotlinx.serialization.json.JsonObject
 /**
  * A model response object.
  */
-@Serializable(with = ResponseSerializer::class)
+@Serializable
 public data class Response(
     @SerialName("id") public val id: ResponseId,
     @SerialName("object") public val objectType: String? = null,
@@ -37,37 +37,6 @@ public data class Response(
     @SerialName("user") public val user: String? = null,
     @SerialName("metadata") public val metadata: Map<String, String>? = null,
     @SerialName("output_text") public val outputText: String? = null,
-    /** Whether processing runs in the background. */
-    @SerialName("background") public val background: Boolean? = null,
-    /** Conversation associated with this response. */
-    @SerialName("conversation") public val conversation: JsonObject? = null,
-    /** Actual processing tier. */
-    @SerialName("service_tier") public val serviceTier: String? = null,
-    /** Completion timestamp. */
-    @SerialName("completed_at") public val completedAt: Long? = null,
-    /** Hosted tool call limit. */
-    @SerialName("max_tool_calls") public val maxToolCalls: Int? = null,
-    /** Cache routing key. */
-    @SerialName("prompt_cache_key") public val promptCacheKey: String? = null,
-    /** Effective cache options. */
-    @SerialName("prompt_cache_options") public val promptCacheOptions: ResponsePromptCacheOptions? = null,
-    /** Context management settings. */
-    @SerialName("context_management") public val contextManagement: List<ResponseContextManagement>? = null,
-    /** Effective restricted access program configuration. */
-    @SerialName("access_programs") public val accessPrograms: ResponseAccessPrograms? = null,
-    /** End-user safety identifier. */
-    @SerialName("safety_identifier") public val safetyIdentifier: String? = null,
-    /** Requested token log probability count. */
-    @SerialName("top_logprobs") public val topLogprobs: Int? = null,
-    /** Input/output moderation results. */
-    @SerialName("moderation") public val moderation: JsonElement? = null,
-    /**
-     * Original decoded payload, including unknown fields. This snapshot is unchanged by [copy].
-     * Encoding a [Response] writes its typed properties only; encode this snapshot directly to
-     * export every original field or reuse the original output as continuation input.
-     */
-    public val rawData: JsonObject? = null,
-
 )
 
 /**
@@ -84,33 +53,6 @@ public data class ResponseOutputItem(
     @SerialName("arguments") public val arguments: String? = null,
     @SerialName("call_id") public val callId: String? = null,
     @SerialName("summary") public val summary: JsonElement? = null,
-    /** Encrypted reasoning or compaction context. */
-    @SerialName("encrypted_content") public val encryptedContent: String? = null,
-    /** Generated image result. */
-    @SerialName("result") public val result: String? = null,
-    /** MCP server label. */
-    @SerialName("server_label") public val serverLabel: String? = null,
-    /** Tool output, including strings and structured content. */
-    @SerialName("output") public val output: JsonElement? = null,
-    /** MCP approval request identifier. */
-    @SerialName("approval_request_id") public val approvalRequestId: String? = null,
-    /** Hosted tool action details. */
-    @SerialName("action") public val action: JsonElement? = null,
-    /** Tool error details. */
-    @SerialName("error") public val error: JsonElement? = null,
-    /** MCP server tool declarations. */
-    @SerialName("tools") public val tools: JsonElement? = null,
-    /** File search queries. */
-    @SerialName("queries") public val queries: List<String>? = null,
-    /** Included file search results. */
-    @SerialName("results") public val results: JsonElement? = null,
-    /** Container used by the tool. */
-    @SerialName("container_id") public val containerId: String? = null,
-    /** Executed code. */
-    @SerialName("code") public val code: String? = null,
-    /** Code execution outputs. */
-    @SerialName("outputs") public val outputs: JsonElement? = null,
-
 )
 
 /**
@@ -124,9 +66,6 @@ public data class ResponseOutputContent(
     @SerialName("refusal") public val refusal: String? = null,
     @SerialName("reasoning") public val reasoning: JsonElement? = null,
     @SerialName("reasoning_content") public val reasoningContent: String? = null,
-    /** Output token log probabilities. */
-    @SerialName("logprobs") public val logprobs: JsonElement? = null,
-
 )
 
 /**

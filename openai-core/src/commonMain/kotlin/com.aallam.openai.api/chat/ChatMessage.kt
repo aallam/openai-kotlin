@@ -291,14 +291,6 @@ public data class ChatAnnotation(
     @SerialName("start_index") val startIndex: Int? = null,
     @SerialName("end_index") val endIndex: Int? = null,
     @SerialName("text") val text: String? = null,
-    /** Cited file identifier. */
-    @SerialName("file_id") public val fileId: String? = null,
-    /** Cited file name. */
-    @SerialName("filename") public val filename: String? = null,
-    /** Citation index. */
-    @SerialName("index") public val index: Int? = null,
-    /** Container holding the cited file. */
-    @SerialName("container_id") public val containerId: String? = null,
 )
 
 /**

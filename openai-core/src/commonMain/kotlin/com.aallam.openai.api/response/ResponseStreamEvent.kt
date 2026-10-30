@@ -23,18 +23,18 @@ public data class ResponseStreamEvent(
     /** Text or function-argument delta, when supplied by this event. */
     public val delta: String? get() = (data["delta"] as? JsonPrimitive)?.contentOrNull
     /** Full response supplied by lifecycle events. */
-    public val response: Response? get() = data["response"]?.let { eventJson.decodeFromJsonElement(Response.serializer(), it) }
+    public val response: ResponseResult? get() = data["response"]?.let { eventJson.decodeFromJsonElement(ResponseResult.serializer(), it) }
     /** Output item supplied by output-item events. */
-    public val item: ResponseOutputItem? get() = data["item"]?.let { eventJson.decodeFromJsonElement(ResponseOutputItem.serializer(), it) }
+    public val item: ResponseResultItem? get() = data["item"]?.let { eventJson.decodeFromJsonElement(ResponseResultItem.serializer(), it) }
 
     internal object Serializer : KSerializer<ResponseStreamEvent> {
         override val descriptor: SerialDescriptor = JsonObject.serializer().descriptor
         override fun deserialize(decoder: Decoder): ResponseStreamEvent {
             require(decoder is JsonDecoder)
             val data = decoder.decodeJsonElement() as? JsonObject
-                ?: throw SerializationException("Response stream events must be JSON objects")
+                ?: throw SerializationException("ResponseResult stream events must be JSON objects")
             val type = data["type"] as? JsonPrimitive
-            if (type == null || !type.isString) throw SerializationException("Response stream events require a string type")
+            if (type == null || !type.isString) throw SerializationException("ResponseResult stream events require a string type")
             return ResponseStreamEvent(data)
         }
         override fun serialize(encoder: Encoder, value: ResponseStreamEvent) {

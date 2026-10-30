@@ -1,8 +1,10 @@
 # Responses
 
-Create a response with `response(ResponseRequest(...))`. Retrieve a stored response with `response(ResponseId(...))`, cancel a background response with `cancel(id)`, or delete it with `delete(id)`.
+Use `createResponse(ResponseCreateRequest(...))`, `retrieveResponse(id)`, and `cancelResponse(id)` for current controls and rich `ResponseResult` metadata. `delete(id)` deletes a stored response.
 
-The returned response exposes hosted-tool results, metadata and file/container citations through its typed fields. `rawData` retains the complete original decoded payload, including nested fields introduced after this client version. It is a snapshot: `copy()` does not update it, and encoding a `Response` writes only its typed properties. Unknown fields are not preserved by typed decode/encode round trips.
+The original `response(ResponseRequest(...))`, `response(id)`, `cancel(id)`, and their original request/result types remain available with their constructor and data-class copy shapes unchanged. New controls live in additive types so existing inferred constructor, copy and method references continue compiling.
+
+The returned response exposes hosted-tool results, metadata and file/container citations through its typed fields. `rawData` retains the complete original decoded payload, including nested fields introduced after this client version. It is a snapshot: `copy()` does not update it, and encoding a `ResponseResult` writes only its typed properties. Unknown fields are not preserved by typed decode/encode round trips.
 
 To export every original field or continue with original output items, use the snapshot directly:
 
@@ -35,11 +37,11 @@ val format = ChatResponseFormat.jsonSchema(
         strict = true,
     )
 )
-val result = openai.response(
-    ResponseRequest(
+val result = openai.createResponse(
+    ResponseCreateRequest(
         model = ModelId(modelName),
         input = ResponseInput("Explain Kotlin coroutines briefly."),
-        text = ResponseText(format = format),
+        text = ResponseTextOptions(format = format),
     )
 )
 ```
@@ -55,11 +57,11 @@ val input = responseInput(listOf(
         ResponseInputContent(type = "input_file", fileId = uploadedFileId),
     ))
 ))
-val result = openai.response(
-    ResponseRequest(
+val result = openai.createResponse(
+    ResponseCreateRequest(
         model = ModelId(modelName),
         input = input,
-        tools = listOf(ResponseTool(type = "file_search", vectorStoreIds = listOf(vectorStoreId))),
+        tools = listOf(ResponseToolDefinition(type = "file_search", vectorStoreIds = listOf(vectorStoreId))),
     )
 )
 ```
@@ -71,7 +73,7 @@ Return function results using `ResponseInputEntry(type = "function_call_output",
 ## Streaming
 
 ```kotlin
-openai.responses(ResponseRequest(ModelId(modelName), ResponseInput("Hello")))
+openai.streamResponses(ResponseCreateRequest(ModelId(modelName), ResponseInput("Hello")))
     .collect { event ->
         event.delta?.let { print(it) }
         event.response?.let { response -> /* lifecycle snapshot */ }
@@ -83,7 +85,7 @@ openai.responses(ResponseRequest(ModelId(modelName), ResponseInput("Hello")))
 
 Events expose their discriminator, sequence number, text/argument delta, response and output item when supplied. `event.data` retains the entire payload, including tool-specific fields and future event kinds. HTTP errors use the client's existing exception handling; API errors delivered inside a successful event stream remain observable as events.
 
-Cancelling collection closes the response body. To resume a stored background response, call `responses(id, startingAfter = lastSequenceNumber)`. Background processing must have been requested with `background = true`; closing the HTTP connection does not itself cancel background processing.
+Cancelling collection closes the response body. To resume a stored background response, call `resumeResponse(id, startingAfter = lastSequenceNumber)`. Background processing must have been requested with `background = true`; closing the HTTP connection does not itself cancel background processing.
 
 ## Compaction and token estimates
 
@@ -100,7 +102,7 @@ Parameter availability depends on the selected model. See the [official Response
 ```kotlin
 openai.responseSession {
     create(
-        ResponseRequest(ModelId(modelName), ResponseInput("Hello")),
+        ResponseCreateRequest(ModelId(modelName), ResponseInput("Hello")),
         streamId = "main",
     )
     events.takeWhile { it.type != "response.completed" }.collect { event ->

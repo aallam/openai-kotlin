@@ -1,6 +1,6 @@
 package com.aallam.openai.client.internal.api
 
-import com.aallam.openai.api.response.ResponseRequest
+import com.aallam.openai.api.response.ResponseCreateRequest
 import com.aallam.openai.api.response.ResponseStreamEvent
 import com.aallam.openai.client.ResponseConnection
 import com.aallam.openai.client.internal.JsonLenient
@@ -28,10 +28,10 @@ internal class ResponseSocketConnection(private val socket: RealtimeSocket) : Re
         }
     }
 
-    override suspend fun create(request: ResponseRequest, streamId: String?, generate: Boolean?) {
+    override suspend fun create(request: ResponseCreateRequest, streamId: String?, generate: Boolean?) {
         require(request.background != true) { "Background processing is not supported on Responses WebSockets" }
         require(streamId == null || streamId.matches(Regex("[A-Za-z0-9_.-]{1,256}"))) { "Invalid Responses stream ID" }
-        val fields = JsonLenient.encodeToJsonElement(ResponseRequest.serializer(), request).jsonObject.toMutableMap()
+        val fields = JsonLenient.encodeToJsonElement(ResponseCreateRequest.serializer(), request).jsonObject.toMutableMap()
         fields.remove("background")
         fields.remove("stream")
         fields["type"] = JsonPrimitive("response.create")

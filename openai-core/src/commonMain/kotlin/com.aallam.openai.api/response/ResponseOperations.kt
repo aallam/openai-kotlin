@@ -56,13 +56,13 @@ public data class ResponseTokenCountRequest(
     /** Whether tools can execute in parallel. */
     @SerialName("parallel_tool_calls") public val parallelToolCalls: Boolean? = null,
     /** Reasoning configuration included in the estimate. */
-    @SerialName("reasoning") public val reasoning: ResponseReasoning? = null,
+    @SerialName("reasoning") public val reasoning: ResponseReasoningOptions? = null,
     /** Output format included in the estimate. */
-    @SerialName("text") public val text: ResponseText? = null,
+    @SerialName("text") public val text: ResponseTextOptions? = null,
     /** Tool selection configuration. */
     @SerialName("tool_choice") public val toolChoice: JsonElement? = null,
     /** Available tools included in the estimate. */
-    @SerialName("tools") public val tools: List<ResponseTool>? = null,
+    @SerialName("tools") public val tools: List<ResponseToolDefinition>? = null,
     /** Context truncation strategy. */
     @SerialName("truncation") public val truncation: String? = null,
     /** Personality configuration included in the estimate. */

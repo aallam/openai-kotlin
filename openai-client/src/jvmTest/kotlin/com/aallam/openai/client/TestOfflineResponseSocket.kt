@@ -24,7 +24,7 @@ class TestOfflineResponseSocket {
     fun createsTopLevelProtocolEventsAndPreservesMultiplexedErrors() = runTest {
         val socket = FakeSocket()
         val connection = ResponseSocketConnection(socket)
-        connection.create(ResponseRequest(ModelId("model"), ResponseInput("hello"), background = false), "main", false)
+        connection.create(ResponseCreateRequest(ModelId("model"), ResponseInput("hello"), background = false), "main", false)
         val request = Json.parseToJsonElement(socket.sent.single()).jsonObject
         assertEquals("response.create", request["type"]?.jsonPrimitive?.content)
         assertEquals("model", request["model"]?.jsonPrimitive?.content)
@@ -41,16 +41,16 @@ class TestOfflineResponseSocket {
         assertEquals(1, socket.closes)
         connection.close()
         assertEquals(1, socket.closes)
-        assertFailsWith<IllegalStateException> { connection.create(ResponseRequest(ModelId("model"))) }
+        assertFailsWith<IllegalStateException> { connection.create(ResponseCreateRequest(ModelId("model"))) }
     }
 
     @Test
     fun validatesUnsupportedBackgroundAndStreamIdsBeforeWriting() = runTest {
         val socket = FakeSocket()
         val connection = ResponseSocketConnection(socket)
-        assertFailsWith<IllegalArgumentException> { connection.create(ResponseRequest(ModelId("model"), background = true)) }
-        assertFailsWith<IllegalArgumentException> { connection.create(ResponseRequest(ModelId("model")), "bad lane", null) }
-        assertFailsWith<IllegalArgumentException> { connection.create(ResponseRequest(ModelId("model")), "", null) }
+        assertFailsWith<IllegalArgumentException> { connection.create(ResponseCreateRequest(ModelId("model"), background = true)) }
+        assertFailsWith<IllegalArgumentException> { connection.create(ResponseCreateRequest(ModelId("model")), "bad lane", null) }
+        assertFailsWith<IllegalArgumentException> { connection.create(ResponseCreateRequest(ModelId("model")), "", null) }
         assertTrue(socket.sent.isEmpty())
         connection.close()
     }
@@ -60,7 +60,7 @@ class TestOfflineResponseSocket {
         val socket = FakeSocket()
         val connection = ResponseSocketConnection(socket)
         coroutineScope {
-            repeat(8) { index -> launch { connection.create(ResponseRequest(ModelId("model")), "lane_$index", null) } }
+            repeat(8) { index -> launch { connection.create(ResponseCreateRequest(ModelId("model")), "lane_$index", null) } }
         }
         assertEquals(8, socket.sent.size)
         val receiver = launch { connection.events.toList() }
@@ -81,7 +81,7 @@ class TestOfflineResponseSocket {
             override suspend fun close() { closes++; release.complete(Unit) }
         }
         val connection = ResponseSocketConnection(socket)
-        val writer = launch { connection.create(ResponseRequest(ModelId("model"))) }
+        val writer = launch { connection.create(ResponseCreateRequest(ModelId("model"))) }
         started.await()
         connection.close()
         writer.join()
@@ -167,7 +167,7 @@ class TestOfflineResponseSocket {
             val client = OpenAI(OpenAIConfig(token = "offline", host = OpenAIHost("http://127.0.0.1:${server.localPort}/custom/v1/"), engine = io.ktor.client.engine.okhttp.OkHttp.create()))
             client.use {
                 val events = client.responseSession(secure = false, requestOptions = RequestOptions(headers = mapOf("X-Trace" to "loopback"), urlParameters = mapOf("inspect" to "true"))) {
-                    create(ResponseRequest(ModelId("socket-model"), ResponseInput("hello")), "main")
+                    create(ResponseCreateRequest(ModelId("socket-model"), ResponseInput("hello")), "main")
                     events.take(1).toList()
                 }
                 assertEquals("resp_socket", events.single().response?.id?.id)

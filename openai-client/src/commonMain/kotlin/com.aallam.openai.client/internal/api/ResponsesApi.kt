@@ -44,8 +44,14 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
         }
     }
 
-    override suspend fun response(id: ResponseId, requestOptions: RequestOptions?): Response? =
-        response(id, emptyList(), requestOptions)
+    override suspend fun response(id: ResponseId, requestOptions: RequestOptions?): Response? = onNotFound(null) {
+        requester.perform<Response> {
+            it.get {
+                url(path = "${ApiPath.Responses}/${id.id}")
+                requestOptions(requestOptions)
+            }
+        }
+    }
 
     override suspend fun delete(id: ResponseId, requestOptions: RequestOptions?): Boolean = onNotFound(false) {
         requester.perform<DeleteResponse> {
@@ -85,7 +91,7 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
             }.body()
         }
     }
-    override fun responses(request: ResponseRequest, requestOptions: RequestOptions?): Flow<ResponseStreamEvent> =
+    override fun streamResponses(request: ResponseCreateRequest, requestOptions: RequestOptions?): Flow<ResponseStreamEvent> =
         responseEvents(HttpRequestBuilder().apply {
             method = HttpMethod.Post
             url(path = ApiPath.Responses)
@@ -95,7 +101,7 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
             requestOptions(requestOptions)
         })
 
-    override fun responses(
+    override fun resumeResponse(
         id: ResponseId,
         startingAfter: Int?,
         include: List<String>?,
@@ -112,8 +118,26 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
         requestOptions(requestOptions)
     })
 
-    override suspend fun response(id: ResponseId, include: List<String>, requestOptions: RequestOptions?): Response? = onNotFound(null) {
-        requester.perform<Response> {
+    override suspend fun createResponse(request: ResponseCreateRequest, requestOptions: RequestOptions?): ResponseResult = requester.perform {
+        it.post {
+            url(path = ApiPath.Responses)
+            setBody(request)
+            contentType(ContentType.Application.Json)
+            requestOptions(requestOptions)
+        }.body()
+    }
+
+    override suspend fun cancelResponse(id: ResponseId, requestOptions: RequestOptions?): ResponseResult? = onNotFound(null) {
+        requester.perform<ResponseResult> {
+            it.post {
+                url(path = "${ApiPath.Responses}/${id.id}/cancel")
+                requestOptions(requestOptions)
+            }
+        }
+    }
+
+    override suspend fun retrieveResponse(id: ResponseId, include: List<String>, requestOptions: RequestOptions?): ResponseResult? = onNotFound(null) {
+        requester.perform<ResponseResult> {
             it.get {
                 url(path = "${ApiPath.Responses}/${id.id}")
                 include.forEach { parameter("include[]", it) }
@@ -130,7 +154,7 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
         after: String?,
         before: String?,
         requestOptions: RequestOptions?,
-    ): PaginatedList<ResponseInputItem> = requester.perform {
+    ): PaginatedList<ResponseInputEntry> = requester.perform {
         it.get {
             url(path = "${ApiPath.Responses}/${id.id}/input_items")
             include.forEach { parameter("include[]", it) }

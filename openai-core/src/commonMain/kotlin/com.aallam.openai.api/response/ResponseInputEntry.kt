@@ -25,6 +25,22 @@ public data class ResponseInputEntry(
     @SerialName("approve") public val approve: Boolean? = null,
     /** Encrypted compaction or reasoning context. */
     @SerialName("encrypted_content") public val encryptedContent: String? = null,
+    /** Tool name. */
+    @SerialName("name") public val name: String? = null,
+    /** Tool arguments. */
+    @SerialName("arguments") public val arguments: String? = null,
+    /** Item processing status. */
+    @SerialName("status") public val status: String? = null,
+    /** MCP server label. */
+    @SerialName("server_label") public val serverLabel: String? = null,
+    /** Tool error details. */
+    @SerialName("error") public val error: JsonElement? = null,
+    /** Hosted-tool action. */
+    @SerialName("action") public val action: JsonElement? = null,
+    /** Hosted image result. */
+    @SerialName("result") public val result: String? = null,
+    /** Reasoning summary. */
+    @SerialName("summary") public val summary: JsonElement? = null,
 ) {
     public companion object {
         /** Creates a message with typed input content. */

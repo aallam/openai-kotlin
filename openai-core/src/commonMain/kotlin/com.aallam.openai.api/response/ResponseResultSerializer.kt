@@ -10,14 +10,14 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.*
 
-internal object ResponseSerializer : KSerializer<Response> {
-    override val descriptor: SerialDescriptor = ResponsePayload.serializer().descriptor
+internal object ResponseResultSerializer : KSerializer<ResponseResult> {
+    override val descriptor: SerialDescriptor = ResponseResultPayload.serializer().descriptor
 
-    override fun deserialize(decoder: Decoder): Response {
+    override fun deserialize(decoder: Decoder): ResponseResult {
         require(decoder is JsonDecoder)
         val raw = decoder.decodeJsonElement().jsonObject
-        val payload = decoder.json.decodeFromJsonElement(ResponsePayload.serializer(), raw)
-        return Response(
+        val payload = decoder.json.decodeFromJsonElement(ResponseResultPayload.serializer(), raw)
+        return ResponseResult(
             id = payload.id,
             objectType = payload.objectType,
             createdAt = payload.createdAt,
@@ -58,9 +58,9 @@ internal object ResponseSerializer : KSerializer<Response> {
         )
     }
 
-    override fun serialize(encoder: Encoder, value: Response) {
+    override fun serialize(encoder: Encoder, value: ResponseResult) {
         require(encoder is JsonEncoder)
-        val payload = ResponsePayload(
+        val payload = ResponseResultPayload(
             id = value.id,
             objectType = value.objectType,
             createdAt = value.createdAt,
@@ -98,14 +98,14 @@ internal object ResponseSerializer : KSerializer<Response> {
             topLogprobs = value.topLogprobs,
             moderation = value.moderation,
         )
-        val encoded = encoder.json.encodeToJsonElement(ResponsePayload.serializer(), payload).jsonObject
+        val encoded = encoder.json.encodeToJsonElement(ResponseResultPayload.serializer(), payload).jsonObject
         encoder.encodeJsonElement(encoded)
     }
 }
 
 @Serializable
-@SerialName("com.aallam.openai.api.response.Response")
-private data class ResponsePayload(
+@SerialName("com.aallam.openai.api.response.ResponseResult")
+private data class ResponseResultPayload(
     @SerialName("id") val id: ResponseId,
     @SerialName("object") val objectType: String? = null,
     @SerialName("created_at") val createdAt: Long? = null,
@@ -115,10 +115,10 @@ private data class ResponsePayload(
     @SerialName("instructions") val instructions: String? = null,
     @SerialName("max_output_tokens") val maxOutputTokens: Int? = null,
     @SerialName("model") val model: ModelId? = null,
-    @SerialName("output") val output: List<ResponseOutputItem> = emptyList(),
+    @SerialName("output") val output: List<ResponseResultItem> = emptyList(),
     @SerialName("parallel_tool_calls") val parallelToolCalls: Boolean? = null,
     @SerialName("previous_response_id") val previousResponseId: ResponseId? = null,
-    @SerialName("reasoning") val reasoning: ResponseReasoning? = null,
+    @SerialName("reasoning") val reasoning: ResponseReasoningOptions? = null,
     @SerialName("store") val store: Boolean? = null,
     @SerialName("temperature") val temperature: Double? = null,
     @SerialName("text") val text: JsonObject? = null,

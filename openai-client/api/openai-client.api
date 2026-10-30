@@ -76,6 +76,36 @@ public abstract interface class com/aallam/openai/client/Completions {
 	public abstract fun completions (Lcom/aallam/openai/api/completion/CompletionRequest;)Lkotlinx/coroutines/flow/Flow;
 }
 
+public abstract interface class com/aallam/openai/client/Conversations {
+	public abstract fun conversation (Lcom/aallam/openai/api/conversation/ConversationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun conversation--uOxk4c (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun conversationItem-FaCfgoc (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun conversationItems-6Nd58ow (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createConversationItems-FaCfgoc (Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationItemsRequest;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun delete--uOxk4c (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun deleteConversationItem-ilotfys (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun updateConversation-ilotfys (Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aallam/openai/client/Conversations$DefaultImpls {
+	public static fun conversation (Lcom/aallam/openai/client/Conversations;Lcom/aallam/openai/api/conversation/ConversationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun conversation$default (Lcom/aallam/openai/client/Conversations;Lcom/aallam/openai/api/conversation/ConversationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun conversation--uOxk4c (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun conversation--uOxk4c$default (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun conversationItem-FaCfgoc (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun conversationItem-FaCfgoc$default (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun conversationItems-6Nd58ow (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun conversationItems-6Nd58ow$default (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun createConversationItems-FaCfgoc (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationItemsRequest;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createConversationItems-FaCfgoc$default (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationItemsRequest;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun delete--uOxk4c (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun delete--uOxk4c$default (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun deleteConversationItem-ilotfys (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun deleteConversationItem-ilotfys$default (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun updateConversation-ilotfys (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun updateConversation-ilotfys$default (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
 public abstract interface class com/aallam/openai/client/Edits {
 	public abstract fun edit (Lcom/aallam/openai/api/edits/EditsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -131,6 +161,10 @@ public final class com/aallam/openai/client/FineTuning$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/Images {
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun image (Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun imageEvents (Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun imageEvents (Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public abstract fun imageJSON (Lcom/aallam/openai/api/image/ImageCreation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun imageJSON (Lcom/aallam/openai/api/image/ImageEdit;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun imageJSON (Lcom/aallam/openai/api/image/ImageVariation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -140,6 +174,14 @@ public abstract interface class com/aallam/openai/client/Images {
 }
 
 public final class com/aallam/openai/client/Images$DefaultImpls {
+	public static fun image (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun image (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun image$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun image$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun imageEvents (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun imageEvents (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun imageEvents$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun imageEvents$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 	public static synthetic fun imageJSON$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageCreation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun imageJSON$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageEdit;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun imageJSON$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageVariation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
@@ -182,24 +224,40 @@ public final class com/aallam/openai/client/Models$DefaultImpls {
 }
 
 public abstract interface class com/aallam/openai/client/Moderations {
+	public abstract fun moderate (Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun moderations (Lcom/aallam/openai/api/moderation/ModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/Moderations$DefaultImpls {
+	public static fun moderate (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun moderate$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun moderations$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/ModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/VectorStores, java/lang/AutoCloseable {
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Conversations, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/VectorStores, java/lang/AutoCloseable {
 }
 
 public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun chatCompletionMessages-QdOu9A0 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun conversation (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/conversation/ConversationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun conversation--uOxk4c (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun conversationItem-FaCfgoc (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun conversationItems-6Nd58ow (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createChatCompletion (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun createConversationItems-FaCfgoc (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationItemsRequest;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun delete--uOxk4c (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteChatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun deleteConversationItem-ilotfys (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun image (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun image (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun moderate (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun storedChatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun storedChatCompletions (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionListQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun streamChatCompletions (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun updateChatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/chat/ChatCompletionUpdate;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun updateConversation-ilotfys (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/OpenAIConfig {

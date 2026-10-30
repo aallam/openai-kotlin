@@ -183,6 +183,9 @@ Examples:
 # Free/offline checks
 ./gradlew :openai-core:jvmTest :openai-core:jsTest :openai-core:wasmJsTest :openai-core:apiCheck :openai-client:apiCheck
 
+# Mocked HTTP client tests (no credentials or API traffic)
+./gradlew :openai-client:offlineJvmTest
+
 # Live smoke (billable)
 OPENAI_LIVE_TESTS=1 OPENAI_API_KEY=... ./gradlew :openai-client:jvmTest --tests "*.TestModels"
 ```

@@ -4,7 +4,6 @@ on:
   push:
     branches: [ main, develop ]
   pull_request:
-    branches: [ main, develop ]
 
 env:
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
@@ -65,6 +64,7 @@ jobs:
           :openai-core:apiCheck
           :openai-client:apiCheck
           :openai-client:compileTestKotlinJvm
+          :openai-client:offlineJvmTest
           :openai-client:compileTestKotlinJs
           :openai-client:compileTestKotlinWasmJs
 

@@ -57,8 +57,8 @@ class TestOfflineChat {
         }
         OpenAI(OpenAIConfig(token = "offline-token", engine = engine, retry = RetryStrategy(maxRetries = 0))).use { api ->
             val options = RequestOptions(headers = mapOf("X-Client-Request-Id" to "request-id"))
-            assertEquals("chat_1", api.chatCompletion("chat_1", options)?.id)
-            val page = api.chatCompletions(ChatCompletionListQuery("chat_0", 2, mapOf("tag" to "value"), ModelId("model"), SortOrder.Ascending), options)
+            assertEquals("chat_1", api.storedChatCompletion("chat_1", options)?.id)
+            val page = api.storedChatCompletions(ChatCompletionListQuery("chat_0", 2, mapOf("tag" to "value"), ModelId("model"), SortOrder.Ascending), options)
             assertEquals(true, page.hasMore)
             assertEquals("chat_1", page.lastId)
             assertEquals("chat_1", api.updateChatCompletion("chat_1", ChatCompletionUpdate(mapOf("tag" to "updated")), options).id)
@@ -90,8 +90,8 @@ class TestOfflineChat {
                 messages = listOf(ChatInputMessage(ChatRole.User, ChatInputParts(listOf(ChatInputPart.File(ChatInputFile(fileId = "file_1")))))),
                 tools = listOf(CustomTool(CustomToolDefinition("calculate"))),
             )
-            assertEquals("42", api.chatCompletion(request, options).choices.single().message?.toolCalls?.single()?.custom?.input)
-            assertEquals("42", api.chatCompletions(request, options).toList().single().choices.single().delta?.toolCalls?.single()?.custom?.input)
+            assertEquals("42", api.createChatCompletion(request, options).choices.single().message?.toolCalls?.single()?.custom?.input)
+            assertEquals("42", api.streamChatCompletions(request, options).toList().single().choices.single().delta?.toolCalls?.single()?.custom?.input)
         }
     }
 
@@ -130,7 +130,7 @@ class TestOfflineChat {
                     withContext(Dispatchers.Default) { transport.perform(builder, block) }
                 }
             }
-            val values = ChatApi(requester).chatCompletions(
+            val values = ChatApi(requester).streamChatCompletions(
                 ChatCompletionRequest(ModelId("model"), listOf(ChatMessage.User("hello"))),
                 ChatCompletionOptions(),
                 null,
@@ -145,7 +145,7 @@ class TestOfflineChat {
             respond("""{"error":{"message":"missing","type":"invalid_request_error","param":null,"code":null}}""", HttpStatusCode.NotFound, headersOf(HttpHeaders.ContentType, "application/json"))
         }
         OpenAI(OpenAIConfig(token = "offline-token", engine = engine, retry = RetryStrategy(maxRetries = 0))).use { api ->
-            assertNull(api.chatCompletion("missing"))
+            assertNull(api.storedChatCompletion("missing"))
             assertFalse(api.deleteChatCompletion("missing"))
         }
     }

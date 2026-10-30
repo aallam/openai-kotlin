@@ -42,10 +42,10 @@ public interface Chat {
     ): Flow<ChatCompletionChunk>
 
     /** Retrieve a stored completion; returns null if it does not exist. */
-    public suspend fun chatCompletion(id: String, requestOptions: RequestOptions? = null): ChatCompletionResult? = throw UnsupportedOperationException("Stored completions are not supported by this implementation")
+    public suspend fun storedChatCompletion(id: String, requestOptions: RequestOptions? = null): ChatCompletionResult? = throw UnsupportedOperationException("Stored completions are not supported by this implementation")
 
     /** List stored completions with pagination and optional filters. */
-    public suspend fun chatCompletions(
+    public suspend fun storedChatCompletions(
         query: ChatCompletionListQuery = ChatCompletionListQuery(),
         requestOptions: RequestOptions? = null,
     ): PaginatedList<ChatCompletionResult> = throw UnsupportedOperationException("Stored completions are not supported by this implementation")
@@ -69,14 +69,14 @@ public interface Chat {
         requestOptions: RequestOptions? = null,
     ): PaginatedList<ChatResultMessage> = throw UnsupportedOperationException("Stored completions are not supported by this implementation")
     /** Create a completion using richer content and custom tool declarations. */
-    public suspend fun chatCompletion(
+    public suspend fun createChatCompletion(
         request: ChatCompletionRequest,
         options: ChatCompletionOptions,
         requestOptions: RequestOptions? = null,
     ): ChatCompletionResult = throw UnsupportedOperationException("Advanced Chat is not supported by this implementation")
 
     /** Stream richer message and custom tool deltas. */
-    public fun chatCompletions(
+    public fun streamChatCompletions(
         request: ChatCompletionRequest,
         options: ChatCompletionOptions,
         requestOptions: RequestOptions? = null,

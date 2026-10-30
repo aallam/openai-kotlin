@@ -140,8 +140,8 @@ val request = chatCompletionRequest {
     seed = 42
 }
 val response = openAI.chatCompletion(request)
-val stored = openAI.chatCompletion(response.id)
-val page = openAI.chatCompletions(ChatCompletionListQuery(limit = 20))
+val stored = openAI.storedChatCompletion(response.id)
+val page = openAI.storedChatCompletions(ChatCompletionListQuery(limit = 20))
 val messages = openAI.chatCompletionMessages(response.id)
 openAI.updateChatCompletion(response.id, ChatCompletionUpdate(mapOf("purpose" to "updated")))
 openAI.deleteChatCompletion(response.id)
@@ -160,7 +160,7 @@ Function tools support `FunctionTool.strict`. Existing request tool lists retain
 their `List<Tool>` type.
 
 For file/audio inputs or custom tools, pass `ChatCompletionOptions` alongside the
-original request. This overload returns `ChatCompletionResult`, which includes
+original request to `createChatCompletion`. This method returns `ChatCompletionResult`, which includes
 custom tool calls without changing the original sealed tool-call hierarchy:
 
 ```kotlin
@@ -170,10 +170,10 @@ val options = ChatCompletionOptions(
     )))),
     tools = listOf(CustomTool(CustomToolDefinition("calculate"))),
 )
-val result = openAI.chatCompletion(request, options)
+val result = openAI.createChatCompletion(request, options)
 ```
 
 The options replace the corresponding messages, tools or tool choice in the
-original request. The streaming overload returns the same richer result envelope
+original request. `streamChatCompletions` returns the same richer result envelope
 with incremental `choices[].delta`; callers assemble custom-tool input fragments
-by call index. Existing overloads and `List<Tool>` request properties are unchanged.
+by call index. Existing methods and `List<Tool>` request properties are unchanged.

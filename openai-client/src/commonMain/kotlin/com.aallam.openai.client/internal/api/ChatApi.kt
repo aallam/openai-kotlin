@@ -64,7 +64,7 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
         }
     }
 
-    override suspend fun chatCompletion(id: String, requestOptions: RequestOptions?): ChatCompletionResult? =
+    override suspend fun storedChatCompletion(id: String, requestOptions: RequestOptions?): ChatCompletionResult? =
         try {
             requester.perform {
                 it.get {
@@ -76,7 +76,7 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
             if (e.statusCode == HttpStatusCode.NotFound.value) null else throw e
         }
 
-    override suspend fun chatCompletions(
+    override suspend fun storedChatCompletions(
         query: ChatCompletionListQuery,
         requestOptions: RequestOptions?
     ): PaginatedList<ChatCompletionResult> =
@@ -137,7 +137,7 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
             }.body()
         }
 
-    override suspend fun chatCompletion(request: ChatCompletionRequest, options: ChatCompletionOptions, requestOptions: RequestOptions?): ChatCompletionResult =
+    override suspend fun createChatCompletion(request: ChatCompletionRequest, options: ChatCompletionOptions, requestOptions: RequestOptions?): ChatCompletionResult =
         requester.perform {
             it.post {
                 url(path = ApiPath.ChatCompletions)
@@ -147,7 +147,7 @@ internal class ChatApi(private val requester: HttpRequester) : Chat {
             }.body()
         }
 
-    override fun chatCompletions(request: ChatCompletionRequest, options: ChatCompletionOptions, requestOptions: RequestOptions?): Flow<ChatCompletionResult> {
+    override fun streamChatCompletions(request: ChatCompletionRequest, options: ChatCompletionOptions, requestOptions: RequestOptions?): Flow<ChatCompletionResult> {
         val builder = HttpRequestBuilder().apply {
             method = HttpMethod.Post
             url(path = ApiPath.ChatCompletions)

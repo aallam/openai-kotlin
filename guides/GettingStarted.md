@@ -436,6 +436,50 @@ Returns the contents of the specified file.
 val bytes = openAI.download(FileId("file-abc123"))
 ```
 
+### Modern transcription and streaming
+
+Keep using `TranscriptionRequest` for the file, model and output format. Pass
+`TranscriptionOptions` to obtain an `AudioTranscription` with token confidence,
+usage, detected languages and speaker-labeled `diarizedSegments`:
+
+```kotlin
+val result = openAI.transcription(
+    request = transcriptionRequest,
+    options = TranscriptionOptions(
+        include = listOf("logprobs"),
+        languages = listOf("en", "fr"),
+        chunkingStrategy = TranscriptionChunkingStrategy.Auto,
+    ),
+)
+openAI.transcriptions(transcriptionRequest).collect { event ->
+    event.delta?.let(::print)
+}
+```
+
+For speaker labels, select `AudioResponseFormat.DiarizedJson` and a model that
+supports diarization. Timestamp segments remain available separately as
+`segments`. Supported options and formats depend on the model; accepting a
+`ModelId` does not establish server-side support.
+
+```kotlin
+val options = SpeechOptions(
+    instructions = "Speak calmly.",
+    customVoice = CustomVoice("voice_123"),
+)
+openAI.speechAudio(speechRequest, options).collect { bytes ->
+    // Send each binary audio chunk to your player.
+}
+openAI.speechEvents(speechRequest, options).collect { event ->
+    // Handle base64 audio events and completion usage.
+}
+```
+
+A custom voice replaces the request's built-in voice. `speechAudio` selects binary
+framing; `speechEvents` selects SSE framing. Flow collection starts the request,
+and cancelling collection closes its response. Existing `speech(request)` still
+returns the complete audio as a byte array. Built-in voice/format names can also
+be supplied through their string-backed value types.
+
 ## Moderations
 
 Given an input text, outputs if the model classifies it as violating OpenAI's content policy.

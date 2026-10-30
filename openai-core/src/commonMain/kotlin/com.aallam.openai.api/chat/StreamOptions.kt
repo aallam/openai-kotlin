@@ -14,8 +14,6 @@ public data class StreamOptions(
      * always be an empty array. All other chunks will also include a usage field, but with a null value.
      */
     @SerialName("include_usage") public val includeUsage: Boolean? = null,
-    /** Include padding to obscure streamed payload size. */
-    @SerialName("include_obfuscation") public val includeObfuscation: Boolean? = null,
 )
 
 /**
@@ -37,14 +35,10 @@ public class StreamOptionsBuilder {
      */
     public var includeUsage: Boolean? = null
 
-    /** Include padding to obscure streamed payload size. */
-    public var includeObfuscation: Boolean? = null
-
     /**
      * Build the [StreamOptions] instance.
      */
     public fun build(): StreamOptions = StreamOptions(
         includeUsage = includeUsage,
-        includeObfuscation = includeObfuscation,
     )
 }

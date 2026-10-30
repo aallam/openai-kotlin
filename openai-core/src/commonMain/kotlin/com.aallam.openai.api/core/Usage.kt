@@ -17,10 +17,6 @@ public data class Usage(
      * Count of total tokens.
      */
     @SerialName("total_tokens") public val totalTokens: Int? = null,
-    /** Cached and audio prompt token counts. */
-    @SerialName("prompt_tokens_details") public val promptTokensDetails: PromptTokensDetails? = null,
-    /** Reasoning, audio and predicted completion token counts. */
-    @SerialName("completion_tokens_details") public val completionTokensDetails: CompletionTokensDetails? = null,
 )
 
 /** Breakdown of prompt token usage. */

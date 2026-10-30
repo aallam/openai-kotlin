@@ -125,8 +125,8 @@ private fun MutableList<ChatMessage>.append(toolCall: ToolCall.Function, functio
 
 ## Request controls and stored completions
 
-Chat requests expose metadata, parallel-tool selection, safety identifiers, service
-tiers, cache options, prediction and audio configuration. Parameter support depends
+Advanced Chat options expose metadata, parallel-tool selection, safety identifiers,
+service tiers, cache options, prediction and audio configuration. Parameter support depends
 on the selected model. The request builder also forwards `seed`:
 
 ```kotlin
@@ -134,12 +134,10 @@ val request = chatCompletionRequest {
     model = modelId
     messages = listOf(ChatMessage.Developer("Answer briefly"), ChatMessage.User("Hello"))
     store = true
-    metadata = mapOf("purpose" to "example")
-    parallelToolCalls = false
-    promptCacheKey = "example-prefix"
     seed = 42
 }
-val response = openAI.chatCompletion(request)
+val options = ChatCompletionOptions(metadata = mapOf("purpose" to "example"), parallelToolCalls = false)
+val response = openAI.createChatCompletion(request, options)
 val stored = openAI.storedChatCompletion(response.id)
 val page = openAI.storedChatCompletions(ChatCompletionListQuery(limit = 20))
 val messages = openAI.chatCompletionMessages(response.id)
@@ -151,12 +149,12 @@ Stored completion and message lists preserve `hasMore`, `firstId`, and `lastId`.
 Use the last ID as the next `after` cursor. Retrieval returns `null` for a missing
 completion; deletion returns `false`.
 
-`Usage.promptTokensDetails` exposes cached/audio input counts, while
+`ChatUsage.promptTokensDetails` exposes cached/audio input counts, while
 `completionTokensDetails` exposes reasoning/audio and accepted/rejected prediction
 counts. Chat URL citation fields are under `annotation.urlCitation`; Responses URL
 citations retain their flat fields.
 
-Function tools support `FunctionTool.strict`. Existing request tool lists retain
+Advanced function tools support `ChatFunctionDefinition.strict`. Existing request tool lists retain
 their `List<Tool>` type.
 
 For file/audio inputs or custom tools, pass `ChatCompletionOptions` alongside the

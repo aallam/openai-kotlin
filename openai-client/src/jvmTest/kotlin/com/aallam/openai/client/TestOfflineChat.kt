@@ -85,8 +85,9 @@ class TestOfflineChat {
             }
         }
         OpenAI(OpenAIConfig(token = "offline-token", engine = engine)).use { api ->
-            val request = ChatCompletionRequest(ModelId("model"), listOf(ChatMessage.User("legacy")), metadata = mapOf("owner" to "tenant"))
+            val request = ChatCompletionRequest(ModelId("model"), listOf(ChatMessage.User("legacy")))
             val options = ChatCompletionOptions(
+                metadata = mapOf("owner" to "tenant"),
                 messages = listOf(ChatInputMessage(ChatRole.User, ChatInputParts(listOf(ChatInputPart.File(ChatInputFile(fileId = "file_1")))))),
                 tools = listOf(CustomTool(CustomToolDefinition("calculate"))),
             )

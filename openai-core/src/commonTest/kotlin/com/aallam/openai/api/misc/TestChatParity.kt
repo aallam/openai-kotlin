@@ -19,21 +19,25 @@ class TestChatParity {
             model = ModelId("model")
             messages = listOf(ChatMessage(Role.Developer, "instructions"))
             seed = 123
-            metadata = mapOf("tenant" to "example")
-            parallelToolCalls = false
-            serviceTier = "flex"
-            safetyIdentifier = "user-hash"
-            promptCacheKey = "prefix"
-            promptCacheOptions = ChatPromptCacheOptions("explicit", "30m")
-            verbosity = "low"
-            moderation = ChatModeration("omni-moderation-latest", ChatModerationPolicy(input = ChatModerationMode("block")))
-            modalities = listOf("text", "audio")
-            audio = ChatAudioConfig("pcm16", "alloy")
-            prediction = ChatPrediction("expected")
-            streamOptions = streamOptions { includeUsage = true; includeObfuscation = false }
         }
-        val wire = json.encodeToJsonElement(request).jsonObject
-        assertEquals(123, wire["seed"]?.jsonPrimitive?.int)
+        val options = ChatCompletionOptions(
+            metadata = mapOf("tenant" to "example"),
+            parallelToolCalls = false,
+            serviceTier = "flex",
+            safetyIdentifier = "user-hash",
+            promptCacheKey = "prefix",
+            promptCacheOptions = ChatPromptCacheOptions("explicit", "30m"),
+            verbosity = "low",
+            moderation = ChatModeration("omni-moderation-latest", ChatModerationPolicy(input = ChatModerationMode("block"))),
+            modalities = listOf("text", "audio"),
+            audio = ChatAudioConfig("pcm16", "alloy"),
+            prediction = ChatPrediction("expected"),
+            streamOptions = ChatStreamOptions(includeUsage = true, includeObfuscation = false),
+            tools = listOf(ChatFunctionTool(ChatFunctionDefinition("lookup", strict = true))),
+        )
+        val wire = json.encodeToJsonElement(options).jsonObject
+        assertEquals(123, json.encodeToJsonElement(request).jsonObject["seed"]?.jsonPrimitive?.int)
+        assertEquals(true, wire["tools"]!!.jsonArray.single().jsonObject["function"]?.jsonObject?.get("strict")?.jsonPrimitive?.boolean)
         assertEquals(false, wire["parallel_tool_calls"]?.jsonPrimitive?.boolean)
         assertEquals("flex", wire["service_tier"]?.jsonPrimitive?.content)
         assertEquals("example", wire["metadata"]?.jsonObject?.get("tenant")?.jsonPrimitive?.content)
@@ -69,18 +73,24 @@ class TestChatParity {
 
     @Test
     fun preservesNestedChatCitationsAndDetailedUsage() {
-        val completion = json.decodeFromString<ChatCompletion>("""{
+        val completion = json.decodeFromString<ChatCompletionResult>("""{
           "id":"chat_1","created":1,"model":"model","service_tier":"flex","metadata":{"tag":"x"},
           "choices":[{"index":0,"finish_reason":"stop","message":{"role":"assistant","content":"source","audio":{"id":"audio_1","data":"YQ==","transcript":"a","expires_at":10},"annotations":[{"type":"url_citation","url_citation":{"url":"https://example.com","title":"Example","start_index":0,"end_index":6}}]}}],
           "usage":{"prompt_tokens_details":{"cached_tokens":12,"audio_tokens":3},"completion_tokens_details":{"reasoning_tokens":4,"audio_tokens":5,"accepted_prediction_tokens":6,"rejected_prediction_tokens":7}}
         }""")
-        assertEquals("https://example.com", completion.choices.single().message.annotations?.single()?.urlCitation?.url)
-        assertEquals("a", completion.choices.single().message.audio?.transcript)
+        assertEquals("https://example.com", completion.choices.single().message?.annotations?.single()?.urlCitation?.url)
+        assertEquals("a", completion.choices.single().message?.audio?.transcript)
         assertEquals(12, completion.usage?.promptTokensDetails?.cachedTokens)
         assertEquals(7, completion.usage?.completionTokensDetails?.rejectedPredictionTokens)
         assertEquals("flex", completion.serviceTier)
         val flat = json.decodeFromString<ChatAnnotation>("""{"type":"url_citation","url":"https://example.com","title":"Flat"}""")
         assertEquals("Flat", flat.title)
+        val nested = Json.decodeFromString<ChatAnnotation>("""{"type":"url_citation","url_citation":{"url":"https://example.com","title":"Nested","start_index":1,"end_index":5}}""")
+        assertEquals("Nested", nested.title)
+        assertEquals("https://example.com", nested.url)
+        assertEquals(1, nested.startIndex)
+        assertEquals(5, nested.endIndex)
+        assertEquals(nested, Json.decodeFromString<ChatAnnotation>(Json.encodeToString(nested)))
 
     }
 }

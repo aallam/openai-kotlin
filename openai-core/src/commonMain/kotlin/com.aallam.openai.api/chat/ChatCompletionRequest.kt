@@ -190,29 +190,7 @@ public data class ChatCompletionRequest(
     /**
      * Options for streaming response. Only used when in streaming mode.
      */
-    @SerialName("stream_options") public val streamOptions: StreamOptions? = null,
-    /** Stored completion metadata. */
-    @SerialName("metadata") public val metadata: Map<String, String>? = null,
-    /** Whether tools can execute in parallel. */
-    @SerialName("parallel_tool_calls") public val parallelToolCalls: Boolean? = null,
-    /** Requested processing tier. */
-    @SerialName("service_tier") public val serviceTier: String? = null,
-    /** Stable end-user safety identifier. */
-    @SerialName("safety_identifier") public val safetyIdentifier: String? = null,
-    /** Key used to group reusable prompt prefixes. */
-    @SerialName("prompt_cache_key") public val promptCacheKey: String? = null,
-    /** Prompt cache mode and minimum lifetime. */
-    @SerialName("prompt_cache_options") public val promptCacheOptions: ChatPromptCacheOptions? = null,
-    /** Desired response verbosity. */
-    @SerialName("verbosity") public val verbosity: String? = null,
-    /** Input and output moderation configuration. */
-    @SerialName("moderation") public val moderation: ChatModeration? = null,
-    /** Requested text and audio output modalities. */
-    @SerialName("modalities") public val modalities: List<String>? = null,
-    /** Audio output configuration. */
-    @SerialName("audio") public val audio: ChatAudioConfig? = null,
-    /** Predicted output content. */
-    @SerialName("prediction") public val prediction: ChatPrediction? = null,
+    @SerialName("stream_options") public val streamOptions: StreamOptions? = null
 )
 
 /**
@@ -419,40 +397,6 @@ public class ChatCompletionRequestBuilder {
     /** Seed for best-effort reproducible sampling. */
     public var seed: Int? = null
 
-    /** Stored completion metadata. */
-    public var metadata: Map<String, String>? = null
-
-    /** Whether tools can execute in parallel. */
-    public var parallelToolCalls: Boolean? = null
-
-    /** Requested processing tier. */
-    public var serviceTier: String? = null
-
-    /** Stable end-user safety identifier. */
-    public var safetyIdentifier: String? = null
-
-    /** Key used to group reusable prompt prefixes. */
-    public var promptCacheKey: String? = null
-
-    /** Prompt cache mode and minimum lifetime. */
-    public var promptCacheOptions: ChatPromptCacheOptions? = null
-
-    /** Desired response verbosity. */
-    public var verbosity: String? = null
-
-    /** Input and output moderation configuration. */
-    public var moderation: ChatModeration? = null
-
-    /** Requested text and audio output modalities. */
-    public var modalities: List<String>? = null
-
-    /** Audio output configuration. */
-    public var audio: ChatAudioConfig? = null
-
-    /** Predicted output content. */
-    public var prediction: ChatPrediction? = null
-
-
     /**
      * Builder of [ChatCompletionRequest] instances.
      */
@@ -482,18 +426,6 @@ public class ChatCompletionRequestBuilder {
         instanceId = instanceId,
         streamOptions = streamOptions,
         seed = seed,
-        metadata = metadata,
-        parallelToolCalls = parallelToolCalls,
-        serviceTier = serviceTier,
-        safetyIdentifier = safetyIdentifier,
-        promptCacheKey = promptCacheKey,
-        promptCacheOptions = promptCacheOptions,
-        verbosity = verbosity,
-        moderation = moderation,
-        modalities = modalities,
-        audio = audio,
-        prediction = prediction,
-
     )
 }
 

@@ -11,6 +11,30 @@ public data class ChatCompletionOptions(
     public val tools: List<ChatTool>? = null,
     /** Replaces the original function-only tool choice. */
     @SerialName("tool_choice") public val toolChoice: ChatToolSelection? = null,
+    /** Key-value metadata attached to a stored completion. */
+    @SerialName("metadata") public val metadata: Map<String, String>? = null,
+    /** Allow multiple tool calls in a single model turn. */
+    @SerialName("parallel_tool_calls") public val parallelToolCalls: Boolean? = null,
+    /** Requested processing tier. */
+    @SerialName("service_tier") public val serviceTier: String? = null,
+    /** Stable end-user identifier used for abuse detection. */
+    @SerialName("safety_identifier") public val safetyIdentifier: String? = null,
+    /** Cache routing key for related prompts. */
+    @SerialName("prompt_cache_key") public val promptCacheKey: String? = null,
+    /** Prompt caching behavior. */
+    @SerialName("prompt_cache_options") public val promptCacheOptions: ChatPromptCacheOptions? = null,
+    /** Requested detail level in generated text. */
+    @SerialName("verbosity") public val verbosity: String? = null,
+    /** Moderation configuration. */
+    @SerialName("moderation") public val moderation: ChatModeration? = null,
+    /** Requested output modalities, such as text and audio. */
+    @SerialName("modalities") public val modalities: List<String>? = null,
+    /** Audio output voice and format. */
+    @SerialName("audio") public val audio: ChatAudioConfig? = null,
+    /** Predicted output content that can reduce generation latency. */
+    @SerialName("prediction") public val prediction: ChatPrediction? = null,
+    /** Streaming usage and obfuscation settings. */
+    @SerialName("stream_options") public val streamOptions: ChatStreamOptions? = null,
 )
 
 /** Select a custom tool or an allowed tool subset. */
@@ -42,4 +66,13 @@ public data class ChatAllowedTool(
     public val function: FunctionToolChoice? = null,
     /** Custom tool reference. */
     public val custom: FunctionToolChoice? = null,
+)
+
+/** Streaming controls for advanced Chat requests. */
+@Serializable
+public data class ChatStreamOptions(
+    /** Emit final usage details. */
+    @SerialName("include_usage") public val includeUsage: Boolean? = null,
+    /** Include payload-size obfuscation padding. */
+    @SerialName("include_obfuscation") public val includeObfuscation: Boolean? = null,
 )

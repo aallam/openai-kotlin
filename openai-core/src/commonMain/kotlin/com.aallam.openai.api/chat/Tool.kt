@@ -66,8 +66,6 @@ public data class FunctionTool(
      * A description of what the function does, used by the model to choose when and how to call the function.
      */
     @SerialName("description") public val description: String? = null,
-    /** Enforce the declared function parameter schema. */
-    @SerialName("strict") public val strict: Boolean? = null,
 )
 
 
@@ -79,7 +77,7 @@ internal object ChatToolSerializer : JsonContentPolymorphicSerializer<ChatTool>(
     override fun selectDeserializer(element: JsonElement): DeserializationStrategy<ChatTool> =
         when (element.jsonObject["type"]?.jsonPrimitive?.content) {
             "custom" -> CustomTool.serializer()
-            "function" -> Tool.serializer()
+            "function" -> ChatFunctionTool.serializer()
             else -> throw kotlinx.serialization.SerializationException("Unsupported chat tool type")
         }
 }
@@ -120,4 +118,26 @@ public data class CustomToolGrammar(
     @SerialName("definition") public val definition: String,
     /** Grammar syntax: lark or regex. */
     @SerialName("syntax") public val syntax: String,
+)
+
+/** Function declaration supporting strict schema enforcement without changing FunctionTool. */
+@Serializable
+public data class ChatFunctionTool(
+    /** Function definition. */
+    public val function: ChatFunctionDefinition,
+    /** Tool kind. */
+    @EncodeDefault public val type: String = "function",
+) : ChatTool
+
+/** Rich function definition for advanced Chat requests. */
+@Serializable
+public data class ChatFunctionDefinition(
+    /** Function name. */
+    public val name: String,
+    /** Function parameter schema. */
+    public val parameters: Parameters? = null,
+    /** Function purpose. */
+    public val description: String? = null,
+    /** Enforce the parameter schema. */
+    public val strict: Boolean? = null,
 )

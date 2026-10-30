@@ -43,9 +43,4 @@ public data class ChatCompletion(
      * might impact determinism.
      */
     @SerialName("system_fingerprint") public val systemFingerprint: String? = null,
-    /** Effective processing tier used for this response. */
-    @SerialName("service_tier") public val serviceTier: String? = null,
-    /** Metadata attached to a stored completion. */
-    @SerialName("metadata") public val metadata: Map<String, String>? = null,
-
 )

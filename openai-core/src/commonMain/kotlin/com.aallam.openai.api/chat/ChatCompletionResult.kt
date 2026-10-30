@@ -16,7 +16,7 @@ public data class ChatCompletionResult(
     /** Generated choices. */
     public val choices: List<ChatResultChoice>,
     /** Detailed token usage. */
-    public val usage: Usage? = null,
+    public val usage: ChatUsage? = null,
     /** Effective processing tier. */
     @SerialName("service_tier") public val serviceTier: String? = null,
     /** Backend fingerprint. */
@@ -56,7 +56,7 @@ public data class ChatResultMessage(
     /** Function and custom calls. */
     @SerialName("tool_calls") public val toolCalls: List<ChatResultToolCall>? = null,
     /** Output citations. */
-    public val annotations: List<ChatAnnotation>? = null,
+    public val annotations: List<ChatResultAnnotation>? = null,
     /** Audio output. */
     public val audio: ChatAudio? = null,
     /** Refusal explanation. */
@@ -89,4 +89,59 @@ public data class ChatCustomCall(
     public val name: String? = null,
     /** Tool input. */
     public val input: String? = null,
+)
+
+/** Usage details returned by advanced Chat operations. */
+@Serializable
+public data class ChatUsage(
+    /** Prompt token count. */
+    @SerialName("prompt_tokens") public val promptTokens: Int? = null,
+    /** Completion token count. */
+    @SerialName("completion_tokens") public val completionTokens: Int? = null,
+    /** Total token count. */
+    @SerialName("total_tokens") public val totalTokens: Int? = null,
+    /** Cached and audio prompt token counts. */
+    @SerialName("prompt_tokens_details") public val promptTokensDetails: PromptTokensDetails? = null,
+    /** Reasoning, audio and prediction token counts. */
+    @SerialName("completion_tokens_details") public val completionTokensDetails: CompletionTokensDetails? = null,
+)
+
+/** Output citation used by rich Chat result messages. */
+@Serializable
+public data class ChatResultAnnotation(
+    /** Citation kind. */
+    public val type: String,
+    /** URL citation returned by Chat Completions. */
+    @SerialName("url_citation") public val urlCitation: UrlCitation? = null,
+    /** Flat URL for compatible providers. */
+    public val url: String? = null,
+    /** Flat source title. */
+    public val title: String? = null,
+    /** Start character offset. */
+    @SerialName("start_index") public val startIndex: Int? = null,
+    /** End character offset. */
+    @SerialName("end_index") public val endIndex: Int? = null,
+    /** Citation text. */
+    public val text: String? = null,
+    /** Referenced file ID. */
+    @SerialName("file_id") public val fileId: String? = null,
+    /** Referenced file name. */
+    public val filename: String? = null,
+    /** File citation position. */
+    public val index: Int? = null,
+    /** Container holding a cited file. */
+    @SerialName("container_id") public val containerId: String? = null,
+)
+
+/** Nested Chat URL citation. */
+@Serializable
+public data class UrlCitation(
+    /** Cited URL. */
+    public val url: String,
+    /** Source title. */
+    public val title: String,
+    /** First cited character. */
+    @SerialName("start_index") public val startIndex: Int,
+    /** End of cited span. */
+    @SerialName("end_index") public val endIndex: Int,
 )

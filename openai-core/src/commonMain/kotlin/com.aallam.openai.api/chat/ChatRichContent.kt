@@ -100,4 +100,8 @@ public data class ChatInputMessage(
     public val audio: ChatAudio? = null,
     /** Refusal text for assistant history. */
     public val refusal: String? = null,
+    /** Legacy function call in assistant history. */
+    @SerialName("function_call") public val functionCall: FunctionCall? = null,
+    /** Additional reasoning text in assistant history. */
+    @SerialName("reasoning_content") public val reasoningContent: String? = null,
 )

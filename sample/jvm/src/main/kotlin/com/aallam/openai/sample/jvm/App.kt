@@ -12,14 +12,14 @@ fun main() = runBlocking {
 
     while (true) {
         println("Select an option:")
-        println("1 - Engines")
+        println("1 - Models")
         println("2 - Files")
         println("3 - Moderations")
         println("4 - Images")
         println("5 - Chat")
-        println("6 - Whisper")
+        println("6 - Transcription / legacy translation")
         println("7 - Tokens")
-        println("8 - Assistants")
+        println("8 - Assistants (retired OpenAI API)")
         println("0 - Quit")
 
         suspend fun chats() {

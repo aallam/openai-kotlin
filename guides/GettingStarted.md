@@ -447,7 +447,7 @@ Classifies if text violates OpenAI's content policy.
 ```kotlin
 val moderation = openAI.moderations(
     request = ModerationRequest(
-        model = ModerationModel.Latest,
+        // Omit the model to use the server default, or choose an available omni-moderation model.
         input = "I want to kill them."
     )
 )

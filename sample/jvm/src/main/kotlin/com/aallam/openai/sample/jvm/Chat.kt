@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.onEach
 suspend fun chat(openAI: OpenAI) {
     println("\n> Create chat completions...")
     val chatCompletionRequest = ChatCompletionRequest(
-        model = ModelId("gpt-3.5-turbo"),
+        model = ModelId(checkNotNull(System.getenv("OPENAI_MODEL")) { "Set OPENAI_MODEL to an available Chat model." }),
         messages = listOf(
             ChatMessage(
                 role = ChatRole.System,

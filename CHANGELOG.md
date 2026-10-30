@@ -1,5 +1,8 @@
 ## Unreleased
 
+### Changed
+- **docs**: mark the sunset Assistants API as legacy for OpenAI and document the Responses migration (#470).
+
 ## 4.1.0
 > Published 07 Feb 2026
 

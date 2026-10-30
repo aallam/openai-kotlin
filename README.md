@@ -116,12 +116,18 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Audio](guides/GettingStarted.md#audio)
 - [Batch](guides/GettingStarted.md#batch)
 
-#### Beta
+#### Legacy Assistants API
+
+OpenAI sunset the Assistants API on August 26, 2026 ([#470](https://github.com/aallam/openai-kotlin/issues/470)).
+This client retains its beta endpoints for compatible services that still implement them, but they are no longer a supported path for OpenAI. For new OpenAI integrations, use the [Responses API](guides/GettingStarted.md#responses).
 
 - [Assistants](guides/GettingStarted.md#assistants)
 - [Threads](guides/GettingStarted.md#threads)
 - [Messages](guides/GettingStarted.md#messages)
 - [Runs](guides/GettingStarted.md#runs)
+
+#### Beta
+
 - [Vector Stores](guides/GettingStarted.md#vector-stores)
 
 #### Deprecated

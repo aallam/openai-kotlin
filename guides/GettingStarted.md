@@ -63,7 +63,9 @@ Use your `OpenAI` instance to make API requests.
   - [Azure](#azure)
   - [Other hosts](#other-hosts)
 
-#### Beta
+#### Legacy Assistants API
+
+OpenAI sunset this API on August 26, 2026 ([#470](https://github.com/aallam/openai-kotlin/issues/470)). These beta endpoints remain in the client for compatible services, but are not a supported path for OpenAI. Use the [Responses API](#responses) for new OpenAI integrations.
 
 - [Assistants](#assistants)
   - [Create assistant](#create-assistant)
@@ -605,6 +607,8 @@ val openAI = OpenAI(config)
 ---
 
 ## Assistants
+
+> **Sunset:** OpenAI sunset the Assistants API on August 26, 2026. The endpoints below remain in this client for compatible services that still implement them, but are not a supported path for OpenAI. These examples assume `openAI` is configured for such a service; see [Other hosts](#other-hosts). For new OpenAI integrations, use the [Responses API](#responses); a migration example is in the [Assistants guide](Assistants.md#migrating-to-responses).
 
 Build assistants that can call models and use tools to perform tasks.
 

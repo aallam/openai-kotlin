@@ -16,7 +16,7 @@ import kotlinx.serialization.json.*
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.channelFlow
 import com.aallam.openai.client.Responses
 import com.aallam.openai.client.ResponseConnection
 import kotlinx.coroutines.NonCancellable
@@ -185,7 +185,7 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
         }
     }
 
-    private fun responseEvents(builder: HttpRequestBuilder): Flow<ResponseStreamEvent> = flow {
+    private fun responseEvents(builder: HttpRequestBuilder): Flow<ResponseStreamEvent> = channelFlow {
         requester.perform(builder) { response ->
             val channel: ByteReadChannel = response.body()
             val data = mutableListOf<String>()
@@ -193,7 +193,7 @@ internal class ResponsesApi(private val requester: HttpRequester) : Responses {
                 if (data.isNotEmpty()) {
                     val payload = data.joinToString("\n")
                     data.clear()
-                    if (payload != "[DONE]") emit(JsonLenient.decodeFromString(ResponseStreamEvent.serializer(), payload))
+                    if (payload != "[DONE]") send(JsonLenient.decodeFromString(ResponseStreamEvent.serializer(), payload))
                 }
             }
             try {

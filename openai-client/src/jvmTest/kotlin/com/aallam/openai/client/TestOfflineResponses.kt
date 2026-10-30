@@ -2,7 +2,17 @@ package com.aallam.openai.client
 
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.api.response.*
+import com.aallam.openai.client.internal.createHttpClient
+import com.aallam.openai.client.internal.api.ResponsesApi
+import com.aallam.openai.client.internal.http.HttpRequester
+import com.aallam.openai.client.internal.http.HttpTransport
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.statement.HttpResponse
 import io.ktor.client.engine.mock.*
+import io.ktor.utils.io.*
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import io.ktor.http.*
 import io.ktor.http.content.TextContent
 import kotlinx.coroutines.flow.take
@@ -12,6 +22,46 @@ import kotlinx.serialization.json.*
 import kotlin.test.*
 
 class TestOfflineResponses {
+    @Test
+    fun streamCallbacksMaySwitchDispatcherWithoutViolatingFlowContext() = runTest {
+        val transport = HttpTransport(createHttpClient(OpenAIConfig(token = "offline", engine = MockEngine {
+            respond("data: {\"type\":\"response.output_text.delta\",\"delta\":\"hello\"}\n\ndata: {\"type\":\"response.completed\"}\n\n", headers = headersOf(HttpHeaders.ContentType, "text/event-stream"))
+        })))
+        val requester = object : HttpRequester by transport {
+            override suspend fun <T : Any> perform(builder: HttpRequestBuilder, block: suspend (HttpResponse) -> T) {
+                withContext(Dispatchers.IO) { transport.perform(builder, block) }
+            }
+        }
+        try {
+            val events = ResponsesApi(requester).responses(ResponseRequest(ModelId("model"))).toList()
+            assertEquals("hello", events.first().delta)
+            assertEquals("response.completed", events.last().type)
+        } finally { transport.close() }
+    }
+
+    @Test
+    fun cancellingDispatcherSwitchedStreamClosesBodyAndCallback() = runTest {
+        val body = ByteChannel(autoFlush = true)
+        body.writeStringUtf8("data: {\"type\":\"response.output_text.delta\",\"delta\":\"hello\"}\n\n")
+        val callbackFinished = CompletableDeferred<Unit>()
+        val transport = HttpTransport(createHttpClient(OpenAIConfig(token = "offline", engine = MockEngine {
+            respond(body, headers = headersOf(HttpHeaders.ContentType, "text/event-stream"))
+        })))
+        val requester = object : HttpRequester by transport {
+            override suspend fun <T : Any> perform(builder: HttpRequestBuilder, block: suspend (HttpResponse) -> T) {
+                try {
+                    withContext(Dispatchers.IO) { transport.perform(builder, block) }
+                } finally { callbackFinished.complete(Unit) }
+            }
+        }
+        try {
+            val events = ResponsesApi(requester).responses(ResponseRequest(ModelId("model"))).take(1).toList()
+            assertEquals("hello", events.single().delta)
+            assertTrue(callbackFinished.isCompleted)
+            assertTrue(body.isClosedForRead)
+        } finally { body.cancel(); transport.close() }
+    }
+
     @Test
     fun createStreamUsesSseAndRetainsMultilineEvents() = runTest {
         val client = OpenAI(OpenAIConfig(token = "test", engine = MockEngine { request ->

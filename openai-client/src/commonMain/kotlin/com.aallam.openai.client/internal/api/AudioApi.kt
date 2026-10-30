@@ -12,6 +12,8 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.serialization.json.*
 import com.aallam.openai.client.internal.extension.appendFileSource
 import com.aallam.openai.client.internal.extension.requestOptions
@@ -160,7 +162,7 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
         request: TranscriptionRequest,
         options: TranscriptionOptions,
         requestOptions: RequestOptions?,
-    ): Flow<TranscriptionEvent> = flow {
+    ): Flow<TranscriptionEvent> = channelFlow {
         val builder = HttpRequestBuilder().apply {
             method = HttpMethod.Post
             url(path = ApiPath.Transcription)
@@ -168,7 +170,9 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
             accept(ContentType.Text.EventStream)
             requestOptions(requestOptions)
         }
-        requester.perform(builder) { response -> audioEventsFrom(response) }
+        requester.perform(builder) { response ->
+            flow<TranscriptionEvent> { audioEventsFrom(response) }.collect { send(it) }
+        }
     }
 
     override suspend fun speech(request: SpeechRequest, options: SpeechOptions, requestOptions: RequestOptions?): ByteArray {
@@ -183,7 +187,7 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
         }
     }
 
-    override fun speechAudio(request: SpeechRequest, options: SpeechOptions, requestOptions: RequestOptions?): Flow<ByteArray> = flow {
+    override fun speechAudio(request: SpeechRequest, options: SpeechOptions, requestOptions: RequestOptions?): Flow<ByteArray> = channelFlow {
         val builder = speechBuilder(request, options.copy(streamFormat = SpeechStreamFormat.Audio), requestOptions)
         requester.perform(builder) { response ->
             val channel: ByteReadChannel = response.body()
@@ -192,7 +196,7 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
                 while (currentCoroutineContext().isActive) {
                     val read = channel.readAvailable(buffer)
                     if (read == -1) break
-                    if (read > 0) emit(buffer.copyOf(read))
+                    if (read > 0) send(buffer.copyOf(read))
                 }
             } finally {
                 channel.cancel()
@@ -200,11 +204,13 @@ internal class AudioApi(val requester: HttpRequester) : Audio {
         }
     }
 
-    override fun speechEvents(request: SpeechRequest, options: SpeechOptions, requestOptions: RequestOptions?): Flow<SpeechEvent> = flow {
+    override fun speechEvents(request: SpeechRequest, options: SpeechOptions, requestOptions: RequestOptions?): Flow<SpeechEvent> = channelFlow {
         val builder = speechBuilder(request, options.copy(streamFormat = SpeechStreamFormat.Sse), requestOptions).apply {
             accept(ContentType.Text.EventStream)
         }
-        requester.perform(builder) { response -> audioEventsFrom(response) }
+        requester.perform(builder) { response ->
+            flow<SpeechEvent> { audioEventsFrom(response) }.collect { send(it) }
+        }
     }
 
     private fun speechBuilder(request: SpeechRequest, options: SpeechOptions, requestOptions: RequestOptions?) = HttpRequestBuilder().apply {

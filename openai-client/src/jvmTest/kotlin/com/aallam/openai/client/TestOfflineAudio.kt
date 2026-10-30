@@ -6,6 +6,14 @@ import com.aallam.openai.api.exception.OpenAIHttpException
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.internal.createHttpClient
+import com.aallam.openai.client.internal.api.AudioApi
+import com.aallam.openai.client.internal.http.HttpRequester
+import com.aallam.openai.client.internal.http.HttpTransport
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.statement.HttpResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
 import kotlinx.coroutines.flow.toList
@@ -135,6 +143,48 @@ class TestOfflineAudio {
             assertContentEquals(byteArrayOf(1, 2, 3), client.speechAudio(speechRequest()).take(1).toList().single())
             assertTrue(channel.isClosedForRead)
         } finally { client.close() }
+    }
+
+    @Test
+    fun transcriptionStreamCanSendFromTransportCallbackDispatcher() = runTest {
+        withDispatchedAudio(MockEngine {
+            respond("data: {\"type\":\"transcript.text.delta\",\"delta\":\"hello\"}\n\n", headers = sseHeaders)
+        }) { audio ->
+            assertEquals("hello", audio.transcriptions(request()).toList().single().delta)
+        }
+    }
+
+    @Test
+    fun speechEventsCanSendFromTransportCallbackDispatcher() = runTest {
+        withDispatchedAudio(MockEngine {
+            respond("data: {\"type\":\"speech.audio.delta\",\"audio\":\"AQID\"}\n\n", headers = sseHeaders)
+        }) { audio ->
+            assertEquals("AQID", audio.speechEvents(speechRequest()).toList().single().audio)
+        }
+    }
+
+    @Test
+    fun speechBytesCanSendFromTransportCallbackDispatcher() = runTest {
+        withDispatchedAudio(MockEngine {
+            respond(byteArrayOf(1, 2, 3), headers = headersOf(HttpHeaders.ContentType, "audio/mpeg"))
+        }) { audio ->
+            val chunks = audio.speechAudio(speechRequest()).toList()
+            assertContentEquals(byteArrayOf(1, 2, 3), chunks.reduce { a, b -> a + b })
+        }
+    }
+
+    private suspend fun withDispatchedAudio(engine: MockEngine, block: suspend (Audio) -> Unit) {
+        val transport = HttpTransport(createHttpClient(OpenAIConfig(token = "test", engine = engine, logging = LoggingConfig(logLevel = LogLevel.None))))
+        val requester = object : HttpRequester by transport {
+            override suspend fun <T : Any> perform(builder: HttpRequestBuilder, block: suspend (HttpResponse) -> T) {
+                transport.perform(builder) { response -> withContext(Dispatchers.IO) { block(response) } }
+            }
+        }
+        try {
+            block(AudioApi(requester))
+        } finally {
+            transport.close()
+        }
     }
 
     private fun request(format: AudioResponseFormat? = null) = TranscriptionRequest(

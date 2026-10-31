@@ -18,10 +18,10 @@ import kotlin.test.assertIs
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-class TestAssistants : TestOpenAI() {
+class TestOfflineAssistants {
 
     @Test
-    fun codeInterpreter() = test {
+    fun codeInterpreter() = legacyTest(*assistantLifecycle()) {
         val request = assistantRequest {
             name = "Math Tutor"
             tools = listOf(AssistantTool.CodeInterpreter)
@@ -153,7 +153,7 @@ class TestAssistants : TestOpenAI() {
     }
 
     @Test
-    fun jsonSchemaAssistant() = test {
+    fun jsonSchemaAssistant() = legacyTest(*assistantLifecycle(schema = true)) {
         val jsonSchema = AssistantResponseFormat.JSON_SCHEMA(
             name = "TestSchema",
             description = "A test schema",

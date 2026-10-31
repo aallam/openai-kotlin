@@ -1,18 +1,12 @@
 package com.aallam.openai.client
 
-import com.aallam.openai.api.assistant.CodeInterpreterResources
-import com.aallam.openai.api.assistant.FileSearchResources
-import com.aallam.openai.api.assistant.ToolResources
-import com.aallam.openai.api.core.RequestOptions
-import com.aallam.openai.api.file.FileId
-import com.aallam.openai.api.thread.ThreadRequest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class TestThreads : TestOpenAI() {
+class TestOfflineThreads {
 
     @Test
-    fun threads() = test {
+    fun threads() = legacyTest(*threadLifecycle()) {
         val thread = openAI.thread()
 
         val retrieved = openAI.thread(

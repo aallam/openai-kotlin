@@ -36,4 +36,5 @@ internal class OpenAIApi(
     Realtime by RealtimeApi(requester),
     Decisions by DecisionsApi(requester),
     Containers by ContainersApi(requester),
+    Skills by SkillsApi(requester),
     AutoCloseable by requester

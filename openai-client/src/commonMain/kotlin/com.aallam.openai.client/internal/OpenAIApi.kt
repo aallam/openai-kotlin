@@ -31,4 +31,5 @@ internal class OpenAIApi(
     Batch by BatchApi(requester),
     Responses by ResponsesApi(requester),
     Conversations by ConversationsApi(requester),
+    Uploads by UploadsApi(requester),
     AutoCloseable by requester

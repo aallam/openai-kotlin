@@ -261,12 +261,14 @@ public final class com/aallam/openai/client/Moderations$DefaultImpls {
 	public static synthetic fun moderations$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/ModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Conversations, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/VectorStores, java/lang/AutoCloseable {
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Conversations, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/Uploads, com/aallam/openai/client/VectorStores, java/lang/AutoCloseable {
 }
 
 public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun attachVectorStoreFile-PRrSv6s (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun cancelUpload-oxTNcyY (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun chatCompletionMessages-QdOu9A0 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun completeUpload-MUtU0V8 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/upload/UploadCompletionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun conversation (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/conversation/ConversationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun conversation--uOxk4c (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun conversationItem-FaCfgoc (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -299,7 +301,9 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun updateConversation-ilotfys (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun updateVectorStoreFields-PRrSv6s (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun updateVectorStoreFile-nJxD578 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun upload (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/upload/UploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun uploadFile (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/file/FileUploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun uploadPart-MUtU0V8 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun vectorStoreBatchFilesPage-hjmPGos (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun vectorStoreFile-dI__4xI (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun vectorStoreFileContent-dI__4xI (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -422,6 +426,24 @@ public final class com/aallam/openai/client/Threads$DefaultImpls {
 	public static synthetic fun thread$default (Lcom/aallam/openai/client/Threads;Lcom/aallam/openai/api/thread/ThreadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun thread-CPLVkbY$default (Lcom/aallam/openai/client/Threads;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun thread-xyf2YKc$default (Lcom/aallam/openai/client/Threads;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/Uploads {
+	public abstract fun cancelUpload-oxTNcyY (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun completeUpload-MUtU0V8 (Ljava/lang/String;Lcom/aallam/openai/api/upload/UploadCompletionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun upload (Lcom/aallam/openai/api/upload/UploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun uploadPart-MUtU0V8 (Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aallam/openai/client/Uploads$DefaultImpls {
+	public static fun cancelUpload-oxTNcyY (Lcom/aallam/openai/client/Uploads;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun cancelUpload-oxTNcyY$default (Lcom/aallam/openai/client/Uploads;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun completeUpload-MUtU0V8 (Lcom/aallam/openai/client/Uploads;Ljava/lang/String;Lcom/aallam/openai/api/upload/UploadCompletionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun completeUpload-MUtU0V8$default (Lcom/aallam/openai/client/Uploads;Ljava/lang/String;Lcom/aallam/openai/api/upload/UploadCompletionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun upload (Lcom/aallam/openai/client/Uploads;Lcom/aallam/openai/api/upload/UploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun upload$default (Lcom/aallam/openai/client/Uploads;Lcom/aallam/openai/api/upload/UploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun uploadPart-MUtU0V8 (Lcom/aallam/openai/client/Uploads;Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun uploadPart-MUtU0V8$default (Lcom/aallam/openai/client/Uploads;Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aallam/openai/client/VectorStores {

@@ -92,17 +92,23 @@ jobs:
       - name: Run full live tests
         env:
           OPENAI_LIVE_TESTS: "1"
+          OPENAI_LIVE_API_TESTS: "1"
+          OPENAI_PROVENANCE_LIVE_TESTS: "1"
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           if [ -z "${OPENAI_API_KEY}" ]; then
             echo "OPENAI_API_KEY is not configured; skipping live tests."
             exit 0
           fi
-          ./gradlew :openai-client:jvmTest
+          ./gradlew :openai-client:jvmTest :openai-client:liveApiJvmTest :openai-client:provenanceLiveJvmTest
 
       - name: Summarize live usage
         if: always()
-        run: python3 .github/scripts/live-usage-summary.py
+        run: >
+          python3 .github/scripts/live-usage-summary.py
+          openai-client/build/test-results/jvmTest
+          openai-client/build/test-results/liveApiJvmTest
+          openai-client/build/test-results/provenanceLiveJvmTest
 
   publish-docs:
     runs-on: ubuntu-latest

@@ -123,6 +123,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Webhooks](guides/Webhooks.md)
 - [Organization usage and costs](guides/Administration.md)
 - [OrganizationAdministration](guides/OrganizationAdministration.md)
+- [Organization governance](guides/OrganizationGovernance.md)
 
 #### Retired upstream APIs
 

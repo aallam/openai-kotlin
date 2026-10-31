@@ -5,7 +5,7 @@ import com.aallam.openai.client.internal.createHttpClient
 import com.aallam.openai.client.internal.http.HttpTransport
 
 /** Organization management client. Use an Admin API key, separately from application credentials. */
-public interface OpenAIAdmin : OrganizationUsage, AutoCloseable
+public interface OpenAIAdmin : OrganizationUsage, OrganizationAdministration, AutoCloseable
 
 /** Creates an administration client with the supplied Admin API key. */
 public fun OpenAIAdmin(token: String): OpenAIAdmin = OpenAIAdmin(OpenAIConfig(token = token))

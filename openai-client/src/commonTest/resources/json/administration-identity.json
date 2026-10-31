@@ -1,0 +1,1723 @@
+{
+  "admin_api_keys-create": {
+    "method": "POST",
+    "path": "/v1/organization/admin_api_keys",
+    "query": {},
+    "response": {
+      "id": "key_abc",
+      "created_at": 1711471533,
+      "expires_at": 1714063533,
+      "object": "organization.admin_api_key",
+      "owner": {
+        "id": "sa_456",
+        "created_at": 1711471533,
+        "name": "My Service Account",
+        "object": "organization.user",
+        "role": "owner",
+        "type": "user"
+      },
+      "redacted_value": "sk-admin...def",
+      "last_used_at": 1711471534,
+      "name": "Administration Key",
+      "value": "sk-admin-1234abcd"
+    },
+    "body": {
+      "name": "value-name",
+      "expires_in_seconds": 3600
+    }
+  },
+  "admin_api_keys-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/admin_api_keys/key_fixture",
+    "query": {},
+    "response": {
+      "id": "key_abc",
+      "deleted": true,
+      "object": "organization.admin_api_key.deleted"
+    }
+  },
+  "admin_api_keys-list": {
+    "method": "GET",
+    "path": "/v1/organization/admin_api_keys",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "key_abc",
+          "created_at": 1711471533,
+          "expires_at": 1714063533,
+          "object": "organization.admin_api_key",
+          "owner": {
+            "id": "sa_456",
+            "created_at": 1711471533,
+            "name": "My Service Account",
+            "object": "organization.user",
+            "role": "owner",
+            "type": "user"
+          },
+          "redacted_value": "sk-admin...def",
+          "last_used_at": 1711471534,
+          "name": "Administration Key"
+        }
+      ],
+      "has_more": false,
+      "object": "list",
+      "first_id": "key_abc",
+      "last_id": "key_xyz"
+    }
+  },
+  "admin_api_keys-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/admin_api_keys/key_fixture",
+    "query": {},
+    "response": {
+      "id": "key_abc",
+      "created_at": 1711471533,
+      "expires_at": 1714063533,
+      "object": "organization.admin_api_key",
+      "owner": {
+        "id": "sa_456",
+        "created_at": 1711471533,
+        "name": "My Service Account",
+        "object": "organization.user",
+        "role": "owner",
+        "type": "user"
+      },
+      "redacted_value": "sk-admin...def",
+      "last_used_at": 1711471534,
+      "name": "Administration Key"
+    }
+  },
+  "groups-create": {
+    "method": "POST",
+    "path": "/v1/organization/groups",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "group_type": "group",
+      "is_scim_managed": true,
+      "name": "name"
+    },
+    "body": {
+      "name": "value-name"
+    }
+  },
+  "groups-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/groups/group_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "deleted": true,
+      "object": "group.deleted"
+    }
+  },
+  "groups-list": {
+    "method": "GET",
+    "path": "/v1/organization/groups",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "created_at": 0,
+          "group_type": "group",
+          "is_scim_managed": true,
+          "name": "name"
+        }
+      ],
+      "has_more": true,
+      "next": "next",
+      "object": "list"
+    }
+  },
+  "groups-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/groups/group_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "group_type": "group",
+      "is_scim_managed": true,
+      "name": "name"
+    }
+  },
+  "groups-roles-create": {
+    "method": "POST",
+    "path": "/v1/organization/groups/group_fixture/roles",
+    "query": {},
+    "response": {
+      "group": {
+        "id": "id",
+        "created_at": 0,
+        "name": "name",
+        "object": "group",
+        "scim_managed": true
+      },
+      "object": "group.role",
+      "role": {
+        "id": "id",
+        "description": "description",
+        "name": "name",
+        "object": "role",
+        "permissions": [
+          "string"
+        ],
+        "predefined_role": true,
+        "resource_type": "resource_type"
+      }
+    },
+    "body": {
+      "role_id": "role_fixture"
+    }
+  },
+  "groups-roles-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/groups/group_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "deleted": true,
+      "object": "object"
+    }
+  },
+  "groups-roles-list": {
+    "method": "GET",
+    "path": "/v1/organization/groups/group_fixture/roles",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "assignment_sources": [
+            {
+              "principal_id": "principal_id",
+              "principal_type": "principal_type"
+            }
+          ],
+          "created_at": 0,
+          "created_by": "created_by",
+          "created_by_user_obj": {
+            "foo": "bar"
+          },
+          "description": "description",
+          "metadata": {
+            "foo": "bar"
+          },
+          "name": "name",
+          "permissions": [
+            "string"
+          ],
+          "predefined_role": true,
+          "resource_type": "resource_type",
+          "updated_at": 0
+        }
+      ],
+      "has_more": true,
+      "next": "next",
+      "object": "list"
+    }
+  },
+  "groups-roles-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/groups/group_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "assignment_sources": [
+        {
+          "principal_id": "principal_id",
+          "principal_type": "principal_type"
+        }
+      ],
+      "created_at": 0,
+      "created_by": "created_by",
+      "created_by_user_obj": {
+        "foo": "bar"
+      },
+      "description": "description",
+      "metadata": {
+        "foo": "bar"
+      },
+      "name": "name",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type",
+      "updated_at": 0
+    }
+  },
+  "groups-update": {
+    "method": "POST",
+    "path": "/v1/organization/groups/group_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "is_scim_managed": true,
+      "name": "name"
+    },
+    "body": {
+      "name": "value-name"
+    }
+  },
+  "groups-users-create": {
+    "method": "POST",
+    "path": "/v1/organization/groups/group_fixture/users",
+    "query": {},
+    "response": {
+      "group_id": "group_id",
+      "object": "group.user",
+      "user_id": "user_id"
+    },
+    "body": {
+      "user_id": "user_fixture"
+    }
+  },
+  "groups-users-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/groups/group_fixture/users/user_fixture",
+    "query": {},
+    "response": {
+      "deleted": true,
+      "object": "group.user.deleted"
+    }
+  },
+  "groups-users-list": {
+    "method": "GET",
+    "path": "/v1/organization/groups/group_fixture/users",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "email": "email",
+          "name": "name"
+        }
+      ],
+      "has_more": true,
+      "next": "next",
+      "object": "list"
+    }
+  },
+  "groups-users-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/groups/group_fixture/users/user_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "email": "email",
+      "is_service_account": true,
+      "name": "name",
+      "picture": "picture",
+      "user_type": "user"
+    }
+  },
+  "invites-create": {
+    "method": "POST",
+    "path": "/v1/organization/invites",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "email": "email",
+      "object": "organization.invite",
+      "projects": [
+        {
+          "id": "id",
+          "role": "member"
+        }
+      ],
+      "role": "owner",
+      "status": "accepted",
+      "accepted_at": 0,
+      "expires_at": 0
+    },
+    "body": {
+      "email": "member@example.test",
+      "role": "owner",
+      "projects": [
+        {
+          "id": "proj_fixture",
+          "role": "member"
+        }
+      ]
+    }
+  },
+  "invites-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/invites/invite_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "deleted": true,
+      "object": "organization.invite.deleted"
+    }
+  },
+  "invites-list": {
+    "method": "GET",
+    "path": "/v1/organization/invites",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "created_at": 0,
+          "email": "email",
+          "object": "organization.invite",
+          "projects": [
+            {
+              "id": "id",
+              "role": "member"
+            }
+          ],
+          "role": "owner",
+          "status": "accepted",
+          "accepted_at": 0,
+          "expires_at": 0
+        }
+      ],
+      "has_more": true,
+      "object": "list",
+      "first_id": "first_id",
+      "last_id": "last_id"
+    }
+  },
+  "invites-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/invites/invite_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "email": "email",
+      "object": "organization.invite",
+      "projects": [
+        {
+          "id": "id",
+          "role": "member"
+        }
+      ],
+      "role": "owner",
+      "status": "accepted",
+      "accepted_at": 0,
+      "expires_at": 0
+    }
+  },
+  "projects-api_keys-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/projects/project_fixture/api_keys/api_key_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "deleted": true,
+      "object": "organization.project.api_key.deleted"
+    }
+  },
+  "projects-api_keys-list": {
+    "method": "GET",
+    "path": "/v1/organization/projects/project_fixture/api_keys",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "owner_project_access": [
+        "inactive"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "created_at": 0,
+          "last_used_at": 0,
+          "name": "name",
+          "object": "organization.project.api_key",
+          "owner": {
+            "service_account": {
+              "id": "id",
+              "created_at": 0,
+              "name": "name",
+              "role": "role"
+            },
+            "type": "user",
+            "user": {
+              "id": "id",
+              "created_at": 0,
+              "email": "email",
+              "name": "name",
+              "role": "role"
+            }
+          },
+          "owner_project_access": "active",
+          "redacted_value": "redacted_value",
+          "expires_at": 0
+        }
+      ],
+      "has_more": true,
+      "object": "list",
+      "first_id": "first_id",
+      "last_id": "last_id"
+    }
+  },
+  "projects-api_keys-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/projects/project_fixture/api_keys/api_key_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "last_used_at": 0,
+      "name": "name",
+      "object": "organization.project.api_key",
+      "owner": {
+        "service_account": {
+          "id": "id",
+          "created_at": 0,
+          "name": "name",
+          "role": "role"
+        },
+        "type": "user",
+        "user": {
+          "id": "id",
+          "created_at": 0,
+          "email": "email",
+          "name": "name",
+          "role": "role"
+        }
+      },
+      "owner_project_access": "active",
+      "redacted_value": "redacted_value",
+      "expires_at": 0
+    }
+  },
+  "projects-api_keys-update": {
+    "method": "POST",
+    "path": "/v1/organization/projects/project_fixture/api_keys/api_key_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "last_used_at": 0,
+      "name": "name",
+      "object": "organization.project.api_key",
+      "owner": {
+        "service_account": {
+          "id": "id",
+          "created_at": 0,
+          "name": "name",
+          "role": "role"
+        },
+        "type": "user",
+        "user": {
+          "id": "id",
+          "created_at": 0,
+          "email": "email",
+          "name": "name",
+          "role": "role"
+        }
+      },
+      "owner_project_access": "active",
+      "redacted_value": "redacted_value",
+      "expires_at": 0
+    },
+    "body": {
+      "expires_in_seconds": 3600,
+      "scopes": []
+    }
+  },
+  "projects-archive": {
+    "method": "POST",
+    "path": "/v1/organization/projects/project_fixture/archive",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "object": "organization.project",
+      "archived_at": 0,
+      "external_key_id": "external_key_id",
+      "name": "name",
+      "residency": "GLOBAL",
+      "status": "status"
+    },
+    "body": {}
+  },
+  "projects-create": {
+    "method": "POST",
+    "path": "/v1/organization/projects",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "object": "organization.project",
+      "archived_at": 0,
+      "external_key_id": "external_key_id",
+      "name": "name",
+      "residency": "GLOBAL",
+      "status": "status"
+    },
+    "body": {
+      "name": "value-name",
+      "external_key_id": "external_key_fixture",
+      "geography": "value-geography",
+      "residency": "GLOBAL"
+    }
+  },
+  "projects-groups-create": {
+    "method": "POST",
+    "path": "/v1/organization/projects/project_fixture/groups",
+    "query": {},
+    "response": {
+      "created_at": 0,
+      "group_id": "group_id",
+      "group_name": "group_name",
+      "group_type": "group",
+      "object": "project.group",
+      "project_id": "project_id"
+    },
+    "body": {
+      "group_id": "group_fixture",
+      "role": "owner"
+    }
+  },
+  "projects-groups-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/projects/project_fixture/groups/group_fixture",
+    "query": {},
+    "response": {
+      "deleted": true,
+      "object": "project.group.deleted"
+    }
+  },
+  "projects-groups-list": {
+    "method": "GET",
+    "path": "/v1/organization/projects/project_fixture/groups",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "created_at": 0,
+          "group_id": "group_id",
+          "group_name": "group_name",
+          "group_type": "group",
+          "object": "project.group",
+          "project_id": "project_id"
+        }
+      ],
+      "has_more": true,
+      "next": "next",
+      "object": "list"
+    }
+  },
+  "projects-groups-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/projects/project_fixture/groups/group_fixture",
+    "query": {
+      "group_type": [
+        "tenant_group"
+      ]
+    },
+    "response": {
+      "created_at": 0,
+      "group_id": "group_id",
+      "group_name": "group_name",
+      "group_type": "group",
+      "object": "project.group",
+      "project_id": "project_id"
+    }
+  },
+  "projects-groups-roles-create": {
+    "method": "POST",
+    "path": "/v1/projects/project_fixture/groups/group_fixture/roles",
+    "query": {},
+    "response": {
+      "group": {
+        "id": "id",
+        "created_at": 0,
+        "name": "name",
+        "object": "group",
+        "scim_managed": true
+      },
+      "object": "group.role",
+      "role": {
+        "id": "id",
+        "description": "description",
+        "name": "name",
+        "object": "role",
+        "permissions": [
+          "string"
+        ],
+        "predefined_role": true,
+        "resource_type": "resource_type"
+      }
+    },
+    "body": {
+      "role_id": "role_fixture"
+    }
+  },
+  "projects-groups-roles-delete": {
+    "method": "DELETE",
+    "path": "/v1/projects/project_fixture/groups/group_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "deleted": true,
+      "object": "object"
+    }
+  },
+  "projects-groups-roles-list": {
+    "method": "GET",
+    "path": "/v1/projects/project_fixture/groups/group_fixture/roles",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "assignment_sources": [
+            {
+              "principal_id": "principal_id",
+              "principal_type": "principal_type"
+            }
+          ],
+          "created_at": 0,
+          "created_by": "created_by",
+          "created_by_user_obj": {
+            "foo": "bar"
+          },
+          "description": "description",
+          "metadata": {
+            "foo": "bar"
+          },
+          "name": "name",
+          "permissions": [
+            "string"
+          ],
+          "predefined_role": true,
+          "resource_type": "resource_type",
+          "updated_at": 0
+        }
+      ],
+      "has_more": true,
+      "next": "next",
+      "object": "list"
+    }
+  },
+  "projects-groups-roles-retrieve": {
+    "method": "GET",
+    "path": "/v1/projects/project_fixture/groups/group_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "assignment_sources": [
+        {
+          "principal_id": "principal_id",
+          "principal_type": "principal_type"
+        }
+      ],
+      "created_at": 0,
+      "created_by": "created_by",
+      "created_by_user_obj": {
+        "foo": "bar"
+      },
+      "description": "description",
+      "metadata": {
+        "foo": "bar"
+      },
+      "name": "name",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type",
+      "updated_at": 0
+    }
+  },
+  "projects-list": {
+    "method": "GET",
+    "path": "/v1/organization/projects",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "include_archived": [
+        "true"
+      ],
+      "limit": [
+        "2"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "created_at": 0,
+          "object": "organization.project",
+          "archived_at": 0,
+          "external_key_id": "external_key_id",
+          "name": "name",
+          "residency": "GLOBAL",
+          "status": "status"
+        }
+      ],
+      "has_more": true,
+      "object": "list",
+      "first_id": "first_id",
+      "last_id": "last_id"
+    }
+  },
+  "projects-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/projects/project_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "object": "organization.project",
+      "archived_at": 0,
+      "external_key_id": "external_key_id",
+      "name": "name",
+      "residency": "GLOBAL",
+      "status": "status"
+    }
+  },
+  "projects-roles-create": {
+    "method": "POST",
+    "path": "/v1/projects/project_fixture/roles",
+    "query": {},
+    "response": {
+      "id": "id",
+      "description": "description",
+      "name": "name",
+      "object": "role",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type"
+    },
+    "body": {
+      "permissions": [
+        "api.responses.read"
+      ],
+      "role_name": "value-role_name",
+      "description": "value-description"
+    }
+  },
+  "projects-roles-delete": {
+    "method": "DELETE",
+    "path": "/v1/projects/project_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "deleted": true,
+      "object": "role.deleted"
+    }
+  },
+  "projects-roles-list": {
+    "method": "GET",
+    "path": "/v1/projects/project_fixture/roles",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "description": "description",
+          "name": "name",
+          "object": "role",
+          "permissions": [
+            "string"
+          ],
+          "predefined_role": true,
+          "resource_type": "resource_type"
+        }
+      ],
+      "has_more": true,
+      "next": "next",
+      "object": "list"
+    }
+  },
+  "projects-roles-retrieve": {
+    "method": "GET",
+    "path": "/v1/projects/project_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "description": "description",
+      "name": "name",
+      "object": "role",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type"
+    }
+  },
+  "projects-roles-update": {
+    "method": "POST",
+    "path": "/v1/projects/project_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "description": "description",
+      "name": "name",
+      "object": "role",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type"
+    },
+    "body": {
+      "description": "value-description",
+      "permissions": [
+        "api.responses.read"
+      ],
+      "role_name": "value-role_name"
+    }
+  },
+  "projects-service_accounts-api_keys-create": {
+    "method": "POST",
+    "path": "/v1/organization/projects/project_fixture/service_accounts/service_account_fixture/api_keys",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "name": "name",
+      "object": "organization.project.service_account.api_key",
+      "value": "value",
+      "expires_at": 0
+    },
+    "body": {
+      "expires_in_seconds": 3600,
+      "name": "value-name",
+      "scopes": []
+    }
+  },
+  "projects-service_accounts-create": {
+    "method": "POST",
+    "path": "/v1/organization/projects/project_fixture/service_accounts",
+    "query": {},
+    "response": {
+      "id": "id",
+      "api_key": {
+        "id": "id",
+        "created_at": 0,
+        "name": "name",
+        "object": "organization.project.service_account.api_key",
+        "value": "value",
+        "expires_at": 0
+      },
+      "created_at": 0,
+      "name": "name",
+      "object": "organization.project.service_account",
+      "role": "member"
+    },
+    "body": {
+      "name": "value-name",
+      "create_service_account_only": false,
+      "expires_in_seconds": 3600
+    }
+  },
+  "projects-service_accounts-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/projects/project_fixture/service_accounts/service_account_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "deleted": true,
+      "object": "organization.project.service_account.deleted"
+    }
+  },
+  "projects-service_accounts-list": {
+    "method": "GET",
+    "path": "/v1/organization/projects/project_fixture/service_accounts",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "created_at": 0,
+          "name": "name",
+          "object": "organization.project.service_account",
+          "role": "owner"
+        }
+      ],
+      "has_more": true,
+      "object": "list",
+      "first_id": "first_id",
+      "last_id": "last_id"
+    }
+  },
+  "projects-service_accounts-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/projects/project_fixture/service_accounts/service_account_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "name": "name",
+      "object": "organization.project.service_account",
+      "role": "owner"
+    }
+  },
+  "projects-service_accounts-update": {
+    "method": "POST",
+    "path": "/v1/organization/projects/project_fixture/service_accounts/service_account_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "name": "name",
+      "object": "organization.project.service_account",
+      "role": "owner"
+    },
+    "body": {
+      "name": "value-name",
+      "role": "owner"
+    }
+  },
+  "projects-update": {
+    "method": "POST",
+    "path": "/v1/organization/projects/project_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "created_at": 0,
+      "object": "organization.project",
+      "archived_at": 0,
+      "external_key_id": "external_key_id",
+      "name": "name",
+      "residency": "GLOBAL",
+      "status": "status"
+    },
+    "body": {
+      "external_key_id": "external_key_fixture",
+      "geography": "value-geography",
+      "name": "value-name"
+    }
+  },
+  "projects-users-create": {
+    "method": "POST",
+    "path": "/v1/organization/projects/project_fixture/users",
+    "query": {},
+    "response": {
+      "id": "id",
+      "added_at": 0,
+      "object": "organization.project.user",
+      "role": "role",
+      "email": "email",
+      "name": "name"
+    },
+    "body": {
+      "role": "owner",
+      "email": "member@example.test",
+      "user_id": "user_fixture"
+    }
+  },
+  "projects-users-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/projects/project_fixture/users/user_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "deleted": true,
+      "object": "organization.project.user.deleted"
+    }
+  },
+  "projects-users-list": {
+    "method": "GET",
+    "path": "/v1/organization/projects/project_fixture/users",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "added_at": 0,
+          "object": "organization.project.user",
+          "role": "role",
+          "email": "email",
+          "name": "name"
+        }
+      ],
+      "has_more": true,
+      "object": "object",
+      "first_id": "first_id",
+      "last_id": "last_id"
+    }
+  },
+  "projects-users-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/projects/project_fixture/users/user_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "added_at": 0,
+      "object": "organization.project.user",
+      "role": "role",
+      "email": "email",
+      "name": "name"
+    }
+  },
+  "projects-users-roles-create": {
+    "method": "POST",
+    "path": "/v1/projects/project_fixture/users/user_fixture/roles",
+    "query": {},
+    "response": {
+      "object": "user.role",
+      "role": {
+        "id": "id",
+        "description": "description",
+        "name": "name",
+        "object": "role",
+        "permissions": [
+          "string"
+        ],
+        "predefined_role": true,
+        "resource_type": "resource_type"
+      },
+      "user": {
+        "id": "id",
+        "added_at": 0,
+        "object": "organization.user",
+        "api_key_last_used_at": 0,
+        "created": 0,
+        "developer_persona": "developer_persona",
+        "email": "email",
+        "is_default": true,
+        "is_scale_tier_authorized_purchaser": true,
+        "is_scim_managed": true,
+        "is_service_account": true,
+        "name": "name",
+        "projects": {
+          "data": [
+            {
+              "id": "id",
+              "name": "name",
+              "role": "role"
+            }
+          ],
+          "object": "list"
+        },
+        "role": "role",
+        "technical_level": "technical_level",
+        "user": {
+          "id": "id",
+          "object": "user",
+          "banned": true,
+          "banned_at": 0,
+          "email": "email",
+          "enabled": true,
+          "name": "name",
+          "picture": "picture"
+        }
+      }
+    },
+    "body": {
+      "role_id": "role_fixture"
+    }
+  },
+  "projects-users-roles-delete": {
+    "method": "DELETE",
+    "path": "/v1/projects/project_fixture/users/user_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "deleted": true,
+      "object": "object"
+    }
+  },
+  "projects-users-roles-list": {
+    "method": "GET",
+    "path": "/v1/projects/project_fixture/users/user_fixture/roles",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "assignment_sources": [
+            {
+              "principal_id": "principal_id",
+              "principal_type": "principal_type"
+            }
+          ],
+          "created_at": 0,
+          "created_by": "created_by",
+          "created_by_user_obj": {
+            "foo": "bar"
+          },
+          "description": "description",
+          "metadata": {
+            "foo": "bar"
+          },
+          "name": "name",
+          "permissions": [
+            "string"
+          ],
+          "predefined_role": true,
+          "resource_type": "resource_type",
+          "updated_at": 0
+        }
+      ],
+      "has_more": true,
+      "next": "next",
+      "object": "list"
+    }
+  },
+  "projects-users-roles-retrieve": {
+    "method": "GET",
+    "path": "/v1/projects/project_fixture/users/user_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "assignment_sources": [
+        {
+          "principal_id": "principal_id",
+          "principal_type": "principal_type"
+        }
+      ],
+      "created_at": 0,
+      "created_by": "created_by",
+      "created_by_user_obj": {
+        "foo": "bar"
+      },
+      "description": "description",
+      "metadata": {
+        "foo": "bar"
+      },
+      "name": "name",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type",
+      "updated_at": 0
+    }
+  },
+  "projects-users-update": {
+    "method": "POST",
+    "path": "/v1/organization/projects/project_fixture/users/user_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "added_at": 0,
+      "object": "organization.project.user",
+      "role": "role",
+      "email": "email",
+      "name": "name"
+    },
+    "body": {
+      "role": "owner"
+    }
+  },
+  "roles-create": {
+    "method": "POST",
+    "path": "/v1/organization/roles",
+    "query": {},
+    "response": {
+      "id": "id",
+      "description": "description",
+      "name": "name",
+      "object": "role",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type"
+    },
+    "body": {
+      "permissions": [
+        "api.responses.read"
+      ],
+      "role_name": "value-role_name",
+      "description": "value-description"
+    }
+  },
+  "roles-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "deleted": true,
+      "object": "role.deleted"
+    }
+  },
+  "roles-list": {
+    "method": "GET",
+    "path": "/v1/organization/roles",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "description": "description",
+          "name": "name",
+          "object": "role",
+          "permissions": [
+            "string"
+          ],
+          "predefined_role": true,
+          "resource_type": "resource_type"
+        }
+      ],
+      "has_more": true,
+      "next": "next",
+      "object": "list"
+    }
+  },
+  "roles-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "description": "description",
+      "name": "name",
+      "object": "role",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type"
+    }
+  },
+  "roles-update": {
+    "method": "POST",
+    "path": "/v1/organization/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "description": "description",
+      "name": "name",
+      "object": "role",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type"
+    },
+    "body": {
+      "description": "value-description",
+      "permissions": [
+        "api.responses.read"
+      ],
+      "role_name": "value-role_name"
+    }
+  },
+  "users-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/users/user_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "deleted": true,
+      "object": "organization.user.deleted"
+    }
+  },
+  "users-list": {
+    "method": "GET",
+    "path": "/v1/organization/users",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "emails[]": [
+        "one@example.test",
+        "two@example.test"
+      ],
+      "limit": [
+        "2"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "added_at": 0,
+          "object": "organization.user",
+          "api_key_last_used_at": 0,
+          "created": 0,
+          "developer_persona": "developer_persona",
+          "email": "email",
+          "is_default": true,
+          "is_scale_tier_authorized_purchaser": true,
+          "is_scim_managed": true,
+          "is_service_account": true,
+          "name": "name",
+          "projects": {
+            "data": [
+              {
+                "id": "id",
+                "name": "name",
+                "role": "role"
+              }
+            ],
+            "object": "list"
+          },
+          "role": "role",
+          "technical_level": "technical_level",
+          "user": {
+            "id": "id",
+            "object": "user",
+            "banned": true,
+            "banned_at": 0,
+            "email": "email",
+            "enabled": true,
+            "name": "name",
+            "picture": "picture"
+          }
+        }
+      ],
+      "has_more": true,
+      "object": "list",
+      "first_id": "first_id",
+      "last_id": "last_id"
+    }
+  },
+  "users-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/users/user_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "added_at": 0,
+      "object": "organization.user",
+      "api_key_last_used_at": 0,
+      "created": 0,
+      "developer_persona": "developer_persona",
+      "email": "email",
+      "is_default": true,
+      "is_scale_tier_authorized_purchaser": true,
+      "is_scim_managed": true,
+      "is_service_account": true,
+      "name": "name",
+      "projects": {
+        "data": [
+          {
+            "id": "id",
+            "name": "name",
+            "role": "role"
+          }
+        ],
+        "object": "list"
+      },
+      "role": "role",
+      "technical_level": "technical_level",
+      "user": {
+        "id": "id",
+        "object": "user",
+        "banned": true,
+        "banned_at": 0,
+        "email": "email",
+        "enabled": true,
+        "name": "name",
+        "picture": "picture"
+      }
+    }
+  },
+  "users-roles-create": {
+    "method": "POST",
+    "path": "/v1/organization/users/user_fixture/roles",
+    "query": {},
+    "response": {
+      "object": "user.role",
+      "role": {
+        "id": "id",
+        "description": "description",
+        "name": "name",
+        "object": "role",
+        "permissions": [
+          "string"
+        ],
+        "predefined_role": true,
+        "resource_type": "resource_type"
+      },
+      "user": {
+        "id": "id",
+        "added_at": 0,
+        "object": "organization.user",
+        "api_key_last_used_at": 0,
+        "created": 0,
+        "developer_persona": "developer_persona",
+        "email": "email",
+        "is_default": true,
+        "is_scale_tier_authorized_purchaser": true,
+        "is_scim_managed": true,
+        "is_service_account": true,
+        "name": "name",
+        "projects": {
+          "data": [
+            {
+              "id": "id",
+              "name": "name",
+              "role": "role"
+            }
+          ],
+          "object": "list"
+        },
+        "role": "role",
+        "technical_level": "technical_level",
+        "user": {
+          "id": "id",
+          "object": "user",
+          "banned": true,
+          "banned_at": 0,
+          "email": "email",
+          "enabled": true,
+          "name": "name",
+          "picture": "picture"
+        }
+      }
+    },
+    "body": {
+      "role_id": "role_fixture"
+    }
+  },
+  "users-roles-delete": {
+    "method": "DELETE",
+    "path": "/v1/organization/users/user_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "deleted": true,
+      "object": "object"
+    }
+  },
+  "users-roles-list": {
+    "method": "GET",
+    "path": "/v1/organization/users/user_fixture/roles",
+    "query": {
+      "after": [
+        "cursor"
+      ],
+      "limit": [
+        "2"
+      ],
+      "order": [
+        "desc"
+      ]
+    },
+    "response": {
+      "data": [
+        {
+          "id": "id",
+          "assignment_sources": [
+            {
+              "principal_id": "principal_id",
+              "principal_type": "principal_type"
+            }
+          ],
+          "created_at": 0,
+          "created_by": "created_by",
+          "created_by_user_obj": {
+            "foo": "bar"
+          },
+          "description": "description",
+          "metadata": {
+            "foo": "bar"
+          },
+          "name": "name",
+          "permissions": [
+            "string"
+          ],
+          "predefined_role": true,
+          "resource_type": "resource_type",
+          "updated_at": 0
+        }
+      ],
+      "has_more": true,
+      "next": "next",
+      "object": "list"
+    }
+  },
+  "users-roles-retrieve": {
+    "method": "GET",
+    "path": "/v1/organization/users/user_fixture/roles/role_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "assignment_sources": [
+        {
+          "principal_id": "principal_id",
+          "principal_type": "principal_type"
+        }
+      ],
+      "created_at": 0,
+      "created_by": "created_by",
+      "created_by_user_obj": {
+        "foo": "bar"
+      },
+      "description": "description",
+      "metadata": {
+        "foo": "bar"
+      },
+      "name": "name",
+      "permissions": [
+        "string"
+      ],
+      "predefined_role": true,
+      "resource_type": "resource_type",
+      "updated_at": 0
+    }
+  },
+  "users-update": {
+    "method": "POST",
+    "path": "/v1/organization/users/user_fixture",
+    "query": {},
+    "response": {
+      "id": "id",
+      "added_at": 0,
+      "object": "organization.user",
+      "api_key_last_used_at": 0,
+      "created": 0,
+      "developer_persona": "developer_persona",
+      "email": "email",
+      "is_default": true,
+      "is_scale_tier_authorized_purchaser": true,
+      "is_scim_managed": true,
+      "is_service_account": true,
+      "name": "name",
+      "projects": {
+        "data": [
+          {
+            "id": "id",
+            "name": "name",
+            "role": "role"
+          }
+        ],
+        "object": "list"
+      },
+      "role": "role",
+      "technical_level": "technical_level",
+      "user": {
+        "id": "id",
+        "object": "user",
+        "banned": true,
+        "banned_at": 0,
+        "email": "email",
+        "enabled": true,
+        "name": "name",
+        "picture": "picture"
+      }
+    },
+    "body": {
+      "developer_persona": "value-developer_persona",
+      "role": "owner",
+      "role_id": "role_fixture",
+      "technical_level": "value-technical_level"
+    }
+  }
+}

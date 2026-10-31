@@ -9,10 +9,10 @@ import com.aallam.openai.client.internal.JsonLenient
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class TestMessages : TestOpenAI() {
+class TestOfflineMessages {
 
     @Test
-    fun messages() = test {
+    fun messages() = legacyTest(*messageLifecycle()) {
         val thread = openAI.thread()
         val messageRequest = messageRequest {
             role = Role.User
@@ -42,7 +42,7 @@ class TestMessages : TestOpenAI() {
 
 
     @Test
-    fun json() = test {
+    fun json() {
         val json = """
             {
               "object": "list",
@@ -105,6 +105,6 @@ class TestMessages : TestOpenAI() {
             }
         """.trimIndent()
         val decoded = JsonLenient.decodeFromString<PaginatedList<Message>>(json)
-        println(decoded)
+        assertEquals(2, decoded.size)
     }
 }

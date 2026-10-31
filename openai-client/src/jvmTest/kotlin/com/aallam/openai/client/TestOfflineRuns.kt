@@ -21,7 +21,6 @@ import com.aallam.openai.api.thread.ThreadRequest
 import com.aallam.openai.client.extension.getData
 import com.aallam.openai.client.internal.JsonLenient
 import com.aallam.openai.client.internal.TestCleanup
-import com.aallam.openai.client.internal.reportUsage
 import com.aallam.openai.client.internal.withTestCleanup
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -35,10 +34,10 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-class TestRuns : TestOpenAI() {
+class TestOfflineRuns {
 
     @Test
-    fun runs() = test {
+    fun runs() = legacyTest(*runLifecycle()) {
         withTestCleanup {
             val assistant = openAI.assistant(
                 request = assistantRequest {
@@ -74,7 +73,7 @@ class TestRuns : TestOpenAI() {
     }
 
     @Test
-    fun streamingRuns() = test {
+    fun streamingRuns() = legacyTest(*runLifecycle(streaming = true)) {
         withTestCleanup {
             val assistant = openAI.assistant(
                 request = assistantRequest {
@@ -107,7 +106,6 @@ class TestRuns : TestOpenAI() {
             assertNotNull(runCompletedEvent)
 
             val run = runCompletedEvent.getData<Run>()
-            reportUsage("assistant-run", run.model, run.usage)
 
             assertEquals(thread.id, run.threadId)
 
@@ -120,7 +118,7 @@ class TestRuns : TestOpenAI() {
     }
 
     @Test
-    fun threadAndRuns() = test {
+    fun threadAndRuns() = legacyTest(*runLifecycle(combined = true)) {
         withTestCleanup {
             val assistant = openAI.assistant(
                 request = assistantRequest {
@@ -152,7 +150,7 @@ class TestRuns : TestOpenAI() {
     }
 
     @Test
-    fun streamingThreadAndRuns() = test {
+    fun streamingThreadAndRuns() = legacyTest(*runLifecycle(streaming = true, combined = true)) {
         withTestCleanup {
             val assistant = openAI.assistant(
                 request = assistantRequest {
@@ -184,7 +182,6 @@ class TestRuns : TestOpenAI() {
             assertNotNull(runCompletedEvent)
 
             val run = runCompletedEvent.getData<Run>()
-            reportUsage("assistant-run", run.model, run.usage)
 
             assertEquals(assistant.id, run.assistantId)
 
@@ -194,7 +191,7 @@ class TestRuns : TestOpenAI() {
     }
 
     @Test
-    fun json() = test {
+    fun json() {
         val json = """
             {
               "object": "list",
@@ -260,7 +257,7 @@ class TestRuns : TestOpenAI() {
             }
         """.trimIndent()
         val decoded = JsonLenient.decodeFromString<PaginatedList<RunStep>>(json)
-        println(decoded)
+        assertEquals(2, decoded.size)
     }
 }
 

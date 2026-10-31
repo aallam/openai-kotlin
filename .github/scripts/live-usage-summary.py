@@ -9,8 +9,8 @@ import sys
 import xml.etree.ElementTree as ET
 
 
-def summarize(results):
-    """Return measured counters from JUnit output, excluding other log content."""
+def summarize(*results):
+    """Return measured counters from JUnit directories, excluding other log content."""
     metrics = {
         "requests", "usage_received", "input_tokens", "output_tokens", "total_tokens",
         "cached_tokens", "cache_write_tokens", "reasoning_tokens",
@@ -19,7 +19,7 @@ def summarize(results):
     }
     totals = {}
     invalid = 0
-    reports = sorted(results.glob("TEST-*.xml"))
+    reports = sorted({report for directory in results for report in directory.glob("TEST-*.xml")})
     for report in reports:
         try:
             suite = ET.parse(report)
@@ -65,7 +65,8 @@ def summarize(results):
 
 
 if __name__ == "__main__":
-    summary = summarize(Path(sys.argv[1] if len(sys.argv) > 1 else "openai-client/build/test-results/jvmTest"))
+    results = [Path(path) for path in sys.argv[1:]] or [Path("openai-client/build/test-results/jvmTest")]
+    summary = summarize(*results)
     if destination := os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(destination, "a", encoding="utf-8") as output:
             output.write(summary)

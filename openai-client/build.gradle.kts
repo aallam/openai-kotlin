@@ -114,6 +114,7 @@ val liveTestsEnabled = providers.environmentVariable("OPENAI_LIVE_TESTS")
     .orElse(false)
 
 tasks.withType<KotlinJvmTest>().configureEach {
+    filter { excludeTestsMatching("*.TestOffline*") }
     onlyIf("Live API tests are disabled. Set OPENAI_LIVE_TESTS=1 to enable.") { liveTestsEnabled.get() }
 }
 

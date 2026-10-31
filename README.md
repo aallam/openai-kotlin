@@ -199,6 +199,8 @@ For common issues and their solutions, check the [Troubleshooting Guide](TROUBLE
 - Default (non-billable): live tests are disabled.
 - Opt-in live tests: set `OPENAI_LIVE_TESTS=1` and `OPENAI_API_KEY`.
 
+The JVM live suite excludes mocked offline fixtures. CI runs those once in Offline Checks, then runs the live suite plus the separate Live and Content Provenance tasks. Containers live tests remain opt-in for eligible projects.
+
 Examples:
 
 ```bash

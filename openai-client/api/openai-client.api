@@ -349,6 +349,29 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun webhookEndpoints (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public abstract interface class com/aallam/openai/client/OpenAIAdmin : com/aallam/openai/client/OrganizationUsage, java/lang/AutoCloseable {
+}
+
+public final class com/aallam/openai/client/OpenAIAdmin$DefaultImpls {
+	public static fun organizationAudioSpeechesUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationAudioTranscriptionsUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationCodeInterpreterSessionsUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationCompletionsUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationCosts (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationDecisionsUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationEmbeddingsUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationFileSearchCallsUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationImagesUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationModerationsUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationVectorStoresUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun organizationWebSearchCallsUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aallam/openai/client/OpenAIAdminKt {
+	public static final fun OpenAIAdmin (Lcom/aallam/openai/client/OpenAIConfig;)Lcom/aallam/openai/client/OpenAIAdmin;
+	public static final fun OpenAIAdmin (Ljava/lang/String;)Lcom/aallam/openai/client/OpenAIAdmin;
+}
+
 public final class com/aallam/openai/client/OpenAIConfig {
 	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;Lio/ktor/client/engine/HttpClientEngine;Lkotlin/jvm/functions/Function1;)V
 	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;Lio/ktor/client/engine/HttpClientEngine;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -383,6 +406,48 @@ public final class com/aallam/openai/client/OpenAIKt {
 	public static final fun OpenAI (Lcom/aallam/openai/client/OpenAIConfig;)Lcom/aallam/openai/client/OpenAI;
 	public static final fun OpenAI (Ljava/lang/String;Lcom/aallam/openai/client/LoggingConfig;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/client/OpenAI;
 	public static synthetic fun OpenAI$default (Ljava/lang/String;Lcom/aallam/openai/client/LoggingConfig;Lcom/aallam/openai/api/http/Timeout;Ljava/lang/String;Ljava/util/Map;Lcom/aallam/openai/client/OpenAIHost;Lcom/aallam/openai/client/ProxyConfig;Lcom/aallam/openai/client/RetryStrategy;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lcom/aallam/openai/client/OpenAI;
+}
+
+public abstract interface class com/aallam/openai/client/OrganizationUsage {
+	public abstract fun organizationAudioSpeechesUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationAudioTranscriptionsUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationCodeInterpreterSessionsUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationCompletionsUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationCosts (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationDecisionsUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationEmbeddingsUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationFileSearchCallsUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationImagesUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationModerationsUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationVectorStoresUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun organizationWebSearchCallsUsage (Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aallam/openai/client/OrganizationUsage$DefaultImpls {
+	public static fun organizationAudioSpeechesUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationAudioSpeechesUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationAudioTranscriptionsUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationAudioTranscriptionsUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationCodeInterpreterSessionsUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationCodeInterpreterSessionsUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationCompletionsUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationCompletionsUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationCosts (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationCosts$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationDecisionsUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationDecisionsUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationEmbeddingsUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationEmbeddingsUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationFileSearchCallsUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationFileSearchCallsUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationImagesUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationImagesUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationModerationsUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationModerationsUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationVectorStoresUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationVectorStoresUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun organizationWebSearchCallsUsage (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun organizationWebSearchCallsUsage$default (Lcom/aallam/openai/client/OrganizationUsage;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aallam/openai/client/ProxyConfig {

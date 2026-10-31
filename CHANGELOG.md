@@ -1,5 +1,34 @@
 ## Unreleased
 
+## 4.2.0
+
+New functionality is additive, with existing Kotlin source signatures retained. Binary compatibility is best effort; recompile consumers when upgrading. See the [migration guide](guides/Migration.md).
+
+### Added
+- **responses/conversations**: expanded request controls, tools and typed items; compaction, token counting, resumable SSE, WebSockets and persisted conversation management.
+- **chat**: current tool, audio/file, cache and usage controls, plus stored-completion and message access.
+- **images**: current GPT Image generation, editing, multi-image inputs, response metadata and incremental events.
+- **moderations/embeddings**: multimodal omni-moderation, token-ID embedding inputs and encoded embedding results.
+- **files/retrieval**: expiry and pagination controls, multipart uploads, vector search, file attributes/content and batch output expiry.
+- **audio**: modern transcription options and result metadata, diarization, custom voice references, and transcription/speech streaming.
+- **realtime/live**: scoped audio/tool WebSockets, credentials, translation, WebRTC/SIP signaling, Live sessions, sidebands, stored forks and recordings.
+- **decisions**: typed predicate, choice and score questions, multimodal evidence, conversation history, caching and usage.
+- **resources**: Containers, Skills and immutable versions, plus prompt/sample voice creation and consent management.
+- **administration**: separate `OpenAIAdmin` client for organization/project administration, governance, usage/cost reporting and spend controls.
+- **webhooks/safety**: project webhook management and HMAC verification, safety alerts/cases and content-provenance checks.
+- **fine-tuning**: pause/resume, checkpoint access and checkpoint-model permissions for eligible existing workflows.
+- **http**: response metadata observers exposing request IDs, rate-limit information and response headers without changing endpoint return types.
+
+### Fixed
+- **streaming**: preserve coroutine context across Ktor dispatchers and close connections correctly on cancellation or interrupted collection.
+- **authentication**: retain configured credentials after unauthorized responses and prevent authentication retries from replaying one-shot requests.
+- **resource uploads**: preserve binary bytes, disable automatic replay, and close sources on failure or cancellation for Containers, Skills, voices and provenance.
+- **serialization/errors**: correct Responses JSON-schema and nested Chat citation shapes, and retain API errors when response bodies or content-type headers are invalid.
+
+### Deprecated
+- Retired Assistants, Threads, Messages, Runs, Edits, Fine-tunes and DALL-E-only entry points now emit warning-level deprecations; existing declarations remain available.
+- Legacy Completions methods emit migration warnings. Independent Vector Store support and fine-tuned model deletion remain available.
+
 ## 4.1.0
 > Published 07 Feb 2026
 

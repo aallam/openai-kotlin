@@ -3,6 +3,7 @@ package com.aallam.openai.client
 import com.aallam.openai.api.batch.Batch
 import com.aallam.openai.api.batch.BatchId
 import com.aallam.openai.api.batch.BatchRequest
+import com.aallam.openai.api.batch.BatchCreateRequest
 import com.aallam.openai.api.core.RequestOptions
 
 /**
@@ -40,4 +41,8 @@ public interface Batch {
         limit: Int? = null,
         requestOptions: RequestOptions? = null
     ): List<Batch>
+    /** Creates a batch with optional expiration for its output and error files. */
+    public suspend fun createBatch(request: BatchCreateRequest, requestOptions: RequestOptions? = null): Batch =
+        throw UnsupportedOperationException("Batch output expiration is not supported by this implementation")
+
 }

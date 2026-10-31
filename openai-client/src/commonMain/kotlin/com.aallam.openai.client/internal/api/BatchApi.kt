@@ -2,6 +2,7 @@ package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.batch.BatchId
 import com.aallam.openai.api.batch.BatchRequest
+import com.aallam.openai.api.batch.BatchCreateRequest
 import com.aallam.openai.api.core.PaginatedList
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.exception.OpenAIAPIException
@@ -76,4 +77,13 @@ internal class BatchApi(val requester: HttpRequester) : Batch {
             }.body()
         }
     }
+    override suspend fun createBatch(request: BatchCreateRequest, requestOptions: RequestOptions?): BatchObject = requester.perform {
+        it.post {
+            url(path = ApiPath.Batches)
+            setBody(request)
+            contentType(ContentType.Application.Json)
+            requestOptions(requestOptions)
+        }.body()
+    }
+
 }

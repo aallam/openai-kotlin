@@ -16,7 +16,7 @@ public class ModerationRequest(
 
     /**
      * Moderation model.
-     * Defaults to [ModerationModel.Latest].
+     * When omitted, OpenAI selects its current default model.
      */
     @SerialName("model") public val model: ModerationModel? = null,
 )
@@ -39,7 +39,7 @@ public class ModerationRequestBuilder {
 
     /**
      * Moderation model.
-     * Defaults to [ModerationModel.Latest].
+     * When omitted, OpenAI selects its current default model.
      */
     public var model: ModerationModel? = null
 

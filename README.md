@@ -106,28 +106,37 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 ### Supported features
 
 - [Responses](guides/GettingStarted.md#responses)
+- [Conversations](guides/Conversations.md)
 - [Models](guides/GettingStarted.md#models)
 - [Chat](guides/GettingStarted.md#chat)
-- [Images](guides/GettingStarted.md#images)
+- [Images](guides/Images.md)
 - [Embeddings](guides/GettingStarted.md#embeddings)
 - [Files](guides/GettingStarted.md#files)
+- [Multipart uploads](guides/Uploads.md)
 - [Fine-tuning](guides/GettingStarted.md#fine-tuning)
 - [Moderations](guides/GettingStarted.md#moderations)
 - [Audio](guides/GettingStarted.md#audio)
 - [Batch](guides/GettingStarted.md#batch)
+- [Vector Stores](guides/GettingStarted.md#vector-stores)
+- [Webhooks](guides/Webhooks.md)
 
-#### Beta
+#### Retired upstream APIs
+
+The following interfaces remain available for existing consumers, but their OpenAI endpoints have shut down. See the [migration guide](guides/Migration.md).
 
 - [Assistants](guides/GettingStarted.md#assistants)
 - [Threads](guides/GettingStarted.md#threads)
 - [Messages](guides/GettingStarted.md#messages)
 - [Runs](guides/GettingStarted.md#runs)
-- [Vector Stores](guides/GettingStarted.md#vector-stores)
-
-#### Deprecated
-- [Completions](guides/GettingStarted.md#completions)
 - [Fine-tunes](guides/GettingStarted.md#fine-tunes)
 - [Edits](guides/GettingStarted.md#edits)
+
+Vector Stores remain independent of the retired Assistants endpoints.
+
+#### Legacy
+
+- [Completions](guides/GettingStarted.md#completions) is a legacy API; model availability is separate from endpoint support.
+
 
 *Looking for a tokenizer? Try [ktoken](https://github.com/aallam/ktoken), a Kotlin library for tokenizing text.*
 
@@ -138,7 +147,8 @@ Get started and understand more about how to use OpenAI API client for Kotlin wi
 - [Getting Started](guides/GettingStarted.md)
 - [Chat & Tool Calls](guides/ChatToolCalls.md)
 - [FileSource Guide](guides/FileSource.md)
-- [Assistants](guides/Assistants.md)
+- [API migration](guides/Migration.md)
+- [Archived Assistants guide](guides/Assistants.md)
 
 ## ℹ️ Sample apps
 

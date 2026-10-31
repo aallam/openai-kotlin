@@ -4,9 +4,11 @@ coroutines = "1.8.1"
 serialization = "1.7.3"
 ktor = "3.0.0"
 kotlinio = "0.5.4"
+kotlincrypto = "0.5.3"
 logback = "1.4.8"
 
 [libraries]
+crypto-hmac-sha2 = { module = "org.kotlincrypto.macs:hmac-sha2", version.ref = "kotlincrypto" }
 # Coroutines
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
@@ -20,6 +22,7 @@ ktor-client-curl = { group = "io.ktor", name = "ktor-client-curl", version.ref =
 ktor-client-auth = { group = "io.ktor", name = "ktor-client-auth", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-websockets = { group = "io.ktor", name = "ktor-client-websockets", version.ref = "ktor" }
 # Ktor engines
 ktor-client-apache = { group = "io.ktor", name = "ktor-client-apache", version.ref = "ktor" }
 ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }

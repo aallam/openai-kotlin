@@ -12,6 +12,12 @@ import kotlin.jvm.JvmInline
 public value class ImageSize(public val size: String) {
 
     public companion object {
+        /** Selects auto. */
+        public val Auto: ImageSize = ImageSize("auto")
+        /** Selects 1536x1024. */
+        public val is1536x1024: ImageSize = ImageSize("1536x1024")
+        /** Selects 1024x1536. */
+        public val is1024x1536: ImageSize = ImageSize("1024x1536")
 
         /**
          * Size image of dimension 256x256.

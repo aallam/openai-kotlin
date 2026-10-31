@@ -84,14 +84,19 @@ public class ImageCreationBuilder {
      */
     public var model: ModelId? = null
 
-    /**
-     * Creates the [ImageCreation] instance
-     */
+    /** Output quality for models supporting this option. */
+    public var quality: Quality? = null
+    /** Legacy style for supporting providers. */
+    public var style: Style? = null
+
+    /** Creates an image generation request. */
     public fun build(): ImageCreation = ImageCreation(
         prompt = requireNotNull(prompt),
         n = n,
         size = size,
         user = user,
         model = model,
+        quality = quality,
+        style = style,
     )
 }

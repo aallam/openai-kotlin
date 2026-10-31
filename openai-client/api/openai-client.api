@@ -124,6 +124,15 @@ public final class com/aallam/openai/client/Conversations$DefaultImpls {
 	public static synthetic fun updateConversation-ilotfys$default (Lcom/aallam/openai/client/Conversations;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationUpdateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
+public abstract interface class com/aallam/openai/client/Decisions {
+	public abstract fun decision (Lcom/aallam/openai/api/decision/DecisionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aallam/openai/client/Decisions$DefaultImpls {
+	public static fun decision (Lcom/aallam/openai/client/Decisions;Lcom/aallam/openai/api/decision/DecisionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun decision$default (Lcom/aallam/openai/client/Decisions;Lcom/aallam/openai/api/decision/DecisionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
 public abstract interface class com/aallam/openai/client/Edits {
 	public abstract fun edit (Lcom/aallam/openai/api/edits/EditsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -264,7 +273,7 @@ public final class com/aallam/openai/client/Moderations$DefaultImpls {
 	public static synthetic fun moderations$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/ModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Conversations, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Realtime, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/Uploads, com/aallam/openai/client/VectorStores, com/aallam/openai/client/Webhooks, java/lang/AutoCloseable {
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Conversations, com/aallam/openai/client/Decisions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Realtime, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Threads, com/aallam/openai/client/Uploads, com/aallam/openai/client/VectorStores, com/aallam/openai/client/Webhooks, java/lang/AutoCloseable {
 }
 
 public final class com/aallam/openai/client/OpenAI$DefaultImpls {
@@ -287,6 +296,7 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun createSpeech (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createVectorStoreFileBatch-PRrSv6s (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createVectorStoreResource (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun decision (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/decision/DecisionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun delete--uOxk4c (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteChatCompletion (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteConversationItem-ilotfys (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

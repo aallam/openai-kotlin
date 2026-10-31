@@ -5472,6 +5472,1161 @@ public final class com/aallam/openai/api/core/Usage$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/decision/Decision {
+	public static final field Companion Lcom/aallam/openai/api/decision/Decision$Companion;
+	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionUsage;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2-dImWWvg ()Ljava/lang/String;
+	public final fun component3 ()Lcom/aallam/openai/api/decision/DecisionUsage;
+	public final fun copy-Mih8ExA (Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionUsage;)Lcom/aallam/openai/api/decision/Decision;
+	public static synthetic fun copy-Mih8ExA$default (Lcom/aallam/openai/api/decision/Decision;Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionUsage;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/Decision;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAnswers ()Ljava/util/List;
+	public final fun getModel-dImWWvg ()Ljava/lang/String;
+	public final fun getUsage ()Lcom/aallam/openai/api/decision/DecisionUsage;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/Decision$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/Decision$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/Decision;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/Decision;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/Decision$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aallam/openai/api/decision/DecisionAnswer {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionAnswer$Companion;
+	public abstract fun getName ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/decision/DecisionAnswer$Choice : com/aallam/openai/api/decision/DecisionAnswer {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionAnswer$Choice$Companion;
+	public fun <init> (Lcom/aallam/openai/api/decision/DecisionValue;DLjava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/decision/DecisionValue;DLjava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/decision/DecisionValue;
+	public final fun component2 ()D
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Lcom/aallam/openai/api/decision/DecisionValue;DLjava/util/List;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionAnswer$Choice;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionAnswer$Choice;Lcom/aallam/openai/api/decision/DecisionValue;DLjava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionAnswer$Choice;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChoice ()Lcom/aallam/openai/api/decision/DecisionValue;
+	public final fun getConfidence ()D
+	public fun getName ()Ljava/lang/String;
+	public final fun getProbabilities ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionAnswer$Choice$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionAnswer$Choice$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionAnswer$Choice;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionAnswer$Choice;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionAnswer$Choice$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionAnswer$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionAnswer$Predicate : com/aallam/openai/api/decision/DecisionAnswer {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionAnswer$Predicate$Companion;
+	public fun <init> (DLjava/lang/String;)V
+	public synthetic fun <init> (DLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()D
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (DLjava/lang/String;)Lcom/aallam/openai/api/decision/DecisionAnswer$Predicate;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionAnswer$Predicate;DLjava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionAnswer$Predicate;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getName ()Ljava/lang/String;
+	public final fun getProbability ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionAnswer$Predicate$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionAnswer$Predicate$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionAnswer$Predicate;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionAnswer$Predicate;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionAnswer$Predicate$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionAnswer$Refusal : com/aallam/openai/api/decision/DecisionAnswer {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionAnswer$Refusal$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionAnswer$Refusal;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionAnswer$Refusal;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionAnswer$Refusal;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionAnswer$Refusal$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionAnswer$Refusal$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionAnswer$Refusal;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionAnswer$Refusal;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionAnswer$Refusal$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionAnswer$Score : com/aallam/openai/api/decision/DecisionAnswer {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionAnswer$Score$Companion;
+	public fun <init> (DDLjava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (DDLjava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()D
+	public final fun component2 ()D
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (DDLjava/util/List;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionAnswer$Score;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionAnswer$Score;DDLjava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionAnswer$Score;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getConfidence ()D
+	public fun getName ()Ljava/lang/String;
+	public final fun getProbabilities ()Ljava/util/List;
+	public final fun getScore ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionAnswer$Score$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionAnswer$Score$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionAnswer$Score;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionAnswer$Score;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionAnswer$Score$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionChoice {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionChoice$Companion;
+	public fun <init> (Lcom/aallam/openai/api/decision/DecisionValue;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/decision/DecisionValue;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/decision/DecisionValue;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lcom/aallam/openai/api/decision/DecisionValue;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionChoice;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionChoice;Lcom/aallam/openai/api/decision/DecisionValue;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionChoice;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getValue ()Lcom/aallam/openai/api/decision/DecisionValue;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionChoice$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionChoice$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionChoice;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionChoice;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionChoice$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionChoiceProbability {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionChoiceProbability$Companion;
+	public fun <init> (Lcom/aallam/openai/api/decision/DecisionValue;D)V
+	public final fun component1 ()Lcom/aallam/openai/api/decision/DecisionValue;
+	public final fun component2 ()D
+	public final fun copy (Lcom/aallam/openai/api/decision/DecisionValue;D)Lcom/aallam/openai/api/decision/DecisionChoiceProbability;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionChoiceProbability;Lcom/aallam/openai/api/decision/DecisionValue;DILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionChoiceProbability;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getProbability ()D
+	public final fun getValue ()Lcom/aallam/openai/api/decision/DecisionValue;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionChoiceProbability$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionChoiceProbability$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionChoiceProbability;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionChoiceProbability;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionChoiceProbability$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aallam/openai/api/decision/DecisionContent {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionContent$Companion;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContent$Parts : com/aallam/openai/api/decision/DecisionContent {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionContent$Parts$Companion;
+	public static final synthetic fun box-impl (Ljava/util/List;)Lcom/aallam/openai/api/decision/DecisionContent$Parts;
+	public static fun constructor-impl (Ljava/util/List;)Ljava/util/List;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/util/List;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/util/List;Ljava/util/List;)Z
+	public final fun getValue ()Ljava/util/List;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/util/List;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/util/List;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/util/List;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionContent$Parts$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionContent$Parts$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-bCsDgek (Lkotlinx/serialization/encoding/Decoder;)Ljava/util/List;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize-FeaBI-M (Lkotlinx/serialization/encoding/Encoder;Ljava/util/List;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContent$Parts$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContent$Text : com/aallam/openai/api/decision/DecisionContent {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionContent$Text$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionContent$Text;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionContent$Text$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionContent$Text$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-2Wz5O3s (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/String;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize-kNy9kJQ (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/String;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContent$Text$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aallam/openai/api/decision/DecisionContentPart {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionContentPart$Companion;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$InputImage : com/aallam/openai/api/decision/DecisionContentPart {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionContentPart$InputImage$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;)Lcom/aallam/openai/api/decision/DecisionContentPart$InputImage;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionContentPart$InputImage;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionContentPart$InputImage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDetail ()Ljava/lang/String;
+	public final fun getImageUrl ()Ljava/lang/String;
+	public final fun getPromptCacheBreakpoint ()Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionContentPart$InputImage$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionContentPart$InputImage$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionContentPart$InputImage;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionContentPart$InputImage;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$InputImage$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$InputJson : com/aallam/openai/api/decision/DecisionContentPart {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionContentPart$InputJson$Companion;
+	public fun <init> (Lkotlinx/serialization/json/JsonElement;)V
+	public final fun component1 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun copy (Lkotlinx/serialization/json/JsonElement;)Lcom/aallam/openai/api/decision/DecisionContentPart$InputJson;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionContentPart$InputJson;Lkotlinx/serialization/json/JsonElement;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionContentPart$InputJson;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Lkotlinx/serialization/json/JsonElement;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionContentPart$InputJson$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionContentPart$InputJson$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionContentPart$InputJson;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionContentPart$InputJson;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$InputJson$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$InputText : com/aallam/openai/api/decision/DecisionContentPart {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionContentPart$InputText$Companion;
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;
+	public final fun copy (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;)Lcom/aallam/openai/api/decision/DecisionContentPart$InputText;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionContentPart$InputText;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionContentPart$InputText;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPromptCacheBreakpoint ()Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionContentPart$InputText$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionContentPart$InputText$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionContentPart$InputText;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionContentPart$InputText;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$InputText$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$OutputText : com/aallam/openai/api/decision/DecisionContentPart {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionContentPart$OutputText$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionContentPart$OutputText;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionContentPart$OutputText;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionContentPart$OutputText;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionContentPart$OutputText$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionContentPart$OutputText$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionContentPart$OutputText;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionContentPart$OutputText;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$OutputText$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$Refusal : com/aallam/openai/api/decision/DecisionContentPart {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionContentPart$Refusal$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionContentPart$Refusal;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionContentPart$Refusal;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionContentPart$Refusal;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRefusal ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionContentPart$Refusal$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionContentPart$Refusal$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionContentPart$Refusal;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionContentPart$Refusal;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionContentPart$Refusal$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aallam/openai/api/decision/DecisionInput {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInput$Companion;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInput$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInput$Items : com/aallam/openai/api/decision/DecisionInput {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInput$Items$Companion;
+	public static final synthetic fun box-impl (Ljava/util/List;)Lcom/aallam/openai/api/decision/DecisionInput$Items;
+	public static fun constructor-impl (Ljava/util/List;)Ljava/util/List;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/util/List;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/util/List;Ljava/util/List;)Z
+	public final fun getValue ()Ljava/util/List;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/util/List;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/util/List;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/util/List;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionInput$Items$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionInput$Items$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-ejX2wI8 (Lkotlinx/serialization/encoding/Decoder;)Ljava/util/List;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize--MBd648 (Lkotlinx/serialization/encoding/Encoder;Ljava/util/List;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInput$Items$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInput$Text : com/aallam/openai/api/decision/DecisionInput {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInput$Text$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionInput$Text;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionInput$Text$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionInput$Text$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-9yo-Z6s (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/String;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize-c5rxXok (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/String;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInput$Text$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aallam/openai/api/decision/DecisionInputItem {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInputItem$Companion;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$CustomToolCall : com/aallam/openai/api/decision/DecisionInputItem {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCall$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCall;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCall;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCall;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCallId ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getInput ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getNamespace ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionInputItem$CustomToolCall$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCall$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCall;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCall;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$CustomToolCall$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput : com/aallam/openai/api/decision/DecisionInputItem {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput$Companion;
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCallId ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getOutput ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun getStatus ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$CustomToolCallOutput$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$FunctionCall : com/aallam/openai/api/decision/DecisionInputItem {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCall$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCall;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCall;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCall;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getArguments ()Ljava/lang/String;
+	public final fun getCallId ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getNamespace ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionInputItem$FunctionCall$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCall$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCall;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCall;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$FunctionCall$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput : com/aallam/openai/api/decision/DecisionInputItem {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput$Companion;
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCallId ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getOutput ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun getStatus ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$FunctionCallOutput$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$Message : com/aallam/openai/api/decision/DecisionInputItem {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInputItem$Message$Companion;
+	public fun <init> (Lcom/aallam/openai/api/decision/DecisionContent;Lcom/aallam/openai/api/decision/DecisionRole;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/decision/DecisionContent;Lcom/aallam/openai/api/decision/DecisionRole;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun component2 ()Lcom/aallam/openai/api/decision/DecisionRole;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Lcom/aallam/openai/api/decision/DecisionContent;Lcom/aallam/openai/api/decision/DecisionRole;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionInputItem$Message;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionInputItem$Message;Lcom/aallam/openai/api/decision/DecisionContent;Lcom/aallam/openai/api/decision/DecisionRole;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionInputItem$Message;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContent ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun getPhase ()Ljava/lang/String;
+	public final fun getRole ()Lcom/aallam/openai/api/decision/DecisionRole;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionInputItem$Message$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionInputItem$Message$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionInputItem$Message;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionInputItem$Message;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputItem$Message$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputTokensDetails {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionInputTokensDetails$Companion;
+	public fun <init> (II)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun copy (II)Lcom/aallam/openai/api/decision/DecisionInputTokensDetails;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionInputTokensDetails;IIILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionInputTokensDetails;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCacheWriteTokens ()I
+	public final fun getCachedTokens ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionInputTokensDetails$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionInputTokensDetails$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionInputTokensDetails;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionInputTokensDetails;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionInputTokensDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionOutputTokensDetails {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionOutputTokensDetails$Companion;
+	public fun <init> (I)V
+	public final fun component1 ()I
+	public final fun copy (I)Lcom/aallam/openai/api/decision/DecisionOutputTokensDetails;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionOutputTokensDetails;IILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionOutputTokensDetails;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReasoningTokens ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionOutputTokensDetails$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionOutputTokensDetails$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionOutputTokensDetails;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionOutputTokensDetails;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionOutputTokensDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionPromptCacheBreakpoint {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionPromptCacheBreakpoint$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionPromptCacheBreakpoint;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionPromptCacheBreakpoint$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionPromptCacheOptions {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMode ()Ljava/lang/String;
+	public final fun getTtl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionPromptCacheOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionPromptCacheOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aallam/openai/api/decision/DecisionQuestion {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionQuestion$Companion;
+	public abstract fun getInstructions ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public abstract fun getName ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/decision/DecisionQuestion$Choice : com/aallam/openai/api/decision/DecisionQuestion {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionQuestion$Choice$Companion;
+	public fun <init> (Lcom/aallam/openai/api/decision/DecisionContent;Ljava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/decision/DecisionContent;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Lcom/aallam/openai/api/decision/DecisionContent;Ljava/util/List;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionQuestion$Choice;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionQuestion$Choice;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionQuestion$Choice;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChoices ()Ljava/util/List;
+	public fun getInstructions ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionQuestion$Choice$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionQuestion$Choice$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionQuestion$Choice;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionQuestion$Choice;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionQuestion$Choice$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionQuestion$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionQuestion$Predicate : com/aallam/openai/api/decision/DecisionQuestion {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionQuestion$Predicate$Companion;
+	public fun <init> (Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionQuestion$Predicate;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionQuestion$Predicate;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionQuestion$Predicate;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getInstructions ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionQuestion$Predicate$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionQuestion$Predicate$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionQuestion$Predicate;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionQuestion$Predicate;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionQuestion$Predicate$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionQuestion$Score : com/aallam/openai/api/decision/DecisionQuestion {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionQuestion$Score$Companion;
+	public fun <init> (Lcom/aallam/openai/api/decision/DecisionContent;Ljava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/decision/DecisionContent;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Lcom/aallam/openai/api/decision/DecisionContent;Ljava/util/List;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionQuestion$Score;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionQuestion$Score;Lcom/aallam/openai/api/decision/DecisionContent;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionQuestion$Score;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getInstructions ()Lcom/aallam/openai/api/decision/DecisionContent;
+	public final fun getLevels ()Ljava/util/List;
+	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionQuestion$Score$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionQuestion$Score$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionQuestion$Score;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionQuestion$Score;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionQuestion$Score$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionRequest {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionRequest$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionInput;Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionInput;Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-dImWWvg ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/decision/DecisionInput;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy-OOj7GHE (Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionInput;Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionRequest;
+	public static synthetic fun copy-OOj7GHE$default (Lcom/aallam/openai/api/decision/DecisionRequest;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionInput;Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInput ()Lcom/aallam/openai/api/decision/DecisionInput;
+	public final fun getModel-dImWWvg ()Ljava/lang/String;
+	public final fun getPromptCacheKey ()Ljava/lang/String;
+	public final fun getPromptCacheOptions ()Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;
+	public final fun getQuestions ()Ljava/util/List;
+	public final fun getSafetyIdentifier ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/decision/DecisionRequest;
+	public final fun getInput ()Lcom/aallam/openai/api/decision/DecisionInput;
+	public final fun getModel-2N4Cwlw ()Ljava/lang/String;
+	public final fun getPromptCacheKey ()Ljava/lang/String;
+	public final fun getPromptCacheOptions ()Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;
+	public final fun getQuestions ()Ljava/util/List;
+	public final fun getSafetyIdentifier ()Ljava/lang/String;
+	public final fun setInput (Lcom/aallam/openai/api/decision/DecisionInput;)V
+	public final fun setModel-SZaPPug (Ljava/lang/String;)V
+	public final fun setPromptCacheKey (Ljava/lang/String;)V
+	public final fun setPromptCacheOptions (Lcom/aallam/openai/api/decision/DecisionPromptCacheOptions;)V
+	public final fun setQuestions (Ljava/util/List;)V
+	public final fun setSafetyIdentifier (Ljava/lang/String;)V
+}
+
+public final class com/aallam/openai/api/decision/DecisionRequestKt {
+	public static final fun decisionRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/decision/DecisionRequest;
+}
+
+public final class com/aallam/openai/api/decision/DecisionRole : java/lang/Enum {
+	public static final field Assistant Lcom/aallam/openai/api/decision/DecisionRole;
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionRole$Companion;
+	public static final field Developer Lcom/aallam/openai/api/decision/DecisionRole;
+	public static final field System Lcom/aallam/openai/api/decision/DecisionRole;
+	public static final field User Lcom/aallam/openai/api/decision/DecisionRole;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionRole;
+	public static fun values ()[Lcom/aallam/openai/api/decision/DecisionRole;
+}
+
+public final class com/aallam/openai/api/decision/DecisionRole$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionScoreLevel {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionScoreLevel$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionScoreLevel;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionScoreLevel;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionScoreLevel;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getLabel ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionScoreLevel$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionScoreLevel$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionScoreLevel;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionScoreLevel;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionScoreLevel$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionScoreProbability {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionScoreProbability$Companion;
+	public fun <init> (Ljava/lang/String;JD)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()D
+	public final fun copy (Ljava/lang/String;JD)Lcom/aallam/openai/api/decision/DecisionScoreProbability;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionScoreProbability;Ljava/lang/String;JDILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionScoreProbability;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLabel ()Ljava/lang/String;
+	public final fun getProbability ()D
+	public final fun getValue ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionScoreProbability$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionScoreProbability$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionScoreProbability;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionScoreProbability;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionScoreProbability$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionUsage {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionUsage$Companion;
+	public fun <init> (ILcom/aallam/openai/api/decision/DecisionInputTokensDetails;ILcom/aallam/openai/api/decision/DecisionOutputTokensDetails;I)V
+	public final fun component1 ()I
+	public final fun component2 ()Lcom/aallam/openai/api/decision/DecisionInputTokensDetails;
+	public final fun component3 ()I
+	public final fun component4 ()Lcom/aallam/openai/api/decision/DecisionOutputTokensDetails;
+	public final fun component5 ()I
+	public final fun copy (ILcom/aallam/openai/api/decision/DecisionInputTokensDetails;ILcom/aallam/openai/api/decision/DecisionOutputTokensDetails;I)Lcom/aallam/openai/api/decision/DecisionUsage;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/decision/DecisionUsage;ILcom/aallam/openai/api/decision/DecisionInputTokensDetails;ILcom/aallam/openai/api/decision/DecisionOutputTokensDetails;IILjava/lang/Object;)Lcom/aallam/openai/api/decision/DecisionUsage;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInputTokens ()I
+	public final fun getInputTokensDetails ()Lcom/aallam/openai/api/decision/DecisionInputTokensDetails;
+	public final fun getOutputTokens ()I
+	public final fun getOutputTokensDetails ()Lcom/aallam/openai/api/decision/DecisionOutputTokensDetails;
+	public final fun getTotalTokens ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionUsage$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionUsage$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/decision/DecisionUsage;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/decision/DecisionUsage;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionUsage$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aallam/openai/api/decision/DecisionValue {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionValue$Companion;
+}
+
+public final class com/aallam/openai/api/decision/DecisionValue$Boolean : com/aallam/openai/api/decision/DecisionValue {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionValue$Boolean$Companion;
+	public static final synthetic fun box-impl (Z)Lcom/aallam/openai/api/decision/DecisionValue$Boolean;
+	public static fun constructor-impl (Z)Z
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ZLjava/lang/Object;)Z
+	public static final fun equals-impl0 (ZZ)Z
+	public final fun getValue ()Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (Z)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Z)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Z
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionValue$Boolean$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionValue$Boolean$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-JUZYATs (Lkotlinx/serialization/encoding/Decoder;)Z
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize-c30-o74 (Lkotlinx/serialization/encoding/Encoder;Z)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionValue$Boolean$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionValue$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionValue$Text : com/aallam/openai/api/decision/DecisionValue {
+	public static final field Companion Lcom/aallam/openai/api/decision/DecisionValue$Text$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/aallam/openai/api/decision/DecisionValue$Text;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/decision/DecisionValue$Text$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/decision/DecisionValue$Text$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-_ptR1wA (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/String;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize-B9Y4vUg (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/String;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/decision/DecisionValue$Text$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/edits/Edit {
 	public static final field Companion Lcom/aallam/openai/api/edits/Edit$Companion;
 	public fun <init> (JLjava/util/List;Lcom/aallam/openai/api/core/Usage;)V

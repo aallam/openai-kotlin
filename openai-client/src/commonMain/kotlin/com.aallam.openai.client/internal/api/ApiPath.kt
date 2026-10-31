@@ -27,4 +27,5 @@ internal object ApiPath {
     const val Conversations = "conversations"
     const val Uploads = "uploads"
     const val WebhookEndpoints = "webhook_endpoints"
+    const val Decisions = "decisions"
 }

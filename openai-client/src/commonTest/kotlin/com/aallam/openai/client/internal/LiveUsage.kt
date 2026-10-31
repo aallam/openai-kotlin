@@ -1,6 +1,7 @@
 package com.aallam.openai.client.internal
 
 import com.aallam.openai.api.core.Usage
+import com.aallam.openai.api.decision.DecisionUsage
 import com.aallam.openai.api.image.ImageUsage
 import com.aallam.openai.api.model.ModelId
 import kotlinx.serialization.json.JsonObjectBuilder
@@ -37,6 +38,18 @@ internal fun reportAudioUsage(operation: String, model: ModelId, seconds: Double
 
 internal fun reportSpeechUsage(model: ModelId, characters: Int) {
     reportLiveUsage("speech", model) { put("characters", characters) }
+}
+
+internal fun reportDecisionUsage(model: ModelId, usage: DecisionUsage) {
+    reportLiveUsage("decisions", model) {
+        put("usage_received", 1)
+        put("input_tokens", usage.inputTokens)
+        put("output_tokens", usage.outputTokens)
+        put("total_tokens", usage.totalTokens)
+        put("cached_tokens", usage.inputTokensDetails.cachedTokens)
+        put("cache_write_tokens", usage.inputTokensDetails.cacheWriteTokens)
+        put("reasoning_tokens", usage.outputTokensDetails.reasoningTokens)
+    }
 }
 
 private fun reportLiveUsage(operation: String, model: ModelId, metrics: JsonObjectBuilder.() -> Unit) {

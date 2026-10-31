@@ -4,9 +4,11 @@ coroutines = "1.8.1"
 serialization = "1.7.3"
 ktor = "3.0.0"
 kotlinio = "0.5.4"
+kotlincrypto = "0.5.3"
 logback = "1.4.8"
 
 [libraries]
+crypto-hmac-sha2 = { module = "org.kotlincrypto.macs:hmac-sha2", version.ref = "kotlincrypto" }
 # Coroutines
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }

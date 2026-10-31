@@ -109,6 +109,7 @@ public data class ResponseReasoning(
  */
 @Serializable
 public data class ResponseText(
+    @Serializable(with = ResponseFormatSerializer::class)
     @SerialName("format") public val format: ChatResponseFormat? = null,
 )
 

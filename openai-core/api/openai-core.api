@@ -8994,6 +8994,332 @@ public final class com/aallam/openai/api/response/Response$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/response/ResponseAccessPrograms {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseAccessPrograms$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseAccessPrograms;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseAccessPrograms;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseAccessPrograms;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCyber ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseAccessPrograms$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseAccessPrograms$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseAccessPrograms;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseAccessPrograms;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseAccessPrograms$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseAnnotation {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseAnnotation$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/lang/Integer;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseAnnotation;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseAnnotation;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseAnnotation;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContainerId ()Ljava/lang/String;
+	public final fun getEndIndex ()Ljava/lang/Integer;
+	public final fun getFileId ()Ljava/lang/String;
+	public final fun getFilename ()Ljava/lang/String;
+	public final fun getIndex ()Ljava/lang/Integer;
+	public final fun getStartIndex ()Ljava/lang/Integer;
+	public final fun getText ()Ljava/lang/String;
+	public final fun getTitle ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseAnnotation$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseAnnotation$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseAnnotation;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseAnnotation;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseAnnotation$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseCacheBreakpoint {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseCacheBreakpoint$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMode ()Ljava/lang/String;
+	public final fun getTtl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseCacheBreakpoint$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseCacheBreakpoint$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseCacheBreakpoint$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseCompactRequest {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseCompactRequest$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-dImWWvg ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/response/ResponseInput;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4-6wzrAJU ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun copy--b3XzQE (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseCompactRequest;
+	public static synthetic fun copy--b3XzQE$default (Lcom/aallam/openai/api/response/ResponseCompactRequest;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseCompactRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInput ()Lcom/aallam/openai/api/response/ResponseInput;
+	public final fun getInstructions ()Ljava/lang/String;
+	public final fun getModel-dImWWvg ()Ljava/lang/String;
+	public final fun getPreviousResponseId-6wzrAJU ()Ljava/lang/String;
+	public final fun getPromptCacheKey ()Ljava/lang/String;
+	public final fun getPromptCacheOptions ()Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;
+	public final fun getServiceTier ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseCompactRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseCompactRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseCompactRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseCompactRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseCompactRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseCompaction {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseCompaction$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/Long;Lcom/aallam/openai/api/response/ResponseUsage;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/Long;Lcom/aallam/openai/api/response/ResponseUsage;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/Long;
+	public final fun component5 ()Lcom/aallam/openai/api/response/ResponseUsage;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/Long;Lcom/aallam/openai/api/response/ResponseUsage;)Lcom/aallam/openai/api/response/ResponseCompaction;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseCompaction;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/Long;Lcom/aallam/openai/api/response/ResponseUsage;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseCompaction;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()Ljava/lang/Long;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public final fun getOutput ()Ljava/util/List;
+	public final fun getUsage ()Lcom/aallam/openai/api/response/ResponseUsage;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseCompaction$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseCompaction$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseCompaction;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseCompaction;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseCompaction$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseContextManagement {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseContextManagement$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;)Lcom/aallam/openai/api/response/ResponseContextManagement;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseContextManagement;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseContextManagement;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCompactThreshold ()Ljava/lang/Integer;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseContextManagement$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseContextManagement$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseContextManagement;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseContextManagement;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseContextManagement$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseCreateRequest {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseCreateRequest$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/Map;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Ljava/lang/Boolean;Ljava/lang/Double;Lcom/aallam/openai/api/response/ResponseTextOptions;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Ljava/lang/Double;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Lcom/aallam/openai/api/response/ResponseModeration;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseStreamOptions;Ljava/lang/Integer;Lcom/aallam/openai/api/response/ResponseAccessPrograms;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/Map;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Ljava/lang/Boolean;Ljava/lang/Double;Lcom/aallam/openai/api/response/ResponseTextOptions;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Ljava/lang/Double;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Lcom/aallam/openai/api/response/ResponseModeration;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseStreamOptions;Ljava/lang/Integer;Lcom/aallam/openai/api/response/ResponseAccessPrograms;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-dImWWvg ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/Double;
+	public final fun component11 ()Lcom/aallam/openai/api/response/ResponseTextOptions;
+	public final fun component12 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component13 ()Ljava/util/List;
+	public final fun component14 ()Ljava/lang/Double;
+	public final fun component15 ()Ljava/lang/String;
+	public final fun component16 ()Ljava/lang/String;
+	public final fun component17 ()Ljava/lang/Boolean;
+	public final fun component18 ()Ljava/util/List;
+	public final fun component19 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/response/ResponseInput;
+	public final fun component20 ()Ljava/util/List;
+	public final fun component21 ()Ljava/lang/Integer;
+	public final fun component22 ()Lcom/aallam/openai/api/response/ResponseModeration;
+	public final fun component23 ()Ljava/lang/String;
+	public final fun component24 ()Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;
+	public final fun component25 ()Ljava/lang/String;
+	public final fun component26 ()Ljava/lang/String;
+	public final fun component27 ()Lcom/aallam/openai/api/response/ResponseStreamOptions;
+	public final fun component28 ()Ljava/lang/Integer;
+	public final fun component29 ()Lcom/aallam/openai/api/response/ResponseAccessPrograms;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/util/Map;
+	public final fun component6 ()Ljava/lang/Boolean;
+	public final fun component7-6wzrAJU ()Ljava/lang/String;
+	public final fun component8 ()Lcom/aallam/openai/api/response/ResponseReasoningOptions;
+	public final fun component9 ()Ljava/lang/Boolean;
+	public final fun copy-FSCLqzI (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/Map;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Ljava/lang/Boolean;Ljava/lang/Double;Lcom/aallam/openai/api/response/ResponseTextOptions;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Ljava/lang/Double;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Lcom/aallam/openai/api/response/ResponseModeration;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseStreamOptions;Ljava/lang/Integer;Lcom/aallam/openai/api/response/ResponseAccessPrograms;)Lcom/aallam/openai/api/response/ResponseCreateRequest;
+	public static synthetic fun copy-FSCLqzI$default (Lcom/aallam/openai/api/response/ResponseCreateRequest;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/Map;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Ljava/lang/Boolean;Ljava/lang/Double;Lcom/aallam/openai/api/response/ResponseTextOptions;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Ljava/lang/Double;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Lcom/aallam/openai/api/response/ResponseModeration;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseStreamOptions;Ljava/lang/Integer;Lcom/aallam/openai/api/response/ResponseAccessPrograms;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseCreateRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAccessPrograms ()Lcom/aallam/openai/api/response/ResponseAccessPrograms;
+	public final fun getBackground ()Ljava/lang/Boolean;
+	public final fun getContextManagement ()Ljava/util/List;
+	public final fun getConversation ()Ljava/lang/String;
+	public final fun getInclude ()Ljava/util/List;
+	public final fun getInput ()Lcom/aallam/openai/api/response/ResponseInput;
+	public final fun getInstructions ()Ljava/lang/String;
+	public final fun getMaxOutputTokens ()Ljava/lang/Integer;
+	public final fun getMaxToolCalls ()Ljava/lang/Integer;
+	public final fun getMetadata ()Ljava/util/Map;
+	public final fun getModel-dImWWvg ()Ljava/lang/String;
+	public final fun getModeration ()Lcom/aallam/openai/api/response/ResponseModeration;
+	public final fun getParallelToolCalls ()Ljava/lang/Boolean;
+	public final fun getPreviousResponseId-6wzrAJU ()Ljava/lang/String;
+	public final fun getPromptCacheKey ()Ljava/lang/String;
+	public final fun getPromptCacheOptions ()Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;
+	public final fun getReasoning ()Lcom/aallam/openai/api/response/ResponseReasoningOptions;
+	public final fun getSafetyIdentifier ()Ljava/lang/String;
+	public final fun getServiceTier ()Ljava/lang/String;
+	public final fun getStore ()Ljava/lang/Boolean;
+	public final fun getStreamOptions ()Lcom/aallam/openai/api/response/ResponseStreamOptions;
+	public final fun getTemperature ()Ljava/lang/Double;
+	public final fun getText ()Lcom/aallam/openai/api/response/ResponseTextOptions;
+	public final fun getToolChoice ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getTools ()Ljava/util/List;
+	public final fun getTopLogprobs ()Ljava/lang/Integer;
+	public final fun getTopP ()Ljava/lang/Double;
+	public final fun getTruncation ()Ljava/lang/String;
+	public final fun getUser ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseCreateRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseCreateRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseCreateRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseCreateRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseCreateRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseHybridSearch {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseHybridSearch$Companion;
+	public fun <init> (DD)V
+	public final fun component1 ()D
+	public final fun component2 ()D
+	public final fun copy (DD)Lcom/aallam/openai/api/response/ResponseHybridSearch;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseHybridSearch;DDILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseHybridSearch;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEmbeddingWeight ()D
+	public final fun getTextWeight ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseHybridSearch$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseHybridSearch$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseHybridSearch;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseHybridSearch;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseHybridSearch$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/response/ResponseId {
 	public static final field Companion Lcom/aallam/openai/api/response/ResponseId$Companion;
 	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseId;
@@ -9024,6 +9350,37 @@ public final class com/aallam/openai/api/response/ResponseId$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/response/ResponseImageMask {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseImageMask$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseImageMask;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseImageMask;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseImageMask;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFileId ()Ljava/lang/String;
+	public final fun getImageUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseImageMask$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseImageMask$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseImageMask;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseImageMask;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseImageMask$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/response/ResponseInput {
 	public static final field Companion Lcom/aallam/openai/api/response/ResponseInput$Companion;
 	public fun <init> (Ljava/lang/String;)V
@@ -9049,6 +9406,115 @@ public final class com/aallam/openai/api/response/ResponseInput$Serializer : kot
 	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseInput;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aallam/openai/api/response/ResponseInputContent {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseInputContent$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;)Lcom/aallam/openai/api/response/ResponseInputContent;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseInputContent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseInputContent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDetail ()Ljava/lang/String;
+	public final fun getFileData ()Ljava/lang/String;
+	public final fun getFileId ()Ljava/lang/String;
+	public final fun getFileUrl ()Ljava/lang/String;
+	public final fun getFilename ()Ljava/lang/String;
+	public final fun getImageUrl ()Ljava/lang/String;
+	public final fun getPromptCacheBreakpoint ()Lcom/aallam/openai/api/response/ResponseCacheBreakpoint;
+	public final fun getText ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseInputContent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseInputContent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseInputContent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseInputContent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseInputContent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseInputEntry {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseInputEntry$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/lang/String;
+	public final fun component14 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component15 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component16 ()Ljava/lang/String;
+	public final fun component17 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/Boolean;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lcom/aallam/openai/api/response/ResponseInputEntry;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseInputEntry;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseInputEntry;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAction ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getApprovalRequestId ()Ljava/lang/String;
+	public final fun getApprove ()Ljava/lang/Boolean;
+	public final fun getArguments ()Ljava/lang/String;
+	public final fun getCallId ()Ljava/lang/String;
+	public final fun getContent ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getEncryptedContent ()Ljava/lang/String;
+	public final fun getError ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOutput ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getResult ()Ljava/lang/String;
+	public final fun getRole ()Ljava/lang/String;
+	public final fun getServerLabel ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public final fun getSummary ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseInputEntry$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseInputEntry$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseInputEntry;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseInputEntry;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseInputEntry$Companion {
+	public final fun message (Ljava/lang/String;Ljava/util/List;)Lcom/aallam/openai/api/response/ResponseInputEntry;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseInputEntryKt {
+	public static final fun responseInput (Ljava/util/List;)Lcom/aallam/openai/api/response/ResponseInput;
 }
 
 public final class com/aallam/openai/api/response/ResponseInputItem {
@@ -9114,6 +9580,95 @@ public synthetic class com/aallam/openai/api/response/ResponseInputTokensDetails
 }
 
 public final class com/aallam/openai/api/response/ResponseInputTokensDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseModeration {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseModeration$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseModerationPolicy;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseModerationPolicy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/response/ResponseModerationPolicy;
+	public final fun copy (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseModerationPolicy;)Lcom/aallam/openai/api/response/ResponseModeration;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseModeration;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseModerationPolicy;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseModeration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getModel ()Ljava/lang/String;
+	public final fun getPolicy ()Lcom/aallam/openai/api/response/ResponseModerationPolicy;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseModeration$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseModeration$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseModeration;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseModeration;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseModeration$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseModerationMode {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseModerationMode$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseModerationMode;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseModerationMode;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseModerationMode;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseModerationMode$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseModerationMode$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseModerationMode;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseModerationMode;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseModerationMode$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseModerationPolicy {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseModerationPolicy$Companion;
+	public fun <init> ()V
+	public fun <init> (Lcom/aallam/openai/api/response/ResponseModerationMode;Lcom/aallam/openai/api/response/ResponseModerationMode;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/response/ResponseModerationMode;Lcom/aallam/openai/api/response/ResponseModerationMode;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/response/ResponseModerationMode;
+	public final fun component2 ()Lcom/aallam/openai/api/response/ResponseModerationMode;
+	public final fun copy (Lcom/aallam/openai/api/response/ResponseModerationMode;Lcom/aallam/openai/api/response/ResponseModerationMode;)Lcom/aallam/openai/api/response/ResponseModerationPolicy;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseModerationPolicy;Lcom/aallam/openai/api/response/ResponseModerationMode;Lcom/aallam/openai/api/response/ResponseModerationMode;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseModerationPolicy;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInput ()Lcom/aallam/openai/api/response/ResponseModerationMode;
+	public final fun getOutput ()Lcom/aallam/openai/api/response/ResponseModerationMode;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseModerationPolicy$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseModerationPolicy$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseModerationPolicy;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseModerationPolicy;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseModerationPolicy$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -9230,6 +9785,74 @@ public final class com/aallam/openai/api/response/ResponseOutputTokensDetails$Co
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/response/ResponsePromptCacheOptions {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponsePromptCacheOptions$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Boolean;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getComparisonResponseId ()Ljava/lang/String;
+	public final fun getMode ()Ljava/lang/String;
+	public final fun getPrewarm ()Ljava/lang/Boolean;
+	public final fun getTtl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponsePromptCacheOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponsePromptCacheOptions$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponsePromptCacheOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseRankingOptions {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseRankingOptions$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Double;Lcom/aallam/openai/api/response/ResponseHybridSearch;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Double;Lcom/aallam/openai/api/response/ResponseHybridSearch;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Double;
+	public final fun component3 ()Lcom/aallam/openai/api/response/ResponseHybridSearch;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Double;Lcom/aallam/openai/api/response/ResponseHybridSearch;)Lcom/aallam/openai/api/response/ResponseRankingOptions;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseRankingOptions;Ljava/lang/String;Ljava/lang/Double;Lcom/aallam/openai/api/response/ResponseHybridSearch;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseRankingOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHybridSearch ()Lcom/aallam/openai/api/response/ResponseHybridSearch;
+	public final fun getRanker ()Ljava/lang/String;
+	public final fun getScoreThreshold ()Ljava/lang/Double;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseRankingOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseRankingOptions$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseRankingOptions;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseRankingOptions;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseRankingOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/response/ResponseReasoning {
 	public static final field Companion Lcom/aallam/openai/api/response/ResponseReasoning$Companion;
 	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -9255,6 +9878,40 @@ public synthetic class com/aallam/openai/api/response/ResponseReasoning$$seriali
 }
 
 public final class com/aallam/openai/api/response/ResponseReasoning$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseReasoningOptions {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseReasoningOptions$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-PzHPT0U ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy-nGhd5i0 (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseReasoningOptions;
+	public static synthetic fun copy-nGhd5i0$default (Lcom/aallam/openai/api/response/ResponseReasoningOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseReasoningOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContext ()Ljava/lang/String;
+	public final fun getEffort-PzHPT0U ()Ljava/lang/String;
+	public final fun getMode ()Ljava/lang/String;
+	public final fun getSummary ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseReasoningOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseReasoningOptions$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseReasoningOptions;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseReasoningOptions;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseReasoningOptions$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -9316,6 +9973,258 @@ public final class com/aallam/openai/api/response/ResponseRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/response/ResponseResult {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseResult$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lcom/aallam/openai/api/exception/OpenAIErrorDetails;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Ljava/lang/Boolean;Ljava/lang/Double;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Double;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseUsage;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/util/List;Lcom/aallam/openai/api/response/ResponseAccessPrograms;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonObject;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lcom/aallam/openai/api/exception/OpenAIErrorDetails;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Ljava/lang/Boolean;Ljava/lang/Double;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Double;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseUsage;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/util/List;Lcom/aallam/openai/api/response/ResponseAccessPrograms;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonObject;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-hqYc-xU ()Ljava/lang/String;
+	public final fun component10 ()Ljava/util/List;
+	public final fun component11 ()Ljava/lang/Boolean;
+	public final fun component12-6wzrAJU ()Ljava/lang/String;
+	public final fun component13 ()Lcom/aallam/openai/api/response/ResponseReasoningOptions;
+	public final fun component14 ()Ljava/lang/Boolean;
+	public final fun component15 ()Ljava/lang/Double;
+	public final fun component16 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component17 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component18 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component19 ()Ljava/lang/Double;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()Ljava/lang/String;
+	public final fun component21 ()Lcom/aallam/openai/api/response/ResponseUsage;
+	public final fun component22 ()Ljava/lang/String;
+	public final fun component23 ()Ljava/util/Map;
+	public final fun component24 ()Ljava/lang/String;
+	public final fun component25 ()Ljava/lang/Boolean;
+	public final fun component26 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component27 ()Ljava/lang/String;
+	public final fun component28 ()Ljava/lang/Long;
+	public final fun component29 ()Ljava/lang/Integer;
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun component30 ()Ljava/lang/String;
+	public final fun component31 ()Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;
+	public final fun component32 ()Ljava/util/List;
+	public final fun component33 ()Lcom/aallam/openai/api/response/ResponseAccessPrograms;
+	public final fun component34 ()Ljava/lang/String;
+	public final fun component35 ()Ljava/lang/Integer;
+	public final fun component36 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component37 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lcom/aallam/openai/api/exception/OpenAIErrorDetails;
+	public final fun component6 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/Integer;
+	public final fun component9-2N4Cwlw ()Ljava/lang/String;
+	public final fun copy-0kOuYWY (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lcom/aallam/openai/api/exception/OpenAIErrorDetails;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Ljava/lang/Boolean;Ljava/lang/Double;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Double;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseUsage;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/util/List;Lcom/aallam/openai/api/response/ResponseAccessPrograms;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonObject;)Lcom/aallam/openai/api/response/ResponseResult;
+	public static synthetic fun copy-0kOuYWY$default (Lcom/aallam/openai/api/response/ResponseResult;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lcom/aallam/openai/api/exception/OpenAIErrorDetails;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Ljava/lang/Boolean;Ljava/lang/Double;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Double;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseUsage;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;Ljava/util/List;Lcom/aallam/openai/api/response/ResponseAccessPrograms;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonObject;IILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAccessPrograms ()Lcom/aallam/openai/api/response/ResponseAccessPrograms;
+	public final fun getBackground ()Ljava/lang/Boolean;
+	public final fun getCompletedAt ()Ljava/lang/Long;
+	public final fun getContextManagement ()Ljava/util/List;
+	public final fun getConversation ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getCreatedAt ()Ljava/lang/Long;
+	public final fun getError ()Lcom/aallam/openai/api/exception/OpenAIErrorDetails;
+	public final fun getId-hqYc-xU ()Ljava/lang/String;
+	public final fun getIncompleteDetails ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getInstructions ()Ljava/lang/String;
+	public final fun getMaxOutputTokens ()Ljava/lang/Integer;
+	public final fun getMaxToolCalls ()Ljava/lang/Integer;
+	public final fun getMetadata ()Ljava/util/Map;
+	public final fun getModel-2N4Cwlw ()Ljava/lang/String;
+	public final fun getModeration ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getObjectType ()Ljava/lang/String;
+	public final fun getOutput ()Ljava/util/List;
+	public final fun getOutputText ()Ljava/lang/String;
+	public final fun getParallelToolCalls ()Ljava/lang/Boolean;
+	public final fun getPreviousResponseId-6wzrAJU ()Ljava/lang/String;
+	public final fun getPromptCacheKey ()Ljava/lang/String;
+	public final fun getPromptCacheOptions ()Lcom/aallam/openai/api/response/ResponsePromptCacheOptions;
+	public final fun getRawData ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getReasoning ()Lcom/aallam/openai/api/response/ResponseReasoningOptions;
+	public final fun getSafetyIdentifier ()Ljava/lang/String;
+	public final fun getServiceTier ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public final fun getStore ()Ljava/lang/Boolean;
+	public final fun getTemperature ()Ljava/lang/Double;
+	public final fun getText ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getToolChoice ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getTools ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getTopLogprobs ()Ljava/lang/Integer;
+	public final fun getTopP ()Ljava/lang/Double;
+	public final fun getTruncation ()Ljava/lang/String;
+	public final fun getUsage ()Lcom/aallam/openai/api/response/ResponseUsage;
+	public final fun getUser ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/response/ResponseResult$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseResultContent {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseResultContent$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lcom/aallam/openai/api/response/ResponseResultContent;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseResultContent;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseResultContent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAnnotations ()Ljava/util/List;
+	public final fun getLogprobs ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getReasoning ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getReasoningContent ()Ljava/lang/String;
+	public final fun getRefusal ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseResultContent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseResultContent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseResultContent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseResultContent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseResultContent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseResultItem {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseResultItem$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component14 ()Ljava/lang/String;
+	public final fun component15 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component16 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component17 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component18 ()Ljava/util/List;
+	public final fun component19 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()Ljava/lang/String;
+	public final fun component21 ()Ljava/lang/String;
+	public final fun component22 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lcom/aallam/openai/api/response/ResponseResultItem;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseResultItem;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseResultItem;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAction ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getApprovalRequestId ()Ljava/lang/String;
+	public final fun getArguments ()Ljava/lang/String;
+	public final fun getCallId ()Ljava/lang/String;
+	public final fun getCode ()Ljava/lang/String;
+	public final fun getContainerId ()Ljava/lang/String;
+	public final fun getContent ()Ljava/util/List;
+	public final fun getEncryptedContent ()Ljava/lang/String;
+	public final fun getError ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOutput ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getOutputs ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getQueries ()Ljava/util/List;
+	public final fun getResult ()Ljava/lang/String;
+	public final fun getResults ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getRole ()Ljava/lang/String;
+	public final fun getServerLabel ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public final fun getSummary ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getTools ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseResultItem$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseResultItem$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseResultItem;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseResultItem;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseResultItem$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseStreamEvent {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseStreamEvent$Companion;
+	public fun <init> (Lkotlinx/serialization/json/JsonObject;)V
+	public final fun component1 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun copy (Lkotlinx/serialization/json/JsonObject;)Lcom/aallam/openai/api/response/ResponseStreamEvent;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseStreamEvent;Lkotlinx/serialization/json/JsonObject;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseStreamEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getDelta ()Ljava/lang/String;
+	public final fun getItem ()Lcom/aallam/openai/api/response/ResponseResultItem;
+	public final fun getResponse ()Lcom/aallam/openai/api/response/ResponseResult;
+	public final fun getSequenceNumber ()Ljava/lang/Integer;
+	public final fun getStreamId ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/response/ResponseStreamEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseStreamOptions {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseStreamOptions$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/Boolean;)Lcom/aallam/openai/api/response/ResponseStreamOptions;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseStreamOptions;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseStreamOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getIncludeObfuscation ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseStreamOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseStreamOptions$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseStreamOptions;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseStreamOptions;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseStreamOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/response/ResponseText {
 	public static final field Companion Lcom/aallam/openai/api/response/ResponseText$Companion;
 	public fun <init> ()V
@@ -9342,6 +10251,117 @@ public synthetic class com/aallam/openai/api/response/ResponseText$$serializer :
 }
 
 public final class com/aallam/openai/api/response/ResponseText$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseTextOptions {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseTextOptions$Companion;
+	public fun <init> ()V
+	public fun <init> (Lcom/aallam/openai/api/chat/ChatResponseFormat;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/chat/ChatResponseFormat;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/chat/ChatResponseFormat;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lcom/aallam/openai/api/chat/ChatResponseFormat;Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseTextOptions;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseTextOptions;Lcom/aallam/openai/api/chat/ChatResponseFormat;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseTextOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFormat ()Lcom/aallam/openai/api/chat/ChatResponseFormat;
+	public final fun getVerbosity ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseTextOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseTextOptions$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseTextOptions;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseTextOptions;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseTextOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseTokenCount {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseTokenCount$Companion;
+	public fun <init> (ILjava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (ILjava/lang/String;)Lcom/aallam/openai/api/response/ResponseTokenCount;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/response/ResponseTokenCount;ILjava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseTokenCount;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInputTokens ()I
+	public final fun getObjectType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseTokenCount$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseTokenCount$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseTokenCount;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseTokenCount;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseTokenCount$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseTokenCountRequest {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseTokenCountRequest$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Lcom/aallam/openai/api/response/ResponseTextOptions;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Lcom/aallam/openai/api/response/ResponseTextOptions;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-2N4Cwlw ()Ljava/lang/String;
+	public final fun component10 ()Ljava/util/List;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/response/ResponseInput;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5-6wzrAJU ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/Boolean;
+	public final fun component7 ()Lcom/aallam/openai/api/response/ResponseReasoningOptions;
+	public final fun component8 ()Lcom/aallam/openai/api/response/ResponseTextOptions;
+	public final fun component9 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun copy-kJ-q0ac (Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Lcom/aallam/openai/api/response/ResponseTextOptions;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/response/ResponseTokenCountRequest;
+	public static synthetic fun copy-kJ-q0ac$default (Lcom/aallam/openai/api/response/ResponseTokenCountRequest;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseInput;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lcom/aallam/openai/api/response/ResponseReasoningOptions;Lcom/aallam/openai/api/response/ResponseTextOptions;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseTokenCountRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getConversation ()Ljava/lang/String;
+	public final fun getInput ()Lcom/aallam/openai/api/response/ResponseInput;
+	public final fun getInstructions ()Ljava/lang/String;
+	public final fun getModel-2N4Cwlw ()Ljava/lang/String;
+	public final fun getParallelToolCalls ()Ljava/lang/Boolean;
+	public final fun getPersonality ()Ljava/lang/String;
+	public final fun getPreviousResponseId-6wzrAJU ()Ljava/lang/String;
+	public final fun getReasoning ()Lcom/aallam/openai/api/response/ResponseReasoningOptions;
+	public final fun getText ()Lcom/aallam/openai/api/response/ResponseTextOptions;
+	public final fun getToolChoice ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getTools ()Ljava/util/List;
+	public final fun getTruncation ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseTokenCountRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseTokenCountRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseTokenCountRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseTokenCountRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseTokenCountRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -9382,6 +10402,120 @@ public synthetic class com/aallam/openai/api/response/ResponseTool$$serializer :
 }
 
 public final class com/aallam/openai/api/response/ResponseTool$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseToolDefinition {
+	public static final field Companion Lcom/aallam/openai/api/response/ResponseToolDefinition$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/Parameters;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/chat/UserLocation;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Lcom/aallam/openai/api/response/ResponseRankingOptions;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseImageMask;Ljava/util/List;Ljava/lang/String;Ljava/util/List;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/Parameters;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/chat/UserLocation;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Lcom/aallam/openai/api/response/ResponseRankingOptions;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseImageMask;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Lcom/aallam/openai/api/response/ResponseRankingOptions;
+	public final fun component11 ()Ljava/lang/Integer;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/lang/String;
+	public final fun component14 ()Ljava/lang/String;
+	public final fun component15 ()Ljava/lang/String;
+	public final fun component16 ()Ljava/util/Map;
+	public final fun component17 ()Ljava/lang/String;
+	public final fun component18 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component19 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component21 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component22 ()Ljava/lang/String;
+	public final fun component23 ()Ljava/lang/String;
+	public final fun component24 ()Ljava/lang/String;
+	public final fun component25 ()Ljava/lang/String;
+	public final fun component26 ()Ljava/lang/Integer;
+	public final fun component27 ()Ljava/lang/Integer;
+	public final fun component28 ()Ljava/lang/String;
+	public final fun component29 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component30 ()Ljava/util/List;
+	public final fun component31 ()Ljava/lang/Boolean;
+	public final fun component32 ()Ljava/lang/Boolean;
+	public final fun component33 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component34 ()Ljava/lang/Integer;
+	public final fun component35 ()Ljava/lang/Integer;
+	public final fun component36 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component37 ()Ljava/lang/Boolean;
+	public final fun component38 ()Ljava/lang/String;
+	public final fun component39 ()Ljava/lang/String;
+	public final fun component4 ()Lcom/aallam/openai/api/core/Parameters;
+	public final fun component40 ()Ljava/lang/String;
+	public final fun component41 ()Lcom/aallam/openai/api/response/ResponseImageMask;
+	public final fun component42 ()Ljava/util/List;
+	public final fun component43 ()Ljava/lang/String;
+	public final fun component44 ()Ljava/util/List;
+	public final fun component5 ()Ljava/lang/Boolean;
+	public final fun component6-P_uztvI ()Ljava/lang/String;
+	public final fun component7 ()Lcom/aallam/openai/api/chat/UserLocation;
+	public final fun component8 ()Ljava/util/List;
+	public final fun component9 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun copy-apWrsS8 (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/Parameters;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/chat/UserLocation;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Lcom/aallam/openai/api/response/ResponseRankingOptions;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseImageMask;Ljava/util/List;Ljava/lang/String;Ljava/util/List;)Lcom/aallam/openai/api/response/ResponseToolDefinition;
+	public static synthetic fun copy-apWrsS8$default (Lcom/aallam/openai/api/response/ResponseToolDefinition;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/Parameters;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/chat/UserLocation;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Lcom/aallam/openai/api/response/ResponseRankingOptions;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Integer;Ljava/lang/Integer;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseImageMask;Ljava/util/List;Ljava/lang/String;Ljava/util/List;IILjava/lang/Object;)Lcom/aallam/openai/api/response/ResponseToolDefinition;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAction ()Ljava/lang/String;
+	public final fun getAllowedCallers ()Ljava/util/List;
+	public final fun getAllowedTools ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getAsync ()Ljava/lang/Boolean;
+	public final fun getAuthorization ()Ljava/lang/String;
+	public final fun getBackground ()Ljava/lang/String;
+	public final fun getConnectorId ()Ljava/lang/String;
+	public final fun getContainer ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getDeferLoading ()Ljava/lang/Boolean;
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getDisplayHeight ()Ljava/lang/Integer;
+	public final fun getDisplayWidth ()Ljava/lang/Integer;
+	public final fun getEnvironment ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getExecution ()Ljava/lang/String;
+	public final fun getExternalWebAccess ()Ljava/lang/Boolean;
+	public final fun getFilters ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getFormat ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getHeaders ()Ljava/util/Map;
+	public final fun getInputFidelity ()Ljava/lang/String;
+	public final fun getInputImageMask ()Lcom/aallam/openai/api/response/ResponseImageMask;
+	public final fun getMaxNumResults ()Ljava/lang/Integer;
+	public final fun getModel ()Ljava/lang/String;
+	public final fun getModeration ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOutputCompression ()Ljava/lang/Integer;
+	public final fun getOutputFormat ()Ljava/lang/String;
+	public final fun getOutputSchema ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getParameters ()Lcom/aallam/openai/api/core/Parameters;
+	public final fun getPartialImages ()Ljava/lang/Integer;
+	public final fun getQuality ()Ljava/lang/String;
+	public final fun getRankingOptions ()Lcom/aallam/openai/api/response/ResponseRankingOptions;
+	public final fun getRequireApproval ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getSearchContentTypes ()Ljava/util/List;
+	public final fun getSearchContextSize-P_uztvI ()Ljava/lang/String;
+	public final fun getServerDescription ()Ljava/lang/String;
+	public final fun getServerLabel ()Ljava/lang/String;
+	public final fun getServerUrl ()Ljava/lang/String;
+	public final fun getSize ()Ljava/lang/String;
+	public final fun getStrict ()Ljava/lang/Boolean;
+	public final fun getTools ()Ljava/util/List;
+	public final fun getTunnelId ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public final fun getUserLocation ()Lcom/aallam/openai/api/chat/UserLocation;
+	public final fun getVectorStoreIds ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/response/ResponseToolDefinition$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/response/ResponseToolDefinition$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/response/ResponseToolDefinition;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/response/ResponseToolDefinition;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/response/ResponseToolDefinition$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 

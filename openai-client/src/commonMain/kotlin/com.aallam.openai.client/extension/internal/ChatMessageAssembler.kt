@@ -9,6 +9,7 @@ internal class ChatMessageAssembler {
     private val chatFuncName = StringBuilder()
     private val chatFuncArgs = StringBuilder()
     private val chatContent = StringBuilder()
+    private val reasoningText = StringBuilder()
     private var chatRole: ChatRole? = null
     private val toolCallsAssemblers = mutableMapOf<Int, ToolCallAssembler>()
     private var chatContentFilterOffsets = mutableListOf<ContentFilterOffsets>()
@@ -21,6 +22,7 @@ internal class ChatMessageAssembler {
         chunk.delta?.run {
             role?.let { chatRole = it }
             content?.let { chatContent.append(it) }
+            reasoningContent?.let { reasoningText.append(it) }
             functionCall?.let { call ->
                 call.nameOrNull?.let { chatFuncName.append(it) }
                 call.argumentsOrNull?.let { chatFuncArgs.append(it) }
@@ -47,6 +49,7 @@ internal class ChatMessageAssembler {
     fun build(): ChatMessage = chatMessage {
         this.role = chatRole
         this.content = chatContent.toString()
+        if (reasoningText.isNotEmpty()) this.reasoningContent = reasoningText.toString()
         this.contentFilterOffsets = chatContentFilterOffsets
         this.contentFilterResults = chatContentFilterResults
         if (chatFuncName.isNotEmpty() || chatFuncArgs.isNotEmpty()) {

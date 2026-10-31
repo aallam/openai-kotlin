@@ -20,7 +20,7 @@ import kotlin.test.assertFalse
 class TestOfflineWebSocketTransport {
     @Test
     fun configuredBasePathPortAndQuerySurviveHandshakeAndSocketCloses() = runTest {
-        val server = ServerSocket(0, 1, InetAddress.getLoopbackAddress()).apply { soTimeout = 5000 }
+        val server = ServerSocket(0, 1, InetAddress.getByName("127.0.0.1")).apply { soTimeout = 5000 }
         val failure = AtomicReference<Throwable?>()
         val worker = thread(isDaemon = true) {
             try {

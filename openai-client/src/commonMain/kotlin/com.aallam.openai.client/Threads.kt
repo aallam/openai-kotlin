@@ -10,6 +10,7 @@ import com.aallam.openai.api.thread.ThreadRequest
  * Create threads that assistants can interact with.
  */
 @BetaOpenAI
+@Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
 public interface Threads {
 
     /**
@@ -19,6 +20,7 @@ public interface Threads {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun thread(request: ThreadRequest? = null, requestOptions: RequestOptions? = null): Thread
 
     /**
@@ -28,6 +30,7 @@ public interface Threads {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun thread(id: ThreadId, requestOptions: RequestOptions? = null): Thread?
 
     /**
@@ -40,6 +43,7 @@ public interface Threads {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun thread(
         id: ThreadId,
         metadata: Map<String, String>,
@@ -53,5 +57,6 @@ public interface Threads {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun delete(id: ThreadId, requestOptions: RequestOptions? = null): Boolean
 }

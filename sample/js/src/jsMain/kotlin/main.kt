@@ -1,13 +1,17 @@
-import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.audio.TranscriptionRequest
 import com.aallam.openai.api.audio.TranslationRequest
 import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
 import com.aallam.openai.api.chat.ChatRole
-import com.aallam.openai.api.completion.CompletionRequest
 import com.aallam.openai.api.file.FileSource
-import com.aallam.openai.api.image.ImageCreation
-import com.aallam.openai.api.image.ImageEdit
+import com.aallam.openai.api.file.FileUpload
+import com.aallam.openai.api.file.Purpose
+import com.aallam.openai.api.image.ImageGenerationRequest
+import com.aallam.openai.api.image.ImageEditRequest
+import com.aallam.openai.api.image.ImageReference
+import com.aallam.openai.api.image.ImageResponse
+import com.aallam.openai.api.image.ImageOutputFormat
+import com.aallam.openai.api.image.Quality
 import com.aallam.openai.api.image.ImageSize
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.model.ModelId
@@ -19,11 +23,17 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.io.files.Path
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlin.coroutines.coroutineContext
 
 suspend fun main() {
     val apiKey = js("process.env.OPENAI_API_KEY").unsafeCast<String?>()
     val token = requireNotNull(apiKey) { "OPENAI_API_KEY environment variable must be set." }
+    val configuredModel = js("process.env.OPENAI_MODEL").unsafeCast<String?>()
+    val model = ModelId(requireNotNull(configuredModel) { "OPENAI_MODEL must name a supported Chat model." })
+    val configuredImageModel = js("process.env.OPENAI_IMAGE_MODEL").unsafeCast<String?>()
+    val imageModel = ModelId(configuredImageModel ?: "gpt-image-2.5-sunburst")
     val openAI = OpenAI(token = token, logging = LoggingConfig(LogLevel.Info))
     val scope = CoroutineScope(coroutineContext)
 
@@ -31,8 +41,8 @@ suspend fun main() {
     openAI.models().forEach(::println)
 
     println("\n> Getting model...")
-    val ada = openAI.model(modelId = ModelId("gpt-3.5-turbo"))
-    println(ada)
+    val selectedModel = openAI.model(modelId = model)
+    println(selectedModel)
 
     println("\n> Read files...")
     val files = openAI.files()
@@ -46,30 +56,46 @@ suspend fun main() {
     )
     println(moderation)
 
-    println("\n> Create images...")
-    val images = openAI.imageURL(
-        creation = ImageCreation(
+    println("\n> Generate an image...")
+    val generated = openAI.image(
+        ImageGenerationRequest(
             prompt = "A cute baby sea otter",
-            n = 2,
-            size = ImageSize.is1024x1024
+            model = imageModel,
+            n = 1,
+            size = ImageSize.is1024x1024,
+            quality = Quality.Low,
+            outputFormat = ImageOutputFormat.Png,
         )
     )
-    println(images)
+    printImageMetadata(generated)
 
-    println("\n> Edit images...")
-    val imageEdit = ImageEdit(
-        image = FileSource(path = Path("kotlin","image.png")),
-        mask = FileSource(path = Path("kotlin","mask.png")),
-        prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
-        n = 1,
-        size = ImageSize.is1024x1024,
+    println("\n> Edit an uploaded image...")
+    val input = openAI.file(
+        FileUpload(
+            file = FileSource(path = Path("kotlin", "image.png")),
+            purpose = Purpose("vision"),
+        )
     )
-    val imageEdits = openAI.imageURL(imageEdit)
-    println(imageEdits)
+    try {
+        val edited = openAI.image(
+            ImageEditRequest(
+                images = listOf(ImageReference.file(input.id)),
+                model = imageModel,
+                prompt = "Add a flamingo floating in the pool",
+                n = 1,
+                size = ImageSize.is1024x1024,
+                quality = Quality.Low,
+                outputFormat = ImageOutputFormat.Png,
+            )
+        )
+        printImageMetadata(edited)
+    } finally {
+        openAI.delete(input.id)
+    }
 
     println("\n> Create chat completions...")
     val chatCompletionRequest = ChatCompletionRequest(
-        model = ModelId("gpt-3.5-turbo"),
+        model = model,
         messages = listOf(
             ChatMessage(
                 role = ChatRole.System,
@@ -98,11 +124,20 @@ suspend fun main() {
     val transcription = openAI.transcription(transcriptionRequest)
     println(transcription)
 
-    println("\n>️ Create translation...")
+    println("\n> Legacy audio translation (scheduled retirement: 2027-02-26)...")
     val translationRequest = TranslationRequest(
         audio = FileSource(path = Path("kotlin", "multilingual.wav")),
         model = ModelId("whisper-1"),
     )
     val translation = openAI.translation(translationRequest)
     println(translation)
+}
+
+@OptIn(ExperimentalEncodingApi::class)
+private fun printImageMetadata(response: ImageResponse) {
+    println("Created ${response.data.size} image(s); size=${response.size?.size}, tokens=${response.usage?.totalTokens}")
+    response.data.forEachIndexed { index, image ->
+        val bytes = Base64.decode(image.b64JSON)
+        println("Image ${index + 1}: ${bytes.size} decoded PNG bytes")
+    }
 }

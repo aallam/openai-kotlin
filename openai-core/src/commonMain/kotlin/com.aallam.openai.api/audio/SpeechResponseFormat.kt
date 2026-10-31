@@ -7,6 +7,10 @@ import kotlin.jvm.JvmInline
 @JvmInline
 public value class SpeechResponseFormat(public val value: String) {
     public companion object {
+        /** WAV audio output. */
+        public val Wav: SpeechResponseFormat = SpeechResponseFormat("wav")
+        /** Raw PCM audio output. */
+        public val Pcm: SpeechResponseFormat = SpeechResponseFormat("pcm")
         public val Mp3: SpeechResponseFormat = SpeechResponseFormat("mp3")
         public val Opus: SpeechResponseFormat = SpeechResponseFormat("opus")
         public val Aac: SpeechResponseFormat = SpeechResponseFormat("aac")

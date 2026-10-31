@@ -39,4 +39,6 @@ internal class OpenAIApi(
     Skills by SkillsApi(requester),
     VoiceManagement by VoiceManagementApi(requester),
     Live by LiveApi(requester),
+    Safety by SafetyApi(requester),
+    ContentProvenance by ContentProvenanceApi(requester),
     AutoCloseable by requester

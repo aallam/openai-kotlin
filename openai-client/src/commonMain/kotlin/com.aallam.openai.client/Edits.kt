@@ -11,6 +11,6 @@ public interface Edits {
     /**
      * Creates a new edit for the provided input, instruction, and parameters.
      */
-    @Deprecated("Edits is deprecated. Chat completions is the recommend replacement.")
+    @Deprecated("OpenAI retired the Edits endpoint on January 4, 2024. Use Responses or Chat Completions.")
     public suspend fun edit(request: EditsRequest): Edit
 }

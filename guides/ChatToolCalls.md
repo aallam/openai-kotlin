@@ -122,3 +122,56 @@ private fun MutableList<ChatMessage>.append(toolCall: ToolCall.Function, functio
 - Validate tool call arguments before executing external side effects.
 - Add user confirmation for actions with real-world impact.
 - Keep the tool list small and specific for better model behavior.
+
+## Request controls and stored completions
+
+Advanced Chat options expose metadata, parallel-tool selection, safety identifiers,
+service tiers, cache options, prediction and audio configuration. Parameter support depends
+on the selected model. The request builder also forwards `seed`:
+
+```kotlin
+val request = chatCompletionRequest {
+    model = modelId
+    messages = listOf(ChatMessage.Developer("Answer briefly"), ChatMessage.User("Hello"))
+    store = true
+    seed = 42
+}
+val options = ChatCompletionOptions(metadata = mapOf("purpose" to "example"), parallelToolCalls = false)
+val response = openAI.createChatCompletion(request, options)
+val stored = openAI.storedChatCompletion(response.id)
+val page = openAI.storedChatCompletions(ChatCompletionListQuery(limit = 20))
+val messages = openAI.chatCompletionMessages(response.id)
+openAI.updateChatCompletion(response.id, ChatCompletionUpdate(mapOf("purpose" to "updated")))
+openAI.deleteChatCompletion(response.id)
+```
+
+Stored completion and message lists preserve `hasMore`, `firstId`, and `lastId`.
+Use the last ID as the next `after` cursor. Retrieval returns `null` for a missing
+completion; deletion returns `false`.
+
+`ChatUsage.promptTokensDetails` exposes cached/audio input counts, while
+`completionTokensDetails` exposes reasoning/audio and accepted/rejected prediction
+counts. Chat URL citation fields are under `annotation.urlCitation`; Responses URL
+citations retain their flat fields.
+
+Advanced function tools support `ChatFunctionDefinition.strict`. Existing request tool lists retain
+their `List<Tool>` type.
+
+For file/audio inputs or custom tools, pass `ChatCompletionOptions` alongside the
+original request to `createChatCompletion`. This method returns `ChatCompletionResult`, which includes
+custom tool calls without changing the original sealed tool-call hierarchy:
+
+```kotlin
+val options = ChatCompletionOptions(
+    messages = listOf(ChatInputMessage(ChatRole.User, ChatInputParts(listOf(
+        ChatInputPart.File(ChatInputFile(fileId = "file_123"))
+    )))),
+    tools = listOf(CustomTool(CustomToolDefinition("calculate"))),
+)
+val result = openAI.createChatCompletion(request, options)
+```
+
+The options replace the corresponding messages, tools or tool choice in the
+original request. `streamChatCompletions` returns the same richer result envelope
+with incremental `choices[].delta`; callers assemble custom-tool input fragments
+by call index. Existing methods and `List<Tool>` request properties are unchanged.

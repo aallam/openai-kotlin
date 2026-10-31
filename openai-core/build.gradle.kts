@@ -26,6 +26,7 @@ kotlin {
                 api(libs.kotlinx.io.core)
                 api(libs.serialization.json)
                 implementation(libs.serialization.core)
+                implementation(libs.crypto.hmac.sha2)
             }
         }
         val commonTest by getting {

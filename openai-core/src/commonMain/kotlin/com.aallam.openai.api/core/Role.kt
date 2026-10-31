@@ -10,6 +10,8 @@ import kotlin.jvm.JvmInline
 @Serializable
 public value class Role(public val role: String) {
     public companion object {
+        /** Developer instructions for current models. */
+        public val Developer: Role = Role("developer")
         public val System: Role = Role("system")
         public val User: Role = Role("user")
         public val Assistant: Role = Role("assistant")

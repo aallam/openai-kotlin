@@ -14,7 +14,7 @@ public class TranscriptionRequest(
     public val audio: FileSource,
     /**
      * ID of the model to use.
-     * Only `whisper-1` is currently available.
+     * Model support depends on the requested format and options.
      */
     public val model: ModelId,
 
@@ -68,7 +68,7 @@ public class TranscriptionRequestBuilder {
 
     /**
      * ID of the model to use.
-     * Only `whisper-1` is currently available.
+     * Model support depends on the requested format and options.
      */
     public var model: ModelId? = null
 

@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
  * Represents an execution run on a thread.
  */
 @BetaOpenAI
+@Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
 public interface Runs {
 
     /**
@@ -23,6 +24,7 @@ public interface Runs {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun createRun(threadId: ThreadId, request: RunRequest, requestOptions: RequestOptions? = null): Run
 
     /**
@@ -34,6 +36,7 @@ public interface Runs {
      * @param block a lambda function that will be called for each event.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun createStreamingRun(
         threadId: ThreadId,
         request: RunRequest,
@@ -48,6 +51,7 @@ public interface Runs {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun getRun(threadId: ThreadId, runId: RunId, requestOptions: RequestOptions? = null): Run
 
     /**
@@ -61,6 +65,7 @@ public interface Runs {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun updateRun(
         threadId: ThreadId,
         runId: RunId,
@@ -82,6 +87,7 @@ public interface Runs {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun runs(
         threadId: ThreadId,
         limit: Int? = null,
@@ -102,6 +108,7 @@ public interface Runs {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun submitToolOutput(
         threadId: ThreadId,
         runId: RunId,
@@ -121,6 +128,7 @@ public interface Runs {
      * @param block a lambda function that will be called for each event.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun submitStreamingToolOutput(
         threadId: ThreadId,
         runId: RunId,
@@ -136,6 +144,7 @@ public interface Runs {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun cancel(threadId: ThreadId, runId: RunId, requestOptions: RequestOptions? = null): Run
 
     /**
@@ -145,6 +154,7 @@ public interface Runs {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun createThreadRun(request: ThreadRunRequest, requestOptions: RequestOptions? = null): Run
 
     /**
@@ -155,6 +165,7 @@ public interface Runs {
      * @param block a lambda function that will be called for each event.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun createStreamingThreadRun(
         request: ThreadRunRequest,
         requestOptions: RequestOptions? = null
@@ -169,6 +180,7 @@ public interface Runs {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun runStep(
         threadId: ThreadId,
         runId: RunId,
@@ -193,6 +205,7 @@ public interface Runs {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun runSteps(
         threadId: ThreadId,
         runId: RunId,

@@ -13,7 +13,7 @@ suspend fun chatFunctionCall(openAI: OpenAI) {
     // *** Chat Completion with Function Call  *** //
 
     println("\n> Create Chat Completion function call...")
-    val modelId = ModelId("gpt-3.5-turbo-1106")
+    val modelId = ModelId(checkNotNull(System.getenv("OPENAI_MODEL")) { "Set OPENAI_MODEL to an available Chat model with tool support." })
     val chatMessages = mutableListOf(chatMessage {
         role = ChatRole.User
         content = "What's the weather like in San Francisco, Tokyo, and Paris?"

@@ -12,6 +12,7 @@ import com.aallam.openai.api.file.FileId
  * Build assistants that can call models and use tools to perform tasks.
  */
 @BetaOpenAI
+@Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
 public interface Assistants {
 
     /**
@@ -20,6 +21,7 @@ public interface Assistants {
      * @param request the request to create an assistant.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun assistant(request: AssistantRequest, requestOptions: RequestOptions? = null): Assistant
 
     /**
@@ -28,6 +30,7 @@ public interface Assistants {
      * @param id the ID of the assistant to retrieve.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun assistant(id: AssistantId, requestOptions: RequestOptions? = null): Assistant?
 
     /**
@@ -36,6 +39,7 @@ public interface Assistants {
      * @param id rhe ID of the assistant to modify.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun assistant(
         id: AssistantId,
         request: AssistantRequest,
@@ -48,6 +52,7 @@ public interface Assistants {
      * @param id ID of the assistant to delete.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun delete(id: AssistantId, requestOptions: RequestOptions? = null): Boolean
 
     /**
@@ -64,6 +69,7 @@ public interface Assistants {
      * include `before = AssistantId("obj_foo")` in order to fetch the previous page of the list.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun assistants(
         limit: Int? = null,
         order: SortOrder? = null,

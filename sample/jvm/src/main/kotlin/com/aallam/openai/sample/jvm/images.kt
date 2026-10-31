@@ -1,31 +1,66 @@
 package com.aallam.openai.sample.jvm
 
 import com.aallam.openai.api.file.FileSource
-import com.aallam.openai.api.image.ImageCreation
-import com.aallam.openai.api.image.ImageEdit
+import com.aallam.openai.api.file.FileUpload
+import com.aallam.openai.api.file.Purpose
+import com.aallam.openai.api.image.ImageEditRequest
+import com.aallam.openai.api.image.ImageGenerationRequest
+import com.aallam.openai.api.image.ImageOutputFormat
+import com.aallam.openai.api.image.ImageReference
+import com.aallam.openai.api.image.ImageResponse
 import com.aallam.openai.api.image.ImageSize
+import com.aallam.openai.api.image.Quality
+import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.OpenAI
+import java.io.File
+import java.util.Base64
 
+/** Generates and edits PNG images, saves them locally, and deletes the uploaded edit input afterward. */
 suspend fun images(openAI: OpenAI) {
-    println("\n> Create images...")
-    val images = openAI.imageURL(
-        creation = ImageCreation(
+    val model = ModelId(System.getenv("OPENAI_IMAGE_MODEL") ?: "gpt-image-2.5-sunburst")
+    println("\n> Generate an image with ${model.id}...")
+    val generated = openAI.image(
+        ImageGenerationRequest(
             prompt = "A cute baby sea otter",
-            n = 2,
-            size = ImageSize.is1024x1024
+            model = model,
+            n = 1,
+            size = ImageSize.is1024x1024,
+            quality = Quality.Low,
+            outputFormat = ImageOutputFormat.Png,
         )
     )
-    println(images)
+    saveImages(generated, "generated")
 
-    println("\n> Edit images...")
-    val imageEdit = ImageEdit(
-        image = FileSource(path = Resources.path("image.png")),
-        mask = FileSource(path = Resources.path("image.png")),
-        prompt = "a sunlit indoor lounge area with a pool containing a flamingo",
-        n = 1,
-        size = ImageSize.is1024x1024,
+    println("\n> Edit an uploaded image...")
+    val input = openAI.file(
+        FileUpload(
+            file = FileSource(path = Resources.path("image.png")),
+            purpose = Purpose("vision"),
+        )
     )
+    try {
+        val edited = openAI.image(
+            ImageEditRequest(
+                images = listOf(ImageReference.file(input.id)),
+                model = model,
+                prompt = "Add a flamingo floating in the pool",
+                n = 1,
+                size = ImageSize.is1024x1024,
+                quality = Quality.Low,
+                outputFormat = ImageOutputFormat.Png,
+            )
+        )
+        saveImages(edited, "edited")
+    } finally {
+        openAI.delete(input.id)
+    }
+}
 
-    val imageEdits = openAI.imageURL(imageEdit)
-    println(imageEdits)
+private fun saveImages(response: ImageResponse, prefix: String) {
+    println("Created ${response.data.size} image(s); size=${response.size?.size}, quality=${response.quality?.value}, tokens=${response.usage?.totalTokens}")
+    response.data.forEachIndexed { index, image ->
+        val file = File("$prefix-${index + 1}.png")
+        file.writeBytes(Base64.getDecoder().decode(image.b64JSON))
+        println("Saved ${file.absolutePath}")
+    }
 }

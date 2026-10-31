@@ -1,0 +1,235 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Containers</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            openai-kotlin
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":openai-client:dokkaHtmlPartial/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="openai-client::com.aallam.openai.client/Containers///PointingToDeclaration//69769055">
+  <div class="breadcrumbs"><a href="../../index.html">openai-client</a><span class="delimiter">/</span><a href="../index.html">com.aallam.openai.client</a><span class="delimiter">/</span><span class="current">Containers</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Containers</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">Containers</a></div><p class="paragraph">Manages hosted containers and their files. Container creation can incur hosted resource charges. Default implementations preserve source compatibility for custom clients.</p><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-open-a-i/index.html">OpenAI</a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="773952175%2FFunctions%2F69769055" anchor-label="containerFilesPage" id="773952175%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="container-files-page.html"><span>container</span><wbr><span>Files</span><wbr><span><span>Page</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="773952175%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="container-files-page.html"><span class="token function">containerFilesPage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-id/index.html">ContainerId</a><span class="token punctuation">, </span></span><span class="parameter ">query<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-file-list-query/index.html">ContainerFileListQuery</a><span class="token operator"> = </span>ContainerFileListQuery()<span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-paginated-list/index.html">PaginatedList</a><span class="token operator">&lt;</span><a href="../../../openai-core/com.aallam.openai.api.container/-container-file/index.html">ContainerFile</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lists container files with pagination metadata.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-373136296%2FFunctions%2F69769055" anchor-label="containersPage" id="-373136296%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="containers-page.html"><span>containers</span><wbr><span><span>Page</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-373136296%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="containers-page.html"><span class="token function">containersPage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">query<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-list-query/index.html">ContainerListQuery</a><span class="token operator"> = </span>ContainerListQuery()<span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-paginated-list/index.html">PaginatedList</a><span class="token operator">&lt;</span><a href="../../../openai-core/com.aallam.openai.api.container/-container/index.html">Container</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lists containers while preserving pagination cursors and the has-more indicator.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="75620245%2FFunctions%2F69769055" anchor-label="copyContainerFile" id="75620245%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="copy-container-file.html"><span>copy</span><wbr><span>Container</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="75620245%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="copy-container-file.html"><span class="token function">copyContainerFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-id/index.html">ContainerId</a><span class="token punctuation">, </span></span><span class="parameter ">fileId<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.file/-file-id/index.html">FileId</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-file/index.html">ContainerFile</a></div><div class="brief "><p class="paragraph">Copies a regular File resource into the container using a JSON file_id request.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-150884415%2FFunctions%2F69769055" anchor-label="createContainer" id="-150884415%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-container.html"><span>create</span><wbr><span><span>Container</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-150884415%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="create-container.html"><span class="token function">createContainer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-request/index.html">ContainerRequest</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container/index.html">Container</a></div><div class="brief "><p class="paragraph">Creates a container with the requested files, skills and resource policy.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="43389948%2FFunctions%2F69769055" anchor-label="deleteContainer" id="43389948%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-container.html"><span>delete</span><wbr><span><span>Container</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="43389948%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete-container.html"><span class="token function">deleteContainer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-id/index.html">ContainerId</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Deletes a container, returning false if it no longer exists.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1757585997%2FFunctions%2F69769055" anchor-label="deleteContainerFile" id="1757585997%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-container-file.html"><span>delete</span><wbr><span>Container</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1757585997%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete-container-file.html"><span class="token function">deleteContainerFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-id/index.html">ContainerId</a><span class="token punctuation">, </span></span><span class="parameter ">fileId<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-file-id/index.html">ContainerFileId</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Deletes a container file, returning false if it no longer exists.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1225512362%2FFunctions%2F69769055" anchor-label="downloadContainerFile" id="1225512362%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="download-container-file.html"><span>download</span><wbr><span>Container</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1225512362%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="download-container-file.html"><span class="token function">downloadContainerFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-id/index.html">ContainerId</a><span class="token punctuation">, </span></span><span class="parameter ">fileId<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-file-id/index.html">ContainerFileId</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-byte-array/index.html">ByteArray</a></div><div class="brief "><p class="paragraph">Downloads exact file bytes; missing files and other API errors propagate.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-878069875%2FFunctions%2F69769055" anchor-label="retrieveContainer" id="-878069875%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="retrieve-container.html"><span>retrieve</span><wbr><span><span>Container</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-878069875%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="retrieve-container.html"><span class="token function">retrieveContainer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-id/index.html">ContainerId</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container/index.html">Container</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Retrieves a container, or null if it does not exist.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="999903070%2FFunctions%2F69769055" anchor-label="retrieveContainerFile" id="999903070%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="retrieve-container-file.html"><span>retrieve</span><wbr><span>Container</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="999903070%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="retrieve-container-file.html"><span class="token function">retrieveContainerFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-id/index.html">ContainerId</a><span class="token punctuation">, </span></span><span class="parameter ">fileId<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-file-id/index.html">ContainerFileId</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-file/index.html">ContainerFile</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Retrieves a container-file resource, or null if it no longer exists.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1777674785%2FFunctions%2F69769055" anchor-label="uploadContainerFile" id="1777674785%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="upload-container-file.html"><span>upload</span><wbr><span>Container</span><wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1777674785%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="upload-container-file.html"><span class="token function">uploadContainerFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-id/index.html">ContainerId</a><span class="token punctuation">, </span></span><span class="parameter ">file<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.file/-file-source/index.html">FileSource</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.container/-container-file/index.html">ContainerFile</a></div><div class="brief "><p class="paragraph">Uploads raw bytes once, closing the source even on failure. Use a fresh source for each request; uploads are not automatically retried.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

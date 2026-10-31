@@ -1,0 +1,250 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Skills</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            openai-kotlin
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":openai-client:dokkaHtmlPartial/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="openai-client::com.aallam.openai.client/Skills///PointingToDeclaration//69769055">
+  <div class="breadcrumbs"><a href="../../index.html">openai-client</a><span class="delimiter">/</span><a href="../index.html">com.aallam.openai.client</a><span class="delimiter">/</span><span class="current">Skills</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Skills</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">Skills</a></div><p class="paragraph">Manages hosted skills and immutable versions without executing their contents. Default implementations preserve source compatibility for custom clients.</p><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-open-a-i/index.html">OpenAI</a></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="298820640%2FFunctions%2F69769055" anchor-label="createSkill" id="298820640%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-skill.html"><span>create</span><wbr><span><span>Skill</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="298820640%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="create-skill.html"><span class="token function">createSkill</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">request<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-upload-request/index.html">SkillUploadRequest</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill/index.html">Skill</a></div><div class="brief "><p class="paragraph">Uploads a skill directory or ZIP once. Every source is closed even on failure; uploads are not automatically retried.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1103430859%2FFunctions%2F69769055" anchor-label="createSkillVersion" id="1103430859%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-skill-version.html"><span>create</span><wbr><span>Skill</span><wbr><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1103430859%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="create-skill-version.html"><span class="token function">createSkillVersion</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-id/index.html">SkillId</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-version-upload-request/index.html">SkillVersionUploadRequest</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-version/index.html">SkillVersion</a></div><div class="brief "><p class="paragraph">Uploads an immutable version once, closing all sources even on failure. Newly uploaded versions may briefly return 404 on retrieval.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1960064284%2FFunctions%2F69769055" anchor-label="deleteSkill" id="1960064284%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-skill.html"><span>delete</span><wbr><span><span>Skill</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1960064284%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete-skill.html"><span class="token function">deleteSkill</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-id/index.html">SkillId</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Deletes the skill and all its versions; returns false for HTTP 404.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-837785141%2FFunctions%2F69769055" anchor-label="deleteSkillVersion" id="-837785141%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-skill-version.html"><span>delete</span><wbr><span>Skill</span><wbr><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-837785141%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="delete-skill-version.html"><span class="token function">deleteSkillVersion</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-id/index.html">SkillId</a><span class="token punctuation">, </span></span><span class="parameter ">version<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Deletes a version by its version string; the API rejects deletion of a selected default.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="136854649%2FFunctions%2F69769055" anchor-label="downloadSkill" id="136854649%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="download-skill.html"><span>download</span><wbr><span><span>Skill</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="136854649%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="download-skill.html"><span class="token function">downloadSkill</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-id/index.html">SkillId</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-byte-array/index.html">ByteArray</a></div><div class="brief "><p class="paragraph">Downloads the skill ZIP bundle as exact bytes. HTTP errors propagate.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-571765106%2FFunctions%2F69769055" anchor-label="downloadSkillVersion" id="-571765106%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="download-skill-version.html"><span>download</span><wbr><span>Skill</span><wbr><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-571765106%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="download-skill-version.html"><span class="token function">downloadSkillVersion</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-id/index.html">SkillId</a><span class="token punctuation">, </span></span><span class="parameter ">version<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-byte-array/index.html">ByteArray</a></div><div class="brief "><p class="paragraph">Downloads the specified version's ZIP as exact bytes. HTTP errors propagate.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-983738835%2FFunctions%2F69769055" anchor-label="retrieveSkill" id="-983738835%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="retrieve-skill.html"><span>retrieve</span><wbr><span><span>Skill</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-983738835%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="retrieve-skill.html"><span class="token function">retrieveSkill</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-id/index.html">SkillId</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill/index.html">Skill</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Retrieves skill metadata, or null for HTTP 404.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1994961574%2FFunctions%2F69769055" anchor-label="retrieveSkillVersion" id="-1994961574%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="retrieve-skill-version.html"><span>retrieve</span><wbr><span>Skill</span><wbr><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1994961574%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="retrieve-skill-version.html"><span class="token function">retrieveSkillVersion</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-id/index.html">SkillId</a><span class="token punctuation">, </span></span><span class="parameter ">version<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-version/index.html">SkillVersion</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Retrieves a version by its version string, or null for HTTP 404.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="442303160%2FFunctions%2F69769055" anchor-label="skillsPage" id="442303160%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="skills-page.html"><span>skills</span><wbr><span><span>Page</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="442303160%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="skills-page.html"><span class="token function">skillsPage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">query<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-list-query/index.html">SkillListQuery</a><span class="token operator"> = </span>SkillListQuery()<span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-paginated-list/index.html">PaginatedList</a><span class="token operator">&lt;</span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill/index.html">Skill</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lists project skills with cursor metadata.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1637318991%2FFunctions%2F69769055" anchor-label="skillVersionsPage" id="1637318991%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="skill-versions-page.html"><span>skill</span><wbr><span>Versions</span><wbr><span><span>Page</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1637318991%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="skill-versions-page.html"><span class="token function">skillVersionsPage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-id/index.html">SkillId</a><span class="token punctuation">, </span></span><span class="parameter ">query<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-version-list-query/index.html">SkillVersionListQuery</a><span class="token operator"> = </span>SkillVersionListQuery()<span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-paginated-list/index.html">PaginatedList</a><span class="token operator">&lt;</span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-version/index.html">SkillVersion</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Lists immutable versions with version-resource cursor IDs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-345740605%2FFunctions%2F69769055" anchor-label="updateSkillDefaultVersion" id="-345740605%2FFunctions%2F69769055" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":openai-client:dokkaHtmlPartial/commonMain" data-filterable-set=":openai-client:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="update-skill-default-version.html"><span>update</span><wbr><span>Skill</span><wbr><span>Default</span><wbr><span><span>Version</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-345740605%2FFunctions%2F69769055"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":openai-client:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="update-skill-default-version.html"><span class="token function">updateSkillDefaultVersion</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-id/index.html">SkillId</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill-default-version-request/index.html">SkillDefaultVersionRequest</a><span class="token punctuation">, </span></span><span class="parameter ">requestOptions<span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.core/-request-options/index.html">RequestOptions</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../openai-core/com.aallam.openai.api.skill/-skill/index.html">Skill</a></div><div class="brief "><p class="paragraph">Changes the default version pointer to an existing version string.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

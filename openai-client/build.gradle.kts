@@ -152,3 +152,17 @@ tasks.register<Test>("liveApiJvmTest") {
     environment("OPENAI_LIVE_TESTS", "1")
     onlyIf("Set OPENAI_LIVE_API_TESTS=1 with an eligible project.") { providers.environmentVariable("OPENAI_LIVE_API_TESTS").orNull == "1" }
 }
+
+tasks.withType<KotlinJvmTest>().configureEach { filter { excludeTestsMatching("*.TestContentProvenance") } }
+tasks.register<Test>("provenanceLiveJvmTest") {
+    group = "verification"
+    description = "Runs strict TestContentProvenance with an eligible project."
+    val jvmTest = tasks.named<KotlinJvmTest>("jvmTest")
+    dependsOn("jvmTestClasses")
+    testClassesDirs = jvmTest.get().testClassesDirs
+    classpath = jvmTest.get().classpath
+    filter { includeTestsMatching("*.TestContentProvenance") }
+    environment("LIB_ROOT", rootDir)
+    environment("OPENAI_LIVE_TESTS", "1")
+    onlyIf("Set OPENAI_PROVENANCE_LIVE_TESTS=1 with an eligible project.") { providers.environmentVariable("OPENAI_PROVENANCE_LIVE_TESTS").orNull == "1" }
+}

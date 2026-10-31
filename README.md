@@ -129,6 +129,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Voice management](guides/VoiceManagement.md)
 - [Live](guides/Live.md)
 - [Spend controls](guides/SpendControls.md)
+- [Safety and content provenance](guides/SafetyAndProvenance.md)
 
 #### Retired upstream APIs
 

@@ -121,6 +121,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Batch](guides/GettingStarted.md#batch)
 - [Vector Stores](guides/GettingStarted.md#vector-stores)
 - [Webhooks](guides/Webhooks.md)
+- [Organization usage and costs](guides/Administration.md)
 
 #### Retired upstream APIs
 

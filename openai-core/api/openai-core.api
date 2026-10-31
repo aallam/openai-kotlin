@@ -8502,6 +8502,424 @@ public final class com/aallam/openai/api/moderation/TextModeration$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/realtime/RealtimeAudioConfig {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeAudioConfig$Companion;
+	public fun <init> ()V
+	public fun <init> (Lcom/aallam/openai/api/realtime/RealtimeAudioInput;Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/realtime/RealtimeAudioInput;Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/realtime/RealtimeAudioInput;
+	public final fun component2 ()Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;
+	public final fun copy (Lcom/aallam/openai/api/realtime/RealtimeAudioInput;Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;)Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;Lcom/aallam/openai/api/realtime/RealtimeAudioInput;Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInput ()Lcom/aallam/openai/api/realtime/RealtimeAudioInput;
+	public final fun getOutput ()Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeAudioConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeAudioConfig$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeAudioConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeAudioFormat {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeAudioFormat$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;)Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRate ()Ljava/lang/Integer;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeAudioFormat$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeAudioFormat$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeAudioFormat$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeAudioInput {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeAudioInput$Companion;
+	public fun <init> ()V
+	public fun <init> (Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;
+	public final fun component2 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component3 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component4 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun copy (Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;)Lcom/aallam/openai/api/realtime/RealtimeAudioInput;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeAudioInput;Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeAudioInput;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFormat ()Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;
+	public final fun getNoiseReduction ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getTranscription ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getTurnDetection ()Lkotlinx/serialization/json/JsonElement;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeAudioInput$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeAudioInput$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeAudioInput;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeAudioInput;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeAudioInput$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeAudioOutput {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeAudioOutput$Companion;
+	public fun <init> ()V
+	public fun <init> (Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Double;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Double;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;
+	public final fun component2 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component3 ()Ljava/lang/Double;
+	public final fun copy (Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Double;)Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Double;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFormat ()Lcom/aallam/openai/api/realtime/RealtimeAudioFormat;
+	public final fun getSpeed ()Ljava/lang/Double;
+	public final fun getVoice ()Lkotlinx/serialization/json/JsonElement;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeAudioOutput$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeAudioOutput$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeAudioOutput;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeAudioOutput$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeCall {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/realtime/RealtimeCall;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeCall;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeCall;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getLocation ()Ljava/lang/String;
+	public final fun getSdp ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeClientSecret {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeClientSecret$Companion;
+	public fun <init> (Ljava/lang/String;JLkotlinx/serialization/json/JsonObject;)V
+	public final fun getExpiresAt ()J
+	public final fun getSession ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getValue ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeClientSecret$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeClientSecret$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeClientSecret;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeClientSecret;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeClientSecret$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeClientSecretRequest {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeClientSecretRequest$Companion;
+	public fun <init> ()V
+	public fun <init> (Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;
+	public final fun component2 ()Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;
+	public final fun copy (Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;)Lcom/aallam/openai/api/realtime/RealtimeClientSecretRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeClientSecretRequest;Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeClientSecretRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getExpiresAfter ()Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;
+	public final fun getSession ()Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeClientSecretRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeClientSecretRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeClientSecretRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeClientSecretRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeClientSecretRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeEvent {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeEvent$Companion;
+	public fun <init> (Lkotlinx/serialization/json/JsonObject;)V
+	public final fun component1 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun copy (Lkotlinx/serialization/json/JsonObject;)Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeEvent;Lkotlinx/serialization/json/JsonObject;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCallId ()Ljava/lang/String;
+	public final fun getDelta ()Ljava/lang/String;
+	public final fun getError ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getEventId ()Ljava/lang/String;
+	public final fun getPayload ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeEvent$Companion {
+	public final fun appendAudio (Ljava/lang/String;)Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public final fun cancelResponse ()Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public final fun clearAudio ()Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public final fun closeTranslation ()Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public final fun commitAudio ()Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public final fun createResponse (Lkotlinx/serialization/json/JsonObject;)Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public static synthetic fun createResponse$default (Lcom/aallam/openai/api/realtime/RealtimeEvent$Companion;Lkotlinx/serialization/json/JsonObject;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public final fun functionOutput (Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public final fun updateSession (Lkotlinx/serialization/json/JsonObject;)Lcom/aallam/openai/api/realtime/RealtimeEvent;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeEvent$Serializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeEvent$Serializer;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeFunctionTool {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeFunctionTool$Companion;
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/core/Parameters;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/core/Parameters;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/core/Parameters;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lcom/aallam/openai/api/core/Parameters;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/realtime/RealtimeFunctionTool;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeFunctionTool;Ljava/lang/String;Lcom/aallam/openai/api/core/Parameters;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeFunctionTool;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getParameters ()Lcom/aallam/openai/api/core/Parameters;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeFunctionTool$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeFunctionTool$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeFunctionTool;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeFunctionTool;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeFunctionTool$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeSecretExpiry {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry$Companion;
+	public fun <init> ()V
+	public fun <init> (ILjava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (ILjava/lang/String;)Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;ILjava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAnchor ()Ljava/lang/String;
+	public final fun getSeconds ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeSecretExpiry$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeSecretExpiry$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeSessionConfig {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeSessionConfig$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Boolean;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Boolean;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/util/List;
+	public final fun component11 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component12 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component13 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component14 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component2-2N4Cwlw ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component7 ()Ljava/util/List;
+	public final fun component8 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun component9 ()Ljava/lang/Boolean;
+	public final fun copy-gnwBYHo (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Boolean;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;)Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;
+	public static synthetic fun copy-gnwBYHo$default (Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/util/List;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Boolean;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAudio ()Lcom/aallam/openai/api/realtime/RealtimeAudioConfig;
+	public final fun getInclude ()Ljava/util/List;
+	public final fun getInstructions ()Ljava/lang/String;
+	public final fun getMaxOutputTokens ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getModel-2N4Cwlw ()Ljava/lang/String;
+	public final fun getOutputModalities ()Ljava/util/List;
+	public final fun getParallelToolCalls ()Ljava/lang/Boolean;
+	public final fun getPrompt ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getReasoning ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getToolChoice ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getTools ()Ljava/util/List;
+	public final fun getTracing ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getTruncation ()Lkotlinx/serialization/json/JsonElement;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeSessionConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeSessionConfig$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeSessionConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeTranslationSecretRequest {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeTranslationSecretRequest$Companion;
+	public fun <init> (Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;)V
+	public synthetic fun <init> (Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;
+	public final fun component2 ()Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;
+	public final fun copy (Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;)Lcom/aallam/openai/api/realtime/RealtimeTranslationSecretRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/realtime/RealtimeTranslationSecretRequest;Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeTranslationSecretRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getExpiresAfter ()Lcom/aallam/openai/api/realtime/RealtimeSecretExpiry;
+	public final fun getSession ()Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeTranslationSecretRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeTranslationSecretRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeTranslationSecretRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeTranslationSecretRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeTranslationSecretRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeTranslationSessionConfig {
+	public static final field Companion Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-dImWWvg ()Ljava/lang/String;
+	public final fun component2 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun copy-Q3EJpKE (Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;)Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;
+	public static synthetic fun copy-Q3EJpKE$default (Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;ILjava/lang/Object;)Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAudio ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getModel-dImWWvg ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/realtime/RealtimeTranslationSessionConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/realtime/RealtimeTranslationSessionConfig;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/realtime/RealtimeTranslationSessionConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/response/Response {
 	public static final field Companion Lcom/aallam/openai/api/response/Response$Companion;
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Lcom/aallam/openai/api/exception/OpenAIErrorDetails;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseReasoning;Ljava/lang/Boolean;Ljava/lang/Double;Lkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/json/JsonElement;Ljava/lang/Double;Ljava/lang/String;Lcom/aallam/openai/api/response/ResponseUsage;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V

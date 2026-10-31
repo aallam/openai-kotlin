@@ -116,6 +116,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Fine-tuning](guides/GettingStarted.md#fine-tuning)
 - [Moderations](guides/GettingStarted.md#moderations)
 - [Audio](guides/GettingStarted.md#audio)
+- [Realtime](guides/Realtime.md)
 - [Batch](guides/GettingStarted.md#batch)
 - [Vector Stores](guides/GettingStarted.md#vector-stores)
 - [Webhooks](guides/Webhooks.md)

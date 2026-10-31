@@ -33,4 +33,5 @@ internal class OpenAIApi(
     Conversations by ConversationsApi(requester),
     Uploads by UploadsApi(requester),
     Webhooks by WebhooksApi(requester),
+    Realtime by RealtimeApi(requester),
     AutoCloseable by requester

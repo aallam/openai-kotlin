@@ -124,6 +124,7 @@ Use your `OpenAI` instance to make API requests. [Learn more](guides/GettingStar
 - [Organization usage and costs](guides/Administration.md)
 - [OrganizationAdministration](guides/OrganizationAdministration.md)
 - [Organization governance](guides/OrganizationGovernance.md)
+- [Containers](guides/Containers.md)
 
 #### Retired upstream APIs
 

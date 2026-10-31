@@ -9,6 +9,7 @@ import io.ktor.client.engine.*
 import io.ktor.client.network.sockets.ConnectTimeoutException
 import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.plugins.*
+import io.ktor.client.plugins.api.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -60,6 +61,8 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
                 }
             }
         }
+
+        install(SingleUseRequestPlugin)
 
         install(HttpTimeout) {
             config.timeout.socket?.let { socketTimeout ->
@@ -119,3 +122,13 @@ internal val JsonLenient = Json {
 }
 
 internal val RealtimeBaseUrl = AttributeKey<String>("OpenAIRealtimeBaseUrl")
+
+internal val SingleUseRequest = AttributeKey<Unit>("OpenAISingleUseRequest")
+
+private val SingleUseRequestPlugin = createClientPlugin("OpenAISingleUseRequest") {
+    on(Send) { request ->
+        // Set this after Auth's request hook: Ktor 3.5 otherwise suppresses the Bearer header too.
+        if (request.attributes.contains(SingleUseRequest)) request.attributes.put(AuthCircuitBreaker, Unit)
+        proceed(request)
+    }
+}

@@ -35,4 +35,5 @@ internal class OpenAIApi(
     Webhooks by WebhooksApi(requester),
     Realtime by RealtimeApi(requester),
     Decisions by DecisionsApi(requester),
+    Containers by ContainersApi(requester),
     AutoCloseable by requester

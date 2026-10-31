@@ -5,6 +5,7 @@ import com.aallam.openai.api.batch.Batch
 import com.aallam.openai.api.chat.ChatCompletion
 import com.aallam.openai.api.chat.ChatCompletionRequest
 import com.aallam.openai.api.chat.ChatMessage
+import com.aallam.openai.api.chat.Effort
 import com.aallam.openai.api.chat.TextContent
 import com.aallam.openai.api.core.Endpoint
 import com.aallam.openai.api.core.Role
@@ -75,8 +76,9 @@ class TestBatches : TestOpenAI() {
                 method = Method.Post,
                 url = "/v1/chat/completions",
                 body = ChatCompletionRequest(
-                    model = ModelId("gpt-3.5-turbo"),
-                    maxTokens = 32,
+                    model = ModelId("gpt-6-luna"),
+                    reasoningEffort = Effort("none"),
+                    maxCompletionTokens = 32,
                     messages = listOf(
                         ChatMessage(
                             role = Role.System,

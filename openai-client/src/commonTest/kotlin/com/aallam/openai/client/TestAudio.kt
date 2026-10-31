@@ -4,6 +4,7 @@ import com.aallam.openai.api.audio.*
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.TestFileSystem
+import com.aallam.openai.client.internal.assertMicroMachinesIntroduction
 import com.aallam.openai.client.internal.reportAudioUsage
 import com.aallam.openai.client.internal.reportSpeechUsage
 import com.aallam.openai.client.internal.testFilePath
@@ -23,12 +24,7 @@ class TestAudio : TestOpenAI() {
         reportAudioUsage("audio.transcriptions", request.model, seconds = 3.1)
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
-        assertTrue {
-            transcription.text.startsWith(
-                "This is the Micromachine Man presenting the most midget miniature motorcade of micromachines",
-                ignoreCase = true,
-            )
-        }
+        assertMicroMachinesIntroduction(transcription.text)
     }
 
     @Test

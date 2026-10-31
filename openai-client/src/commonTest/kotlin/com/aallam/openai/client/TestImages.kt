@@ -14,7 +14,9 @@ import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.TestFileSystem
 import com.aallam.openai.client.internal.env
+import com.aallam.openai.client.internal.reportImageUsage
 import com.aallam.openai.client.internal.testFilePath
+import com.aallam.openai.client.internal.withTestCleanup
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -36,6 +38,7 @@ class TestImages : TestOpenAI() {
                     outputFormat = ImageOutputFormat.Png,
                 )
             )
+            reportImageUsage("image-generation", imageModel, response.usage)
             assertSingleImage(response)
         }
     }
@@ -43,13 +46,14 @@ class TestImages : TestOpenAI() {
     @Test
     fun editUploadedImageWithoutMask() = test {
         imageClient().use { client ->
-            val input = client.file(
-                FileUpload(
-                    file = FileSource(path = testFilePath("image/pool.png"), fileSystem = TestFileSystem),
-                    purpose = Purpose("vision"),
+            withTestCleanup {
+                val input = client.file(
+                    FileUpload(
+                        file = FileSource(path = testFilePath("image/pool.png"), fileSystem = TestFileSystem),
+                        purpose = Purpose("vision"),
+                    )
                 )
-            )
-            try {
+                afterTest { assertTrue(client.delete(input.id), "Uploaded input should be deleted") }
                 val response = client.image(
                     ImageEditRequest(
                         images = listOf(ImageReference.file(input.id)),
@@ -61,9 +65,8 @@ class TestImages : TestOpenAI() {
                         outputFormat = ImageOutputFormat.Png,
                     )
                 )
+                reportImageUsage("image-edit", imageModel, response.usage)
                 assertSingleImage(response)
-            } finally {
-                assertTrue(client.delete(input.id), "Uploaded input should be deleted")
             }
         }
     }

@@ -20,6 +20,7 @@ fun main() = runBlocking {
         println("6 - Transcription / legacy translation")
         println("7 - Tokens")
         println("8 - Assistants (retired OpenAI API)")
+        println("9 - Decisions")
         println("0 - Quit")
 
         suspend fun chats() {
@@ -64,6 +65,7 @@ fun main() = runBlocking {
             6 -> whisper(openAI)
             7 -> tokensCount(openAI)
             8 -> assistants()
+            9 -> decisions(openAI)
             0 -> {
                 println("Exiting...")
                 return@runBlocking

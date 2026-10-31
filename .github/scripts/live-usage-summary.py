@@ -13,6 +13,7 @@ def summarize(results):
     """Return measured counters from JUnit output, excluding other log content."""
     metrics = {
         "requests", "usage_received", "input_tokens", "output_tokens", "total_tokens",
+        "cached_tokens", "cache_write_tokens", "reasoning_tokens",
         "input_text_tokens", "input_image_tokens", "output_text_tokens", "output_image_tokens",
         "audio_seconds", "characters",
     }

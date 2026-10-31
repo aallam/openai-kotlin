@@ -8644,6 +8644,546 @@ public final class com/aallam/openai/api/completion/TextCompletion$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/container/Container {
+	public static final field Companion Lcom/aallam/openai/api/container/Container$Companion;
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerExpiration;Ljava/lang/Long;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerNetworkAccess;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerExpiration;Ljava/lang/Long;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerNetworkAccess;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-yf9454c ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Lcom/aallam/openai/api/container/ContainerExpiration;
+	public final fun component7 ()Ljava/lang/Long;
+	public final fun component8-OMSngKY ()Ljava/lang/String;
+	public final fun component9 ()Lcom/aallam/openai/api/container/ContainerNetworkAccess;
+	public final fun copy-St0VexA (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerExpiration;Ljava/lang/Long;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerNetworkAccess;)Lcom/aallam/openai/api/container/Container;
+	public static synthetic fun copy-St0VexA$default (Lcom/aallam/openai/api/container/Container;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerExpiration;Ljava/lang/Long;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerNetworkAccess;ILjava/lang/Object;)Lcom/aallam/openai/api/container/Container;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getExpiresAfter ()Lcom/aallam/openai/api/container/ContainerExpiration;
+	public final fun getId-yf9454c ()Ljava/lang/String;
+	public final fun getLastActiveAt ()Ljava/lang/Long;
+	public final fun getMemoryLimit-OMSngKY ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getNetworkPolicy ()Lcom/aallam/openai/api/container/ContainerNetworkAccess;
+	public final fun getObjectType ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/Container$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/Container$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/Container;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/Container;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/Container$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerDomainSecret {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerDomainSecret$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/container/ContainerDomainSecret;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/container/ContainerDomainSecret;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerDomainSecret;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDomain ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerDomainSecret$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerDomainSecret$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerDomainSecret;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerDomainSecret;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerDomainSecret$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerExpiration {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerExpiration$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;)Lcom/aallam/openai/api/container/ContainerExpiration;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/container/ContainerExpiration;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerExpiration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAnchor ()Ljava/lang/String;
+	public final fun getMinutes ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerExpiration$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerExpiration$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerExpiration;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerExpiration;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerExpiration$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerExpirationPolicy {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerExpirationPolicy$Companion;
+	public fun <init> (ILjava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (ILjava/lang/String;)Lcom/aallam/openai/api/container/ContainerExpirationPolicy;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/container/ContainerExpirationPolicy;ILjava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerExpirationPolicy;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAnchor ()Ljava/lang/String;
+	public final fun getMinutes ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerExpirationPolicy$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerExpirationPolicy$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerExpirationPolicy;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerExpirationPolicy;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerExpirationPolicy$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerFile {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerFile$Companion;
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-gAPrkmg ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3-yf9454c ()Ljava/lang/String;
+	public final fun component4 ()J
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun copy-OyRrDBE (Ljava/lang/String;JLjava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/container/ContainerFile;
+	public static synthetic fun copy-OyRrDBE$default (Lcom/aallam/openai/api/container/ContainerFile;Ljava/lang/String;JLjava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerFile;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBytes ()J
+	public final fun getContainerId-yf9454c ()Ljava/lang/String;
+	public final fun getCreatedAt ()J
+	public final fun getId-gAPrkmg ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public final fun getPath ()Ljava/lang/String;
+	public final fun getSource ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerFile$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerFile$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerFile;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerFile;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerFile$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerFileId {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerFileId$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/aallam/openai/api/container/ContainerFileId;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerFileId$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerFileId$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-ZiQrccU (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/String;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize-mmDrm-8 (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/String;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerFileId$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerFileListQuery {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-1KDsDYA ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun component3-bNjS8N0 ()Ljava/lang/String;
+	public final fun copy-NmT-mfI (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)Lcom/aallam/openai/api/container/ContainerFileListQuery;
+	public static synthetic fun copy-NmT-mfI$default (Lcom/aallam/openai/api/container/ContainerFileListQuery;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerFileListQuery;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAfter-1KDsDYA ()Ljava/lang/String;
+	public final fun getLimit ()Ljava/lang/Integer;
+	public final fun getOrder-bNjS8N0 ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/container/ContainerId {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerId$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/aallam/openai/api/container/ContainerId;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerId$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerId$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-VBa8Nv0 (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/String;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize-tJD8DoA (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/String;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerId$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerInlineSkillSource {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerInlineSkillSource$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/container/ContainerInlineSkillSource;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/container/ContainerInlineSkillSource;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerInlineSkillSource;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Ljava/lang/String;
+	public final fun getMediaType ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerInlineSkillSource$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerInlineSkillSource$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerInlineSkillSource;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerInlineSkillSource;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerInlineSkillSource$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerListQuery {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-hp8RyHs ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4-bNjS8N0 ()Ljava/lang/String;
+	public final fun copy-u0NVIkU (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/container/ContainerListQuery;
+	public static synthetic fun copy-u0NVIkU$default (Lcom/aallam/openai/api/container/ContainerListQuery;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerListQuery;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAfter-hp8RyHs ()Ljava/lang/String;
+	public final fun getLimit ()Ljava/lang/Integer;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOrder-bNjS8N0 ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/container/ContainerMemoryLimit {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerMemoryLimit$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/aallam/openai/api/container/ContainerMemoryLimit;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerMemoryLimit$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerMemoryLimit$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-CHlIhdE (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/String;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize-ODs_Xr4 (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/String;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerMemoryLimit$Companion {
+	public final fun getG1-GTVe58g ()Ljava/lang/String;
+	public final fun getG16-GTVe58g ()Ljava/lang/String;
+	public final fun getG4-GTVe58g ()Ljava/lang/String;
+	public final fun getG64-GTVe58g ()Ljava/lang/String;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerNetworkAccess {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerNetworkAccess$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lcom/aallam/openai/api/container/ContainerNetworkAccess;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/container/ContainerNetworkAccess;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerNetworkAccess;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllowedDomains ()Ljava/util/List;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerNetworkAccess$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerNetworkAccess$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerNetworkAccess;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerNetworkAccess;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerNetworkAccess$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aallam/openai/api/container/ContainerNetworkPolicy {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerNetworkPolicy$Companion;
+}
+
+public final class com/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist : com/aallam/openai/api/container/ContainerNetworkPolicy {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist$Companion;
+	public fun <init> (Ljava/util/List;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;Ljava/util/List;)Lcom/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllowedDomains ()Ljava/util/List;
+	public final fun getDomainSecrets ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerNetworkPolicy$Allowlist$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerNetworkPolicy$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerNetworkPolicy$Disabled : com/aallam/openai/api/container/ContainerNetworkPolicy {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerNetworkPolicy$Disabled;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/container/ContainerRequest {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerRequest$Companion;
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerExpirationPolicy;Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerNetworkPolicy;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerExpirationPolicy;Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerNetworkPolicy;Ljava/util/List;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/container/ContainerExpirationPolicy;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4-OMSngKY ()Ljava/lang/String;
+	public final fun component5 ()Lcom/aallam/openai/api/container/ContainerNetworkPolicy;
+	public final fun component6 ()Ljava/util/List;
+	public final fun copy-MkKqdU0 (Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerExpirationPolicy;Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerNetworkPolicy;Ljava/util/List;)Lcom/aallam/openai/api/container/ContainerRequest;
+	public static synthetic fun copy-MkKqdU0$default (Lcom/aallam/openai/api/container/ContainerRequest;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerExpirationPolicy;Ljava/util/List;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerNetworkPolicy;Ljava/util/List;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getExpiresAfter ()Lcom/aallam/openai/api/container/ContainerExpirationPolicy;
+	public final fun getFileIds ()Ljava/util/List;
+	public final fun getMemoryLimit-OMSngKY ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getNetworkPolicy ()Lcom/aallam/openai/api/container/ContainerNetworkPolicy;
+	public final fun getSkills ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/container/ContainerRequest;
+	public final fun getExpiresAfter ()Lcom/aallam/openai/api/container/ContainerExpirationPolicy;
+	public final fun getFileIds ()Ljava/util/List;
+	public final fun getMemoryLimit-OMSngKY ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getNetworkPolicy ()Lcom/aallam/openai/api/container/ContainerNetworkPolicy;
+	public final fun getSkills ()Ljava/util/List;
+	public final fun setExpiresAfter (Lcom/aallam/openai/api/container/ContainerExpirationPolicy;)V
+	public final fun setFileIds (Ljava/util/List;)V
+	public final fun setMemoryLimit-oCB5vkY (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setNetworkPolicy (Lcom/aallam/openai/api/container/ContainerNetworkPolicy;)V
+	public final fun setSkills (Ljava/util/List;)V
+}
+
+public final class com/aallam/openai/api/container/ContainerRequestKt {
+	public static final fun containerRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/container/ContainerRequest;
+}
+
+public abstract interface class com/aallam/openai/api/container/ContainerSkill {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerSkill$Companion;
+}
+
+public final class com/aallam/openai/api/container/ContainerSkill$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerSkill$Inline : com/aallam/openai/api/container/ContainerSkill {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerSkill$Inline$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerInlineSkillSource;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/aallam/openai/api/container/ContainerInlineSkillSource;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerInlineSkillSource;)Lcom/aallam/openai/api/container/ContainerSkill$Inline;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/container/ContainerSkill$Inline;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/container/ContainerInlineSkillSource;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerSkill$Inline;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDescription ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getSource ()Lcom/aallam/openai/api/container/ContainerInlineSkillSource;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerSkill$Inline$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerSkill$Inline$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerSkill$Inline;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerSkill$Inline;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerSkill$Inline$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerSkill$Reference : com/aallam/openai/api/container/ContainerSkill {
+	public static final field Companion Lcom/aallam/openai/api/container/ContainerSkill$Reference$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/container/ContainerSkill$Reference;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/container/ContainerSkill$Reference;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/container/ContainerSkill$Reference;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getSkillId ()Ljava/lang/String;
+	public final fun getVersion ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/container/ContainerSkill$Reference$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/container/ContainerSkill$Reference$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/container/ContainerSkill$Reference;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/container/ContainerSkill$Reference;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/container/ContainerSkill$Reference$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/conversation/Conversation {
 	public static final field Companion Lcom/aallam/openai/api/conversation/Conversation$Companion;
 	public synthetic fun <init> (Ljava/lang/String;JLjava/util/Map;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V

@@ -129,10 +129,13 @@ public abstract interface class com/aallam/openai/client/Edits {
 }
 
 public abstract interface class com/aallam/openai/client/Embeddings {
+	public abstract fun createEmbeddings (Lcom/aallam/openai/api/embedding/EmbeddingCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun embeddings (Lcom/aallam/openai/api/embedding/EmbeddingRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/Embeddings$DefaultImpls {
+	public static fun createEmbeddings (Lcom/aallam/openai/client/Embeddings;Lcom/aallam/openai/api/embedding/EmbeddingCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createEmbeddings$default (Lcom/aallam/openai/client/Embeddings;Lcom/aallam/openai/api/embedding/EmbeddingCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun embeddings$default (Lcom/aallam/openai/client/Embeddings;Lcom/aallam/openai/api/embedding/EmbeddingRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
@@ -276,6 +279,7 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun createBatch (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/batch/BatchCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createChatCompletion (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/chat/ChatCompletionRequest;Lcom/aallam/openai/api/chat/ChatCompletionOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createConversationItems-FaCfgoc (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationItemsRequest;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun createEmbeddings (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/embedding/EmbeddingCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createSpeech (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/audio/SpeechRequest;Lcom/aallam/openai/api/audio/SpeechOptions;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createVectorStoreFileBatch-PRrSv6s (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileBatchRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createVectorStoreResource (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/vectorstore/VectorStoreCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

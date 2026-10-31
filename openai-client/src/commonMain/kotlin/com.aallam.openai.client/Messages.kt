@@ -13,6 +13,7 @@ import com.aallam.openai.api.thread.ThreadId
  * Create messages within threads
  */
 @BetaOpenAI
+@Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
 public interface Messages {
 
     /**
@@ -23,6 +24,7 @@ public interface Messages {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun message(
         threadId: ThreadId,
         request: MessageRequest,
@@ -37,6 +39,7 @@ public interface Messages {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun message(
         threadId: ThreadId,
         messageId: MessageId,
@@ -54,6 +57,7 @@ public interface Messages {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun message(
         threadId: ThreadId,
         messageId: MessageId,
@@ -77,6 +81,7 @@ public interface Messages {
      * @param requestOptions request options.
      */
     @BetaOpenAI
+    @Deprecated("OpenAI retired the Assistants API on August 26, 2026. Use Responses and Conversations.")
     public suspend fun messages(
         threadId: ThreadId,
         limit: Int? = null,

@@ -14,12 +14,12 @@ public interface Completions {
      * This is the main endpoint of the API. Returns the predicted completion for the given prompt,
      * and can also return the probabilities of alternative tokens at each position if requested.
      */
-    @Deprecated("completions is deprecated, use chat completion instead")
+    @Deprecated("Legacy API; prefer Responses or Chat Completions for new integrations.")
     public suspend fun completion(request: CompletionRequest): TextCompletion
 
     /**
      * Stream variant of [completion].
      */
-    @Deprecated("completions is deprecated, use chat completion instead")
+    @Deprecated("Legacy API; prefer Responses or Chat Completions for new integrations.")
     public fun completions(request: CompletionRequest): Flow<TextCompletion>
 }

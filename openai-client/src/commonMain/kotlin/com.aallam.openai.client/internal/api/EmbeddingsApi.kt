@@ -2,6 +2,8 @@ package com.aallam.openai.client.internal.api
 
 import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.embedding.EmbeddingRequest
+import com.aallam.openai.api.embedding.EmbeddingCreateRequest
+import com.aallam.openai.api.embedding.EmbeddingResult
 import com.aallam.openai.api.embedding.EmbeddingResponse
 import com.aallam.openai.client.Embeddings
 import com.aallam.openai.client.internal.extension.requestOptions
@@ -26,4 +28,13 @@ internal class EmbeddingsApi(private val requester: HttpRequester) : Embeddings 
             }.body()
         }
     }
+    override suspend fun createEmbeddings(request: EmbeddingCreateRequest, requestOptions: RequestOptions?): EmbeddingResult =
+        requester.perform {
+            it.post {
+                url(path = ApiPath.Embeddings)
+                setBody(request)
+                contentType(ContentType.Application.Json)
+                requestOptions(requestOptions)
+            }.body()
+        }
 }

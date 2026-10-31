@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 public data class SpeechRequest(
 
     /**
-     * One of the available TTS models: tts-1 or tts-1-hd
+     * Model supported by the speech endpoint.
      */
     @SerialName("model") public val model: ModelId,
 
@@ -50,7 +50,7 @@ public fun speechRequest(block: SpeechRequestBuilder.() -> Unit): SpeechRequest 
 public class SpeechRequestBuilder {
 
     /**
-     * One of the available TTS models: tts-1 or tts-1-hd
+     * Model supported by the speech endpoint.
      */
     public var model: ModelId? = null
 

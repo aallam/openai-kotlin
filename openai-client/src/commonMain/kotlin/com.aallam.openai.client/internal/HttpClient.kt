@@ -6,6 +6,8 @@ import com.aallam.openai.client.internal.extension.toKtorLogLevel
 import com.aallam.openai.client.internal.extension.toKtorLogger
 import io.ktor.client.*
 import io.ktor.client.engine.*
+import io.ktor.client.network.sockets.ConnectTimeoutException
+import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
@@ -16,6 +18,7 @@ import io.ktor.client.plugins.websocket.WebSockets
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.*
 import io.ktor.util.*
+import kotlinx.coroutines.CancellationException
 import kotlinx.serialization.json.Json
 import kotlin.time.DurationUnit
 
@@ -49,7 +52,11 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
         install(Auth) {
             bearer {
                 loadTokens {
-                    BearerTokens(accessToken = config.token, refreshToken = "")
+                    BearerTokens(accessToken = config.token, refreshToken = null)
+                }
+                refreshTokens {
+                    // Static API keys cannot be refreshed. A temporary 401 must not discard the key.
+                    oldTokens
                 }
             }
         }
@@ -70,6 +77,12 @@ internal fun createHttpClient(config: OpenAIConfig): HttpClient {
             maxRetries = config.retry.maxRetries
             // retry on rate limit error.
             retryIf { _, response -> response.status.value.let { it == 429 } }
+            // Preserve Ktor's default exception policy, excluding failures in caller observers.
+            retryOnExceptionIf { _, cause ->
+                cause !is ResponseObserverException && cause !is CancellationException &&
+                    cause !is HttpRequestTimeoutException && cause !is ConnectTimeoutException &&
+                    cause !is SocketTimeoutException
+            }
             exponentialDelay(config.retry.base, config.retry.maxDelay.inWholeMilliseconds)
         }
 

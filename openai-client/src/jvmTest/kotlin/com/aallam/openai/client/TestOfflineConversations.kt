@@ -5,6 +5,7 @@ import com.aallam.openai.api.core.RequestOptions
 import com.aallam.openai.api.core.Role
 import com.aallam.openai.api.core.SortOrder
 import com.aallam.openai.api.exception.AuthenticationException
+import com.aallam.openai.api.exception.InvalidRequestException
 import com.aallam.openai.api.logging.LogLevel
 import io.ktor.client.engine.mock.*
 import io.ktor.http.*
@@ -19,7 +20,7 @@ class TestOfflineConversations {
     private val pageJson = """{"data":[$itemJson],"first_id":"msg_1","last_id":"msg_1","has_more":true,"object":"list"}"""
 
     @Test
-    fun conversationLifecycleUsesResourcePathsAndExplicitMetadataNull() = runTest {
+    fun conversationLifecyclePreservesResourcePathsAndExplicitMetadataNull() = runTest {
         val methods = mutableListOf<HttpMethod>()
         val engine = MockEngine { request ->
             methods += request.method
@@ -28,7 +29,8 @@ class TestOfflineConversations {
                 request.method == HttpMethod.Post && request.url.encodedPath.endsWith("/conv_1") -> {
                     assertEquals(JsonNull, Json.parseToJsonElement((request.body as TextContent).text).jsonObject["metadata"])
                     assertEquals("value", request.headers["X-Test"])
-                    respond(conversationJson, headers = headersOf(HttpHeaders.ContentType, "application/json"))
+                    respond("""{"error":{"message":"Expected a metadata object","type":"invalid_request_error","param":"metadata","code":"invalid_type"}}""",
+                        HttpStatusCode.BadRequest, headers = headersOf(HttpHeaders.ContentType, "application/json"))
                 }
                 request.method == HttpMethod.Post -> {
                     val body = Json.parseToJsonElement((request.body as TextContent).text).jsonObject
@@ -43,10 +45,31 @@ class TestOfflineConversations {
             val created = client.conversation(ConversationRequest(listOf(ConversationItem.message(Role.User, "Hello"))))
             assertEquals(ConversationId("conv_1"), created.id)
             assertEquals(created.id, client.conversation(created.id)!!.id)
-            client.updateConversation(created.id, ConversationUpdateRequest(null), RequestOptions(headers = mapOf("X-Test" to "value")))
+            val error = assertFailsWith<InvalidRequestException> {
+                client.updateConversation(created.id, ConversationUpdateRequest(null), RequestOptions(headers = mapOf("X-Test" to "value")))
+            }
+            assertEquals("metadata", error.error.detail?.param)
+            assertEquals("invalid_type", error.error.detail?.code)
             assertTrue(client.delete(created.id))
         }
         assertEquals(listOf(HttpMethod.Post, HttpMethod.Get, HttpMethod.Post, HttpMethod.Delete), methods)
+    }
+
+    @Test
+    fun metadataUpdatesSendOnlySuppliedKeysAndRetainTheMergedResponse() = runTest {
+        val metadata = mapOf("test" to "lifecycle", "modified" to "true")
+        val mergedConversation = """{"id":"conv_1","created_at":123,"metadata":{"test":"lifecycle","modified":"true"},"object":"conversation"}"""
+        val engine = MockEngine { request ->
+            assertEquals(HttpMethod.Post, request.method)
+            assertEquals("/v1/conversations/conv_1", request.url.encodedPath)
+            val body = Json.parseToJsonElement((request.body as TextContent).text).jsonObject
+            assertEquals(Json.parseToJsonElement("""{"metadata":{"modified":"true"}}"""), body)
+            respond(mergedConversation, headers = headersOf(HttpHeaders.ContentType, "application/json"))
+        }
+        OpenAI(OpenAIConfig("test", engine = engine, logging = LoggingConfig(LogLevel.None))).use { client ->
+            assertEquals(metadata, client.updateConversation(ConversationId("conv_1"),
+                ConversationUpdateRequest(mapOf("modified" to "true"))).metadata)
+        }
     }
 
     @Test

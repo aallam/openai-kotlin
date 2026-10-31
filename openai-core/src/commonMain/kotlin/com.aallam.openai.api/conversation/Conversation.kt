@@ -29,7 +29,10 @@ public data class ConversationRequest(
     }
 }
 
-/** Replaces conversation metadata. Passing null clears existing metadata. */
+/**
+ * Updates the supplied metadata keys, preserving existing keys that are not included.
+ * An empty map leaves metadata unchanged. The API rejects JSON null; it does not clear metadata.
+ */
 @Serializable
 public data class ConversationUpdateRequest(
     @SerialName("metadata") public val metadata: Map<String, String>?,

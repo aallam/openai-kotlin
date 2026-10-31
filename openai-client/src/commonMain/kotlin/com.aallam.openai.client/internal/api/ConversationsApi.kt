@@ -37,7 +37,7 @@ internal class ConversationsApi(private val requester: HttpRequester) : Conversa
         it.post {
             url(path = "${ApiPath.Conversations}/${id.id}")
             contentType(ContentType.Application.Json)
-            // Explicit JSON null clears metadata, even with the client's explicitNulls=false setting.
+            // Preserve explicit null rather than omitting metadata under explicitNulls=false.
             setBody(buildJsonObject {
                 put("metadata", request.metadata?.let { metadata ->
                     buildJsonObject { metadata.forEach { (key, value) -> put(key, value) } }

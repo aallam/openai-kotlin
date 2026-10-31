@@ -25,7 +25,7 @@ public interface Conversations {
         requestOptions: RequestOptions? = null,
     ): Conversation? = throw UnsupportedOperationException("Conversations are not supported by this client.")
 
-    /** Replaces metadata on an existing conversation. */
+    /** Updates the supplied metadata keys, preserving existing keys that are not included. */
     public suspend fun updateConversation(
         id: ConversationId,
         request: ConversationUpdateRequest,

@@ -26,7 +26,13 @@ class TestConversations : TestOpenAI() {
             assertEquals(conversation, openAI.conversation(conversation.id))
 
             val metadata = mapOf("modified" to "true")
-            assertEquals(metadata, openAI.updateConversation(conversation.id, ConversationUpdateRequest(metadata)).metadata)
+            val mergedMetadata = mapOf("test" to "lifecycle", "modified" to "true")
+            assertEquals(mergedMetadata, openAI.updateConversation(conversation.id, ConversationUpdateRequest(metadata)).metadata)
+            val overwrittenMetadata = mergedMetadata + ("test" to "updated")
+            assertEquals(overwrittenMetadata, openAI.updateConversation(conversation.id,
+                ConversationUpdateRequest(mapOf("test" to "updated"))).metadata)
+            assertEquals(overwrittenMetadata, openAI.updateConversation(conversation.id,
+                ConversationUpdateRequest(emptyMap())).metadata)
 
             val items = openAI.createConversationItems(conversation.id,
                 ConversationItemsRequest(listOf(ConversationItem.message(Role.User, "Hello."))))

@@ -23,8 +23,9 @@ class TestChatCompletions : TestOpenAI() {
     @Test
     fun chatCompletions() = test {
         val request = chatCompletionRequest {
-            model = ModelId("gpt-3.5-turbo")
-            maxTokens = 64
+            model = ModelId("gpt-6-luna")
+            reasoningEffort = Effort("none")
+            maxCompletionTokens = 64
             messages {
                 message {
                     role = ChatRole.System
@@ -59,7 +60,7 @@ class TestChatCompletions : TestOpenAI() {
 
     @Test
     fun chatCompletionsFunction() = test {
-        val modelId = ModelId("gpt-3.5-turbo")
+        val modelId = ModelId("gpt-6-luna")
         val chatMessages = mutableListOf(
             ChatMessage(
                 role = ChatRole.User,
@@ -69,7 +70,8 @@ class TestChatCompletions : TestOpenAI() {
 
         val request = chatCompletionRequest {
             model = modelId
-            maxTokens = 128
+            reasoningEffort = Effort("none")
+            maxCompletionTokens = 128
             messages = chatMessages
             tools {
                 function(
@@ -115,8 +117,9 @@ class TestChatCompletions : TestOpenAI() {
     @Test
     fun json() = test {
         val request = chatCompletionRequest {
-            model = ModelId("gpt-3.5-turbo-1106")
-            maxTokens = 128
+            model = ModelId("gpt-6-luna")
+            reasoningEffort = Effort("none")
+            maxCompletionTokens = 128
             responseFormat = ChatResponseFormat.JsonObject
             messages {
                 message {
@@ -176,8 +179,9 @@ class TestChatCompletions : TestOpenAI() {
         )
 
         val request = chatCompletionRequest {
-            model = ModelId("gpt-4o-mini-2024-07-18")
-            maxTokens = 128
+            model = ModelId("gpt-6-luna")
+            reasoningEffort = Effort("none")
+            maxCompletionTokens = 128
             responseFormat = jsonSchema(jsonSchema)
             messages {
                 message {
@@ -212,8 +216,9 @@ class TestChatCompletions : TestOpenAI() {
     @Test
     fun logprobs() = test {
         val request = chatCompletionRequest {
-            model = ModelId("gpt-3.5-turbo-0125")
-            maxTokens = 64
+            model = ModelId("gpt-6-luna")
+            reasoningEffort = Effort("none")
+            maxCompletionTokens = 64
             messages {
                 message {
                     role = ChatRole.User
@@ -234,8 +239,9 @@ class TestChatCompletions : TestOpenAI() {
     fun top_logprobs() = test {
         val expectedTopLogProbs = 5
         val request = chatCompletionRequest {
-            model = ModelId("gpt-3.5-turbo-0125")
-            maxTokens = 64
+            model = ModelId("gpt-6-luna")
+            reasoningEffort = Effort("none")
+            maxCompletionTokens = 64
             messages {
                 message {
                     role = ChatRole.User
@@ -256,8 +262,9 @@ class TestChatCompletions : TestOpenAI() {
     @Test
     fun cancellable() = test {
         val request = chatCompletionRequest {
-            model = ModelId("gpt-3.5-turbo")
-            maxTokens = 64
+            model = ModelId("gpt-6-luna")
+            reasoningEffort = Effort("none")
+            maxCompletionTokens = 64
             messages {
                 message {
                     role = ChatRole.System
@@ -291,8 +298,9 @@ class TestChatCompletions : TestOpenAI() {
     @Test
     fun streamOptions() = test {
         val request = chatCompletionRequest {
-            model = ModelId("gpt-3.5-turbo")
-            maxTokens = 64
+            model = ModelId("gpt-6-luna")
+            reasoningEffort = Effort("none")
+            maxCompletionTokens = 64
             messages {
                 message {
                     role = ChatRole.System

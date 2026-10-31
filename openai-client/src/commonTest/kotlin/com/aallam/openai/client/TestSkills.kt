@@ -4,6 +4,7 @@ import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.logging.LogLevel
 import com.aallam.openai.api.skill.*
 import com.aallam.openai.client.internal.withTestCleanup
+import com.aallam.openai.client.internal.awaitListedSkill
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -22,7 +23,7 @@ class TestSkills : TestOpenAI() {
                 afterTest { if (!deleted) client.deleteSkill(skill.id) }
                 val initial = awaitVersion(client, skill.id, skill.defaultVersion)
                 assertEquals(skill.id, client.retrieveSkill(skill.id)?.id)
-                assertTrue(client.skillsPage(SkillListQuery(limit = 100)).any { it.id == skill.id })
+                assertEquals(skill.id, awaitListedSkill(client, skill.id).id)
 
                 val uploaded = client.createSkillVersion(skill.id, SkillVersionUploadRequest(files("SDK version fixture."), setAsDefault = false))
                 val version = awaitVersion(client, skill.id, uploaded.version)

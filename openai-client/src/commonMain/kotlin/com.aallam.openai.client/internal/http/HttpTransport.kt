@@ -69,7 +69,10 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
      * [OpenAIException] instances.
      */
     private suspend fun handleException(e: Throwable) = when (e) {
-        is ResponseObserverException -> OpenAIHttpException(e.cause ?: e)
+        is ResponseObserverException -> when (val cause = e.cause) {
+            is Error -> cause
+            else -> OpenAIHttpException(cause ?: e)
+        }
         is CancellationException -> e // propagate coroutine cancellation
         is ClientRequestException -> openAIAPIException(e)
         is ServerResponseException -> OpenAIServerException(e)

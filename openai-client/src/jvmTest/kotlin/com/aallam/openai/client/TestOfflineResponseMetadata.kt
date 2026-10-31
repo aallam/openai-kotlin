@@ -164,26 +164,31 @@ class TestOfflineResponseMetadata {
 
     @Test
     fun observerFailureDoesNotRetryASuccessfulPost() = runTest {
-        var requests = 0
-        val failure = IllegalStateException("observer failed")
-        val engine = MockEngine { request ->
-            requests++
-            assertEquals(HttpMethod.Post, request.method)
-            respond("""{"id":"chat-1","created":0,"model":"test","choices":[]}""",
-                headers = headersOf(HttpHeaders.ContentType, "application/json"))
-        }
-        val config = OpenAIConfig(token = "test", engine = engine,
-            retry = RetryStrategy(maxRetries = 2, maxDelay = 1.milliseconds)) {
-            onResponseMetadata { throw failure }
-        }
-        OpenAI(config).use { client ->
-            val error = assertFailsWith<OpenAIHttpException> {
-                client.chatCompletion(
-                    ChatCompletionRequest(ModelId("test"), listOf(ChatMessage(ChatRole.User, "hello"))),
-                )
+        for (failure in listOf(IllegalStateException("observer failed"), AssertionError("observer failed"))) {
+            var requests = 0
+            val engine = MockEngine { request ->
+                requests++
+                assertEquals(HttpMethod.Post, request.method)
+                respond("""{"id":"chat-1","created":0,"model":"test","choices":[]}""",
+                    headers = headersOf(HttpHeaders.ContentType, "application/json"))
             }
-            assertSame(failure, error.cause)
-            assertEquals(1, requests)
+            val config = OpenAIConfig(token = "test", engine = engine,
+                retry = RetryStrategy(maxRetries = 2, maxDelay = 1.milliseconds)) {
+                onResponseMetadata { throw failure }
+            }
+            OpenAI(config).use { client ->
+                val error = assertFails {
+                    client.chatCompletion(
+                        ChatCompletionRequest(ModelId("test"), listOf(ChatMessage(ChatRole.User, "hello"))),
+                    )
+                }
+                if (failure is Error) {
+                    assertSame(failure, error)
+                } else {
+                    assertSame(failure, assertIs<OpenAIHttpException>(error).cause)
+                }
+                assertEquals(1, requests)
+            }
         }
     }
 

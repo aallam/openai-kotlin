@@ -8,7 +8,7 @@ internal class ResponseMetadataConfig {
     lateinit var observer: (ResponseMetadata) -> Unit
 }
 
-internal class ResponseObserverException(cause: Exception) : Exception("Response observer failed", cause)
+internal class ResponseObserverException(cause: Throwable) : Exception("Response observer failed", cause)
 
 internal val ResponseMetadataPlugin = createClientPlugin("OpenAIResponseMetadata", ::ResponseMetadataConfig) {
     val observer = pluginConfig.observer
@@ -17,7 +17,7 @@ internal val ResponseMetadataPlugin = createClientPlugin("OpenAIResponseMetadata
             observer(ResponseMetadata(response.status.value, response.headers.entries().associate { it.key to it.value }))
         } catch (error: CancellationException) {
             throw error
-        } catch (error: Exception) {
+        } catch (error: Throwable) {
             throw ResponseObserverException(error)
         }
     }

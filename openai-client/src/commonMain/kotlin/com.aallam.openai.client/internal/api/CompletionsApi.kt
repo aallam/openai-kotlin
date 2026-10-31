@@ -11,7 +11,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.channelFlow
 
 /**
  * Implementation of [Completions].
@@ -40,7 +40,7 @@ internal class CompletionsApi(private val requester: HttpRequester) : Completion
                 append(HttpHeaders.Connection, "keep-alive")
             }
         }
-        return flow {
+        return channelFlow {
             requester.perform(builder) { response -> streamEventsFrom(response) }
         }
     }

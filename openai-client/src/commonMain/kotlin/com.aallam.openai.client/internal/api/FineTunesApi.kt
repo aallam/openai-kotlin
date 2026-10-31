@@ -16,7 +16,7 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.channelFlow
 
 /**
  * Implementation of [FineTunes].
@@ -71,7 +71,7 @@ internal class FineTunesApi(private val requester: HttpRequester) : FineTunes {
                 append(HttpHeaders.Connection, "keep-alive")
             }
         }
-        return flow {
+        return channelFlow {
             requester.perform(request) { response -> streamEventsFrom(response) }
         }
     }

@@ -18866,6 +18866,307 @@ public final class com/aallam/openai/api/vectorstore/VectorStoreUpdateRequest$Co
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/voice/PromptVoiceRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/voice/VoiceCreateRequest$Prompt;
+	public final fun getModel ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPrompt ()Ljava/lang/String;
+	public final fun getScriptHint ()Ljava/lang/String;
+	public final fun setModel (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setPrompt (Ljava/lang/String;)V
+	public final fun setScriptHint (Ljava/lang/String;)V
+}
+
+public final class com/aallam/openai/api/voice/SampleVoiceRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/voice/VoiceCreateRequest$Sample;
+	public final fun getAudioSample ()Lcom/aallam/openai/api/file/FileSource;
+	public final fun getConsent ()Ljava/lang/String;
+	public final fun getMediaType ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun setAudioSample (Lcom/aallam/openai/api/file/FileSource;)V
+	public final fun setConsent (Ljava/lang/String;)V
+	public final fun setMediaType (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsent {
+	public static final field Companion Lcom/aallam/openai/api/voice/VoiceConsent$Companion;
+	public fun <init> (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/voice/VoiceConsent;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/voice/VoiceConsent;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/voice/VoiceConsent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getId ()Ljava/lang/String;
+	public final fun getLanguage ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/voice/VoiceConsent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/voice/VoiceConsent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/voice/VoiceConsent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/voice/VoiceConsent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsentPage : java/util/List, kotlin/jvm/internal/markers/KMappedMarker {
+	public static final field Companion Lcom/aallam/openai/api/voice/VoiceConsentPage$Companion;
+	public fun <init> (Ljava/util/List;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/util/List;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun add (ILcom/aallam/openai/api/voice/VoiceConsent;)V
+	public synthetic fun add (ILjava/lang/Object;)V
+	public fun add (Lcom/aallam/openai/api/voice/VoiceConsent;)Z
+	public synthetic fun add (Ljava/lang/Object;)Z
+	public fun addAll (ILjava/util/Collection;)Z
+	public fun addAll (Ljava/util/Collection;)Z
+	public fun clear ()V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Z
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public fun contains (Lcom/aallam/openai/api/voice/VoiceConsent;)Z
+	public final fun contains (Ljava/lang/Object;)Z
+	public fun containsAll (Ljava/util/Collection;)Z
+	public final fun copy (Ljava/util/List;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/voice/VoiceConsentPage;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/voice/VoiceConsentPage;Ljava/util/List;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/voice/VoiceConsentPage;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun get (I)Lcom/aallam/openai/api/voice/VoiceConsent;
+	public synthetic fun get (I)Ljava/lang/Object;
+	public final fun getData ()Ljava/util/List;
+	public final fun getFirstId ()Ljava/lang/String;
+	public final fun getHasMore ()Z
+	public final fun getLastId ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public fun getSize ()I
+	public fun hashCode ()I
+	public fun indexOf (Lcom/aallam/openai/api/voice/VoiceConsent;)I
+	public final fun indexOf (Ljava/lang/Object;)I
+	public fun isEmpty ()Z
+	public fun iterator ()Ljava/util/Iterator;
+	public fun lastIndexOf (Lcom/aallam/openai/api/voice/VoiceConsent;)I
+	public final fun lastIndexOf (Ljava/lang/Object;)I
+	public fun listIterator ()Ljava/util/ListIterator;
+	public fun listIterator (I)Ljava/util/ListIterator;
+	public fun remove (I)Lcom/aallam/openai/api/voice/VoiceConsent;
+	public synthetic fun remove (I)Ljava/lang/Object;
+	public fun remove (Ljava/lang/Object;)Z
+	public fun removeAll (Ljava/util/Collection;)Z
+	public fun replaceAll (Ljava/util/function/UnaryOperator;)V
+	public fun retainAll (Ljava/util/Collection;)Z
+	public fun set (ILcom/aallam/openai/api/voice/VoiceConsent;)Lcom/aallam/openai/api/voice/VoiceConsent;
+	public synthetic fun set (ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun size ()I
+	public fun sort (Ljava/util/Comparator;)V
+	public fun subList (II)Ljava/util/List;
+	public fun toArray ()[Ljava/lang/Object;
+	public fun toArray ([Ljava/lang/Object;)[Ljava/lang/Object;
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/voice/VoiceConsentPage$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/voice/VoiceConsentPage$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/voice/VoiceConsentPage;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/voice/VoiceConsentPage;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsentPage$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsentRequest {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/aallam/openai/api/file/FileSource;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;)Lcom/aallam/openai/api/voice/VoiceConsentRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/voice/VoiceConsentRequest;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/voice/VoiceConsentRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLanguage ()Ljava/lang/String;
+	public final fun getMediaType ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRecording ()Lcom/aallam/openai/api/file/FileSource;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsentRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/voice/VoiceConsentRequest;
+	public final fun getLanguage ()Ljava/lang/String;
+	public final fun getMediaType ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRecording ()Lcom/aallam/openai/api/file/FileSource;
+	public final fun setLanguage (Ljava/lang/String;)V
+	public final fun setMediaType (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setRecording (Lcom/aallam/openai/api/file/FileSource;)V
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsentRequestKt {
+	public static final fun voiceConsentRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/voice/VoiceConsentRequest;
+	public static final fun voiceConsentUpdateRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/voice/VoiceConsentUpdateRequest;
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsentUpdateRequest {
+	public static final field Companion Lcom/aallam/openai/api/voice/VoiceConsentUpdateRequest$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/voice/VoiceConsentUpdateRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/voice/VoiceConsentUpdateRequest;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/voice/VoiceConsentUpdateRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/voice/VoiceConsentUpdateRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/voice/VoiceConsentUpdateRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/voice/VoiceConsentUpdateRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/voice/VoiceConsentUpdateRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsentUpdateRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/voice/VoiceConsentUpdateRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/voice/VoiceConsentUpdateRequest;
+	public final fun getName ()Ljava/lang/String;
+	public final fun setName (Ljava/lang/String;)V
+}
+
+public abstract interface class com/aallam/openai/api/voice/VoiceCreateRequest {
+	public abstract fun getName ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/voice/VoiceCreateRequest$Prompt : com/aallam/openai/api/voice/VoiceCreateRequest {
+	public static final field Companion Lcom/aallam/openai/api/voice/VoiceCreateRequest$Prompt$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/voice/VoiceCreateRequest$Prompt;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/voice/VoiceCreateRequest$Prompt;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/voice/VoiceCreateRequest$Prompt;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getModel ()Ljava/lang/String;
+	public fun getName ()Ljava/lang/String;
+	public final fun getPrompt ()Ljava/lang/String;
+	public final fun getScriptHint ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/voice/VoiceCreateRequest$Prompt$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/voice/VoiceCreateRequest$Prompt$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/voice/VoiceCreateRequest$Prompt;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/voice/VoiceCreateRequest$Prompt;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/voice/VoiceCreateRequest$Prompt$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/voice/VoiceCreateRequest$Sample : com/aallam/openai/api/voice/VoiceCreateRequest {
+	public fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/aallam/openai/api/file/FileSource;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/voice/VoiceCreateRequest$Sample;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/voice/VoiceCreateRequest$Sample;Ljava/lang/String;Lcom/aallam/openai/api/file/FileSource;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/voice/VoiceCreateRequest$Sample;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAudioSample ()Lcom/aallam/openai/api/file/FileSource;
+	public final fun getConsent ()Ljava/lang/String;
+	public final fun getMediaType ()Ljava/lang/String;
+	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/aallam/openai/api/voice/VoiceCreateRequestKt {
+	public static final fun promptVoiceRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/voice/VoiceCreateRequest$Prompt;
+	public static final fun sampleVoiceRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/voice/VoiceCreateRequest$Sample;
+}
+
+public final class com/aallam/openai/api/voice/VoiceResource {
+	public static final field Companion Lcom/aallam/openai/api/voice/VoiceResource$Companion;
+	public fun <init> (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/voice/VoiceResource;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/voice/VoiceResource;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/voice/VoiceResource;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()J
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public final fun getPrompt ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/voice/VoiceResource$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/voice/VoiceResource$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/voice/VoiceResource;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/voice/VoiceResource;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/voice/VoiceResource$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aallam/openai/api/webhook/InvalidWebhookSignatureException : java/lang/IllegalArgumentException {
 	public fun <init> (Ljava/lang/String;)V
 }

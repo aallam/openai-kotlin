@@ -37,4 +37,5 @@ internal class OpenAIApi(
     Decisions by DecisionsApi(requester),
     Containers by ContainersApi(requester),
     Skills by SkillsApi(requester),
+    VoiceManagement by VoiceManagementApi(requester),
     AutoCloseable by requester

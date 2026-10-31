@@ -6,6 +6,9 @@ import com.aallam.openai.api.finetuning.FineTuningId
 import com.aallam.openai.api.finetuning.FineTuningJob
 import com.aallam.openai.api.finetuning.FineTuningJobEvent
 import com.aallam.openai.api.finetuning.FineTuningRequest
+import com.aallam.openai.api.finetuning.FineTuningJobDetails
+import com.aallam.openai.api.finetuning.FineTuningCheckpoint
+import com.aallam.openai.api.finetuning.FineTuningPage
 
 /**
  * Manage fine-tuning jobs to tailor a model to your specific training data.
@@ -64,4 +67,25 @@ public interface FineTuning {
         after: String? = null,
         limit: Int? = null, requestOptions: RequestOptions? = null
     ): PaginatedList<FineTuningJobEvent>
+
+    /** Retrieves current job details, including nullable hyperparameters and paused states; returns null for HTTP 404. */
+    public suspend fun fineTuningJobDetails(id: FineTuningId, requestOptions: RequestOptions? = null): FineTuningJobDetails? =
+        throw UnsupportedOperationException("Current fine-tuning operations are not supported by this client.")
+
+    /** Requests a pause and returns current job details. The job can initially be in the pausing state. */
+    public suspend fun pauseFineTuningJob(id: FineTuningId, requestOptions: RequestOptions? = null): FineTuningJobDetails =
+        throw UnsupportedOperationException("Current fine-tuning operations are not supported by this client.")
+
+    /** Resumes a paused job and returns current job details. */
+    public suspend fun resumeFineTuningJob(id: FineTuningId, requestOptions: RequestOptions? = null): FineTuningJobDetails =
+        throw UnsupportedOperationException("Current fine-tuning operations are not supported by this client.")
+
+    /** Lists checkpoints, retaining cursor metadata. Use the checkpoint model ID for permission operations. */
+    public suspend fun fineTuningJobCheckpoints(
+        id: FineTuningId,
+        after: String? = null,
+        limit: Int? = null,
+        requestOptions: RequestOptions? = null,
+    ): FineTuningPage<FineTuningCheckpoint> =
+        throw UnsupportedOperationException("Current fine-tuning operations are not supported by this client.")
 }

@@ -233,7 +233,11 @@ public abstract interface class com/aallam/openai/client/FineTuning {
 	public abstract fun fineTuningEvents-4sc0OaU (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun fineTuningJob (Lcom/aallam/openai/api/finetuning/FineTuningRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun fineTuningJob-Nywq02Y (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun fineTuningJobCheckpoints-4sc0OaU (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun fineTuningJobDetails-Nywq02Y (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun fineTuningJobs (Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun pauseFineTuningJob-Nywq02Y (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun resumeFineTuningJob-Nywq02Y (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aallam/openai/client/FineTuning$DefaultImpls {
@@ -241,7 +245,30 @@ public final class com/aallam/openai/client/FineTuning$DefaultImpls {
 	public static synthetic fun fineTuningEvents-4sc0OaU$default (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun fineTuningJob$default (Lcom/aallam/openai/client/FineTuning;Lcom/aallam/openai/api/finetuning/FineTuningRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun fineTuningJob-Nywq02Y$default (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun fineTuningJobCheckpoints-4sc0OaU (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun fineTuningJobCheckpoints-4sc0OaU$default (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun fineTuningJobDetails-Nywq02Y (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun fineTuningJobDetails-Nywq02Y$default (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun fineTuningJobs$default (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun pauseFineTuningJob-Nywq02Y (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun pauseFineTuningJob-Nywq02Y$default (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun resumeFineTuningJob-Nywq02Y (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun resumeFineTuningJob-Nywq02Y$default (Lcom/aallam/openai/client/FineTuning;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/FineTuningPermissions {
+	public abstract fun createFineTuningCheckpointPermissions-Ln0UpcI (Ljava/lang/String;Lcom/aallam/openai/api/finetuning/FineTuningCheckpointPermissionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun deleteFineTuningCheckpointPermission-Ln0UpcI (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun fineTuningCheckpointPermissions-SUJVTbA (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/finetuning/FineTuningPermissionOrder;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aallam/openai/client/FineTuningPermissions$DefaultImpls {
+	public static fun createFineTuningCheckpointPermissions-Ln0UpcI (Lcom/aallam/openai/client/FineTuningPermissions;Ljava/lang/String;Lcom/aallam/openai/api/finetuning/FineTuningCheckpointPermissionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createFineTuningCheckpointPermissions-Ln0UpcI$default (Lcom/aallam/openai/client/FineTuningPermissions;Ljava/lang/String;Lcom/aallam/openai/api/finetuning/FineTuningCheckpointPermissionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun deleteFineTuningCheckpointPermission-Ln0UpcI (Lcom/aallam/openai/client/FineTuningPermissions;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun deleteFineTuningCheckpointPermission-Ln0UpcI$default (Lcom/aallam/openai/client/FineTuningPermissions;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun fineTuningCheckpointPermissions-SUJVTbA (Lcom/aallam/openai/client/FineTuningPermissions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/finetuning/FineTuningPermissionOrder;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun fineTuningCheckpointPermissions-SUJVTbA$default (Lcom/aallam/openai/client/FineTuningPermissions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/finetuning/FineTuningPermissionOrder;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aallam/openai/client/Images {
@@ -411,6 +438,8 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun downloadSkill-9BETlQo (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun downloadSkillVersion-YuHUjHg (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun filesPage-H6L0-_I (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun fineTuningJobCheckpoints-4sc0OaU (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun fineTuningJobDetails-Nywq02Y (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun forkLiveConnection (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionOverrides;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun forkLiveSession (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionForkRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun hangupLiveSession (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -421,6 +450,7 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun liveSession (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/live/LiveSessionConfig;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun moderate (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun pauseFineTuningJob-Nywq02Y (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun realtimeCall (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun realtimeClientSecret (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/realtime/RealtimeClientSecretRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun realtimeSession-3cGfIj4 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -433,6 +463,7 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun responseInputItemsPage-pbcYYTU (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun responseInputTokens (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/response/ResponseTokenCountRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun responseSession (Lcom/aallam/openai/client/OpenAI;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun resumeFineTuningJob-Nywq02Y (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun resumeResponse-ImuQNo4 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Ljava/lang/Boolean;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun retrieveContainer-YZdwJ0o (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun retrieveContainerFile-cKO7O-k (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -477,7 +508,7 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun webhookEndpoints (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAIAdmin : com/aallam/openai/client/OrganizationAdministration, com/aallam/openai/client/OrganizationGovernance, com/aallam/openai/client/OrganizationSpending, com/aallam/openai/client/OrganizationUsage, java/lang/AutoCloseable {
+public abstract interface class com/aallam/openai/client/OpenAIAdmin : com/aallam/openai/client/FineTuningPermissions, com/aallam/openai/client/OrganizationAdministration, com/aallam/openai/client/OrganizationGovernance, com/aallam/openai/client/OrganizationSpending, com/aallam/openai/client/OrganizationUsage, java/lang/AutoCloseable {
 }
 
 public final class com/aallam/openai/client/OpenAIAdmin$DefaultImpls {
@@ -490,6 +521,7 @@ public final class com/aallam/openai/client/OpenAIAdmin$DefaultImpls {
 	public static fun assignProjectGroupRole (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/admin/OrganizationRoleAssignmentRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun assignProjectUserRole (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/admin/OrganizationRoleAssignmentRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun auditLogs (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/governance/AuditLogQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun createFineTuningCheckpointPermissions-Ln0UpcI (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Lcom/aallam/openai/api/finetuning/FineTuningCheckpointPermissionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createOrganizationAdminAPIKey (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/OrganizationAdminAPIKeyRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createOrganizationGroup (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/OrganizationGroupRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createOrganizationInvite (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/OrganizationInviteRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -506,6 +538,7 @@ public final class com/aallam/openai/client/OpenAIAdmin$DefaultImpls {
 	public static fun deactivateProjectCertificates (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Lcom/aallam/openai/api/admin/governance/CertificateActivationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteExternalKey (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteExternalStorage (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun deleteFineTuningCheckpointPermission-Ln0UpcI (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteOrganizationAdminAPIKey (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteOrganizationCertificate (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteOrganizationGroup (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -526,6 +559,7 @@ public final class com/aallam/openai/client/OpenAIAdmin$DefaultImpls {
 	public static fun externalKeys (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/governance/ExternalKeyListQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun externalStorage (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun externalStorageConfigurations (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/governance/ExternalStorageListQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun fineTuningCheckpointPermissions-SUJVTbA (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/finetuning/FineTuningPermissionOrder;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun organizationAdminAPIKey (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun organizationAdminAPIKeys-NlzWUlY (Lcom/aallam/openai/client/OpenAIAdmin;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun organizationAudioSpeechesUsage (Lcom/aallam/openai/client/OpenAIAdmin;Lcom/aallam/openai/api/admin/usage/OrganizationUsageQuery;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

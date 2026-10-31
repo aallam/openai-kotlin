@@ -265,6 +265,48 @@ public final class com/aallam/openai/client/Images$DefaultImpls {
 	public static synthetic fun imageURL$default (Lcom/aallam/openai/client/Images;Lcom/aallam/openai/api/image/ImageVariation;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
+public abstract interface class com/aallam/openai/client/Live {
+	public abstract fun acceptLiveSession (Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionConfig;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun attachLiveSession (Ljava/lang/String;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createLiveSession (Lcom/aallam/openai/api/live/LiveSessionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun downloadLiveRecording (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun forkLiveConnection (Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionOverrides;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun forkLiveSession (Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionForkRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun hangupLiveSession (Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun liveSession (Lcom/aallam/openai/api/live/LiveSessionConfig;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun referLiveSession (Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun rejectLiveSession (Ljava/lang/String;ILcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aallam/openai/client/Live$DefaultImpls {
+	public static fun acceptLiveSession (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionConfig;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun acceptLiveSession$default (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionConfig;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun attachLiveSession (Lcom/aallam/openai/client/Live;Ljava/lang/String;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun attachLiveSession$default (Lcom/aallam/openai/client/Live;Ljava/lang/String;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun createLiveSession (Lcom/aallam/openai/client/Live;Lcom/aallam/openai/api/live/LiveSessionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun createLiveSession$default (Lcom/aallam/openai/client/Live;Lcom/aallam/openai/api/live/LiveSessionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun downloadLiveRecording (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun downloadLiveRecording$default (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun forkLiveConnection (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionOverrides;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun forkLiveConnection$default (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionOverrides;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun forkLiveSession (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionForkRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun forkLiveSession$default (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionForkRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun hangupLiveSession (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun hangupLiveSession$default (Lcom/aallam/openai/client/Live;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun liveSession (Lcom/aallam/openai/client/Live;Lcom/aallam/openai/api/live/LiveSessionConfig;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun liveSession$default (Lcom/aallam/openai/client/Live;Lcom/aallam/openai/api/live/LiveSessionConfig;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun referLiveSession (Lcom/aallam/openai/client/Live;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun referLiveSession$default (Lcom/aallam/openai/client/Live;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static fun rejectLiveSession (Lcom/aallam/openai/client/Live;Ljava/lang/String;ILcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun rejectLiveSession$default (Lcom/aallam/openai/client/Live;Ljava/lang/String;ILcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aallam/openai/client/LiveConnection {
+	public abstract fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getEvents ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun send (Lcom/aallam/openai/api/live/LiveEvent;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public final class com/aallam/openai/client/LoggingConfig {
 	public fun <init> ()V
 	public fun <init> (Lcom/aallam/openai/api/logging/LogLevel;Lcom/aallam/openai/api/logging/Logger;Z)V
@@ -309,11 +351,13 @@ public final class com/aallam/openai/client/Moderations$DefaultImpls {
 	public static synthetic fun moderations$default (Lcom/aallam/openai/client/Moderations;Lcom/aallam/openai/api/moderation/ModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Containers, com/aallam/openai/client/Conversations, com/aallam/openai/client/Decisions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Realtime, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Skills, com/aallam/openai/client/Threads, com/aallam/openai/client/Uploads, com/aallam/openai/client/VectorStores, com/aallam/openai/client/VoiceManagement, com/aallam/openai/client/Webhooks, java/lang/AutoCloseable {
+public abstract interface class com/aallam/openai/client/OpenAI : com/aallam/openai/client/Assistants, com/aallam/openai/client/Audio, com/aallam/openai/client/Batch, com/aallam/openai/client/Chat, com/aallam/openai/client/Completions, com/aallam/openai/client/Containers, com/aallam/openai/client/Conversations, com/aallam/openai/client/Decisions, com/aallam/openai/client/Edits, com/aallam/openai/client/Embeddings, com/aallam/openai/client/Files, com/aallam/openai/client/FineTunes, com/aallam/openai/client/FineTuning, com/aallam/openai/client/Images, com/aallam/openai/client/Live, com/aallam/openai/client/Messages, com/aallam/openai/client/Models, com/aallam/openai/client/Moderations, com/aallam/openai/client/Realtime, com/aallam/openai/client/Responses, com/aallam/openai/client/Runs, com/aallam/openai/client/Skills, com/aallam/openai/client/Threads, com/aallam/openai/client/Uploads, com/aallam/openai/client/VectorStores, com/aallam/openai/client/VoiceManagement, com/aallam/openai/client/Webhooks, java/lang/AutoCloseable {
 }
 
 public final class com/aallam/openai/client/OpenAI$DefaultImpls {
+	public static fun acceptLiveSession (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionConfig;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun acceptRealtimeCall (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun attachLiveSession (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun attachVectorStoreFile-PRrSv6s (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/vectorstore/VectorStoreFileCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun cancelResponse-PmuLqX4 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun cancelUpload-oxTNcyY (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -332,6 +376,7 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun createContainer (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/container/ContainerRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createConversationItems-FaCfgoc (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/conversation/ConversationItemsRequest;Ljava/util/List;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createEmbeddings (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/embedding/EmbeddingCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun createLiveSession (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/live/LiveSessionRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createResponse (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/response/ResponseCreateRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createSkill (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/skill/SkillUploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun createSkillVersion-YuHUjHg (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/skill/SkillVersionUploadRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -352,21 +397,28 @@ public final class com/aallam/openai/client/OpenAI$DefaultImpls {
 	public static fun deleteVoiceConsent (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun deleteWebhookEndpoint (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun downloadContainerFile-cKO7O-k (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun downloadLiveRecording (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun downloadSkill-9BETlQo (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun downloadSkillVersion-YuHUjHg (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun filesPage-H6L0-_I (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun forkLiveConnection (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionOverrides;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun forkLiveSession (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/live/LiveSessionForkRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun hangupLiveSession (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun hangupRealtimeCall (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun image (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun image (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageEditRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
 	public static fun imageEvents (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/image/ImageGenerationRequest;Lcom/aallam/openai/api/core/RequestOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static fun liveSession (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/live/LiveSessionConfig;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun moderate (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/moderation/MultimodalModerationRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun realtimeCall (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Lcom/aallam/openai/api/realtime/RealtimeSessionConfig;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun realtimeClientSecret (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/realtime/RealtimeClientSecretRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun realtimeSession-3cGfIj4 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun realtimeTranslation-aYjYYK0 (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;ZLcom/aallam/openai/api/core/RequestOptions;Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun realtimeTranslationSecret (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/realtime/RealtimeTranslationSecretRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun referLiveSession (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun referRealtimeCall (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun rejectLiveSession (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;ILcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun rejectRealtimeCall (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/lang/Integer;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun responseInputItemsPage-pbcYYTU (Lcom/aallam/openai/client/OpenAI;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun responseInputTokens (Lcom/aallam/openai/client/OpenAI;Lcom/aallam/openai/api/response/ResponseTokenCountRequest;Lcom/aallam/openai/api/core/RequestOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

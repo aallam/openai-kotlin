@@ -138,3 +138,17 @@ tasks.register<Test>("containerLiveJvmTest") {
     environment("OPENAI_LIVE_TESTS", "1")
     onlyIf("Set OPENAI_CONTAINER_LIVE_TESTS=1 with an eligible project.") { providers.environmentVariable("OPENAI_CONTAINER_LIVE_TESTS").orNull == "1" }
 }
+
+tasks.withType<KotlinJvmTest>().configureEach { filter { excludeTestsMatching("*.TestLive") } }
+tasks.register<Test>("liveApiJvmTest") {
+    group = "verification"
+    description = "Runs strict TestLive with an eligible project."
+    val jvmTest = tasks.named<KotlinJvmTest>("jvmTest")
+    dependsOn("jvmTestClasses")
+    testClassesDirs = jvmTest.get().testClassesDirs
+    classpath = jvmTest.get().classpath
+    filter { includeTestsMatching("*.TestLive") }
+    environment("LIB_ROOT", rootDir)
+    environment("OPENAI_LIVE_TESTS", "1")
+    onlyIf("Set OPENAI_LIVE_API_TESTS=1 with an eligible project.") { providers.environmentVariable("OPENAI_LIVE_API_TESTS").orNull == "1" }
+}

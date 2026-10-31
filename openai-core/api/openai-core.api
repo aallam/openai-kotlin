@@ -5313,6 +5313,21 @@ public final class com/aallam/openai/api/core/RequestOptions {
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/aallam/openai/api/core/ResponseMetadata {
+	public fun <init> (ILjava/util/Map;)V
+	public final fun getHeaders ()Ljava/util/Map;
+	public final fun getRateLimitRemainingRequests ()Ljava/lang/Long;
+	public final fun getRateLimitRemainingTokens ()Ljava/lang/Long;
+	public final fun getRateLimitRequests ()Ljava/lang/Long;
+	public final fun getRateLimitResetRequests ()Ljava/lang/String;
+	public final fun getRateLimitResetTokens ()Ljava/lang/String;
+	public final fun getRateLimitTokens ()Ljava/lang/Long;
+	public final fun getRequestId ()Ljava/lang/String;
+	public final fun getStatusCode ()I
+	public final fun header (Ljava/lang/String;)Ljava/lang/String;
+	public final fun headerValues (Ljava/lang/String;)Ljava/util/List;
+}
+
 public final class com/aallam/openai/api/core/Role {
 	public static final field Companion Lcom/aallam/openai/api/core/Role$Companion;
 	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/aallam/openai/api/core/Role;

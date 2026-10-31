@@ -3,6 +3,7 @@ package com.aallam.openai.client.internal.http
 import com.aallam.openai.api.exception.*
 import com.aallam.openai.api.run.AssistantStreamEvent
 import com.aallam.openai.client.extension.toAssistantStreamEvent
+import com.aallam.openai.client.internal.ResponseObserverException
 import com.aallam.openai.client.internal.api.ApiPath
 import io.ktor.client.*
 import io.ktor.client.plugins.websocket.*
@@ -93,6 +94,10 @@ internal class HttpTransport(private val httpClient: HttpClient) : HttpRequester
      * [OpenAIException] instances.
      */
     private suspend fun handleException(e: Throwable) = when (e) {
+        is ResponseObserverException -> when (val cause = e.cause) {
+            is Error -> cause
+            else -> OpenAIHttpException(cause ?: e)
+        }
         is CancellationException -> e // propagate coroutine cancellation
         is ClientRequestException -> openAIAPIException(e)
         is ServerResponseException -> OpenAIServerException(e)

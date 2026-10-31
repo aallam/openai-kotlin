@@ -29,4 +29,5 @@ internal object ApiPath {
     const val WebhookEndpoints = "webhook_endpoints"
     const val Decisions = "decisions"
     const val Containers = "containers"
+    const val Skills = "skills"
 }

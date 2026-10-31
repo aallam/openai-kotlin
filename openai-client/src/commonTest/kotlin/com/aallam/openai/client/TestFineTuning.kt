@@ -7,6 +7,7 @@ import com.aallam.openai.api.finetuning.FineTuningRequest
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.asSource
 import com.aallam.openai.client.internal.waitFileProcess
+import com.aallam.openai.client.internal.withTestCleanup
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -31,32 +32,29 @@ class TestFineTuning : TestOpenAI() {
             file = source
             purpose = Purpose("fine-tune")
         }
-        val fileId = openAI.file(request).id
-        openAI.waitFileProcess(fileId)
+        withTestCleanup {
+            val fileId = openAI.file(request).id
+            afterTest { openAI.delete(fileId) }
+            openAI.waitFileProcess(fileId)
 
-        val jobRequest = FineTuningRequest(trainingFile = fileId, model = ModelId("gpt-3.5-turbo"))
-        val fineTuningJob = openAI.fineTuningJob(jobRequest)
+            val jobRequest = FineTuningRequest(trainingFile = fileId, model = ModelId("gpt-3.5-turbo"))
+            val fineTuningJob = openAI.fineTuningJob(jobRequest)
+            afterTest { assertNotNull(openAI.cancel(fineTuningJob.id)) }
 
-        assertEquals(fineTuningJob.trainingFile.id, fileId.id)
+            assertEquals(fineTuningJob.trainingFile.id, fileId.id)
 
-        // At least one fine-tune exists
-        val fineTunes = openAI.fineTuningJobs()
-        assertTrue(fineTunes.isNotEmpty())
-        println(fineTunes.contains(fineTuningJob))
+            // At least one fine-tune exists
+            val fineTunes = openAI.fineTuningJobs()
+            assertTrue(fineTunes.isNotEmpty())
+            println(fineTunes.contains(fineTuningJob))
 
-        // At least last created fine-tune exists
-        val createdFineTune = openAI.fineTuningJob(fineTuningJob.id)
-        assertNotNull(createdFineTune)
+            // At least last created fine-tune exists
+            val createdFineTune = openAI.fineTuningJob(fineTuningJob.id)
+            assertNotNull(createdFineTune)
 
-        // Get events
-        val fineTuneEvents = openAI.fineTuningEvents(fineTuningJob.id)
-        assertTrue(fineTuneEvents.isNotEmpty())
-
-        // Cancel fine-tune
-        val canceled = openAI.cancel(fineTuningJob.id)
-        assertNotNull(canceled)
-
-        // cleanup
-        openAI.delete(fileId)
+            // Get events
+            val fineTuneEvents = openAI.fineTuningEvents(fineTuningJob.id)
+            assertTrue(fineTuneEvents.isNotEmpty())
+        }
     }
 }

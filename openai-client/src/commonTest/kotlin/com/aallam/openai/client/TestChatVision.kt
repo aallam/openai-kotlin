@@ -1,7 +1,9 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.*
+import com.aallam.openai.api.core.FinishReason
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.internal.reportUsage
 import com.aallam.openai.client.internal.TestFileSystem
 import com.aallam.openai.client.internal.testFilePath
 import kotlinx.io.buffered
@@ -28,17 +30,19 @@ class TestChatVision : TestOpenAI() {
             messages {
                 user {
                     content {
-                        text("What’s in this image?")
+                        text("Describe this image in one short sentence.")
                         // Keep this test deterministic in CI by avoiding external image hosts.
                         image(InlineTestImage)
                     }
                 }
             }
-            maxTokens = 300
+            maxTokens = 64
         }
         val response = openAI.chatCompletion(request)
-        val content = response.choices.first().message.content.orEmpty()
-        assertNotNull(content)
+        reportUsage("vision", response.model, response.usage)
+        assertEquals(FinishReason.Stop, response.choices.first().finishReason)
+        val content = response.choices.first().message.content
+        assertFalse(content.isNullOrBlank())
     }
 
     @Test
@@ -48,16 +52,18 @@ class TestChatVision : TestOpenAI() {
             messages {
                 user {
                     content {
-                        text("What are in these images? Is there any difference between them?")
-                        image(InlineTestImage)
-                        image(InlineTestImage)
+                        text("Briefly describe both images and say whether they differ.")
+                        image(InlineTestImage, detail = "low")
+                        image(InlineTestImage, detail = "low")
                     }
                 }
             }
-            maxTokens = 300
+            maxTokens = 64
         }
         val response = openAI.chatCompletion(request)
-        val content = response.choices.first().message.content.orEmpty()
-        assertNotNull(content)
+        reportUsage("vision", response.model, response.usage)
+        assertEquals(FinishReason.Stop, response.choices.first().finishReason)
+        val content = response.choices.first().message.content
+        assertFalse(content.isNullOrBlank())
     }
 }

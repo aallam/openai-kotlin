@@ -4,6 +4,8 @@ import com.aallam.openai.api.audio.*
 import com.aallam.openai.api.file.FileSource
 import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.internal.TestFileSystem
+import com.aallam.openai.client.internal.reportAudioUsage
+import com.aallam.openai.client.internal.reportSpeechUsage
 import com.aallam.openai.client.internal.testFilePath
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -18,6 +20,7 @@ class TestAudio : TestOpenAI() {
             model = ModelId("whisper-1")
         }
 
+        reportAudioUsage("audio.transcriptions", request.model, seconds = 3.1)
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
         assertTrue {
@@ -35,6 +38,7 @@ class TestAudio : TestOpenAI() {
             model = ModelId("whisper-1")
             responseFormat = AudioResponseFormat.Text
         }
+        reportAudioUsage("audio.transcriptions", request.model, seconds = 3.1)
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
     }
@@ -46,10 +50,11 @@ class TestAudio : TestOpenAI() {
             model = ModelId("whisper-1")
             responseFormat = AudioResponseFormat.VerboseJson
         }
+        reportAudioUsage("audio.transcriptions", request.model, seconds = 3.1)
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
         assertEquals(transcription.language, "english")
-        assertEquals(transcription.duration!!, 29.88, absoluteTolerance = 0.1)
+        assertEquals(transcription.duration!!, 3.1, absoluteTolerance = 0.1)
         assertTrue { transcription.segments?.isNotEmpty() ?: false }
     }
 
@@ -61,10 +66,11 @@ class TestAudio : TestOpenAI() {
             responseFormat = AudioResponseFormat.VerboseJson
             timestampGranularities = listOf(TimestampGranularity.Word)
         }
+        reportAudioUsage("audio.transcriptions", request.model, seconds = 3.1)
         val transcription = openAI.transcription(request)
         assertTrue { transcription.text.isNotEmpty() }
         assertEquals(transcription.language, "english")
-        assertEquals(transcription.duration!!, 29.88, absoluteTolerance = 0.1)
+        assertEquals(transcription.duration!!, 3.1, absoluteTolerance = 0.1)
         assertEquals(transcription.segments, null)
         assertTrue { transcription.words?.isNotEmpty() ?: false }
     }
@@ -75,6 +81,7 @@ class TestAudio : TestOpenAI() {
             audio = FileSource(path = testFilePath("audio/multilingual.wav"), fileSystem = TestFileSystem)
             model = ModelId("whisper-1")
         }
+        reportAudioUsage("audio.translations", request.model, seconds = 9.2)
         val translation = openAI.translation(request)
         assertTrue { translation.text.isNotEmpty() }
         assertTrue {
@@ -92,6 +99,7 @@ class TestAudio : TestOpenAI() {
             model = ModelId("whisper-1")
             responseFormat = "text"
         }
+        reportAudioUsage("audio.translations", request.model, seconds = 9.2)
         val translation = openAI.translation(request)
         assertTrue { translation.text.isNotEmpty() }
     }
@@ -103,10 +111,11 @@ class TestAudio : TestOpenAI() {
             model = ModelId("whisper-1")
             responseFormat = "verbose_json"
         }
+        reportAudioUsage("audio.translations", request.model, seconds = 9.2)
         val translation = openAI.translation(request)
         assertTrue { translation.text.isNotEmpty() }
         assertEquals(translation.language, "english")
-        assertEquals(translation.duration!!, 42.06, absoluteTolerance = 0.1)
+        assertEquals(translation.duration!!, 9.2, absoluteTolerance = 0.1)
         assertTrue { translation.segments?.isNotEmpty() ?: false }
     }
 
@@ -114,9 +123,10 @@ class TestAudio : TestOpenAI() {
     fun speech() = test {
         val request = speechRequest {
             model = ModelId("tts-1")
-            input = "The quick brown fox jumped over the lazy dog."
+            input = "Hello."
             voice = Voice.Alloy
         }
+        reportSpeechUsage(request.model, characters = request.input.length)
         val audio = openAI.speech(request)
         assertTrue { audio.isNotEmpty() }
     }

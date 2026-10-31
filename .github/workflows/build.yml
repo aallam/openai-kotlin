@@ -100,6 +100,10 @@ jobs:
           fi
           ./gradlew :openai-client:jvmTest
 
+      - name: Summarize live usage
+        if: always()
+        run: python3 .github/scripts/live-usage-summary.py
+
   publish-docs:
     runs-on: ubuntu-latest
     needs: [ offline-checks, live-full-jvm ]

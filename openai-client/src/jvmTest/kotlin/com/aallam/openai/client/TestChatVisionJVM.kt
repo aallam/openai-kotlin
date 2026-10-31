@@ -1,7 +1,9 @@
 package com.aallam.openai.client
 
 import com.aallam.openai.api.chat.*
+import com.aallam.openai.api.core.FinishReason
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.internal.reportUsage
 import kotlinx.io.buffered
 import kotlinx.io.bytestring.encode
 import kotlinx.io.files.Path
@@ -26,16 +28,18 @@ class TestChatVisionJVM : TestOpenAI() {
             messages {
                 user {
                     content {
-                        text("What’s in this image?")
-                        image("data:image/jpeg;base64,$encoded")
+                        text("Describe this image in one short sentence.")
+                        image("data:image/jpeg;base64,$encoded", detail = "low")
                     }
                 }
             }
-            maxTokens = 300
+            maxTokens = 64
         }
         val response = openAI.chatCompletion(request)
-        val content = response.choices.first().message.content.orEmpty()
-        assertNotNull(content)
+        reportUsage("vision", response.model, response.usage)
+        assertEquals(FinishReason.Stop, response.choices.first().finishReason)
+        val content = response.choices.first().message.content
+        assertFalse(content.isNullOrBlank())
     }
 
 }

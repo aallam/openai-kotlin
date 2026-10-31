@@ -3,6 +3,7 @@ package com.aallam.openai.client
 import com.aallam.openai.api.embedding.Embedding
 import com.aallam.openai.api.embedding.embeddingRequest
 import com.aallam.openai.api.model.ModelId
+import com.aallam.openai.client.internal.reportUsage
 import com.aallam.openai.client.extension.distance
 import com.aallam.openai.client.extension.similarity
 import kotlin.test.Test
@@ -15,8 +16,9 @@ class TestEmbeddings : TestOpenAI() {
     fun embeddings() = test {
         val response = openAI.embeddings(request = embeddingRequest {
             model = ModelId("text-embedding-ada-002")
-            input = listOf("The food was delicious and the waiter...")
+            input = listOf("Hello.")
         })
+        reportUsage("embeddings", ModelId("text-embedding-ada-002"), response.usage)
         assertTrue { response.embeddings.isNotEmpty() }
         val embedding = response.embeddings.first()
         assertTrue { embedding.embedding.isNotEmpty() }
@@ -27,9 +29,10 @@ class TestEmbeddings : TestOpenAI() {
     fun embeddingDimensions() = test {
         val response = openAI.embeddings(request = embeddingRequest {
             model = ModelId("text-embedding-3-small")
-            input = listOf("The food was delicious and the waiter...")
+            input = listOf("Hello.")
             dimensions = 1024
         })
+        reportUsage("embeddings", ModelId("text-embedding-3-small"), response.usage)
         assertTrue { response.embeddings.isNotEmpty() }
         val embedding = response.embeddings.first()
         assertTrue { embedding.embedding.isNotEmpty() }

@@ -1683,6 +1683,362 @@ public final class com/aallam/openai/api/admin/OrganizationUserUpdateRequest$Com
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/aallam/openai/api/admin/SpendAlert {
+	public static final field Companion Lcom/aallam/openai/api/admin/SpendAlert$Companion;
+	public fun <init> (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;Ljava/lang/String;)Lcom/aallam/openai/api/admin/SpendAlert;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/admin/SpendAlert;Ljava/lang/String;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/admin/SpendAlert;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCurrency ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getInterval ()Ljava/lang/String;
+	public final fun getNotificationChannel ()Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;
+	public final fun getObjectType ()Ljava/lang/String;
+	public final fun getThresholdAmount ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/admin/SpendAlert$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/admin/SpendAlert$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/admin/SpendAlert;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/admin/SpendAlert;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlert$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlertDeleted {
+	public static final field Companion Lcom/aallam/openai/api/admin/SpendAlertDeleted$Companion;
+	public fun <init> (Ljava/lang/String;ZLjava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Z
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;ZLjava/lang/String;)Lcom/aallam/openai/api/admin/SpendAlertDeleted;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/admin/SpendAlertDeleted;Ljava/lang/String;ZLjava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/admin/SpendAlertDeleted;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDeleted ()Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/admin/SpendAlertDeleted$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/admin/SpendAlertDeleted$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/admin/SpendAlertDeleted;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/admin/SpendAlertDeleted;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlertDeleted$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlertEmailChannel {
+	public static final field Companion Lcom/aallam/openai/api/admin/SpendAlertEmailChannel$Companion;
+	public fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRecipients ()Ljava/util/List;
+	public final fun getSubjectPrefix ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/admin/SpendAlertEmailChannel$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/admin/SpendAlertEmailChannel$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlertEmailChannel$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlertPage : java/util/List, kotlin/jvm/internal/markers/KMappedMarker {
+	public static final field Companion Lcom/aallam/openai/api/admin/SpendAlertPage$Companion;
+	public fun <init> (Ljava/util/List;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/util/List;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun add (ILcom/aallam/openai/api/admin/SpendAlert;)V
+	public synthetic fun add (ILjava/lang/Object;)V
+	public fun add (Lcom/aallam/openai/api/admin/SpendAlert;)Z
+	public synthetic fun add (Ljava/lang/Object;)Z
+	public fun addAll (ILjava/util/Collection;)Z
+	public fun addAll (Ljava/util/Collection;)Z
+	public fun clear ()V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Z
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public fun contains (Lcom/aallam/openai/api/admin/SpendAlert;)Z
+	public final fun contains (Ljava/lang/Object;)Z
+	public fun containsAll (Ljava/util/Collection;)Z
+	public final fun copy (Ljava/util/List;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/admin/SpendAlertPage;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/admin/SpendAlertPage;Ljava/util/List;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/admin/SpendAlertPage;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun get (I)Lcom/aallam/openai/api/admin/SpendAlert;
+	public synthetic fun get (I)Ljava/lang/Object;
+	public final fun getData ()Ljava/util/List;
+	public final fun getFirstId ()Ljava/lang/String;
+	public final fun getHasMore ()Z
+	public final fun getLastId ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public fun getSize ()I
+	public fun hashCode ()I
+	public fun indexOf (Lcom/aallam/openai/api/admin/SpendAlert;)I
+	public final fun indexOf (Ljava/lang/Object;)I
+	public fun isEmpty ()Z
+	public fun iterator ()Ljava/util/Iterator;
+	public fun lastIndexOf (Lcom/aallam/openai/api/admin/SpendAlert;)I
+	public final fun lastIndexOf (Ljava/lang/Object;)I
+	public fun listIterator ()Ljava/util/ListIterator;
+	public fun listIterator (I)Ljava/util/ListIterator;
+	public fun remove (I)Lcom/aallam/openai/api/admin/SpendAlert;
+	public synthetic fun remove (I)Ljava/lang/Object;
+	public fun remove (Ljava/lang/Object;)Z
+	public fun removeAll (Ljava/util/Collection;)Z
+	public fun replaceAll (Ljava/util/function/UnaryOperator;)V
+	public fun retainAll (Ljava/util/Collection;)Z
+	public fun set (ILcom/aallam/openai/api/admin/SpendAlert;)Lcom/aallam/openai/api/admin/SpendAlert;
+	public synthetic fun set (ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun size ()I
+	public fun sort (Ljava/util/Comparator;)V
+	public fun subList (II)Ljava/util/List;
+	public fun toArray ()[Ljava/lang/Object;
+	public fun toArray ([Ljava/lang/Object;)[Ljava/lang/Object;
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/admin/SpendAlertPage$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/admin/SpendAlertPage$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/admin/SpendAlertPage;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/admin/SpendAlertPage;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlertPage$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlertRequest {
+	public static final field Companion Lcom/aallam/openai/api/admin/SpendAlertRequest$Companion;
+	public fun <init> (JLcom/aallam/openai/api/admin/SpendAlertEmailChannel;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (JLcom/aallam/openai/api/admin/SpendAlertEmailChannel;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()J
+	public final fun component2 ()Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (JLcom/aallam/openai/api/admin/SpendAlertEmailChannel;Ljava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/admin/SpendAlertRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/admin/SpendAlertRequest;JLcom/aallam/openai/api/admin/SpendAlertEmailChannel;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/admin/SpendAlertRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCurrency ()Ljava/lang/String;
+	public final fun getInterval ()Ljava/lang/String;
+	public final fun getNotificationChannel ()Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;
+	public final fun getThresholdAmount ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/admin/SpendAlertRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/admin/SpendAlertRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/admin/SpendAlertRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/admin/SpendAlertRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlertRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendAlertRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/admin/SpendAlertRequest;
+	public final fun getCurrency ()Ljava/lang/String;
+	public final fun getInterval ()Ljava/lang/String;
+	public final fun getNotificationChannel ()Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;
+	public final fun getThresholdAmount ()Ljava/lang/Long;
+	public final fun setCurrency (Ljava/lang/String;)V
+	public final fun setInterval (Ljava/lang/String;)V
+	public final fun setNotificationChannel (Lcom/aallam/openai/api/admin/SpendAlertEmailChannel;)V
+	public final fun setThresholdAmount (Ljava/lang/Long;)V
+}
+
+public final class com/aallam/openai/api/admin/SpendControlsKt {
+	public static final fun spendAlertRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/admin/SpendAlertRequest;
+	public static final fun spendLimitRequest (Lkotlin/jvm/functions/Function1;)Lcom/aallam/openai/api/admin/SpendLimitRequest;
+}
+
+public final class com/aallam/openai/api/admin/SpendLimit {
+	public static final field Companion Lcom/aallam/openai/api/admin/SpendLimit$Companion;
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/admin/SpendLimitEnforcement;Ljava/lang/String;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lcom/aallam/openai/api/admin/SpendLimitEnforcement;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/admin/SpendLimitEnforcement;Ljava/lang/String;)Lcom/aallam/openai/api/admin/SpendLimit;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/admin/SpendLimit;JLjava/lang/String;Ljava/lang/String;Lcom/aallam/openai/api/admin/SpendLimitEnforcement;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/admin/SpendLimit;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCurrency ()Ljava/lang/String;
+	public final fun getEnforcement ()Lcom/aallam/openai/api/admin/SpendLimitEnforcement;
+	public final fun getInterval ()Ljava/lang/String;
+	public final fun getObjectType ()Ljava/lang/String;
+	public final fun getThresholdAmount ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/admin/SpendLimit$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/admin/SpendLimit$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/admin/SpendLimit;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/admin/SpendLimit;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendLimit$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendLimitDeleted {
+	public static final field Companion Lcom/aallam/openai/api/admin/SpendLimitDeleted$Companion;
+	public fun <init> (ZLjava/lang/String;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (ZLjava/lang/String;)Lcom/aallam/openai/api/admin/SpendLimitDeleted;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/admin/SpendLimitDeleted;ZLjava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/admin/SpendLimitDeleted;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDeleted ()Z
+	public final fun getObjectType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/admin/SpendLimitDeleted$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/admin/SpendLimitDeleted$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/admin/SpendLimitDeleted;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/admin/SpendLimitDeleted;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendLimitDeleted$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendLimitEnforcement {
+	public static final field Companion Lcom/aallam/openai/api/admin/SpendLimitEnforcement$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/aallam/openai/api/admin/SpendLimitEnforcement;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/admin/SpendLimitEnforcement;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/admin/SpendLimitEnforcement;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStatus ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/admin/SpendLimitEnforcement$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/admin/SpendLimitEnforcement$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/admin/SpendLimitEnforcement;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/admin/SpendLimitEnforcement;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendLimitEnforcement$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendLimitRequest {
+	public static final field Companion Lcom/aallam/openai/api/admin/SpendLimitRequest$Companion;
+	public fun <init> (JLjava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (JLjava/lang/String;Ljava/lang/String;)Lcom/aallam/openai/api/admin/SpendLimitRequest;
+	public static synthetic fun copy$default (Lcom/aallam/openai/api/admin/SpendLimitRequest;JLjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aallam/openai/api/admin/SpendLimitRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCurrency ()Ljava/lang/String;
+	public final fun getInterval ()Ljava/lang/String;
+	public final fun getThresholdAmount ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class com/aallam/openai/api/admin/SpendLimitRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aallam/openai/api/admin/SpendLimitRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aallam/openai/api/admin/SpendLimitRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aallam/openai/api/admin/SpendLimitRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendLimitRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aallam/openai/api/admin/SpendLimitRequestBuilder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aallam/openai/api/admin/SpendLimitRequest;
+	public final fun getCurrency ()Ljava/lang/String;
+	public final fun getInterval ()Ljava/lang/String;
+	public final fun getThresholdAmount ()Ljava/lang/Long;
+	public final fun setCurrency (Ljava/lang/String;)V
+	public final fun setInterval (Ljava/lang/String;)V
+	public final fun setThresholdAmount (Ljava/lang/Long;)V
+}
+
 public final class com/aallam/openai/api/admin/governance/AuditLog {
 	public static final field Companion Lcom/aallam/openai/api/admin/governance/AuditLog$Companion;
 	public fun <init> (Ljava/lang/String;JLjava/lang/String;Lcom/aallam/openai/api/admin/governance/AuditLogActor;Lcom/aallam/openai/api/admin/governance/AuditLogProject;Lkotlinx/serialization/json/JsonObject;)V
